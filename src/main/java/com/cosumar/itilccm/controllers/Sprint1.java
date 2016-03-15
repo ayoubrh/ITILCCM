@@ -2,6 +2,8 @@ package com.cosumar.itilccm.controllers;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +45,7 @@ public class Sprint1 implements HandlerExceptionResolver{
 	
 	@RequestMapping(value="/save")
 	public String save(@Valid User user,BindingResult bind,
-			Model model,MultipartFile file) throws IOException{
+			Model model,MultipartFile file) throws Exception{
 		if(bind.hasErrors()){
 			model.addAttribute("d", m.listDepartement());
 			model.addAttribute("r", m.listRole());
@@ -54,7 +56,16 @@ public class Sprint1 implements HandlerExceptionResolver{
 			user.setBphoto(file.getBytes());
 			user.setPhoto(file.getOriginalFilename());
 		}
-		System.out.println("000000000000000000000000000000"+user.getRole().getId());
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	    String password = "";
+	    for(int x=0;x<7;x++)
+	    {
+	       int i = (int)Math.floor(Math.random() * chars.length()); 
+	       password += chars.charAt(i);
+	    }
+	    System.out.println(password);
+	    user.setPassword(hashmd5password(password));
+		System.out.println("000000000000000000000000000000 : "+user.getRole().getId());
 		if(user.getRole().getId() == null){
 			System.out.println("aaaaaaaaaaaaaaaaaaa");
 			m.ajouterUser(user, user.getDepartement().getId());
@@ -66,7 +77,7 @@ public class Sprint1 implements HandlerExceptionResolver{
 		}
 		return "redirect:/users/index";
 	}
-	
+
 	@RequestMapping(value="/all")
 	public String all(Model model){
 		model.addAttribute("users", m.listUser());
@@ -80,5 +91,24 @@ public class Sprint1 implements HandlerExceptionResolver{
 		mv.addObject("ex",ex.getMessage());
 		mv.setViewName("page-500");
 		return mv;
+	}
+	
+	public String hashmd5password(String password) throws Exception{
+		//String password = "123456";
+    	
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        
+        byte byteData[] = md.digest();
+        
+        //convert the byte to hex format method 2
+        StringBuffer hexString = new StringBuffer();
+    	for (int i=0;i<byteData.length;i++) {
+    		String hex=Integer.toHexString(0xff & byteData[i]);
+   	     	if(hex.length()==1) hexString.append('0');
+   	     	hexString.append(hex);
+    	}
+    	//System.out.println("Digest(in hex format):: " + hexString.toString());
+    	return hexString.toString();
 	}
 }

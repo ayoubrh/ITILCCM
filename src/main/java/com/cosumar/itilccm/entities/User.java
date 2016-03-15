@@ -37,7 +37,7 @@ public class User implements Serializable {
 	@Column(unique = true)
    private String matricule;
 	
-	@Size(min=6,max=20)
+	@Size(min=6)
    private String password;
 	
 	@Size(min=4,max=10)
