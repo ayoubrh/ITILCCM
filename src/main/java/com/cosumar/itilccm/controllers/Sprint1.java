@@ -12,6 +12,8 @@ import javax.validation.Valid;
 
 import org.omg.PortableInterceptor.ForwardRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +29,9 @@ import com.cosumar.itilccm.metier.AdminMetier;
 @RequestMapping(value="/users")
 public class Sprint1 implements HandlerExceptionResolver{
 
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	@Autowired
 	private AdminMetier m;
 	
@@ -63,16 +68,17 @@ public class Sprint1 implements HandlerExceptionResolver{
 	       int i = (int)Math.floor(Math.random() * chars.length()); 
 	       password += chars.charAt(i);
 	    }
-	    System.out.println(password);
+	    //System.out.println(password);
 	    user.setPassword(hashmd5password(password));
-		System.out.println("000000000000000000000000000000 : "+user.getRole().getId());
+	    SendEmail(user.getEmail(),"Nouveau Compte","Matricule : "+user.getMatricule()+"\n Mot de passe : "+password);
+		//System.out.println("000000000000000000000000000000 : "+user.getRole().getId());
 		if(user.getRole().getId() == null){
-			System.out.println("aaaaaaaaaaaaaaaaaaa");
+			//System.out.println("aaaaaaaaaaaaaaaaaaa");
 			m.ajouterUser(user, user.getDepartement().getId());
 			
 		}
 		else {
-			System.out.println("bbbbbbbbbbbbbbbbbbbb");
+			//System.out.println("bbbbbbbbbbbbbbbbbbbb");
 			m.ajouterUserRole(user, user.getDepartement().getId(), user.getRole().getId());
 		}
 		return "redirect:/users/index";
@@ -111,4 +117,28 @@ public class Sprint1 implements HandlerExceptionResolver{
     	//System.out.println("Digest(in hex format):: " + hexString.toString());
     	return hexString.toString();
 	}
+	
+	
+	public void SendEmail(String recipientAddress, String subject, String message) {
+		// takes input from e-mail form
+				
+		// prints debug info
+		System.out.println("To: " + recipientAddress);
+		System.out.println("Subject: " + subject);
+		System.out.println("Message: " + message);
+		
+		// creates a simple e-mail object
+		SimpleMailMessage email = new SimpleMailMessage();
+		email.setTo(recipientAddress);
+		email.setSubject(subject);
+		email.setText(message);
+		
+		// sends the e-mail
+		mailSender.send(email);
+		
+		// forwards to the view named "Result"
+	}
+	
+	
+	
 }
