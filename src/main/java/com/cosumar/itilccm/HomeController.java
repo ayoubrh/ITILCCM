@@ -1,21 +1,33 @@
 package com.cosumar.itilccm;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cosumar.itilccm.entities.User;
+import com.cosumar.itilccm.metier.UtilisateurMetier;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private UtilisateurMetier mu;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -33,7 +45,14 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "login";
+		return "index";
+	}
+	
+	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] photo(Long id) throws IOException{
+		User u = mu.getUser(id);
+		return IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto()));
 	}
 	
 }

@@ -434,63 +434,26 @@ Use search to find needed section.
 -->
 
 		<!-- Content here -->
+		<c:if test="${user.bphoto == null }">
+			<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png">
+		</c:if>
+		<c:if test="${user.bphoto != null }">
+			<img src="photo?id=${user.id }"/>
+		</c:if>
 		
-		<script>
-					init.push(function () {
-						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text(' ');
-						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-					});
-		</script>
-		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-				<!-- / Javascript -->
-
-				<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title">Liste de tous les utilisateurs</span>
-					</div>
-					<div class="panel-body">
-						<div class="table-primary">
-							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
-								<thead>
-									<tr>
-										<th>Matricule</th>
-										<th>Nom complet</th>
-										<th>E-mail</th>
-										<th>tele/fixe</th>
-										<th>Fonction</th>
-										<th>Département</th>
-										<th>Role</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${users}" var="u">
-										<tr class="gradeA">
-											<td><a href="<c:url value="/users/profil?id=${u.id }" />">${u.matricule }</a></td>
-											<td>${u.prenom } ${u.nom }</td>
-											<td>${u.email }</td>
-											<td>${u.tele }/${u.fixe }</td>
-											<td>${u.fonction }</td>
-											<td>${u.departement.libelle }</td>
-											<c:if  test="${u.role.libelle != null}">
-												<td>${u.role.libelle}</td>
-											</c:if>
-											<c:if  test="${u.role.libelle == null }">
-												<td> </td>
-											</c:if>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-
+		${user.nom }
+		${user.prenom }<br>
+		${user.matricule }<br>
+		${user.adresse }<br>
+		${user.cin }<br>
+		${user.departement.libelle }<br>
+		${user.email }<br>
+		${user.fixe }<br>
+		${user.tele }<br>
+		${user.fonction }<br>
+		${user.role.libelle }<br>
+		${user.actived }<br>
+		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>

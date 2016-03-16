@@ -39,8 +39,8 @@ public class TestMetier {
 			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 			m.ajouterUserRole(new User("AAAAAAA", s.hashmd5password("123456789"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département"), d1, r1);
 			System.out.println("ccccccccccccccccccccccccccccccccccc");
-			m.ajouterUserRole(new User("BBBBBBB", s.hashmd5password("014725836"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur"), d1, r2);
-			m.ajouterUserRole(new User("CCCCCCC", s.hashmd5password("124759630"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien"), d1, r3);
+			m.ajouterUserRole(new User("BBBBBBB", s.hashmd5password("azertyuiop"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur"), d1, r2);
+			m.ajouterUserRole(new User("CCCCCCC", s.hashmd5password("qsdfghjklm"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien"), d1, r3);
 			List<User> u2 = m.listUser();
 			assertTrue(u1.size()+3 == u2.size());
 		}catch (Exception e){

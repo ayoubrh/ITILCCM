@@ -1,29 +1,32 @@
 package com.cosumar.itilccm.controllers;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.omg.PortableInterceptor.ForwardRequest;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cosumar.itilccm.entities.*;
 import com.cosumar.itilccm.metier.AdminMetier;
+import com.cosumar.itilccm.metier.UtilisateurMetier;
 
 @Controller
 @RequestMapping(value="/users")
@@ -34,6 +37,9 @@ public class Sprint1 implements HandlerExceptionResolver{
 	
 	@Autowired
 	private AdminMetier m;
+	
+	@Autowired
+	private UtilisateurMetier mu;
 	
 	@RequestMapping(value="/index")
 	public String index(Model model){
@@ -70,6 +76,7 @@ public class Sprint1 implements HandlerExceptionResolver{
 	    }
 	    //System.out.println(password);
 	    user.setPassword(hashmd5password(password));
+	    //System.out.println(hashmd5password(password));
 	    SendEmail(user.getEmail(),"Nouveau Compte","Matricule : "+user.getMatricule()+"\n Mot de passe : "+password);
 		//System.out.println("000000000000000000000000000000 : "+user.getRole().getId());
 		if(user.getRole().getId() == null){
@@ -88,6 +95,14 @@ public class Sprint1 implements HandlerExceptionResolver{
 	public String all(Model model){
 		model.addAttribute("users", m.listUser());
 		return "sprint1/all";
+	}
+	
+	@RequestMapping(value="/profil")
+	public String profil(Model model,Long id){
+		model.addAttribute("user", m.getUser(id));
+		User t = m.getUser(id);
+		System.out.println(t.getBphoto()+"\n"+t.getPhoto());
+		return "sprint1/profil";
 	}
 
 	@Override
@@ -137,6 +152,14 @@ public class Sprint1 implements HandlerExceptionResolver{
 		mailSender.send(email);
 		
 		// forwards to the view named "Result"
+	}
+	
+	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] photo(Long id) throws IOException{
+		User u = mu.getUser(id);
+		System.out.println(IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto())));
+		return IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto()));
 	}
 	
 	
