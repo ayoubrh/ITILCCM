@@ -438,7 +438,7 @@ Use search to find needed section.
 		<script>
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text(' ');
+						$('#jq-datatables-example_wrapper .table-caption').text('jhgbuy ');
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 					});
 		</script>
@@ -511,6 +511,21 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
+	//var add = <c:url value="/users/add" />;
+	//var sup = '';
+	//var btns = [
+	////    '<a href="" class="btn btn-success btn-roundedy">Nouveau</a>'
+	    
+	////];
+	
+	////window.addEventListener("load", function () {
+	////	$('.table-caption').append($(btns.join('\n')));
+	//});
+
+	//$( ".table-primary" ).after(function() {
+	//	  return "<a href='' class='btn btn-success btn-roundedy'>Nouveau</a>";
+	//	});
+
 	init.push(function () {
 		// Javascript code here
 	});
