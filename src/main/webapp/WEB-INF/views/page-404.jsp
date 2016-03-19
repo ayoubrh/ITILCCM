@@ -24,6 +24,7 @@
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 </head>
 
@@ -40,7 +41,7 @@
 <script>var init = [];</script>
 
 	<div class="header">
-		<a href="<c:url value="/users/index" />" class="logo">
+		<a class="logo" href="<c:url value="/users/index" />"  >
 			<div><img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" alt=""></div>&nbsp;
 			<strong>ITIL-CCM</strong>
 		</a> <!-- / .logo -->

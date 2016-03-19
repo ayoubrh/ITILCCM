@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.beans.factory.annotation.Required;
 
 @Entity
 @Table(name="user")
@@ -45,11 +46,11 @@ public class User implements Serializable {
    private String cin;
    
     @NotEmpty
-	@Size(min=4,max=20)
+	@Size(min=4,max=30)
    private String nom;
     
     @NotEmpty
-	@Size(min=4,max=20)
+	@Size(min=4,max=30)
    private String prenom;
     
     @Size(min=6)
@@ -59,17 +60,23 @@ public class User implements Serializable {
    	@Column(unique = true)
    private String email;
    	
-   	@Size(min=10,max=10)
+   	@Size(min=10,max=16)
    	@Pattern(regexp="(^$|[0-9]{10})")
    private String tele;
    
-   	@Size(min=4,max=10)
+   	@Size(min=4,max=16)
    	@Pattern(regexp="(^$|[0-9]{10})")
    private String fixe;
    
     @NotEmpty
 	@Size(min=4,max=40)
    private String fonction;
+    
+    @NotEmpty
+   private String sexe;
+    
+    @Size(max=2)
+   private String age;
     
    private boolean actived = false;
    
@@ -189,6 +196,20 @@ public class User implements Serializable {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
+	public String getSexe() {
+		return sexe;
+	}
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
+	
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 	public User(){
 		super();
 		this.actived = false;
@@ -222,6 +243,18 @@ public class User implements Serializable {
 		this.prenom = prenom;
 		this.email = email;
 		this.fonction = fonction;
+		this.actived = false;
+	}
+	public User(String matricule, String password, String nom, String prenom, String email, String fonction,
+			String sexe) {
+		super();
+		this.matricule = matricule;
+		this.password = password;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.fonction = fonction;
+		this.sexe = sexe;
 		this.actived = false;
 	}
 }
