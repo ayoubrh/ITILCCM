@@ -202,7 +202,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -212,7 +212,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -222,7 +222,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -232,7 +232,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -242,7 +242,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -252,7 +252,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -262,7 +262,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -272,7 +272,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -282,7 +282,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -292,7 +292,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;脗路&nbsp;&nbsp;
+												&nbsp;&nbsp;路&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -410,7 +410,7 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donn茅es</span></a>
+					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donn閑s</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
@@ -432,174 +432,91 @@ Use search to find needed section.
 		Content
 -->
 
-<!-- 5. $JQUERY_VALIDATION =========================================================================
-
-				jQuery Validation
--->
-				<!-- Javascript -->
-				
-				<!-- / Javascript -->
-
-
-
-
-
-
-
-
-
-
-
 		<!-- Content here -->
 		
 		
-		<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title">Nouveau utilisateur</span>
-					</div>
-					<div class="panel-body">
-						
-						<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Matricule</label>
-								<div class="col-sm-9">
-									<f:input path="matricule" type="text" class="form-control" id="jq-validation-matricule" name="jq-validation-matricule" />
-									<f:errors path="matricule" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-4">
-									<f:input path="nom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
-									<f:errors path="nom" class="jquery-validate-error help-block"></f:errors>
-								</div>
-								<label for="jq-validation-email" class="col-sm-1 control-label">Prenom</label>
-								<div class="col-sm-4">
-									<f:input path="prenom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
-									<f:errors path="prenom" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">CIN</label>
-								<div class="col-sm-9">
-									<f:input path="cin" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
-									<f:errors path="cin" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Sexe</label>
-								<div class="col-sm-9">
-									<div class="radio">
-										<label>
-											<f:radiobutton path="sexe" name="jq-validation-radios" value="M" class="px"/>
-											<span class="lbl">Homme</span>
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<f:radiobutton path="sexe" name="jq-validation-radios" value="F" class="px"/>
-											<span class="lbl">Femme</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Age</label>
-								<div class="col-sm-9">
-									<f:input path="age" type="text" class="form-control" id="jq-validation-age" name="jq-validation-age" />
-									<f:errors path="age" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">E-mail</label>
-								<div class="col-sm-9">
-									<f:input path="email" type="text" class="form-control" id="jq-validation-email" name="jq-validation-email" />
-									<f:errors path="email" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
-								<div class="col-sm-9">
-									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />
-									<f:errors path="adresse" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Telephone</label>
-								<div class="col-sm-9">
-									<f:input path="tele" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
-									<f:errors path="tele" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Fixe</label>
-								<div class="col-sm-9">
-									<f:input path="fixe" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
-									<f:errors path="fixe" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Fonction</label>
-								<div class="col-sm-9">
-									<f:input path="fonction" type="text" class="form-control" id="jq-validation-fonction" name="jq-validation-fonction" />
-									<f:errors path="fonction" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Departement</label>
-								<div class="col-sm-8">
-									<f:select  path="departement.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="" label=""/>
-										<f:options items="${d }" itemValue="id" itemLabel="libelle" />	
-									</f:select>
-									<f:errors path="departement.id" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Role dans le systeme</label>
-								<div class="col-sm-8">
-									<f:select  path="role.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="" label="" />
-										<f:options items="${r }" itemValue="id" itemLabel="libelle" />
-									</f:select>
-									<f:errors path="role.id" class="jquery-validate-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Photo</label>
-								<div class="col-sm-9">
-									<input type="file" name="file" />
-								</div>
-							</div>
-							
-	
-
-							<hr class="panel-wide">
-
-							
-
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-2">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-							
-						</f:form>
-					</div>
-				</div>
+		<div id="form">
+			<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data">
+				<table>
+					<tr>
+						<td>Matricule</td>
+						<td><f:input path="matricule"/></td>
+						<td><f:errors path="matricule"></f:errors></td>
+					</tr>
+					<tr>
+						<td>CIN</td>
+						<td><f:input path="cin"/></td>
+						<td><f:errors path="cin"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Nom</td>
+						<td><f:input path="nom"/></td>
+						<td><f:errors path="nom"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Prenom</td>
+						<td><f:input path="prenom"/></td>
+						<td><f:errors path="prenom"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Email</td>
+						<td><f:input path="email"/></td>
+						<td><f:errors path="email"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Num閞o de t閘閜hone</td>
+						<td><f:input path="tele"/></td>
+						<td><f:errors path="tele"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Num閞o de fixe</td>
+						<td><f:input path="fixe"/></td>
+						<td><f:errors path="fixe"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Fonction</td>
+						<td><f:input path="fonction"/></td>
+						<td><f:errors path="fonction"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Adresse</td>
+						<td><f:textarea path="adresse"/></td>
+						<td><f:errors path="adresse"></f:errors></td>
+					</tr>
+					<tr>
+						<td>Photo</td>
+						<td><input type="file" name="file"/></td>
+					</tr>
+					<tr>
+						<td>D閜artement</td>
+						<td>
+							<f:select path="departement.id">
+		      					<f:options items="${d }" itemValue="id" itemLabel="libelle" />
+							</f:select>
+						</td>
+						<td><f:errors path="departement.id"></f:errors>
+					</tr>
+					
+					<tr>
+						<td>Role</td>
+						<td>
+							<f:select path="role.id" >
+								<f:option value="" label="" />
+								<f:options items="${r }" itemValue="id" itemLabel="libelle" />
+							</f:select>
+						</td>
+						<td><f:errors path="role.id"></f:errors>
+					</tr>
+					
+					
+					<tr>
+					
+						<td><input type="submit" value="Enregistrer"/></td>
+					</tr>
+					
+				</table>
+			</f:form>
+		</div>
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -620,105 +537,9 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-		init.push(function () {
-			//$("#jq-validation-phone").mask("0 6xx-xxxxxx");
-			$('#jq-validation-select2').select2({ allowClear: true, placeholder: 'choisi ...' }).change(function(){
-				$(this).valid();
-			});
-			$('#jq-validation-select2-multi').select2({ placeholder: 'Select gear...' }).change(function(){
-				$(this).valid();
-			});
-		
-			// Add phone validator
-			$.validator.addMethod(
-				"phone_format",
-				function(value, element) {
-					var check = false;
-					return this.optional(element) || /^\(\d{3}\)[ ]\d{3}\-\d{4}$/.test(value);
-				},
-				"Numero de t茅l茅phone invalide."
-			);
-		
-			// Setup validation
-			$("#jq-validation-form").validate({
-				ignore: '.ignore, .select2-input',
-				focusInvalid: false,
-				rules: {
-					'jq-validation-email': {
-					  required: true,
-					  email: true
-					},
-					
-					'jq-validation-phone': {
-						phone_format: true,
-						minlength: 4,
-						maxlength: 16
-					},
-					'jq-validation-select': {
-						required: true
-					},
-					'jq-validation-multiselect': {
-						required: true,
-						minlength: 2
-					},
-					'jq-validation-select2': {
-						required: true
-					},
-					'jq-validation-select2-multi': {
-						required: true,
-						minlength: 2
-					},
-					'jq-validation-text': {
-						required: true
-					},
-					'jq-validation-simple-error': {
-						required: true
-					},
-					'jq-validation-dark-error': {
-						required: true
-					},
-					'jq-validation-radios': {
-						required: true
-					},
-					'jq-validation-matricule': {
-						phone_format: true,
-						minlength: 6,
-						maxlength: 20
-					},
-					'jq-validation-nom': {
-						phone_format: true,
-						minlength: 4,
-						maxlength: 30
-					},
-					'jq-validation-cin': {
-						phone_format: true,
-						minlength: 4,
-						maxlength: 10
-					},
-					'jq-validation-age': {
-						phone_format: true,
-						maxlength: 2
-					},
-					'jq-validation-fonction': {
-						phone_format: true,
-						minlength: 4,
-						maxlength: 40
-					},
-					'jq-validation-checkbox1': {
-						require_from_group: [1, 'input[name="jq-validation-checkbox1"], input[name="jq-validation-checkbox2"]']
-					},
-					'jq-validation-checkbox2': {
-						require_from_group: [1, 'input[name="jq-validation-checkbox1"], input[name="jq-validation-checkbox2"]']
-					},
-					'jq-validation-policy': {
-						required: true
-					}
-				},
-				messages: {
-					'jq-validation-policy': 'Vous devez choisir'
-				}
-			});
-		});
+	init.push(function () {
+		// Javascript code here
+	});
 	window.PixelAdmin.start(init);
 </script>
 

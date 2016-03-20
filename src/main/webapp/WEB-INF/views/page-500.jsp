@@ -23,7 +23,7 @@
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 </head>
 
 
@@ -34,7 +34,7 @@
 	Classes:
 	* 'right-to-left' - Sets text direction to right-to-left
 -->
-	
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <body class="page-500">
 
 <script>var init = [];</script>

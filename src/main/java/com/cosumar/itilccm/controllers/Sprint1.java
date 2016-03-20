@@ -3,10 +3,7 @@ package com.cosumar.itilccm.controllers;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -98,15 +93,7 @@ public class Sprint1 implements HandlerExceptionResolver{
 
 	@RequestMapping(value="/all")
 	public String all(Model model){
-		ArrayList<Long> ids = new ArrayList<Long>();
-		List<User> users = m.listUser();
-		for (User user : users) {
-			ids.add(user.getId());
-		}
-		System.out.println(ids.get(0));
-		System.out.println(ids);
-		model.addAttribute("users", users);
-		model.addAttribute("ids", ids);
+		model.addAttribute("users", m.listUser());
 		return "sprint1/all";
 	}
 	
@@ -116,15 +103,6 @@ public class Sprint1 implements HandlerExceptionResolver{
 		User t = m.getUser(id);
 		System.out.println(t.getBphoto()+"\n"+t.getPhoto());
 		return "sprint1/profil";
-	}
-	
-	@RequestMapping(value="/delete", method = RequestMethod.GET) 
-	public String delete(@RequestParam(value = "ids", required = true) String[] t){
-		for (String s : t) {
-			Long id = Long.parseLong(s);
-			m.supprimerUser(id);
-		}
-		return "redirect:/users/all";
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class Role implements Serializable {
 	@Column(unique = true)
    private String libelle;
 	
-	@OneToMany(mappedBy="role")
+	@OneToMany(mappedBy="role",fetch= FetchType.EAGER,cascade= CascadeType.ALL)
 	private Collection<User> users;
 	
 	

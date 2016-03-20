@@ -203,7 +203,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -213,7 +213,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -223,7 +223,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -233,7 +233,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -243,7 +243,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -253,7 +253,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -263,7 +263,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -273,7 +273,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -283,7 +283,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -293,7 +293,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -411,7 +411,7 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des données</span></a>
+					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donn�es</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
@@ -438,12 +438,11 @@ Use search to find needed section.
 		<script>
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('');
+						$('#jq-datatables-example_wrapper .table-caption').text('jhgbuy ');
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 					});
 		</script>
 		<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 				<!-- / Javascript -->
 
 				<div class="panel">
@@ -455,20 +454,18 @@ Use search to find needed section.
 							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
 								<thead>
 									<tr>
-										<th id="supchek"> </th>
 										<th>Matricule</th>
 										<th>Nom complet</th>
 										<th>E-mail</th>
 										<th>tele/fixe</th>
 										<th>Fonction</th>
-										<th>Département</th>
+										<th>D�partement</th>
 										<th>Role</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${users}" var="u">
 										<tr class="gradeA">
-											<td id="supchek${u.id }"><input type="checkbox" class="ck" name="sup" value="${u.id }"></td>
 											<td><a href="<c:url value="/users/profil?id=${u.id }" />">${u.matricule }</a></td>
 											<td>${u.prenom } ${u.nom }</td>
 											<td>${u.email }</td>
@@ -512,52 +509,25 @@ Use search to find needed section.
 <!-- Pixel Admin's javascripts -->
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
+
 <script type="text/javascript">
-	
-	init.push(function () {
-		var s = "${fn:length(users)}";
-		
-		var tab = "${ids}";
-		var tab = tab.match(/\d/g);
-		
-		$("#supchek").hide();
-		for(i=0;i<s;i++){
-			var aid = "#supchek".concat(tab[i]);
-			//alert(aid);
-			$(aid).hide();
-		}
-		//$("#supchek").hide();
-		$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='add'>Nouveau</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger btn-flat' id='supp'>Supprimer</button></div>");
-		// Javascript code here
-		document.getElementById("add").onclick = function () {
-	        location.href = "http://localhost:8080/itilccm/users/add";
-	    };
-	    document.getElementById("supp").onclick = function () {
-	    	$("#supchek").show();
-			for(i=0;i<=s;i++){
-				var aid = "#supchek".concat(tab[i]);
-				$(aid).show();
-			}
-			$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-labeled' id='annulle'><span class='btn-label icon fa fa-angle-double-left'></span>Annuler</button>  <button class='btn btn-labeled btn-danger' id='approuv'><span class='btn-label icon fa fa-angle-double-right'></span>Supprimer!</button></div>");
-	   		
-			
-			document.getElementById("annulle").onclick = function () {
-		    	//alert("annulle")
-		        location.href = "http://localhost:8080/itilccm/users/all";
-		    };
-		    
-		    document.getElementById("approuv").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ck:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    	});
-		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-		    	location.href = "http://localhost:8080/itilccm/users/delete?ids="+chkArray;
-		    };
-		    
-	    };
+	//var add = <c:url value="/users/add" />;
+	//var sup = '';
+	//var btns = [
+	////    '<a href="" class="btn btn-success btn-roundedy">Nouveau</a>'
 	    
+	////];
+	
+	////window.addEventListener("load", function () {
+	////	$('.table-caption').append($(btns.join('\n')));
+	//});
+
+	//$( ".table-primary" ).after(function() {
+	//	  return "<a href='' class='btn btn-success btn-roundedy'>Nouveau</a>";
+	//	});
+
+	init.push(function () {
+		// Javascript code here
 	});
 	window.PixelAdmin.start(init);
 </script>
