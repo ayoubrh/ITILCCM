@@ -6,6 +6,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
@@ -24,7 +29,7 @@ import com.cosumar.itilccm.metier.UtilisateurMetier;
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class HomeController implements HandlerExceptionResolver {
 	
 	@Autowired
 	private UtilisateurMetier mu;
@@ -53,6 +58,15 @@ public class HomeController {
 	public byte[] photo(Long id) throws IOException{
 		User u = mu.getUser(id);
 		return IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto()));
+	}
+	
+	@Override
+	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
+			Exception ex) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("ex",ex.getMessage());
+		mv.setViewName("page-500");
+		return mv;
 	}
 	
 }

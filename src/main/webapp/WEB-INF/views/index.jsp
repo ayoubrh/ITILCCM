@@ -372,13 +372,25 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
 				</li>
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-users"></i><span class="mm-text">Gestion des utilisateurs</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="<c:url value="/users/profil?id=" />"><span class="mm-text">Profil</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/all" />"><span class="mm-text">Comptes utilisateurs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/dept" />"><span class="mm-text">Départements</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/role" />"><span class="mm-text">Roles</span></a>
 						</li>
 					</ul>
 				</li>

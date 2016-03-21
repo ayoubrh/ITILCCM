@@ -4,13 +4,15 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,10 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.cosumar.itilccm.entities.*;
 import com.cosumar.itilccm.metier.AdminMetier;
@@ -30,7 +33,8 @@ import com.cosumar.itilccm.metier.UtilisateurMetier;
 
 @Controller
 @RequestMapping(value="/users")
-public class Sprint1 implements HandlerExceptionResolver{
+@SessionAttributes("edituser")
+public class Sprint1 {
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -93,26 +97,78 @@ public class Sprint1 implements HandlerExceptionResolver{
 
 	@RequestMapping(value="/all")
 	public String all(Model model){
-		model.addAttribute("users", m.listUser());
+		ArrayList<Long> ids = new ArrayList<Long>();
+		List<User> users = m.listUser();
+		for (User user : users) {
+			ids.add(user.getId());
+		}
+		System.out.println(ids.get(0));
+		System.out.println(ids);
+		model.addAttribute("users", users);
+		model.addAttribute("ids", ids);
 		return "sprint1/all";
 	}
 	
 	@RequestMapping(value="/profil")
 	public String profil(Model model,Long id){
 		model.addAttribute("user", m.getUser(id));
-		User t = m.getUser(id);
-		System.out.println(t.getBphoto()+"\n"+t.getPhoto());
+		//User t = m.getUser(id);
+		//System.out.println(t.getBphoto()+"\n"+t.getPhoto());
 		return "sprint1/profil";
 	}
-
-	@Override
-	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
-			Exception ex) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("ex",ex.getMessage());
-		mv.setViewName("page-500");
-		return mv;
+	
+	@RequestMapping(value="/delete", method = RequestMethod.GET) 
+	public String delete(@RequestParam(value = "ids", required = true) String[] t){
+		for (String s : t) {
+			Long id = Long.parseLong(s);
+			m.supprimerUser(id);
+		}
+		return "redirect:/users/all";
 	}
+	
+	@RequestMapping(value="/edit") 
+	public String edit(Long id, Model model){
+		model.addAttribute("edituser", mu.getUser(id));
+		model.addAttribute("user", mu.getUser(id));
+		model.addAttribute("d", mu.listDepartement());
+		model.addAttribute("r", mu.listRole());
+		return "sprint1/edit";
+	}
+
+	
+	
+	@RequestMapping(value="/editsave")
+	public String editsave(@Valid User user,BindingResult bind,HttpServletRequest req,
+			Model model,MultipartFile file) throws Exception{
+		System.out.println("AAAAAAAAAAAA : "+user.getId());
+		if(bind.hasErrors()){
+			model.addAttribute("d", mu.listDepartement());
+			model.addAttribute("r", mu.listRole());
+			return "sprint1/edit";
+		}
+		if(!file.isEmpty()){
+			BufferedImage bi = ImageIO.read(file.getInputStream());
+			user.setBphoto(file.getBytes());
+			user.setPhoto(file.getOriginalFilename());
+		}else{
+			if(model.asMap().get("edituser")!=null){
+				User u = (User) model.asMap().get("edituser");
+				user.setPhoto(u.getPhoto());
+			}
+		}
+		String password = req.getParameter("jq-validation-password");
+		System.out.println(password+"length"+password.length());
+		if(password.length() != 0){
+			
+		    user.setPassword(hashmd5password(password));
+		    System.out.println(hashmd5password(password));
+		    SendEmail(user.getEmail(),"Modification de Compte","Matricule : "+user.getMatricule()+"\n Neauveau mot de passe : "+password);
+		}
+		
+		mu.modifierUser(user);
+		return "redirect:/users/profil?id="+user.getId();
+	}
+	
 	
 	public String hashmd5password(String password) throws Exception{
 		//String password = "123456";

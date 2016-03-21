@@ -28,7 +28,7 @@ Use search to find needed section.
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Blank - Pages - PixelAdmin</title>
+	<title>Ajout utilisateur - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -372,13 +372,25 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
 				</li>
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-users"></i><span class="mm-text">Gestion des utilisateurs</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="<c:url value="/users/profil?id=" />"><span class="mm-text">Profil</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/all" />"><span class="mm-text">Comptes utilisateurs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/dept" />"><span class="mm-text">Départements</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/users/role" />"><span class="mm-text">Roles</span></a>
 						</li>
 					</ul>
 				</li>
@@ -433,90 +445,158 @@ Use search to find needed section.
 -->
 
 		<!-- Content here -->
+		<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Nouveau utilisateur</span>
+					</div>
+					<div class="panel-body">
+						
+						<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Matricule</label>
+								<div class="col-sm-9">
+									<f:input path="matricule" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
+									<f:errors path="matricule" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
+								<div class="col-sm-4">
+									<f:input path="nom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
+									<f:errors path="nom" cssClass="jquery-validate-error help-block"></f:errors>
+								</div>
+								<label for="jq-validation-email" class="col-sm-1 control-label">Prenom</label>
+								<div class="col-sm-4">
+									<f:input path="prenom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
+									<f:errors path="prenom" cssClass="has-error help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">CIN</label>
+								<div class="col-sm-9">
+									<f:input path="cin" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
+									<f:errors path="cin" cssClass="has-error help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Sexe</label>
+								<div class="col-sm-9">
+									<div class="radio">
+										<label>
+											<f:radiobutton path="sexe" name="jq-validation-radios" value="M" class="px"/>
+											<span class="lbl">Homme</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<f:radiobutton path="sexe" name="jq-validation-radios" value="F" class="px"/>
+											<span class="lbl">Femme</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Age</label>
+								<div class="col-sm-9">
+									<f:input path="age" type="text" class="form-control" id="jq-validation-age" name="jq-validation-age" />
+									<f:errors path="age" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">E-mail</label>
+								<div class="col-sm-9">
+									<f:input path="email" type="text" class="form-control" id="jq-validation-email" name="jq-validation-email" />
+									<f:errors path="email" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
+								<div class="col-sm-9">
+									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />
+									<f:errors path="adresse" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Telephone</label>
+								<div class="col-sm-9">
+									<f:input path="tele" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
+									<f:errors path="tele" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Fixe</label>
+								<div class="col-sm-9">
+									<f:input path="fixe" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
+									<f:errors path="fixe" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Fonction</label>
+								<div class="col-sm-9">
+									<f:input path="fonction" type="text" class="form-control" id="jq-validation-fonction" name="jq-validation-fonction" />
+									<f:errors path="fonction" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Departement</label>
+								<div class="col-sm-9">
+									<f:select  path="departement.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										<f:option value="" label=""/>
+										<f:options items="${d }" itemValue="id" itemLabel="libelle" />	
+									</f:select>
+									<f:errors path="departement.id" cssClass="help-block"></f:errors>
+								</div>
+								
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Role dans le systeme</label>
+								<div class="col-sm-9">
+									<f:select  path="role.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										<f:option value="" label="" />
+										<f:options items="${r }" itemValue="id" itemLabel="libelle" />
+									</f:select>
+									<f:errors path="role.id" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Photo</label>
+								<div class="col-sm-9">
+									<input type="file" name="file" />
+								</div>
+							</div>
+							
+	
+
+							<hr class="panel-wide">
+
+							
+
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-2">
+									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+								</div>
+								
+							</div>
+							
+						</f:form>
+					</div>
+				</div>
+
+	
 		
 		
-		<div id="form">
-			<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data">
-				<table>
-					<tr>
-						<td>Matricule</td>
-						<td><f:input path="matricule"/></td>
-						<td><f:errors path="matricule"></f:errors></td>
-					</tr>
-					<tr>
-						<td>CIN</td>
-						<td><f:input path="cin"/></td>
-						<td><f:errors path="cin"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Nom</td>
-						<td><f:input path="nom"/></td>
-						<td><f:errors path="nom"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Prenom</td>
-						<td><f:input path="prenom"/></td>
-						<td><f:errors path="prenom"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Email</td>
-						<td><f:input path="email"/></td>
-						<td><f:errors path="email"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Numéro de téléphone</td>
-						<td><f:input path="tele"/></td>
-						<td><f:errors path="tele"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Numéro de fixe</td>
-						<td><f:input path="fixe"/></td>
-						<td><f:errors path="fixe"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Fonction</td>
-						<td><f:input path="fonction"/></td>
-						<td><f:errors path="fonction"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Adresse</td>
-						<td><f:textarea path="adresse"/></td>
-						<td><f:errors path="adresse"></f:errors></td>
-					</tr>
-					<tr>
-						<td>Photo</td>
-						<td><input type="file" name="file"/></td>
-					</tr>
-					<tr>
-						<td>Département</td>
-						<td>
-							<f:select path="departement.id">
-		      					<f:options items="${d }" itemValue="id" itemLabel="libelle" />
-							</f:select>
-						</td>
-						<td><f:errors path="departement.id"></f:errors>
-					</tr>
-					
-					<tr>
-						<td>Role</td>
-						<td>
-							<f:select path="role.id" >
-								<f:option value="" label="" />
-								<f:options items="${r }" itemValue="id" itemLabel="libelle" />
-							</f:select>
-						</td>
-						<td><f:errors path="role.id"></f:errors>
-					</tr>
-					
-					
-					<tr>
-					
-						<td><input type="submit" value="Enregistrer"/></td>
-					</tr>
-					
-				</table>
-			</f:form>
-		</div>
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>

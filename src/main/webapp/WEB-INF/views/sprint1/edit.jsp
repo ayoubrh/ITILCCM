@@ -1,8 +1,6 @@
 
 
 <!DOCTYPE html>
-
-
 <!--
 
 TABLE OF CONTENTS.
@@ -28,10 +26,9 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Comptes utilisateurs - ITIL-CCM</title>
+	<title>Edit utilisateur - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -51,7 +48,8 @@ Use search to find needed section.
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+	
 
 </head>
 
@@ -444,69 +442,224 @@ Use search to find needed section.
 <!-- 5. $CONTENT ===================================================================================
 
 		Content
+		
 -->
 
-		<!-- Content here -->
-		
+
 		<script>
 					init.push(function () {
-						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('');
-						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-					});
-		</script>
-		
-				<!-- / Javascript -->
+						
 
-				<div class="panel">
+						// Setup validation
+						$("#jq-validation-form").validate({
+							ignore: '.ignore, .select2-input',
+							focusInvalid: false,
+							rules: {
+								
+								'jq-validation-password': {
+									required: false,
+									minlength: 6,
+									maxlength: 20
+								},
+								'jq-validation-password-confirmation': {
+									required: false,
+									minlength: 6,
+									equalTo: "#jq-validation-password"
+								},
+								
+							},
+							messages: {
+								'jq-validation-password': 'Le password doit être entre 6 et 20 caractères ',
+								'jq-validation-password-confirmation': 'les passwords ne sont pas identique'
+							}
+						});
+					});
+				</script>
+
+
+
+
+			
+		<!-- Content here -->
+		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Liste de tous les utilisateurs</span>
+						<span class="panel-title">Modification des informations de "${user.prenom } ${user.nom }"</span>
 					</div>
 					<div class="panel-body">
-						<div class="table-primary">
-							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
-								<thead>
-									<tr>
-										<th id="supchek"> </th>
-										<th>Matricule</th>
-										<th>Nom complet</th>
-										<th>E-mail</th>
-										<th>tele/fixe</th>
-										<th>Fonction</th>
-										<th>Département</th>
-										<th>Role</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${users}" var="u">
-										<tr class="gradeA">
-											<td id="supchek${u.id }"><input type="checkbox" class="ck" name="sup" value="${u.id }"></td>
-											<td><a href="<c:url value="/users/profil?id=${u.id }" />">${u.matricule }</a></td>
-											<td>${u.prenom } ${u.nom }</td>
-											<td>${u.email }</td>
-											<td>${u.tele }/${u.fixe }</td>
-											<td>${u.fonction }</td>
-											<td>${u.departement.libelle }</td>
-											<c:if  test="${u.role.libelle != null}">
-												<td>${u.role.libelle}</td>
-											</c:if>
-											<c:if  test="${u.role.libelle == null }">
-												<td> </td>
-											</c:if>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+						
+						<f:form modelAttribute="user" action="editsave" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+							<div class="form-group">
+								<div class="col-sm-9">
+									<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+									<f:errors path="id" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-matricule" class="col-sm-3 control-label">Matricule</label>
+								<div class="col-sm-9">
+									<f:input path="matricule" type="text" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+									<f:errors path="matricule" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-password" class="col-sm-3 control-label">Neauveau Password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="jq-validation-password" name="jq-validation-password" placeholder="Password">
+									<p class="help-block">Vous avez le droit a ne pas changer le mot de passe, si vous ne voulez pas !</p>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="jq-validation-password-confirmation" class="col-sm-3 control-label">Confirme password</label>
+								<div class="col-sm-9">
+									<input type="password" class="form-control" id="jq-validation-password-confirmation" name="jq-validation-password-confirmation" placeholder="Confirme password">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
+								<div class="col-sm-4">
+									<f:input path="nom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
+									<f:errors path="nom" cssClass="jquery-validate-error help-block"></f:errors>
+								</div>
+								<label for="jq-validation-nom" class="col-sm-1 control-label">Prenom</label>
+								<div class="col-sm-4">
+									<f:input path="prenom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
+									<f:errors path="prenom" cssClass="has-error help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-cin" class="col-sm-3 control-label">CIN</label>
+								<div class="col-sm-9">
+									<f:input path="cin" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
+									<f:errors path="cin" cssClass="has-error help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Sexe</label>
+								<div class="col-sm-9">
+									<div class="radio">
+										<label>
+											<f:radiobutton path="sexe" name="jq-validation-radios" value="M" class="px"/>
+											<span class="lbl">Homme</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<f:radiobutton path="sexe" name="jq-validation-radios" value="F" class="px"/>
+											<span class="lbl">Femme</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-age" class="col-sm-3 control-label">Age</label>
+								<div class="col-sm-9">
+									<f:input path="age" type="text" class="form-control" id="jq-validation-age" name="jq-validation-age" />
+									<f:errors path="age" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">E-mail</label>
+								<div class="col-sm-9">
+									<f:input path="email" type="text" class="form-control" id="jq-validation-email" name="jq-validation-email" />
+									<f:errors path="email" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
+								<div class="col-sm-9">
+									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />
+									<f:errors path="adresse" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-phone" class="col-sm-3 control-label">Telephone</label>
+								<div class="col-sm-9">
+									<f:input path="tele" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
+									<f:errors path="tele" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-phone" class="col-sm-3 control-label">Fixe</label>
+								<div class="col-sm-9">
+									<f:input path="fixe" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
+									<f:errors path="fixe" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-fonction" class="col-sm-3 control-label">Fonction</label>
+								<div class="col-sm-9">
+									<f:input path="fonction" type="text" readonly="true" class="form-control" id="jq-validation-fonction" name="jq-validation-fonction"  />
+									<f:errors path="fonction" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Departement</label>
+								<div class="col-sm-9">
+									<f:select  path="departement.id" readonly="true" class="form-control" name="jq-validation-select2" id="jq-validation-select2" >
+										<f:option value="" label=""/>
+										<f:options items="${d }" itemValue="id" itemLabel="libelle" />	
+									</f:select>
+									<f:errors path="departement.id" cssClass="help-block"></f:errors>
+								</div>
+								
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Role dans le systeme</label>
+								<div class="col-sm-9">
+									<f:select  path="role.id" readonly="true" class="form-control" name="jq-validation-select2" id="jq-validation-select2" >
+										<f:option value="" label="" />
+										<f:options items="${r }" itemValue="id" itemLabel="libelle" />
+									</f:select>
+									<f:errors path="role.id" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Photo</label>
+								<c:if test="${user.photo != null }">
+									<div class="col-sm-1">
+										<img src="photo?id=${user.id }" style="height: 54px;width: 54px; display: block;border-radius: 999999px;"/>
+									</div>
+								</c:if>
+								<div class="col-sm-8">
+									<input type="file" name="file" />
+								</div>
+							</div>
+							
+	
+
+							<hr class="panel-wide">
+
+							
+
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-2">
+									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+								</div>
+								
+							</div>
+							
+						</f:form>
 					</div>
 				</div>
 
-
-
-
-
-
-
+	
+		
+		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -527,53 +680,10 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-	
-		init.push(function () {
-			var s = "${fn:length(users)}";
-			
-			var tab = "${ids}";
-			var tab = tab.match(/\d/g);
-			
-			$("#supchek").hide();
-			for(i=0;i<s;i++){
-				var aid = "#supchek".concat(tab[i]);
-				//alert(aid);
-				$(aid).hide();
-			}
-			//$("#supchek").hide();
-			$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='add'>Nouveau</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger btn-flat' id='supp'>Supprimer</button></div>");
-			// Javascript code here
-			document.getElementById("add").onclick = function () {
-		        location.href = "http://localhost:8080/itilccm/users/add";
-		    };
-		    document.getElementById("supp").onclick = function () {
-		    	$("#supchek").show();
-				for(i=0;i<=s;i++){
-					var aid = "#supchek".concat(tab[i]);
-					$(aid).show();
-				}
-				$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-labeled' id='annulle'><span class='btn-label icon fa fa-angle-double-left'></span>Annuler</button>  <button class='btn btn-labeled btn-danger' id='approuv'><span class='btn-label icon fa fa-angle-double-right'></span>Supprimer!</button></div>");
-		   		
-				
-				document.getElementById("annulle").onclick = function () {
-			    	//alert("annulle")
-			        location.href = "http://localhost:8080/itilccm/users/all";
-			    };
-			    
-			    document.getElementById("approuv").onclick = function () {
-			    	var chkArray = [];
-			    	
-			    	$(".ck:checked").each(function() {
-			    		chkArray.push($(this).val());
-			    	});
-			    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-			    	location.href = "http://localhost:8080/itilccm/users/delete?ids="+chkArray;
-			    };
-			    
-		    };
-		    
-		});
-		window.PixelAdmin.start(init);
+	init.push(function () {
+		// Javascript code here
+	});
+	window.PixelAdmin.start(init);
 </script>
 
 </body>
