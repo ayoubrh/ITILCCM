@@ -49,8 +49,15 @@ public class HomeController implements HandlerExceptionResolver {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		
 		return "index";
+	}
+	
+	@RequestMapping(value="/login")
+	public String login() {
+		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+		return "login";
 	}
 	
 	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)

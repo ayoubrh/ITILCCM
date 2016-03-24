@@ -381,16 +381,10 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/users/profil?id=" />"><span class="mm-text">Profil</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/users/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
+							<a tabindex="-1" href="<c:url value="/users/admin/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/users/all" />"><span class="mm-text">Comptes utilisateurs</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="<c:url value="/users/dept" />"><span class="mm-text">Départements</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="<c:url value="/users/role" />"><span class="mm-text">Roles</span></a>
+							<a tabindex="-1" href="<c:url value="/users/admin/all" />"><span class="mm-text">Comptes utilisateurs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -451,7 +445,7 @@ Use search to find needed section.
 					</div>
 					<div class="panel-body">
 						
-						<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="user" action="/admin/save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Matricule</label>
 								<div class="col-sm-9">

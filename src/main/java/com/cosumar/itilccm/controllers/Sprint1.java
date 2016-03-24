@@ -50,7 +50,7 @@ public class Sprint1 {
 		return "sprint1/index";
 	}
 	
-	@RequestMapping(value="/add")
+	@RequestMapping(value="/admin/add")
 	public String add(Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("d", m.listDepartement());
@@ -58,7 +58,7 @@ public class Sprint1 {
 		return "sprint1/add";
 	}
 	
-	@RequestMapping(value="/save")
+	@RequestMapping(value="/admin/save")
 	public String save(@Valid User user,BindingResult bind,
 			Model model,MultipartFile file) throws Exception{
 		if(bind.hasErrors()){
@@ -95,7 +95,7 @@ public class Sprint1 {
 		return "redirect:/users/index";
 	}
 
-	@RequestMapping(value="/all")
+	@RequestMapping(value="/admin/all")
 	public String all(Model model){
 		ArrayList<Long> ids = new ArrayList<Long>();
 		List<User> users = m.listUser();
@@ -117,13 +117,13 @@ public class Sprint1 {
 		return "sprint1/profil";
 	}
 	
-	@RequestMapping(value="/delete", method = RequestMethod.GET) 
+	@RequestMapping(value="/admin/delete", method = RequestMethod.GET) 
 	public String delete(@RequestParam(value = "ids", required = true) String[] t){
 		for (String s : t) {
 			Long id = Long.parseLong(s);
 			m.supprimerUser(id);
 		}
-		return "redirect:/users/all";
+		return "redirect:/users/admin/all";
 	}
 	
 	@RequestMapping(value="/edit") 
@@ -140,6 +140,7 @@ public class Sprint1 {
 	@RequestMapping(value="/editsave")
 	public String editsave(@Valid User user,BindingResult bind,HttpServletRequest req,
 			Model model,MultipartFile file) throws Exception{
+		User u = (User) model.asMap().get("edituser");
 		System.out.println("AAAAAAAAAAAA : "+user.getId());
 		if(bind.hasErrors()){
 			model.addAttribute("d", mu.listDepartement());
@@ -152,17 +153,18 @@ public class Sprint1 {
 			user.setPhoto(file.getOriginalFilename());
 		}else{
 			if(model.asMap().get("edituser")!=null){
-				User u = (User) model.asMap().get("edituser");
 				user.setPhoto(u.getPhoto());
+				user.setBphoto(u.getBphoto());
 			}
 		}
 		String password = req.getParameter("jq-validation-password");
 		System.out.println(password+"length"+password.length());
 		if(password.length() != 0){
-			
 		    user.setPassword(hashmd5password(password));
 		    System.out.println(hashmd5password(password));
 		    SendEmail(user.getEmail(),"Modification de Compte","Matricule : "+user.getMatricule()+"\n Neauveau mot de passe : "+password);
+		}else{
+			user.setPassword(u.getPassword());
 		}
 		
 		mu.modifierUser(user);

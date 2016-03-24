@@ -383,16 +383,10 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/users/profil?id=" />"><span class="mm-text">Profil</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/users/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
+							<a tabindex="-1" href="<c:url value="/users/admin/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/users/all" />"><span class="mm-text">Comptes utilisateurs</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="<c:url value="/users/dept" />"><span class="mm-text">Départements</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="<c:url value="/users/role" />"><span class="mm-text">Roles</span></a>
+							<a tabindex="-1" href="<c:url value="/users/admin/all" />"><span class="mm-text">Comptes utilisateurs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -544,7 +538,7 @@ Use search to find needed section.
 			$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='add'>Nouveau</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger btn-flat' id='supp'>Supprimer</button></div>");
 			// Javascript code here
 			document.getElementById("add").onclick = function () {
-		        location.href = "http://localhost:8080/itilccm/users/add";
+		        location.href = "http://localhost:8080/itilccm/users/admin/add";
 		    };
 		    document.getElementById("supp").onclick = function () {
 		    	$("#supchek").show();
@@ -557,7 +551,7 @@ Use search to find needed section.
 				
 				document.getElementById("annulle").onclick = function () {
 			    	//alert("annulle")
-			        location.href = "http://localhost:8080/itilccm/users/all";
+			        location.href = "http://localhost:8080/itilccm/users/admin/all";
 			    };
 			    
 			    document.getElementById("approuv").onclick = function () {
@@ -567,7 +561,7 @@ Use search to find needed section.
 			    		chkArray.push($(this).val());
 			    	});
 			    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-			    	location.href = "http://localhost:8080/itilccm/users/delete?ids="+chkArray;
+			    	location.href = "http://localhost:8080/itilccm/users/admin/delete?ids="+chkArray;
 			    };
 			    
 		    };

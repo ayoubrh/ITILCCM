@@ -24,6 +24,7 @@
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 </head>
 

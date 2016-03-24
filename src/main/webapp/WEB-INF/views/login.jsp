@@ -119,24 +119,24 @@
 		<div class="signin-form">
 
 			<!-- Form -->
-			<form action="http://infinite-woodland-5276.herokuapp.com/index.html" id="signin-form_id">
+			<form action="j_spring_security_check" id="signin-form_id">
 				<div class="signin-text">
-					<span>Sign In to your account</span>
+					<span>Connecter vos dans votre Compte</span>
 				</div> <!-- / .signin-text -->
 
 				<div class="form-group w-icon">
-					<input type="text" name="signin_username" id="username_id" class="form-control input-lg" placeholder="Matricule">
+					<input type="text" name="j_username" id="username_id" class="form-control input-lg" placeholder="Matricule">
 					<span class="fa fa-user signin-form-icon"></span>
 				</div> <!-- / Username -->
 
 				<div class="form-group w-icon">
-					<input type="password" name="signin_password" id="password_id" class="form-control input-lg" placeholder="Password">
+					<input type="password" name="j_password" id="password_id" class="form-control input-lg" placeholder="Password">
 					<span class="fa fa-lock signin-form-icon"></span>
 				</div> <!-- / Password -->
 
 				<div class="form-actions">
-					<input type="submit" value="SIGN IN" class="signin-btn bg-primary">
-					<a href="#" class="forgot-password" id="forgot-password-link">Forgot your password?</a>
+					<input type="submit" value="Se connecter" class="signin-btn bg-primary">
+					<a href="#" class="forgot-password" id="forgot-password-link">Mot de passe oublié?</a>
 				</div> <!-- / .form-actions -->
 			</form>
 			<!-- / Form -->
