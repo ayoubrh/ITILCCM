@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cosumar.itilccm.entities.*;
 
-public interface AdminMetier {
+public interface AdminMetier extends UtilisateurMetier {
 	
 			// User
 	public Long ajouterUser(User u, Long idDep);
@@ -13,6 +13,7 @@ public interface AdminMetier {
 	public void supprimerUser(Long id);
 	public List<User> listUser();
 	public User getUser(Long id);
+	public User getUserByMatricule(String matricule);
 			
 			// Departement
 	public Long ajouterDepartement(Departement d);

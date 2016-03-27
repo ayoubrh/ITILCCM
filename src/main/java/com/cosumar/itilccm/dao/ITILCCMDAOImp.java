@@ -115,5 +115,12 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(r);
 	}
 
+	@Override
+	public User getUserByMatricule(String matricule) {
+		Query req = em.createQuery("Select u from User u where u.matricule = :matricule");
+		req.setParameter("matricule",matricule);
+		return (User) req.getSingleResult();
+	}
+
 }
 

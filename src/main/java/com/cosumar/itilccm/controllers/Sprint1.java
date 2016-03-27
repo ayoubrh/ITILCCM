@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -15,8 +18,12 @@ import org.apache.commons.io.IOUtils;
 import org.junit.runner.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,11 +54,23 @@ public class Sprint1 {
 	
 	@RequestMapping(value="/index")
 	public String index(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
 		return "sprint1/index";
 	}
 	
 	@RequestMapping(value="/admin/add")
 	public String add(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
 		model.addAttribute("user", new User());
 		model.addAttribute("d", m.listDepartement());
 		model.addAttribute("r", m.listRole());
@@ -62,6 +81,10 @@ public class Sprint1 {
 	public String save(@Valid User user,BindingResult bind,
 			Model model,MultipartFile file) throws Exception{
 		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		      String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
 			model.addAttribute("d", m.listDepartement());
 			model.addAttribute("r", m.listRole());
 			return "sprint1/add";
@@ -81,15 +104,21 @@ public class Sprint1 {
 	    //System.out.println(password);
 	    user.setPassword(hashmd5password(password));
 	    //System.out.println(hashmd5password(password));
-	    SendEmail(user.getEmail(),"Nouveau Compte","Matricule : "+user.getMatricule()+"\n Mot de passe : "+password);
-		//System.out.println("000000000000000000000000000000 : "+user.getRole().getId());
+	    String url = "http://localhost:8080/itilccm/valide?m="+user.getMatricule();
+	    SendEmail(user.getEmail(),
+	    			"Nouveau Compte",
+	    			"Matricule : "
+	    					+user.getMatricule()
+	    					+"<br>Mot de passe : "
+	    					+password
+	    					+"<br>Pour validé votre compte et pouvoir accéder librement "
+	    					+"<a href="+url+">Clickez ici</a>."
+	    		);
 		if(user.getRole().getId() == null){
-			//System.out.println("aaaaaaaaaaaaaaaaaaa");
 			m.ajouterUser(user, user.getDepartement().getId());
 			
 		}
 		else {
-			//System.out.println("bbbbbbbbbbbbbbbbbbbb");
 			m.ajouterUserRole(user, user.getDepartement().getId(), user.getRole().getId());
 		}
 		return "redirect:/users/index";
@@ -102,8 +131,10 @@ public class Sprint1 {
 		for (User user : users) {
 			ids.add(user.getId());
 		}
-		System.out.println(ids.get(0));
-		System.out.println(ids);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
 		model.addAttribute("users", users);
 		model.addAttribute("ids", ids);
 		return "sprint1/all";
@@ -111,6 +142,10 @@ public class Sprint1 {
 	
 	@RequestMapping(value="/profil")
 	public String profil(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
 		model.addAttribute("user", m.getUser(id));
 		//User t = m.getUser(id);
 		//System.out.println(t.getBphoto()+"\n"+t.getPhoto());
@@ -128,6 +163,10 @@ public class Sprint1 {
 	
 	@RequestMapping(value="/edit") 
 	public String edit(Long id, Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
 		model.addAttribute("edituser", mu.getUser(id));
 		model.addAttribute("user", mu.getUser(id));
 		model.addAttribute("d", mu.listDepartement());
@@ -143,6 +182,10 @@ public class Sprint1 {
 		User u = (User) model.asMap().get("edituser");
 		System.out.println("AAAAAAAAAAAA : "+user.getId());
 		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		      String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
 			model.addAttribute("d", mu.listDepartement());
 			model.addAttribute("r", mu.listRole());
 			return "sprint1/edit";
@@ -158,11 +201,11 @@ public class Sprint1 {
 			}
 		}
 		String password = req.getParameter("jq-validation-password");
-		System.out.println(password+"length"+password.length());
+		System.out.println(password+"length : "+password.length());
 		if(password.length() != 0){
 		    user.setPassword(hashmd5password(password));
 		    System.out.println(hashmd5password(password));
-		    SendEmail(user.getEmail(),"Modification de Compte","Matricule : "+user.getMatricule()+"\n Neauveau mot de passe : "+password);
+		    SendEmail(user.getEmail(),"Modification de Compte","Matricule : "+user.getMatricule()+"<br>Neauveau mot de passe : "+password);
 		}else{
 			user.setPassword(u.getPassword());
 		}
@@ -192,7 +235,7 @@ public class Sprint1 {
 	}
 	
 	
-	public void SendEmail(String recipientAddress, String subject, String message) {
+	public void SendEmail(final String recipientAddress, final String subject, final String message) {
 		// takes input from e-mail form
 				
 		// prints debug info
@@ -201,13 +244,32 @@ public class Sprint1 {
 		System.out.println("Message: " + message);
 		
 		// creates a simple e-mail object
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setTo(recipientAddress);
-		email.setSubject(subject);
-		email.setText(message);
+		//SimpleMailMessage email = new SimpleMailMessage();
+		//email.setTo(recipientAddress);
+		//email.setSubject(subject);
+		//email.setText(message, "UTF-8", "html");
+		
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+	        
+            public void prepare(MimeMessage mimeMessage) throws Exception {
+        
+                mimeMessage.setRecipient(Message.RecipientType.TO, 
+                        new InternetAddress(recipientAddress));
+                //mimeMessage.setFrom(new InternetAddress("mail@mycompany.com"));
+                mimeMessage.setSubject(subject);
+                mimeMessage.setText(message, "UTF-8", "html");
+            }
+        };
 		
 		// sends the e-mail
-		mailSender.send(email);
+		//mailSender.send(email);
+		try {
+            this.mailSender.send(preparator);
+        }
+        catch (MailException ex) {
+            // simply log it and go on...
+            System.err.println(ex.getMessage());            
+        }
 		
 		// forwards to the view named "Result"
 	}
@@ -215,8 +277,7 @@ public class Sprint1 {
 	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
 	public byte[] photo(Long id) throws IOException{
-		User u = mu.getUser(id);
-		System.out.println(IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto())));
+		User u = m.getUser(id);
 		return IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto()));
 	}
 	

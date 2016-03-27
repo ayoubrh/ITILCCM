@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,27 +38,40 @@ public class HomeController implements HandlerExceptionResolver {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		//logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		
-		return "index";
+	public String home1( Model model) {
+		return "redirect:/index";
+	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String home( Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+	    return "index";
+	}
+	
+	@RequestMapping(value = "/indexv")
+	public String indexv( Model model, String v) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("v", v);
+	    return "index";
+	}
+	
+	@RequestMapping(value="/valide")
+	public String valide(String m){
+		User u = mu.getUserByMatricule(m);
+		u.setActived(true);
+		mu.modifierUser(u);
+		return "redirect:/indexv?v=true";
 	}
 	
 	@RequestMapping(value="/login")
-	public String login() {
-		System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+	public String login(HttpServletRequest req) {
 		return "login";
 	}
 	

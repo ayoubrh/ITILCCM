@@ -10,5 +10,6 @@ public interface UtilisateurMetier {
 	public User getUser(Long id);
 	public List<Role> listRole();
 	public List<Departement> listDepartement();
+	public User getUserByMatricule(String matricule);
 
 }

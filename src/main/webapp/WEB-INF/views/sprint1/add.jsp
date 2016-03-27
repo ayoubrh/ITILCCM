@@ -49,6 +49,7 @@ Use search to find needed section.
 	<![endif]-->
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	
 
 </head>
@@ -311,13 +312,18 @@ Use search to find needed section.
 
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-									<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="">
-									<span>John Doe</span>
+									<c:if test="${logged.bphoto == null }">
+										<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
+									</c:if>
+									<c:if test="${logged.bphoto != null }">
+										<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
+									</c:if>
+									<span>${logged.prenom } ${logged.nom }</span>
 								</a>
 								<ul class="dropdown-menu">
-									<li><a href="#">Profile</a></li>
+									<li><a href="<c:url value="/users/profil?id=${logged.id }" />">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Déconnexion</a></li>
 								</ul>
 							</li>
 						</ul> <!-- / .navbar-nav -->
@@ -360,12 +366,16 @@ Use search to find needed section.
 					 Javascript: html/<%=request.getContextPath()%>/resources/assets/demo/demo.js
 				 -->
 				<div>
-					<div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">John</span></div>
-
-					<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="" class="">
+					<div class="text-bg"><span class="text-slim">Bonjour,</span> <span class="text-semibold">${logged.prenom }</span></div>
+					<c:if test="${logged.bphoto == null }">
+						<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
+					</c:if>
+					<c:if test="${logged.bphoto != null }">
+						<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
+					</c:if>
 					<div class="btn-group">
-						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
-						<a href="#" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
+						<a href="<c:url value="/users/profil?id=${logged.id }" />" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+						<a href="<c:url value="/j_spring_security_logout"/>" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
 					</div>
 					
 				</div>
@@ -374,11 +384,12 @@ Use search to find needed section.
 				<li>
 					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
 				</li>
+				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-users"></i><span class="mm-text">Gestion des utilisateurs</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/users/profil?id=" />"><span class="mm-text">Profil</span></a>
+							<a tabindex="-1" href="<c:url value="/users/profil?id=${logged.id }" />"><span class="mm-text">Profil</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/users/admin/add" />"><span class="mm-text">Nouveau utilisateur</span></a>
@@ -388,6 +399,7 @@ Use search to find needed section.
 						</li>
 					</ul>
 				</li>
+				</s:authorize>
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
@@ -445,7 +457,7 @@ Use search to find needed section.
 					</div>
 					<div class="panel-body">
 						
-						<f:form modelAttribute="user" action="/admin/save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Matricule</label>
 								<div class="col-sm-9">
@@ -574,11 +586,13 @@ Use search to find needed section.
 	
 
 							<hr class="panel-wide">
-
 							
-
 							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-2">
+								<div class="col-sm-offset-3 col-sm-1">
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+								</div>
+								
+								<div class="col-sm-offset-1 col-sm-7">
 									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
 								</div>
 								

@@ -4,9 +4,11 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -57,26 +59,28 @@
 	</bean>
 	
 	<s:http>
+		<s:intercept-url pattern="/indexv*" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
+		<s:intercept-url pattern="/index" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
 		<s:intercept-url pattern="/users/admin/**" access="ROLE_ADMIN"/>
 		<s:intercept-url pattern="/users/**" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
-		
+		<s:form-login 
+			login-page="/login"
+			default-target-url="/index" 
+			authentication-failure-url="/login?error=true"
+		    password-parameter="password"
+		    username-parameter="matricule"
+		/>
+		<s:logout logout-success-url="/login" />
 	</s:http>
 	<s:authentication-manager>
 		<s:authentication-provider>
+			
 			<s:password-encoder hash="md5"></s:password-encoder>
 			<s:jdbc-user-service data-source-ref="datasource"
-						users-by-username-query="select matricule,password,actived from user where matricule=?"
-						authorities-by-username-query="select u.matricule, r.nom from user u, role r where r.id = u.role_id and u.matricule =? " />
+				users-by-username-query="select matricule,password,actived from user where matricule=?"
+				authorities-by-username-query="select u.matricule, r.nom from user u, role r where r.id = u.role_id and u.matricule =? " />
 			
-			<!--
-			<s:user-service>
-			<s:user name="admin1" password="admin1" authorities="ROLE_ADMIN_PROD"/>
-			<s:user name="admin2" authorities="ROLE_ADMIN_CAT,ROLE_ADMIN_PROD" password="admin2" />
-			</s:user-service>
-			-->
 		</s:authentication-provider>
 	</s:authentication-manager>
-	
-	
 	
 </beans>

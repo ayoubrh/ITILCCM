@@ -51,6 +51,7 @@
 		}
 	</style>
 <!-- / $DEMO -->
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 </head>
 
@@ -119,18 +120,18 @@
 		<div class="signin-form">
 
 			<!-- Form -->
-			<form action="j_spring_security_check" id="signin-form_id">
+			<form action="j_spring_security_check" method="POST" id="signin-form_id">
 				<div class="signin-text">
 					<span>Connecter vos dans votre Compte</span>
 				</div> <!-- / .signin-text -->
 
 				<div class="form-group w-icon">
-					<input type="text" name="j_username" id="username_id" class="form-control input-lg" placeholder="Matricule">
+					<input type="text" name="matricule" id="username_id" class="form-control input-lg" placeholder="Matricule">
 					<span class="fa fa-user signin-form-icon"></span>
 				</div> <!-- / Username -->
 
 				<div class="form-group w-icon">
-					<input type="password" name="j_password" id="password_id" class="form-control input-lg" placeholder="Password">
+					<input type="password" name="password" id="password_id" class="form-control input-lg" placeholder="Password">
 					<span class="fa fa-lock signin-form-icon"></span>
 				</div> <!-- / Password -->
 

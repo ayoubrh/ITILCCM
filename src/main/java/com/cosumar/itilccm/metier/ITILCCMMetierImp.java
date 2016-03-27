@@ -101,5 +101,10 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.getUser(id);
 	}
 
+	@Override
+	public User getUserByMatricule(String matricule) {
+		return dao.getUserByMatricule(matricule);
+	}
+
 }
 

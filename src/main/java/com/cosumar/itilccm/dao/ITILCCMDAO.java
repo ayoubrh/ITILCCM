@@ -13,6 +13,7 @@ public interface ITILCCMDAO {
 	public void supprimerUser(Long id);
 	public List<User> listUser();
 	public User getUser(Long id);
+	public User getUserByMatricule(String matricule);
 	
 	// Departement
 	public Long ajouterDepartement(Departement d);
