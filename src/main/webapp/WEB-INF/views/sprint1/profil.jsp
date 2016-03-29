@@ -471,7 +471,7 @@ Use search to find needed section.
 							<div class="list-group-item"><strong>${user.matricule }</strong></div><br>
 							<a href="edit?id=${user.id }" class="btn btn-success"><i class="fa fa-edit"></i>&nbsp;Modifier</a>&nbsp;&nbsp;
 							<s:authorize ifAnyGranted="ROLE_ADMIN">
-								<a href="delete?ids=${user.id }" class="btn btn-danger"><i class="fa  fa-trash-o"></i>&nbsp;Supprimer</a>
+								<a href="admin/delete?ids=${user.id }" class="btn btn-danger"><i class="fa  fa-trash-o"></i>&nbsp;Supprimer</a>
 							</s:authorize>
 						</div>
 						

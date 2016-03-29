@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.SQLDeleteAll;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Required;
@@ -52,18 +53,30 @@ public class User implements Serializable {
 	@Size(min=4,max=30)
    private String prenom;
     
-    @Size(min=6)
    private String adresse;
-   	
+    
+    @Column(nullable=true)
+    @Size(max=10)
+   private String codepostale;
+    
+    @Column(nullable=true)
+   private String ville;
+    
+    @Column(nullable=true)
+   private String pays;
+    
+    @NotEmpty
    	@Email
    	@Column(unique = true)
    private String email;
    	
-   	@Size(min=10,max=16)
+    @Column(nullable=true)
+   	@Size(max=16)
    	@Pattern(regexp="(^$|[0-9]{10})")
    private String tele;
    
-   	@Size(min=4,max=16)
+    @Column(nullable=true)
+   	@Size(max=16)
    	@Pattern(regexp="(^$|[0-9]{10})")
    private String fixe;
    
@@ -74,7 +87,9 @@ public class User implements Serializable {
     @NotEmpty
    private String sexe;
     
+    @Column(nullable=true)
     @Size(max=2)
+    @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
    private String age;
     
    private boolean actived = false;
@@ -214,6 +229,24 @@ public class User implements Serializable {
 		this.actived = false;
 	}
 	
+	public String getCodepostale() {
+		return codepostale;
+	}
+	public void setCodepostale(String codepostale) {
+		this.codepostale = codepostale;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	public String getPays() {
+		return pays;
+	}
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
 	public User(String matricule, String password, String cin, String nom, String prenom, String adresse, String email,
 			String tele, String fixe, String fonction, String photo, byte[] bphoto, Role role,
 			Departement departement) {

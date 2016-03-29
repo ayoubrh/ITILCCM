@@ -522,6 +522,30 @@ Use search to find needed section.
 							</div>
 							
 							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Pays</label>
+								<div class="col-sm-9">
+									<f:input path="pays" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
+									<f:errors path="pays" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Ville</label>
+								<div class="col-sm-9">
+									<f:input path="ville" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
+									<f:errors path="ville" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Code postale</label>
+								<div class="col-sm-9">
+									<f:input path="codepostale" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
+									<f:errors path="codepostale" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
 								<div class="col-sm-9">
 									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />

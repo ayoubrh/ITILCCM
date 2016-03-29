@@ -457,10 +457,14 @@ Use search to find needed section.
 		
 		<script>
 					init.push(function () {
+
 						$('#jq-datatables-example').dataTable();
 						$('#jq-datatables-example_wrapper .table-caption').text('');
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+
 					});
+					
+					
 		</script>
 		
 				<!-- / Javascript -->
@@ -482,6 +486,7 @@ Use search to find needed section.
 										<th>Fonction</th>
 										<th>Département</th>
 										<th>Role</th>
+										<th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -500,8 +505,17 @@ Use search to find needed section.
 											<c:if  test="${u.role.libelle == null }">
 												<td> </td>
 											</c:if>
+											<td>
+												<c:if test="${u.actived == true }">
+													<input type="checkbox" class="switcher-example-2" checked="checked" disabled="disabled">
+												</c:if>
+												<c:if test="${u.actived == false }">
+													<input type="checkbox" class="switcher-example-2" disabled="disabled">
+												</c:if>
+											</td>
 										</tr>
 									</c:forEach>
+									
 								</tbody>
 							</table>
 						</div>
@@ -518,6 +532,18 @@ Use search to find needed section.
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
+<script>
+					init.push(function () {
+
+						$('.switcher-example-2').switcher({
+							theme: 'square',
+							on_state_content: '<span class="fa fa-check"></span>',
+							off_state_content: '<span class="fa fa-times"></span>'
+						});
+					});
+					
+					
+</script>
 
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
@@ -536,6 +562,7 @@ Use search to find needed section.
 <script type="text/javascript">
 	
 		init.push(function () {
+			
 			var s = "${fn:length(users)}";
 			
 			var tab = "${ids}";
