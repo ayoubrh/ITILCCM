@@ -11,5 +11,7 @@ public interface UtilisateurMetier {
 	public List<Role> listRole();
 	public List<Departement> listDepartement();
 	public User getUserByMatricule(String matricule);
+	public void SendEmail(final String recipientAddress, final String subject, final String message);
+	public String hashmd5password(String password) throws Exception;
 
 }

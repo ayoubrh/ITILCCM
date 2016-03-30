@@ -25,7 +25,6 @@ public class TestMetier {
 	@Test
 	public void test() {
 		try{
-			Sprint1 s = new Sprint1();
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			Long d1 = m.ajouterDepartement(new Departement("Informatique"));
 			System.out.println(d1);
@@ -37,10 +36,10 @@ public class TestMetier {
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			//m.ajouterUser(new User("EEEEEEEE", s.hashmd5password("0000000000"), "RHNABRI", "Ayoub", "ayoub0@gmail.com","Technicien"), d1);
 			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-			m.ajouterUserRole(new User("AAAAAAA", s.hashmd5password("123456789"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d1, r1);
+			m.ajouterUserRole(new User("AAAAAAA", m.hashmd5password("123456789"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d1, r1);
 			System.out.println("ccccccccccccccccccccccccccccccccccc");
-			m.ajouterUserRole(new User("BBBBBBB", s.hashmd5password("azertyuiop"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d1, r2);
-			Long id = m.ajouterUserRole(new User("CCCCCCC", s.hashmd5password("qsdfghjklm"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d1, r3);
+			m.ajouterUserRole(new User("BBBBBBB", m.hashmd5password("azertyuiop"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d1, r2);
+			Long id = m.ajouterUserRole(new User("CCCCCCC", m.hashmd5password("qsdfghjklm"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d1, r3);
 			User um = m.getUser(id);
 			um.setAge("30");
 			m.modifierUser(um);

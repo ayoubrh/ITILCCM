@@ -492,7 +492,7 @@ Use search to find needed section.
 								<tbody>
 									<c:forEach items="${users}" var="u">
 										<tr class="gradeA">
-											<td id="supchek${u.id }"><input type="checkbox" class="ck" name="sup" value="${u.id }"></td>
+											<td class="supchekbox"><input type="checkbox" class="ck" name="sup" value="${u.id }"></td>
 											<td><a href="<c:url value="/users/profil?id=${u.id }" />">${u.matricule }</a></td>
 											<td>${u.prenom } ${u.nom }</td>
 											<td>${u.email }</td>
@@ -569,11 +569,11 @@ Use search to find needed section.
 			var tab = tab.match(/\d/g);
 			
 			$("#supchek").hide();
-			for(i=0;i<s;i++){
-				var aid = "#supchek".concat(tab[i]);
+			//for(i=0;i<s;i++){
+				//var aid = "#supchek".concat(tab[i]);
 				//alert(aid);
-				$(aid).hide();
-			}
+				$(".supchekbox").hide();
+			//}
 			//$("#supchek").hide();
 			$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='add'>Nouveau</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger btn-flat' id='supp'>Supprimer</button></div>");
 			// Javascript code here
@@ -582,10 +582,10 @@ Use search to find needed section.
 		    };
 		    document.getElementById("supp").onclick = function () {
 		    	$("#supchek").show();
-				for(i=0;i<=s;i++){
-					var aid = "#supchek".concat(tab[i]);
-					$(aid).show();
-				}
+				//for(i=0;i<=s;i++){
+					//var aid = "#supchek".concat(tab[i]);
+					$(".supchekbox").show();
+				//}
 				$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-labeled' id='annulle'><span class='btn-label icon fa fa-angle-double-left'></span>Annuler</button>  <button class='btn btn-labeled btn-danger' id='approuv'><span class='btn-label icon fa fa-angle-double-right'></span>Supprimer!</button></div>");
 		   		
 				

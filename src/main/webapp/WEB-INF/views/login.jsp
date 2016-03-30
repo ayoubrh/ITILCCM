@@ -123,7 +123,7 @@
 			<form action="j_spring_security_check" method="POST" id="signin-form_id">
 				<div class="signin-text">
 					<span>Connecter vos dans votre Compte</span>
-				</div> <!-- / .signin-text -->
+				</div> <!-- / .signin-text -->&nbsp;&nbsp;&nbsp;
 
 				<div class="form-group w-icon">
 					<input type="text" name="matricule" id="username_id" class="form-control input-lg" placeholder="Matricule">
@@ -133,7 +133,7 @@
 				<div class="form-group w-icon">
 					<input type="password" name="password" id="password_id" class="form-control input-lg" placeholder="Password">
 					<span class="fa fa-lock signin-form-icon"></span>
-				</div> <!-- / Password -->
+				</div> <!-- / Password -->&nbsp;&nbsp;
 
 				<div class="form-actions">
 					<input type="submit" value="Se connecter" class="signin-btn bg-primary">

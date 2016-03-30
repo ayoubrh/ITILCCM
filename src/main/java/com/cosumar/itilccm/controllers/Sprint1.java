@@ -43,8 +43,6 @@ import com.cosumar.itilccm.metier.UtilisateurMetier;
 @SessionAttributes("edituser")
 public class Sprint1 {
 
-	@Autowired
-	private JavaMailSender mailSender;
 	
 	@Autowired
 	private AdminMetier m;
@@ -102,10 +100,10 @@ public class Sprint1 {
 	       password += chars.charAt(i);
 	    }
 	    //System.out.println(password);
-	    user.setPassword(hashmd5password(password));
+	    user.setPassword(mu.hashmd5password(password));
 	    //System.out.println(hashmd5password(password));
 	    String url = "http://localhost:8080/itilccm/valide?m="+user.getMatricule();
-	    SendEmail(user.getEmail(),
+	    mu.SendEmail(user.getEmail(),
 	    			"Nouveau Compte",
 	    			"Matricule : "
 	    					+user.getMatricule()
@@ -203,9 +201,9 @@ public class Sprint1 {
 		String password = req.getParameter("jq-validation-password");
 		System.out.println(password+"length : "+password.length());
 		if(password.length() != 0){
-		    user.setPassword(hashmd5password(password));
-		    System.out.println(hashmd5password(password));
-		    SendEmail(user.getEmail(),"Modification de Compte","Matricule : "+user.getMatricule()+"<br>Neauveau mot de passe : "+password);
+		    user.setPassword(mu.hashmd5password(password));
+		    System.out.println(mu.hashmd5password(password));
+		    mu.SendEmail(user.getEmail(),"Modification de Compte","Matricule : "+user.getMatricule()+"<br>Neauveau mot de passe : "+password);
 		}else{
 			user.setPassword(u.getPassword());
 		}
@@ -213,66 +211,7 @@ public class Sprint1 {
 		mu.modifierUser(user);
 		return "redirect:/users/profil?id="+user.getId();
 	}
-	
-	
-	public String hashmd5password(String password) throws Exception{
-		//String password = "123456";
-    	
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(password.getBytes());
-        
-        byte byteData[] = md.digest();
-        
-        //convert the byte to hex format method 2
-        StringBuffer hexString = new StringBuffer();
-    	for (int i=0;i<byteData.length;i++) {
-    		String hex=Integer.toHexString(0xff & byteData[i]);
-   	     	if(hex.length()==1) hexString.append('0');
-   	     	hexString.append(hex);
-    	}
-    	//System.out.println("Digest(in hex format):: " + hexString.toString());
-    	return hexString.toString();
-	}
-	
-	
-	public void SendEmail(final String recipientAddress, final String subject, final String message) {
-		// takes input from e-mail form
-				
-		// prints debug info
-		System.out.println("To: " + recipientAddress);
-		System.out.println("Subject: " + subject);
-		System.out.println("Message: " + message);
-		
-		// creates a simple e-mail object
-		//SimpleMailMessage email = new SimpleMailMessage();
-		//email.setTo(recipientAddress);
-		//email.setSubject(subject);
-		//email.setText(message, "UTF-8", "html");
-		
-		MimeMessagePreparator preparator = new MimeMessagePreparator() {
-	        
-            public void prepare(MimeMessage mimeMessage) throws Exception {
-        
-                mimeMessage.setRecipient(Message.RecipientType.TO, 
-                        new InternetAddress(recipientAddress));
-                //mimeMessage.setFrom(new InternetAddress("mail@mycompany.com"));
-                mimeMessage.setSubject(subject);
-                mimeMessage.setText(message, "UTF-8", "html");
-            }
-        };
-		
-		// sends the e-mail
-		//mailSender.send(email);
-		try {
-            this.mailSender.send(preparator);
-        }
-        catch (MailException ex) {
-            // simply log it and go on...
-            System.err.println(ex.getMessage());            
-        }
-		
-		// forwards to the view named "Result"
-	}
+
 	
 	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
