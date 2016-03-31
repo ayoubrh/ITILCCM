@@ -1,13 +1,16 @@
 package com.cosumar.itilccm;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -18,9 +21,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -74,6 +79,42 @@ public class HomeController implements HandlerExceptionResolver {
 	public String login(HttpServletRequest req) {
 		return "login";
 	}
+	
+	@RequestMapping(value="/forgot")
+	public String forgot(HttpServletRequest req) {
+		return "forgot";
+	}
+	
+	@RequestMapping(value="/recop")
+	public String recop(HttpServletRequest req,Model model){
+		
+		String matricule = req.getParameter("signup_name");
+		String mail = req.getParameter("signup_email");
+		System.out.println("m : "+matricule+"\n mail : "+mail);
+		User u;
+		try{
+			u = mu.getUserByMatricule(matricule);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			return "forgot?error2="+true;
+		}
+		if(u.getEmail() == mail) {
+			String url = "http://localhost:8080/itilccm/password?id="+u.getId();
+			mu.SendEmail(mail, "Récupiration de mot de passee", "Vous avez demander de récuperer votre mot de passe.<br>"
+					+"Pour récuprer le mot de passe "
+					+"<a href="+url+">Clickez ici</a>."
+					+"Si ce n'est pas vous, oublier ce message !"
+					);
+		}
+		else{
+			//model.addAttribute("error", arg1)
+			return "forgot?error="+true;
+		}
+		
+		
+		return "info";
+	}
+	
 	
 	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
