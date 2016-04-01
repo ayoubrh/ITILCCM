@@ -96,7 +96,7 @@ public class HomeController implements HandlerExceptionResolver {
 			u = mu.getUserByMatricule(matricule);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			return "forgot?error2="+true;
+			return "redirect:/forgot?error2="+true;
 		}
 		if(u.getEmail() == mail) {
 			String url = "http://localhost:8080/itilccm/password?id="+u.getId();
@@ -108,7 +108,7 @@ public class HomeController implements HandlerExceptionResolver {
 		}
 		else{
 			//model.addAttribute("error", arg1)
-			return "forgot?error="+true;
+			return "redirect:forgot?error="+true;
 		}
 		
 		

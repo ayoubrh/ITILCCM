@@ -87,6 +87,32 @@
 				ITIL-CCM</strong>			
 		</div>
 		<!-- / Header -->
+		<script type="text/javascript">
+		init.push(function () {
+			
+			$("#signup-form_id").validate({ 
+				focusInvalid: false, 
+				rules : {
+					'signup_name': {
+						required: true,
+						minlength: 6,
+						maxlength: 20
+					},
+					'signup_email': {
+						required: true,
+						email: true
+					}
+				},
+				messages: {
+					'signup_name': 'Le matricule doit être entre 6 et 20 caractères ',
+					'signup_email': 'Entrez un E-mail valide'
+				}
+			});
+			
+		});
+		
+		
+		</script>
 
 		<!-- Form -->
 		<div class="signup-form">
@@ -99,7 +125,7 @@
 				<c:if test="${param.error != null}">
 		            <div class="note note-danger">
 		            	<div class="note-title">
-			                Erreur : votre matricule ou E-mail est incorrect.
+			                Erreur : votre matricule ou E-mail est incorrect!
 		                </div>
 		            </div>
 		        </c:if>
@@ -107,18 +133,18 @@
 		        <c:if test="${param.error2 != null}">
 		            <div class="note note-danger">
 		            	<div class="note-title">
-			                Erreur : votre matricule ou E-mail n'existe pas !.
+			                Erreur : votre matricule ou E-mail n'existe pas !
 		                </div>
 		            </div>
 		        </c:if>
 
 				<div class="form-group w-icon">
-					<input type="text" name="signup_name" id="name_id" class="form-control input-lg" placeholder="Matricule">
+					<input type="text" name="signup_name" id="signup_name" class="form-control input-lg" placeholder="Matricule">
 					<span class="fa fa-info signup-form-icon"></span>
 				</div>
 
 				<div class="form-group w-icon">
-					<input type="text" name="signup_email" id="email_id" class="form-control input-lg" placeholder="E-mail">
+					<input type="text" name="signup_email" id="signup_email" class="form-control input-lg" placeholder="E-mail">
 					<span class="fa fa-envelope signup-form-icon"></span>
 				</div>
 
@@ -169,36 +195,10 @@
 			}
 		});
 
-		$("#signup-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
-
-		// Validate name
-		$("#name_id").rules("add", {
-			required: true,
-			minlength: 1
-		});
-
-		// Validate email
-		$("#email_id").rules("add", {
-			required: true,
-			email: true
-		});
 		
-		// Validate username
-		$("#username_id").rules("add", {
-			required: true,
-			minlength: 3
-		});
 
-		// Validate password
-		$("#password_id").rules("add", {
-			required: true,
-			minlength: 6
-		});
+		
 
-		// Validate confirm checkbox
-		$("#confirm_id").rules("add", {
-			required: true
-		});
 	});
 
 	window.PixelAdmin.start(init);
