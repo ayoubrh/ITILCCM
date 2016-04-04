@@ -495,12 +495,7 @@ Use search to find needed section.
 					<div class="panel-body">
 						
 						<f:form modelAttribute="user" action="editsave" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-							<div class="form-group">
-								<div class="col-sm-9">
 									<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
-									<f:errors path="id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
 							
 							<s:authorize ifAnyGranted="ROLE_ADMIN">
 							<div class="form-group">
@@ -727,7 +722,7 @@ Use search to find needed section.
 									<input type="file" name="file" />
 								</div>
 							</div>
-							
+							<f:input path="actived" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 	
 
 							<hr class="panel-wide">

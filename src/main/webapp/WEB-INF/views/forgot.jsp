@@ -65,7 +65,7 @@
 -->
 <body class="theme-default page-signup">
 
-
+<script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
 
 	<!-- Page background -->

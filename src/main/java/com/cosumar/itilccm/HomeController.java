@@ -32,6 +32,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
 
+import antlr.ParserSharedInputState;
+
 /**
  * Handles requests for the application home page.
  */
@@ -90,29 +92,60 @@ public class HomeController implements HandlerExceptionResolver {
 		
 		String matricule = req.getParameter("signup_name");
 		String mail = req.getParameter("signup_email");
-		System.out.println("m : "+matricule+"\n mail : "+mail);
 		User u;
 		try{
 			u = mu.getUserByMatricule(matricule);
 		}catch(Exception e){
-			System.out.println(e.getMessage());
 			return "redirect:/forgot?error2="+true;
 		}
-		if(u.getEmail() == mail) {
+		if(u.getEmail().equals(mail) ) {
 			String url = "http://localhost:8080/itilccm/password?id="+u.getId();
-			mu.SendEmail(mail, "Récupiration de mot de passee", "Vous avez demander de récuperer votre mot de passe.<br>"
+			mu.SendEmail(u.getEmail(), "Récupiration de mot de passee", "Vous avez demander de récuperer votre mot de passe.<br>"
 					+"Pour récuprer le mot de passe "
-					+"<a href="+url+">Clickez ici</a>."
+					+"<a href="+url+">Clickez ici</a>. <br>"
 					+"Si ce n'est pas vous, oublier ce message !"
 					);
 		}
 		else{
-			//model.addAttribute("error", arg1)
 			return "redirect:forgot?error="+true;
 		}
-		
-		
 		return "info";
+	}
+	
+	@RequestMapping(value="/password")
+	public String password(Long id,Model model){
+		model.addAttribute("error", null);
+		return "password";
+	}
+	
+	@RequestMapping(value="/newpassword")
+	public String newpassword(HttpServletRequest req,Model model){
+		String  idS = req.getParameter("id");
+		Long id =  Long.parseLong(idS);
+		String password = req.getParameter("signup_password");
+		String passwordc = req.getParameter("signup_password_confirm");
+		System.out.println("id : "+id+"\n password : "+password);
+		User u;
+		try{
+			u = mu.getUser(id);
+			if(password.equals(passwordc)) u.setPassword(mu.hashmd5password(password));
+			else{
+				model.addAttribute("error", true);
+				return "redirect:/password?id="+id;
+			}
+			mu.modifierUser(u);
+			mu.SendEmail(u.getEmail(), "Nouveau mot de passee", "Vous avez chnagé votre mot de passe avec success.<br>"
+					+"Les informations de votre comptes sont : <br>"
+					+"matricule : "+u.getMatricule()+"<br>"
+					+"Password : "+password+"<br>"
+					);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			model.addAttribute("error", true);
+			return "redirect:/password?id="+id;
+		}
+		
+		return "newpassword";
 	}
 	
 	

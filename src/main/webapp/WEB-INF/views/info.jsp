@@ -8,7 +8,7 @@
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Mot de passe oubliÃ¨ - ITIL-CCM</title>
+	<title>Mot de passe oubliè - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
 
@@ -65,7 +65,6 @@
 -->
 <body class="theme-default page-signup">
 
-<script>var init = [];</script>
 
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
 
@@ -88,73 +87,48 @@
 				ITIL-CCM</strong>			
 		</div>
 		<!-- / Header -->
+		<script type="text/javascript">
+		init.push(function () {
+			
+			$("#signup-form_id").validate({ 
+				focusInvalid: false, 
+				rules : {
+					'signup_name': {
+						required: true,
+						minlength: 6,
+						maxlength: 20
+					},
+					'signup_email': {
+						required: true,
+						email: true
+					}
+				},
+				messages: {
+					'signup_name': 'Le matricule doit être entre 6 et 20 caractères ',
+					'signup_email': 'Entrez un E-mail valide'
+				}
+			});
+			
+		});
 		
-		<script>
-					init.push(function () {
-						
-
-						// Setup validation
-						$("#signup-form_id").validate({
-							ignore: '.ignore, .select2-input',
-							focusInvalid: false,
-							rules: {
-								
-								'password_id': {
-									required: false,
-									minlength: 6,
-									maxlength: 20
-								},
-								'password-confirmation': {
-									required: false,
-									minlength: 6,
-									equalTo: "#jq-validation-password"
-								},
-								
-							},
-							messages: {
-								'password_id': 'Le password doit être entre 6 et 20 caractères ',
-								'password-confirmation': 'les passwords ne sont pas identique'
-							}
-						});
-					});
-				</script>
 		
+		</script>
 
 		<!-- Form -->
 		<div class="signup-form">
-			<form action="newpassword" id="signup-form_id">
 				
 				<div class="signup-text">
-					<span>Nouveau mot de passe !</span>
+					<span> !</span>
 				</div>
 				
-				
-				<c:if test="${error != null}">
-		            <div class="note note-danger">
+		            <div class="note note-success">
 		            	<div class="note-title">
-			                Une erreur est surfenu,  ressai plus tard !
+			                - Un E-mail de validation pour récuprer vote mot de passe, est envoyé à votre boite mail.<br>
+			                - Si vous n'avez rien reçu, ressai plus tard !
 		                </div>
 		            </div>
-		        </c:if>
-		        
-				<input type="hidden" name="id" value="${param.id }">
+		       
 				
-				<div class="form-group w-icon">
-					<input type="password" name="signup_password" id="password_id" class="form-control input-lg" placeholder="Nouveau Password">
-					<span class="fa fa-lock signup-form-icon"></span>
-				</div>
-				
-				<div class="form-group w-icon">
-					<input type="password" name="signup_password_confirm" id="password-confirmation" class="form-control input-lg" placeholder="Confirme password">
-					<span class="fa fa-lock signup-form-icon"></span>
-				</div>
-
-				<div class="form-actions">
-					<input type="submit" value="Envoyer" class="signup-btn bg-primary">
-				</div>
-				
-				
-			</form>
 			<!-- / Form -->
 
 			<!-- "Sign In with" block -->
@@ -197,6 +171,9 @@
 		});
 
 		
+
+		
+
 	});
 
 	window.PixelAdmin.start(init);
