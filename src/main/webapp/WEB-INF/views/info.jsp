@@ -118,7 +118,7 @@
 		<div class="signup-form">
 				
 				<div class="signup-text">
-					<span> !</span>
+					<span>Mot de passe oubliè !</span>
 				</div>
 				
 		            <div class="note note-success">

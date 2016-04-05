@@ -8,7 +8,7 @@
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Mot de passe oubliè - ITIL-CCM</title>
+	<title>Mot de passe oublie - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
 
@@ -65,6 +65,7 @@
 -->
 <body class="theme-default page-signup">
 
+
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
 
 	<!-- Page background -->
@@ -116,42 +117,18 @@
 
 		<!-- Form -->
 		<div class="signup-form">
-			<form action="recop" method="post" id="signup-form_id">
 				
 				<div class="signup-text">
 					<span>Mot de passe oubliè !</span>
 				</div>
 				
-				<c:if test="${param.error != null}">
-		            <div class="note note-danger">
+		            <div class="note note-success">
 		            	<div class="note-title">
-			                Erreur : votre matricule ou E-mail est incorrect!
+			                Votre nouveau mot de passe est enregistrer avec sucess !
 		                </div>
 		            </div>
-		        </c:if>
-		        
-		        <c:if test="${param.error2 != null}">
-		            <div class="note note-danger">
-		            	<div class="note-title">
-			                Erreur : votre matricule ou E-mail n'existe pas !
-		                </div>
-		            </div>
-		        </c:if>
-
-				<div class="form-group w-icon">
-					<input type="text" name="signup_name" id="signup_name" class="form-control input-lg" placeholder="Matricule">
-					<span class="fa fa-info signup-form-icon"></span>
-				</div>
-
-				<div class="form-group w-icon">
-					<input type="text" name="signup_email" id="signup_email" class="form-control input-lg" placeholder="E-mail">
-					<span class="fa fa-envelope signup-form-icon"></span>
-				</div>
-
-				<div class="form-actions">
-					<input type="submit" value="Envoyer" class="signup-btn bg-primary">
-				</div>
-			</form>
+		       
+				
 			<!-- / Form -->
 
 			<!-- "Sign In with" block -->
@@ -161,9 +138,7 @@
 		<!-- Right side -->
 	</div>
 
-		<div class="have-account">
-		Vous avez deja un compte ? <a href='<c:url value="/login"/>'>Login</a>
-	</div>
+		
 
 
 <!-- Get jQuery from Google CDN -->
@@ -195,6 +170,9 @@
 			}
 		});
 
+		
+
+		
 
 	});
 

@@ -8,7 +8,7 @@
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Mot de passe oubliÃ¨ - ITIL-CCM</title>
+	<title>Mot de passe oubliè - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
 
@@ -128,8 +128,7 @@
 					<span>Nouveau mot de passe !</span>
 				</div>
 				
-				
-				<c:if test="${error != null}">
+				<c:if test="${param.error != null}">
 		            <div class="note note-danger">
 		            	<div class="note-title">
 			                Une erreur est surfenu,  ressai plus tard !

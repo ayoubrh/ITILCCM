@@ -124,14 +124,14 @@ public class HomeController implements HandlerExceptionResolver {
 		Long id =  Long.parseLong(idS);
 		String password = req.getParameter("signup_password");
 		String passwordc = req.getParameter("signup_password_confirm");
-		System.out.println("id : "+id+"\n password : "+password);
+		System.out.println("id : "+id+"\n"+"password : "+password);
 		User u;
 		try{
 			u = mu.getUser(id);
 			if(password.equals(passwordc)) u.setPassword(mu.hashmd5password(password));
 			else{
-				model.addAttribute("error", true);
-				return "redirect:/password?id="+id;
+				//model.addAttribute("error", true);
+				return "redirect:/password?id="+id+"&error=true";
 			}
 			mu.modifierUser(u);
 			mu.SendEmail(u.getEmail(), "Nouveau mot de passee", "Vous avez chnagé votre mot de passe avec success.<br>"
@@ -141,8 +141,8 @@ public class HomeController implements HandlerExceptionResolver {
 					);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			model.addAttribute("error", true);
-			return "redirect:/password?id="+id;
+			//model.addAttribute("error", true);
+			return "redirect:/password?id="+id+"&error=true";
 		}
 		
 		return "newpassword";

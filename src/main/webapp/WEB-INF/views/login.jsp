@@ -68,19 +68,7 @@
 
 <script>
 	var init = [];
-	init.push(function () {
-		
-		for (var i=0, l=bgs.length; i < l; i++) $div.append($('<img src="' + bgs[i] + '">'));
-		$div.find('img').click(function () {
-			var img = new Image();
-			img.onload = function () {
-				$('#page-signin-bg > img').attr('src', img.src);
-				$(window).resize();
-			}
-			img.src = $(this).attr('src');
-		});
-		$('body').append($div);
-	});
+
 </script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
 
@@ -197,44 +185,12 @@
 	});
 
 	// Show/Hide password reset form on click
-	init.push(function () {
-		$('#forgot-password-link').click(function () {
-			$('#password-reset-form').fadeIn(400);
-			return false;
-		});
-		$('#password-reset-form .close').click(function () {
-			$('#password-reset-form').fadeOut(400);
-			return false;
-		});
-	});
-
+	
 	// Setup Sign In form validation
-	init.push(function () {
-		$("#signin-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
-		
-		// Validate username
-		$("#username_id").rules("add", {
-			required: true,
-			minlength: 3
-		});
-
-		// Validate password
-		$("#password_id").rules("add", {
-			required: true,
-			minlength: 6
-		});
-	});
+	
 
 	// Setup Password Reset form validation
-	init.push(function () {
-		$("#password-reset-form_id").validate({ focusInvalid: true, errorPlacement: function () {} });
-		
-		// Validate email
-		$("#p_email_id").rules("add", {
-			required: true,
-			email: true
-		});
-	});
+	
 
 	window.PixelAdmin.start(init);
 </script>
