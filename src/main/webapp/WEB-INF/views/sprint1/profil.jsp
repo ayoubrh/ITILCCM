@@ -489,6 +489,9 @@ Use search to find needed section.
 								</c:if>
 							</div>
 							<div class="list-group-item"><strong>Age :</strong> ${user.age } ans</div>
+							<div class="list-group-item"><strong>Pays :</strong> ${user.pays }</div>
+							<div class="list-group-item"><strong>Ville :</strong> ${user.ville }</div>
+							<div class="list-group-item"><strong>Code Postale :</strong> ${user.codepostale }</div>
 							<div class="list-group-item"><strong>Adresse :</strong> ${user.adresse }</div>
 						</div>
 		
