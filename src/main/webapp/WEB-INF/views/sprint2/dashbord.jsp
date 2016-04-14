@@ -510,6 +510,120 @@ Use search to find needed section.
 											</div>
 										</div>
 										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/storageArea.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch-san.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/nas.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/tapelibrary.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/power-connection.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-12">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/enclosure.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a><br>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										
+										
 									</div>
 								</div>
 							</div> <!-- / .group -->
@@ -519,44 +633,407 @@ Use search to find needed section.
 							<div class="group">
 								<h3><img src="<%=request.getContextPath()%>/resources/assets/images/png/hypervisor-sw.png" alt="" class="">&nbsp; <strong>Virtualisation</strong> </h3>
 								<div>
-									<p>
-										Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
-									</p>
+									
+									<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/cluster.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/hypervisor.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/virtualmachine.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+									
 								</div>
 							</div> <!-- / .group -->
 							<div class="group">
 								<h3><img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; <strong>Périphériques utilisateurs</strong> </h3>
 								<div>
-									<p>
-										Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-									</p>
-									<ul>
-									  <li>List item one</li>
-									  <li>List item two</li>
-									  <li>List item three</li>
-									</ul>
+									
+									<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/laptop.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/ipphone.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/mobile-phone.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/tablet.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/printer.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/peripherals.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+									
 								</div>
 							</div> <!-- / .group -->
 							<div class="group">
 								<h3><img src="<%=request.getContextPath()%>/resources/assets/images/png/application.png" alt="" class="">&nbsp; <strong>Logiciels et applications</strong> </h3>
 								<div>
-									<p>
-										Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
-									</p>
-									<p>
-										Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-									</p>
+									
+									<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/middleware.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/webserver.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/application.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/application.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/middleware.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/database-schema.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/webapp.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/patch.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/licence.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										
+									
 								</div>
 							</div> <!-- / .group -->
 							<div class="group">
 								<h3><img src="<%=request.getContextPath()%>/resources/assets/images/png/subnet.png" alt="" class="">&nbsp; <strong>Divers</strong> </h3>
 								<div>
-									<p>
-										Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
-									</p>
-									<p>
-										Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-									</p>
+									
+									<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/interface.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/subnet.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/vlan.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/volume.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/group.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/enclosure.png" alt="" class="">&nbsp; Chassis: : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+												</div>
+											</div>
+										</div>
+									
 								</div>
 							</div>
 						</div> <!-- / #ui-accordion -->
