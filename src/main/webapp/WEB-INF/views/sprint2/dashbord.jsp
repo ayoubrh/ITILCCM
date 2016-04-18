@@ -612,7 +612,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/enclosure.png" alt="" class="">&nbsp; Chassis: : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/dvr.png" alt="" class="">&nbsp; Chassis: : 0
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -1024,7 +1024,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/enclosure.png" alt="" class="">&nbsp; Chassis: : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/camera.png" alt="" class="">&nbsp; Chassis: : 0
 													</a>
 												</div>
 												<div class="col-md-12">
