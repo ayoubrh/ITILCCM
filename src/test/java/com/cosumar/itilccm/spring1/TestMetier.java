@@ -29,7 +29,7 @@ public class TestMetier {
 			Long d1 = m.ajouterDepartement(new Departement("Informatique"));
 			System.out.println(d1);
 			
-			Long r2 = m.ajouterRole(new Role("ROLE_USER", "Employée"));
+			Long r2 = m.ajouterRole(new Role("ROLE_USER", "Utilisateur"));
 			Long r3 = m.ajouterRole(new Role("ROLE_IT_TEAM", "Equipe IT"));
 			Long r1 = m.ajouterRole(new Role("ROLE_ADMIN", "Administrateur"));
 			List<User> u1 = m.listUser();
