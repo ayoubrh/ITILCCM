@@ -29,9 +29,12 @@ public class TestMetier2 {
 			u1.setAdresse("aazrrvguyg tygyhg ygiyubn");
 			u1.setAge("20");
 			u1.setTele("0915234422");
+			u1.setActived(true);
 			u2.setAge("19");
 			u2.setFixe("0511223366");
+			u2.setActived(true);
 			u3.setAdresse("dfvdv dvdv tbdtb bdtbdtbtd");
+			u3.setActived(true);
 			m.modifierUser(u1);
 			m.modifierUser(u2);
 			m.modifierUser(u3);
