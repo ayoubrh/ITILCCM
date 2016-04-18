@@ -111,7 +111,7 @@
 			<form action="j_spring_security_check" method="POST" id="signin-form_id">
 			
 				<div class="signin-text">
-					<span>Connecter vos dans votre Compte</span>
+					<span>Connectez vous dans votre Compte</span>
 				</div> <!-- / .signin-text -->&nbsp;&nbsp;&nbsp;
 				<c:if test="${param.error != null}">
 		            <div class="note note-danger">

@@ -21,7 +21,7 @@ public class Sprint2 {
 	@Autowired
 	private UtilisateurMetier mu;
 	
-	@RequestMapping(value="/admin/dashbord")
+	@RequestMapping(value="/admin/dashboard")
 	public String index(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
