@@ -1,157 +1,47 @@
+/***********************************************************************
+ * Module:  MachineVirtuelle.java
+ * Author:  ayoub
+ * Purpose: Defines the Class MachineVirtuelle
+ ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
+/** @pdOid f47512ce-091b-4af2-8084-4d47586b2bc6 */
 public class MachineVirtuelle {
-      private int id;
-      private String nom;
-      private String statut;
-      private String criticite;
-      private String ip;
-      private String cpu;
-      private String ram;
-      private Date dateDeMiseEnProduction;
-      private String description;
+   /** @pdOid cac7b881-7a77-49a2-8f4b-6cb9cc31419d */
+   private int id;
+   /** @pdOid 6ddef30e-08a7-4d6a-a0fd-19a9b304158b */
+   private String nom;
+   /** @pdOid 3d938ae7-2c06-40d7-b28e-f61f105f59ed */
+   private String statut;
+   /** @pdOid b2cd01b7-a97e-4160-9047-27f2c0591b2c */
+   private String criticite;
+   /** @pdOid 25e53ead-ec9e-4b7f-9737-7d7400c3e12a */
+   private String ip;
+   /** @pdOid bf6c624a-678b-4891-a07b-1b58107b5f3f */
+   private String cpu;
+   /** @pdOid aad2fdea-a455-4373-9971-a27a92dc7755 */
+   private String ram;
+   /** @pdOid 8789f640-6c82-4eae-8e42-42196c65c866 */
+   private Date dateDeMiseEnProduction;
+   /** @pdOid c5987010-be4e-4de9-9882-a2f8cdc7f601 */
+   private String description;
    
    /** @pdRoleInfo migr=no name=VolumeLogique assc=association28 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-      private java.util.Collection<VolumeLogique> volumelogique;
-   /** @pdRoleInfo migr=no name=IntefaceReseau assc=association29 mult=1..1 */
-      private IntefaceReseau intefaceReseau;
+   private java.util.Collection<VolumeLogique> volumelogique;
+   /** @pdRoleInfo migr=no name=IntefaceReseau assc=association29 mult=0..* */
+   private IntefaceReseau[] intefaceReseau;
    /** @pdRoleInfo migr=no name=SolutionApplicative assc=association31 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-      private java.util.Collection<SolutionApplicative> solutionApplicative;
-   /** @pdRoleInfo migr=no name=Virtualisation assc=association27 mult=0..* side=A */
-      private Virtualisation[] virtualisation;
-   /** @pdRoleInfo migr=no name=LicenseOs assc=association51 mult=0..* side=A */
-      private LicenseOs[] licenseOs;
+   private java.util.Collection<SolutionApplicative> solutionApplicative;
+   /** @pdRoleInfo migr=no name=Virtualisation assc=association27 mult=0..1 side=A */
+   private Virtualisation virtualisation;
+   /** @pdRoleInfo migr=no name=LicenseOs assc=association51 mult=0..1 side=A */
+   private LicenseOs licenseOs;
    /** @pdRoleInfo migr=no name=LogicielEtApplication assc=association53 mult=0..* side=A */
-      private LogicielEtApplication[] logicielEtApplication;
+   private LogicielEtApplication[] logicielEtApplication;
    
    
-   
-
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public String getNom() {
-		return nom;
-	}
-	
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	
-	public String getStatut() {
-		return statut;
-	}
-	
-	public void setStatut(String statut) {
-		this.statut = statut;
-	}
-	
-	public String getCriticite() {
-		return criticite;
-	}
-	
-	public void setCriticite(String criticite) {
-		this.criticite = criticite;
-	}
-	
-	public String getIp() {
-		return ip;
-	}
-	
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-	
-	public String getCpu() {
-		return cpu;
-	}
-	
-	public void setCpu(String cpu) {
-		this.cpu = cpu;
-	}
-	
-	public String getRam() {
-		return ram;
-	}
-	
-	public void setRam(String ram) {
-		this.ram = ram;
-	}
-	
-	public Date getDateDeMiseEnProduction() {
-		return dateDeMiseEnProduction;
-	}
-	
-	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
-		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public IntefaceReseau getIntefaceReseau() {
-		return intefaceReseau;
-	}
-	
-	public void setIntefaceReseau(IntefaceReseau intefaceReseau) {
-		this.intefaceReseau = intefaceReseau;
-	}
-	
-	public Virtualisation[] getVirtualisation() {
-		return virtualisation;
-	}
-	
-	public void setVirtualisation(Virtualisation[] virtualisation) {
-		this.virtualisation = virtualisation;
-	}
-	
-	public LicenseOs[] getLicenseOs() {
-		return licenseOs;
-	}
-	
-	public void setLicenseOs(LicenseOs[] licenseOs) {
-		this.licenseOs = licenseOs;
-	}
-	
-	public LogicielEtApplication[] getLogicielEtApplication() {
-		return logicielEtApplication;
-	}
-	
-	public void setLogicielEtApplication(LogicielEtApplication[] logicielEtApplication) {
-		this.logicielEtApplication = logicielEtApplication;
-	}
-
-	public java.util.Collection<VolumeLogique> getVolumelogique() {
-		return volumelogique;
-	}
-
-	public void setVolumelogique(java.util.Collection<VolumeLogique> volumelogique) {
-		this.volumelogique = volumelogique;
-	}
-
-	public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
-		return solutionApplicative;
-	}
-
-	public void setSolutionApplicative(java.util.Collection<SolutionApplicative> solutionApplicative) {
-		this.solutionApplicative = solutionApplicative;
-	}
-	
-	
-	
-	   
    
 
 }

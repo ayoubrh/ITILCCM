@@ -1,22 +1,15 @@
+/***********************************************************************
+ * Module:  ArriveeElectrique.java
+ * Author:  ayoub
+ * Purpose: Defines the Class ArriveeElectrique
+ ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
+/** @pdOid 4bd69490-cbd3-4d5c-8bb7-328726f59682 */
 public class ArriveeElectrique extends ConnexionElectrique {
-   /** @pdRoleInfo migr=no name=PduElectrique assc=association6 mult=0..1 side=A */
-	private PduElectrique pduElectrique;
-
-public PduElectrique getPduElectrique() {
-	return pduElectrique;
-}
-
-public void setPduElectrique(PduElectrique pduElectrique) {
-	this.pduElectrique = pduElectrique;
-}
-   
-   
-	
-   
-   
+   /** @pdRoleInfo migr=no name=PduElectrique assc=association6 mult=0..* side=A */
+	private PduElectrique[] pduElectrique;
 
 }
