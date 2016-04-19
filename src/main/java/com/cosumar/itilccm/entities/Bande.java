@@ -12,29 +12,7 @@ public class Bande {
    private Bandotheque bandotheque;
    
    
-   /** @pdGenerated default parent getter */
-   public Bandotheque getBandotheque() {
-      return bandotheque;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newBandotheque */
-   public void setBandotheque(Bandotheque newBandotheque) {
-      if (this.bandotheque == null || !this.bandotheque.equals(newBandotheque))
-      {
-         if (this.bandotheque != null)
-         {
-            Bandotheque oldBandotheque = this.bandotheque;
-            this.bandotheque = null;
-            oldBandotheque.removeBande(this);
-         }
-         if (newBandotheque != null)
-         {
-            this.bandotheque = newBandotheque;
-            this.bandotheque.addBande(this);
-         }
-      }
-   }
+  
 
 	public int getId() {
 		return id;
@@ -67,6 +45,17 @@ public class Bande {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Bandotheque getBandotheque() {
+		return bandotheque;
+	}
+
+	public void setBandotheque(Bandotheque bandotheque) {
+		this.bandotheque = bandotheque;
+	}
+	
+	
+	
    
    
 

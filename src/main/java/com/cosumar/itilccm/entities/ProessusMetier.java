@@ -14,54 +14,7 @@ public class ProessusMetier {
       private java.util.Collection<SolutionApplicative> solutionApplicative;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
-      if (solutionApplicative == null)
-         solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      return solutionApplicative;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorSolutionApplicative() {
-      if (solutionApplicative == null)
-         solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      return solutionApplicative.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newSolutionApplicative */
-   public void setSolutionApplicative(java.util.Collection<SolutionApplicative> newSolutionApplicative) {
-      removeAllSolutionApplicative();
-      for (java.util.Iterator iter = newSolutionApplicative.iterator(); iter.hasNext();)
-         addSolutionApplicative((SolutionApplicative)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newSolutionApplicative */
-   public void addSolutionApplicative(SolutionApplicative newSolutionApplicative) {
-      if (newSolutionApplicative == null)
-         return;
-      if (this.solutionApplicative == null)
-         this.solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      if (!this.solutionApplicative.contains(newSolutionApplicative))
-         this.solutionApplicative.add(newSolutionApplicative);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldSolutionApplicative */
-   public void removeSolutionApplicative(SolutionApplicative oldSolutionApplicative) {
-      if (oldSolutionApplicative == null)
-         return;
-      if (this.solutionApplicative != null)
-         if (this.solutionApplicative.contains(oldSolutionApplicative))
-            this.solutionApplicative.remove(oldSolutionApplicative);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllSolutionApplicative() {
-      if (solutionApplicative != null)
-         solutionApplicative.clear();
-   }
 
 	public int getId() {
 		return id;
@@ -110,6 +63,17 @@ public class ProessusMetier {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
+		return solutionApplicative;
+	}
+
+	public void setSolutionApplicative(java.util.Collection<SolutionApplicative> solutionApplicative) {
+		this.solutionApplicative = solutionApplicative;
+	}
+	
+	
+	
    
    
    

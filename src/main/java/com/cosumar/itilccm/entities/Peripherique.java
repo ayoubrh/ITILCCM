@@ -18,54 +18,7 @@ public class Peripherique {
       private java.util.Collection<Ordinateur> ordinateur;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<Ordinateur> getOrdinateur() {
-      if (ordinateur == null)
-         ordinateur = new java.util.HashSet<Ordinateur>();
-      return ordinateur;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorOrdinateur() {
-      if (ordinateur == null)
-         ordinateur = new java.util.HashSet<Ordinateur>();
-      return ordinateur.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newOrdinateur */
-   public void setOrdinateur(java.util.Collection<Ordinateur> newOrdinateur) {
-      removeAllOrdinateur();
-      for (java.util.Iterator iter = newOrdinateur.iterator(); iter.hasNext();)
-         addOrdinateur((Ordinateur)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newOrdinateur */
-   public void addOrdinateur(Ordinateur newOrdinateur) {
-      if (newOrdinateur == null)
-         return;
-      if (this.ordinateur == null)
-         this.ordinateur = new java.util.HashSet<Ordinateur>();
-      if (!this.ordinateur.contains(newOrdinateur))
-         this.ordinateur.add(newOrdinateur);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldOrdinateur */
-   public void removeOrdinateur(Ordinateur oldOrdinateur) {
-      if (oldOrdinateur == null)
-         return;
-      if (this.ordinateur != null)
-         if (this.ordinateur.contains(oldOrdinateur))
-            this.ordinateur.remove(oldOrdinateur);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllOrdinateur() {
-      if (ordinateur != null)
-         ordinateur.clear();
-   }
 
 	public int getId() {
 		return id;
@@ -146,6 +99,18 @@ public class Peripherique {
 	public void setDecription(String decription) {
 		this.decription = decription;
 	}
+
+	public java.util.Collection<Ordinateur> getOrdinateur() {
+		return ordinateur;
+	}
+
+	public void setOrdinateur(java.util.Collection<Ordinateur> ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+	
+	
+	
+	
    
    
 

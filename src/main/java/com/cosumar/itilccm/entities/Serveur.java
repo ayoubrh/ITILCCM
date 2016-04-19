@@ -22,52 +22,7 @@ public class Serveur extends Infrastructure {
       private LogicielEtApplication[] logicielEtApplication;
    
    
-   /** @pdGenerated default parent getter */
-   public Nas getNas() {
-      return nas;
-   }
    
-   /** @pdGenerated default parent setter
-     * @param newNas */
-   public void setNas(Nas newNas) {
-      if (this.nas == null || !this.nas.equals(newNas))
-      {
-         if (this.nas != null)
-         {
-            Nas oldNas = this.nas;
-            this.nas = null;
-            oldNas.removeServeur(this);
-         }
-         if (newNas != null)
-         {
-            this.nas = newNas;
-            this.nas.addServeur(this);
-         }
-      }
-   }
-   /** @pdGenerated default parent getter */
-   public Hyperviseur getHyperviseur() {
-      return hyperviseur;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newHyperviseur */
-   public void setHyperviseur(Hyperviseur newHyperviseur) {
-      if (this.hyperviseur == null || !this.hyperviseur.equals(newHyperviseur))
-      {
-         if (this.hyperviseur != null)
-         {
-            Hyperviseur oldHyperviseur = this.hyperviseur;
-            this.hyperviseur = null;
-            oldHyperviseur.removeServeur(this);
-         }
-         if (newHyperviseur != null)
-         {
-            this.hyperviseur = newHyperviseur;
-            this.hyperviseur.addServeur(this);
-         }
-      }
-   }
 
 	public String getFamilleOs() {
 		return familleOs;
@@ -132,6 +87,25 @@ public class Serveur extends Infrastructure {
 	public void setLogicielEtApplication(LogicielEtApplication[] logicielEtApplication) {
 		this.logicielEtApplication = logicielEtApplication;
 	}
+
+	public Nas getNas() {
+		return nas;
+	}
+
+	public void setNas(Nas nas) {
+		this.nas = nas;
+	}
+
+	public Hyperviseur getHyperviseur() {
+		return hyperviseur;
+	}
+
+	public void setHyperviseur(Hyperviseur hyperviseur) {
+		this.hyperviseur = hyperviseur;
+	}
+	
+	
+	
 	   
    
    

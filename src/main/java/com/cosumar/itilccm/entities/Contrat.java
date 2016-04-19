@@ -23,54 +23,7 @@ public class Contrat {
    private Document[] document;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<Contact> getContact() {
-      if (contact == null)
-         contact = new java.util.HashSet<Contact>();
-      return contact;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorContact() {
-      if (contact == null)
-         contact = new java.util.HashSet<Contact>();
-      return contact.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newContact */
-   public void setContact(java.util.Collection<Contact> newContact) {
-      removeAllContact();
-      for (java.util.Iterator iter = newContact.iterator(); iter.hasNext();)
-         addContact((Contact)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newContact */
-   public void addContact(Contact newContact) {
-      if (newContact == null)
-         return;
-      if (this.contact == null)
-         this.contact = new java.util.HashSet<Contact>();
-      if (!this.contact.contains(newContact))
-         this.contact.add(newContact);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldContact */
-   public void removeContact(Contact oldContact) {
-      if (oldContact == null)
-         return;
-      if (this.contact != null)
-         if (this.contact.contains(oldContact))
-            this.contact.remove(oldContact);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllContact() {
-      if (contact != null)
-         contact.clear();
-   }
+  
 
 	public int getId() {
 		return id;
@@ -183,6 +136,9 @@ public class Contrat {
 	public void setDocument(Document[] document) {
 		this.document = document;
 	}
+	
+	
+	
 	   
    
    

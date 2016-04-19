@@ -15,91 +15,7 @@ public class Groupe {
    private Groupe groupeA;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<Groupe> getGroupeB() {
-      if (groupeB == null)
-         groupeB = new java.util.HashSet<Groupe>();
-      return groupeB;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorGroupeB() {
-      if (groupeB == null)
-         groupeB = new java.util.HashSet<Groupe>();
-      return groupeB.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newGroupeB */
-   public void setGroupeB(java.util.Collection<Groupe> newGroupeB) {
-      removeAllGroupeB();
-      for (java.util.Iterator iter = newGroupeB.iterator(); iter.hasNext();)
-         addGroupeB((Groupe)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newGroupe */
-   public void addGroupeB(Groupe newGroupe) {
-      if (newGroupe == null)
-         return;
-      if (this.groupeB == null)
-         this.groupeB = new java.util.HashSet<Groupe>();
-      if (!this.groupeB.contains(newGroupe))
-      {
-         this.groupeB.add(newGroupe);
-         newGroupe.setGroupeA(this);      
-      }
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldGroupe */
-   public void removeGroupeB(Groupe oldGroupe) {
-      if (oldGroupe == null)
-         return;
-      if (this.groupeB != null)
-         if (this.groupeB.contains(oldGroupe))
-         {
-            this.groupeB.remove(oldGroupe);
-            oldGroupe.setGroupeA((Groupe)null);
-         }
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllGroupeB() {
-      if (groupeB != null)
-      {
-         Groupe oldGroupe;
-         for (java.util.Iterator iter = getIteratorGroupeB(); iter.hasNext();)
-         {
-            oldGroupe = (Groupe)iter.next();
-            iter.remove();
-            oldGroupe.setGroupeA((Groupe)null);
-         }
-      }
-   }
-   /** @pdGenerated default parent getter */
-   public Groupe getGroupeA() {
-      return groupeA;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newGroupe */
-   public void setGroupeA(Groupe newGroupe) {
-      if (this.groupeA == null || !this.groupeA.equals(newGroupe))
-      {
-         if (this.groupeA != null)
-         {
-            Groupe oldGroupe = this.groupeA;
-            this.groupeA = null;
-            oldGroupe.removeGroupeB(this);
-         }
-         if (newGroupe != null)
-         {
-            this.groupeA = newGroupe;
-            this.groupeA.addGroupeB(this);
-         }
-      }
-   }
 
 	public int getId() {
 		return id;
@@ -140,6 +56,26 @@ public class Groupe {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public java.util.Collection<Groupe> getGroupeB() {
+		return groupeB;
+	}
+
+	public void setGroupeB(java.util.Collection<Groupe> groupeB) {
+		this.groupeB = groupeB;
+	}
+
+	public Groupe getGroupeA() {
+		return groupeA;
+	}
+
+	public void setGroupeA(Groupe groupeA) {
+		this.groupeA = groupeA;
+	}
+	
+	
+	
+	
 	   
    
    

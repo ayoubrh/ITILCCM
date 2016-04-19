@@ -32,116 +32,7 @@ public class Ordinateur {
       private LogicielEtApplication[] logicielEtApplication;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<User> getUser() {
-      if (user == null)
-         user = new java.util.HashSet<User>();
-      return user;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorUser() {
-      if (user == null)
-         user = new java.util.HashSet<User>();
-      return user.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newUser */
-   public void setUser(java.util.Collection<User> newUser) {
-      removeAllUser();
-      for (java.util.Iterator iter = newUser.iterator(); iter.hasNext();)
-         addUser((User)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newUser */
-   public void addUser(User newUser) {
-      if (newUser == null)
-         return;
-      if (this.user == null)
-         this.user = new java.util.HashSet<User>();
-      if (!this.user.contains(newUser))
-      {
-         this.user.add(newUser);
-         newUser.setOrdinateur(this);      
-      }
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldUser */
-   public void removeUser(User oldUser) {
-      if (oldUser == null)
-         return;
-      if (this.user != null)
-         if (this.user.contains(oldUser))
-         {
-            this.user.remove(oldUser);
-            oldUser.setOrdinateur((Ordinateur)null);
-         }
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllUser() {
-      if (user != null)
-      {
-         User oldUser;
-         for (java.util.Iterator iter = getIteratorUser(); iter.hasNext();)
-         {
-            oldUser = (User)iter.next();
-            iter.remove();
-            oldUser.setOrdinateur((Ordinateur)null);
-         }
-      }
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<EquipementReseau> getEquipementReseau() {
-      if (equipementReseau == null)
-         equipementReseau = new java.util.HashSet<EquipementReseau>();
-      return equipementReseau;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorEquipementReseau() {
-      if (equipementReseau == null)
-         equipementReseau = new java.util.HashSet<EquipementReseau>();
-      return equipementReseau.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newEquipementReseau */
-   public void setEquipementReseau(java.util.Collection<EquipementReseau> newEquipementReseau) {
-      removeAllEquipementReseau();
-      for (java.util.Iterator iter = newEquipementReseau.iterator(); iter.hasNext();)
-         addEquipementReseau((EquipementReseau)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newEquipementReseau */
-   public void addEquipementReseau(EquipementReseau newEquipementReseau) {
-      if (newEquipementReseau == null)
-         return;
-      if (this.equipementReseau == null)
-         this.equipementReseau = new java.util.HashSet<EquipementReseau>();
-      if (!this.equipementReseau.contains(newEquipementReseau))
-         this.equipementReseau.add(newEquipementReseau);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldEquipementReseau */
-   public void removeEquipementReseau(EquipementReseau oldEquipementReseau) {
-      if (oldEquipementReseau == null)
-         return;
-      if (this.equipementReseau != null)
-         if (this.equipementReseau.contains(oldEquipementReseau))
-            this.equipementReseau.remove(oldEquipementReseau);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllEquipementReseau() {
-      if (equipementReseau != null)
-         equipementReseau.clear();
-   }
+  
 
 	public int getId() {
 		return id;
@@ -286,6 +177,25 @@ public class Ordinateur {
 	public void setLogicielEtApplication(LogicielEtApplication[] logicielEtApplication) {
 		this.logicielEtApplication = logicielEtApplication;
 	}
+
+	public java.util.Collection<User> getUser() {
+		return user;
+	}
+
+	public void setUser(java.util.Collection<User> user) {
+		this.user = user;
+	}
+
+	public java.util.Collection<EquipementReseau> getEquipementReseau() {
+		return equipementReseau;
+	}
+
+	public void setEquipementReseau(java.util.Collection<EquipementReseau> equipementReseau) {
+		this.equipementReseau = equipementReseau;
+	}
+	
+	
+	
    
    
    

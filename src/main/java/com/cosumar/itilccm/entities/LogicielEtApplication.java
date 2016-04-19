@@ -23,198 +23,7 @@ public class LogicielEtApplication {
       private LicenseLogiciel[] licenseLogiciel;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<Ordinateur> getOrdinateur() {
-      if (ordinateur == null)
-         ordinateur = new java.util.HashSet<Ordinateur>();
-      return ordinateur;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorOrdinateur() {
-      if (ordinateur == null)
-         ordinateur = new java.util.HashSet<Ordinateur>();
-      return ordinateur.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newOrdinateur */
-   public void setOrdinateur(java.util.Collection<Ordinateur> newOrdinateur) {
-      removeAllOrdinateur();
-      for (java.util.Iterator iter = newOrdinateur.iterator(); iter.hasNext();)
-         addOrdinateur((Ordinateur)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newOrdinateur */
-   public void addOrdinateur(Ordinateur newOrdinateur) {
-      if (newOrdinateur == null)
-         return;
-      if (this.ordinateur == null)
-         this.ordinateur = new java.util.HashSet<Ordinateur>();
-      if (!this.ordinateur.contains(newOrdinateur))
-         this.ordinateur.add(newOrdinateur);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldOrdinateur */
-   public void removeOrdinateur(Ordinateur oldOrdinateur) {
-      if (oldOrdinateur == null)
-         return;
-      if (this.ordinateur != null)
-         if (this.ordinateur.contains(oldOrdinateur))
-            this.ordinateur.remove(oldOrdinateur);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllOrdinateur() {
-      if (ordinateur != null)
-         ordinateur.clear();
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
-      if (solutionApplicative == null)
-         solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      return solutionApplicative;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorSolutionApplicative() {
-      if (solutionApplicative == null)
-         solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      return solutionApplicative.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newSolutionApplicative */
-   public void setSolutionApplicative(java.util.Collection<SolutionApplicative> newSolutionApplicative) {
-      removeAllSolutionApplicative();
-      for (java.util.Iterator iter = newSolutionApplicative.iterator(); iter.hasNext();)
-         addSolutionApplicative((SolutionApplicative)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newSolutionApplicative */
-   public void addSolutionApplicative(SolutionApplicative newSolutionApplicative) {
-      if (newSolutionApplicative == null)
-         return;
-      if (this.solutionApplicative == null)
-         this.solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      if (!this.solutionApplicative.contains(newSolutionApplicative))
-         this.solutionApplicative.add(newSolutionApplicative);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldSolutionApplicative */
-   public void removeSolutionApplicative(SolutionApplicative oldSolutionApplicative) {
-      if (oldSolutionApplicative == null)
-         return;
-      if (this.solutionApplicative != null)
-         if (this.solutionApplicative.contains(oldSolutionApplicative))
-            this.solutionApplicative.remove(oldSolutionApplicative);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllSolutionApplicative() {
-      if (solutionApplicative != null)
-         solutionApplicative.clear();
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<Serveur> getServeur() {
-      if (serveur == null)
-         serveur = new java.util.HashSet<Serveur>();
-      return serveur;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorServeur() {
-      if (serveur == null)
-         serveur = new java.util.HashSet<Serveur>();
-      return serveur.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newServeur */
-   public void setServeur(java.util.Collection<Serveur> newServeur) {
-      removeAllServeur();
-      for (java.util.Iterator iter = newServeur.iterator(); iter.hasNext();)
-         addServeur((Serveur)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newServeur */
-   public void addServeur(Serveur newServeur) {
-      if (newServeur == null)
-         return;
-      if (this.serveur == null)
-         this.serveur = new java.util.HashSet<Serveur>();
-      if (!this.serveur.contains(newServeur))
-         this.serveur.add(newServeur);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldServeur */
-   public void removeServeur(Serveur oldServeur) {
-      if (oldServeur == null)
-         return;
-      if (this.serveur != null)
-         if (this.serveur.contains(oldServeur))
-            this.serveur.remove(oldServeur);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllServeur() {
-      if (serveur != null)
-         serveur.clear();
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<MachineVirtuelle> getMachineVirtuelle() {
-      if (machineVirtuelle == null)
-         machineVirtuelle = new java.util.HashSet<MachineVirtuelle>();
-      return machineVirtuelle;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorMachineVirtuelle() {
-      if (machineVirtuelle == null)
-         machineVirtuelle = new java.util.HashSet<MachineVirtuelle>();
-      return machineVirtuelle.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newMachineVirtuelle */
-   public void setMachineVirtuelle(java.util.Collection<MachineVirtuelle> newMachineVirtuelle) {
-      removeAllMachineVirtuelle();
-      for (java.util.Iterator iter = newMachineVirtuelle.iterator(); iter.hasNext();)
-         addMachineVirtuelle((MachineVirtuelle)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newMachineVirtuelle */
-   public void addMachineVirtuelle(MachineVirtuelle newMachineVirtuelle) {
-      if (newMachineVirtuelle == null)
-         return;
-      if (this.machineVirtuelle == null)
-         this.machineVirtuelle = new java.util.HashSet<MachineVirtuelle>();
-      if (!this.machineVirtuelle.contains(newMachineVirtuelle))
-         this.machineVirtuelle.add(newMachineVirtuelle);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldMachineVirtuelle */
-   public void removeMachineVirtuelle(MachineVirtuelle oldMachineVirtuelle) {
-      if (oldMachineVirtuelle == null)
-         return;
-      if (this.machineVirtuelle != null)
-         if (this.machineVirtuelle.contains(oldMachineVirtuelle))
-            this.machineVirtuelle.remove(oldMachineVirtuelle);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllMachineVirtuelle() {
-      if (machineVirtuelle != null)
-         machineVirtuelle.clear();
-   }
 
 	public int getId() {
 		return id;
@@ -279,6 +88,41 @@ public class LogicielEtApplication {
 	public void setLicenseLogiciel(LicenseLogiciel[] licenseLogiciel) {
 		this.licenseLogiciel = licenseLogiciel;
 	}
+
+	public java.util.Collection<Ordinateur> getOrdinateur() {
+		return ordinateur;
+	}
+
+	public void setOrdinateur(java.util.Collection<Ordinateur> ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+
+	public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
+		return solutionApplicative;
+	}
+
+	public void setSolutionApplicative(java.util.Collection<SolutionApplicative> solutionApplicative) {
+		this.solutionApplicative = solutionApplicative;
+	}
+
+	public java.util.Collection<Serveur> getServeur() {
+		return serveur;
+	}
+
+	public void setServeur(java.util.Collection<Serveur> serveur) {
+		this.serveur = serveur;
+	}
+
+	public java.util.Collection<MachineVirtuelle> getMachineVirtuelle() {
+		return machineVirtuelle;
+	}
+
+	public void setMachineVirtuelle(java.util.Collection<MachineVirtuelle> machineVirtuelle) {
+		this.machineVirtuelle = machineVirtuelle;
+	}
+	
+	
+	
 	   
    
    

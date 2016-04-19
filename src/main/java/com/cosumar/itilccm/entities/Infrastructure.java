@@ -32,125 +32,7 @@ public class Infrastructure {
    private SolutionApplicative[] solutionApplicative;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<ConnexionElectrique> getConnexionElectrique() {
-      if (connexionElectrique == null)
-         connexionElectrique = new java.util.HashSet<ConnexionElectrique>();
-      return connexionElectrique;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorConnexionElectrique() {
-      if (connexionElectrique == null)
-         connexionElectrique = new java.util.HashSet<ConnexionElectrique>();
-      return connexionElectrique.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newConnexionElectrique */
-   public void setConnexionElectrique(java.util.Collection<ConnexionElectrique> newConnexionElectrique) {
-      removeAllConnexionElectrique();
-      for (java.util.Iterator iter = newConnexionElectrique.iterator(); iter.hasNext();)
-         addConnexionElectrique((ConnexionElectrique)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newConnexionElectrique */
-   public void addConnexionElectrique(ConnexionElectrique newConnexionElectrique) {
-      if (newConnexionElectrique == null)
-         return;
-      if (this.connexionElectrique == null)
-         this.connexionElectrique = new java.util.HashSet<ConnexionElectrique>();
-      if (!this.connexionElectrique.contains(newConnexionElectrique))
-         this.connexionElectrique.add(newConnexionElectrique);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldConnexionElectrique */
-   public void removeConnexionElectrique(ConnexionElectrique oldConnexionElectrique) {
-      if (oldConnexionElectrique == null)
-         return;
-      if (this.connexionElectrique != null)
-         if (this.connexionElectrique.contains(oldConnexionElectrique))
-            this.connexionElectrique.remove(oldConnexionElectrique);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllConnexionElectrique() {
-      if (connexionElectrique != null)
-         connexionElectrique.clear();
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<EquipementReseau> getEquipementReseau() {
-      if (equipementReseau == null)
-         equipementReseau = new java.util.HashSet<EquipementReseau>();
-      return equipementReseau;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorEquipementReseau() {
-      if (equipementReseau == null)
-         equipementReseau = new java.util.HashSet<EquipementReseau>();
-      return equipementReseau.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newEquipementReseau */
-   public void setEquipementReseau(java.util.Collection<EquipementReseau> newEquipementReseau) {
-      removeAllEquipementReseau();
-      for (java.util.Iterator iter = newEquipementReseau.iterator(); iter.hasNext();)
-         addEquipementReseau((EquipementReseau)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newEquipementReseau */
-   public void addEquipementReseau(EquipementReseau newEquipementReseau) {
-      if (newEquipementReseau == null)
-         return;
-      if (this.equipementReseau == null)
-         this.equipementReseau = new java.util.HashSet<EquipementReseau>();
-      if (!this.equipementReseau.contains(newEquipementReseau))
-         this.equipementReseau.add(newEquipementReseau);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldEquipementReseau */
-   public void removeEquipementReseau(EquipementReseau oldEquipementReseau) {
-      if (oldEquipementReseau == null)
-         return;
-      if (this.equipementReseau != null)
-         if (this.equipementReseau.contains(oldEquipementReseau))
-            this.equipementReseau.remove(oldEquipementReseau);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllEquipementReseau() {
-      if (equipementReseau != null)
-         equipementReseau.clear();
-   }
-   /** @pdGenerated default parent getter */
-   public IntefaceReseau getIntefaceReseau() {
-      return intefaceReseau;
-   }
-   
-   /** @pdGenerated default parent setter
-     * @param newIntefaceReseau */
-   public void setIntefaceReseau(IntefaceReseau newIntefaceReseau) {
-      if (this.intefaceReseau == null || !this.intefaceReseau.equals(newIntefaceReseau))
-      {
-         if (this.intefaceReseau != null)
-         {
-            IntefaceReseau oldIntefaceReseau = this.intefaceReseau;
-            this.intefaceReseau = null;
-            oldIntefaceReseau.removeInfrastructure(this);
-         }
-         if (newIntefaceReseau != null)
-         {
-            this.intefaceReseau = newIntefaceReseau;
-            this.intefaceReseau.addInfrastructure(this);
-         }
-      }
-   }
 
 	public int getId() {
 		return id;
@@ -287,6 +169,33 @@ public class Infrastructure {
 	public void setSolutionApplicative(SolutionApplicative[] solutionApplicative) {
 		this.solutionApplicative = solutionApplicative;
 	}
+
+	public java.util.Collection<ConnexionElectrique> getConnexionElectrique() {
+		return connexionElectrique;
+	}
+
+	public void setConnexionElectrique(java.util.Collection<ConnexionElectrique> connexionElectrique) {
+		this.connexionElectrique = connexionElectrique;
+	}
+
+	public java.util.Collection<EquipementReseau> getEquipementReseau() {
+		return equipementReseau;
+	}
+
+	public void setEquipementReseau(java.util.Collection<EquipementReseau> equipementReseau) {
+		this.equipementReseau = equipementReseau;
+	}
+
+	public IntefaceReseau getIntefaceReseau() {
+		return intefaceReseau;
+	}
+
+	public void setIntefaceReseau(IntefaceReseau intefaceReseau) {
+		this.intefaceReseau = intefaceReseau;
+	}
+	
+	
+	
 	   
    
    

@@ -21,116 +21,7 @@ public class VolumeLogique {
       private Virtualisation[] virtualisation;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<Serveur> getServeur() {
-      if (serveur == null)
-         serveur = new java.util.HashSet<Serveur>();
-      return serveur;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorServeur() {
-      if (serveur == null)
-         serveur = new java.util.HashSet<Serveur>();
-      return serveur.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newServeur */
-   public void setServeur(java.util.Collection<Serveur> newServeur) {
-      removeAllServeur();
-      for (java.util.Iterator iter = newServeur.iterator(); iter.hasNext();)
-         addServeur((Serveur)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newServeur */
-   public void addServeur(Serveur newServeur) {
-      if (newServeur == null)
-         return;
-      if (this.serveur == null)
-         this.serveur = new java.util.HashSet<Serveur>();
-      if (!this.serveur.contains(newServeur))
-         this.serveur.add(newServeur);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldServeur */
-   public void removeServeur(Serveur oldServeur) {
-      if (oldServeur == null)
-         return;
-      if (this.serveur != null)
-         if (this.serveur.contains(oldServeur))
-            this.serveur.remove(oldServeur);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllServeur() {
-      if (serveur != null)
-         serveur.clear();
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<SystemeDeStockage> getSystemedestockage() {
-      if (systemedestockage == null)
-         systemedestockage = new java.util.HashSet<SystemeDeStockage>();
-      return systemedestockage;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorSystemedestockage() {
-      if (systemedestockage == null)
-         systemedestockage = new java.util.HashSet<SystemeDeStockage>();
-      return systemedestockage.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newSystemedestockage */
-   public void setSystemedestockage(java.util.Collection<SystemeDeStockage> newSystemedestockage) {
-      removeAllSystemedestockage();
-      for (java.util.Iterator iter = newSystemedestockage.iterator(); iter.hasNext();)
-         addSystemedestockage((SystemeDeStockage)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newSystemeDeStockage */
-   public void addSystemedestockage(SystemeDeStockage newSystemeDeStockage) {
-      if (newSystemeDeStockage == null)
-         return;
-      if (this.systemedestockage == null)
-         this.systemedestockage = new java.util.HashSet<SystemeDeStockage>();
-      if (!this.systemedestockage.contains(newSystemeDeStockage))
-      {
-         this.systemedestockage.add(newSystemeDeStockage);
-         newSystemeDeStockage.setVolumelogique(this);      
-      }
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldSystemeDeStockage */
-   public void removeSystemedestockage(SystemeDeStockage oldSystemeDeStockage) {
-      if (oldSystemeDeStockage == null)
-         return;
-      if (this.systemedestockage != null)
-         if (this.systemedestockage.contains(oldSystemeDeStockage))
-         {
-            this.systemedestockage.remove(oldSystemeDeStockage);
-            oldSystemeDeStockage.setVolumelogique((VolumeLogique)null);
-         }
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllSystemedestockage() {
-      if (systemedestockage != null)
-      {
-         SystemeDeStockage oldSystemeDeStockage;
-         for (java.util.Iterator iter = getIteratorSystemedestockage(); iter.hasNext();)
-         {
-            oldSystemeDeStockage = (SystemeDeStockage)iter.next();
-            iter.remove();
-            oldSystemeDeStockage.setVolumelogique((VolumeLogique)null);
-         }
-      }
-   }
 
 	public int getId() {
 		return id;
@@ -203,6 +94,26 @@ public class VolumeLogique {
 	public void setVirtualisation(Virtualisation[] virtualisation) {
 		this.virtualisation = virtualisation;
 	}
+
+	public java.util.Collection<Serveur> getServeur() {
+		return serveur;
+	}
+
+	public void setServeur(java.util.Collection<Serveur> serveur) {
+		this.serveur = serveur;
+	}
+
+	public java.util.Collection<SystemeDeStockage> getSystemedestockage() {
+		return systemedestockage;
+	}
+
+	public void setSystemedestockage(java.util.Collection<SystemeDeStockage> systemedestockage) {
+		this.systemedestockage = systemedestockage;
+	}
+	
+	
+	
+	
    
    
    

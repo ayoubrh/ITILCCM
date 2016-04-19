@@ -15,54 +15,7 @@ public class Document {
    private java.util.Collection<Contrat> contrat;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<Contrat> getContrat() {
-      if (contrat == null)
-         contrat = new java.util.HashSet<Contrat>();
-      return contrat;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorContrat() {
-      if (contrat == null)
-         contrat = new java.util.HashSet<Contrat>();
-      return contrat.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newContrat */
-   public void setContrat(java.util.Collection<Contrat> newContrat) {
-      removeAllContrat();
-      for (java.util.Iterator iter = newContrat.iterator(); iter.hasNext();)
-         addContrat((Contrat)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newContrat */
-   public void addContrat(Contrat newContrat) {
-      if (newContrat == null)
-         return;
-      if (this.contrat == null)
-         this.contrat = new java.util.HashSet<Contrat>();
-      if (!this.contrat.contains(newContrat))
-         this.contrat.add(newContrat);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldContrat */
-   public void removeContrat(Contrat oldContrat) {
-      if (oldContrat == null)
-         return;
-      if (this.contrat != null)
-         if (this.contrat.contains(oldContrat))
-            this.contrat.remove(oldContrat);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllContrat() {
-      if (contrat != null)
-         contrat.clear();
-   }
 
 	public int getId() {
 		return id;
@@ -119,6 +72,17 @@ public class Document {
 	public void setFichier(String fichier) {
 		this.fichier = fichier;
 	}
+
+	public java.util.Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(java.util.Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+	
+	
+	
    
    
 

@@ -27,102 +27,7 @@ public class MachineVirtuelle {
       private LogicielEtApplication[] logicielEtApplication;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<VolumeLogique> getVolumelogique() {
-      if (volumelogique == null)
-         volumelogique = new java.util.HashSet<VolumeLogique>();
-      return volumelogique;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorVolumelogique() {
-      if (volumelogique == null)
-         volumelogique = new java.util.HashSet<VolumeLogique>();
-      return volumelogique.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newVolumelogique */
-   public void setVolumelogique(java.util.Collection<VolumeLogique> newVolumelogique) {
-      removeAllVolumelogique();
-      for (java.util.Iterator iter = newVolumelogique.iterator(); iter.hasNext();)
-         addVolumelogique((VolumeLogique)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newVolumeLogique */
-   public void addVolumelogique(VolumeLogique newVolumeLogique) {
-      if (newVolumeLogique == null)
-         return;
-      if (this.volumelogique == null)
-         this.volumelogique = new java.util.HashSet<VolumeLogique>();
-      if (!this.volumelogique.contains(newVolumeLogique))
-         this.volumelogique.add(newVolumeLogique);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldVolumeLogique */
-   public void removeVolumelogique(VolumeLogique oldVolumeLogique) {
-      if (oldVolumeLogique == null)
-         return;
-      if (this.volumelogique != null)
-         if (this.volumelogique.contains(oldVolumeLogique))
-            this.volumelogique.remove(oldVolumeLogique);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllVolumelogique() {
-      if (volumelogique != null)
-         volumelogique.clear();
-   }
-   /** @pdGenerated default getter */
-   public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
-      if (solutionApplicative == null)
-         solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      return solutionApplicative;
-   }
-   
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorSolutionApplicative() {
-      if (solutionApplicative == null)
-         solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      return solutionApplicative.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newSolutionApplicative */
-   public void setSolutionApplicative(java.util.Collection<SolutionApplicative> newSolutionApplicative) {
-      removeAllSolutionApplicative();
-      for (java.util.Iterator iter = newSolutionApplicative.iterator(); iter.hasNext();)
-         addSolutionApplicative((SolutionApplicative)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newSolutionApplicative */
-   public void addSolutionApplicative(SolutionApplicative newSolutionApplicative) {
-      if (newSolutionApplicative == null)
-         return;
-      if (this.solutionApplicative == null)
-         this.solutionApplicative = new java.util.HashSet<SolutionApplicative>();
-      if (!this.solutionApplicative.contains(newSolutionApplicative))
-         this.solutionApplicative.add(newSolutionApplicative);
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldSolutionApplicative */
-   public void removeSolutionApplicative(SolutionApplicative oldSolutionApplicative) {
-      if (oldSolutionApplicative == null)
-         return;
-      if (this.solutionApplicative != null)
-         if (this.solutionApplicative.contains(oldSolutionApplicative))
-            this.solutionApplicative.remove(oldSolutionApplicative);
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllSolutionApplicative() {
-      if (solutionApplicative != null)
-         solutionApplicative.clear();
-   }
 
 	public int getId() {
 		return id;
@@ -227,6 +132,25 @@ public class MachineVirtuelle {
 	public void setLogicielEtApplication(LogicielEtApplication[] logicielEtApplication) {
 		this.logicielEtApplication = logicielEtApplication;
 	}
+
+	public java.util.Collection<VolumeLogique> getVolumelogique() {
+		return volumelogique;
+	}
+
+	public void setVolumelogique(java.util.Collection<VolumeLogique> volumelogique) {
+		this.volumelogique = volumelogique;
+	}
+
+	public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
+		return solutionApplicative;
+	}
+
+	public void setSolutionApplicative(java.util.Collection<SolutionApplicative> solutionApplicative) {
+		this.solutionApplicative = solutionApplicative;
+	}
+	
+	
+	
 	   
    
 

@@ -9,68 +9,7 @@ public class PduElectrique extends ConnexionElectrique {
 	private Rack[] rack;
    
    
-   /** @pdGenerated default getter */
-   public java.util.Collection<ArriveeElectrique> getArriveeElectrique() {
-      if (arriveeElectrique == null)
-         arriveeElectrique = new java.util.HashSet<ArriveeElectrique>();
-      return arriveeElectrique;
-   }
    
-   /** @pdGenerated default iterator getter */
-   public java.util.Iterator getIteratorArriveeElectrique() {
-      if (arriveeElectrique == null)
-         arriveeElectrique = new java.util.HashSet<ArriveeElectrique>();
-      return arriveeElectrique.iterator();
-   }
-   
-   /** @pdGenerated default setter
-     * @param newArriveeElectrique */
-   public void setArriveeElectrique(java.util.Collection<ArriveeElectrique> newArriveeElectrique) {
-      removeAllArriveeElectrique();
-      for (java.util.Iterator iter = newArriveeElectrique.iterator(); iter.hasNext();)
-         addArriveeElectrique((ArriveeElectrique)iter.next());
-   }
-   
-   /** @pdGenerated default add
-     * @param newArriveeElectrique */
-   public void addArriveeElectrique(ArriveeElectrique newArriveeElectrique) {
-      if (newArriveeElectrique == null)
-         return;
-      if (this.arriveeElectrique == null)
-         this.arriveeElectrique = new java.util.HashSet<ArriveeElectrique>();
-      if (!this.arriveeElectrique.contains(newArriveeElectrique))
-      {
-         this.arriveeElectrique.add(newArriveeElectrique);
-         newArriveeElectrique.setPduElectrique(this);      
-      }
-   }
-   
-   /** @pdGenerated default remove
-     * @param oldArriveeElectrique */
-   public void removeArriveeElectrique(ArriveeElectrique oldArriveeElectrique) {
-      if (oldArriveeElectrique == null)
-         return;
-      if (this.arriveeElectrique != null)
-         if (this.arriveeElectrique.contains(oldArriveeElectrique))
-         {
-            this.arriveeElectrique.remove(oldArriveeElectrique);
-            oldArriveeElectrique.setPduElectrique((PduElectrique)null);
-         }
-   }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllArriveeElectrique() {
-      if (arriveeElectrique != null)
-      {
-         ArriveeElectrique oldArriveeElectrique;
-         for (java.util.Iterator iter = getIteratorArriveeElectrique(); iter.hasNext();)
-         {
-            oldArriveeElectrique = (ArriveeElectrique)iter.next();
-            iter.remove();
-            oldArriveeElectrique.setPduElectrique((PduElectrique)null);
-         }
-      }
-   }
 
 	public Rack[] getRack() {
 		return rack;
@@ -79,6 +18,17 @@ public class PduElectrique extends ConnexionElectrique {
 	public void setRack(Rack[] rack) {
 		this.rack = rack;
 	}
+
+	public java.util.Collection<ArriveeElectrique> getArriveeElectrique() {
+		return arriveeElectrique;
+	}
+
+	public void setArriveeElectrique(java.util.Collection<ArriveeElectrique> arriveeElectrique) {
+		this.arriveeElectrique = arriveeElectrique;
+	}
+	
+	
+	
    
    
    

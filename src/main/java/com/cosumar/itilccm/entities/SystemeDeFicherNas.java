@@ -12,29 +12,7 @@ public class SystemeDeFicherNas {
       private Nas nas;
    
    
-   /** @pdGenerated default parent getter */
-   public Nas getNas() {
-      return nas;
-   }
    
-   /** @pdGenerated default parent setter
-     * @param newNas */
-   public void setNas(Nas newNas) {
-      if (this.nas == null || !this.nas.equals(newNas))
-      {
-         if (this.nas != null)
-         {
-            Nas oldNas = this.nas;
-            this.nas = null;
-            oldNas.removeSystemeDeFicherNas(this);
-         }
-         if (newNas != null)
-         {
-            this.nas = newNas;
-            this.nas.addSystemeDeFicherNas(this);
-         }
-      }
-   }
 
 	public int getId() {
 		return id;
@@ -67,6 +45,17 @@ public class SystemeDeFicherNas {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Nas getNas() {
+		return nas;
+	}
+
+	public void setNas(Nas nas) {
+		this.nas = nas;
+	}
+	
+	
+	
    
    
 
