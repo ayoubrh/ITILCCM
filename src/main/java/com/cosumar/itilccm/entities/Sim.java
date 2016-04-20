@@ -1,28 +1,96 @@
-/***********************************************************************
- * Module:  Sim.java
- * Author:  ayoub
- * Purpose: Defines the Class Sim
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 7af69902-5c15-475f-bcea-7abe1cb8fa81 */
-public class Sim {
-   /** @pdOid e73eae6a-ce8b-47d1-b08a-61baef79d8b9 */
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+@Entity
+public class Sim implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
-   /** @pdOid 2b182295-8867-444e-89f8-2ed10dd60efa */
+	
+	@Column(nullable=true)
+   	@Size(max=16)
+   	@Pattern(regexp="(^$|[0-9]{10})")
    private String numero;
-   /** @pdOid 51f1db73-37b5-4b7d-b431-8df81ab7c35b */
+	
+	@Column(nullable=true)
+    @Size(max=5)
+    @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
    private int pin;
-   /** @pdOid c48ad744-c103-4765-b5fb-788026e12e00 */
+	
+	@Column(nullable=true)
+    @Size(max=6)
+    @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
    private int puk;
-   /** @pdOid 8db45cc9-429f-4eea-b676-cbd2b1c01803 */
    private String operateur;
-   /** @pdOid d4b59f69-73aa-46f8-ac14-562448a10710 */
-   private String limitation;
    
-   /** @pdRoleInfo migr=no name=User assc=association35 mult=0..1 */
+   @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+   @Column(nullable = true)
    private User user;
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNumero() {
+		return numero;
+	}
+	
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	
+	public int getPin() {
+		return pin;
+	}
+	
+	public void setPin(int pin) {
+		this.pin = pin;
+	}
+	
+	public int getPuk() {
+		return puk;
+	}
+	
+	public void setPuk(int puk) {
+		this.puk = puk;
+	}
+	
+	public String getOperateur() {
+		return operateur;
+	}
+	
+	public void setOperateur(String operateur) {
+		this.operateur = operateur;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	   
+   
+   
+   
+   
 
 }

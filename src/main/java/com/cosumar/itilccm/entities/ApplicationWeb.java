@@ -9,7 +9,7 @@ public class ApplicationWeb {
    /** @pdOid c3060ff0-8d57-46dd-a981-0706ac862872 */
    private String nom;
    /** @pdOid d134e785-93a8-4252-9cfa-383b56cc6ab7 */
-   private int url;
+   private String url;
    /** @pdOid 4d63d7af-b808-40b4-9adb-23680cee22e2 */
    private String criticite;
    /** @pdOid 7fbe7510-32d3-4214-b18e-f5dc542b568d */

@@ -1,27 +1,75 @@
-/***********************************************************************
- * Module:  Logique.java
- * Author:  ayoub
- * Purpose: Defines the Class Logique
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 11fa7cd0-3bcf-41a8-87f7-85939a308dee */
-public class Logique extends IntefaceReseau {
-   /** @pdOid 8d0eb740-56b2-4475-a55a-4d730c9cf1fb */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Logique extends IntefaceReseau implements Serializable{
+	
+	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String nom;
-   /** @pdOid 90ea227a-5ce2-422c-b44a-58310080072d */
+	
+	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
+	@Column(nullable = true)
    private String adresseIp;
-   /** @pdOid ac4198a8-8adf-4b58-9fc4-c3083299903b */
    private String adresseMac;
-   /** @pdOid cc9eb76e-419f-4d23-a9b6-a2914ed07fdc */
    private String commentaire;
-   /** @pdOid feffb150-b3e2-4663-918e-4e1f410d11d6 */
    private String passerelle;
-   /** @pdOid 1be0d3fd-cd09-4b08-b494-ac984798ff4c */
    private String masqueDeSousReseau;
-   /** @pdOid 39f45a7a-eaca-4142-89b0-4e3d678b0e23 */
    private String vitesse;
+   
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getAdresseIp() {
+		return adresseIp;
+	}
+	public void setAdresseIp(String adresseIp) {
+		this.adresseIp = adresseIp;
+	}
+	public String getAdresseMac() {
+		return adresseMac;
+	}
+	public void setAdresseMac(String adresseMac) {
+		this.adresseMac = adresseMac;
+	}
+	public String getCommentaire() {
+		return commentaire;
+	}
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	public String getPasserelle() {
+		return passerelle;
+	}
+	public void setPasserelle(String passerelle) {
+		this.passerelle = passerelle;
+	}
+	public String getMasqueDeSousReseau() {
+		return masqueDeSousReseau;
+	}
+	public void setMasqueDeSousReseau(String masqueDeSousReseau) {
+		this.masqueDeSousReseau = masqueDeSousReseau;
+	}
+	public String getVitesse() {
+		return vitesse;
+	}
+	public void setVitesse(String vitesse) {
+		this.vitesse = vitesse;
+	}
+   
+   	
 
 }

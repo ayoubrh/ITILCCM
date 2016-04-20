@@ -3,27 +3,22 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ExcludeDefaultListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.SQLDeleteAll;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.factory.annotation.Required;
 
 @Entity
 @Table(name="user")
@@ -100,13 +95,37 @@ public class User implements Serializable {
    private byte[] bphoto;
    	
    	
-   	@ManyToOne
-	@JoinColumn(name="role_id")
+   	 @ManyToOne
+	 @JoinColumn(name="role_id")
    	private Role role;
    	
-   	@ManyToOne
-	@JoinColumn(name="departement_id")
+   	 @ManyToOne
+	 @JoinColumn(name="departement_id")
    	private Departement departement;
+   	
+   	 @OneToMany(mappedBy="user")
+   	 @Column(nullable = true)
+	private Collection<Ordinateur> ordinateur;
+   	
+   	 @OneToOne(mappedBy="user")
+   	 @Column(nullable = true)
+	private TelephneMobile telephneMobile;
+   	
+   	 @OneToOne(mappedBy="user")
+   	 @Column(nullable = true)
+	private Sim sim;
+   	
+   	 @OneToOne(mappedBy="user")
+   	 @Column(nullable = true)
+	private Tablette tablette;
+   	
+   	 @OneToOne(mappedBy="user")
+   	 @Column(nullable = true)
+	private TelephoneFixe telephoneFixe;
+   	
+   	 @OneToMany(mappedBy="user")
+   	 @Column(nullable = true)
+	private Collection<Imprimante> imprimante;
    	
 	public Long getId() {
 		return id;
@@ -291,8 +310,41 @@ public class User implements Serializable {
 	}
 	
 	
-	
-	
-	   
+	public Collection<Ordinateur> getOrdinateur() {
+		return ordinateur;
+	}
+	public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+	public TelephneMobile getTelephneMobile() {
+		return telephneMobile;
+	}
+	public void setTelephneMobile(TelephneMobile telephneMobile) {
+		this.telephneMobile = telephneMobile;
+	}
+	public Sim getSim() {
+		return sim;
+	}
+	public void setSim(Sim sim) {
+		this.sim = sim;
+	}
+	public Tablette getTablette() {
+		return tablette;
+	}
+	public void setTablette(Tablette tablette) {
+		this.tablette = tablette;
+	}
+	public TelephoneFixe getTelephoneFixe() {
+		return telephoneFixe;
+	}
+	public void setTelephoneFixe(TelephoneFixe telephoneFixe) {
+		this.telephoneFixe = telephoneFixe;
+	}
+	public Collection<Imprimante> getImprimante() {
+		return imprimante;
+	}
+	public void setImprimante(Collection<Imprimante> imprimante) {
+		this.imprimante = imprimante;
+	}
 	   
 }

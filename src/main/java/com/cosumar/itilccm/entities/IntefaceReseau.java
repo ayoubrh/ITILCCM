@@ -1,15 +1,25 @@
-/***********************************************************************
- * Module:  IntefaceReseau.java
- * Author:  ayoub
- * Purpose: Defines the Class IntefaceReseau
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 83dcbbba-e427-49c8-9414-521a120ce6ab */
-public class IntefaceReseau {
-   /** @pdOid 67da9e38-17b3-47ed-8ab2-97ae65a85d01 */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public class IntefaceReseau implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
    
    /** @pdRoleInfo migr=no name=Infrastructure assc=association21 mult=0..1 */
@@ -18,7 +28,52 @@ public class IntefaceReseau {
    private EquipementReseau equipementReseau;
    /** @pdRoleInfo migr=no name=MachineVirtuelle assc=association29 mult=1..1 side=A */
    private MachineVirtuelle machineVirtuelle;
-   /** @pdRoleInfo migr=no name=Ordinateur assc=association41 mult=0..1 side=A */
+   
+   	@ManyToOne
+  	@JoinColumn(name="ordinateur_id")
+  	@Column(nullable = true)
    private Ordinateur ordinateur;
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public Infrastructure getInfrastructure() {
+		return infrastructure;
+	}
+	
+	public void setInfrastructure(Infrastructure infrastructure) {
+		this.infrastructure = infrastructure;
+	}
+	
+	public EquipementReseau getEquipementReseau() {
+		return equipementReseau;
+	}
+	
+	public void setEquipementReseau(EquipementReseau equipementReseau) {
+		this.equipementReseau = equipementReseau;
+	}
+	
+	public MachineVirtuelle getMachineVirtuelle() {
+		return machineVirtuelle;
+	}
+	
+	public void setMachineVirtuelle(MachineVirtuelle machineVirtuelle) {
+		this.machineVirtuelle = machineVirtuelle;
+	}
+	
+	public Ordinateur getOrdinateur() {
+		return ordinateur;
+	}
+	
+	public void setOrdinateur(Ordinateur ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+   
+   	
 
 }

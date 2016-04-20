@@ -1,40 +1,149 @@
-/***********************************************************************
- * Module:  TelephoneFixe.java
- * Author:  ayoub
- * Purpose: Defines the Class TelephoneFixe
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 9578ad4d-d923-4517-9ba7-95106d71221e */
-public class TelephoneFixe {
-   /** @pdOid 805a50b6-09bf-4377-8646-902b47ca0e49 */
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class TelephoneFixe implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
-   /** @pdOid 1b38efa6-7032-4274-ba78-7672b672b35f */
+   
+   	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String nom;
-   /** @pdOid 5c7dd3b8-3c27-47dc-9a3d-a98c25f7725c */
    private String staut;
-   /** @pdOid 77b982e4-c785-4890-b97c-f937147d650b */
    private String criticite;
-   /** @pdOid 605beacf-3175-44f6-b24a-8869eda7e37f */
    private String marque;
-   /** @pdOid 130ea614-121c-4671-80d7-0be5d51c4dc7 */
    private String modele;
-   /** @pdOid 8ccc51ce-305f-4bda-a451-660389336b47 */
    private String numeroDeSerie;
-   /** @pdOid f7e496d9-096b-4f98-b6af-1da317d352d2 */
    private String numeroAsset;
-   /** @pdOid c8be83ce-7c2d-43cf-aecd-93e2efe1f9b2 */
    private Date dateDeMiseEnProduction;
-   /** @pdOid 2b51d2fe-d794-4901-8287-25be2176ba2f */
    private Date dateDachat;
-   /** @pdOid e80125db-2baf-4ac3-9414-cbdce17ac25b */
    private Date dateDeFinDeGarantie;
-   /** @pdOid 549bec8a-3a5c-442e-bffc-3e88287ec934 */
    private String description;
    
-   /** @pdRoleInfo migr=no name=User assc=association37 mult=0..1 */
+   	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+  	@Column(nullable = true)
    private User user;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getStaut() {
+		return staut;
+	}
+
+	public void setStaut(String staut) {
+		this.staut = staut;
+	}
+
+	public String getCriticite() {
+		return criticite;
+	}
+
+	public void setCriticite(String criticite) {
+		this.criticite = criticite;
+	}
+
+	public String getMarque() {
+		return marque;
+	}
+
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+
+	public String getModele() {
+		return modele;
+	}
+
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
+
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
+
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
+	}
+
+	public String getNumeroAsset() {
+		return numeroAsset;
+	}
+
+	public void setNumeroAsset(String numeroAsset) {
+		this.numeroAsset = numeroAsset;
+	}
+
+	public Date getDateDeMiseEnProduction() {
+		return dateDeMiseEnProduction;
+	}
+
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+	}
+
+	public Date getDateDachat() {
+		return dateDachat;
+	}
+
+	public void setDateDachat(Date dateDachat) {
+		this.dateDachat = dateDachat;
+	}
+
+	public Date getDateDeFinDeGarantie() {
+		return dateDeFinDeGarantie;
+	}
+
+	public void setDateDeFinDeGarantie(Date dateDeFinDeGarantie) {
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+   	
+   	
 
 }
