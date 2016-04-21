@@ -1,15 +1,29 @@
-/***********************************************************************
- * Module:  Bandotheque.java
- * Author:  ayoub
- * Purpose: Defines the Class Bandotheque
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 9daa2ca9-d649-410a-969e-99cdc5182201 */
-public class Bandotheque extends Infrastructure {
-   /** @pdRoleInfo migr=no name=Bande assc=association5 mult=1..1 type=Composition */
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Bandotheque extends Infrastructure implements Serializable{
+	
+	 @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	 @JoinColumn(name="bande_id")
 	private Bande bande;
+
+	public Bande getBande() {
+		return bande;
+	}
+
+	public void setBande(Bande bande) {
+		this.bande = bande;
+	}
+	 
+	 
 
 }

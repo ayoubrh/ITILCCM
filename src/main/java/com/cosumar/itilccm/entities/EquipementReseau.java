@@ -1,59 +1,253 @@
-/***********************************************************************
- * Module:  EquipementReseau.java
- * Author:  ayoub
- * Purpose: Defines the Class EquipementReseau
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid ed9952a2-e9b7-4140-a3c5-156cd13151f4 */
-public class EquipementReseau {
-   /** @pdOid 5a5a5f3d-5852-49c4-9d19-639c30752552 */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class EquipementReseau implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
-   /** @pdOid 364e269b-4eea-4e31-8f01-ea53b706b918 */
+	
+	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String nom;
-   /** @pdOid f2080c3b-1499-4ea4-9707-87a304ba99d0 */
    private String statut;
-   /** @pdOid 2460d32a-e4d3-495f-b962-cab471d6755d */
    private String criticite;
-   /** @pdOid bbc4af26-7336-42d0-9a5f-732abfa53ad0 */
+   
+   	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String type;
-   /** @pdOid 82544d09-a692-4448-a9b6-266b4a3c717c */
    private String marque;
-   /** @pdOid e3e538c7-ec78-4f33-8a4c-99d6f398ccb5 */
    private String modele;
-   /** @pdOid 7a7912b3-6ba9-4cd0-9ec8-f467940e6f65 */
    private String versionIso;
-   /** @pdOid 128460e6-2698-42e8-acb6-e9eb17023d8a */
+   
+   	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
+	@Column(nullable = true)
    private String ip;
-   /** @pdOid 5661f682-616f-421e-96cd-d2cee566b732 */
    private String ram;
-   /** @pdOid 2d612cef-c346-4a3b-b533-6c1e987e1bea */
+   
+    @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
+	@Column(nullable = true)
    private String nbUnite;
-   /** @pdOid 61ce03c8-25fe-4957-a645-42980991f23a */
    private String numeroDeSerie;
-   /** @pdOid 9ccdc269-99e7-4f6f-8b8b-dda5723ee1a2 */
    private String numeroAsset;
-   /** @pdOid 2b532cf1-7f0e-40d1-8304-f1d1f5c764eb */
    private Date dateDeMiseEnProduction;
-   /** @pdOid e48b00e3-e1bd-4317-9b97-f89e8ee8a905 */
    private Date dateD_ahat;
-   /** @pdOid b57f2e31-6d39-40f1-8625-a510a328a3b5 */
    private Date dateDeFinDeGarantie;
-   /** @pdOid 7b34b9d7-053d-431e-9ceb-6e7c16aba7ad */
    private String description;
    
-   /** @pdRoleInfo migr=no name=ConnexionElectrique assc=association9 coll=java.util.Collection impl=java.util.HashSet mult=1..* */
+   	@ManyToMany
    private java.util.Collection<ConnexionElectrique> connexionElectrique;
-   /** @pdRoleInfo migr=no name=Infrastructure assc=association14 mult=0..* side=A */
-   private Infrastructure[] infrastructure;
-   /** @pdRoleInfo migr=no name=IntefaceReseau assc=association23 mult=0..* side=A */
-   private IntefaceReseau[] intefaceReseau;
-   /** @pdRoleInfo migr=no name=SolutionApplicative assc=association24 mult=0..* side=A */
-   private SolutionApplicative[] solutionApplicative;
-   /** @pdRoleInfo migr=no name=Ordinateur assc=association40 mult=0..* side=A */
-   private Ordinateur[] ordinateur;
+   
+   	@ManyToMany(mappedBy="equipementReseau")
+  	@Column(nullable = true)
+   private Collection<Infrastructure> infrastructure;
+   	
+   	@OneToMany(mappedBy="equipementReseau")
+   	@Column(nullable = true)
+   private Collection<IntefaceReseau> intefaceReseau;
+   
+   	@ManyToMany
+  	@Column(nullable = true)
+   private Collection<SolutionApplicative> solutionApplicative;
+
+   	@ManyToMany(mappedBy="equipementReseau")
+   	@Column(nullable = true)
+   private Collection<Ordinateur> ordinateur;
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public String getStatut() {
+		return statut;
+	}
+	
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+	
+	public String getCriticite() {
+		return criticite;
+	}
+	
+	public void setCriticite(String criticite) {
+		this.criticite = criticite;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getMarque() {
+		return marque;
+	}
+	
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+	
+	public String getModele() {
+		return modele;
+	}
+	
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
+	
+	public String getVersionIso() {
+		return versionIso;
+	}
+	
+	public void setVersionIso(String versionIso) {
+		this.versionIso = versionIso;
+	}
+	
+	public String getIp() {
+		return ip;
+	}
+	
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
+	public String getRam() {
+		return ram;
+	}
+	
+	public void setRam(String ram) {
+		this.ram = ram;
+	}
+	
+	public String getNbUnite() {
+		return nbUnite;
+	}
+	
+	public void setNbUnite(String nbUnite) {
+		this.nbUnite = nbUnite;
+	}
+	
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
+	
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
+	}
+	
+	public String getNumeroAsset() {
+		return numeroAsset;
+	}
+	
+	public void setNumeroAsset(String numeroAsset) {
+		this.numeroAsset = numeroAsset;
+	}
+	
+	public Date getDateDeMiseEnProduction() {
+		return dateDeMiseEnProduction;
+	}
+	
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+	}
+	
+	public Date getDateD_ahat() {
+		return dateD_ahat;
+	}
+	
+	public void setDateD_ahat(Date dateD_ahat) {
+		this.dateD_ahat = dateD_ahat;
+	}
+	
+	public Date getDateDeFinDeGarantie() {
+		return dateDeFinDeGarantie;
+	}
+	
+	public void setDateDeFinDeGarantie(Date dateDeFinDeGarantie) {
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public java.util.Collection<ConnexionElectrique> getConnexionElectrique() {
+		return connexionElectrique;
+	}
+	
+	public void setConnexionElectrique(java.util.Collection<ConnexionElectrique> connexionElectrique) {
+		this.connexionElectrique = connexionElectrique;
+	}
+	
+	public Collection<Infrastructure> getInfrastructure() {
+		return infrastructure;
+	}
+
+	public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+		this.infrastructure = infrastructure;
+	}
+
+	public Collection<IntefaceReseau> getIntefaceReseau() {
+		return intefaceReseau;
+	}
+
+	public void setIntefaceReseau(Collection<IntefaceReseau> intefaceReseau) {
+		this.intefaceReseau = intefaceReseau;
+	}
+
+	public Collection<SolutionApplicative> getSolutionApplicative() {
+		return solutionApplicative;
+	}
+
+	public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+		this.solutionApplicative = solutionApplicative;
+	}
+
+	public Collection<Ordinateur> getOrdinateur() {
+		return ordinateur;
+	}
+	
+	public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+   
+   
    
    
    

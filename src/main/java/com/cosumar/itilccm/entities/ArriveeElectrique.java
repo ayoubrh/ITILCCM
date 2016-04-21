@@ -1,15 +1,27 @@
-/***********************************************************************
- * Module:  ArriveeElectrique.java
- * Author:  ayoub
- * Purpose: Defines the Class ArriveeElectrique
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 4bd69490-cbd3-4d5c-8bb7-328726f59682 */
-public class ArriveeElectrique extends ConnexionElectrique {
-   /** @pdRoleInfo migr=no name=PduElectrique assc=association6 mult=0..* side=A */
-	private PduElectrique[] pduElectrique;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+public class ArriveeElectrique extends ConnexionElectrique implements Serializable{
+	
+	 @OneToMany(mappedBy="arriveeElectrique")
+  	 @Column(nullable = true)
+	private Collection<PduElectrique> pduElectrique;
+
+	public Collection<PduElectrique> getPduElectrique() {
+		return pduElectrique;
+	}
+
+	public void setPduElectrique(Collection<PduElectrique> pduElectrique) {
+		this.pduElectrique = pduElectrique;
+	}
+	 
+	 
 
 }

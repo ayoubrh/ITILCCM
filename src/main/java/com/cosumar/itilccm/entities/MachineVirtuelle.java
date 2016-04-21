@@ -56,7 +56,6 @@ public class MachineVirtuelle implements Serializable {
 			   @JoinColumn(name="id_virtualisation")
 			   private Virtualisation virtualisation;
 			   
-			   @Column(nullable=true)
 			   @ManyToOne
 			   @JoinColumn(name="id_licenseOs")
 			   private LicenseOs licenseOs;

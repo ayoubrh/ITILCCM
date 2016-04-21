@@ -1,17 +1,40 @@
-/***********************************************************************
- * Module:  PduElectrique.java
- * Author:  ayoub
- * Purpose: Defines the Class PduElectrique
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid aeba28cc-0e73-4ffd-bca9-846965dddc48 */
-public class PduElectrique extends ConnexionElectrique {
-   /** @pdRoleInfo migr=no name=ArriveeElectrique assc=association6 mult=0..1 */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class PduElectrique extends ConnexionElectrique implements Serializable{
+	
+	 @ManyToOne
+ 	 @JoinColumn(name="arriveeElectrique_id")
 	private ArriveeElectrique arriveeElectrique;
-   /** @pdRoleInfo migr=no name=Rack assc=association7 mult=0..1 side=A */
+	
+	 @ManyToOne
+  	 @JoinColumn(name="rack_id")
 	private Rack rack;
+
+	public ArriveeElectrique getArriveeElectrique() {
+		return arriveeElectrique;
+	}
+
+	public void setArriveeElectrique(ArriveeElectrique arriveeElectrique) {
+		this.arriveeElectrique = arriveeElectrique;
+	}
+
+	public Rack getRack() {
+		return rack;
+	}
+
+	public void setRack(Rack rack) {
+		this.rack = rack;
+	}
+	 
+	 
 
 }

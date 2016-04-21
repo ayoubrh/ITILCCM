@@ -13,12 +13,10 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("Hyperviseur")
 public class Hyperviseur extends Virtualisation {
 	
-	        @Column(nullable=true)
 			@ManyToOne
 			@JoinColumn(name="id_serveur")
 			private Serveur serveur;
 	        
-	        @Column(nullable=true)
 			@ManyToOne
 			@JoinColumn(name="id_vcluster")
 			private Vcluster vcluster;

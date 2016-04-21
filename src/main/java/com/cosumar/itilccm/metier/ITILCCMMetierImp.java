@@ -29,17 +29,17 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Long ajouterUser(User u, Long idDep) {
+	public int ajouterUser(User u, int idDep) {
 		return dao.ajouterUser(u, idDep);
 	}
 
 	@Override
-	public Long ajouterUserRole(User u, Long idDep, Long idR) {
+	public int ajouterUserRole(User u, int idDep, int idR) {
 		return dao.ajouterUserRole(u, idDep, idR);
 	}
 
 	@Override
-	public void supprimerUser(Long id) {
+	public void supprimerUser(int id) {
 		dao.supprimerUser(id);
 	}
 
@@ -49,7 +49,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Long ajouterDepartement(Departement d) {
+	public int ajouterDepartement(Departement d) {
 		return dao.ajouterDepartement(d);
 	}
 
@@ -59,7 +59,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void supprimerDepatement(Long id) {
+	public void supprimerDepatement(int id) {
 		dao.supprimerDepatement(id);
 	}
 
@@ -69,12 +69,12 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Departement getDepartement(Long id) {
+	public Departement getDepartement(int id) {
 		return dao.getDepartement(id);
 	}
 
 	@Override
-	public Long ajouterRole(Role r) {
+	public int ajouterRole(Role r) {
 		return dao.ajouterRole(r);
 	}
 
@@ -84,7 +84,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void supprimerRole(Long id) {
+	public void supprimerRole(int id) {
 		dao.supprimerRole(id);
 	}
 
@@ -94,7 +94,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Role getRole(Long id) {
+	public Role getRole(int id) {
 		return dao.getRole(id);
 	}
 
@@ -109,7 +109,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public User getUser(Long id) {
+	public User getUser(int id) {
 		return dao.getUser(id);
 	}
 

@@ -7,27 +7,27 @@ import com.cosumar.itilccm.entities.*;
 public interface ITILCCMDAO {
 	
 	// User
-	public Long ajouterUser(User u, Long idDep);
-	public Long ajouterUserRole(User u, Long idDep, Long idR);
+	public int ajouterUser(User u, int idDep);
+	public int ajouterUserRole(User u, int idDep, int idR);
 	public void modifierUser(User u);
-	public void supprimerUser(Long id);
+	public void supprimerUser(int id);
 	public List<User> listUser();
-	public User getUser(Long id);
+	public User getUser(int id);
 	public User getUserByMatricule(String matricule);
 	
 	// Departement
-	public Long ajouterDepartement(Departement d);
+	public int ajouterDepartement(Departement d);
 	public void modifierDepartement(Departement d);
-	public void supprimerDepatement(Long id);
+	public void supprimerDepatement(int id);
 	public List<Departement> listDepartement();
-	public Departement getDepartement(Long id);
+	public Departement getDepartement(int id);
 	
 	// Role
-	public Long ajouterRole(Role r);
+	public int ajouterRole(Role r);
 	public void modifierRole(Role r);
-	public void supprimerRole(Long id);
+	public void supprimerRole(int id);
 	public List<Role> listRole();
-	public Role getRole(Long id);
+	public Role getRole(int id);
 	public void attribuerRole(Role r,User u);
 
 }

@@ -23,9 +23,9 @@ public class TestMetier2 {
 	public void test() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
-			User u1 = m.getUser(1L);
-			User u2 = m.getUser(2L);
-			User u3 = m.getUser(3L);
+			User u1 = m.getUser(1);
+			User u2 = m.getUser(2);
+			User u3 = m.getUser(3);
 			u1.setAdresse("aazrrvguyg tygyhg ygiyubn");
 			u1.setAge("20");
 			u1.setTele("0915234422");

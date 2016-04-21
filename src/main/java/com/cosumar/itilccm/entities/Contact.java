@@ -44,7 +44,6 @@ public class Contact implements Serializable {
 			   private String telephoneFixe;
 			   private String telephoneMobile;
 			   
-			   @Column(nullable=true)
 			   @ManyToOne
 			   @JoinColumn(name="id_lieu")
 			   private Lieu lieu;
