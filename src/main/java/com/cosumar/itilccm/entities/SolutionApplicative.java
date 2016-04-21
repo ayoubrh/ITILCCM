@@ -29,9 +29,12 @@ public class SolutionApplicative implements Serializable{
    private Date dateDeMiseEnProduction;
    private String description;
    
-   /** @pdRoleInfo migr=no name=Infrastructure assc=association22 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   private java.util.Collection<Infrastructure> infrastructure;
-   /** @pdRoleInfo migr=no name=EquipementReseau assc=association24 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
+   	@ManyToMany(mappedBy="solutionApplicative")
+  	@Column(nullable = true)
+   private Collection<Infrastructure> infrastructure;
+   	
+   	@ManyToMany(mappedBy="solutionApplicative")
+  	@Column(nullable = true)
    private java.util.Collection<EquipementReseau> equipementReseau;
    
    	@ManyToMany(mappedBy="solutionApplicative")

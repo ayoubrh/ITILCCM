@@ -22,9 +22,12 @@ public class IntefaceReseau implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
    
-   /** @pdRoleInfo migr=no name=Infrastructure assc=association21 mult=0..1 */
+	@ManyToOne
+  	@JoinColumn(name="infrastructure_id")
    private Infrastructure infrastructure;
-   /** @pdRoleInfo migr=no name=EquipementReseau assc=association23 mult=1..1 */
+	
+	@ManyToOne
+  	@JoinColumn(name="equipementReseau_id")
    private EquipementReseau equipementReseau;
    /** @pdRoleInfo migr=no name=MachineVirtuelle assc=association29 mult=1..1 side=A */
    private MachineVirtuelle machineVirtuelle;

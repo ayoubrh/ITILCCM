@@ -36,7 +36,7 @@ public class Sim implements Serializable{
    private int puk;
    private String operateur;
    
-   @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+   @OneToOne
    @Column(nullable = true)
    private User user;
 

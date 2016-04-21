@@ -30,6 +30,10 @@ public class Ordinateur implements Serializable{
    private String statut;
    private String criticite;
    private String marque;
+   	
+   	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String type;
    private String cpu;
    private String ram;

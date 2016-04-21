@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -27,6 +28,10 @@ public class EquipementReseau implements Serializable{
    private String nom;
    private String statut;
    private String criticite;
+   
+   	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String type;
    private String marque;
    private String modele;
@@ -47,14 +52,20 @@ public class EquipementReseau implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   /** @pdRoleInfo migr=no name=ConnexionElectrique assc=association9 coll=java.util.Collection impl=java.util.HashSet mult=1..* */
+   	@ManyToMany
    private java.util.Collection<ConnexionElectrique> connexionElectrique;
-   /** @pdRoleInfo migr=no name=Infrastructure assc=association14 mult=0..* side=A */
-   private Infrastructure[] infrastructure;
-   /** @pdRoleInfo migr=no name=IntefaceReseau assc=association23 mult=0..* side=A */
-   private IntefaceReseau[] intefaceReseau;
-   /** @pdRoleInfo migr=no name=SolutionApplicative assc=association24 mult=0..* side=A */
-   private SolutionApplicative[] solutionApplicative;
+   
+   	@ManyToMany(mappedBy="equipementReseau")
+  	@Column(nullable = true)
+   private Collection<Infrastructure> infrastructure;
+   	
+   	@OneToMany(mappedBy="equipementReseau")
+   	@Column(nullable = true)
+   private Collection<IntefaceReseau> intefaceReseau;
+   
+   	@ManyToMany
+  	@Column(nullable = true)
+   private Collection<SolutionApplicative> solutionApplicative;
 
    	@ManyToMany(mappedBy="equipementReseau")
    	@Column(nullable = true)
@@ -204,30 +215,30 @@ public class EquipementReseau implements Serializable{
 		this.connexionElectrique = connexionElectrique;
 	}
 	
-	public Infrastructure[] getInfrastructure() {
+	public Collection<Infrastructure> getInfrastructure() {
 		return infrastructure;
 	}
-	
-	public void setInfrastructure(Infrastructure[] infrastructure) {
+
+	public void setInfrastructure(Collection<Infrastructure> infrastructure) {
 		this.infrastructure = infrastructure;
 	}
-	
-	public IntefaceReseau[] getIntefaceReseau() {
+
+	public Collection<IntefaceReseau> getIntefaceReseau() {
 		return intefaceReseau;
 	}
-	
-	public void setIntefaceReseau(IntefaceReseau[] intefaceReseau) {
+
+	public void setIntefaceReseau(Collection<IntefaceReseau> intefaceReseau) {
 		this.intefaceReseau = intefaceReseau;
 	}
-	
-	public SolutionApplicative[] getSolutionApplicative() {
+
+	public Collection<SolutionApplicative> getSolutionApplicative() {
 		return solutionApplicative;
 	}
-	
-	public void setSolutionApplicative(SolutionApplicative[] solutionApplicative) {
+
+	public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 		this.solutionApplicative = solutionApplicative;
 	}
-	
+
 	public Collection<Ordinateur> getOrdinateur() {
 		return ordinateur;
 	}

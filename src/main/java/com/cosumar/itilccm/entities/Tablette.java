@@ -34,7 +34,7 @@ public class Tablette implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+   	@OneToOne
    	@Column(nullable = true)
    private User user;
 

@@ -38,7 +38,7 @@ public class TelephneMobile implements Serializable{
    private Date dateDeFinGarantie;
    private String description;
    
-   @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+   @OneToOne
    @Column(nullable = true)
    private User user;
 

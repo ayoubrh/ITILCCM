@@ -1,40 +1,150 @@
-/***********************************************************************
- * Module:  Camera.java
- * Author:  ayoub
- * Purpose: Defines the Class Camera
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 273bcfa2-d3db-4999-a7cf-39428531a81a */
-public class Camera {
-   /** @pdOid 05b2d2a8-0140-40a1-9e2c-d561482139ca */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Camera implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
-   /** @pdOid fb842aaf-a05d-4f27-a8ac-4265d6ca17f5 */
+	
+	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String nom;
-   /** @pdOid 13842e45-cf58-4e8d-b935-e428f8de9410 */
    private String status;
-   /** @pdOid 8e08fdd8-78d9-4054-9cbb-a4eee7d234de */
    private String critcite;
-   /** @pdOid 56dd8b5d-a29e-456b-a9a8-b418c2175c08 */
    private String marque;
-   /** @pdOid 5232c594-26f2-479b-9f5c-481408ea41aa */
    private String modele;
-   /** @pdOid 5cfadaff-e2b9-4c70-a1e1-f7c3dc1e4d17 */
    private String position;
-   /** @pdOid be70eec5-e6d1-4b44-b1da-a14111e2e199 */
    private String numeroDeSerie;
-   /** @pdOid 557ee230-a2ff-454a-9c61-ed9c4d00b00d */
    private String numeroDeAsset;
-   /** @pdOid 66bcd068-5c57-4279-908b-34390fe8a9ed */
    private Date dateDeMiseEnProduction;
-   /** @pdOid de0d82c3-3255-444f-bf51-493c3431262d */
    private Date dateD_Achat;
-   /** @pdOid b3c12a3f-655c-4120-8aae-ebc4630474a8 */
    private Date dateDeFinDeGarantie;
+   private String description;
    
-   /** @pdRoleInfo migr=no name=Dvr assc=association15 mult=1..1 side=A */
+   	@ManyToOne
+  	@JoinColumn(name="dvr_id")
    private Dvr dvr;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCritcite() {
+		return critcite;
+	}
+
+	public void setCritcite(String critcite) {
+		this.critcite = critcite;
+	}
+
+	public String getMarque() {
+		return marque;
+	}
+
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+
+	public String getModele() {
+		return modele;
+	}
+
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
+
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
+	}
+
+	public String getNumeroDeAsset() {
+		return numeroDeAsset;
+	}
+
+	public void setNumeroDeAsset(String numeroDeAsset) {
+		this.numeroDeAsset = numeroDeAsset;
+	}
+
+	public Date getDateDeMiseEnProduction() {
+		return dateDeMiseEnProduction;
+	}
+
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+	}
+
+	public Date getDateD_Achat() {
+		return dateD_Achat;
+	}
+
+	public void setDateD_Achat(Date dateD_Achat) {
+		this.dateD_Achat = dateD_Achat;
+	}
+
+	public Date getDateDeFinDeGarantie() {
+		return dateDeFinDeGarantie;
+	}
+
+	public void setDateDeFinDeGarantie(Date dateDeFinDeGarantie) {
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+	}
+
+	public Dvr getDvr() {
+		return dvr;
+	}
+
+	public void setDvr(Dvr dvr) {
+		this.dvr = dvr;
+	}
+   	
+   	
 
 }

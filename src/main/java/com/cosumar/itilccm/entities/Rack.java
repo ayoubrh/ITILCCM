@@ -1,46 +1,187 @@
-/***********************************************************************
- * Module:  Rack.java
- * Author:  ayoub
- * Purpose: Defines the Class Rack
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid f260751b-f465-4ffe-bd05-989da0b6a7a2 */
-public class Rack {
-   /** @pdOid 975be7b3-adf5-4c2a-8ee8-040265e623ee */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Rack implements Serializable{
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id;
-   /** @pdOid 856b62f0-cfcd-4955-9b77-9edf415727f2 */
+	
+	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
    private String nom;
-   /** @pdOid 101c2fcc-c5ae-4520-b8a3-57125e5678f5 */
    private String staut;
-   /** @pdOid a6f62cf5-2b9d-47a0-9e89-75f6e67ba668 */
    private String criticite;
-   /** @pdOid 22c2a9b3-ca23-4b0a-ba2d-ee80127e06c9 */
    private String marque;
-   /** @pdOid e9437154-8d8c-467b-9796-897cb155b5d1 */
    private String modele;
-   /** @pdOid 39adbd1b-df9e-4ebc-9e34-28c56d1db076 */
    private String nbUnite;
-   /** @pdOid 9c31fbe8-66de-4a93-90dd-236c3a8cc88a */
    private String numeroDeSerie;
-   /** @pdOid d090a67c-3aa9-4e46-8b41-74a657239db6 */
    private String numeroAsset;
-   /** @pdOid f9253881-5fea-4584-8020-0de7c6315b4c */
    private Date dateDeMiseEnProduction;
-   /** @pdOid a432037b-9027-4d47-8cab-20cb70c45ea0 */
    private Date dateD_achat;
-   /** @pdOid 28d79110-8112-4643-87f6-2d4db27f0ba8 */
    private Date dateDeFinDeGarantie;
-   /** @pdOid f360eb92-5504-4c01-a167-d62300969818 */
    private String description;
    
-   /** @pdRoleInfo migr=no name=Chassis assc=association1 mult=0..* */
-   private Chassis[] chassis;
-   /** @pdRoleInfo migr=no name=PduElectrique assc=association7 mult=0..* */
-   private PduElectrique[] pduElectrique;
-   /** @pdRoleInfo migr=no name=Infrastructure assc=association2 mult=0..* side=A */
-   private Infrastructure[] infrastructure;
+   	@OneToMany(mappedBy="rack")
+  	@Column(nullable = true)
+   private Collection<Chassis> chassis;
+   
+   	@OneToMany(mappedBy="rack")
+   	@Column(nullable = true)
+   private Collection<PduElectrique> pduElectrique;
+   
+   	@OneToMany(mappedBy="rack")
+   	@Column(nullable = true)
+   private Collection<Infrastructure> infrastructure;
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public String getStaut() {
+		return staut;
+	}
+	
+	public void setStaut(String staut) {
+		this.staut = staut;
+	}
+	
+	public String getCriticite() {
+		return criticite;
+	}
+	
+	public void setCriticite(String criticite) {
+		this.criticite = criticite;
+	}
+	
+	public String getMarque() {
+		return marque;
+	}
+	
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+	
+	public String getModele() {
+		return modele;
+	}
+	
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
+	
+	public String getNbUnite() {
+		return nbUnite;
+	}
+	
+	public void setNbUnite(String nbUnite) {
+		this.nbUnite = nbUnite;
+	}
+	
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
+	
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
+	}
+	
+	public String getNumeroAsset() {
+		return numeroAsset;
+	}
+	
+	public void setNumeroAsset(String numeroAsset) {
+		this.numeroAsset = numeroAsset;
+	}
+	
+	public Date getDateDeMiseEnProduction() {
+		return dateDeMiseEnProduction;
+	}
+	
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+	}
+	
+	public Date getDateD_achat() {
+		return dateD_achat;
+	}
+	
+	public void setDateD_achat(Date dateD_achat) {
+		this.dateD_achat = dateD_achat;
+	}
+	
+	public Date getDateDeFinDeGarantie() {
+		return dateDeFinDeGarantie;
+	}
+	
+	public void setDateDeFinDeGarantie(Date dateDeFinDeGarantie) {
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public Collection<Chassis> getChassis() {
+		return chassis;
+	}
+
+	public void setChassis(Collection<Chassis> chassis) {
+		this.chassis = chassis;
+	}
+
+		
+
+	public Collection<PduElectrique> getPduElectrique() {
+		return pduElectrique;
+	}
+
+	public void setPduElectrique(Collection<PduElectrique> pduElectrique) {
+		this.pduElectrique = pduElectrique;
+	}
+
+	public Collection<Infrastructure> getInfrastructure() {
+		return infrastructure;
+	}
+
+	public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+		this.infrastructure = infrastructure;
+	}
+	
+		
+	
+	
+	   
+   	
 
 }
