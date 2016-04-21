@@ -21,7 +21,7 @@ public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-   private Long id;
+   private int id;
 	
 	@NotEmpty
 	@Size(min=4,max=20)
@@ -37,10 +37,10 @@ public class Role implements Serializable {
 	private Collection<User> users;
 	
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getLibelle() {

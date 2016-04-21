@@ -27,7 +27,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="user_id")
-   private Long id;
+   private int id;
 	
 	@NotEmpty
 	@Size(min=6,max=20)
@@ -127,7 +127,7 @@ public class User implements Serializable {
    	 @Column(nullable = true)
 	private Collection<Imprimante> imprimante;
    	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 	public Departement getDepartement() {
@@ -136,7 +136,7 @@ public class User implements Serializable {
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getMatricule() {
