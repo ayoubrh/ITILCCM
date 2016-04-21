@@ -36,7 +36,6 @@ public class ApplicationWeb {
 				   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
 				   private java.util.Collection<SolutionApplicative> solutionApplicative;
 				   
-				   @NotEmpty
 				   @ManyToOne
 				   @JoinColumn(name="id_serveurWeb")
 				   private ServeurWeb serveurWeb;

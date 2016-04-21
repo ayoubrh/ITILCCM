@@ -30,7 +30,6 @@ public class Serveur extends Infrastructure implements Serializable{
 	 @OneToMany(mappedBy="serveur")
 	private Collection<Hyperviseur> hyperviseur;
 	   
-	 @Column(nullable=true)
 	 @ManyToOne
 	 @JoinColumn(name="id_licenseOs")
 	private LicenseOs licenseOs;

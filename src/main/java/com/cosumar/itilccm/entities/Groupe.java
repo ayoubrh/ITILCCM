@@ -29,7 +29,6 @@ public class Groupe implements Serializable {
 			   private String type;
 			   private String description;
 			   
-			   @Column(nullable=true)
 			   @ManyToOne
 			   @JoinColumn(name="id_groupe")
 			   private Groupe groupe_parent;

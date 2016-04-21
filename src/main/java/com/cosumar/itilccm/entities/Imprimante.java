@@ -36,7 +36,6 @@ public class Imprimante implements Serializable{
    
    	@ManyToOne
   	@JoinColumn(name="user_id")
-  	@Column(nullable=true)
    private User user;
 
 	public int getId() {

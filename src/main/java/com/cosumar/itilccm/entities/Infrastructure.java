@@ -52,12 +52,10 @@ public class Infrastructure implements Serializable{
    
    	@ManyToOne
   	@JoinColumn(name="rack_id")
-   	@Column(nullable = true)
    private Rack rack;
    
    	@ManyToOne
   	@JoinColumn(name="chassis_id")
-   	@Column(nullable = true)
    private Chassis chassis;
    	
    	@ManyToMany

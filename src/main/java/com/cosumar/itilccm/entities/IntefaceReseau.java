@@ -37,7 +37,6 @@ public class IntefaceReseau implements Serializable{
    
    	@ManyToOne
   	@JoinColumn(name="ordinateur_id")
-  	@Column(nullable = true)
    private Ordinateur ordinateur;
 
 	public int getId() {

@@ -36,7 +36,6 @@ public class InstanceMiddleware implements Serializable {
 				   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
 				   private Collection<SolutionApplicative> solutionApplicative;
 				   
-				   @NotEmpty
 				   @ManyToOne
 				   @JoinColumn(name="id_middleware")
 				   private Middleware middleware;

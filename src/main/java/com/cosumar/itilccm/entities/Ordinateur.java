@@ -47,7 +47,6 @@ public class Ordinateur implements Serializable{
    
    	@ManyToOne
    	@JoinColumn(name="user_id")
-   	@Column(nullable=true)
    private User user;
    
    @ManyToMany
@@ -62,7 +61,6 @@ public class Ordinateur implements Serializable{
     @Column(nullable = true)
    private Collection<Peripherique> peripherique;
    	
-   	 @Column(nullable=true)
 	 @ManyToOne
 	 @JoinColumn(name="id_licenseOs")
    	private LicenseOs licenseOs;

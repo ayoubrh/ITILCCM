@@ -104,27 +104,21 @@ public class User implements Serializable {
    	private Departement departement;
    	
    	 @OneToMany(mappedBy="user")
-   	 @Column(nullable = true)
 	private Collection<Ordinateur> ordinateur;
    	
    	 @OneToOne(mappedBy="user")
-   	 @Column(nullable = true)
 	private TelephneMobile telephneMobile;
    	
    	 @OneToOne(mappedBy="user")
-   	 @Column(nullable = true)
 	private Sim sim;
    	
    	 @OneToOne(mappedBy="user")
-   	 @Column(nullable = true)
 	private Tablette tablette;
    	
    	 @OneToOne(mappedBy="user")
-   	 @Column(nullable = true)
 	private TelephoneFixe telephoneFixe;
    	
    	 @OneToMany(mappedBy="user")
-   	 @Column(nullable = true)
 	private Collection<Imprimante> imprimante;
    	
 	public int getId() {

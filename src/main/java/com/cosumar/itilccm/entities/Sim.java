@@ -37,7 +37,6 @@ public class Sim implements Serializable{
    private String operateur;
    
    @OneToOne
-   @Column(nullable = true)
    private User user;
 
 	public int getId() {

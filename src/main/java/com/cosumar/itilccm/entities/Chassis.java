@@ -40,7 +40,6 @@ public class Chassis implements Serializable{
    
    	@ManyToOne
  	@JoinColumn(name="chassis_id")
-  	@Column(nullable = true)
    private Rack rack;
    
    	@OneToMany(mappedBy="chassis")

@@ -14,7 +14,6 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	
 	 @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	 @JoinColumn(name="bande_id")
- 	 @Column(nullable = true)
 	private Bande bande;
 
 	public Bande getBande() {

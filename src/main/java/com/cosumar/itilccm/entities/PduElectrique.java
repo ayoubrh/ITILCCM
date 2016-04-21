@@ -13,12 +13,10 @@ public class PduElectrique extends ConnexionElectrique implements Serializable{
 	
 	 @ManyToOne
  	 @JoinColumn(name="arriveeElectrique_id")
-  	 @Column(nullable = true)
 	private ArriveeElectrique arriveeElectrique;
 	
 	 @ManyToOne
   	 @JoinColumn(name="rack_id")
-   	 @Column(nullable = true)
 	private Rack rack;
 
 	public ArriveeElectrique getArriveeElectrique() {

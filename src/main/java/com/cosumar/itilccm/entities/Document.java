@@ -29,7 +29,6 @@ public class Document implements Serializable {
 				   private String description;
 				   private String fichier;
 				   
-				   @NotEmpty
 				   @Lob
 				   private byte[] bfichier;
 				   

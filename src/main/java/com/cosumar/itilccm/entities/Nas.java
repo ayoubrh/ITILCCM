@@ -14,7 +14,6 @@ public class Nas extends Infrastructure implements Serializable{
 	
 	 @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
 	 @JoinColumn(name="systemeDeFicherNas_id")
- 	 @Column(nullable = true)
 	private SystemeDeFicherNas systemeDeFicherNas;
 	 
 	public SystemeDeFicherNas getSystemeDeFicherNas() {

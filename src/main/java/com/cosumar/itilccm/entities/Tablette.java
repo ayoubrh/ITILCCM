@@ -35,7 +35,6 @@ public class Tablette implements Serializable{
    private String description;
    
    	@OneToOne
-   	@Column(nullable = true)
    private User user;
 
 	public int getId() {
