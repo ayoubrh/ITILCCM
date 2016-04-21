@@ -62,10 +62,15 @@ public class Ordinateur implements Serializable{
     @Column(nullable = true)
    private Collection<Peripherique> peripherique;
    	
-   /** @pdRoleInfo migr=no name=LicenseOs assc=association47 mult=0..1 side=A */
-   private LicenseOs licenseOs;
-   /** @pdRoleInfo migr=no name=LogicielEtApplication assc=association48 mult=0..* side=A */
-   private LogicielEtApplication[] logicielEtApplication;
+   	 @Column(nullable=true)
+	 @ManyToOne
+	 @JoinColumn(name="id_licenseOs")
+   	private LicenseOs licenseOs;
+	   
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="ordinateur")
+	private Collection<LogicielEtApplication> logicielEtApplication;
+
    
 	public int getId() {
 		return id;
@@ -175,10 +180,11 @@ public class Ordinateur implements Serializable{
 	public void setLicenseOs(LicenseOs licenseOs) {
 		this.licenseOs = licenseOs;
 	}
-	public LogicielEtApplication[] getLogicielEtApplication() {
+	
+	public Collection<LogicielEtApplication> getLogicielEtApplication() {
 		return logicielEtApplication;
 	}
-	public void setLogicielEtApplication(LogicielEtApplication[] logicielEtApplication) {
+	public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
 		this.logicielEtApplication = logicielEtApplication;
 	}
 	public Collection<IntefaceReseau> getIntefaceReseau() {

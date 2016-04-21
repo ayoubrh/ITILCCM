@@ -1,32 +1,133 @@
-/***********************************************************************
- * Module:  Document.java
- * Author:  ayoub
- * Purpose: Defines the Class Document
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid e0e08295-7666-4d74-a01a-46417ba4e814 */
-public class Document {
-   /** @pdOid bb46297a-a2d7-4f46-b7f1-a3fef380addc */
-   private int id;
-   /** @pdOid e55934a5-eb75-4416-97a0-05e6cc075351 */
-   private String nom;
-   /** @pdOid 88a3ee21-200a-47cc-b2fa-b64db10c553e */
-   private String statut;
-   /** @pdOid 667ed441-e3e2-43a5-ac30-f972b60bda6d */
-   private String version;
-   /** @pdOid 82b89c35-605c-45be-a8c4-0b15700d5045 */
-   private String type;
-   /** @pdOid be789730-882a-492a-9481-62ed1a8ee971 */
-   private String description;
-   /** @pdOid 28a15525-2c8d-45df-9bc5-f8d7163da708 */
-   private String fichier;
-   
-   /** @pdRoleInfo migr=no name=Contrat assc=association60 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   private java.util.Collection<Contrat> contrat;
-   
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Document implements Serializable {
+	
+				   @Id
+				   @GeneratedValue(strategy=GenerationType.IDENTITY)
+				   private int id;
+				   
+				   @NotEmpty
+				   private String nom;
+				   
+				   private String statut;
+				   private String version;
+				   private String type;
+				   private String description;
+				   private String fichier;
+				   
+				   @NotEmpty
+				   @Lob
+				   private byte[] bfichier;
+				   
+				   @Column(nullable=true)
+				   @ManyToMany(mappedBy="documents")
+				   private Collection<Contrat> contrats;
+
+		public Document() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+		public Document(String nom, String statut, String version, String type, String description, String fichier, byte[] bfichier) {
+			super();
+			this.nom = nom;
+			this.statut = statut;
+			this.version = version;
+			this.type = type;
+			this.description = description;
+			this.fichier = fichier;
+			this.bfichier = bfichier;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getNom() {
+			return nom;
+		}
+
+		public void setNom(String nom) {
+			this.nom = nom;
+		}
+
+		public String getStatut() {
+			return statut;
+		}
+
+		public void setStatut(String statut) {
+			this.statut = statut;
+		}
+
+		public String getVersion() {
+			return version;
+		}
+
+		public void setVersion(String version) {
+			this.version = version;
+		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		
+
+		public String getFichier() {
+			return fichier;
+		}
+
+		public void setFichier(String fichier) {
+			this.fichier = fichier;
+		}
+
+		public byte[] getBfichier() {
+			return bfichier;
+		}
+
+		public void setBfichier(byte[] bfichier) {
+			this.bfichier = bfichier;
+		}
+
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+		   
+		   
    
    
 

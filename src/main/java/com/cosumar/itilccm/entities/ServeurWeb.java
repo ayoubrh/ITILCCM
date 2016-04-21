@@ -1,15 +1,41 @@
-/***********************************************************************
- * Module:  ServeurWeb.java
- * Author:  ayoub
- * Purpose: Defines the Class ServeurWeb
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
-/** @pdOid ed2d04f1-df31-447b-93c3-1d2fb852ad8b */
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+
+@Entity
+@DiscriminatorValue("ServeurWeb")
 public class ServeurWeb extends LogicielEtApplication {
-   /** @pdRoleInfo migr=no name=ApplicationWeb assc=association44 mult=0..* */
-	private ApplicationWeb[] applicationWeb;
+	
+			@Column(nullable=true)
+			@OneToMany(mappedBy="serveurWeb")
+			private Collection<ApplicationWeb> applicationWeb;
+			
+
+			public ServeurWeb() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+		
+			public ServeurWeb(String nom, String statut, String criticite, String cheminD_installation,
+					Date dateDeMiseEnProduction, String description) {
+				super(nom, statut, criticite, cheminD_installation, dateDeMiseEnProduction, description);
+				// TODO Auto-generated constructor stub
+			}
+		
+			public Collection<ApplicationWeb> getApplicationWeb() {
+				return applicationWeb;
+			}
+		
+			public void setApplicationWeb(Collection<ApplicationWeb> applicationWeb) {
+				this.applicationWeb = applicationWeb;
+			}
+	
+	
 
 }

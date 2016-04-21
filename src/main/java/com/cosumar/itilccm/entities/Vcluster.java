@@ -1,15 +1,39 @@
-/***********************************************************************
- * Module:  Vcluster.java
- * Author:  ayoub
- * Purpose: Defines the Class Vcluster
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
-/** @pdOid dfa47647-924c-4cec-aa56-bff06ce4a491 */
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("Vcluster")
 public class Vcluster extends Virtualisation {
-   /** @pdRoleInfo migr=no name=Hyperviseur assc=association25 mult=0..* */
-	private Hyperviseur[] hyperviseur;
+	
+		@Column(nullable=true)
+		@OneToMany(mappedBy="vcluster")
+		private Collection<Hyperviseur> hyperviseur;
+	
+	
+
+	public Vcluster() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Vcluster(String nom, String statut, String criticite, Date dateDeMiseEnProduction, String description) {
+		super(nom, statut, criticite, dateDeMiseEnProduction, description);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Collection<Hyperviseur> getHyperviseur() {
+		return hyperviseur;
+	}
+
+	public void setHyperviseur(Collection<Hyperviseur> hyperviseur) {
+		this.hyperviseur = hyperviseur;
+	}
+	
 
 }

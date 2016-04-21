@@ -5,7 +5,10 @@ import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Serveur extends Infrastructure implements Serializable{
@@ -22,9 +25,19 @@ public class Serveur extends Infrastructure implements Serializable{
    	@ManyToMany
   	@Column(nullable=true)
    private Collection<VolumeLogique> volumelogique;
-   private Hyperviseur[] hyperviseur;
-   private LicenseOs licenseOs;
-   private LogicielEtApplication[] logicielEtApplication;
+   	
+   	 @Column(nullable=true)
+	 @OneToMany(mappedBy="serveur")
+	private Collection<Hyperviseur> hyperviseur;
+	   
+	 @Column(nullable=true)
+	 @ManyToOne
+	 @JoinColumn(name="id_licenseOs")
+	private LicenseOs licenseOs;
+	   
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="serveur")
+	private Collection<LogicielEtApplication> logicielEtApplication;
    
 	public String getFamilleOs() {
 		return familleOs;
@@ -63,10 +76,10 @@ public class Serveur extends Infrastructure implements Serializable{
 	public void setVolumelogique(Collection<VolumeLogique> volumelogique) {
 		this.volumelogique = volumelogique;
 	}
-	public Hyperviseur[] getHyperviseur() {
+	public Collection<Hyperviseur> getHyperviseur() {
 		return hyperviseur;
 	}
-	public void setHyperviseur(Hyperviseur[] hyperviseur) {
+	public void setHyperviseur(Collection<Hyperviseur> hyperviseur) {
 		this.hyperviseur = hyperviseur;
 	}
 	public LicenseOs getLicenseOs() {
@@ -75,14 +88,14 @@ public class Serveur extends Infrastructure implements Serializable{
 	public void setLicenseOs(LicenseOs licenseOs) {
 		this.licenseOs = licenseOs;
 	}
-	public LogicielEtApplication[] getLogicielEtApplication() {
+	public Collection<LogicielEtApplication> getLogicielEtApplication() {
 		return logicielEtApplication;
 	}
-	public void setLogicielEtApplication(LogicielEtApplication[] logicielEtApplication) {
+	public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
 		this.logicielEtApplication = logicielEtApplication;
 	}
+	
+		
 	   
-   
-   	
 
 }

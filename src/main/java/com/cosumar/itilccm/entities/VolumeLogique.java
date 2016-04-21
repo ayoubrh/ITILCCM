@@ -43,8 +43,15 @@ public class VolumeLogique implements Serializable{
    	@ManyToOne
    	@JoinColumn(name="systeme_stockage_id")
    private SystemeDeStockage systemedestockage;
-   private MachineVirtuelle[] machinevertuelle;
-   private Virtualisation[] virtualisation;
+   
+   	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="volumelogique")
+   	private Collection<MachineVirtuelle> machinevertuelle;
+	   
+	  @Column(nullable=true)
+	  @ManyToMany(mappedBy="volumelogique")
+	private Collection<Virtualisation> virtualisation;
+
    
 	public int getId() {
 		return id;
@@ -100,18 +107,20 @@ public class VolumeLogique implements Serializable{
 	public void setSystemedestockage(SystemeDeStockage systemedestockage) {
 		this.systemedestockage = systemedestockage;
 	}
-	public MachineVirtuelle[] getMachinevertuelle() {
+	public Collection<MachineVirtuelle> getMachinevertuelle() {
 		return machinevertuelle;
 	}
-	public void setMachinevertuelle(MachineVirtuelle[] machinevertuelle) {
+	public void setMachinevertuelle(Collection<MachineVirtuelle> machinevertuelle) {
 		this.machinevertuelle = machinevertuelle;
 	}
-	public Virtualisation[] getVirtualisation() {
+	public Collection<Virtualisation> getVirtualisation() {
 		return virtualisation;
 	}
-	public void setVirtualisation(Virtualisation[] virtualisation) {
+	public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 		this.virtualisation = virtualisation;
 	}
+	
+		
    
    	
    

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,9 @@ public class IntefaceReseau implements Serializable{
 	@ManyToOne
   	@JoinColumn(name="equipementReseau_id")
    private EquipementReseau equipementReseau;
-   /** @pdRoleInfo migr=no name=MachineVirtuelle assc=association29 mult=1..1 side=A */
+
+	@ManyToOne
+    @JoinColumn(name="id_machineVirtuelle")
    private MachineVirtuelle machineVirtuelle;
    
    	@ManyToOne

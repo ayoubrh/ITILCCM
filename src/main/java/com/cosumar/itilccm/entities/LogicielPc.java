@@ -1,12 +1,23 @@
-/***********************************************************************
- * Module:  LogicielPc.java
- * Author:  ayoub
- * Purpose: Defines the Class LogicielPc
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
-/** @pdOid 187322d2-6ebd-4a7a-95cb-719e61ee4d4a */
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("LogicielPC")
 public class LogicielPc extends LogicielEtApplication {
+
+	public LogicielPc() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public LogicielPc(String nom, String statut, String criticite, String cheminD_installation,
+			Date dateDeMiseEnProduction, String description) {
+		super(nom, statut, criticite, cheminD_installation, dateDeMiseEnProduction, description);
+		// TODO Auto-generated constructor stub
+	}
+	
 }
