@@ -1,45 +1,180 @@
-/***********************************************************************
- * Module:  Contrat.java
- * Author:  ayoub
- * Purpose: Defines the Class Contrat
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 6e287282-f297-445b-99a7-3bb8873dd3a2 */
-public class Contrat {
-   /** @pdOid ce1c30b6-1c6a-4f5d-967c-e1f2376e95c4 */
-   private int id;
-   /** @pdOid ca2a7a1a-2eba-48b0-9ceb-4b701deaa9c3 */
-   private String nom;
-   /** @pdOid 5f2ab32c-3586-4fb3-87f8-1a3de143a245 */
-   private String client;
-   /** @pdOid 0aa0b9bd-4e31-4445-8345-263bdebd6511 */
-   private String description;
-   /** @pdOid 5a9352de-81fe-433f-91e9-6c788a798c37 */
-   private Date dateDeDebut;
-   /** @pdOid d5489fd7-4d70-4162-b88a-065ed4c8c7e4 */
-   private Date dateDeFin;
-   /** @pdOid dbfe496b-21dc-4f1e-8a73-b516c22bd4ac */
-   private String monnaie;
-   /** @pdOid 96ca7f30-3ee3-4aa3-8998-5ac493164cd1 */
-   private String periodiciteDeFacturation;
-   /** @pdOid afa724c7-c395-476b-a14b-beb2830b8972 */
-   private String uniteDeCout;
-   /** @pdOid dae6e92e-6e73-41f0-805c-4bcc26451c52 */
-   private String fournisseur;
-   /** @pdOid a7219c43-df08-4dff-a059-c34f65104bce */
-   private String niveauDeService;
-   /** @pdOid 9054c1bf-3959-47dd-8f1c-6c9828f3133d */
-   private String statut;
-   /** @pdOid 292fa205-c47c-4f53-9403-7cf6d322e1c8 */
-   private String typeDeContrat;
-   
-   /** @pdRoleInfo migr=no name=Contact assc=association59 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   private java.util.Collection<Contact> contact;
-   /** @pdRoleInfo migr=no name=Document assc=association60 mult=0..* side=A */
-   private Document[] document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Contrat implements Serializable {
+	
+			       @Id
+			       @GeneratedValue(strategy=GenerationType.IDENTITY)
+				   private int id;
+			       
+			       @NotEmpty
+				   private String nom;
+			       
+			       @NotEmpty
+				   private String client;
+			       
+				   private String description;
+				   private Date dateDeDebut;
+				   private Date dateDeFin;
+				   private double cout;
+				   private String monnaie;
+				   private String periodiciteDeFacturation;
+				   private String uniteDeCout;
+				   
+				   @NotEmpty
+				   private String fournisseur;
+				   
+				   private String niveauDeService;
+				   private String statut;
+				   private String typeDeContrat;
+				   
+				   @Column(nullable=true)
+				   @ManyToMany(mappedBy="contrats")
+				   private Collection<Contact> contacts;
+				   
+				   @Column(nullable=true)
+				   @ManyToMany
+				   @JoinTable(name="Contrat_Docum",joinColumns=
+				   @JoinColumn(name="id_Contrat"),
+				   inverseJoinColumns=@JoinColumn(name="id_Document"))
+				   private Collection<Document> documents;
+		   
+			public Contrat() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+			
+			public Contrat(String nom, String client, String description, Date dateDeDebut, Date dateDeFin, double cout,
+					String monnaie, String periodiciteDeFacturation, String uniteDeCout, String fournisseur,
+					String niveauDeService, String statut, String typeDeContrat) {
+				super();
+				this.nom = nom;
+				this.client = client;
+				this.description = description;
+				this.dateDeDebut = dateDeDebut;
+				this.dateDeFin = dateDeFin;
+				this.cout = cout;
+				this.monnaie = monnaie;
+				this.periodiciteDeFacturation = periodiciteDeFacturation;
+				this.uniteDeCout = uniteDeCout;
+				this.fournisseur = fournisseur;
+				this.niveauDeService = niveauDeService;
+				this.statut = statut;
+				this.typeDeContrat = typeDeContrat;
+			}
+	
+			public int getId() {
+				return id;
+			}
+			public void setId(int id) {
+				this.id = id;
+			}
+			public String getNom() {
+				return nom;
+			}
+			public void setNom(String nom) {
+				this.nom = nom;
+			}
+			public String getClient() {
+				return client;
+			}
+			public void setClient(String client) {
+				this.client = client;
+			}
+			public String getDescription() {
+				return description;
+			}
+			public void setDescription(String description) {
+				this.description = description;
+			}
+			public Date getDateDeDebut() {
+				return dateDeDebut;
+			}
+			public void setDateDeDebut(Date dateDeDebut) {
+				this.dateDeDebut = dateDeDebut;
+			}
+			public Date getDateDeFin() {
+				return dateDeFin;
+			}
+			public void setDateDeFin(Date dateDeFin) {
+				this.dateDeFin = dateDeFin;
+			}
+			
+			public double getCout() {
+				return cout;
+			}
+			public void setCout(double cout) {
+				this.cout = cout;
+			}
+			public String getMonnaie() {
+				return monnaie;
+			}
+			public void setMonnaie(String monnaie) {
+				this.monnaie = monnaie;
+			}
+			public String getPeriodiciteDeFacturation() {
+				return periodiciteDeFacturation;
+			}
+			public void setPeriodiciteDeFacturation(String periodiciteDeFacturation) {
+				this.periodiciteDeFacturation = periodiciteDeFacturation;
+			}
+			public String getUniteDeCout() {
+				return uniteDeCout;
+			}
+			public void setUniteDeCout(String uniteDeCout) {
+				this.uniteDeCout = uniteDeCout;
+			}
+			public String getFournisseur() {
+				return fournisseur;
+			}
+			public void setFournisseur(String fournisseur) {
+				this.fournisseur = fournisseur;
+			}
+			public String getNiveauDeService() {
+				return niveauDeService;
+			}
+			public void setNiveauDeService(String niveauDeService) {
+				this.niveauDeService = niveauDeService;
+			}
+			public String getStatut() {
+				return statut;
+			}
+			public void setStatut(String statut) {
+				this.statut = statut;
+			}
+			public String getTypeDeContrat() {
+				return typeDeContrat;
+			}
+			public void setTypeDeContrat(String typeDeContrat) {
+				this.typeDeContrat = typeDeContrat;
+			}
+			public Collection<Contact> getContact() {
+				return contacts;
+			}
+			public void setContact(Collection<Contact> contact) {
+				this.contacts = contact;
+			}
+			public Collection<Document> getDocument() {
+				return documents;
+			}
+			public void setDocument(Collection<Document> document) {
+				this.documents = document;
+			}
+		   
    
    
    

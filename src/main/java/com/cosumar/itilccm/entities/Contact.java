@@ -1,38 +1,152 @@
-/***********************************************************************
- * Module:  Contact.java
- * Author:  ayoub
- * Purpose: Defines the Class Contact
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 936b50fb-5263-4a8d-b17d-7030a9e17aac */
-public class Contact {
-   /** @pdOid 9afccf1c-d575-4cef-ac48-b1c185082118 */
-   private int id;
-   /** @pdOid 5b2d90da-245c-4534-ad05-5d6384c116a2 */
-   private String nom;
-   /** @pdOid 383dd813-29ab-4418-b34b-7c35a52e0ff4 */
-   private String prenom;
-   /** @pdOid 74ecb9a0-e8b4-4de3-a113-d7cb9d84efca */
-   private String organisme;
-   /** @pdOid d793c016-8b7c-4562-b0db-ce8a53c6d6d2 */
-   private String statut;
-   /** @pdOid 05f0b564-e3e0-4ee5-bc8e-9805a99773d5 */
-   private String fonction;
-   /** @pdOid 5d29fd1b-f31c-4e6c-8a45-5bdda5f8b2fb */
-   private String numeroD_employe;
-   /** @pdOid 0ad721e1-6e82-442f-9f8e-2dda77b15c0c */
-   private String email;
-   /** @pdOid 1fd3b34c-7f26-4682-97d0-cd83aaacbca2 */
-   private String telephoneFixe;
-   /** @pdOid 3f6b74f3-e755-45c4-a301-5c4cb2d5b639 */
-   private String telephoneMobile;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Contact implements Serializable {
+	
+			   @Id
+			   @GeneratedValue(strategy=GenerationType.IDENTITY)
+			   private int id;
+			   
+			   @NotEmpty
+			   @Size(min=4,max=25)
+			   private String nom;
+			   
+			   @NotEmpty
+			   @Size(min=4,max=25)
+			   private String prenom;
+			   
+			   @NotEmpty
+			   @Size(min=4,max=30)
+			   private String organisme;
+	
+			   @NotEmpty
+			   private String statut;
+			   
+			   private String fonction;
+			   private String numeroD_employe;
+			   private String email;
+			   private String telephoneFixe;
+			   private String telephoneMobile;
+			   
+			   @Column(nullable=true)
+			   @ManyToOne
+			   @JoinColumn(name="id_lieu")
+			   private Lieu lieu;
+			   
+			   @Column(nullable=true)
+			   @ManyToMany
+			   @JoinTable(name="Contact_Contrat",joinColumns=
+			   @JoinColumn(name="id_Contact"),
+			   inverseJoinColumns=@JoinColumn(name="id_Contrat"))
+			   private Collection<Contrat> contrats;
    
-   /** @pdRoleInfo migr=no name=Lieu assc=association58 mult=0..1 side=A */
-   private Lieu lieu;
-   /** @pdRoleInfo migr=no name=Contrat assc=association59 mult=0..* side=A */
-   private Contrat[] contrat;
+			public Contact() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+			
+			public Contact(String nom, String prenom, String organisme, String statut, String fonction, String numeroD_employe,
+					String email, String telephoneFixe, String telephoneMobile) {
+				super();
+				this.nom = nom;
+				this.prenom = prenom;
+				this.organisme = organisme;
+				this.statut = statut;
+				this.fonction = fonction;
+				this.numeroD_employe = numeroD_employe;
+				this.email = email;
+				this.telephoneFixe = telephoneFixe;
+				this.telephoneMobile = telephoneMobile;
+			}
+			
+			public int getId() {
+				return id;
+			}
+			public void setId(int id) {
+				this.id = id;
+			}
+			public String getNom() {
+				return nom;
+			}
+			public void setNom(String nom) {
+				this.nom = nom;
+			}
+			public String getPrenom() {
+				return prenom;
+			}
+			public void setPrenom(String prenom) {
+				this.prenom = prenom;
+			}
+			public String getOrganisme() {
+				return organisme;
+			}
+			public void setOrganisme(String organisme) {
+				this.organisme = organisme;
+			}
+			public String getStatut() {
+				return statut;
+			}
+			public void setStatut(String statut) {
+				this.statut = statut;
+			}
+			public String getFonction() {
+				return fonction;
+			}
+			public void setFonction(String fonction) {
+				this.fonction = fonction;
+			}
+			public String getNumeroD_employe() {
+				return numeroD_employe;
+			}
+			public void setNumeroD_employe(String numeroD_employe) {
+				this.numeroD_employe = numeroD_employe;
+			}
+			public String getEmail() {
+				return email;
+			}
+			public void setEmail(String email) {
+				this.email = email;
+			}
+			public String getTelephoneFixe() {
+				return telephoneFixe;
+			}
+			public void setTelephoneFixe(String telephoneFixe) {
+				this.telephoneFixe = telephoneFixe;
+			}
+			public String getTelephoneMobile() {
+				return telephoneMobile;
+			}
+			public void setTelephoneMobile(String telephoneMobile) {
+				this.telephoneMobile = telephoneMobile;
+			}
+			public Lieu getLieu() {
+				return lieu;
+			}
+			public void setLieu(Lieu lieu) {
+				this.lieu = lieu;
+			}
+			public Collection<Contrat> getContrat() {
+				return contrats;
+			}
+			public void setContrat(Collection<Contrat> contrat) {
+				this.contrats = contrat;
+			}
+			   
 
 }

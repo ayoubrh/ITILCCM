@@ -1,29 +1,100 @@
-/***********************************************************************
- * Module:  Groupe.java
- * Author:  ayoub
- * Purpose: Defines the Class Groupe
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 8b85505f-8845-4a9b-8eec-4f060d34b6de */
-public class Groupe {
-   /** @pdOid 4704f87e-5779-42a5-9b17-40eae15d2c75 */
-   private int id;
-   /** @pdOid 312e99d7-1e7a-4eff-8798-09e3360c8e35 */
-   private String nom;
-   /** @pdOid 4d6849d2-4c3b-4fc2-aab9-2e6223a2b6f0 */
-   private String statut;
-   /** @pdOid 6b2c7d0e-bf6f-442e-8370-8f647cfcedfa */
-   private String type;
-   /** @pdOid cc266637-61e0-437f-b695-5f23f039a57a */
-   private String description;
-   
-   /** @pdRoleInfo migr=no name=Groupe assc=association57 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   private java.util.Collection<Groupe> groupeB;
-   /** @pdRoleInfo migr=no name=Groupe assc=association57 mult=0..1 side=A */
-   private Groupe groupeA;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Groupe implements Serializable {
+	
+		       @Id
+		       @GeneratedValue(strategy=GenerationType.IDENTITY)
+			   private int id;
+		       
+		       @NotEmpty
+			   private String nom;
+		       
+		       @NotEmpty
+			   private String statut;
+		       
+			   private String type;
+			   private String description;
+			   
+			   @Column(nullable=true)
+			   @ManyToOne
+			   @JoinColumn(name="id_groupe")
+			   private Groupe groupe_parent;
+		   
+		public Groupe() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+		public Groupe(String nom, String statut, String type, String description) {
+			super();
+			this.nom = nom;
+			this.statut = statut;
+			this.type = type;
+			this.description = description;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getNom() {
+			return nom;
+		}
+
+		public void setNom(String nom) {
+			this.nom = nom;
+		}
+
+		public String getStatut() {
+			return statut;
+		}
+
+		public void setStatut(String statut) {
+			this.statut = statut;
+		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		public Groupe getGroupe_parent() {
+			return groupe_parent;
+		}
+
+		public void setGroupe_parent(Groupe groupe_parent) {
+			this.groupe_parent = groupe_parent;
+		}
+		   
    
    
    

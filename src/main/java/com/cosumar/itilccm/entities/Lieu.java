@@ -1,30 +1,142 @@
-/***********************************************************************
- * Module:  Lieu.java
- * Author:  ayoub
- * Purpose: Defines the Class Lieu
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
-/** @pdOid 677d7edc-2d08-4c88-9969-9b22aeb9dc6c */
-public class Lieu {
-   /** @pdOid f2853ef4-c194-4f96-84aa-55ad4bf85a88 */
-   private int id;
-   /** @pdOid 3700de1d-478c-409b-a46c-019bccca9adc */
-   private String statut;
-   /** @pdOid 50ab337e-e43d-44e1-bca6-d635a73dbf6f */
-   private String organisme;
-   /** @pdOid 993e5b88-2520-4f1f-99b5-66a8a6c4b0f2 */
-   private String adresse;
-   /** @pdOid e310a05d-e966-4dcf-956c-e0f41f495ab0 */
-   private String codePostale;
-   /** @pdOid 2ff79887-ad52-4b2c-8be0-d16f8b093678 */
-   private String ville;
-   /** @pdOid bd9bd1b3-3141-4886-99ae-db905118ab52 */
-   private String pays;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class Lieu implements Serializable {
+	
+			   @Id
+			   @GeneratedValue(strategy=GenerationType.IDENTITY)
+			   private int id;
+			   
+			   private String statut;
+			   
+			   @NotEmpty
+			   @Size(min=4,max=30)
+			   private String organisme;
+			   
+			   private String adresse;
+			   
+			   @Column(nullable=true)
+			   @Size(max=5)
+			   @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
+			   private String codePostale;
+			   
+			   private String ville;
+			   private String pays;
+			   
+			   @Column(nullable=true)
+			   @OneToMany(mappedBy="lieu")
+			   private Collection<Contact> contacts;
+	
+		public Lieu() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+	
+	   public Lieu(String statut, String organisme, String adresse, String codePostale, String ville, String pays) {
+			super();
+			this.statut = statut;
+			this.organisme = organisme;
+			this.adresse = adresse;
+			this.codePostale = codePostale;
+			this.ville = ville;
+			this.pays = pays;
+		}
+
+		public int getId() {
+			return id;
+		}
+		
+		
+		public void setId(int id) {
+			this.id = id;
+		}
+		
+		
+		public String getStatut() {
+			return statut;
+		}
+		
+		
+		public void setStatut(String statut) {
+			this.statut = statut;
+		}
+		
+		
+		public String getOrganisme() {
+			return organisme;
+		}
+		
+		
+		public void setOrganisme(String organisme) {
+			this.organisme = organisme;
+		}
+		
+		
+		public String getAdresse() {
+			return adresse;
+		}
+		
+		
+		public void setAdresse(String adresse) {
+			this.adresse = adresse;
+		}
+		
+		
+		public String getCodePostale() {
+			return codePostale;
+		}
+		
+		
+		public void setCodePostale(String codePostale) {
+			this.codePostale = codePostale;
+		}
+		
+		
+		public String getVille() {
+			return ville;
+		}
+		
+		
+		public void setVille(String ville) {
+			this.ville = ville;
+		}
+		
+		
+		public String getPays() {
+			return pays;
+		}
+		
+		
+		public void setPays(String pays) {
+			this.pays = pays;
+		}
+		
+		
+		public Collection<Contact> getContact() {
+			return contacts;
+		}
+		
+		
+		public void setContact(Collection<Contact> contact) {
+			this.contacts = contact;
+		}
+		
+
+
    
-   /** @pdRoleInfo migr=no name=Contact assc=association58 mult=0..* */
-   private Contact[] contact;
 
 }

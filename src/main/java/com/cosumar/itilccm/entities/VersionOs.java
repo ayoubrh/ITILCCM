@@ -1,22 +1,73 @@
-/***********************************************************************
- * Module:  VersionOs.java
- * Author:  ayoub
- * Purpose: Defines the Class VersionOs
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
-import java.util.*;
+import java.io.Serializable;
 
-/** @pdOid 1bef5d85-13ec-48d5-8c7e-b445b600aa98 */
-public class VersionOs {
-   /** @pdOid 4f19295a-62e5-4c7f-9a1f-fcc67a87f864 */
-   private int id;
-   /** @pdOid 4439b750-7cb1-40b1-a90a-42991dc4c969 */
-   private String nom;
-   /** @pdOid e76ebd13-975c-4664-abac-dcdc8a01ca82 */
-   private String familleOs;
-   
-   /** @pdRoleInfo migr=no name=LicenseOs assc=association46 mult=1..1 side=A */
-   private LicenseOs licenseOs;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+public class VersionOs implements Serializable {
+	
+			@Id
+			@GeneratedValue(strategy=GenerationType.IDENTITY)
+		    private int id;
+			
+			@NotEmpty
+		    private String nom;
+		  
+		    private String familleOs;
+		   
+		    @OneToOne(mappedBy="versionOs")
+		    private LicenseOs licenseOs;
+
+			public VersionOs() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+
+			public VersionOs(String nom, String familleOs) {
+				super();
+				this.nom = nom;
+				this.familleOs = familleOs;
+			}
+
+			public int getId() {
+				return id;
+			}
+
+			public void setId(int id) {
+				this.id = id;
+			}
+
+			public String getNom() {
+				return nom;
+			}
+
+			public void setNom(String nom) {
+				this.nom = nom;
+			}
+
+			public String getFamilleOs() {
+				return familleOs;
+			}
+
+			public void setFamilleOs(String familleOs) {
+				this.familleOs = familleOs;
+			}
+
+			public LicenseOs getLicenseOs() {
+				return licenseOs;
+			}
+
+			public void setLicenseOs(LicenseOs licenseOs) {
+				this.licenseOs = licenseOs;
+			}
+		    
+		    
 
 }

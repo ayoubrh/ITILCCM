@@ -1,15 +1,40 @@
-/***********************************************************************
- * Module:  ServeurDeBasseDeDonnees.java
- * Author:  ayoub
- * Purpose: Defines the Class ServeurDeBasseDeDonnees
- ***********************************************************************/
 package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
-/** @pdOid ea5073b2-572f-4bd8-8556-673081152b06 */
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
+@DiscriminatorValue("ServeurDeBasseDeDonnees")
 public class ServeurDeBasseDeDonnees extends LogicielEtApplication {
-   /** @pdRoleInfo migr=no name=InstanceDeBasseDeDonnes assc=association42 mult=0..* */
-	private InstanceDeBasseDeDonnes[] instanceDeBasseDeDonnes;
+	
+			@Column(nullable=true)
+			@OneToMany(mappedBy="serveurDeBasseDeDonnees")
+			private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
+			
+		
+			public ServeurDeBasseDeDonnees() {
+				super();
+				// TODO Auto-generated constructor stub
+			}
+		
+			public ServeurDeBasseDeDonnees(String nom, String statut, String criticite, String cheminD_installation,
+					Date dateDeMiseEnProduction, String description) {
+				super(nom, statut, criticite, cheminD_installation, dateDeMiseEnProduction, description);
+				// TODO Auto-generated constructor stub
+			}
+		
+			public Collection<InstanceDeBasseDeDonnes> getInstanceDeBasseDeDonnes() {
+				return instanceDeBasseDeDonnes;
+			}
+		
+			public void setInstanceDeBasseDeDonnes(Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes) {
+				this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
+			}
+			
+	
 
 }
