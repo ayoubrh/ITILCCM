@@ -39,7 +39,7 @@ public class SolutionApplicative implements Serializable{
    
    	@ManyToMany(mappedBy="solutionApplicative")
  	@Column(nullable = true)
-   private Collection<ProessusMetier> proessusMetier;
+   private Collection<ProcessusMetier> processusMetier;
    	
    	
    	 @Column(nullable=true)
@@ -130,12 +130,12 @@ public class SolutionApplicative implements Serializable{
 		this.equipementReseau = equipementReseau;
 	}
 
-	public Collection<ProessusMetier> getProessusMetier() {
-		return proessusMetier;
+	public Collection<ProcessusMetier> getProcessusMetier() {
+		return processusMetier;
 	}
 
-	public void setProessusMetier(Collection<ProessusMetier> proessusMetier) {
-		this.proessusMetier = proessusMetier;
+	public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
+		this.processusMetier = processusMetier;
 	}
 
 	public Collection<MachineVirtuelle> getMachineVirtuelle() {
