@@ -15,7 +15,7 @@ public class SystemeDeFicherNas implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int id;
+   private Long id;
    private String niveauRaid;
    private String taille;
    private String description;
@@ -24,11 +24,11 @@ public class SystemeDeFicherNas implements Serializable{
 	@Column(nullable = true)
    private Collection<Nas> nas;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

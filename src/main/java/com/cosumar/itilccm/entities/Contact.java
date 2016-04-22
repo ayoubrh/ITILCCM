@@ -21,7 +21,7 @@ public class Contact implements Serializable {
 	
 			   @Id
 			   @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private int id;
+			   private Long id;
 			   
 			   @NotEmpty
 			   @Size(min=4,max=25)
@@ -74,10 +74,10 @@ public class Contact implements Serializable {
 				this.telephoneMobile = telephoneMobile;
 			}
 			
-			public int getId() {
+			public Long getId() {
 				return id;
 			}
-			public void setId(int id) {
+			public void setId(Long id) {
 				this.id = id;
 			}
 			public String getNom() {

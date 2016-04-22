@@ -790,19 +790,7 @@ Use search to find needed section.
 											</div>
 										</div>
 										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; Serveur de base de données : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur de base de données</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur de base de données</span></a>
-												</div>
-											</div>
-										</div>
+										
 										
 										<div class="col-sm-4 col-md-4">
 											<div class="stat-panel">
@@ -817,6 +805,22 @@ Use search to find needed section.
 												</div>
 											</div>
 										</div>
+										
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; Serveur de base de données : 0
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur de base de données</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur de base de données</span></a>
+												</div>
+											</div>
+										</div>
+										
 										
 										<div class="col-sm-4 col-md-4">
 											<div class="stat-panel">

@@ -18,7 +18,7 @@ public class Document implements Serializable {
 	
 				   @Id
 				   @GeneratedValue(strategy=GenerationType.IDENTITY)
-				   private int id;
+				   private Long id;
 				   
 				   @NotEmpty
 				   private String nom;
@@ -52,11 +52,11 @@ public class Document implements Serializable {
 			this.bfichier = bfichier;
 		}
 
-		public int getId() {
+		public Long getId() {
 			return id;
 		}
 
-		public void setId(int id) {
+		public void setId(Long id) {
 			this.id = id;
 		}
 

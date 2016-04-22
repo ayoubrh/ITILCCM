@@ -20,12 +20,12 @@ public class ApplicationWeb implements Serializable {
 	
 			       @Id
 			       @GeneratedValue(strategy=GenerationType.IDENTITY)
-				   private int id;
+				   private Long id;
 			       
 			       @NotEmpty
 				   private String nom;
 			       
-				   private int url;
+				   private Long url;
 				   private String criticite;
 				   private Date dateDeMiseEnProduction;
 				   private String decription;
@@ -45,7 +45,7 @@ public class ApplicationWeb implements Serializable {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public ApplicationWeb(String nom, int url, String criticite, Date dateDeMiseEnProduction, String decription) {
+		public ApplicationWeb(String nom, Long url, String criticite, Date dateDeMiseEnProduction, String decription) {
 			super();
 			this.nom = nom;
 			this.url = url;
@@ -53,10 +53,10 @@ public class ApplicationWeb implements Serializable {
 			this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 			this.decription = decription;
 		}
-		public int getId() {
+		public Long getId() {
 			return id;
 		}
-		public void setId(int id) {
+		public void setId(Long id) {
 			this.id = id;
 		}
 		public String getNom() {
@@ -65,10 +65,10 @@ public class ApplicationWeb implements Serializable {
 		public void setNom(String nom) {
 			this.nom = nom;
 		}
-		public int getUrl() {
+		public Long getUrl() {
 			return url;
 		}
-		public void setUrl(int url) {
+		public void setUrl(Long url) {
 			this.url = url;
 		}
 		public String getCriticite() {

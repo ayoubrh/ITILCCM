@@ -7,27 +7,27 @@ import com.cosumar.itilccm.entities.*;
 public interface AdminMetier extends UtilisateurMetier {
 	
 			// User
-	public int ajouterUser(User u, int idDep);
-	public int ajouterUserRole(User u, int idDep, int idR);
+	public Long ajouterUser(User u, Long idDep);
+	public Long ajouterUserRole(User u, Long idDep, Long idR);
 	public void modifierUser(User u);
-	public void supprimerUser(int id);
+	public void supprimerUser(Long id);
 	public List<User> listUser();
-	public User getUser(int id);
+	public User getUser(Long id);
 	public User getUserByMatricule(String matricule);
 			
 			// Departement
-	public int ajouterDepartement(Departement d);
+	public Long ajouterDepartement(Departement d);
 	public void modifierDepartement(Departement d);
-	public void supprimerDepatement(int id);
+	public void supprimerDepatement(Long id);
 	public List<Departement> listDepartement();
-	public Departement getDepartement(int id);
+	public Departement getDepartement(Long id);
 			
 			// Role
-	public int ajouterRole(Role r);
+	public Long ajouterRole(Role r);
 	public void modifierRole(Role r);
-	public void supprimerRole(int id);
+	public void supprimerRole(Long id);
 	public List<Role> listRole();
-	public Role getRole(int id);
+	public Role getRole(Long id);
 	public void attribuerRole(Role r,User u);
 
 

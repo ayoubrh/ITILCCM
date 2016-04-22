@@ -21,7 +21,7 @@ public class IntefaceReseau implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int id;
+   private Long id;
    
 	@ManyToOne
   	@JoinColumn(name="infrastructure_id")
@@ -39,11 +39,11 @@ public class IntefaceReseau implements Serializable{
   	@JoinColumn(name="ordinateur_id")
    private Ordinateur ordinateur;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

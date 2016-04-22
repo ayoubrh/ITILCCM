@@ -19,7 +19,7 @@ public class LicenseOs implements Serializable {
 	
 			   @Id
 			   @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private int id;
+			   private Long id;
 			   
 			   @NotEmpty
 			   private String nom;
@@ -66,11 +66,11 @@ public class LicenseOs implements Serializable {
 				this.cle = cle;
 			}
 
-			public int getId() {
+			public Long getId() {
 				return id;
 			}
 
-			public void setId(int id) {
+			public void setId(Long id) {
 				this.id = id;
 			}
 

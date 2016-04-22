@@ -13,7 +13,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	private EntityManager em;
 	
 	@Override
-	public int ajouterUser(User u, int idDep) {
+	public Long ajouterUser(User u, Long idDep) {
 		Departement d = getDepartement(idDep);
 		u.setDepartement(d);
 		em.persist(u);
@@ -21,7 +21,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
-	public int ajouterUserRole(User u, int idDep, int idR) {
+	public Long ajouterUserRole(User u, Long idDep, Long idR) {
 		Departement d = getDepartement(idDep);
 		u.setDepartement(d);
 		Role r = getRole(idR);
@@ -36,7 +36,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void supprimerUser(int id) {
+	public void supprimerUser(Long id) {
 		User u = em.find(User.class, id);
 		em.remove(u);
 	}
@@ -48,12 +48,12 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public User getUser(int id) {
+	public User getUser(Long id) {
 		return em.find(User.class, id);
 	}
 
 	@Override
-	public int ajouterDepartement(Departement d) {
+	public Long ajouterDepartement(Departement d) {
 		em.persist(d);
 		return d.getId();
 	}
@@ -64,7 +64,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void supprimerDepatement(int id) {
+	public void supprimerDepatement(Long id) {
 		Departement d = em.find(Departement.class, id);
 		em.remove(d);
 	}
@@ -76,12 +76,12 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Departement getDepartement(int id) {
+	public Departement getDepartement(Long id) {
 		return em.find(Departement.class, id);
 	}
 
 	@Override
-	public int ajouterRole(Role r) {
+	public Long ajouterRole(Role r) {
 		em.persist(r);
 		return r.getId();
 	}
@@ -92,7 +92,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void supprimerRole(int id) {
+	public void supprimerRole(Long id) {
 		Role r = em.find(Role.class, id);
 		em.remove(r);
 	}
@@ -104,7 +104,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Role getRole(int id) {
+	public Role getRole(Long id) {
 		return em.find(Role.class, id);
 	}
 

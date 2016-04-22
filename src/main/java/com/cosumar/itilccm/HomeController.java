@@ -113,7 +113,7 @@ public class HomeController implements HandlerExceptionResolver {
 	}
 	
 	@RequestMapping(value="/password")
-	public String password(int id,Model model){
+	public String password(Long id,Model model){
 		model.addAttribute("error", null);
 		return "password";
 	}
@@ -121,7 +121,7 @@ public class HomeController implements HandlerExceptionResolver {
 	@RequestMapping(value="/newpassword")
 	public String newpassword(HttpServletRequest req,Model model){
 		String  idS = req.getParameter("id");
-		int id =  Integer.parseInt(idS);
+		Long id =  Long.parseLong(idS);
 		String password = req.getParameter("signup_password");
 		String passwordc = req.getParameter("signup_password_confirm");
 		System.out.println("id : "+id+"\n"+"password : "+password);
@@ -151,7 +151,7 @@ public class HomeController implements HandlerExceptionResolver {
 	
 	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] photo(int id) throws IOException{
+	public byte[] photo(Long id) throws IOException{
 		User u = mu.getUser(id);
 		return IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto()));
 	}
