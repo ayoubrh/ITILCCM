@@ -404,7 +404,7 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
 						</li>
 					</ul>
 				</li>
@@ -593,7 +593,6 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Role dans le systeme</label>
 								<div class="col-sm-9">
 									<f:select  path="role.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="" label="" />
 										<f:options items="${r }" itemValue="id" itemLabel="libelle" />
 									</f:select>
 									<f:errors path="role.id" cssClass="help-block"></f:errors>

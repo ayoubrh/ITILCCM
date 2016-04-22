@@ -18,7 +18,7 @@ public class Subnet implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int id;
+   private Long id;
 	
 	@NotEmpty
 	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
@@ -35,11 +35,11 @@ public class Subnet implements Serializable{
   	@Column(nullable = true)
    private Collection<Vlan> vlan;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

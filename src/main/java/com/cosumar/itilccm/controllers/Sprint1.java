@@ -124,7 +124,7 @@ public class Sprint1 {
 
 	@RequestMapping(value="/admin/all")
 	public String all(Model model){
-		ArrayList<Integer> ids = new ArrayList<Integer>();
+		ArrayList<Long> ids = new ArrayList<Long>();
 		List<User> users = m.listUser();
 		for (User user : users) {
 			ids.add(user.getId());
@@ -139,7 +139,7 @@ public class Sprint1 {
 	}
 	
 	@RequestMapping(value="/profil")
-	public String profil(Model model,int id){
+	public String profil(Model model,Long id){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
@@ -153,14 +153,14 @@ public class Sprint1 {
 	@RequestMapping(value="/admin/delete", method = RequestMethod.GET) 
 	public String delete(@RequestParam(value = "ids", required = true) String[] t){
 		for (String s : t) {
-			int id = Integer.parseInt(s);
+			Long id = Long.parseLong(s);
 			m.supprimerUser(id);
 		}
 		return "redirect:/users/admin/all";
 	}
 	
 	@RequestMapping(value="/edit") 
-	public String edit(int id, Model model){
+	public String edit(Long id, Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	      String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
@@ -215,7 +215,7 @@ public class Sprint1 {
 	
 	@RequestMapping(value="/photo",produces=MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] photo(int id) throws IOException{
+	public byte[] photo(Long id) throws IOException{
 		User u = m.getUser(id);
 		return IOUtils.toByteArray(new ByteArrayInputStream(u.getBphoto()));
 	}

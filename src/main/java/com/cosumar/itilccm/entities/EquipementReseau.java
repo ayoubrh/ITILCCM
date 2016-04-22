@@ -20,7 +20,7 @@ public class EquipementReseau implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int id;
+   private Long id;
 	
 	@NotEmpty
 	@Size(min=2,max=20)
@@ -71,11 +71,11 @@ public class EquipementReseau implements Serializable{
    	@Column(nullable = true)
    private Collection<Ordinateur> ordinateur;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

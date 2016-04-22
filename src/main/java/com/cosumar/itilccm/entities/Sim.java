@@ -18,7 +18,7 @@ public class Sim implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int id;
+   private Long id;
 	
 	@Column(nullable=true)
    	@Size(max=16)
@@ -28,22 +28,22 @@ public class Sim implements Serializable{
 	@Column(nullable=true)
     @Size(max=5)
     @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private int pin;
+   private Long pin;
 	
 	@Column(nullable=true)
     @Size(max=6)
     @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private int puk;
+   private Long puk;
    private String operateur;
    
    @OneToOne
    private User user;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -55,19 +55,19 @@ public class Sim implements Serializable{
 		this.numero = numero;
 	}
 	
-	public int getPin() {
+	public Long getPin() {
 		return pin;
 	}
 	
-	public void setPin(int pin) {
+	public void setPin(Long pin) {
 		this.pin = pin;
 	}
 	
-	public int getPuk() {
+	public Long getPuk() {
 		return puk;
 	}
 	
-	public void setPuk(int puk) {
+	public void setPuk(Long puk) {
 		this.puk = puk;
 	}
 	

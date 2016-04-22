@@ -15,17 +15,17 @@ public class Dvr extends Infrastructure implements Serializable{
 	@Column(nullable=true)
 	@Size(max=2)
    	@Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private int nbrCaneaux;
+   private Long nbrCaneaux;
    
 	@OneToMany(mappedBy="dvr")
    	@Column(nullable = true)
    private Collection<Camera> camera;
 
-	public int getNbrCaneaux() {
+	public Long getNbrCaneaux() {
 		return nbrCaneaux;
 	}
 
-	public void setNbrCaneaux(int nbrCaneaux) {
+	public void setNbrCaneaux(Long nbrCaneaux) {
 		this.nbrCaneaux = nbrCaneaux;
 	}
 
