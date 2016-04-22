@@ -121,7 +121,7 @@ public class SolutionApplicative implements Serializable{
 	public void setInfrastructure(Collection<Infrastructure> infrastructure) {
 		this.infrastructure = infrastructure;
 	}
-
+	
 	public java.util.Collection<EquipementReseau> getEquipementReseau() {
 		return equipementReseau;
 	}

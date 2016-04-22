@@ -1,5 +1,6 @@
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue("Hyperviseur")
-public class Hyperviseur extends Virtualisation {
+public class Hyperviseur extends Virtualisation implements Serializable {
 	
 			@ManyToOne
 			@JoinColumn(name="id_serveur")

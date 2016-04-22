@@ -1,5 +1,6 @@
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Column;
@@ -9,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("ServeurDeBasseDeDonnees")
-public class ServeurDeBasseDeDonnees extends LogicielEtApplication {
+public class ServeurDeBasseDeDonnees extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
 			@OneToMany(mappedBy="serveurDeBasseDeDonnees")

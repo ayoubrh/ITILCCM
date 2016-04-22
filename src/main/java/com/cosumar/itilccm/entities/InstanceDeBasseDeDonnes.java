@@ -1,5 +1,6 @@
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class InstanceDeBasseDeDonnes {
+public class InstanceDeBasseDeDonnes implements Serializable {
 			
 			   @Id
 			   @GeneratedValue(strategy=GenerationType.IDENTITY)

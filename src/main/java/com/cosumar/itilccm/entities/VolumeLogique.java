@@ -101,12 +101,14 @@ public class VolumeLogique implements Serializable{
 	public void setServeur(java.util.Collection<Serveur> serveur) {
 		this.serveur = serveur;
 	}
+	
 	public SystemeDeStockage getSystemedestockage() {
 		return systemedestockage;
 	}
 	public void setSystemedestockage(SystemeDeStockage systemedestockage) {
 		this.systemedestockage = systemedestockage;
 	}
+	
 	public Collection<MachineVirtuelle> getMachinevertuelle() {
 		return machinevertuelle;
 	}

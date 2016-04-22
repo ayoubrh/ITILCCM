@@ -69,6 +69,7 @@ public class Serveur extends Infrastructure implements Serializable{
 	public void setSwitchSan(Collection<SwitchSan> switchSan) {
 		this.switchSan = switchSan;
 	}
+	
 	public Collection<VolumeLogique> getVolumelogique() {
 		return volumelogique;
 	}

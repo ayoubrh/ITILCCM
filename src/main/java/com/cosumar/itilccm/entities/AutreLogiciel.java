@@ -1,12 +1,13 @@
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("AutreLogiciel")
-public class AutreLogiciel extends LogicielEtApplication {
+public class AutreLogiciel extends LogicielEtApplication implements Serializable {
 
 	public AutreLogiciel() {
 		super();
