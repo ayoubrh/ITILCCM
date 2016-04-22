@@ -33,7 +33,7 @@ public class Peripherique implements Serializable{
    private Date dateDeFinDeGarantie;
    private String decription;
    
-   @ManyToMany(mappedBy="equipementReseau")
+   @ManyToMany(mappedBy="peripherique")
    @Column(nullable = true)
    private Collection<Ordinateur> ordinateur;
 

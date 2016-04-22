@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_ConnexionElectrique")
 public class ConnexionElectrique implements Serializable{
 	
 	@Id
@@ -50,6 +53,12 @@ public class ConnexionElectrique implements Serializable{
    	@ManyToMany(mappedBy="connexionElectrique")
   	@Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
+   	
+
+	public ConnexionElectrique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getId() {
 		return id;

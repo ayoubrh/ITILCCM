@@ -48,7 +48,6 @@ public class Ordinateur implements Serializable{
    	@ManyToOne
    	@JoinColumn(name="user_id")
    private User user;
-   
    @ManyToMany
    @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
@@ -160,18 +159,22 @@ public class Ordinateur implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 	public java.util.Collection<EquipementReseau> getEquipementReseau() {
 		return equipementReseau;
 	}
+	
 	public void setEquipementReseau(java.util.Collection<EquipementReseau> equipementReseau) {
 		this.equipementReseau = equipementReseau;
 	}
+	
 	public Collection<Peripherique> getPeripherique() {
 		return peripherique;
 	}
 	public void setPeripherique(Collection<Peripherique> peripherique) {
 		this.peripherique = peripherique;
 	}
+	
 	public LicenseOs getLicenseOs() {
 		return licenseOs;
 	}

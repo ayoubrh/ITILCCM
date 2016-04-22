@@ -61,7 +61,7 @@ public class LogicielEtApplication implements Serializable {
 		   @ManyToMany
 		   @JoinTable(name="LogApp_machVirt",joinColumns=@JoinColumn(name="id_LogApp"),inverseJoinColumns=@JoinColumn(name="id_machVirt"))
 		   private Collection<MachineVirtuelle> machineVirtuelle;
-		   
+		  
 		   
 		   @ManyToOne
 		   @JoinColumn(name="id_licenseLogiciel")

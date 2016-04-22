@@ -1,5 +1,6 @@
 package com.cosumar.itilccm.entities;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.Column;
@@ -9,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("Vcluster")
-public class Vcluster extends Virtualisation {
+public class Vcluster extends Virtualisation implements Serializable {
 	
 		@Column(nullable=true)
 		@OneToMany(mappedBy="vcluster")

@@ -49,7 +49,7 @@ public class Infrastructure implements Serializable{
    private Date dateD_achat;
    private Date dateDeFinDeGarantie;
    private String description;
-   
+  
    	@ManyToOne
   	@JoinColumn(name="rack_id")
    private Rack rack;
@@ -157,6 +157,7 @@ public class Infrastructure implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	public Rack getRack() {
 		return rack;
 	}
@@ -169,18 +170,21 @@ public class Infrastructure implements Serializable{
 	public void setChassis(Chassis chassis) {
 		this.chassis = chassis;
 	}
+	
 	public java.util.Collection<ConnexionElectrique> getConnexionElectrique() {
 		return connexionElectrique;
 	}
 	public void setConnexionElectrique(java.util.Collection<ConnexionElectrique> connexionElectrique) {
 		this.connexionElectrique = connexionElectrique;
 	}
+	
 	public java.util.Collection<EquipementReseau> getEquipementReseau() {
 		return equipementReseau;
 	}
 	public void setEquipementReseau(java.util.Collection<EquipementReseau> equipementReseau) {
 		this.equipementReseau = equipementReseau;
 	}
+	
 	public Collection<IntefaceReseau> getIntefaceReseau() {
 		return intefaceReseau;
 	}
