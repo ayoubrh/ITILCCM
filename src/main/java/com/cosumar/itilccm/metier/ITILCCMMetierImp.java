@@ -118,6 +118,39 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.getUserByMatricule(matricule);
 	}
 	
+	@Override
+	public Long addPC(Ordinateur pc) {
+		return dao.addPC(pc);
+	}
+
+	@Override
+	public Long addPCUser(Ordinateur pc, Long u) {
+		return dao.addPCUser(pc, u);
+	}
+
+	@Override
+	public void editPC(Ordinateur pc) {
+		dao.editPC(pc);
+	}
+
+	@Override
+	public void deletePC(Long id) {
+		dao.deletePC(id);
+	}
+
+	@Override
+	public List<Ordinateur> ListPC() {
+		return dao.ListPC();
+	}
+
+	@Override
+	public Ordinateur getPC(Long id) {
+		return dao.getPC(id);
+	}
+	
+	
+	
+	
 	
 	public String hashmd5password(String password) throws Exception{
 		//String password = "123456";
@@ -177,6 +210,12 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		
 		// forwards to the view named "Result"
 	}
+
+	
+	
+	
+	
+	
 
 }
 

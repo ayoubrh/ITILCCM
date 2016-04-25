@@ -11,5 +11,11 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<Role> listRole();
 	public List<Departement> listDepartement();
 	public User getUserByMatricule(String matricule);
+	
+	
+	// Ordinateur
+	
+	public List<Ordinateur> ListPC();
+	public Ordinateur getPC(Long id);
 
 }
