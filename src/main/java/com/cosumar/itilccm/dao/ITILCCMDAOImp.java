@@ -159,6 +159,43 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.remove(pc);
 		
 	}
+
+	@Override
+	public Long addImp(Imprimante imp) {
+		em.persist(imp);
+		return imp.getId();
+	}
+
+	@Override
+	public Long addImpUser(Imprimante imp, Long u) {
+		User user = getUser(u);
+		imp.setUser(user);
+		em.persist(imp);
+		return imp.getId();
+	}
+
+	@Override
+	public void editImp(Imprimante imp) {
+		em.merge(imp);
+		
+	}
+
+	@Override
+	public List<Imprimante> ListImp() {
+		Query req = em.createQuery("select imp from Imprimante imp");
+		return req.getResultList();
+	}
+
+	@Override
+	public Imprimante getImp(Long id) {
+		return em.find(Imprimante.class, id);
+	}
+
+	@Override
+	public void deleteImp(Long id) {
+		em.remove(id);
+		
+	}
 	
 	
 	

@@ -39,5 +39,13 @@ public interface ITILCCMDAO {
 	public Ordinateur getPC(Long id);
 	public void deletePC(Long id);
 	
+	// Imprimente
+	public  Long addImp(Imprimante imp);
+	public  Long addImpUser(Imprimante imp, Long u);
+	public void editImp(Imprimante imp);
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
+	public void deleteImp(Long id);
+	
 
 }
