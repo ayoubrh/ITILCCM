@@ -14,8 +14,11 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	
 	
 	// Ordinateur
-	
 	public List<Ordinateur> ListPC();
 	public Ordinateur getPC(Long id);
+	
+	// Impriment
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
 
 }

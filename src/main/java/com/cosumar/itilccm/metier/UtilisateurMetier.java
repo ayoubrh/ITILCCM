@@ -15,8 +15,11 @@ public interface UtilisateurMetier {
 	public String hashmd5password(String password) throws Exception;
 	
 	// Ordinateur
-	
 	public List<Ordinateur> ListPC();
 	public Ordinateur getPC(Long id);
+	
+	// Impriment
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
 
 }

@@ -125,6 +125,24 @@ public class Imprimante implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Imprimante() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Imprimante(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+	public Imprimante(String nom, User user) {
+		super();
+		this.nom = nom;
+		this.user = user;
+	}
+	
+	
    	
    	
 
