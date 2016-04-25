@@ -28,11 +28,12 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Acceuil - ITIL-CCM</title>
+	<title>Nouveau Ordinateur - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -69,7 +70,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-default main-menu-animated page-profile">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -451,128 +452,160 @@ Use search to find needed section.
 
 		Content
 -->
-
-		<!-- Content here -->
-		<c:if test="${v != null }">
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				Votre compte est bien valide.
-			</div>
-		</c:if>
-	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; <strong> CIs</strong></span>
+						<span class="panel-title">Nouveau Ordinateur</span>
 					</div>
 					<div class="panel-body">
-					
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
-												</div>
-											</div>
-										</div>
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contrat</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contrat</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : 0
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
-												</div>
-											</div>
-										</div>
+						<f:form modelAttribute="pc" action="savePC" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
+		
+						<hr class="profile-content-hr no-grid-gutter-h">
+						
+						<div class="profile-content">
+		
+							<ul id="profile-tabs" class="nav nav-tabs">
+								<li class="active">
+									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-logiciels" data-toggle="tab">Logiciels</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Intarfaces réseaux</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-equipement_reseaux" data-toggle="tab">Equipement réseaux</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
+								</li>
+								
+								
+							</ul>
+		
+							<div class="tab-content tab-content-bordered panel-padding">
+								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
+		
+									
+		
+									proprietes
+		
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
+									
+									logiciels
+									
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
+									
+		
+		
+									intarfaces_reseaux
+		
+									
+		
+									
+		
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-equipement_reseaux" id="profile-equipement_reseaux">
+									
+		
+									equipement_reseaux
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								
+								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
+									
+		
+									contacts
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
+									
+		
+									documents
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
+									
+		
+									contrats
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+							</div> <!-- / .tab-content -->
+						</div>
+				
+					
+					
+					
+					
+					
+							<hr class="panel-wide">
+							
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-1">
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+								</div>
+								
+								<div class="col-sm-offset-1 col-sm-7">
+									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+								</div>
+								
+							</div>
+						</f:form>
 					</div>
-		</div>
 					
+					
+		</div>
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- Content here -->
+		
+		
+		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -594,7 +627,16 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		// Javascript code here
+		$('#profile-tabs').tabdrop();
+
+		$("#leave-comment-form").expandingInput({
+			target: 'textarea',
+			hidden_content: '> div',
+			placeholder: 'Write message',
+			onAfterExpand: function () {
+				$('#leave-comment-form textarea').attr('rows', '3').autosize();
+			}
+		});
 	});
 	window.PixelAdmin.start(init);
 </script>
