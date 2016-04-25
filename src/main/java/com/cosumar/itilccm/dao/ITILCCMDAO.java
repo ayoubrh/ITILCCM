@@ -30,6 +30,7 @@ public interface ITILCCMDAO {
 	public Role getRole(Long id);
 	public void attribuerRole(Role r,User u);
 	
+<<<<<<< HEAD
 	//Lieu
 	
 	public Long ajouterLieu(Lieu l);
@@ -44,6 +45,16 @@ public interface ITILCCMDAO {
 	public void supprimerContact(Long id);
 	public List<Contact> listContact();
 	public Contact getContact(Long id);*/
+=======
+	
+	// Ordinateur
+	public  Long addPC(Ordinateur pc);
+	public  Long addPCUser(Ordinateur pc, Long u);
+	public void editPC(Ordinateur pc);
+	public List<Ordinateur> ListPC();
+	public Ordinateur getPC(Long id);
+	public void deletePC(Long id);
+>>>>>>> origin/tawfiq-jpa
 	
 
 }

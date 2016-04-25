@@ -31,4 +31,16 @@ public class Sprint2 {
 		model.addAttribute("logged", logged);
 		return "sprint2/dashbord";
 	}
+	
+	
+	@RequestMapping(value="/admin/add/pc")
+	public String addPC(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		return "sprint2/addPC";
+	}
 }

@@ -30,6 +30,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public Role getRole(Long id);
 	public void attribuerRole(Role r,User u);
 	
+<<<<<<< HEAD
 	//Lieu
 	
 	public Long ajouterLieu(Lieu l);
@@ -38,5 +39,15 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Lieu> listLieu();
 	public Lieu getLieu(Long id);
 	
+=======
+	// Ordinateur
+	public  Long addPC(Ordinateur pc);
+	public  Long addPCUser(Ordinateur pc, Long u);
+	public void editPC(Ordinateur pc);
+	public List<Ordinateur> ListPC();
+	public Ordinateur getPC(Long id);
+	public void deletePC(Long id);
+
+>>>>>>> origin/tawfiq-jpa
 
 }

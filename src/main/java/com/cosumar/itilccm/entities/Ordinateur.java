@@ -25,7 +25,6 @@ public class Ordinateur implements Serializable{
 	
 	@NotEmpty
 	@Size(min=2,max=20)
-	@Column(unique = true)
    private String nom;
    private String statut;
    private String criticite;
@@ -33,7 +32,6 @@ public class Ordinateur implements Serializable{
    	
    	@NotEmpty
 	@Size(min=2,max=20)
-	@Column(unique = true)
    private String type;
    private String cpu;
    private String ram;
@@ -194,6 +192,25 @@ public class Ordinateur implements Serializable{
 	public void setIntefaceReseau(Collection<IntefaceReseau> intefaceReseau) {
 		this.intefaceReseau = intefaceReseau;
 	}
+	
+	
+	public Ordinateur() {
+		super();
+	}
+	public Ordinateur(String nom, String type) {
+		super();
+		this.nom = nom;
+		this.type = type;
+	}
+	public Ordinateur(String nom, String type, User user) {
+		super();
+		this.nom = nom;
+		this.type = type;
+		this.user = user;
+	}
+	
+	
+	
 	
 	   
    

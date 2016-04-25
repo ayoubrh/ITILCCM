@@ -155,5 +155,47 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return em.find(Lieu.class, id);
 	}
 
+	@Override
+	public Long addPC(Ordinateur pc) {
+		em.persist(pc);
+		return pc.getId();
+	}
+
+	@Override
+	public Long addPCUser(Ordinateur pc, Long u) {
+		User user = getUser(u);
+		pc.setUser(user);
+		em.persist(pc);
+		return pc.getId();
+	}
+
+	@Override
+	public void editPC(Ordinateur pc) {
+		em.merge(pc);
+		
+	}
+
+	@Override
+	public List<Ordinateur> ListPC() {
+		Query req = em.createQuery("select pc from Ordinateur pc");
+		return req.getResultList();
+	}
+
+	@Override
+	public Ordinateur getPC(Long id) {
+		return em.find(Ordinateur.class, id);
+	}
+
+	@Override
+	public void deletePC(Long id) {
+		Ordinateur pc = em.find(Ordinateur.class, id);
+		em.remove(pc);
+		
+	}
+	
+	
+	
+	
+
 }
 
