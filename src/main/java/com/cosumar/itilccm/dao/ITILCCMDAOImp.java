@@ -121,6 +121,39 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("matricule",matricule);
 		return (User) req.getSingleResult();
 	}
+	
+    //Lieu
+	
+	@Override
+	public Long ajouterLieu(Lieu l) {
+		em.persist(l);
+		return l.getId();
+	}
+
+	@Override
+	public void modifierLieu(Lieu l) {
+		em.merge(l);
+		
+	}
+
+	@Override
+	public void supprimerLieu(Long id) {
+		Lieu l = em.find(Lieu.class, id);
+		em.remove(l);
+		
+	}
+
+	@Override
+	public List<Lieu> listLieu() {
+		Query req = em.createQuery("select l from Lieu l");
+		return req.getResultList();
+	}
+
+	@Override
+	public Lieu getLieu(Long id) {
+		
+		return em.find(Lieu.class, id);
+	}
 
 }
 

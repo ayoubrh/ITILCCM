@@ -178,5 +178,34 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		// forwards to the view named "Result"
 	}
 
+	@Override
+	public Long ajouterLieu(Lieu l) {
+		
+		return dao.ajouterLieu(l);
+	}
+
+	@Override
+	public void modifierLieu(Lieu l) {
+		dao.modifierLieu(l);
+	}
+
+	@Override
+	public void supprimerLieu(Long id) {
+		dao.supprimerLieu(id);
+		
+	}
+
+	@Override
+	public Lieu getLieu(Long id) {
+		
+		return dao.getLieu(id);
+	}
+
+	@Override
+	public List<Lieu> listLieu() {
+		
+		return dao.listLieu();
+	}
+
 }
 

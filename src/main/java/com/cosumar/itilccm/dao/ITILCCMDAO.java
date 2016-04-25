@@ -29,5 +29,21 @@ public interface ITILCCMDAO {
 	public List<Role> listRole();
 	public Role getRole(Long id);
 	public void attribuerRole(Role r,User u);
+	
+	//Lieu
+	
+	public Long ajouterLieu(Lieu l);
+	public void modifierLieu(Lieu l);
+	public void supprimerLieu(Long id);
+	public List<Lieu> listLieu();
+	public Lieu getLieu(Long id);
+	
+	// Contact
+	/*public Long ajouterContact(Contact c, Long idlieu);
+	public void modifierContact(Contact c);
+	public void supprimerContact(Long id);
+	public List<Contact> listContact();
+	public Contact getContact(Long id);*/
+	
 
 }

@@ -29,6 +29,14 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Role> listRole();
 	public Role getRole(Long id);
 	public void attribuerRole(Role r,User u);
-
+	
+	//Lieu
+	
+	public Long ajouterLieu(Lieu l);
+	public void modifierLieu(Lieu l);
+	public void supprimerLieu(Long id);
+	public List<Lieu> listLieu();
+	public Lieu getLieu(Long id);
+	
 
 }

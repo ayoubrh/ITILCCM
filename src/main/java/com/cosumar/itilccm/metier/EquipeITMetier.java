@@ -11,5 +11,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<Role> listRole();
 	public List<Departement> listDepartement();
 	public User getUserByMatricule(String matricule);
+	public List<Lieu> listLieu();
+	public Lieu getLieu(Long id);
 
 }
