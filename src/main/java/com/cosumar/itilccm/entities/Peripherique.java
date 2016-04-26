@@ -8,7 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -33,9 +36,9 @@ public class Peripherique implements Serializable{
    private Date dateDeFinDeGarantie;
    private String decription;
    
-   @ManyToMany(mappedBy="peripherique")
-   @Column(nullable = true)
-   private Collection<Ordinateur> ordinateur;
+    @ManyToOne
+    @JoinColumn(name="role_id")
+   private Ordinateur ordinateur;
 
 	public Long getId() {
 		return id;
@@ -117,13 +120,25 @@ public class Peripherique implements Serializable{
 		this.decription = decription;
 	}
 	
-	public Collection<Ordinateur> getOrdinateur() {
+	public Ordinateur getOrdinateur() {
 		return ordinateur;
 	}
 	
-	public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+	public void setOrdinateur(Ordinateur ordinateur) {
 		this.ordinateur = ordinateur;
 	}
+
+	public Peripherique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Peripherique(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
 	   
 	   	
 	   

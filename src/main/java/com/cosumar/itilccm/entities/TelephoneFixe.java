@@ -142,6 +142,18 @@ public class TelephoneFixe implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public TelephoneFixe() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TelephoneFixe(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
    	
    	
 

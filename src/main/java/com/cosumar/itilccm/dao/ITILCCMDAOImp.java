@@ -1,5 +1,6 @@
 package com.cosumar.itilccm.dao;
 
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -196,6 +197,205 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.remove(id);
 		
 	}
+
+	@Override
+	public Long addTeleMobile(TelephneMobile telem) {
+		em.persist(telem);
+		return telem.getId();
+	}
+
+	@Override
+	public Long addTeleMobileUser(TelephneMobile telem, Long u) {
+		User user = getUser(u);
+		telem.setUser(user);
+		em.persist(telem);
+		return telem.getId();
+	}
+
+	@Override
+	public void editTeleMobile(TelephneMobile telem) {
+		em.merge(telem);
+		
+	}
+
+	@Override
+	public List<TelephneMobile> ListTeleMobile() {
+		Query req = em.createQuery("select telem from TelephneMobile telem");
+		return req.getResultList();
+	}
+
+	@Override
+	public TelephneMobile getTeleMobile(Long id) {
+		return em.find(TelephneMobile.class, id);
+	}
+
+	@Override
+	public void deleteTeleMobile(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addSIM(Sim sim) {
+		em.persist(sim);
+		return sim.getId();
+	}
+
+	@Override
+	public Long addSIMUser(Sim sim, Long u) {
+		User user = getUser(u);
+		sim.setUser(user);
+		em.persist(sim);
+		return sim.getId();
+	}
+
+	@Override
+	public void editSIM(Sim sim) {
+		em.merge(sim);
+		
+	}
+
+	@Override
+	public List<Sim> ListSIM() {
+		Query req = em.createQuery("select sim from Sim sim");
+		return req.getResultList();
+	}
+
+	@Override
+	public Sim getSIM(Long id) {
+		return em.find(Sim.class, id);
+	}
+
+	@Override
+	public void deleteSIM(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addTablette(Tablette tab) {
+		em.persist(tab);
+		return tab.getId();
+	}
+
+	@Override
+	public Long addTabletteUser(Tablette tab, Long u) {
+		User user = getUser(u);
+		tab.setUser(user);
+		em.persist(tab);
+		return tab.getId();
+	}
+
+	@Override
+	public void editTablette(Tablette tab) {
+		em.merge(tab);
+		
+	}
+
+	@Override
+	public List<Tablette> ListTablette() {
+		Query req = em.createQuery("select tab from Tablette tab");
+		return req.getResultList();
+	}
+
+	@Override
+	public Tablette getTablette(Long id) {
+		return em.find(Tablette.class, id);
+	}
+
+	@Override
+	public void deleteTablette(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addTeleFixe(TelephoneFixe fixe) {
+		em.persist(fixe);
+		return fixe.getId();
+	}
+
+	@Override
+	public Long addTeleFixeUser(TelephoneFixe fixe, Long u) {
+		User user = getUser(u);
+		fixe.setUser(user);
+		em.persist(fixe);
+		return fixe.getId();
+	}
+
+	@Override
+	public void editTeleFixe(TelephoneFixe fixe) {
+		em.merge(fixe);
+		
+	}
+
+	@Override
+	public List<TelephoneFixe> ListTeleFixe() {
+		Query req = em.createQuery("select fixe from TelephoneFixe fixe");
+		return req.getResultList();
+	}
+
+	@Override
+	public TelephoneFixe getTeleFixe(Long id) {
+		return em.find(TelephoneFixe.class, id);
+	}
+
+	@Override
+	public void deleteTeleFixe(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addPeriph(Peripherique per) {
+		em.persist(per);
+		return per.getId();
+	}
+
+	@Override
+	public Long addPeriphPC(Peripherique per, Long pc) {
+		Ordinateur ordi = getPC(pc);
+		//Collection<Ordinateur> ordi = null;
+		//for (Long long1 : pc) {
+		//	ordi.add(getPC(long1));
+		//}
+		per.setOrdinateur(ordi);
+		em.persist(per);
+		return per.getId();
+	}
+
+	@Override
+	public void editPeriph(Peripherique per) {
+		em.merge(per);
+		
+	}
+
+	@Override
+	public List<Peripherique> ListPeriph() {
+		Query req = em.createQuery("select per from Peripherique per");
+		return req.getResultList();
+	}
+
+	@Override
+	public Peripherique getPeriph(Long id) {
+		return em.find(Peripherique.class, id);
+	}
+
+	@Override
+	public void deletePeriph(Long id) {
+		em.remove(id);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

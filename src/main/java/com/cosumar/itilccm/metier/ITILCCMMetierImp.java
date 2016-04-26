@@ -167,18 +167,92 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public void deleteImp(Long id) {
 		dao.deleteImp(id);
 	}
-
+	
 	@Override
 	public List<Imprimante> ListImp() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.ListImp();
 	}
 
 	@Override
 	public Imprimante getImp(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getImp(id);
 	}
+
+	@Override
+	public Long addTeleMobile(TelephneMobile telem) {
+		return dao.addTeleMobile(telem);
+	}
+
+	@Override
+	public Long addTeleMobileUser(TelephneMobile telem, Long u) {
+		return dao.addTeleMobileUser(telem, u);
+	}
+
+	@Override
+	public void editTeleMobile(TelephneMobile telem) {
+		dao.editTeleMobile(telem);
+		
+	}
+
+	@Override
+	public void deleteTeleMobile(Long id) {
+		dao.deleteTeleMobile(id);
+		
+	}
+
+	@Override
+	public List<TelephneMobile> ListTeleMobile() {
+		return dao.ListTeleMobile();
+	}
+
+	@Override
+	public TelephneMobile getTeleMobile(Long id) {
+		return dao.getTeleMobile(id);
+	}
+	
+	@Override
+	public Long addSIM(Sim sim) {
+		return dao.addSIM(sim);
+	}
+
+	@Override
+	public Long addSIMUser(Sim sim, Long u) {
+		return dao.addSIMUser(sim, u);
+	}
+
+	@Override
+	public void editSIM(Sim sim) {
+		dao.editSIM(sim);
+		
+	}
+
+	@Override
+	public void deleteSIM(Long id) {
+		dao.deleteSIM(id);
+		
+	}
+
+	@Override
+	public List<Sim> ListSIM() {
+		return dao.ListSIM();
+	}
+
+	@Override
+	public Sim getSIM(Long id) {
+		return dao.getSIM(id);
+	}
+	
+	
+
+
+	
+	
+	
+
+	
+	
+	
+	
 
 	
 	
@@ -238,13 +312,109 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
             this.mailSender.send(preparator);
         }
         catch (MailException ex) {
-            // simply log it and go on...
             System.err.println(ex.getMessage());            
         }
-		
-		// forwards to the view named "Result"
 	}
 
+	@Override
+	public Long addTablette(Tablette tab) {
+		return dao.addTablette(tab);
+	}
+
+	@Override
+	public Long addTabletteUser(Tablette tab, Long u) {
+		return dao.addTabletteUser(tab, u);
+	}
+
+	@Override
+	public void editTablette(Tablette tab) {
+		dao.editTablette(tab);
+		
+	}
+
+	@Override
+	public void deleteTablette(Long id) {
+		dao.deleteTablette(id);
+		
+	}
+
+	@Override
+	public List<Tablette> ListTablette() {
+		return dao.ListTablette();
+	}
+
+	@Override
+	public Tablette getTablette(Long id) {
+		return dao.getTablette(id);
+	}
+
+	@Override
+	public Long addTeleFixe(TelephoneFixe fixe) {
+		return dao.addTeleFixe(fixe);
+	}
+
+	@Override
+	public Long addTeleFixeUser(TelephoneFixe fixe, Long u) {
+		return dao.addTeleFixeUser(fixe, u);
+	}
+
+	@Override
+	public void editTeleFixe(TelephoneFixe fixe) {
+		dao.editTeleFixe(fixe);
+		
+	}
+
+	@Override
+	public void deleteTeleFixe(Long id) {
+		dao.deleteTeleFixe(id);
+		
+	}
+
+	@Override
+	public List<TelephoneFixe> ListTeleFixe() {
+		return dao.ListTeleFixe();
+	}
+
+	@Override
+	public TelephoneFixe getTeleFixe(Long id) {
+		return dao.getTeleFixe(id);
+	}
+
+	@Override
+	public Long addPeriph(Peripherique per) {
+		return dao.addPeriph(per);
+	}
+
+	@Override
+	public Long addPeriphPC(Peripherique per, Long pc) {
+		return dao.addPeriphPC(per, pc);
+	}
+
+	@Override
+	public void editPeriph(Peripherique per) {
+		dao.editPeriph(per);
+		
+	}
+
+	@Override
+	public void deletePeriph(Long id) {
+		dao.deletePeriph(id);
+		
+	}
+
+	@Override
+	public List<Peripherique> ListPeriph() {
+		return dao.ListPeriph();
+	}
+
+	@Override
+	public Peripherique getPeriph(Long id) {
+		return dao.getPeriph(id);
+	}
+	
+	
+
+	
 	
 	
 	

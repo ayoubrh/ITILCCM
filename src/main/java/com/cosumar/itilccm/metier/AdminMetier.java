@@ -46,6 +46,46 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Imprimante> ListImp();
 	public Imprimante getImp(Long id);
 	public void deleteImp(Long id);
+	
+	// Telephone Mobile
+	public  Long addTeleMobile(TelephneMobile telem);
+	public  Long addTeleMobileUser(TelephneMobile telem, Long u);
+	public void editTeleMobile(TelephneMobile telem);
+	public List<TelephneMobile> ListTeleMobile();
+	public TelephneMobile getTeleMobile(Long id);
+	public void deleteTeleMobile(Long id);
+	
+	// SIM
+	public  Long addSIM(Sim sim);
+	public  Long addSIMUser(Sim sim, Long u);
+	public void editSIM(Sim sim);
+	public List<Sim> ListSIM();
+	public Sim getSIM(Long id);
+	public void deleteSIM(Long id);
+	
+	// Tablette
+	public  Long addTablette(Tablette tab);
+	public  Long addTabletteUser(Tablette tab, Long u);
+	public void editTablette(Tablette tab);
+	public List<Tablette> ListTablette();
+	public Tablette getTablette(Long id);
+	public void deleteTablette(Long id);
+	
+	// Telephone Fixe
+	public  Long addTeleFixe(TelephoneFixe fixe);
+	public  Long addTeleFixeUser(TelephoneFixe fixe, Long u);
+	public void editTeleFixe(TelephoneFixe fixe);
+	public List<TelephoneFixe> ListTeleFixe();
+	public TelephoneFixe getTeleFixe(Long id);
+	public void deleteTeleFixe(Long id);
+	
+	// Peripherique
+	public  Long addPeriph(Peripherique per);
+	public  Long addPeriphPC(Peripherique per, Long pc);
+	public void editPeriph(Peripherique per);
+	public List<Peripherique> ListPeriph();
+	public Peripherique getPeriph(Long id);
+	public void deletePeriph(Long id);
 
 
 }

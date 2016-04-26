@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Sim implements Serializable{
 	
@@ -20,9 +22,10 @@ public class Sim implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private Long id;
 	
-	@Column(nullable=true)
+	@NotEmpty
    	@Size(max=16)
    	@Pattern(regexp="(^$|[0-9]{10})")
+	@Column(unique=true)
    private String numero;
 	
 	@Column(nullable=true)
@@ -34,6 +37,9 @@ public class Sim implements Serializable{
     @Size(max=6)
     @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
    private Long puk;
+	
+	@NotEmpty
+	@Size(min=2,max=20)
    private String operateur;
    
    @OneToOne
@@ -86,6 +92,19 @@ public class Sim implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Sim() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Sim(String numero, String operateur) {
+		super();
+		this.numero = numero;
+		this.operateur = operateur;
+	}
+	
+	
 	   
    
    

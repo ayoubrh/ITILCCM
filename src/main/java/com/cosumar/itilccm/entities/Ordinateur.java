@@ -54,8 +54,7 @@ public class Ordinateur implements Serializable{
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
-   	@ManyToMany
-    @Column(nullable = true)
+   	@OneToMany(mappedBy="ordinateur")
    private Collection<Peripherique> peripherique;
    	
 	 @ManyToOne
