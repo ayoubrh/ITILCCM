@@ -19,50 +19,44 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class MachineVirtuelle implements Serializable {
 	
-		       @Id
-		       @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private Long id;
-		       
-		       @NotEmpty
-			   private String nom;
-		       
-			   private String statut;
-			   private String criticite;
-			   private String ip;
-			   private String cpu;
-			   private String ram;
-			   private Date dateDeMiseEnProduction;
-			   private String description;
-			   
-			   @Column(nullable=true)
-			   @ManyToMany
-			   @JoinTable(name="MachVirt_voluLogique",joinColumns=
-			   @JoinColumn(name="id_MachVirt"),
-			   inverseJoinColumns=@JoinColumn(name="id_vologiue"))
-			   private Collection<VolumeLogique> volumelogique;
-			   
-			   @Column(nullable=true)
-			   @OneToMany(mappedBy="machineVirtuelle")
-			   private Collection<IntefaceReseau> intefaceReseau;
-			   
-			   @Column(nullable=true)
-			   @ManyToMany
-			   @JoinTable(name="MachVirt_sltApp",joinColumns=
-			   @JoinColumn(name="id_MachVirt"),
-			   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
-			   private Collection<SolutionApplicative> solutionApplicative;
-			   
-			   @ManyToOne
-			   @JoinColumn(name="id_virtualisation")
-			   private Virtualisation virtualisation;
-			   
-			   @ManyToOne
-			   @JoinColumn(name="id_licenseOs")
-			   private LicenseOs licenseOs;
-			   
-			   @Column(nullable=true)
-			   @ManyToMany(mappedBy="machineVirtuelle")
-			   private Collection<LogicielEtApplication> logicielEtApplication;
+       @Id
+       @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+       
+       @NotEmpty
+	   private String nom;
+       
+	   private String statut;
+	   private String criticite;
+	   private String ip;
+	   private String cpu;
+	   private String ram;
+	   private Date dateDeMiseEnProduction;
+	   private String description;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<VolumeLogique> volumelogique;
+	   
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="machineVirtuelle")
+	   private Collection<IntefaceReseau> intefaceReseau;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<SolutionApplicative> solutionApplicative;
+	   
+	   @ManyToOne
+	   @JoinColumn(name="id_virtualisation")
+	   private Virtualisation virtualisation;
+	   
+	   @ManyToOne
+	   @JoinColumn(name="id_licenseOs")
+	   private LicenseOs licenseOs;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="machineVirtuelle")
+	   private Collection<LogicielEtApplication> logicielEtApplication;
 		   
 		public MachineVirtuelle() {
 			super();

@@ -20,6 +20,26 @@ public class PduElectrique extends ConnexionElectrique implements Serializable{
 	 @ManyToOne
   	 @JoinColumn(name="rack_id")
 	private Rack rack;
+	 
+	 
+
+	public PduElectrique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PduElectrique(String nom, String statut, String criticite, String marque, String modele, String nbUnite,
+			String numeroDeSerie, String numeroAsset, Date dateDeMiseEnProduction, Date dateD_achat,
+			Date dateDeFinDeGarantie, String description) {
+		super(nom, statut, criticite, marque, modele, nbUnite, numeroDeSerie, numeroAsset, dateDeMiseEnProduction, dateD_achat,
+				dateDeFinDeGarantie, description);
+		// TODO Auto-generated constructor stub
+	}
+
+	public PduElectrique(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
 
 	public ArriveeElectrique getArriveeElectrique() {
 		return arriveeElectrique;

@@ -17,37 +17,37 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class LicenseOs implements Serializable {
 	
-			   @Id
-			   @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private Long id;
-			   
-			   @NotEmpty
-			   private String nom;
-			   
-			   private String limiteD_utilisation;
-			   private String description;
-			   
-			   @NotEmpty
-			   private String perpetuelle;
-			   
-			   private Date dateDeDebutDeValidite;
-			   private Date dateDeFinDeValiite;
-			   private String cle;
-			   
-			   @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
-			   private VersionOs versionOs;
-			   
-			   @Column(nullable=true)
-			   @OneToMany(mappedBy="licenseOs")
-			   private Collection<Ordinateur> ordinateur;
-			   
-			   @Column(nullable=true)
-			   @OneToMany(mappedBy="licenseOs")
-			   private Collection<Serveur> serveur;
-			   
-			   @Column(nullable=true)
-			   @OneToMany(mappedBy="licenseOs")
-			   private Collection<MachineVirtuelle> machineVirtuelle;
+		   @Id
+		   @GeneratedValue(strategy=GenerationType.IDENTITY)
+		   private Long id;
+		   
+		   @NotEmpty
+		   private String nom;
+		   
+		   private String limiteD_utilisation;
+		   private String description;
+		   
+		   @NotEmpty
+		   private String perpetuelle;
+		   
+		   private Date dateDeDebutDeValidite;
+		   private Date dateDeFinDeValiite;
+		   private String cle;
+		   
+		   @OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+		   private VersionOs versionOs;
+		   
+		   @Column(nullable=true)
+		   @OneToMany(mappedBy="licenseOs")
+		   private Collection<Ordinateur> ordinateur;
+		   
+		   @Column(nullable=true)
+		   @OneToMany(mappedBy="licenseOs")
+		   private Collection<Serveur> serveur;
+		   
+		   @Column(nullable=true)
+		   @OneToMany(mappedBy="licenseOs")
+		   private Collection<MachineVirtuelle> machineVirtuelle;
 
 			public LicenseOs() {
 				super();

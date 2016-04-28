@@ -18,28 +18,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class InstanceDeBasseDeDonnes implements Serializable {
 			
-			   @Id
-			   @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private Long id;
-			   
-			   @NotEmpty
-			   private String nom;
-			   
-			   private String critiicite;
-			   private Date dateDeMiseEnnProduction;
-			   private String description;
-			   
-			   @Column(nullable=true)
-			   @ManyToMany
-			   @JoinTable(name="InstBD_sltApp",joinColumns=
-			   @JoinColumn(name="id_InstBD"),
-			   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
-			   private java.util.Collection<SolutionApplicative> solutionApplicative;
-			   
-			   //@NotEmpty
-			   @ManyToOne
-			   @JoinColumn(name="id_serBD")
-			   private ServeurDeBasseDeDonnees serveurDeBasseDeDonnees;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   
+	   private String critiicite;
+	   private Date dateDeMiseEnnProduction;
+	   private String description;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private java.util.Collection<SolutionApplicative> solutionApplicative;
+	   
+	   //@NotEmpty
+	   @ManyToOne
+	   @JoinColumn(name="id_serBD")
+	   private ServeurDeBasseDeDonnees serveurDeBasseDeDonnees;
 		   
 		public InstanceDeBasseDeDonnes() {
 			super();

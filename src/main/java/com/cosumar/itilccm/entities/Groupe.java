@@ -16,22 +16,22 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Groupe implements Serializable {
 	
-		       @Id
-		       @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private Long id;
-		       
-		       @NotEmpty
-			   private String nom;
-		       
-		       @NotEmpty
-			   private String statut;
-		       
-			   private String type;
-			   private String description;
-			   
-			   @ManyToOne
-			   @JoinColumn(name="id_groupe")
-			   private Groupe groupe_parent;
+       @Id
+       @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+       
+       @NotEmpty
+	   private String nom;
+       
+       @NotEmpty
+	   private String statut;
+       
+	   private String type;
+	   private String description;
+	   
+	   @ManyToOne
+	   @JoinColumn(name="id_groupe")
+	   private Groupe groupe_parent;
 		   
 		public Groupe() {
 			super();

@@ -60,6 +60,24 @@ public class ConnexionElectrique implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public ConnexionElectrique(String nom, String statut, String criticite, String marque, String modele,
+			String nbUnite, String numeroDeSerie, String numeroAsset, Date dateDeMiseEnProduction, Date dateD_achat,
+			Date dateDeFinDeGarantie, String description) {
+		super();
+		this.nom = nom;
+		this.statut = statut;
+		this.criticite = criticite;
+		this.marque = marque;
+		this.modele = modele;
+		this.nbUnite = nbUnite;
+		this.numeroDeSerie = numeroDeSerie;
+		this.numeroAsset = numeroAsset;
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+		this.dateD_achat = dateD_achat;
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+		this.description = description;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -14,25 +14,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class LicenseLogiciel implements Serializable {
 	
-		   @Id
-		   @GeneratedValue(strategy=GenerationType.IDENTITY)
-		   private Long id;
-		   
-		   @NotEmpty
-		   private String nom;
-		   
-		   private String limiteD_utilisation;
-		   private String description;
-		   
-		   @NotEmpty
-		   private String perpetuelle;
-		   
-		   private Date dateDeFinDeValiite;
-		   private Date dateDeDebutDeValidite;
-		   private String cle;
-		   
-		   @OneToOne
-		   private LogicielEtApplication logicielEtApplications;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   
+	   private String limiteD_utilisation;
+	   private String description;
+	   
+	   @NotEmpty
+	   private String perpetuelle;
+	   
+	   private Date dateDeFinDeValiite;
+	   private Date dateDeDebutDeValidite;
+	   private String cle;
+	   
+	   @OneToOne
+	   private LogicielEtApplication logicielEtApplications;
         
 		public LicenseLogiciel() {
 			super();

@@ -17,41 +17,38 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Contrat implements Serializable {
 	
-			       @Id
-			       @GeneratedValue(strategy=GenerationType.IDENTITY)
-				   private Long id;
-			       
-			       @NotEmpty
-				   private String nom;
-			       
-			       @NotEmpty
-				   private String client;
-			       
-				   private String description;
-				   private Date dateDeDebut;
-				   private Date dateDeFin;
-				   private double cout;
-				   private String monnaie;
-				   private String periodiciteDeFacturation;
-				   private String uniteDeCout;
-				   
-				   @NotEmpty
-				   private String fournisseur;
-				   
-				   private String niveauDeService;
-				   private String statut;
-				   private String typeDeContrat;
-				   
-				   @Column(nullable=true)
-				   @ManyToMany(mappedBy="contrats")
-				   private Collection<Contact> contacts;
-				   
-				   @Column(nullable=true)
-				   @ManyToMany
-				   @JoinTable(name="Contrat_Docum",joinColumns=
-				   @JoinColumn(name="id_Contrat"),
-				   inverseJoinColumns=@JoinColumn(name="id_Document"))
-				   private Collection<Document> documents;
+	       @Id
+	       @GeneratedValue(strategy=GenerationType.IDENTITY)
+		   private Long id;
+	       
+	       @NotEmpty
+		   private String nom;
+	       
+	       @NotEmpty
+		   private String client;
+	       
+		   private String description;
+		   private Date dateDeDebut;
+		   private Date dateDeFin;
+		   private double cout;
+		   private String monnaie;
+		   private String periodiciteDeFacturation;
+		   private String uniteDeCout;
+		   
+		   @NotEmpty
+		   private String fournisseur;
+		   
+		   private String niveauDeService;
+		   private String statut;
+		   private String typeDeContrat;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<Contact> contacts;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany
+		   private Collection<Document> documents;
 		   
 			public Contrat() {
 				super();
