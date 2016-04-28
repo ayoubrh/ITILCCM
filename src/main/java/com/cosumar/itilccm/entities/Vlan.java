@@ -73,6 +73,16 @@ public class Vlan implements Serializable{
 	public void setSubnet(Collection<Subnet> subnet) {
 		this.subnet = subnet;
 	}
+
+	public Vlan() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Vlan(String vlantag) {
+		super();
+		this.vlantag = vlantag;
+	}
    	
    	
    

@@ -31,12 +31,12 @@ public class Sim implements Serializable{
 	@Column(nullable=true)
     @Size(max=5)
     @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private Long pin;
+   private String pin;
 	
 	@Column(nullable=true)
     @Size(max=6)
     @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private Long puk;
+   private String puk;
 	
 	@NotEmpty
 	@Size(min=2,max=20)
@@ -61,22 +61,22 @@ public class Sim implements Serializable{
 		this.numero = numero;
 	}
 	
-	public Long getPin() {
+	public String getPin() {
 		return pin;
 	}
-	
-	public void setPin(Long pin) {
+
+	public void setPin(String pin) {
 		this.pin = pin;
 	}
-	
-	public Long getPuk() {
+
+	public String getPuk() {
 		return puk;
 	}
-	
-	public void setPuk(Long puk) {
+
+	public void setPuk(String puk) {
 		this.puk = puk;
 	}
-	
+
 	public String getOperateur() {
 		return operateur;
 	}

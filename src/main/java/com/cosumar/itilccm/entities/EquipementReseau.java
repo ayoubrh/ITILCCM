@@ -246,6 +246,17 @@ public class EquipementReseau implements Serializable{
 	public void setOrdinateur(Collection<Ordinateur> ordinateur) {
 		this.ordinateur = ordinateur;
 	}
+
+	public EquipementReseau() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public EquipementReseau(String nom, String type) {
+		super();
+		this.nom = nom;
+		this.type = type;
+	}
    
    
    

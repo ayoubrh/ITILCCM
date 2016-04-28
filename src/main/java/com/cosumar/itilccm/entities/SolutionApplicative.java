@@ -186,6 +186,18 @@ public class SolutionApplicative implements Serializable{
 		this.applicationWeb = applicationWeb;
 	}
 
+	public SolutionApplicative() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SolutionApplicative(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
+
    
 	 
    

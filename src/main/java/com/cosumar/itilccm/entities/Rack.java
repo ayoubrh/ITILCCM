@@ -177,6 +177,16 @@ public class Rack implements Serializable{
 	public void setInfrastructure(Collection<Infrastructure> infrastructure) {
 		this.infrastructure = infrastructure;
 	}
+
+	public Rack() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Rack(String nom) {
+		super();
+		this.nom = nom;
+	}
 	
 		
 	

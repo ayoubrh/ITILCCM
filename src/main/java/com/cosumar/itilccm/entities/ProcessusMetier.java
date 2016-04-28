@@ -88,6 +88,16 @@ public class ProcessusMetier implements Serializable{
 	public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 		this.solutionApplicative = solutionApplicative;
 	}
+
+	public ProcessusMetier() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ProcessusMetier(String nom) {
+		super();
+		this.nom = nom;
+	}
    
    	
    

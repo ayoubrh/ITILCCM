@@ -197,6 +197,14 @@ public class Infrastructure implements Serializable{
 	public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 		this.solutionApplicative = solutionApplicative;
 	}
+	public Infrastructure() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Infrastructure(String nom) {
+		super();
+		this.nom = nom;
+	}
 	
 		
 	

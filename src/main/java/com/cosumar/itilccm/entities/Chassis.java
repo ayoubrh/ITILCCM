@@ -165,6 +165,16 @@ public class Chassis implements Serializable{
 	public void setInfrastructure(Collection<Infrastructure> infrastructure) {
 		this.infrastructure = infrastructure;
 	}
+
+	public Chassis() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Chassis(String nom) {
+		super();
+		this.nom = nom;
+	}
    	
    	
 

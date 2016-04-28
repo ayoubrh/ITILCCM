@@ -121,6 +121,17 @@ public class VolumeLogique implements Serializable{
 	public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 		this.virtualisation = virtualisation;
 	}
+	public VolumeLogique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public VolumeLogique(String nom, String lunId) {
+		super();
+		this.nom = nom;
+		this.lunId = lunId;
+	}
+	
+	
 	
 		
    
