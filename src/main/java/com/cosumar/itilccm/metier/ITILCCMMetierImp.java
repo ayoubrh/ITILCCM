@@ -243,23 +243,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 	
 	
-
-
-	
-	
-	
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
 	public String hashmd5password(String password) throws Exception{
 		//String password = "123456";
     	

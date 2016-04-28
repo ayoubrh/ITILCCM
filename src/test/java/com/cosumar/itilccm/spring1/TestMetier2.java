@@ -2,10 +2,22 @@ package com.cosumar.itilccm.spring1;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.cosumar.itilccm.entities.Bandotheque;
+import com.cosumar.itilccm.entities.Fibre;
+import com.cosumar.itilccm.entities.Infrastructure;
+import com.cosumar.itilccm.entities.IntefaceReseau;
+import com.cosumar.itilccm.entities.Logique;
+import com.cosumar.itilccm.entities.Nas;
+import com.cosumar.itilccm.entities.Physique;
+import com.cosumar.itilccm.entities.Serveur;
+import com.cosumar.itilccm.entities.SwitchSan;
+import com.cosumar.itilccm.entities.SystemeDeStockage;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
 
@@ -40,6 +52,45 @@ public class TestMetier2 {
 			m.modifierUser(u3);
 			assertTrue(true);
 		}catch(Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	}
+	
+	@Test
+	public void IntefaceReseau() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			List<IntefaceReseau> imp1 = m.ListInterfaceReseau();
+			m.addFibre(new Fibre("IntefaceReseau 4"));
+			m.addLogique(new Logique("IntefaceReseau 5"));
+			m.addPhysique(new Physique("IntefaceReseau 6"));
+			List<IntefaceReseau> imp2 = m.ListInterfaceReseau();
+			for (IntefaceReseau intefaceReseau : imp2) {
+				System.out.println("***** "+intefaceReseau.getId()+"*********");
+			}
+			assertTrue(imp1.size()+3 == imp2.size());
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	}
+	
+	@Test
+	public void Infrastructure() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			List<Infrastructure> imp1 = m.ListInfrastructure();
+			m.addBandotheque(new Bandotheque("Infrastructure 6"));
+			m.addServeur(new Serveur("Infrastructure 7"));
+			m.addSystemeDeStockage(new SystemeDeStockage("Infrastructure 8"));
+			m.addSwitchSan(new SwitchSan("Infrastructure 9"));
+			m.addNas(new Nas("Infrastructur 10"));
+			
+			List<Infrastructure> imp2 = m.ListInfrastructure();
+			for (Infrastructure infrastructure : imp2) {
+				System.out.println("*******"+infrastructure.getNom()+"*******"+infrastructure.getId());
+			}
+			assertTrue(imp1.size()+5== imp2.size());
+		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
 		}
 	}

@@ -31,7 +31,6 @@ public class EquipementReseau implements Serializable{
    
    	@NotEmpty
 	@Size(min=2,max=20)
-	@Column(unique = true)
    private String type;
    private String marque;
    private String modele;
