@@ -21,6 +21,8 @@ public class Lieu implements Serializable {
 			   @GeneratedValue(strategy=GenerationType.IDENTITY)
 			   private Long id;
 			   
+			   @NotEmpty
+			   private String nom;
 			   private String statut;
 			   
 			   @NotEmpty
@@ -46,8 +48,24 @@ public class Lieu implements Serializable {
 			// TODO Auto-generated constructor stub
 		}
 	
-	   public Lieu(String statut, String organisme, String adresse, String codePostale, String ville, String pays) {
+	   
+
+		public String getNom() {
+			return nom;
+		}
+
+
+
+		public void setNom(String nom) {
+			this.nom = nom;
+		}
+
+
+
+		public Lieu(String nom, String statut, String organisme, String adresse, String codePostale, String ville,
+				String pays) {
 			super();
+			this.nom = nom;
 			this.statut = statut;
 			this.organisme = organisme;
 			this.adresse = adresse;
@@ -55,6 +73,8 @@ public class Lieu implements Serializable {
 			this.ville = ville;
 			this.pays = pays;
 		}
+
+
 
 		public Long getId() {
 			return id;
@@ -125,14 +145,14 @@ public class Lieu implements Serializable {
 			this.pays = pays;
 		}
 		
-		
-		public Collection<Contact> getContact() {
+		public Collection<Contact> getContacts() {
 			return contacts;
 		}
-		
-		
-		public void setContact(Collection<Contact> contact) {
-			this.contacts = contact;
+
+
+
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
 		}
 		
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cosumar.itilccm.entities.Lieu;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
@@ -42,5 +43,16 @@ public class Sprint2 {
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
 		return "sprint2/addPC";
+	}
+	
+	@RequestMapping(value="/admin/add/lieu")
+	public String addLieu(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+	    model.addAttribute("logged", logged);
+		model.addAttribute("lieu", new Lieu() );
+		return "sprint2/addLieu";
 	}
 }
