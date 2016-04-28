@@ -16,25 +16,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Document implements Serializable {
 	
-				   @Id
-				   @GeneratedValue(strategy=GenerationType.IDENTITY)
-				   private Long id;
-				   
-				   @NotEmpty
-				   private String nom;
-				   
-				   private String statut;
-				   private String version;
-				   private String type;
-				   private String description;
-				   private String fichier;
-				   
-				   @Lob
-				   private byte[] bfichier;
-				   
-				   @Column(nullable=true)
-				   @ManyToMany(mappedBy="documents")
-				   private Collection<Contrat> contrats;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   
+	   private String statut;
+	   private String version;
+	   private String type;
+	   private String description;
+	   private String fichier;
+	   
+	   @Lob
+	   private byte[] bfichier;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<Contrat> contrats;
 
 		public Document() {
 			super();

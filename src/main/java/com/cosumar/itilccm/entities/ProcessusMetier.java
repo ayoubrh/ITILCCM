@@ -94,6 +94,16 @@ public class ProcessusMetier implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public ProcessusMetier(String nom, String statut, String criticite, Date dateDeMiseDeProduction,
+			String description) {
+		super();
+		this.nom = nom;
+		this.statut = statut;
+		this.criticite = criticite;
+		this.dateDeMiseDeProduction = dateDeMiseDeProduction;
+		this.description = description;
+	}
+
 	public ProcessusMetier(String nom) {
 		super();
 		this.nom = nom;

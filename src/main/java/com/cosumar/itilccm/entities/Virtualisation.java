@@ -23,35 +23,29 @@ import org.hibernate.validator.constraints.NotEmpty;
 @DiscriminatorColumn(name="type_Virtualisation")
 public class Virtualisation implements Serializable {
 	
-		   @Id
-		   @GeneratedValue(strategy=GenerationType.IDENTITY)
-		   private Long id;
-		   
-		   @NotEmpty
-		   private String nom;
-		   
-		   private String statut;
-		   private String criticite;
-		   private Date dateDeMiseEnProduction;
-		   private String description;
-		   
-		   @Column(nullable=true)
-		   @OneToMany(mappedBy="virtualisation")
-		   private Collection<MachineVirtuelle> machineVirtuelle;
-		   
-		   @Column(nullable=true)
-		   @ManyToMany
-		   @JoinTable(name="Virt_voluLogique",joinColumns=
-		   @JoinColumn(name="id_Virt"),
-		   inverseJoinColumns=@JoinColumn(name="id_volLogique"))
-		   private java.util.Collection<VolumeLogique> volumelogique;
-		   
-		   @Column(nullable=true)
-		   @ManyToMany
-		   @JoinTable(name="Virt_sltApp",joinColumns=
-		   @JoinColumn(name="id_Virt"),
-		   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
-		   private Collection<SolutionApplicative> solutionApplicative;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   
+	   private String statut;
+	   private String criticite;
+	   private Date dateDeMiseEnProduction;
+	   private String description;
+	   
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="virtualisation")
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private java.util.Collection<VolumeLogique> volumelogique;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<SolutionApplicative> solutionApplicative;
 		   
 		public Virtualisation() {
 			super();

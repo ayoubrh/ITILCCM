@@ -23,49 +23,39 @@ import org.hibernate.validator.constraints.NotEmpty;
 @DiscriminatorColumn(name="type_Logiciel")
 public class LogicielEtApplication implements Serializable {
 	
-		   @Id
-		   @GeneratedValue(strategy=GenerationType.IDENTITY)
-		   private Long id;
-		   
-		   @NotEmpty
-		   private String nom;
-		   
-		   private String statut;
-		   private String criticite;
-		   private String cheminD_installation;
-		   private Date dateDeMiseEnProduction;
-		   private String description;
-		   
-		   @Column(nullable=true)
-		   @ManyToMany
-		   @JoinTable(name="LogApp_Ordi",joinColumns=
-		   @JoinColumn(name="id_LogApp"),
-		   inverseJoinColumns=@JoinColumn(name="id_Ordi"))
-		   private Collection<Ordinateur> ordinateur;
-		   
-		   @Column(nullable=true)
-		   @ManyToMany
-		   @JoinTable(name="LogApp_sltApp",joinColumns=
-		   @JoinColumn(name="id_LogApp"),
-		   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
-		   private Collection<SolutionApplicative> solutionApplicative;
-		   
-		   @Column(nullable=true)
-		   @ManyToMany
-		   @JoinTable(name="LogApp_sereur",joinColumns=
-		   @JoinColumn(name="id_LogApp"),
-		   inverseJoinColumns=@JoinColumn(name="id_serveur"))
-		   private Collection<Serveur> serveur;
-		   
-		   @Column(nullable=true)
-		   @ManyToMany
-		   @JoinTable(name="LogApp_machVirt",joinColumns=@JoinColumn(name="id_LogApp"),inverseJoinColumns=@JoinColumn(name="id_machVirt"))
-		   private Collection<MachineVirtuelle> machineVirtuelle;
-		  
-		   
-		   @ManyToOne
-		   @JoinColumn(name="id_licenseLogiciel")
-		   private LicenseLogiciel licenseLogiciel;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   
+	   private String statut;
+	   private String criticite;
+	   private String cheminD_installation;
+	   private Date dateDeMiseEnProduction;
+	   private String description;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Ordinateur> ordinateur;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<SolutionApplicative> solutionApplicative;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Serveur> serveur;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	  
+	   
+	   @ManyToOne
+	   @JoinColumn(name="id_licenseLogiciel")
+	   private LicenseLogiciel licenseLogiciel;
 		   
 		public LogicielEtApplication() {
 			super();

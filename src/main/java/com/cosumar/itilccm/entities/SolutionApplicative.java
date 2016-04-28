@@ -191,10 +191,17 @@ public class SolutionApplicative implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public SolutionApplicative(String nom) {
+	public SolutionApplicative(String nom, String statut, String criticite, Date dateDeMiseEnProduction,
+			String description) {
 		super();
 		this.nom = nom;
+		this.statut = statut;
+		this.criticite = criticite;
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+		this.description = description;
 	}
+
+	
 	
 	
 

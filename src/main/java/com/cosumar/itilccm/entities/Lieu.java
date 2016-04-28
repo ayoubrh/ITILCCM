@@ -17,31 +17,31 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Lieu implements Serializable {
 	
-			   @Id
-			   @GeneratedValue(strategy=GenerationType.IDENTITY)
-			   private Long id;
-			   
-			   @NotEmpty
-			   private String nom;
-			   private String statut;
-			   
-			   @NotEmpty
-			   @Size(min=4,max=30)
-			   private String organisme;
-			   
-			   private String adresse;
-			   
-			   @Column(nullable=true)
-			   @Size(max=5)
-			   @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-			   private String codePostale;
-			   
-			   private String ville;
-			   private String pays;
-			   
-			   @Column(nullable=true)
-			   @OneToMany(mappedBy="lieu")
-			   private Collection<Contact> contacts;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   private String statut;
+	   
+	   @NotEmpty
+	   @Size(min=4,max=30)
+	   private String organisme;
+	   
+	   private String adresse;
+	   
+	   @Column(nullable=true)
+	   @Size(max=5)
+	   @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
+	   private String codePostale;
+	   
+	   private String ville;
+	   private String pays;
+	   
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="lieu")
+	   private Collection<Contact> contacts;
 	
 		public Lieu() {
 			super();

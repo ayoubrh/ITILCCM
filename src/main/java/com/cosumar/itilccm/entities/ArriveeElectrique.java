@@ -15,6 +15,26 @@ public class ArriveeElectrique extends ConnexionElectrique implements Serializab
 	 @OneToMany(mappedBy="arriveeElectrique")
   	 @Column(nullable = true)
 	private Collection<PduElectrique> pduElectrique;
+	 
+
+
+	public ArriveeElectrique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ArriveeElectrique(String nom, String statut, String criticite, String marque, String modele, String nbUnite,
+			String numeroDeSerie, String numeroAsset, Date dateDeMiseEnProduction, Date dateD_achat,
+			Date dateDeFinDeGarantie, String description) {
+		super(nom, statut, criticite, marque, modele, nbUnite, numeroDeSerie, numeroAsset, dateDeMiseEnProduction, dateD_achat,
+				dateDeFinDeGarantie, description);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ArriveeElectrique(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
 
 	public Collection<PduElectrique> getPduElectrique() {
 		return pduElectrique;

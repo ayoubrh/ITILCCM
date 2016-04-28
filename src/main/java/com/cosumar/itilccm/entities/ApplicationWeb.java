@@ -18,28 +18,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class ApplicationWeb implements Serializable {
 	
-			       @Id
-			       @GeneratedValue(strategy=GenerationType.IDENTITY)
-				   private Long id;
-			       
-			       @NotEmpty
-				   private String nom;
-			       
-				   private String url;
-				   private String criticite;
-				   private Date dateDeMiseEnProduction;
-				   private String decription;
-				   
-				   @Column(nullable=true)
-				   @ManyToMany
-				   @JoinTable(name="AppWeb_sltApp",joinColumns=
-				   @JoinColumn(name="id_ApplicationWeb"),
-				   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
-				   private java.util.Collection<SolutionApplicative> solutionApplicative;
-				   
-				   @ManyToOne
-				   @JoinColumn(name="id_serveurWeb")
-				   private ServeurWeb serveurWeb;
+       @Id
+       @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+       
+       @NotEmpty
+	   private String nom;
+       
+	   private String url;
+	   private String criticite;
+	   private Date dateDeMiseEnProduction;
+	   private String decription;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private java.util.Collection<SolutionApplicative> solutionApplicative;
+	   
+	   @ManyToOne
+	   @JoinColumn(name="id_serveurWeb")
+	   private ServeurWeb serveurWeb;
 		   
 		public ApplicationWeb() {
 			super();

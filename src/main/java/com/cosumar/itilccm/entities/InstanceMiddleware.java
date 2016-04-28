@@ -18,27 +18,24 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class InstanceMiddleware implements Serializable {
 	
-				   @Id
-				   @GeneratedValue(strategy=GenerationType.IDENTITY)
-				   private Long id;
-				   
-				   @NotEmpty
-				   private String nom;
-				   
-				   private String criticite;
-				   private Date dateDeMiseEnProduction;
-				   private String description;
-				   
-				   @Column(nullable=true)
-				   @ManyToMany
-				   @JoinTable(name="InstMidd_sltApp",joinColumns=
-				   @JoinColumn(name="id_InstMidd"),
-				   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
-				   private Collection<SolutionApplicative> solutionApplicative;
-				   
-				   @ManyToOne
-				   @JoinColumn(name="id_middleware")
-				   private Middleware middleware;
+	   @Id
+	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	   private Long id;
+	   
+	   @NotEmpty
+	   private String nom;
+	   
+	   private String criticite;
+	   private Date dateDeMiseEnProduction;
+	   private String description;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<SolutionApplicative> solutionApplicative;
+	   
+	   @ManyToOne
+	   @JoinColumn(name="id_middleware")
+	   private Middleware middleware;
 		   
 		public InstanceMiddleware() {
 			super();

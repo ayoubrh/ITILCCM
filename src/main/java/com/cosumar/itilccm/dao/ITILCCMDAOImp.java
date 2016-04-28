@@ -734,8 +734,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<ConnexionElectrique> ListConnexionElectrique() {
-		// TODO Auto-generated method stub
-		return null;
+		Query req = em.createQuery("select ce from ConnexionElectrique ce");
+		return req.getResultList();
 	}
 
 	@Override
@@ -1077,16 +1077,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public void deleteEquipementReseau(Long id) {
 		em.remove(id);		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//Contact
 	
