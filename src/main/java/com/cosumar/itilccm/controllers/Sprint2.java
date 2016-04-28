@@ -30,6 +30,43 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
+		model.addAttribute("Rack", logged);
+		model.addAttribute("Chassis", logged);
+		model.addAttribute("Serveur", logged);
+		model.addAttribute("SwitchSAN", logged);
+		model.addAttribute("NAS", logged);
+		model.addAttribute("Bandotheque", logged);
+		model.addAttribute("ConnectionElectrique", logged);
+		model.addAttribute("DVR", logged);
+		model.addAttribute("Equipementreseau", logged);
+		model.addAttribute("Systemedestockage", logged);
+		model.addAttribute("vCluster", logged);
+		model.addAttribute("Hyperviseur", logged);
+		model.addAttribute("Machinevirtuelle", logged);
+		model.addAttribute("Ordinateur", logged);
+		model.addAttribute("Telephonefixe", logged);
+		model.addAttribute("Telephonemobile", logged);
+		model.addAttribute("Tablette", logged);
+		model.addAttribute("Imprimante", logged);
+		model.addAttribute("Peripherique", logged);
+		model.addAttribute("Middleware", logged);
+		model.addAttribute("ServeurWeb", logged);
+		model.addAttribute("Serveurdebasededonnees", logged);
+		model.addAttribute("LogicielPC", logged);
+		model.addAttribute("Autrelogiciel", logged);
+		model.addAttribute("InstanceMiddleware", logged);
+		model.addAttribute("Instancedebasededonnees", logged);
+		model.addAttribute("ApplicationWeb", logged);
+		model.addAttribute("License", logged);
+		model.addAttribute("InterfaceReseau", logged);
+		model.addAttribute("Subnet", logged);
+		model.addAttribute("VLAN", logged);
+		model.addAttribute("Volumelogique", logged);
+		model.addAttribute("Processusmetier", logged);
+		model.addAttribute("Solutionapplicative", logged);
+		model.addAttribute("Groupe", logged);
+		model.addAttribute("Camera", logged);
+
 		return "sprint2/dashbord";
 	}
 	
