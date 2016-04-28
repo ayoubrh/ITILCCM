@@ -69,6 +69,14 @@ public class Logique extends IntefaceReseau implements Serializable{
 	public void setVitesse(String vitesse) {
 		this.vitesse = vitesse;
 	}
+	public Logique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Logique(String nom) {
+		super();
+		this.nom = nom;
+	}
    
    	
 

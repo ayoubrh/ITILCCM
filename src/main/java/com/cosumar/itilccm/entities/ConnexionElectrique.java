@@ -179,6 +179,11 @@ public class ConnexionElectrique implements Serializable{
 	public void setEquipementReseau(Collection<EquipementReseau> equipementReseau) {
 		this.equipementReseau = equipementReseau;
 	}
+
+	public ConnexionElectrique(String nom) {
+		super();
+		this.nom = nom;
+	}
    	
    	
 

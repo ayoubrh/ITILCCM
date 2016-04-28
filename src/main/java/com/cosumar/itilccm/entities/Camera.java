@@ -144,6 +144,16 @@ public class Camera implements Serializable{
 	public void setDvr(Dvr dvr) {
 		this.dvr = dvr;
 	}
+
+	public Camera() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Camera(String nom) {
+		super();
+		this.nom = nom;
+	}
    	
    	
 

@@ -44,6 +44,16 @@ public class Fibre extends IntefaceReseau implements Serializable{
 	public void setWwn(String wwn) {
 		this.wwn = wwn;
 	}
+	public Fibre() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Fibre(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
 	   
 	   
 

@@ -90,6 +90,17 @@ public class Subnet implements Serializable{
 	public void setVlan(Collection<Vlan> vlan) {
 		this.vlan = vlan;
 	}
+
+	public Subnet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Subnet(String ip, String masqueIp) {
+		super();
+		this.ip = ip;
+		this.masqueIp = masqueIp;
+	}
    
    	
    

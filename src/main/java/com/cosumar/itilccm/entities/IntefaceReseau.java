@@ -78,6 +78,13 @@ public class IntefaceReseau implements Serializable{
 	public void setOrdinateur(Ordinateur ordinateur) {
 		this.ordinateur = ordinateur;
 	}
+
+	public IntefaceReseau() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
    
    	
 

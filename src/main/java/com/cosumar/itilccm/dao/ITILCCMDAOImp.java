@@ -241,6 +241,852 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.remove(id);
 		
 	}
+
+	@Override
+	public Long addTeleMobile(TelephneMobile telem) {
+		em.persist(telem);
+		return telem.getId();
+	}
+
+	@Override
+	public Long addTeleMobileUser(TelephneMobile telem, Long u) {
+		User user = getUser(u);
+		telem.setUser(user);
+		em.persist(telem);
+		return telem.getId();
+	}
+
+	@Override
+	public void editTeleMobile(TelephneMobile telem) {
+		em.merge(telem);
+		
+	}
+
+	@Override
+	public List<TelephneMobile> ListTeleMobile() {
+		Query req = em.createQuery("select telem from TelephneMobile telem");
+		return req.getResultList();
+	}
+
+	@Override
+	public TelephneMobile getTeleMobile(Long id) {
+		return em.find(TelephneMobile.class, id);
+	}
+
+	@Override
+	public void deleteTeleMobile(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addSIM(Sim sim) {
+		em.persist(sim);
+		return sim.getId();
+	}
+
+	@Override
+	public Long addSIMUser(Sim sim, Long u) {
+		User user = getUser(u);
+		sim.setUser(user);
+		em.persist(sim);
+		return sim.getId();
+	}
+
+	@Override
+	public void editSIM(Sim sim) {
+		em.merge(sim);
+		
+	}
+
+	@Override
+	public List<Sim> ListSIM() {
+		Query req = em.createQuery("select sim from Sim sim");
+		return req.getResultList();
+	}
+
+	@Override
+	public Sim getSIM(Long id) {
+		return em.find(Sim.class, id);
+	}
+
+	@Override
+	public void deleteSIM(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addTablette(Tablette tab) {
+		em.persist(tab);
+		return tab.getId();
+	}
+
+	@Override
+	public Long addTabletteUser(Tablette tab, Long u) {
+		User user = getUser(u);
+		tab.setUser(user);
+		em.persist(tab);
+		return tab.getId();
+	}
+
+	@Override
+	public void editTablette(Tablette tab) {
+		em.merge(tab);
+		
+	}
+
+	@Override
+	public List<Tablette> ListTablette() {
+		Query req = em.createQuery("select tab from Tablette tab");
+		return req.getResultList();
+	}
+
+	@Override
+	public Tablette getTablette(Long id) {
+		return em.find(Tablette.class, id);
+	}
+
+	@Override
+	public void deleteTablette(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addTeleFixe(TelephoneFixe fixe) {
+		em.persist(fixe);
+		return fixe.getId();
+	}
+
+	@Override
+	public Long addTeleFixeUser(TelephoneFixe fixe, Long u) {
+		User user = getUser(u);
+		fixe.setUser(user);
+		em.persist(fixe);
+		return fixe.getId();
+	}
+
+	@Override
+	public void editTeleFixe(TelephoneFixe fixe) {
+		em.merge(fixe);
+		
+	}
+
+	@Override
+	public List<TelephoneFixe> ListTeleFixe() {
+		Query req = em.createQuery("select fixe from TelephoneFixe fixe");
+		return req.getResultList();
+	}
+
+	@Override
+	public TelephoneFixe getTeleFixe(Long id) {
+		return em.find(TelephoneFixe.class, id);
+	}
+
+	@Override
+	public void deleteTeleFixe(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addPeriph(Peripherique per) {
+		em.persist(per);
+		return per.getId();
+	}
+
+	@Override
+	public Long addPeriphPC(Peripherique per, Long pc) {
+		Ordinateur ordi = getPC(pc);
+		//Collection<Ordinateur> ordi = null;
+		//for (Long long1 : pc) {
+		//	ordi.add(getPC(long1));
+		//}
+		per.setOrdinateur(ordi);
+		em.persist(per);
+		return per.getId();
+	}
+
+	@Override
+	public void editPeriph(Peripherique per) {
+		em.merge(per);
+		
+	}
+
+	@Override
+	public List<Peripherique> ListPeriph() {
+		Query req = em.createQuery("select per from Peripherique per");
+		return req.getResultList();
+	}
+
+	@Override
+	public Peripherique getPeriph(Long id) {
+		return em.find(Peripherique.class, id);
+	}
+
+	@Override
+	public void deletePeriph(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public List<IntefaceReseau> ListInterfaceReseau() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IntefaceReseau getInterfaceReseau(Long id) {
+		return em.find(IntefaceReseau.class, id);
+	}
+
+	@Override
+	public Long addFibre(Fibre f) {
+		em.persist(f);
+		return f.getId();
+	}
+
+	@Override
+	public void editFibre(Fibre f) {
+		em.merge(f);
+		
+	}
+
+	@Override
+	public List<Fibre> ListFibre() {
+		Query req = em.createQuery("select f from Fibre f");
+		return req.getResultList();
+	}
+
+	@Override
+	public Fibre getFibre(Long id) {
+		return em.find(Fibre.class, id);
+	}
+
+	@Override
+	public void deleteFibre(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addLogique(Logique logique) {
+		em.persist(logique);
+		return logique.getId();
+	}
+
+	@Override
+	public void editLogique(Logique logique) {
+		em.merge(logique);
+		
+	}
+
+	@Override
+	public List<Logique> ListLogique() {
+		Query req = em.createQuery("select l from Logique l");
+		return req.getResultList();
+	}
+
+	@Override
+	public Logique getLogique(Long id) {
+		return em.find(Logique.class, id);
+	}
+
+	@Override
+	public void deleteLogique(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addPhysique(Physique Physique) {
+		em.persist(Physique);
+		return Physique.getId();
+	}
+
+	@Override
+	public void editPhysique(Physique Physique) {
+		em.merge(Physique);
+		
+	}
+
+	@Override
+	public List<Physique> ListPhysique() {
+		Query req = em.createQuery("select p from Physique p");
+		return req.getResultList();
+	}
+
+	@Override
+	public Physique getPhysique(Long id) {
+		return em.find(Physique.class, id);
+	}
+
+	@Override
+	public void deletePhysique(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addVlan(Vlan Vlan) {
+		em.persist(Vlan);
+		return Vlan.getId();
+	}
+
+	@Override
+	public void editVlan(Vlan Vlan) {
+		em.merge(Vlan);
+		
+	}
+
+	@Override
+	public List<Vlan> ListVlan() {
+		Query req = em.createQuery("select v from Vlan v");
+		return req.getResultList();
+	}
+
+	@Override
+	public Vlan getVlan(Long id) {
+		return em.find(Vlan.class, id);
+	}
+
+	@Override
+	public void deleteVlan(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addSubnet(Subnet Subnet) {
+		em.persist(Subnet);
+		return Subnet.getId();
+	}
+
+	@Override
+	public void editSubnet(Subnet Subnet) {
+		em.merge(Subnet);
+		
+	}
+
+	@Override
+	public List<Subnet> ListSubnet() {
+		Query req = em.createQuery("select s from Subnet s");
+		return req.getResultList();
+	}
+
+	@Override
+	public Subnet getSubnet(Long id) {
+		return em.find(Subnet.class, id);
+	}
+
+	@Override
+	public void deleteSubnet(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addCamera(Camera Cam) {
+		em.persist(Cam);
+		return Cam.getId();
+	}
+
+	@Override
+	public void editCamera(Camera Cam) {
+		em.merge(Cam);
+		
+	}
+
+	@Override
+	public List<Camera> ListCamera() {
+		Query req = em.createQuery("select c from Camera c");
+		return req.getResultList();
+	}
+
+	@Override
+	public Camera getCamera(Long id) {
+		return em.find(Camera.class, id);
+	}
+
+	@Override
+	public void deleteCamera(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addProcessusMetier(ProcessusMetier pm) {
+		em.persist(pm);
+		return pm.getId();
+	}
+
+	@Override
+	public void editProcessusMetier(ProcessusMetier pm) {
+		em.merge(pm);
+		
+	}
+
+	@Override
+	public List<ProcessusMetier> ListProcessusMetier() {
+		Query req = em.createQuery("select pm from ProcessusMetier pm");
+		return req.getResultList();
+	}
+
+	@Override
+	public ProcessusMetier getProcessusMetier(Long id) {
+		return em.find(ProcessusMetier.class, id);
+	}
+
+	@Override
+	public void deleteProcessusMetier(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addSolutionApplicative(SolutionApplicative sa) {
+		em.persist(sa);
+		return sa.getId();
+	}
+
+	@Override
+	public void editSolutionApplicative(SolutionApplicative sa) {
+		em.merge(sa);
+		
+	}
+
+	@Override
+	public List<SolutionApplicative> ListSolutionApplicative() {
+		Query req = em.createQuery("select sa from SolutionApplicative sa");
+		return req.getResultList();
+	}
+
+	@Override
+	public SolutionApplicative getSolutionApplicative(Long id) {
+		return em.find(SolutionApplicative.class, id);
+	}
+
+	@Override
+	public void deleteSolutionApplicative(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addVolumeLogique(VolumeLogique vl) {
+		em.persist(vl);
+		return vl.getId();
+	}
+
+	@Override
+	public void editVolumeLogique(VolumeLogique vl) {
+		em.merge(vl);
+		
+	}
+
+	@Override
+	public List<VolumeLogique> ListVolumeLogique() {
+		Query req = em.createQuery("select vl from VolumeLogique vl");
+		return req.getResultList();
+	}
+
+	@Override
+	public VolumeLogique getVolumeLogique(Long id) {
+		return em.find(VolumeLogique.class, id);
+	}
+
+	@Override
+	public void deleteVolumeLogique(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public Long addDvr(Dvr dvr) {
+		em.persist(dvr);
+		return dvr.getId();
+	}
+
+	@Override
+	public void editDvr(Dvr dvr) {
+		em.merge(dvr);
+		
+	}
+
+	@Override
+	public List<Dvr> ListDvr() {
+		Query req = em.createQuery("select dvr from Dvr dvr");
+		return req.getResultList();
+	}
+
+	@Override
+	public Dvr getDvr(Long id) {
+		return em.find(Dvr.class, id);
+	}
+
+	@Override
+	public void deleteDvr(Long id) {
+		em.remove(id);
+		
+	}
+
+	@Override
+	public List<ConnexionElectrique> ListConnexionElectrique() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ConnexionElectrique getConnexionElectrique(Long id) {
+		return em.find(ConnexionElectrique.class, id);
+	}
+
+	@Override
+	public Long addArriveeElectrique(ArriveeElectrique ae) {
+		em.persist(ae);
+		return ae.getId();
+	}
+
+	@Override
+	public void editArriveeElectrique(ArriveeElectrique ae) {
+		em.merge(ae);		
+	}
+
+	@Override
+	public List<ArriveeElectrique> ListArriveeElectrique() {
+		Query req = em.createQuery("select ae from ArriveeElectrique ae");
+		return req.getResultList();
+	}
+
+	@Override
+	public ArriveeElectrique getArriveeElectrique(Long id) {
+		return em.find(ArriveeElectrique.class, id);
+	}
+
+	@Override
+	public void deleteArriveeElectrique(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addPduElectrique(PduElectrique pdue) {
+		em.persist(pdue);
+		return pdue.getId();
+	}
+
+	@Override
+	public void editPduElectrique(PduElectrique pdue) {
+		em.merge(pdue);		
+	}
+
+	@Override
+	public List<PduElectrique> ListPduElectrique() {
+		Query req = em.createQuery("select pdue from PduElectrique pdue");
+		return req.getResultList();
+	}
+
+	@Override
+	public PduElectrique getPduElectrique(Long id) {
+		return em.find(PduElectrique.class, id);
+	}
+
+	@Override
+	public void deletePduElectrique(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addRack(Rack Rack) {
+		em.persist(Rack);
+		return Rack.getId();
+	}
+
+	@Override
+	public void editRack(Rack Rack) {
+		em.merge(Rack);		
+	}
+
+	@Override
+	public List<Rack> ListRack() {
+		Query req = em.createQuery("select r from Rack r");
+		return req.getResultList();
+	}
+
+	@Override
+	public Rack getRack(Long id) {
+		return em.find(Rack.class, id);
+	}
+
+	@Override
+	public void deleteRack(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addChassis(Chassis Chassis) {
+		em.persist(Chassis);
+		return Chassis.getId();
+	}
+
+	@Override
+	public void editChassis(Chassis Chassis) {
+		em.merge(Chassis);		
+	}
+
+	@Override
+	public List<Chassis> ListChassis() {
+		Query req = em.createQuery("select c from Chassis c");
+		return req.getResultList();
+	}
+
+	@Override
+	public Chassis getChassis(Long id) {
+		return em.find(Chassis.class, id);
+	}
+
+	@Override
+	public void deleteChassis(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public List<Infrastructure> ListInfrastructure() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Infrastructure getInfrastructure(Long id) {
+		return em.find(Infrastructure.class, id);
+	}
+
+	@Override
+	public Long addBandotheque(Bandotheque Bandotheque) {
+		em.persist(Bandotheque);
+		return Bandotheque.getId();
+	}
+
+	@Override
+	public void editBandotheque(Bandotheque Bandotheque) {
+		em.merge(Bandotheque);		
+	}
+
+	@Override
+	public List<Bandotheque> ListBandotheque() {
+		Query req = em.createQuery("select b from Bandotheque b");
+		return req.getResultList();
+	}
+
+	@Override
+	public Bandotheque getBandotheque(Long id) {
+		return em.find(Bandotheque.class, id);
+	}
+
+	@Override
+	public void deleteBandotheque(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addBande(Bande Bande) {
+		em.persist(Bande);
+		return Bande.getId();
+	}
+
+	@Override
+	public void editBande(Bande Bande) {
+		em.merge(Bande);		
+	}
+
+	@Override
+	public List<Bande> ListBande() {
+		Query req = em.createQuery("select b from Bande b");
+		return req.getResultList();
+	}
+
+	@Override
+	public Bande getBande(Long id) {
+		return em.find(Bande.class, id);
+	}
+
+	@Override
+	public void deleteBande(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addServeur(Serveur Serveur) {
+		em.persist(Serveur);
+		return Serveur.getId();
+	}
+
+	@Override
+	public void editServeur(Serveur Serveur) {
+		em.merge(Serveur);		
+	}
+
+	@Override
+	public List<Serveur> ListServeur() {
+		Query req = em.createQuery("select s from Serveur s");
+		return req.getResultList();
+	}
+
+	@Override
+	public Serveur getServeur(Long id) {
+		return em.find(Serveur.class, id);
+	}
+
+	@Override
+	public void deleteServeur(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addSystemeDeStockage(SystemeDeStockage sds) {
+		em.persist(sds);
+		return sds.getId();
+	}
+
+	@Override
+	public void editSystemeDeStockage(SystemeDeStockage sds) {
+		em.merge(sds);		
+	}
+
+	@Override
+	public List<SystemeDeStockage> ListSystemeDeStockage() {
+		Query req = em.createQuery("select sds from SystemeDeStockage sds");
+		return req.getResultList();
+	}
+
+	@Override
+	public SystemeDeStockage getSystemeDeStockage(Long id) {
+		return em.find(SystemeDeStockage.class, id);
+	}
+
+	@Override
+	public void deleteSystemeDeStockage(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addSwitchSan(SwitchSan san) {
+		em.persist(san);
+		return san.getId();
+	}
+
+	@Override
+	public void editSwitchSan(SwitchSan san) {
+		em.merge(san);		
+	}
+
+	@Override
+	public List<SwitchSan> ListSwitchSan() {
+		Query req = em.createQuery("select san from SwitchSan san");
+		return req.getResultList();
+	}
+
+	@Override
+	public SwitchSan getSwitchSan(Long id) {
+		return em.find(SwitchSan.class, id);
+	}
+
+	@Override
+	public void deleteSwitchSan(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addNas(Nas Nas) {
+		em.persist(Nas);
+		return Nas.getId();
+	}
+
+	@Override
+	public void editNas(Nas Nas) {
+		em.merge(Nas);		
+	}
+
+	@Override
+	public List<Nas> ListNas() {
+		Query req = em.createQuery("select n from Nas n");
+		return req.getResultList();
+	}
+
+	@Override
+	public Nas getNas(Long id) {
+		return em.find(Nas.class, id);
+	}
+
+	@Override
+	public void deleteNas(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addSystemeDeFicherNas(SystemeDeFicherNas sdnas) {
+		em.persist(sdnas);
+		return sdnas.getId();
+	}
+
+	@Override
+	public void editSystemeDeFicherNas(SystemeDeFicherNas sdnas) {
+		em.merge(sdnas);		
+	}
+
+	@Override
+	public List<SystemeDeFicherNas> ListSystemeDeFicherNas() {
+		Query req = em.createQuery("select sdnas from SystemeDeFicherNas sdnas");
+		return req.getResultList();
+	}
+
+	@Override
+	public SystemeDeFicherNas getSystemeDeFicherNas(Long id) {
+		return em.find(SystemeDeFicherNas.class, id);
+	}
+
+	@Override
+	public void deleteSystemeDeFicherNas(Long id) {
+		em.remove(id);		
+	}
+
+	@Override
+	public Long addEquipementReseau(EquipementReseau er) {
+		em.persist(er);
+		return er.getId();
+	}
+
+	@Override
+	public void editEquipementReseau(EquipementReseau er) {
+		em.merge(er);		
+	}
+
+	@Override
+	public List<EquipementReseau> ListEquipementReseau() {
+		Query req = em.createQuery("select er from EquipementReseau er");
+		return req.getResultList();
+	}
+
+	@Override
+	public EquipementReseau getEquipementReseau(Long id) {
+		return em.find(EquipementReseau.class, id);
+	}
+
+	@Override
+	public void deleteEquipementReseau(Long id) {
+		em.remove(id);		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//Contact
 	

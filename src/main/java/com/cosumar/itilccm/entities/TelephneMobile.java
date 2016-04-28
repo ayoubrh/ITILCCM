@@ -152,6 +152,24 @@ public class TelephneMobile implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public TelephneMobile() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TelephneMobile(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+	public TelephneMobile(String nom, User user) {
+		super();
+		this.nom = nom;
+		this.user = user;
+	}
+	
+	
 	   
    
 

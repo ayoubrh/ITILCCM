@@ -36,6 +36,18 @@ public class Dvr extends Infrastructure implements Serializable{
 	public void setCamera(Collection<Camera> camera) {
 		this.camera = camera;
 	}
+
+	public Dvr() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Dvr(Long nbrCaneaux) {
+		super();
+		this.nbrCaneaux = nbrCaneaux;
+	}
+	
+	
 	
 	
 

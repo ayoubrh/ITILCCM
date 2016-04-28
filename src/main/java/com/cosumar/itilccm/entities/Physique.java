@@ -104,6 +104,16 @@ public class Physique extends IntefaceReseau implements Serializable{
 	public void setVlan(Collection<Vlan> vlan) {
 		this.vlan = vlan;
 	}
+
+	public Physique() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Physique(String nom) {
+		super();
+		this.nom = nom;
+	}
    	
    	
 

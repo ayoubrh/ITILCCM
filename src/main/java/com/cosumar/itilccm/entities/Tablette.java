@@ -124,6 +124,18 @@ public class Tablette implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Tablette() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Tablette(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
    	
    	
 
