@@ -145,14 +145,14 @@ public class Lieu implements Serializable {
 			this.pays = pays;
 		}
 		
-		
-		public Collection<Contact> getContact() {
+		public Collection<Contact> getContacts() {
 			return contacts;
 		}
-		
-		
-		public void setContact(Collection<Contact> contact) {
-			this.contacts = contact;
+
+
+
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
 		}
 		
 

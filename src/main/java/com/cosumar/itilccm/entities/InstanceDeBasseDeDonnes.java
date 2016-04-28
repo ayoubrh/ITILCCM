@@ -36,7 +36,7 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 			   inverseJoinColumns=@JoinColumn(name="id_sltApp"))
 			   private java.util.Collection<SolutionApplicative> solutionApplicative;
 			   
-			   @NotEmpty
+			   //@NotEmpty
 			   @ManyToOne
 			   @JoinColumn(name="id_serBD")
 			   private ServeurDeBasseDeDonnees serveurDeBasseDeDonnees;

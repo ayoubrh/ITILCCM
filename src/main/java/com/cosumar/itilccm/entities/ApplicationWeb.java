@@ -25,7 +25,7 @@ public class ApplicationWeb implements Serializable {
 			       @NotEmpty
 				   private String nom;
 			       
-				   private Long url;
+				   private String url;
 				   private String criticite;
 				   private Date dateDeMiseEnProduction;
 				   private String decription;
@@ -45,7 +45,7 @@ public class ApplicationWeb implements Serializable {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public ApplicationWeb(String nom, Long url, String criticite, Date dateDeMiseEnProduction, String decription) {
+		public ApplicationWeb(String nom, String url, String criticite, Date dateDeMiseEnProduction, String decription) {
 			super();
 			this.nom = nom;
 			this.url = url;
@@ -65,10 +65,10 @@ public class ApplicationWeb implements Serializable {
 		public void setNom(String nom) {
 			this.nom = nom;
 		}
-		public Long getUrl() {
+		public String getUrl() {
 			return url;
 		}
-		public void setUrl(Long url) {
+		public void setUrl(String url) {
 			this.url = url;
 		}
 		public String getCriticite() {
