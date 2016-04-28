@@ -19,10 +19,10 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	
 	
 	// Ordinateur
-	
 	public List<Ordinateur> ListPC();
 	public Ordinateur getPC(Long id);
 	
+
 	//Contact
 	
 	public List<Contact> listContact();
@@ -135,5 +135,11 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<Hyperviseur> listHyperviseur();
 	public Hyperviseur getHyperviseur(Long id);
 		
+
+	// Impriment
+	
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
+
 
 }

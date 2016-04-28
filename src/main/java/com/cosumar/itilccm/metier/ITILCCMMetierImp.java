@@ -148,6 +148,40 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.getPC(id);
 	}
 	
+	@Override
+	public Long addImp(Imprimante imp) {
+		return dao.addImp(imp);
+	}
+
+	@Override
+	public Long addImpUser(Imprimante imp, Long u) {
+		return dao.addImpUser(imp, u);
+	}
+
+	@Override
+	public void editImp(Imprimante imp) {
+		dao.editImp(imp);
+	}
+
+	@Override
+	public void deleteImp(Long id) {
+		dao.deleteImp(id);
+	}
+
+	@Override
+	public List<Imprimante> ListImp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Imprimante getImp(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
 	
 	
 	

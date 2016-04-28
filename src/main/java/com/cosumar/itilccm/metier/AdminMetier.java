@@ -47,6 +47,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public Ordinateur getPC(Long id);
 	public void deletePC(Long id);
 	
+
 	// Contact
 	
 	public Long ajouterContact(Contact c);
@@ -202,6 +203,16 @@ public interface AdminMetier extends UtilisateurMetier {
 	public void supprimerHyperviseur(Long id);
 	public List<Hyperviseur> listHyperviseur();
 	public Hyperviseur getHyperviseur(Long id);
+
+	
+	// Imprimente
+	public  Long addImp(Imprimante imp);
+	public  Long addImpUser(Imprimante imp, Long u);
+	public void editImp(Imprimante imp);
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
+	public void deleteImp(Long id);
+
 
 
 }

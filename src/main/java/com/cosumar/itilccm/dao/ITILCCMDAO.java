@@ -85,6 +85,7 @@ public interface ITILCCMDAO {
 	public List<Groupe> listGroupe();
 	public Groupe getGroupe(Long id);
 	
+
 	//Application Web
 	
 	public Long ajouterApplicationWeb(ApplicationWeb aw);
@@ -93,8 +94,18 @@ public interface ITILCCMDAO {
 	public List<ApplicationWeb> listApplicationWeb();
 	public ApplicationWeb getApplicationWeb(Long id);
 	
-   //Instance Middleware
+   
 
+	// Imprimente
+	public  Long addImp(Imprimante imp);
+	public  Long addImpUser(Imprimante imp, Long u);
+	public void editImp(Imprimante imp);
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
+	public void deleteImp(Long id);
+	
+	//Instance Middleware
+	
 	public Long ajouterInstanceMiddleware(InstanceMiddleware im);
 	public void modifierInstanceMiddleware(InstanceMiddleware im);
 	public void supprimerInstanceMiddleware(Long id);

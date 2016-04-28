@@ -21,10 +21,10 @@ public interface UtilisateurMetier {
 	
 	
 	// Ordinateur
-	
 	public List<Ordinateur> ListPC();
 	public Ordinateur getPC(Long id);
 	
+
 	//Contact
 	
 	public List<Contact> listContact();
@@ -126,5 +126,11 @@ public interface UtilisateurMetier {
 	public Hyperviseur getHyperviseur(Long id);
 	
 	
+
+	// Impriment
+	
+	public List<Imprimante> ListImp();
+	public Imprimante getImp(Long id);
+
 
 }
