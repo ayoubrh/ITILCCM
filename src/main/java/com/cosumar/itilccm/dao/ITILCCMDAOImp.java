@@ -433,8 +433,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<IntefaceReseau> ListInterfaceReseau() {
-		// TODO Auto-generated method stub
-		return null;
+		Query req = em.createQuery("select ir from IntefaceReseau ir");
+		return req.getResultList();
 	}
 
 	@Override
@@ -853,8 +853,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<Infrastructure> ListInfrastructure() {
-		// TODO Auto-generated method stub
-		return null;
+		Query req = em.createQuery("select infra from Infrastructure infra");
+		return req.getResultList();
 	}
 
 	@Override

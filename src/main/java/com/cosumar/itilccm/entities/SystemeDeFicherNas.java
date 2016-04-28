@@ -63,7 +63,19 @@ public class SystemeDeFicherNas implements Serializable{
 	public void setNas(Collection<Nas> nas) {
 		this.nas = nas;
 	}
+
+	public SystemeDeFicherNas() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SystemeDeFicherNas(String niveauRaid, String taille) {
+		super();
+		this.niveauRaid = niveauRaid;
+		this.taille = taille;
+	}
    	
+	
    	
 
 }

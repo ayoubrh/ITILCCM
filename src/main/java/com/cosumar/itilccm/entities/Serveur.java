@@ -94,6 +94,14 @@ public class Serveur extends Infrastructure implements Serializable{
 	public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
 		this.logicielEtApplication = logicielEtApplication;
 	}
+	public Serveur() {
+		super();
+	}
+	public Serveur(String nom) {
+		super(nom);
+	}
+	
+	
 	
 		
 	   

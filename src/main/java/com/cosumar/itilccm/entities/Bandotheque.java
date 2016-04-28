@@ -16,6 +16,18 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	 @JoinColumn(name="bande_id")
 	private Bande bande;
 
+	public Bandotheque(String nom) {
+		super(nom);
+		//new Infrastructure(nom);
+	}
+	
+	public Bandotheque() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public Bande getBande() {
 		return bande;
 	}

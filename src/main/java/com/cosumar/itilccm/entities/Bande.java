@@ -70,7 +70,18 @@ public class Bande implements Serializable{
 	public void setBandotheque(Collection<Bandotheque> bandotheque) {
 		this.bandotheque = bandotheque;
 	}
+
+	public Bande() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Bande(String nom) {
+		super();
+		this.nom = nom;
+	}
    	
+	
    	
 
 }

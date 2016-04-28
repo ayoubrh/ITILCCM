@@ -33,6 +33,16 @@ public class SystemeDeStockage extends Infrastructure implements Serializable{
 	public void setVolumelogique(Collection<VolumeLogique> volumelogique) {
 		this.volumelogique = volumelogique;
 	}
+
+	public SystemeDeStockage() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SystemeDeStockage(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
 	
 		
    

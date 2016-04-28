@@ -33,6 +33,16 @@ public class SwitchSan extends Infrastructure implements Serializable{
 	public void setSystemeDeStockage(Collection<SystemeDeStockage> systemeDeStockage) {
 		this.systemeDeStockage = systemeDeStockage;
 	}
+
+	public SwitchSan() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SwitchSan(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
 	 
 	 
 

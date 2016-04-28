@@ -22,5 +22,15 @@ public class Nas extends Infrastructure implements Serializable{
 	public void setSystemeDeFicherNas(SystemeDeFicherNas systemeDeFicherNas) {
 		this.systemeDeFicherNas = systemeDeFicherNas;
 	}
+	public Nas() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Nas(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 
 }
