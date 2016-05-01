@@ -36,9 +36,9 @@ public class ConnexionElectrique implements Serializable{
    private String marque;
    private String modele;
    
-   	@Column(nullable=true)
+  /* 	@Column(nullable=true)
   	@Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private String nbUnite;
+   private String nbUnite;*/
    private String numeroDeSerie;
    private String numeroAsset;
    private Date dateDeMiseEnProduction;
@@ -69,7 +69,7 @@ public class ConnexionElectrique implements Serializable{
 		this.criticite = criticite;
 		this.marque = marque;
 		this.modele = modele;
-		this.nbUnite = nbUnite;
+		//this.nbUnite = nbUnite;
 		this.numeroDeSerie = numeroDeSerie;
 		this.numeroAsset = numeroAsset;
 		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
@@ -125,7 +125,7 @@ public class ConnexionElectrique implements Serializable{
 	public void setModele(String modele) {
 		this.modele = modele;
 	}
-
+/*
 	public String getNbUnite() {
 		return nbUnite;
 	}
@@ -133,7 +133,7 @@ public class ConnexionElectrique implements Serializable{
 	public void setNbUnite(String nbUnite) {
 		this.nbUnite = nbUnite;
 	}
-
+*/
 	public String getNumeroDeSerie() {
 		return numeroDeSerie;
 	}

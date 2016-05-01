@@ -457,7 +457,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau Lieu</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="lieu" action="saveLieu" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="pc" action="savePC" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -490,7 +490,7 @@ Use search to find needed section.
 		
 									<div class="panel-body">
 						
-						
+						<f:form modelAttribute="lieu" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
@@ -514,7 +514,7 @@ Use search to find needed section.
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Organisation</label>
 								<div class="col-sm-9">
-									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-organisation" />
+									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="organisme" cssClass="help-block"></f:errors>
 								</div>
 							</div>
@@ -528,29 +528,29 @@ Use search to find needed section.
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Code postale</label>
 								<div class="col-sm-9">
-									<f:input path="codePostale" type="text" class="form-control" id="inputError-4" name="jq-validation-codepostale" />
+									<f:input path="codePostale" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
 									<f:errors path="codePostale" cssClass="help-block"></f:errors>
 								</div>
 							</div> 
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Ville</label>
 								<div class="col-sm-9">
-									<f:input path="ville" type="text" class="form-control" id="inputError-4" name="jq-validation-ville" />
+									<f:input path="ville" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
 									<f:errors path="ville" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Pays</label>
 								<div class="col-sm-9">
-									<f:input path="pays" type="text" class="form-control" id="inputError-4" name="jq-validation-pays" />
+									<f:input path="pays" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
 									<f:errors path="pays" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							
-					
+							
 							
 							          
-							
+							</f:form>
 							</div>
 		
 								</div> <!-- / .tab-pane -->
