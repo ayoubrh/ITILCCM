@@ -93,13 +93,13 @@
 				
 			 <!-- / .logo -->
 			<div class="slogan">
-				Simple. Flexible. Powerful.
+				Les Processus d'ITIL :
 			</div> <!-- / .slogan -->
 			<ul>
-				<li><i class="fa fa-sitemap signin-icon"></i> Flexible modular structure</li>
-				<li><i class="fa fa-file-text-o signin-icon"></i> LESS &amp; SCSS source files</li>
-				<li><i class="fa fa-outdent signin-icon"></i> RTL direction support</li>
-				<li><i class="fa fa-heart signin-icon"></i> Crafted with love</li>
+				<li><i class="menu-icon fa fa-users"></i> Gestion des Utilisateurs</li>
+				<li><i class="menu-icon fa fa-cogs"></i> Gestion des Configurations</li>
+				<li><i class="menu-icon fa fa-th"></i> Gestion des Incidants</li>
+				<li><i class="menu-icon fa fa-retweet"></i> Gestion des Changements</li>
 			</ul> <!-- / Info list -->
 		</div>
 		<!-- / Left side -->

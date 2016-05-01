@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Lieu - ITIL-CCM</title>
+	<title>Nouveau Licence OS - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -48,6 +48,7 @@ Use search to find needed section.
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/pages.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
+	
 
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
@@ -454,10 +455,10 @@ Use search to find needed section.
 -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Lieu</span>
+						<span class="panel-title">Nouveau Licence OS</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="lieu" action="saveLieu" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="licenceOs" action="saveLicenceOs" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -470,13 +471,16 @@ Use search to find needed section.
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
 								
-								
 								<li>
-									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
 								</li>
 								
+								
 								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Matériels</a>
+									<a href="#profile-tabs-serveurs" data-toggle="tab">Serveurs</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
 								</li>
 								
 								
@@ -488,134 +492,139 @@ Use search to find needed section.
 		
 									
 		
-									<div class="panel-body">
+						<div class="panel-body">
 						
 						
-							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
+								<div class="col-sm-5">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
-								</div>
+							    </div>
+							
 							</div>
 							
 							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-9">
-							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value="NONE"> -- choisir une valeur --</f:option>
-										<f:option value="Actif"> Actif</f:option>
-										<f:option value="Inactif"> Inactif</f:option>
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
+								<div class="col-sm-4">
+									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+									    <f:option value="NONE"> -- choisir une valeur --</f:option>
+										<f:options items="${v }" itemValue="id" itemLabel="nom" />
 									</f:select>
-							<f:errors path="nom" cssClass="help-block"></f:errors>
-							</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Organisation</label>
-								<div class="col-sm-9">
-									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-organisation" />
-									<f:errors path="organisme" cssClass="help-block"></f:errors>
+									<f:errors path="versionOs.id" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
-								<div class="col-sm-9">
-									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />
-									<f:errors path="adresse" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Code postale</label>
-								<div class="col-sm-9">
-									<f:input path="codePostale" type="text" class="form-control" id="inputError-4" name="jq-validation-codepostale" />
-									<f:errors path="codePostale" cssClass="help-block"></f:errors>
-								</div>
-							</div> 
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Ville</label>
-								<div class="col-sm-9">
-									<f:input path="ville" type="text" class="form-control" id="inputError-4" name="jq-validation-ville" />
-									<f:errors path="ville" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Pays</label>
-								<div class="col-sm-9">
-									<f:input path="pays" type="text" class="form-control" id="inputError-4" name="jq-validation-pays" />
-									<f:errors path="pays" cssClass="help-block"></f:errors>
-								</div>
+								<label for="jq-validation-email" class="col-sm-3 control-label">Limite d'utilisation</label>
+								<div class="col-sm-5">
+									<f:input path="limiteD_utilisation" type="text" class="form-control" id="inputError-4" name="jq-validation-limiteD_utilisation" />
+									<f:errors path="limiteD_utilisation" cssClass="help-block"></f:errors>
+							    </div>
+							
 							</div>
 							
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
+								<div class="col-sm-5">
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<f:errors path="description" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
+								<div class="col-sm-4">
+									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
+									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+									            <f:option value="non">non</f:option>
+												<f:option value="oui"> oui</f:option>
+									</f:select>
+									<f:errors path="perpetuelle" cssClass="help-block"></f:errors>
+							     </div>
+				             </div> 
+							<script>
+					init.push(function () {
+						
+						var options = {
+								
+								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+							}
+							$('#bs-datepicker-component').datepicker();
+						
+						    $('#bs-datepicker-component2').datepicker(options);
+
+					});
+				</script>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début de validité</label>
 					
-							
-							          
-							
+						<div class=" col-sm-3" >
+							<div class=" input-group date" id="bs-datepicker-component">
+								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
+								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+								<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>
+							</div>				
+						</div>
+				</div>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin de validité</label>
+				     		<div class=" col-sm-3" >
+								<div class="input-group date" id="bs-datepicker-component2">
+									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
+								</div>
 							</div>
+				
+				</div>	
+				
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Clé</label>
+								<div class="col-sm-5">
+									<f:input path="cle" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-cle" />
+									<f:errors path="cle" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				
+				
+					
+						
+					</div>
+					
+					
 		
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									
-									logiciels
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
-									
-		
-		
-									intarfaces_reseaux
-		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-equipement_reseaux" id="profile-equipement_reseaux">
-									
-		
-									equipement_reseaux
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								
-								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
-									
-		
-									contacts
-		
-		
-									
 								</div> <!-- / .tab-pane -->
 								
 								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
 									
 		
-									documents
 		
+									Documents
 		
+									
 									
 								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
+								<div class="tab-pane fade widget-serveurs" id="profile-tabs-serveurs">
 									
 		
-									contrats
 		
+									Serveurs
 		
+									
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-machines" id="profile-tabs-machines">
+									
+								Machines Virtuelles
+									
 									
 								</div> <!-- / .tab-pane -->
 								
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
 					
 							<hr class="panel-wide">
 							
@@ -634,25 +643,6 @@ Use search to find needed section.
 					
 					
 		</div>
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<!-- Content here -->
 		

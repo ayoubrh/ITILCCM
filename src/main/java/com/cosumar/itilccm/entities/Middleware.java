@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue("Middleware")
 public class Middleware extends LogicielEtApplication implements Serializable {
 	
+
 			@Column(nullable=true)
 			@OneToMany(mappedBy="middleware")
 			private Collection<InstanceMiddleware> instanceMiddleware;
@@ -35,6 +36,5 @@ public class Middleware extends LogicielEtApplication implements Serializable {
 				this.instanceMiddleware = instanceMiddleware;
 			}
 			
-	
 
 }
