@@ -657,8 +657,37 @@ Use search to find needed section.
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
 									
-									logiciels
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Chemin d'installation</th>
+												<th>Date de mise en production</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											
+											
+										</tbody>
+									</table>
 									
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="reset" class="btn btn-lg btn-warning btn-flat" >Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="submit" class="btn btn-lg btn-success btn-flat">Ajouter des Logiciels</button>
+										</div>
+										
+									</div>
 									
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
@@ -722,11 +751,11 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer </button>
 								</div>
 								
 							</div>
@@ -799,6 +828,10 @@ Use search to find needed section.
 			$('#bs-datepicker-dateDeMiseEnProduction').datepicker();
 			$('#bs-datepicker-dateD_achat').datepicker();
 			$('#bs-datepicker-dateDeFinDeGarantie').datepicker();
+			
+			$('#jq-datatables-example').dataTable();
+			$('#jq-datatables-example_wrapper .table-caption').text('');
+			$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 	});
 	window.PixelAdmin.start(init);
 </script>
