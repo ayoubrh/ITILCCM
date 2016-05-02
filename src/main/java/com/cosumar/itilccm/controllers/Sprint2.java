@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cosumar.itilccm.entities.Lieu;
+import com.cosumar.itilccm.entities.Ordinateur;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
@@ -79,6 +80,7 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
+		model.addAttribute("pc", new Ordinateur() );
 		return "sprint2/addPC";
 	}
 	

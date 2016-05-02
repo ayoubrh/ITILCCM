@@ -29,6 +29,7 @@ public class Ordinateur implements Serializable{
    private String statut;
    private String criticite;
    private String marque;
+   private String modele;
    	
    	@NotEmpty
 	@Size(min=2,max=20)
@@ -149,6 +150,14 @@ public class Ordinateur implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	public String getModele() {
+		return modele;
+	}
+	public void setModele(String modele) {
+		this.modele = modele;
 	}
 	public User getUser() {
 		return user;

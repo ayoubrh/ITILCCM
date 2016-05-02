@@ -497,9 +497,162 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
+									<div class="form-group">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
+										<div class="col-sm-9">
+											<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
+											<f:errors path="nom" cssClass="help-block"></f:errors>
+										</div>
+									</div>
 									
-		
-									proprietes
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
+										<div class="col-sm-9">
+											<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+												<f:option value="" label=""/>
+												<f:option value="implementation" label="implementation"/>
+												<f:option value="obsolète" label="obsolète"/>
+												<f:option value="production" label="production"/>
+												<f:option value="stock" label="stock"/>
+											</f:select>
+											<f:errors path="statut" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
+										<div class="col-sm-9">
+											<f:select  path="criticite" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+												<f:option value="" label=""/>
+												<f:option value="haute" label="haute"/>
+												<f:option value="basse" label="basse"/>
+												<f:option value="moyenne" label="moyenne"/>
+											</f:select>
+											<f:errors path="criticite" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-lieu" class="col-sm-3 control-label">Lieu</label>
+										<div class="col-sm-9">
+											
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque</label>
+										<div class="col-sm-9">
+											<f:input path="marque" type="text" class="form-control" id="inputError-4" name="jq-validation-marque" />
+											<f:errors path="marque" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle</label>
+										<div class="col-sm-9">
+											<f:input path="modele" type="text" class="form-control" id="inputError-4" name="jq-validation-modele" />
+											<f:errors path="modele" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Famille OS</label>
+										<div class="col-sm-9">
+											
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Version OS</label>
+										<div class="col-sm-9">
+											
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Type</label>
+										<div class="col-sm-9">
+											<div class="radio">
+												<label>
+													<f:radiobutton path="type" name="jq-validation-radios" value="Poste" class="px"/>
+													<span class="lbl">Poste</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<f:radiobutton path="type" name="jq-validation-radios" value="Portable" class="px"/>
+													<span class="lbl">Portable</span>
+												</label>
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU</label>
+										<div class="col-sm-9">
+											<f:input path="cpu" type="text" class="form-control" id="inputError-4" name="jq-validation-cpu" />
+											<f:errors path="cpu" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM</label>
+										<div class="col-sm-9">
+											<f:input path="ram" type="text" class="form-control" id="inputError-4" name="jq-validation-ram" />
+											<f:errors path="ram" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>
+										<div class="col-sm-9">
+											<f:input path="numeroDeSerie" type="text" class="form-control" id="inputError-4" name="jq-validation-numeroDeSerie" />
+											<f:errors path="numeroDeSerie" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset</label>
+										<div class="col-sm-9">
+											<f:input path="numeroAsset" type="text" class="form-control" id="inputError-4" name="jq-validation-numeroAsset" />
+											<f:errors path="numeroAsset" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production</label>
+										<div class="col-sm-9" >
+											<f:input path="dateDeMiseEnProduction" type="text" class="form-control" id="bs-datepicker-dateDeMiseEnProduction"/>
+											<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat</label>
+										<div class="col-sm-9" >
+											<f:input path="dateD_achat" type="text" class="form-control" id="bs-datepicker-dateD_achat"/>
+											<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie</label>
+										<div class="col-sm-9" >
+											<f:input path="dateDeFinDeGarantie" type="text" class="form-control" id="bs-datepicker-dateDeFinDeGarantie"/>
+											<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
+										<div class="col-sm-9">
+											<f:textarea path="description" class="form-control" name="jq-validation-text" id="jq-validation-description" />
+											<f:errors path="description" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									
+									
 		
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
@@ -637,6 +790,15 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
+		var options = {
+				todayBtn: "linked",
+				orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+			}
+		
+			$('#bs-datepicker-dateDeMiseEnProduction').datepicker();
+			$('#bs-datepicker-dateD_achat').datepicker();
+			$('#bs-datepicker-dateDeFinDeGarantie').datepicker();
 	});
 	window.PixelAdmin.start(init);
 </script>
