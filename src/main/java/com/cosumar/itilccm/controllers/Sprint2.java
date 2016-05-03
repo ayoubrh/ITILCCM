@@ -1,13 +1,23 @@
 package com.cosumar.itilccm.controllers;
 
+import java.awt.image.BufferedImage;
+import java.util.Collection;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cosumar.itilccm.entities.Lieu;
+import com.cosumar.itilccm.entities.LogicielPc;
 import com.cosumar.itilccm.entities.Ordinateur;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
@@ -81,7 +91,23 @@ public class Sprint2 {
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
 		model.addAttribute("pc", new Ordinateur() );
+		model.addAttribute("logiciels", m.listLogicielPc());
 		return "sprint2/addPC";
+	}
+	
+	@RequestMapping(value="/admin/add/savePC")
+	public String save(@Valid User user,BindingResult bind,HttpServletRequest req,
+			Model model,MultipartFile file) throws Exception{
+		System.out.println("Test test");
+		String[] chLogiciels = req.getParameterValues("chLogiciels");
+		System.out.println("Test test 2" + chLogiciels);
+		if(chLogiciels != null){
+			for (int i = 0; i < chLogiciels.length; i++) {
+				//String[] chLogicielsvalue = req.getParameterValues(chLogiciels[i]);
+				System.out.println("---------"+chLogiciels[i]);
+			}
+		}
+		return "redirect:/config/admin/dashboard";
 	}
 	
 	@RequestMapping(value="/admin/add/lieu")

@@ -452,6 +452,53 @@ Use search to find needed section.
 
 		Content
 -->
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Logiciels</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Chemin d'installation</th>
+												<th>Date de mise en production</th>
+											</tr>
+										</thead>
+										<tbody id="tableLogicilepopup">
+											<c:forEach items="${logiciels}" var="l">
+												<tr class="gradeA" id="tr_${l.id }">
+													<td class="supchekbox"><input type="checkbox" class="ck" name="chLogiciels" value="${l.id }"></td>
+													<td>${l.nom }</td>
+													<td>${l.statut }</td>
+													<td>${l.criticite }</td>
+													<td>${l.cheminD_installation }</td>
+													<td>${l.dateDeMiseEnProduction }</td>
+
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addL">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
+				
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Ordinateur</span>
@@ -656,8 +703,8 @@ Use search to find needed section.
 		
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 										<thead>
 											<tr>
 												<th id="supchek"> </th>
@@ -669,22 +716,22 @@ Use search to find needed section.
 												
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="tableLogicile">
 											
 											
 										</tbody>
 									</table>
-									
+									</div>
 									<br>
 									<br>
 
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-1">
-											<button type="reset" class="btn btn-lg btn-warning btn-flat" >Retirer !</button>
+											<button type="button" class="btn btn-warning btn-flat" id="suppL">Retirer !</button>
 										</div>
 										
 										<div class="col-sm-offset-1 col-sm-7">
-											<button type="submit" class="btn btn-lg btn-success btn-flat">Ajouter des Logiciels</button>
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
 										</div>
 										
 									</div>
@@ -829,9 +876,32 @@ Use search to find needed section.
 			$('#bs-datepicker-dateD_achat').datepicker();
 			$('#bs-datepicker-dateDeFinDeGarantie').datepicker();
 			
-			$('#jq-datatables-example').dataTable();
-			$('#jq-datatables-example_wrapper .table-caption').text('');
-			$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			$('.jq-datatables-example').dataTable();
+			$('.jq-datatables-example_wrapper .table-caption').text('');
+			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			document.getElementById("addL").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ck:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_".concat($(this).val()));
+			    	$( "#tableLogicile" ).append(tr);
+		    	});
+		    	//Document.getElementById("")
+		    	
+		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
+		    };
+		    document.getElementById("suppL").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ck:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_".concat($(this).val()));
+			    	$( "#tableLogicilepopup" ).append(tr);
+                    this.checked = false;
+		    	});
+		    }
 	});
 	window.PixelAdmin.start(init);
 </script>

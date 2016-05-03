@@ -112,7 +112,7 @@ public class Sprint1 {
 	    					+"<br>Pour validé votre compte et pouvoir accéder librement "
 	    					+"<a href="+url+">Clickez ici</a>."
 	    		);
-		if(user.getRole().getId() == 0){
+		if(user.getRole().getId() == null){
 			m.ajouterUser(user, user.getDepartement().getId());
 			
 		}
