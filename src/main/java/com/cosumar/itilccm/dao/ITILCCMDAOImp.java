@@ -178,47 +178,44 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public Long addPCAll(Ordinateur pc, List<Long> logicielEtApplication, List<Long> equipementReseau,
 			List<Long> intefaceReseau, List<Long> peripherique) {
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAA---DAO");
-		Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
-		for (Long l : logicielEtApplication) {
-			System.out.println("0000000000000000000000---DAO");
-			LogicielEtApplication log = getLogicielEtApplication(l);
-			System.out.println("0000000000000000000000---DAO"+log.getNom()+" id : "+log.getId());
-			la.add(log);
+		
+		if(logicielEtApplication != null){
+			Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
+			for (Long l : logicielEtApplication) {
+				LogicielEtApplication log = getLogicielEtApplication(l);
+				la.add(log);
+			}
+			pc.setLogicielEtApplication(la);
 		}
-		System.out.println("BBBBBBBBBBBBBBBBBBBBBBB---DAO");
-		Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
-		for (Long e : equipementReseau) {
-			System.out.println("111111111111111111111---DAO");
-			er.add(getEquipementReseau(e));
+		
+		if(equipementReseau != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementReseau) {
+				er.add(getEquipementReseau(e));
+			}
+			pc.setEquipementReseau(er);
 		}
-		System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC---DAO");
-		Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
-		for (Long i : intefaceReseau) {
-			System.out.println("22222222222222222222222222---DAO");
-			IntefaceReseau inter = getInterfaceReseau(i);
-			ir.add(inter);
-			inter.setOrdinateur(pc);
+		
+		if(intefaceReseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : intefaceReseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setOrdinateur(pc);
+			}
+			pc.setIntefaceReseau(ir);
 		}
-		System.out.println("DDDDDDDDDDDDDDDDDDDDDDDD---DAO");
-		Collection<Peripherique> per = new ArrayList<Peripherique>();
-		for (Long p : peripherique) {
-			System.out.println("233333333333333333333---DAO");
-			Peripherique periph = getPeriph(p);
-			per.add(periph);
-			periph.setOrdinateur(pc);
+		if(peripherique != null){
+			Collection<Peripherique> per = new ArrayList<Peripherique>();
+			for (Long p : peripherique) {
+				Peripherique periph = getPeriph(p);
+				per.add(periph);
+				periph.setOrdinateur(pc);
+			}
+			pc.setPeripherique(per);
 		}
-		System.out.println("EEEEEEEEEEEEEEEEEEEEEEEe---DAO");
-		pc.setLogicielEtApplication(la);
-		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFF---DAO");
-		pc.setEquipementReseau(er);
-		System.out.println("JJJJJJJJJJJJJJJJJJJJJJJ---DAO");
-		pc.setIntefaceReseau(ir);
-		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHH---DAO");
-		pc.setPeripherique(per);
-		System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIII---DAO");
+
 		em.persist(pc);
-		System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLll---DAO");
 		return pc.getId();
 	}
 
