@@ -25,8 +25,8 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   @NotEmpty
 	   private String nom;
 	   
-	   private String critiicite;
-	   private Date dateDeMiseEnnProduction;
+	   private String criticite;
+	   private Date dateDeMiseEnProduction;
 	   private String description;
 	   
 	   @Column(nullable=true)
@@ -42,12 +42,12 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public InstanceDeBasseDeDonnes(String nom, String critiicite, Date dateDeMiseEnnProduction,
+		public InstanceDeBasseDeDonnes(String nom, String criticite, Date dateDeMiseEnProduction,
 				String description) {
 			super();
 			this.nom = nom;
-			this.critiicite = critiicite;
-			this.dateDeMiseEnnProduction = dateDeMiseEnnProduction;
+			this.criticite = criticite;
+			this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 			this.description = description;
 		}
 		public Long getId() {
@@ -62,17 +62,17 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 		public void setNom(String nom) {
 			this.nom = nom;
 		}
-		public String getCritiicite() {
-			return critiicite;
+		public String getCriticite() {
+			return criticite;
 		}
-		public void setCritiicite(String critiicite) {
-			this.critiicite = critiicite;
+		public void setCriticite(String criticite) {
+			this.criticite = criticite;
 		}
-		public Date getDateDeMiseEnnProduction() {
-			return dateDeMiseEnnProduction;
+		public Date getDateDeMiseEnProduction() {
+			return dateDeMiseEnProduction;
 		}
-		public void setDateDeMiseEnnProduction(Date dateDeMiseEnnProduction) {
-			this.dateDeMiseEnnProduction = dateDeMiseEnnProduction;
+		public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+			this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 		}
 		public String getDescription() {
 			return description;

@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Lieu - ITIL-CCM</title>
+	<title>Nouveau Contrat - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -48,6 +48,7 @@ Use search to find needed section.
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/pages.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
+	
 
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
@@ -454,10 +455,10 @@ Use search to find needed section.
 -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Lieu</span>
+						<span class="panel-title">Nouveau Contrat</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="lieu" action="saveLieu" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="contrat" action="saveContrat" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -476,7 +477,7 @@ Use search to find needed section.
 								</li>
 								
 								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Matériels</a>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
 								</li>
 								
 								
@@ -488,134 +489,160 @@ Use search to find needed section.
 		
 									
 		
-									<div class="panel-body">
+						<div class="panel-body">
 						
 						
-							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
+								<div class="col-sm-5">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
-								</div>
+							</div>
+							
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Client</label>
+								<div class="col-sm-5">
+									<f:input path="client" type="text" class="form-control" id="inputError-4" name="jq-validation-client" />
+									<f:errors path="client" cssClass="help-block"></f:errors>
+							    </div>
+							
 							</div>
 							
 							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-9">
-							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value="NONE"> -- choisir une valeur --</f:option>
-										<f:option value="Actif"> Actif</f:option>
-										<f:option value="Inactif"> Inactif</f:option>
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
+								<div class="col-sm-5">
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<f:errors path="description" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Type de contrat</label>
+								<div class="col-sm-3">
+									<f:select  path="typeDeContrat" class="form-control" name="jq-validation-typeDeContrat" id="jq-validation-typeDeContrat">
+									            <f:option value="NONE"> -- choisir une valeur --</f:option>
 									</f:select>
-							<f:errors path="nom" cssClass="help-block"></f:errors>
-							</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Organisation</label>
-								<div class="col-sm-9">
-									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-organisation" />
-									<f:errors path="organisme" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
-								<div class="col-sm-9">
-									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />
-									<f:errors path="adresse" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Code postale</label>
-								<div class="col-sm-9">
-									<f:input path="codePostale" type="text" class="form-control" id="inputError-4" name="jq-validation-codepostale" />
-									<f:errors path="codePostale" cssClass="help-block"></f:errors>
-								</div>
-							</div> 
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Ville</label>
-								<div class="col-sm-9">
-									<f:input path="ville" type="text" class="form-control" id="inputError-4" name="jq-validation-ville" />
-									<f:errors path="ville" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Pays</label>
-								<div class="col-sm-9">
-									<f:input path="pays" type="text" class="form-control" id="inputError-4" name="jq-validation-pays" />
-									<f:errors path="pays" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
+									<f:errors path="typeDeContrat" cssClass="help-block"></f:errors>
+							     </div>
+				             </div> 
+							<script>
+					init.push(function () {
+						
+						var options = {
+								
+								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+							}
+							$('#bs-datepicker-component').datepicker();
+						
+						    $('#bs-datepicker-component2').datepicker(options);
+
+					});
+				</script>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début</label>
 					
-							
-							          
-							
+						<div class=" col-sm-3" >
+							<div class=" input-group date" id="bs-datepicker-component">
+								<f:input path="dateDeDebut" type="text" class="form-control" name="start"  placeholder="Date de début"  />
+								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+								<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>
+							</div>				
+						</div>
+				</div>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin</label>
+				     		<div class=" col-sm-3" >
+								<div class="input-group date" id="bs-datepicker-component2">
+									<f:input path="dateDeFin" type="text" class="form-control" name="end"  placeholder="Date de fin" />
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<f:errors path="dateDeFin" cssClass="help-block"></f:errors>
+								</div>
 							</div>
+				
+				</div>	
+				
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Coût</label>
+								<div class="col-sm-5">
+									<f:input path="cout" type="text" class="form-control" id="jq-validation-cout" name="jq-validation-cout" />
+									<f:errors path="cout" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Monnaie</label>
+								<div class="col-sm-3">
+									<f:select  path="monnaie" class="form-control" name="jq-validation-monnaie" id="jq-validation-monnaie">
+									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+												<f:option value="Dirham">Dirham</f:option>
+												<f:option value="Euros"> Euros</f:option>
+												<f:option value="Dollars"> Dollars</f:option>
+									</f:select>
+									<f:errors path="monnaie" cssClass="help-block"></f:errors>
+							     </div>
+				</div>
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Périodicité de facturation</label>
+								<div class="col-sm-5">
+									<f:input path="periodiciteDeFacturation" type="text" class="form-control" id="jq-validation-periodiciteDeFacturation" name="jq-validation-periodiciteDeFacturation" />
+									<f:errors path="periodiciteDeFacturation" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Unité de coût</label>
+								<div class="col-sm-5">
+									<f:input path="uniteDeCout" type="text" class="form-control" id="jq-validation-uniteDeCout" name="jq-validation-uniteDeCout" />
+									<f:errors path="uniteDeCout" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Fournisseur</label>
+								<div class="col-sm-5">
+									<f:input path="fournisseur" type="text" class="form-control" id="jq-validation-fournisseur" name="jq-validation-fournisseur" />
+									<f:errors path="fournisseur" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
+								<div class="col-sm-3">
+									<f:select  path="statut" class="form-control" name="jq-validation-statut" id="jq-validation-statut">
+									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+												<f:option value="implémentation">implémentation</f:option>
+												<f:option value="obsolète"> obsolète</f:option>
+												<f:option value="production"> production</f:option>
+									</f:select>
+									<f:errors path="statut" cssClass="help-block"></f:errors>
+							     </div>
+				</div>
+				
+					
+						
+					</div>
+					
+					
 		
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									
-									logiciels
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
-									
-		
-		
-									intarfaces_reseaux
-		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-equipement_reseaux" id="profile-equipement_reseaux">
-									
-		
-									equipement_reseaux
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
 									
-		
-									contacts
-		
-		
+									Contacts
+									
 									
 								</div> <!-- / .tab-pane -->
-								
 								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
 									
 		
-									documents
 		
+									Documents
 		
 									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-		
-									contrats
-		
-		
 									
 								</div> <!-- / .tab-pane -->
 								
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
 					
 							<hr class="panel-wide">
 							
@@ -634,25 +661,6 @@ Use search to find needed section.
 					
 					
 		</div>
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<!-- Content here -->
 		

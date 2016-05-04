@@ -26,7 +26,7 @@ public class ProcessusMetier implements Serializable{
    private String nom;
    private String statut;
    private String criticite;
-   private Date dateDeMiseDeProduction;
+   private Date dateDeMiseEnProduction;
    private String description;
    
    	@ManyToMany
@@ -65,12 +65,12 @@ public class ProcessusMetier implements Serializable{
 		this.criticite = criticite;
 	}
 
-	public Date getDateDeMiseDeProduction() {
-		return dateDeMiseDeProduction;
+	public Date getDateDeMiseEnProduction() {
+		return dateDeMiseEnProduction;
 	}
 
-	public void setDateDeMiseDeProduction(Date dateDeMiseDeProduction) {
-		this.dateDeMiseDeProduction = dateDeMiseDeProduction;
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 	}
 
 	public String getDescription() {
@@ -94,13 +94,13 @@ public class ProcessusMetier implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProcessusMetier(String nom, String statut, String criticite, Date dateDeMiseDeProduction,
+	public ProcessusMetier(String nom, String statut, String criticite, Date dateDeMiseEnProduction,
 			String description) {
 		super();
 		this.nom = nom;
 		this.statut = statut;
 		this.criticite = criticite;
-		this.dateDeMiseDeProduction = dateDeMiseDeProduction;
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 		this.description = description;
 	}
 

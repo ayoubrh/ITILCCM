@@ -1202,25 +1202,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterDocument(Document d) {
-		em.persist(d);
-		return d.getId();
-	}
-
-	@Override
-	public void modifierDocument(Document d) {
-		em.merge(d);
-		
-	}
-
-	@Override
-	public void supprimerDocument(Long id) {
-		Document document = getDocument(id);
-		em.remove(document);
-		
-	}
-
-	@Override
 	public List<Document> listDocument() {
 		Query req = em.createQuery("select d from Document d");
 		return req.getResultList();
@@ -1711,6 +1692,96 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return em.find(Hyperviseur.class, id);
 	}
 
+
+	@Override
+	public Long ajouterDocumentFichier(DocumentFichier df) {
+		em.persist(df);
+		return df.getId();
+	}
+
+	@Override
+	public void modifierDocumentFichier(DocumentFichier df) {
+		em.merge(df);
+		
+	}
+
+	@Override
+	public void supprimerDocumentFichier(Long id) {
+		DocumentFichier fichier = getDocumentFichier(id);
+		em.remove(fichier);
+		
+	}
+
+	@Override
+	public List<DocumentFichier> listDocumentFichier() {
+		Query req = em.createQuery("select df from DocumentFichier df");
+		return req.getResultList();
+	}
+
+	@Override
+	public DocumentFichier getDocumentFichier(Long id) {
+		return em.find(DocumentFichier.class, id);
+	}
+
+	@Override
+	public Long ajouterDocumentWeb(DocumentWeb dw) {
+		em.persist(dw);
+		return dw.getId();
+	}
+
+	@Override
+	public void modifierDocumentWeb(DocumentWeb dw) {
+		em.merge(dw);
+		
+	}
+
+	@Override
+	public void supprimerDocumentWeb(Long id) {
+		DocumentWeb web = getDocumentWeb(id);
+		em.remove(web);
+		
+	}
+
+	@Override
+	public List<DocumentWeb> listDocumentWeb() {
+		Query req = em.createQuery("select dw from DocumentWeb dw");
+		return req.getResultList();
+	}
+
+	@Override
+	public DocumentWeb getDocumentWeb(Long id) {
+		return em.find(DocumentWeb.class, id);
+	}
+
+	@Override
+	public Long ajouterDocumentNote(DocumentNote dn) {
+		em.persist(dn);
+		return dn.getId();
+	}
+
+	@Override
+	public void modifierDocumentNote(DocumentNote dn) {
+		em.persist(dn);
+		
+	}
+
+	@Override
+	public void supprimerDocumentNote(Long id) {
+		DocumentNote note = getDocumentNote(id);
+		em.remove(note);
+		
+	}
+
+	@Override
+	public List<DocumentNote> listDocumentNote() {
+		Query req = em.createQuery("select dn from DocumentNote dn");
+		return req.getResultList();
+	}
+
+	@Override
+	public DocumentNote getDocumentNote(Long id) {
+		return em.find(DocumentNote.class, id);
+	}
 	
 
 

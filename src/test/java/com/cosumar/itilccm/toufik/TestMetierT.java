@@ -67,7 +67,7 @@ public class TestMetierT {
 	
 		
 	}
-	@Test
+	/*@Test
 	public void Document() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
@@ -79,7 +79,7 @@ public class TestMetierT {
 		}
 	
 		
-	}
+	}*/
 	
 	@Test
 	public void Groupe() {

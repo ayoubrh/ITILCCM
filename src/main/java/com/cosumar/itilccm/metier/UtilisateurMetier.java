@@ -39,6 +39,21 @@ public interface UtilisateurMetier {
 	
 	public List<Document> listDocument();
 	public Document getDocument(Long id);
+	
+    //  Document  Fichier
+	
+	public List<DocumentFichier> listDocumentFichier();
+	public DocumentFichier getDocumentFichier(Long id);
+	
+    //  Document  Web
+	
+	public List<DocumentWeb> listDocumentWeb();
+	public DocumentWeb getDocumentWeb(Long id);
+	
+	 //  Document Note
+	
+	public List<DocumentNote> listDocumentNote();
+	public DocumentNote getDocumentNote(Long id);
 		
 	// Groupe
 	
