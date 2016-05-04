@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,15 +49,15 @@ public class Ordinateur implements Serializable{
    	@JoinColumn(name="user_id")
    private User user;
    	
-   @ManyToMany
+   @ManyToMany(cascade = CascadeType.ALL)
    @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(mappedBy="ordinateur")
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
-   	@OneToMany(mappedBy="ordinateur")
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    private Collection<Peripherique> peripherique;
    	
 	 @ManyToOne
@@ -64,7 +65,7 @@ public class Ordinateur implements Serializable{
    	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="ordinateur")
+	 @ManyToMany(cascade = CascadeType.ALL)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 
    

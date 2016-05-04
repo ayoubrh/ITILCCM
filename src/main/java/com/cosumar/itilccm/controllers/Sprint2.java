@@ -103,7 +103,7 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 			model.addAttribute("logged", logged);
-			model.addAttribute("pc", pc );
+			//model.addAttribute("pc", pc );
 			model.addAttribute("logiciels", m.listLogicielPc());
 			return "sprint2/addPC";
 		}

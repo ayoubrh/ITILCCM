@@ -1,6 +1,7 @@
 package com.cosumar.itilccm.metier;
 
 import java.security.MessageDigest;
+import java.util.Collection;
 import java.util.List;
 
 import javax.mail.Message;
@@ -121,6 +122,12 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public Long addPC(Ordinateur pc) {
 		return dao.addPC(pc);
+	}
+	
+	@Override
+	public Long addPCAll(Ordinateur pc, List<Long> logicielEtApplication, List<Long> equipementReseau,
+			List<Long> intefaceReseau, List<Long> peripherique) {
+		return dao.addPCAll(pc, logicielEtApplication, equipementReseau, intefaceReseau, peripherique);
 	}
 
 	@Override
@@ -1529,6 +1536,8 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public void deleteEquipementReseau(Long id) {
 		dao.deleteEquipementReseau(id);
 	}
+
+	
 
 	
 

@@ -887,6 +887,7 @@ Use search to find needed section.
 		    		chkArray.push($(this).val());
 		    		var tr = document.getElementById("tr_".concat($(this).val()));
 			    	$( "#tableLogicile" ).append(tr);
+			    	//this.checked = false;
 		    	});
 		    	//Document.getElementById("")
 		    	
