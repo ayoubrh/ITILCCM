@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Ordinateur implements Serializable{
    private String statut;
    private String criticite;
    private String marque;
+   private String modele;
    	
    	@NotEmpty
 	@Size(min=2,max=20)
@@ -46,15 +48,16 @@ public class Ordinateur implements Serializable{
    	@ManyToOne
    	@JoinColumn(name="user_id")
    private User user;
-   @ManyToMany
+   	
+   @ManyToMany(cascade = CascadeType.ALL)
    @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(mappedBy="ordinateur")
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
-   	@OneToMany(mappedBy="ordinateur")
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    private Collection<Peripherique> peripherique;
    	
 	 @ManyToOne
@@ -62,7 +65,7 @@ public class Ordinateur implements Serializable{
    	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="ordinateur")
+	 @ManyToMany(cascade = CascadeType.ALL)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 
    
@@ -149,6 +152,14 @@ public class Ordinateur implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	public String getModele() {
+		return modele;
+	}
+	public void setModele(String modele) {
+		this.modele = modele;
 	}
 	public User getUser() {
 		return user;

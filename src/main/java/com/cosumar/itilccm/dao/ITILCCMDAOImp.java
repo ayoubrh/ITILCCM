@@ -1,5 +1,6 @@
 package com.cosumar.itilccm.dao;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -170,6 +171,54 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public Long addPC(Ordinateur pc) {
 		em.persist(pc);
+		return pc.getId();
+	}
+	
+	@SuppressWarnings("null")
+	@Override
+	public Long addPCAll(Ordinateur pc, List<Long> logicielEtApplication, List<Long> equipementReseau,
+			List<Long> intefaceReseau, List<Long> peripherique) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAA---DAO");
+		Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
+		for (Long l : logicielEtApplication) {
+			System.out.println("0000000000000000000000---DAO");
+			LogicielEtApplication log = getLogicielEtApplication(l);
+			System.out.println("0000000000000000000000---DAO"+log.getNom()+" id : "+log.getId());
+			la.add(log);
+		}
+		System.out.println("BBBBBBBBBBBBBBBBBBBBBBB---DAO");
+		Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+		for (Long e : equipementReseau) {
+			System.out.println("111111111111111111111---DAO");
+			er.add(getEquipementReseau(e));
+		}
+		System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC---DAO");
+		Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+		for (Long i : intefaceReseau) {
+			System.out.println("22222222222222222222222222---DAO");
+			IntefaceReseau inter = getInterfaceReseau(i);
+			ir.add(inter);
+			inter.setOrdinateur(pc);
+		}
+		System.out.println("DDDDDDDDDDDDDDDDDDDDDDDD---DAO");
+		Collection<Peripherique> per = new ArrayList<Peripherique>();
+		for (Long p : peripherique) {
+			System.out.println("233333333333333333333---DAO");
+			Peripherique periph = getPeriph(p);
+			per.add(periph);
+			periph.setOrdinateur(pc);
+		}
+		System.out.println("EEEEEEEEEEEEEEEEEEEEEEEe---DAO");
+		pc.setLogicielEtApplication(la);
+		System.out.println("FFFFFFFFFFFFFFFFFFFFFFFF---DAO");
+		pc.setEquipementReseau(er);
+		System.out.println("JJJJJJJJJJJJJJJJJJJJJJJ---DAO");
+		pc.setIntefaceReseau(ir);
+		System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHH---DAO");
+		pc.setPeripherique(per);
+		System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIII---DAO");
+		em.persist(pc);
+		System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLll---DAO");
 		return pc.getId();
 	}
 
@@ -1642,6 +1691,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Hyperviseur getHyperviseur(Long id) {
 		return em.find(Hyperviseur.class, id);
 	}
+
 
 	@Override
 	public Long ajouterDocumentFichier(DocumentFichier df) {

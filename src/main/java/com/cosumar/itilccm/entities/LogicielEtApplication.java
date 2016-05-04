@@ -37,7 +37,7 @@ public class LogicielEtApplication implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(mappedBy="logicielEtApplication")
 	   private Collection<Ordinateur> ordinateur;
 	   
 	   @Column(nullable=true)

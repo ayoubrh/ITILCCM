@@ -28,8 +28,8 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -452,12 +452,59 @@ Use search to find needed section.
 
 		Content
 -->
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Logiciels</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Chemin d'installation</th>
+												<th>Date de mise en production</th>
+											</tr>
+										</thead>
+										<tbody id="tableLogicilepopup">
+											<c:forEach items="${logiciels}" var="l">
+												<tr class="gradeA" id="tr_${l.id }">
+													<td class="supchekbox"><input type="checkbox" class="ck" name="chLogiciels" value="${l.id }"></td>
+													<td>${l.nom }</td>
+													<td>${l.statut }</td>
+													<td>${l.criticite }</td>
+													<td>${l.cheminD_installation }</td>
+													<td>${l.dateDeMiseEnProduction }</td>
+
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addL">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
+				
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Ordinateur</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="pc" action="savePC" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="pc" action="savePC" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -497,15 +544,197 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
+									<div class="form-group">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
+										<div class="col-sm-9">
+											<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
+											<f:errors path="nom" cssClass="help-block"></f:errors>
+										</div>
+									</div>
 									
-		
-									proprietes
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
+										<div class="col-sm-9">
+											<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+												<f:option value="" label=""/>
+												<f:option value="implementation" label="implementation"/>
+												<f:option value="obsolète" label="obsolète"/>
+												<f:option value="production" label="production"/>
+												<f:option value="stock" label="stock"/>
+											</f:select>
+											<f:errors path="statut" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
+										<div class="col-sm-9">
+											<f:select  path="criticite" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+												<f:option value="" label=""/>
+												<f:option value="haute" label="haute"/>
+												<f:option value="basse" label="basse"/>
+												<f:option value="moyenne" label="moyenne"/>
+											</f:select>
+											<f:errors path="criticite" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-lieu" class="col-sm-3 control-label">Lieu</label>
+										<div class="col-sm-9">
+											
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque</label>
+										<div class="col-sm-9">
+											<f:input path="marque" type="text" class="form-control" id="inputError-4" name="jq-validation-marque" />
+											<f:errors path="marque" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle</label>
+										<div class="col-sm-9">
+											<f:input path="modele" type="text" class="form-control" id="inputError-4" name="jq-validation-modele" />
+											<f:errors path="modele" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Famille OS</label>
+										<div class="col-sm-9">
+											
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Version OS</label>
+										<div class="col-sm-9">
+											
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Type</label>
+										<div class="col-sm-9">
+											<div class="radio">
+												<label>
+													<f:radiobutton path="type" name="jq-validation-radios" value="Poste" class="px"/>
+													<span class="lbl">Poste</span>
+												</label>
+											</div>
+											<div class="radio">
+												<label>
+													<f:radiobutton path="type" name="jq-validation-radios" value="Portable" class="px"/>
+													<span class="lbl">Portable</span>
+												</label>
+											</div>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU</label>
+										<div class="col-sm-9">
+											<f:input path="cpu" type="text" class="form-control" id="inputError-4" name="jq-validation-cpu" />
+											<f:errors path="cpu" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM</label>
+										<div class="col-sm-9">
+											<f:input path="ram" type="text" class="form-control" id="inputError-4" name="jq-validation-ram" />
+											<f:errors path="ram" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>
+										<div class="col-sm-9">
+											<f:input path="numeroDeSerie" type="text" class="form-control" id="inputError-4" name="jq-validation-numeroDeSerie" />
+											<f:errors path="numeroDeSerie" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset</label>
+										<div class="col-sm-9">
+											<f:input path="numeroAsset" type="text" class="form-control" id="inputError-4" name="jq-validation-numeroAsset" />
+											<f:errors path="numeroAsset" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production</label>
+										<div class="col-sm-9" >
+											<f:input path="dateDeMiseEnProduction" type="text" class="form-control" id="bs-datepicker-dateDeMiseEnProduction"/>
+											<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat</label>
+										<div class="col-sm-9" >
+											<f:input path="dateD_achat" type="text" class="form-control" id="bs-datepicker-dateD_achat"/>
+											<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie</label>
+										<div class="col-sm-9" >
+											<f:input path="dateDeFinDeGarantie" type="text" class="form-control" id="bs-datepicker-dateDeFinDeGarantie"/>
+											<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
+										<div class="col-sm-9">
+											<f:textarea path="description" class="form-control" name="jq-validation-text" id="jq-validation-description" />
+											<f:errors path="description" cssClass="help-block"></f:errors>
+										</div>
+									</div>
+									
+									
+									
 		
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									
-									logiciels
-									
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Chemin d'installation</th>
+												<th>Date de mise en production</th>
+												
+											</tr>
+										</thead>
+										<tbody id="tableLogicile">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppL">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
+										</div>
+										
+									</div>
 									
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
@@ -569,11 +798,11 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer </button>
 								</div>
 								
 							</div>
@@ -637,6 +866,43 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
+		var options = {
+				todayBtn: "linked",
+				orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+			}
+		
+			$('#bs-datepicker-dateDeMiseEnProduction').datepicker();
+			$('#bs-datepicker-dateD_achat').datepicker();
+			$('#bs-datepicker-dateDeFinDeGarantie').datepicker();
+			
+			$('.jq-datatables-example').dataTable();
+			$('.jq-datatables-example_wrapper .table-caption').text('');
+			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			document.getElementById("addL").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ck:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_".concat($(this).val()));
+			    	$( "#tableLogicile" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	//Document.getElementById("")
+		    	
+		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
+		    };
+		    document.getElementById("suppL").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ck:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_".concat($(this).val()));
+			    	$( "#tableLogicilepopup" ).append(tr);
+                    this.checked = false;
+		    	});
+		    }
 	});
 	window.PixelAdmin.start(init);
 </script>

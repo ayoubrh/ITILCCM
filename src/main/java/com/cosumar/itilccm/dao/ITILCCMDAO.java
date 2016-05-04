@@ -35,7 +35,7 @@ public interface ITILCCMDAO {
 	// Ordinateur
 	
 	public  Long addPC(Ordinateur pc);
-	//public  Long addPCAll(Ordinateur pc,List<Long> os);
+	public  Long addPCAll(Ordinateur pc,List<Long> logicielEtApplication, List<Long> equipementReseau, List<Long> intefaceReseau, List<Long> peripherique);
 	public  Long addPCUser(Ordinateur pc, Long u);
 	public void editPC(Ordinateur pc);
 	public List<Ordinateur> ListPC();

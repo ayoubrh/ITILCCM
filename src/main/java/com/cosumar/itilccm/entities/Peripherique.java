@@ -37,7 +37,7 @@ public class Peripherique implements Serializable{
    private String decription;
    
     @ManyToOne
-    @JoinColumn(name="role_id")
+    @JoinColumn(name="ordinateur_id")
    private Ordinateur ordinateur;
 
 	public Long getId() {
