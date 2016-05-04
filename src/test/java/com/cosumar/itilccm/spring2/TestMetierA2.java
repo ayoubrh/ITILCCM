@@ -46,5 +46,23 @@ public class TestMetierA2 {
 			assertTrue(e.getMessage(), false);
 		}
 	}
+	
+	@Test
+	public void Ordinateur() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			List<Ordinateur> pc1 = m.ListPC();
+
+			m.addPCAll(new Ordinateur("HP 20", "Poste"), null, null, null, null);
+			m.addPCAll(new Ordinateur("HP 30", "Poste"), null, null, null, null);
+			List<Ordinateur> pc2 = m.ListPC();
+			assertTrue(pc1.size()+2 == pc2.size());
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	
+		
+	}
+	
 
 }
