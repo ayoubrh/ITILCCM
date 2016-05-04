@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cosumar.itilccm.entities.Lieu;
@@ -95,16 +96,29 @@ public class Sprint2 {
 		return "sprint2/addPC";
 	}
 	
-	@RequestMapping(value="/admin/add/savePC")
-	public String save(@Valid User user,BindingResult bind,HttpServletRequest req,
-			Model model,MultipartFile file) throws Exception{
-		System.out.println("Test test");
+	@RequestMapping(value="/admin/add/savePC", method = RequestMethod.POST)
+	public String savePC(@Valid Ordinateur pc,BindingResult bind,HttpServletRequest req,Model model) {
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("pc", pc );
+			model.addAttribute("logiciels", m.listLogicielPc());
+			return "sprint2/addPC";
+		}
+		System.out.println("Test test 3");
 		String[] chLogiciels = req.getParameterValues("chLogiciels");
-		System.out.println("Test test 2" + chLogiciels);
 		if(chLogiciels != null){
 			for (int i = 0; i < chLogiciels.length; i++) {
 				//String[] chLogicielsvalue = req.getParameterValues(chLogiciels[i]);
 				System.out.println("---------"+chLogiciels[i]);
+			}
+		}else {
+			if(pc.getUser() != null){
+				System.out.println("Ajout ordi avec user");
+			}else {
+				m.addPC(pc);
 			}
 		}
 		return "redirect:/config/admin/dashboard";

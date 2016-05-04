@@ -47,6 +47,7 @@ public class Ordinateur implements Serializable{
    	@ManyToOne
    	@JoinColumn(name="user_id")
    private User user;
+   	
    @ManyToMany
    @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;

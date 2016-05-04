@@ -80,7 +80,7 @@ public class Sprint1 {
 			Model model,MultipartFile file) throws Exception{
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		      String logged_m = auth.getName();
+		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 			model.addAttribute("logged", logged);
 			model.addAttribute("d", m.listDepartement());

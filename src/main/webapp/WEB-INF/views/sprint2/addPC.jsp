@@ -28,8 +28,8 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -504,7 +504,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau Ordinateur</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="pc" action="savePC" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="pc" action="savePC" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
