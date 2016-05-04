@@ -28,11 +28,12 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Comptes utilisateurs - ITIL-CCM</title>
+	<title>Nouveau Licence OS - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -47,12 +48,12 @@ Use search to find needed section.
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/pages.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
+	
 
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
 
 </head>
 
@@ -70,7 +71,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-default main-menu-animated page-profile">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -452,98 +453,205 @@ Use search to find needed section.
 
 		Content
 -->
+		<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Nouveau Licence OS</span>
+					</div>
+					<div class="panel-body">
+						<f:form modelAttribute="licenseOs" action="saveLicenseOs" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+					
+					
+		
+						<hr class="profile-content-hr no-grid-gutter-h">
+						
+						<div class="profile-content">
+		
+							<ul id="profile-tabs" class="nav nav-tabs">
+								<li class="active">
+									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
+								</li>
+								
+								
+								<li>
+									<a href="#profile-tabs-serveurs" data-toggle="tab">Serveurs</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
+								</li>
+								
+								
+								
+							</ul>
+		
+							<div class="tab-content tab-content-bordered panel-padding">
+								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
+		
+									
+		
+						<div class="panel-body">
+						
+						
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
+								<div class="col-sm-5">
+									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
+									<f:errors path="nom" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
+								<div class="col-sm-4">
+									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+									    <f:option value="NONE"> -- choisir une valeur --</f:option>
+										<f:options items="${v }" itemValue="id" itemLabel="nom" />
+									</f:select>
+									<f:errors path="versionOs.id" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Limite d'utilisation</label>
+								<div class="col-sm-5">
+									<f:input path="limiteD_utilisation" type="text" class="form-control" id="inputError-4" name="jq-validation-limiteD_utilisation" />
+									<f:errors path="limiteD_utilisation" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
+								<div class="col-sm-5">
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<f:errors path="description" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
+								<div class="col-sm-4">
+									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
+									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+									            <f:option value="non">non</f:option>
+												<f:option value="oui"> oui</f:option>
+									</f:select>
+									<f:errors path="perpetuelle" cssClass="help-block"></f:errors>
+							     </div>
+				             </div> 
+							<script>
+					init.push(function () {
+						
+						var options = {
+								
+								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+							}
+							$('#bs-datepicker-component').datepicker();
+						
+						    $('#bs-datepicker-component2').datepicker(options);
+
+					});
+				</script>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début de validité</label>
+					
+						<div class=" col-sm-3" >
+							<div class=" input-group date" id="bs-datepicker-component">
+								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
+								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+								<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>
+							</div>				
+						</div>
+				</div>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin de validité</label>
+				     		<div class=" col-sm-3" >
+								<div class="input-group date" id="bs-datepicker-component2">
+									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
+									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+									<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+				
+				</div>	
+				
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Clé</label>
+								<div class="col-sm-5">
+									<f:input path="cle" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-cle" />
+									<f:errors path="cle" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				
+				
+					
+						
+					</div>
+					
+					
+		
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
+									
+		
+		
+									Documents
+		
+									
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-serveurs" id="profile-tabs-serveurs">
+									
+		
+		
+									Serveurs
+		
+									
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-machines" id="profile-tabs-machines">
+									
+								Machines Virtuelles
+									
+									
+								</div> <!-- / .tab-pane -->
+								
+							</div> <!-- / .tab-content -->
+						</div>
+				
+					
+							<hr class="panel-wide">
+							
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-1">
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+								</div>
+								
+								<div class="col-sm-offset-1 col-sm-7">
+									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+								</div>
+								
+							</div>
+						</f:form>
+					</div>
+					
+					
+		</div>
 
 		<!-- Content here -->
 		
-		<script>
-					init.push(function () {
-
-						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('');
-						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-
-					});
-					
-					
-		</script>
 		
-				<!-- / Javascript -->
-
-				<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title">Liste de tous les utilisateurs</span>
-					</div>
-					<div class="panel-body">
-						<div class="table-primary">
-							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
-								<thead>
-									<tr>
-										<th id="supchek"> </th>
-										<th>Matricule</th>
-										<th>Nom complet</th>
-										<th>E-mail</th>
-										<th>tele/fixe</th>
-										<th>Fonction</th>
-										<th>Département</th>
-										<th>Role</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${users}" var="u">
-										<tr class="gradeA">
-											<td class="supchekbox"><input type="checkbox" class="ck" name="sup" value="${u.id }"></td>
-											<td><a href="<c:url value="/users/profil?id=${u.id }" />">${u.matricule }</a></td>
-											<td>${u.prenom } ${u.nom }</td>
-											<td>${u.email }</td>
-											<td>${u.tele }/${u.fixe }</td>
-											<td>${u.fonction }</td>
-											<td>${u.departement.libelle }</td>
-											<c:if  test="${u.role.libelle != null}">
-												<td>${u.role.libelle}</td>
-											</c:if>
-											<c:if  test="${u.role.libelle == null }">
-												<td> </td>
-											</c:if>
-											<td>
-												<c:if test="${u.actived == true }">
-													<input type="checkbox" class="switcher-example-2" checked="checked" disabled="disabled">
-												</c:if>
-												<c:if test="${u.actived == false }">
-													<input type="checkbox" class="switcher-example-2" disabled="disabled">
-												</c:if>
-											</td>
-										</tr>
-									</c:forEach>
-									
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-
-
-
-
-
-
+		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
-<script>
-					init.push(function () {
-
-						$('.switcher-example-2').switcher({
-							theme: 'square',
-							on_state_content: '<span class="fa fa-check"></span>',
-							off_state_content: '<span class="fa fa-times"></span>'
-						});
-					});
-					
-					
-</script>
 
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
@@ -560,54 +668,19 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-	
-		init.push(function () {
-			
-			var s = "${fn:length(users)}";
-			
-			var tab = "${ids}";
-			var tab = tab.match(/\d/g);
-			
-			$("#supchek").hide();
-			//for(i=0;i<s;i++){
-				//var aid = "#supchek".concat(tab[i]);
-				//alert(aid);
-				$(".supchekbox").hide();
-			//}
-			//$("#supchek").hide();
-			$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='add'>Nouveau</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger btn-flat' id='supp'>Supprimer</button></div>");
-			// Javascript code here
-			document.getElementById("add").onclick = function () {
-		        location.href = "http://localhost:8080/itilccm/users/admin/add";
-		    };
-		    document.getElementById("supp").onclick = function () {
-		    	$("#supchek").show();
-				//for(i=0;i<=s;i++){
-					//var aid = "#supchek".concat(tab[i]);
-					$(".supchekbox").show();
-				//}
-				$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-labeled' id='annulle'><span class='btn-label icon fa fa-angle-double-left'></span>Annuler</button>  <button class='btn btn-labeled btn-danger' id='approuv'><span class='btn-label icon fa fa-angle-double-right'></span>Supprimer!</button></div>");
-		   		
-				
-				document.getElementById("annulle").onclick = function () {
-			    	//alert("annulle")
-			        location.href = "http://localhost:8080/itilccm/users/admin/all";
-			    };
-			    
-			    document.getElementById("approuv").onclick = function () {
-			    	var chkArray = [];
-			    	
-			    	$(".ck:checked").each(function() {
-			    		chkArray.push($(this).val());
-			    	});
-			    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-			    	location.href = "http://localhost:8080/itilccm/users/admin/delete?ids="+chkArray;
-			    };
-			    
-		    };
-		    
+	init.push(function () {
+		$('#profile-tabs').tabdrop();
+
+		$("#leave-comment-form").expandingInput({
+			target: 'textarea',
+			hidden_content: '> div',
+			placeholder: 'Write message',
+			onAfterExpand: function () {
+				$('#leave-comment-form textarea').attr('rows', '3').autosize();
+			}
 		});
-		window.PixelAdmin.start(init);
+	});
+	window.PixelAdmin.start(init);
 </script>
 
 </body>

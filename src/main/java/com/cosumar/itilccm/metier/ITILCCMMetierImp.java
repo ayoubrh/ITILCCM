@@ -506,17 +506,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Long ajouterDocument(Document d) {
-		
-		return dao.ajouterDocument(d);
-	}
-
-	@Override
-	public void modifierDocument(Document d) {
-		dao.modifierDocument(d);
-	}
-	
-	@Override
 	public Long addPhysique(Physique Physique) {
 		return dao.addPhysique(Physique);
 	}
@@ -525,11 +514,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public void editPhysique(Physique Physique) {
 		dao.editPhysique(Physique);
 		
-	}
-
-	@Override
-	public void supprimerDocument(Long id) {
-		dao.supprimerDocument(id);
 	}
 	
 	@Override
@@ -1528,6 +1512,87 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public void deleteEquipementReseau(Long id) {
 		dao.deleteEquipementReseau(id);
+	}
+
+	@Override
+	public Long ajouterDocumentFichier(DocumentFichier df) {
+		return dao.ajouterDocumentFichier(df);
+	}
+
+	@Override
+	public void modifierDocumentFichier(DocumentFichier df) {
+		dao.modifierDocumentFichier(df);
+		
+	}
+
+	@Override
+	public void supprimerDocumentFichier(Long id) {
+		dao.supprimerDocumentFichier(id);
+		
+	}
+
+	@Override
+	public Long ajouterDocumentWeb(DocumentWeb dw) {
+		return dao.ajouterDocumentWeb(dw);
+	}
+
+	@Override
+	public void modifierDocumentWeb(DocumentWeb dw) {
+		dao.modifierDocumentWeb(dw);
+		
+	}
+
+	@Override
+	public void supprimerDocumentWeb(Long id) {
+		dao.supprimerDocumentWeb(id);
+		
+	}
+
+	@Override
+	public Long ajouterDocumentNote(DocumentNote dn) {
+		return dao.ajouterDocumentNote(dn);
+	}
+
+	@Override
+	public void modifierDocumentNote(DocumentNote dn) {
+		dao.modifierDocumentNote(dn);
+		
+	}
+
+	@Override
+	public void supprimerDocumentNote(Long id) {
+		dao.supprimerDocumentNote(id);
+		
+	}
+
+	@Override
+	public List<DocumentFichier> listDocumentFichier() {
+		return dao.listDocumentFichier();
+	}
+
+	@Override
+	public DocumentFichier getDocumentFichier(Long id) {
+		return dao.getDocumentFichier(id);
+	}
+
+	@Override
+	public List<DocumentWeb> listDocumentWeb() {
+		return dao.listDocumentWeb();
+	}
+
+	@Override
+	public DocumentWeb getDocumentWeb(Long id) {
+		return dao.getDocumentWeb(id);
+	}
+
+	@Override
+	public List<DocumentNote> listDocumentNote() {
+		return dao.listDocumentNote();
+	}
+
+	@Override
+	public DocumentNote getDocumentNote(Long id) {
+		return dao.getDocumentNote(id);
 	}
 
 	

@@ -1,5 +1,10 @@
 package com.cosumar.itilccm.controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -138,6 +143,23 @@ public class Sprint2 {
 		model.addAttribute("processusMetier", new ProcessusMetier());
 		return "sprint2/addProcessusMetier";
 	}
+	@RequestMapping(value="/admin/add/typeLicense")
+	public String typeLicense(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		return "sprint2/TypeLicense";
+	}
+	
+	@RequestMapping(value="/admin/add/typelicenseredirect")
+	public String typelicenseredirect(Model model,HttpServletRequest req){
+		String[] typelicense = req.getParameterValues("type");
+		
+		return "redirect:"+typelicense[0];
+	}
+	
 	@RequestMapping(value="/admin/add/licenceLogiciel")
 	public String addLicenceLogiciel(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -148,15 +170,15 @@ public class Sprint2 {
 		model.addAttribute("la", m.listLogicielEtApplication());
 		return "sprint2/addLicenceLogiciel";
 	}
-	@RequestMapping(value="/admin/add/licenceOs")
-	public String addLicenceOs(Model model){
+	@RequestMapping(value="/admin/add/licenseOs")
+	public String addLicenseOs(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
-		model.addAttribute("licenceOs", new LicenseOs());
+		model.addAttribute("licenseOs", new LicenseOs());
 		model.addAttribute("v", m.listVersionOs());
-		return "sprint2/addLicenceOs";
+		return "sprint2/addLicenseOs";
 	}
 	@RequestMapping(value="/admin/add/versionOs")
 	public String addVersionOs(Model model){
@@ -219,6 +241,85 @@ public class Sprint2 {
 		model.addAttribute("a", m.ListArriveeElectrique());
 		return "sprint2/addPduElectrique";
 	}
+	@RequestMapping(value="/admin/add/typeDocument")
+	public String typeDocument(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		return "sprint2/TypeDocument";
+	}
+	
+	@RequestMapping(value="/admin/add/typeDocumentRedirect")
+	public String typeDocumentRedirect(Model model,HttpServletRequest req){
+		String[] typeDocument = req.getParameterValues("type");
+		
+		return "redirect:"+typeDocument[0];
+	}
+	@RequestMapping(value="/admin/add/fichier")
+	public String addDocumentFichier(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("fichier", new DocumentFichier());
+		return "sprint2/addDocumentFichier";
+	}
+	@RequestMapping(value="/admin/add/web")
+	public String addDocumentWeb(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("web", new DocumentWeb());
+		return "sprint2/addDocumentWeb";
+	}
+	@RequestMapping(value="/admin/add/note")
+	public String addDocumentNote(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("note", new DocumentNote());
+		return "sprint2/addDocumentNote";
+	}
+	
+	@RequestMapping(value="/admin/add/autreLogiciel")
+	public String addAutreLogiciel(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("autreLogiciel", new AutreLogiciel());
+		model.addAttribute("lg", m.listLicenseLogiciel());
+		model.addAttribute("s", m.ListServeur());
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		return "sprint2/addAutreLogiciel";
+	}
+	@RequestMapping(value="/admin/add/logicielPc")
+	public String addLogicielPc(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("logicielPc", new LogicielPc());
+		model.addAttribute("lg", m.listLicenseLogiciel());
+		model.addAttribute("s", m.ListServeur());
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		return "sprint2/addLogicielPc";
+	}
+	@RequestMapping(value="/admin/add/serveurWeb")
+	public String addServeurWeb(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("serveurWeb", new ServeurWeb());
+		model.addAttribute("lg", m.listLicenseLogiciel());
+		model.addAttribute("s", m.ListServeur());
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		return "sprint2/addServeurWeb";
+	}
 	@RequestMapping(value="/admin/add/middleware")
 	public String addMiddleware(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -227,9 +328,51 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("middleware", new Middleware());
 		model.addAttribute("lg", m.listLicenseLogiciel());
-		//model.addAttribute("s", m.ListServeur());
-		//model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("s", m.ListServeur());
+		model.addAttribute("mv", m.listMachineVirtuelle());
 		return "sprint2/addMiddleware";
+	}
+	@RequestMapping(value="/admin/add/serveurBD")
+	public String addServeurBD(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("serveurBD", new ServeurDeBasseDeDonnees());
+		model.addAttribute("lg", m.listLicenseLogiciel());
+		model.addAttribute("s", m.ListServeur());
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		return "sprint2/addServeurBD";
+	}
+	@RequestMapping(value="/admin/add/applicationWeb")
+	public String addApplicationWeb(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("applicationWeb", new ApplicationWeb());
+		model.addAttribute("sw", m.listServeurWeb());
+		return "sprint2/addApplicationWeb";
+	}
+	@RequestMapping(value="/admin/add/instanceMiddleware")
+	public String addInstanceMiddleware(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("instanceMiddleware", new InstanceMiddleware());
+		model.addAttribute("m", m.listMiddleware());
+		return "sprint2/addInstanceMiddleware";
+	}
+	@RequestMapping(value="/admin/add/instanceBD")
+	public String addInstanceDeBasseDeDonnes(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("instanceBD", new InstanceDeBasseDeDonnes());
+		model.addAttribute("m", m.listServeurDeBasseDeDonnees());
+		return "sprint2/addInstanceBD";
 	}
 	
 }

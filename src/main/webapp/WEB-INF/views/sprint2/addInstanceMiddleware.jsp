@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Middleware - ITIL-CCM</title>
+	<title>Nouveau Instance Middleware - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -454,10 +454,10 @@ Use search to find needed section.
 -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Middleware</span>
+						<span class="panel-title">Nouveau Instance Middleware</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="middleware" action="saveMiddleware" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="instanceMiddleware" action="InstanceMiddleware" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -481,9 +481,6 @@ Use search to find needed section.
 								
 								<li>
 									<a href="#profile-tabs-solutions" data-toggle="tab">Solutions applicatives</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-instance" data-toggle="tab">Instance Middleware</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats fournisseur</a>
@@ -511,18 +508,17 @@ Use search to find needed section.
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							
 							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Middleware</label>
 								<div class="col-sm-9">
-										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										            <f:option value="NONE"> -- choisir une valeur --</f:option>
-													<f:option value="Actif"> Actif</f:option>
-													<f:option value="Inactif"> Inactif</f:option>
-												</f:select>
-										<f:errors path="statut" cssClass="help-block"></f:errors>
-							     </div>
+									<f:select  path="middleware.id" class="form-control" name="jq-validation-middleware" id="jq-validation-middleware">
+										<f:option value="NONE"> -- choisir une valeur --</f:option>
+										<f:options items="${m }" itemValue="id" itemLabel="nom" />
+									</f:select>
+									<f:errors path="middleware.id" cssClass="help-block"></f:errors>
+								</div>
 							</div>
+							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
@@ -535,37 +531,7 @@ Use search to find needed section.
 										<f:errors path="criticite" cssClass="help-block"></f:errors>
 							     </div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Système</label>
-								<div class="col-sm-9">
-									<select name="" class="form-control">
-									<option value="NONE"> -- choisir une valeur --</option>
-									<c:forEach items="${s}" var="ser">
-									<option value="${ser.nom}" >${ser.nom}</option>
-									</c:forEach>
-									<c:forEach items="${mv}" var="m">
-									<option value="${m.nom}" >${m.nom}</option>
-									</c:forEach>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence logiciel</label>
-								<div class="col-sm-9">
-									<f:select  path="licenseLogiciel.id" class="form-control" name="jq-validation-licenseLogiciel" id="jq-validation-licenseLogiciel">
-										<f:option value="NONE"> -- choisir une valeur --</f:option>
-										<f:options items="${lg }" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="licenseLogiciel.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Chemin d'installation</label>
-								<div class="col-sm-9">
-									<f:input path="cheminD_installation" type="text" class="form-control" id="inputError-4" name="jq-validation-cheminD_installation" />
-									<f:errors path="cheminD_installation" cssClass="help-block"></f:errors>
-								</div>
-							</div>
+							
 									<script>
 					init.push(function () {
 						
@@ -626,12 +592,7 @@ Use search to find needed section.
 									Solutions Applicatives	
 									
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-instance" id="profile-tabs-instance">
-									
-		
-									Instance Middleware	
-									
-								</div> <!-- / .tab-pane -->
+								
 								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
 									
 		

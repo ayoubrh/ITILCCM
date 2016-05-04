@@ -28,12 +28,11 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Middleware - ITIL-CCM</title>
+	<title>Type License - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -70,7 +69,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -447,259 +446,42 @@ Use search to find needed section.
 <!-- /4. $MAIN_MENU -->
 
 
-	<div id="content-wrapper">
+	<div  id="content-wrapper">
 <!-- 5. $CONTENT ===================================================================================
 
 		Content
 -->
+
+		<!-- Content here -->
+		
+	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Middleware</span>
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/licence.png" alt="" class="">&nbsp; <strong>Type License</strong></span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="middleware" action="saveMiddleware" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+					<form action="typelicenseredirect">
+						<div class="form-group">
 					
-					
-		
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-								
-								
-								<li>
-									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-solutions" data-toggle="tab">Solutions applicatives</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-instance" data-toggle="tab">Instance Middleware</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats fournisseur</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets en cours</a>
-								</li>
-								
-								
-							</ul>
-		
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de License à créer :</label>
+								<div class="col-sm-2">
+									<select   class="form-control" name="type">
+							             <option value="/config/admin/add/licenceLogiciel"  >License Logiciel</option>
+										 <option value="/config/admin/add/licenseOs"  >License OS</option>
 									
-		
-									<div class="panel-body">
-						
-						
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-9">
-										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										            <f:option value="NONE"> -- choisir une valeur --</f:option>
-													<f:option value="Actif"> Actif</f:option>
-													<f:option value="Inactif"> Inactif</f:option>
-												</f:select>
-										<f:errors path="statut" cssClass="help-block"></f:errors>
-							     </div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
-								<div class="col-sm-9">
-										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value="NONE"> -- choisir une valeur --</f:option>
-													<f:option value="haute"> haute</f:option>
-													<f:option value="basse"> basse</f:option>
-													<f:option value="moyenne"> moyenne</f:option>
-												</f:select>
-										<f:errors path="criticite" cssClass="help-block"></f:errors>
-							     </div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Système</label>
-								<div class="col-sm-9">
-									<select name="" class="form-control">
-									<option value="NONE"> -- choisir une valeur --</option>
-									<c:forEach items="${s}" var="ser">
-									<option value="${ser.nom}" >${ser.nom}</option>
-									</c:forEach>
-									<c:forEach items="${mv}" var="m">
-									<option value="${m.nom}" >${m.nom}</option>
-									</c:forEach>
 									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence logiciel</label>
-								<div class="col-sm-9">
-									<f:select  path="licenseLogiciel.id" class="form-control" name="jq-validation-licenseLogiciel" id="jq-validation-licenseLogiciel">
-										<f:option value="NONE"> -- choisir une valeur --</f:option>
-										<f:options items="${lg }" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="licenseLogiciel.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Chemin d'installation</label>
-								<div class="col-sm-9">
-									<f:input path="cheminD_installation" type="text" class="form-control" id="inputError-4" name="jq-validation-cheminD_installation" />
-									<f:errors path="cheminD_installation" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-									<script>
-					init.push(function () {
+									
+							    </div>
+							    <button type="submit" class="btn btn-primary">Appliquer</button>
 						
-						var options = {
-								
-								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-							}
-							$('#bs-datepicker-component').datepicker();
-						
-
-					});
-				</script>
-				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de mise en production</label>
-					
-						<div class=" col-sm-9" >
-							<div class=" input-group date" id="bs-datepicker-component">
-								<f:input path="dateDeMiseEnProduction" type="text" class="form-control" name="dateDeMiseEnProduction"  />
-								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
-							</div>				
 						</div>
-				</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							
-							</div>
-		
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
+					</form>					
 									
-									Contacts
-									
-									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									
-		
-									documents
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								
-								<div class="tab-pane fade widget-solutions" id="profile-tabs-solutions">
-									
-		
-									Solutions Applicatives	
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-instance" id="profile-tabs-instance">
-									
-		
-									Instance Middleware	
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-		
-									contrats
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
-									
-		
-		
-									Tickests
-		
-									
-									
-								</div> <!-- / .tab-pane -->
-								
-							</div> <!-- / .tab-content -->
-						</div>
-				
-					
-					
-					
-					
-					
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
 					</div>
 					
 					
 		</div>
-
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- Content here -->
-		
-		
-		
+					
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -721,16 +503,7 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		$('#profile-tabs').tabdrop();
-
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
+		// Javascript code here
 	});
 	window.PixelAdmin.start(init);
 </script>

@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Middleware - ITIL-CCM</title>
+	<title>Nouveau Serveur de base de données - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -454,10 +454,10 @@ Use search to find needed section.
 -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Middleware</span>
+						<span class="panel-title">Nouveau Serveur de base de données</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="middleware" action="saveMiddleware" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="serveurBD" action="saveServeurBD" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -483,7 +483,7 @@ Use search to find needed section.
 									<a href="#profile-tabs-solutions" data-toggle="tab">Solutions applicatives</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-instance" data-toggle="tab">Instance Middleware</a>
+									<a href="#profile-tabs-instance" data-toggle="tab">Instance de base de données</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats fournisseur</a>

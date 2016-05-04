@@ -65,11 +65,11 @@ public class ProcessusMetier implements Serializable{
 		this.criticite = criticite;
 	}
 
-	public Date getDateDeMiseDeProduction() {
+	public Date getDateDeMiseEnProduction() {
 		return dateDeMiseEnProduction;
 	}
 
-	public void setDateDeMiseDeProduction(Date dateDeMiseEnProduction) {
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
 		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 	}
 
