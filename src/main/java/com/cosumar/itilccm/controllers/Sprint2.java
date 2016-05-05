@@ -95,6 +95,7 @@ public class Sprint2 {
 		model.addAttribute("logged", logged);
 		model.addAttribute("pc", new Ordinateur() );
 		model.addAttribute("logiciels", m.listLogicielPc());
+		model.addAttribute("peripheriques", m.ListPeriph());
 		return "sprint2/addPC";
 	}
 	
@@ -111,10 +112,16 @@ public class Sprint2 {
 		}
 		System.out.println("Test test 3");
 		String[] chLogiciels = req.getParameterValues("chLogiciels");
+		String[] chper = req.getParameterValues("chPeriph");
 		if(chLogiciels != null){
 			for (int i = 0; i < chLogiciels.length; i++) {
 				//String[] chLogicielsvalue = req.getParameterValues(chLogiciels[i]);
 				System.out.println("---------"+chLogiciels[i]);
+			}
+			if(chper != null){
+				for (int i = 0; i < chper.length; i++) {
+					System.out.println("---------"+chper[i]);
+				}
 			}
 		}else {
 			if(pc.getUser() != null){

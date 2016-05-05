@@ -452,7 +452,7 @@ Use search to find needed section.
 
 		Content
 -->
-				<!-- Modal -->
+				<!-- Modal Logiciel -->
 				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -475,8 +475,8 @@ Use search to find needed section.
 										</thead>
 										<tbody id="tableLogicilepopup">
 											<c:forEach items="${logiciels}" var="l">
-												<tr class="gradeA" id="tr_${l.id }">
-													<td class="supchekbox"><input type="checkbox" class="ck" name="chLogiciels" value="${l.id }"></td>
+												<tr class="gradeA" id="tr_log_${l.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckLogiciels" name="chLogiciels" value="${l.id }"></td>
 													<td>${l.nom }</td>
 													<td>${l.statut }</td>
 													<td>${l.criticite }</td>
@@ -499,6 +499,55 @@ Use search to find needed section.
 				</div> <!-- /.modal -->
 				<!-- / Modal -->
 				
+				<!-- Modal Périphérique -->
+				<div id="myModalperiph" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Périphériques</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tablePerepopup">
+											<c:forEach items="${peripheriques}" var="per">
+												<tr class="gradeA" id="tr_per_${per.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckPer" name="chPeriph" value="${per.id }"></td>
+													<td>${per.nom }</td>
+													<td>${per.statut }</td>
+													<td>${per.criticite }</td>
+													<td>${per.numeroDeSerie }</td>
+													<td>${per.numeroAsset }</td>
+													<td>${per.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addP">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
+				
+				
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Ordinateur</span>
@@ -515,6 +564,9 @@ Use search to find needed section.
 							<ul id="profile-tabs" class="nav nav-tabs">
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-peripheriques" data-toggle="tab">Périphérique</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-logiciels" data-toggle="tab">Logiciels</a>
@@ -668,24 +720,33 @@ Use search to find needed section.
 									<div class="form-group">
 										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production</label>
 										<div class="col-sm-9" >
-											<f:input path="dateDeMiseEnProduction" type="text" class="form-control" id="bs-datepicker-dateDeMiseEnProduction"/>
-											<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
+											<div class="input-group date" id="bs-datepicker-dateDeMiseEnProduction">
+												<f:input path="dateDeMiseEnProduction" type="text" class="form-control"/>
+												<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+												<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
+											</div>
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat</label>
 										<div class="col-sm-9" >
-											<f:input path="dateD_achat" type="text" class="form-control" id="bs-datepicker-dateD_achat"/>
-											<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
+											<div class="input-group date" id="bs-datepicker-dateD_achat">
+												<f:input path="dateD_achat" type="text" class="form-control" />
+												<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+												<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
+											</div>
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie</label>
 										<div class="col-sm-9" >
-											<f:input path="dateDeFinDeGarantie" type="text" class="form-control" id="bs-datepicker-dateDeFinDeGarantie"/>
-											<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
+											<div class="input-group date" id="bs-datepicker-dateDeFinDeGarantie">
+												<f:input path="dateDeFinDeGarantie" type="text" class="form-control" />
+												<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+												<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
+											</div>
 										</div>
 									</div>
 									
@@ -693,7 +754,7 @@ Use search to find needed section.
 									<div class="form-group">
 										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
 										<div class="col-sm-9">
-											<f:textarea path="description" class="form-control" name="jq-validation-text" id="jq-validation-description" />
+											<f:textarea path="description" class="form-control" name="jq-validation-text" />
 											<f:errors path="description" cssClass="help-block"></f:errors>
 										</div>
 									</div>
@@ -702,6 +763,47 @@ Use search to find needed section.
 									
 		
 								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-peripheriques" id="profile-tabs-peripheriques">
+									
+		
+		
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tablePer">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppP">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalperiph">Ajouter des Périphériques</button>
+										</div>
+										
+									</div>
+		
+									
+								</div>
+								
 								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
 									<div class="table-primary">
 									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
@@ -883,9 +985,9 @@ Use search to find needed section.
 			document.getElementById("addL").onclick = function () {
 		    	var chkArray = [];
 		    	
-		    	$(".ck:checked").each(function() {
+		    	$(".ckLogiciels:checked").each(function() {
 		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
 			    	$( "#tableLogicile" ).append(tr);
 			    	//this.checked = false;
 		    	});
@@ -893,16 +995,44 @@ Use search to find needed section.
 		    	
 		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
 		    };
+		    
+		    
+		    
 		    document.getElementById("suppL").onclick = function () {
 				var chkArray = [];
 		    	
-		    	$(".ck:checked").each(function() {
+		    	$(".ckLogiciels:checked").each(function() {
 		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
 			    	$( "#tableLogicilepopup" ).append(tr);
                     this.checked = false;
 		    	});
-		    }
+		    };
+		    
+		    document.getElementById("addP").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckPer:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_per_".concat($(this).val()));
+			    	$( "#tablePer" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	//Document.getElementById("")
+		    	
+		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
+		    };
+		    
+		    document.getElementById("suppP").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckPer:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_per_".concat($(this).val()));
+			    	$( "#tablePerepopup" ).append(tr);
+                    this.checked = false;
+		    	});
+		    };
 	});
 	window.PixelAdmin.start(init);
 </script>
