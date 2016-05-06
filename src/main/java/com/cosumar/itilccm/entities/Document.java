@@ -30,7 +30,7 @@ public class Document implements Serializable {
 	   private String statut;
 	   private String version;
 	   private String description;
-	   
+	   private String typeDocument;
 	  
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
@@ -100,6 +100,14 @@ public class Document implements Serializable {
 
 		public void setContrats(Collection<Contrat> contrats) {
 			this.contrats = contrats;
+		}
+
+		public String getTypeDocument() {
+			return typeDocument;
+		}
+
+		public void setTypeDocument(String typeDocument) {
+			this.typeDocument = typeDocument;
 		}
 		   
 		   

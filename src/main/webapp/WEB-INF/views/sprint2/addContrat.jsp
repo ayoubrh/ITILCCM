@@ -453,6 +453,54 @@ Use search to find needed section.
 
 		Content
 -->
+<!-- Modal -->
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout des Contrats</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Contact</th>
+												<th>Statut</th>
+												<th>Organisation</th>
+												<th>Email</th>
+												<th>Téléphone</th>
+												<th>Fonction</th>
+												
+										</thead>
+										<tbody id="tableContactepopup">
+											<c:forEach items="${contact}" var="c">
+												<tr class="gradeA" id="tr_${c.id }">
+													<td class="supchekbox"><input type="checkbox" class="ck" name="Contacts" value="${c.id }"></td>
+													<td>${c.nom }</td>
+													<td>${c.statut }</td>
+													<td>${c.organisme }</td>
+													<td>${c.email }</td>
+													<td>${c.telephoneMobile }</td>
+													<td>${c.fonction }</td>
+													
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Contrat</span>
@@ -483,7 +531,7 @@ Use search to find needed section.
 								
 								
 							</ul>
-		
+		                  </div>
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
@@ -494,7 +542,7 @@ Use search to find needed section.
 						
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 							</div>
@@ -502,26 +550,30 @@ Use search to find needed section.
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Client</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="client" type="text" class="form-control" id="inputError-4" name="jq-validation-client" />
 									<f:errors path="client" cssClass="help-block"></f:errors>
 							    </div>
 							
 							</div>
-							
 							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-5">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-							    </div>
+								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
+								<div class="col-sm-9">
+									<f:select  path="statut" class="form-control" name="jq-validation-statut" id="jq-validation-statut">
+									            <f:option value=""> -- choisir une valeur --</f:option>
+												<f:option value="implémentation">implémentation</f:option>
+												<f:option value="obsolète"> obsolète</f:option>
+												<f:option value="production"> production</f:option>
+									</f:select>
+									<f:errors path="statut" cssClass="help-block"></f:errors>
+							     </div>
+				           </div>
 							
-							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Type de contrat</label>
-								<div class="col-sm-3">
+								<div class="col-sm-9">
 									<f:select  path="typeDeContrat" class="form-control" name="jq-validation-typeDeContrat" id="jq-validation-typeDeContrat">
-									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+									            <f:option value=""> -- choisir une valeur --</f:option>
 									</f:select>
 									<f:errors path="typeDeContrat" cssClass="help-block"></f:errors>
 							     </div>
@@ -543,7 +595,7 @@ Use search to find needed section.
 				<div class="form-group ">
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début</label>
 					
-						<div class=" col-sm-3" >
+						<div class=" col-sm-9" >
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeDebut" type="text" class="form-control" name="start"  placeholder="Date de début"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
@@ -554,7 +606,7 @@ Use search to find needed section.
 				
 				<div class="form-group ">
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin</label>
-				     		<div class=" col-sm-3" >
+				     		<div class=" col-sm-9" >
 								<div class="input-group date" id="bs-datepicker-component2">
 									<f:input path="dateDeFin" type="text" class="form-control" name="end"  placeholder="Date de fin" />
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -566,16 +618,16 @@ Use search to find needed section.
 				
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Coût</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="cout" type="text" class="form-control" id="jq-validation-cout" name="jq-validation-cout" />
 									<f:errors path="cout" cssClass="help-block"></f:errors>
 								</div>
 				</div>
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Monnaie</label>
-								<div class="col-sm-3">
+								<div class="col-sm-9">
 									<f:select  path="monnaie" class="form-control" name="jq-validation-monnaie" id="jq-validation-monnaie">
-									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+									            <f:option value=""> -- choisir une valeur --</f:option>
 												<f:option value="Dirham">Dirham</f:option>
 												<f:option value="Euros"> Euros</f:option>
 												<f:option value="Dollars"> Dollars</f:option>
@@ -585,48 +637,71 @@ Use search to find needed section.
 				</div>
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Périodicité de facturation</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="periodiciteDeFacturation" type="text" class="form-control" id="jq-validation-periodiciteDeFacturation" name="jq-validation-periodiciteDeFacturation" />
 									<f:errors path="periodiciteDeFacturation" cssClass="help-block"></f:errors>
 								</div>
 				</div>
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Unité de coût</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="uniteDeCout" type="text" class="form-control" id="jq-validation-uniteDeCout" name="jq-validation-uniteDeCout" />
 									<f:errors path="uniteDeCout" cssClass="help-block"></f:errors>
 								</div>
 				</div>
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fournisseur</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="fournisseur" type="text" class="form-control" id="jq-validation-fournisseur" name="jq-validation-fournisseur" />
 									<f:errors path="fournisseur" cssClass="help-block"></f:errors>
 								</div>
 				</div>
 				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-3">
-									<f:select  path="statut" class="form-control" name="jq-validation-statut" id="jq-validation-statut">
-									            <f:option value="NONE"> -- choisir une valeur --</f:option>
-												<f:option value="implémentation">implémentation</f:option>
-												<f:option value="obsolète"> obsolète</f:option>
-												<f:option value="production"> production</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-							     </div>
-				</div>
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
+								<div class="col-sm-9">
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<f:errors path="description" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
 				
-					
-						
 					</div>
-					
-					
-		
-								</div> <!-- / .tab-pane -->
+					</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
 									
-									Contacts
+								<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>Contact</th>
+												<th>Statut</th>
+												<th>Organisation</th>
+												<th>Email</th>
+												<th>Téléphone</th>
+												<th>Fonction</th>
+												
+											</tr>
+										</thead>
+										<tbody id="tableContacts">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppContact">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
+										</div>
+										
+									</div>
 									
 									
 								</div> <!-- / .tab-pane -->
@@ -686,18 +761,44 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-	init.push(function () {
-		$('#profile-tabs').tabdrop();
+init.push(function () {
+	$('#profile-tabs').tabdrop();
 
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
+	$("#leave-comment-form").expandingInput({
+		target: 'textarea',
+		hidden_content: '> div',
+		placeholder: 'Write message',
+		onAfterExpand: function () {
+			$('#leave-comment-form textarea').attr('rows', '3').autosize();
+		}
 	});
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		document.getElementById("addContact").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ck:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    	$( "#tableContacts" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    
+	    };
+	    document.getElementById("suppContact").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ck:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    	$( "#tableContactepopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    }
+	
+});
 	window.PixelAdmin.start(init);
 </script>
 

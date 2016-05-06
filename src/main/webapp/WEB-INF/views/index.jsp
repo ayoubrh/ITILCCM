@@ -470,11 +470,11 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : ${Processusmetier }
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/processusMetier" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
 												</div>
 											</div>
@@ -485,11 +485,11 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : ${Solutionapplicative }
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/solutionApplicative" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
 												</div>
 											</div>
@@ -499,11 +499,11 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${contact }
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/contact" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
 												</div>
 											</div>
@@ -514,11 +514,11 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${lieu }
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/lieu" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
 												</div>
 											</div>
@@ -529,11 +529,11 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${contrat }
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contrat</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/contrat" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contrat</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contrat</span></a>
 												</div>
 											</div>
@@ -544,7 +544,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : ${Serveur }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -559,7 +559,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : ${Equipementreseau }
 													</a>
 												</div>
 												<div class="col-md-12">

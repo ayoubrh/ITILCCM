@@ -25,6 +25,7 @@ public class Contact implements Serializable {
 	   
 	   @NotEmpty
 	   @Size(min=4,max=25)
+	   @Column(unique = true)
 	   private String nom;
 	   
 	   @NotEmpty

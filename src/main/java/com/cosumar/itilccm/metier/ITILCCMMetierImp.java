@@ -395,9 +395,10 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Long ajouterContactLieu(Contact c, Long idlieu) {
+	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats){
 		 
-		return dao.ajouterContactLieu(c, idlieu);
+		return dao.ajouterContactAll(c, idlieu, contrats);
+		
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class Test {
 		
 	}
 
-	@org.junit.Test
+	/*@org.junit.Test
 	public void LogicielEtApplication() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
@@ -27,6 +27,18 @@ public class Test {
 			for(LogicielEtApplication l : list ){
 				System.out.println(l.getNom()+"----"+l.getId()+"-----");
 			}
+			
+			assertTrue(true);
+		
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	}*/
+	@org.junit.Test
+	public void DocumentFichier() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			//m.ajouterDocumentFichier(new com.cosumar.itilccm.entities.DocumentFichier("fichier1", null, null, null));			
 			
 			assertTrue(true);
 		

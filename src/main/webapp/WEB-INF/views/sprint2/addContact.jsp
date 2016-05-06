@@ -452,12 +452,67 @@ Use search to find needed section.
 
 		Content
 -->
+	<!-- Modal -->
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout des Contrats</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Contrat</th>
+												<th>Statut</th>
+												<th>Client</th>
+												<th>Description</th>
+												<th>Date de début</th>
+												<th>Date de fin</th>
+												<th>Fournisseur</th>
+												<th>Niveau de service</th>
+												<th>Type de contrat</th>
+											</tr>
+										</thead>
+										<tbody id="tableContratepopup">
+											<c:forEach items="${contrat}" var="c">
+												<tr class="gradeA" id="tr_${c.id }">
+													<td class="supchekbox"><input type="checkbox" class="ck" name="Contrats" value="${c.id }"></td>
+													<td>${c.nom }</td>
+													<td>${c.statut }</td>
+													<td>${c.client }</td>
+													<td>${c.description }</td>
+													<td>${c.dateDeDebut }</td>
+													<td>${c.dateDeFin }</td>
+													<td>${c.fournisseur }</td>
+													<td>${c.niveauDeService }</td>
+													<td>${c.typeDeContrat }</td>
+
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
+
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Contact</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="pc" action="savePC" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="contact" action="saveContact" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -469,21 +524,10 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								
-								
 								<li>
-									<a href="#profile-tabs-groupes" data-toggle="tab">Groupe</a>
+									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
 								</li>
-								
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-cis" data-toggle="tab">CIs</a>
-								</li>
-								
-								
+							
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -493,7 +537,7 @@ Use search to find needed section.
 		
 									<div class="panel-body">
 						
-						<f:form modelAttribute="contact" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
@@ -520,17 +564,18 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value="NONE"> -- choisir une valeur --</f:option>
+							            <f:option value=""> -- choisir une valeur --</f:option>
 										<f:option value="Actif"> Actif</f:option>
 										<f:option value="Inactif"> Inactif</f:option>
 									</f:select>
-							<f:errors path="nom" cssClass="help-block"></f:errors>
+							<f:errors path="statut" cssClass="help-block"></f:errors>
 							</div>
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Site</label>
 								<div class="col-sm-9">
 									<f:select  path="lieu.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										<f:option value=""> -- choisir une valeur --</f:option>
 										<f:options items="${l }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="lieu.id" cssClass="help-block"></f:errors>
@@ -572,38 +617,51 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							
-							          
-							</f:form>
 							</div>
 		
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-groupes" id="profile-tabs-groupes">
+								
+								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
 									
-									Groupes
+								<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>Contrat</th>
+												<th>Statut</th>
+												<th>Client</th>
+												<th>Description</th>
+												<th>Date de début</th>
+												<th>Date de fin</th>
+												<th>Fournisseur</th>
+												<th>Niveau de service</th>
+												<th>Type de contrat</th>
+											</tr>
+										</thead>
+										<tbody id="tableContrat">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppContrat">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
+										</div>
+										
+									</div>
 									
 									
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
-									
-		
-		
-									Tickets
-		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-cis" id="profile-tabs-cis">
-									
-		
-									CIs
-		
-		
-									
-								</div> <!-- / .tab-pane -->
+								
 							</div> <!-- / .tab-content -->
 						</div>
 				
@@ -632,23 +690,6 @@ Use search to find needed section.
 
 		
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<!-- Content here -->
 		
 		
@@ -673,19 +714,46 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-	init.push(function () {
-		$('#profile-tabs').tabdrop();
+init.push(function () {
+	$('#profile-tabs').tabdrop();
 
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
+	$("#leave-comment-form").expandingInput({
+		target: 'textarea',
+		hidden_content: '> div',
+		placeholder: 'Write message',
+		onAfterExpand: function () {
+			$('#leave-comment-form textarea').attr('rows', '3').autosize();
+		}
 	});
-	window.PixelAdmin.start(init);
+	
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		document.getElementById("addContrat").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ck:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    	$( "#tableContrat" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    
+	    };
+	    document.getElementById("suppContrat").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ck:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    	$( "#tableContratepopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    }
+	
+});
+window.PixelAdmin.start(init);
 </script>
 
 </body>

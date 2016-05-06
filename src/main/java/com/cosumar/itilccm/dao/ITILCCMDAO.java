@@ -55,7 +55,7 @@ public interface ITILCCMDAO {
 	// Contact
 		
 	public Long ajouterContact(Contact c);
-	public Long ajouterContactLieu(Contact c, Long idlieu);
+	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats);
 	public void modifierContact(Contact c);
 	public void supprimerContact(Long id);
 	public List<Contact> listContact();

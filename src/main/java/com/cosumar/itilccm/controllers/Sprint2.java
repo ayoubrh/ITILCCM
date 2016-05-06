@@ -1,15 +1,11 @@
 package com.cosumar.itilccm.controllers;
 
-import java.awt.image.BufferedImage;
-import java.util.Collection;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -135,6 +131,18 @@ public class Sprint2 {
 		model.addAttribute("lieu", new Lieu() );
 		return "sprint2/addLieu";
 	}
+	@RequestMapping(value="/admin/add/saveLieu", method = RequestMethod.POST)
+	public String saveLieu(@Valid Lieu l,BindingResult bind,Model model) {
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			return "sprint2/addLieu";
+		}
+		m.ajouterLieu(l);
+		return "redirect:/index";
+	}
 	@RequestMapping(value="/admin/add/contact")
 	public String addContact(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -143,8 +151,34 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("contact", new Contact());
 		model.addAttribute("l", m.listLieu());
+		model.addAttribute("contrat", m.listContrat());
 		return "sprint2/addContact";
 	}
+	
+	@RequestMapping(value="/admin/add/saveContact", method = RequestMethod.POST)
+	public String saveContact(@Valid Contact c,BindingResult bind,Model model,HttpServletRequest req) {
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("l", m.listLieu());
+			model.addAttribute("contrat", m.listContrat());
+			return "sprint2/addContact";
+		}
+		List<Long> cont = new ArrayList<Long>();
+		String[] Contrats = req.getParameterValues("Contrats");
+		
+		if(Contrats != null ){
+			for (int i = 0; i < Contrats.length; i++) {
+				
+				cont.add(Long.parseLong(Contrats[i]));
+			}
+		}
+		m.ajouterContactAll(c, c.getLieu().getId(), cont);
+		return "redirect:/index";
+	}
+	
 	@RequestMapping(value="/admin/add/contrat")
 	public String addContrat(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -152,9 +186,11 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("contrat", new Contrat());
-		//model.addAttribute("l", m.listLieu());
+		model.addAttribute("contact", m.listContact());
+		model.addAttribute("Document", m.listDocument());
 		return "sprint2/addContrat";
 	}
+	
 	@RequestMapping(value="/admin/add/groupe")
 	public String addGroupe(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

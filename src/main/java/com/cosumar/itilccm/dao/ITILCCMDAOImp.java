@@ -1131,12 +1131,32 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(c);
 		return c.getId();
 	}
+	
 
 	@Override
-	public Long ajouterContactLieu(Contact c, Long idlieu) {
-		Lieu lieu = getLieu(idlieu);
-		c.setLieu(lieu);
+	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats) {
+		
+		if(idlieu !=null){
+			
+			Lieu lieu = getLieu(idlieu);
+			c.setLieu(lieu);
+		
+		}
+		
+		if(contrats != null){
+			
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			c.setContrat(contrat);
+			
+		}
+		
 		em.persist(c);
+		
 		return c.getId();
 	}
 

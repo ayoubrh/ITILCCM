@@ -318,7 +318,7 @@ Use search to find needed section.
 										<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 									</c:if>
 									<c:if test="${logged.bphoto != null }">
-										<img src="photo?id=${logged.id }" alt="" class=""/>
+										<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 									</c:if>
 									<span>${logged.prenom } ${logged.nom }</span>
 								</a>
@@ -374,7 +374,7 @@ Use search to find needed section.
 						<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 					</c:if>
 					<c:if test="${logged.bphoto != null }">
-						<img src="photo?id=${logged.id }" alt="" class=""/>
+						<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 					</c:if>
 					<div class="btn-group">
 						<a href="<c:url value="/users/profil?id=${logged.id }" />" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>

@@ -30,6 +30,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cosumar.itilccm.entities.User;
+import com.cosumar.itilccm.metier.AdminMetier;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
 
 import antlr.ParserSharedInputState;
@@ -39,6 +40,9 @@ import antlr.ParserSharedInputState;
  */
 @Controller
 public class HomeController implements HandlerExceptionResolver {
+	
+	@Autowired
+	private AdminMetier m;
 	
 	@Autowired
 	private UtilisateurMetier mu;
@@ -56,6 +60,13 @@ public class HomeController implements HandlerExceptionResolver {
 	      String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
+		model.addAttribute("Processusmetier", m.ListProcessusMetier().size());
+		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative().size());
+		model.addAttribute("contact", m.listContact().size());
+		model.addAttribute("lieu", m.listLieu().size());
+		model.addAttribute("contrat", m.listContrat().size());
+		model.addAttribute("Serveur", m.ListServeur().size());
+		model.addAttribute("Equipementreseau", m.ListEquipementReseau().size());
 	    return "index";
 	}
 	
