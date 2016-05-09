@@ -453,6 +453,50 @@ Use search to find needed section.
 
 		Content
 -->
+
+<!-- Modal Document -->
+				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Type de document</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tabledocpopup">
+											<c:forEach items="${documents}" var="doc">
+												<tr class="gradeA" id="tr_doc_${doc.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td>${doc.nom }</td>
+													<td>${doc.statut }</td>
+													<td> </td>
+													<td>${doc.description }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Document -->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Licence OS</span>
@@ -475,16 +519,6 @@ Use search to find needed section.
 									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
 								</li>
 								
-								
-								<li>
-									<a href="#profile-tabs-serveurs" data-toggle="tab">Serveurs</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
-								</li>
-								
-								
-								
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -497,7 +531,7 @@ Use search to find needed section.
 						
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 							    </div>
@@ -506,9 +540,9 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
-								<div class="col-sm-4">
+								<div class="col-sm-9">
 									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-									    <f:option value="NONE"> -- choisir une valeur --</f:option>
+									    <f:option value=""> -- choisir une valeur --</f:option>
 										<f:options items="${v }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="versionOs.id" cssClass="help-block"></f:errors>
@@ -516,7 +550,7 @@ Use search to find needed section.
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Limite d'utilisation</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="limiteD_utilisation" type="text" class="form-control" id="inputError-4" name="jq-validation-limiteD_utilisation" />
 									<f:errors path="limiteD_utilisation" cssClass="help-block"></f:errors>
 							    </div>
@@ -524,18 +558,10 @@ Use search to find needed section.
 							</div>
 							
 							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-5">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-							    </div>
-							
-							</div>
-							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
-								<div class="col-sm-4">
+								<div class="col-sm-9">
 									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+									            <f:option value=""> -- choisir une valeur --</f:option>
 									            <f:option value="non">non</f:option>
 												<f:option value="oui"> oui</f:option>
 									</f:select>
@@ -559,7 +585,7 @@ Use search to find needed section.
 				<div class="form-group ">
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début de validité</label>
 					
-						<div class=" col-sm-3" >
+						<div class=" col-sm-9" >
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
@@ -570,7 +596,7 @@ Use search to find needed section.
 				
 				<div class="form-group ">
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin de validité</label>
-				     		<div class=" col-sm-3" >
+				     		<div class=" col-sm-9" >
 								<div class="input-group date" id="bs-datepicker-component2">
 									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -582,12 +608,20 @@ Use search to find needed section.
 				
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Clé</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="cle" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-cle" />
 									<f:errors path="cle" cssClass="help-block"></f:errors>
 								</div>
 				</div>
 				
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
+								<div class="col-sm-9">
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<f:errors path="description" cssClass="help-block"></f:errors>
+							    </div>
+							
+							</div>
 				
 					
 						
@@ -598,29 +632,39 @@ Use search to find needed section.
 								</div> <!-- / .tab-pane -->
 								
 								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									
-		
-		
-									Documents
-		
-									
-									
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th id="supchek"> </th>
+													<th>Nom</th>
+												    <th>Statut</th>
+												    <th>Type de document</th>
+												    <th>Description</th>
+													
+												 </tr>
+											</thead>
+											<tbody id="tabledocument">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppDoc">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
+										</div>
+										
+									</div>
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-serveurs" id="profile-tabs-serveurs">
-									
-		
-		
-									Serveurs
-		
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-machines" id="profile-tabs-machines">
-									
-								Machines Virtuelles
-									
-									
-								</div> <!-- / .tab-pane -->
+								
 								
 							</div> <!-- / .tab-content -->
 						</div>
@@ -679,6 +723,33 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		document.getElementById("addDoc").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckdoc:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
+		    	$( "#tabledocument" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppDoc").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckdoc:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
+		    	$( "#tabledocpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
 	});
 	window.PixelAdmin.start(init);
 </script>

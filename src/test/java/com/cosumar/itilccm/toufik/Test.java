@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.cosumar.itilccm.entities.LogicielEtApplication;
+import com.cosumar.itilccm.entities.*;
 import com.cosumar.itilccm.metier.AdminMetier;
 
 public class Test {
@@ -38,7 +38,8 @@ public class Test {
 	public void DocumentFichier() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
-			//m.ajouterDocumentFichier(new com.cosumar.itilccm.entities.DocumentFichier("fichier1", null, null, null));			
+			m.ajouterDocumentFichier(new DocumentFichier("fichier1", null, null, null));
+			m.ajouterDocumentWeb(new DocumentWeb("web", null, null, null));
 			
 			assertTrue(true);
 		

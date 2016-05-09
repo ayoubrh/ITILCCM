@@ -1141,6 +1141,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			Lieu lieu = getLieu(idlieu);
 			c.setLieu(lieu);
 		
+		}else{
+			c.setLieu(null);
 		}
 		
 		if(contrats != null){
@@ -1151,7 +1153,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 				contrat.add(con);
 			}
 			
-			c.setContrat(contrat);
+			c.setContrats(contrat);
 			
 		}
 		
@@ -1192,6 +1194,37 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(c);
 		return c.getId();
 	}
+
+	@Override
+	public Long ajouterContratAll(Contrat c, List<Long> contacts, List<Long> documents) {
+		
+			if(contacts != null){
+						
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				c.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				c.setDocuments(document);
+				
+			}
+			em.persist(c);
+		return c.getId();
+	}
+	
 
 	@Override
 	public void modifierContrat(Contrat c) {
@@ -1799,7 +1832,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public DocumentNote getDocumentNote(Long id) {
 		return em.find(DocumentNote.class, id);
 	}
-	
+
 
 
 

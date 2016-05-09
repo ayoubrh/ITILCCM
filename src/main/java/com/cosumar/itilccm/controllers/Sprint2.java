@@ -164,15 +164,21 @@ public class Sprint2 {
 			model.addAttribute("logged", logged);
 			model.addAttribute("l", m.listLieu());
 			model.addAttribute("contrat", m.listContrat());
+			System.out.println(bind.getAllErrors());
+			
 			return "sprint2/addContact";
 		}
 		List<Long> cont = new ArrayList<Long>();
-		String[] Contrats = req.getParameterValues("Contrats");
+		String[] Contrats = req.getParameterValues("contrats");
+		/*System.out.println(Contrats.length);
+		for(int i=0;i<Contrats.length; i++){
+			
+		    System.out.println("--------------"+Contrats[i]);}*/
 		
 		if(Contrats != null ){
 			for (int i = 0; i < Contrats.length; i++) {
 				
-				cont.add(Long.parseLong(Contrats[i]));
+				//cont.add(Long.parseLong(Contrats[i]));
 			}
 		}
 		m.ajouterContactAll(c, c.getLieu().getId(), cont);
@@ -186,9 +192,43 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("contrat", new Contrat());
-		model.addAttribute("contact", m.listContact());
-		model.addAttribute("Document", m.listDocument());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
 		return "sprint2/addContrat";
+	}
+	
+	@RequestMapping(value="/admin/add/saveContrat", method = RequestMethod.POST)
+	public String saveContrat(@Valid Contrat c,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			return "sprint2/addContrat";
+		}
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		String[] Contacts = req.getParameterValues("Contacts");
+		String[] documents = req.getParameterValues("documents");
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				System.out.println("Contact--------------"+Contacts[i]);
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				System.out.println("Doc--------------"+documents[i]);
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		m.ajouterContratAll(c, cont, doc);
+		
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/admin/add/groupe")
@@ -208,6 +248,10 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("solutionApplicative", new SolutionApplicative());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("processusMetiers", m.ListProcessusMetier());
 		return "sprint2/addSolutionApplicative";
 	}
 	@RequestMapping(value="/admin/add/processusMetier")
@@ -217,6 +261,9 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("processusMetier", new ProcessusMetier());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 		return "sprint2/addProcessusMetier";
 	}
 	@RequestMapping(value="/admin/add/typeLicense")
@@ -244,6 +291,7 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("licenceLogiciel", new LicenseLogiciel());
 		model.addAttribute("la", m.listLogicielEtApplication());
+		model.addAttribute("documents", m.listDocument());
 		return "sprint2/addLicenceLogiciel";
 	}
 	@RequestMapping(value="/admin/add/licenseOs")
@@ -254,6 +302,7 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("licenseOs", new LicenseOs());
 		model.addAttribute("v", m.listVersionOs());
+		model.addAttribute("documents", m.listDocument());
 		return "sprint2/addLicenseOs";
 	}
 	@RequestMapping(value="/admin/add/versionOs")
@@ -275,6 +324,13 @@ public class Sprint2 {
 		model.addAttribute("v", m.listVirtualisation());
 		model.addAttribute("l", m.listLicenseOs());
 		//model.addAttribute("vo", m.listVersionOs());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+		model.addAttribute("interfacereseaux", m.ListLogique());
+		model.addAttribute("logiciels", m.listLogicielEtApplication());
 		return "sprint2/addMachineVirtuelle";
 	}
 	@RequestMapping(value="/admin/add/hyperviseur")
@@ -286,6 +342,11 @@ public class Sprint2 {
 		model.addAttribute("hyperviseur", new Hyperviseur());
 		model.addAttribute("v", m.listVcluster());
 		model.addAttribute("s", m.ListServeur());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
 		return "sprint2/addHyperviseur";
 	}
 	@RequestMapping(value="/admin/add/vCluster")
@@ -295,6 +356,11 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("vCluster", new Vcluster());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
 		return "sprint2/addVcluster";
 	}
 	@RequestMapping(value="/admin/add/arrivee")
@@ -304,6 +370,10 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("arrivee", new ArriveeElectrique());
+		model.addAttribute("l", m.listLieu());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addArriveeElectrique";
 	}
 	@RequestMapping(value="/admin/add/pdu")
@@ -315,6 +385,10 @@ public class Sprint2 {
 		model.addAttribute("pdu", new PduElectrique());
 		model.addAttribute("r", m.ListRack());
 		model.addAttribute("a", m.ListArriveeElectrique());
+		model.addAttribute("l", m.listLieu());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addPduElectrique";
 	}
 	@RequestMapping(value="/admin/add/typeDocument")
@@ -370,6 +444,10 @@ public class Sprint2 {
 		model.addAttribute("lg", m.listLicenseLogiciel());
 		model.addAttribute("s", m.ListServeur());
 		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addAutreLogiciel";
 	}
 	@RequestMapping(value="/admin/add/logicielPc")
@@ -382,6 +460,10 @@ public class Sprint2 {
 		model.addAttribute("lg", m.listLicenseLogiciel());
 		model.addAttribute("s", m.ListServeur());
 		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addLogicielPc";
 	}
 	@RequestMapping(value="/admin/add/serveurWeb")
@@ -394,6 +476,11 @@ public class Sprint2 {
 		model.addAttribute("lg", m.listLicenseLogiciel());
 		model.addAttribute("s", m.ListServeur());
 		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("applicationWeb", m.listApplicationWeb());
 		return "sprint2/addServeurWeb";
 	}
 	@RequestMapping(value="/admin/add/middleware")
@@ -406,6 +493,11 @@ public class Sprint2 {
 		model.addAttribute("lg", m.listLicenseLogiciel());
 		model.addAttribute("s", m.ListServeur());
 		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("instanceMiddleware", m.listInstanceMiddleware());
 		return "sprint2/addMiddleware";
 	}
 	@RequestMapping(value="/admin/add/serveurBD")
@@ -418,6 +510,11 @@ public class Sprint2 {
 		model.addAttribute("lg", m.listLicenseLogiciel());
 		model.addAttribute("s", m.ListServeur());
 		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("instanceBD", m.listInstanceDeBasseDeDonnes());
 		return "sprint2/addServeurBD";
 	}
 	@RequestMapping(value="/admin/add/applicationWeb")
@@ -428,6 +525,10 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("applicationWeb", new ApplicationWeb());
 		model.addAttribute("sw", m.listServeurWeb());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addApplicationWeb";
 	}
 	@RequestMapping(value="/admin/add/instanceMiddleware")
@@ -438,6 +539,10 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("instanceMiddleware", new InstanceMiddleware());
 		model.addAttribute("m", m.listMiddleware());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addInstanceMiddleware";
 	}
 	@RequestMapping(value="/admin/add/instanceBD")
@@ -448,6 +553,10 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("instanceBD", new InstanceDeBasseDeDonnes());
 		model.addAttribute("m", m.listServeurDeBasseDeDonnees());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addInstanceBD";
 	}
 	

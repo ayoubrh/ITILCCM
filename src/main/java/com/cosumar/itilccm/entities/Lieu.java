@@ -42,6 +42,10 @@ public class Lieu implements Serializable {
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="lieu")
 	   private Collection<Contact> contacts;
+	   
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="lieu")
+	   private Collection<ConnexionElectrique> connexionElectrique;
 	
 		public Lieu() {
 			super();
@@ -153,6 +157,18 @@ public class Lieu implements Serializable {
 
 		public void setContacts(Collection<Contact> contacts) {
 			this.contacts = contacts;
+		}
+
+
+
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
+		}
+
+
+
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
 		}
 		
 

@@ -61,6 +61,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Contrat
 	
 	public Long ajouterContrat(Contrat c);
+	public Long ajouterContratAll(Contrat c ,List<Long> contacts,List<Long> documents);
 	public void modifierContrat(Contrat c);
 	public void supprimerContrat(Long id);
 	public List<Contrat> listContrat();

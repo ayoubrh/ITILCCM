@@ -900,7 +900,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type License</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/typeLicense" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type License</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type License</span></a>
 												</div>
 											</div>

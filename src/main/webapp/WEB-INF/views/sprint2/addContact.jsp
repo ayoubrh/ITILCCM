@@ -466,32 +466,28 @@ Use search to find needed section.
 										<thead>
 											<tr>
 												<th id="supchek"> </th>
-												<th>Contrat</th>
-												<th>Statut</th>
+												<th>Nom</th>
+												<th>Type</th>
 												<th>Client</th>
 												<th>Description</th>
 												<th>Date de début</th>
 												<th>Date de fin</th>
 												<th>Fournisseur</th>
-												<th>Niveau de service</th>
-												<th>Type de contrat</th>
 											</tr>
 										</thead>
 										<tbody id="tableContratepopup">
 											<c:forEach items="${contrat}" var="c">
 												<tr class="gradeA" id="tr_${c.id }">
-													<td class="supchekbox"><input type="checkbox" class="ck" name="Contrats" value="${c.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ck" name="contrats" value="${c.id }"></td>
 													<td>${c.nom }</td>
-													<td>${c.statut }</td>
+													<td>${c.typeDeContrat }</td>
 													<td>${c.client }</td>
 													<td>${c.description }</td>
 													<td>${c.dateDeDebut }</td>
 													<td>${c.dateDeFin }</td>
 													<td>${c.fournisseur }</td>
-													<td>${c.niveauDeService }</td>
-													<td>${c.typeDeContrat }</td>
-
 												</tr>
+												
 											</c:forEach>
 											
 										</tbody>
@@ -529,7 +525,7 @@ Use search to find needed section.
 								</li>
 							
 							</ul>
-		
+		                 </div>
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
@@ -572,7 +568,7 @@ Use search to find needed section.
 							</div>
 							</div>
 							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Site</label>
+								<label for="jq-validation-email" class="col-sm-3 control-label">Site</label>
 								<div class="col-sm-9">
 									<f:select  path="lieu.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
 										<f:option value=""> -- choisir une valeur --</f:option>
@@ -626,17 +622,15 @@ Use search to find needed section.
 								<div class="table-primary">
 									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 										<thead>
-										<tr>
+									        <tr>
 												<th id="supchek"> </th>
-												<th>Contrat</th>
-												<th>Statut</th>
+												<th>Nom</th>
+												<th>Type</th>
 												<th>Client</th>
 												<th>Description</th>
 												<th>Date de début</th>
 												<th>Date de fin</th>
 												<th>Fournisseur</th>
-												<th>Niveau de service</th>
-												<th>Type de contrat</th>
 											</tr>
 										</thead>
 										<tbody id="tableContrat">
@@ -654,7 +648,7 @@ Use search to find needed section.
 										</div>
 										
 										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Contrats</button>
 										</div>
 										
 									</div>
@@ -663,13 +657,7 @@ Use search to find needed section.
 								</div> <!-- / .tab-pane -->
 								
 							</div> <!-- / .tab-content -->
-						</div>
-				
-					
-					
-					
-					
-					
+						
 							<hr class="panel-wide">
 							
 							<div class="form-group">

@@ -460,6 +460,12 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
+	public Long ajouterContratAll(Contrat c, List<Long> contacts, List<Long> documents) {
+		return dao.ajouterContratAll(c, contacts, documents);
+		
+	}
+
+	@Override
 	public void modifierContrat(Contrat c) {
 		dao.modifierContrat(c);
 	}
@@ -1602,6 +1608,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public DocumentNote getDocumentNote(Long id) {
 		return dao.getDocumentNote(id);
 	}
+
 
 	
 

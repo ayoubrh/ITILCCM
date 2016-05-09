@@ -453,17 +453,17 @@ Use search to find needed section.
 
 		Content
 -->
-<!-- Modal -->
-				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+	<!-- Modal contact -->
+				<div id="myModalcontact" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout des Contrats</h4>
+								<h4 class="modal-title" id="myModalLabel">Ajout Contacts</h4>
 							</div>
 							<div class="modal-body">
 								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+									<table  cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 										<thead>
 											<tr>
 												<th id="supchek"> </th>
@@ -472,20 +472,19 @@ Use search to find needed section.
 												<th>Organisation</th>
 												<th>Email</th>
 												<th>Téléphone</th>
-												<th>Fonction</th>
-												
+												<th>Fonction</th>	
+											</tr>
 										</thead>
-										<tbody id="tableContactepopup">
-											<c:forEach items="${contact}" var="c">
-												<tr class="gradeA" id="tr_${c.id }">
-													<td class="supchekbox"><input type="checkbox" class="ck" name="Contacts" value="${c.id }"></td>
-													<td>${c.nom }</td>
-													<td>${c.statut }</td>
-													<td>${c.organisme }</td>
-													<td>${c.email }</td>
-													<td>${c.telephoneMobile }</td>
-													<td>${c.fonction }</td>
-													
+										<tbody id="tablecontactpopup">
+											<c:forEach items="${contacts}" var="contact">
+												<tr class="gradeA" id="tr_contact_${contact.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="contacts" value="${contact.id }"></td>
+													<td>${contact.nom } ${contact.prenom }</td>
+													<td>${contact.statut }</td>
+													<td>${contact.organisme }</td>
+													<td>${contact.email }</td>
+													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+													<td>${contact.fonction }</td>
 												</tr>
 											</c:forEach>
 											
@@ -500,16 +499,60 @@ Use search to find needed section.
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
 				</div> <!-- /.modal -->
-				<!-- / Modal -->
+		<!-- / Modal contact -->
+				
+		<!-- Modal document -->
+				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Type de document</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tabledocpopup">
+											<c:forEach items="${documents}" var="doc">
+												<tr class="gradeA" id="tr_doc_${doc.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="documents" value="${doc.id }"></td>
+													<td>${doc.nom }</td>
+													<td>${doc.statut }</td>
+													<td> </td>
+													<td>${doc.description }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+		<!-- / Modal document -->
+		
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Contrat</span>
 					</div>
+					
 					<div class="panel-body">
 						<f:form modelAttribute="contrat" action="saveContrat" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
-					
-		
 						<hr class="profile-content-hr no-grid-gutter-h">
 						
 						<div class="profile-content">
@@ -528,10 +571,9 @@ Use search to find needed section.
 									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
 								</li>
 								
-								
-								
 							</ul>
 		                  </div>
+		                  
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
@@ -545,9 +587,10 @@ Use search to find needed section.
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
-							</div>
+							    </div>
 							
 							</div>
+							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Client</label>
 								<div class="col-sm-9">
@@ -556,10 +599,11 @@ Use search to find needed section.
 							    </div>
 							
 							</div>
+							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-statut" id="jq-validation-statut">
+									<f:select  path="statut" class="form-control" name="inputError-4" id="jq-validation-statut">
 									            <f:option value=""> -- choisir une valeur --</f:option>
 												<f:option value="implémentation">implémentation</f:option>
 												<f:option value="obsolète"> obsolète</f:option>
@@ -578,6 +622,7 @@ Use search to find needed section.
 									<f:errors path="typeDeContrat" cssClass="help-block"></f:errors>
 							     </div>
 				             </div> 
+				             <!--  
 							<script>
 					init.push(function () {
 						
@@ -597,10 +642,10 @@ Use search to find needed section.
 					
 						<div class=" col-sm-9" >
 							<div class=" input-group date" id="bs-datepicker-component">
-								<f:input path="dateDeDebut" type="text" class="form-control" name="start"  placeholder="Date de début"  />
+								<f:input path="dateDeDebut" type="text" class="form-control" name="start" />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>
-							</div>				
+							</div>	
+							<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 				
@@ -608,14 +653,14 @@ Use search to find needed section.
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin</label>
 				     		<div class=" col-sm-9" >
 								<div class="input-group date" id="bs-datepicker-component2">
-									<f:input path="dateDeFin" type="text" class="form-control" name="end"  placeholder="Date de fin" />
+									<f:input path="dateDeFin" type="text" class="form-control" name="end" />
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									<f:errors path="dateDeFin" cssClass="help-block"></f:errors>
 								</div>
+									<f:errors path="dateDeFin" cssClass="help-block"></f:errors>
 							</div>
 				
 				</div>	
-				
+				-->
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Coût</label>
 								<div class="col-sm-9">
@@ -652,7 +697,7 @@ Use search to find needed section.
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fournisseur</label>
 								<div class="col-sm-9">
-									<f:input path="fournisseur" type="text" class="form-control" id="jq-validation-fournisseur" name="jq-validation-fournisseur" />
+									<f:input path="fournisseur" type="text" class="form-control" id="inputError-4" name="jq-validation-fournisseur" />
 									<f:errors path="fournisseur" cssClass="help-block"></f:errors>
 								</div>
 				</div>
@@ -663,31 +708,31 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 							    </div>
 							
-							</div>
+				</div>
 				
 					</div>
 					</div> <!-- / .tab-pane -->
+					
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
-									
 								<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-										<tr>
-												<th id="supchek"> </th>
-												<th>Contact</th>
-												<th>Statut</th>
-												<th>Organisation</th>
-												<th>Email</th>
-												<th>Téléphone</th>
-												<th>Fonction</th>
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th id="supchek"> </th>
+													<th>Nom complet</th>
+													<th>Statut</th>
+													<th>Organisation</th>
+													<th>Email</th>
+													<th>Téléphone</th>
+													<th>Fonction</th>	
+													
+												</tr>
+											</thead>
+											<tbody id="tablecontact">
 												
-											</tr>
-										</thead>
-										<tbody id="tableContacts">
-											
-											
-										</tbody>
-									</table>
+												
+											</tbody>
+										</table>
 									</div>
 									<br>
 									<br>
@@ -698,7 +743,7 @@ Use search to find needed section.
 										</div>
 										
 										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalcontact">Ajouter des Contacts</button>
 										</div>
 										
 									</div>
@@ -706,17 +751,44 @@ Use search to find needed section.
 									
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									
-		
-		
-									Documents
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th id="supchek"> </th>
+													<th>Nom</th>
+												    <th>Statut</th>
+												    <th>Type de document</th>
+												    <th>Description</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tabledocument">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppDoc">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
+										</div>
+										
+									</div>
 		
 									
 									
 								</div> <!-- / .tab-pane -->
 								
 							</div> <!-- / .tab-content -->
-						</div>
+						
 				
 					
 							<hr class="panel-wide">
@@ -779,24 +851,48 @@ init.push(function () {
 		document.getElementById("addContact").onclick = function () {
 	    	var chkArray = [];
 	    	
-	    	$(".ck:checked").each(function() {
+	    	$(".ckContact:checked").each(function() {
 	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_".concat($(this).val()));
-		    	$( "#tableContacts" ).append(tr);
+	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
+		    	$( "#tablecontact" ).append(tr);
 		    	//this.checked = false;
 	    	});
-	    
+	    	
 	    };
+	    
 	    document.getElementById("suppContact").onclick = function () {
 			var chkArray = [];
 	    	
-	    	$(".ck:checked").each(function() {
+	    	$(".ckContact:checked").each(function() {
 	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_".concat($(this).val()));
-		    	$( "#tableContactepopup" ).append(tr);
+	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
+		    	$( "#tablecontactpopup" ).append(tr);
                 this.checked = false;
 	    	});
-	    }
+	    };
+	    document.getElementById("addDoc").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckdoc:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
+		    	$( "#tabledocument" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppDoc").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckdoc:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
+		    	$( "#tabledocpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+  
 	
 });
 	window.PixelAdmin.start(init);

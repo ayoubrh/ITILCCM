@@ -52,6 +52,10 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private Collection<Contrat> contrats;
+	   
+	    @Column(nullable=true)
+		@ManyToMany(mappedBy="contacts")
+	   private Collection<LogicielEtApplication> logicielEtApplication;
    
 		public Contact() {
 			super();
@@ -138,11 +142,19 @@ public class Contact implements Serializable {
 		public void setLieu(Lieu lieu) {
 			this.lieu = lieu;
 		}
-		public Collection<Contrat> getContrat() {
+		public Collection<Contrat> getContrats() {
 			return contrats;
 		}
-		public void setContrat(Collection<Contrat> contrat) {
-			this.contrats = contrat;
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+
+		public Collection<LogicielEtApplication> getLogicielEtApplication() {
+			return logicielEtApplication;
+		}
+
+		public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+			this.logicielEtApplication = logicielEtApplication;
 		}
 			   
 

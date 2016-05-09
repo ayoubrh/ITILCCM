@@ -50,6 +50,10 @@ public class Contrat implements Serializable {
 		   @ManyToMany
 		   private Collection<Document> documents;
 		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<LogicielEtApplication> logicielEtApplication;
+		   
 			public Contrat() {
 				super();
 				// TODO Auto-generated constructor stub
@@ -159,17 +163,30 @@ public class Contrat implements Serializable {
 			public void setTypeDeContrat(String typeDeContrat) {
 				this.typeDeContrat = typeDeContrat;
 			}
-			public Collection<Contact> getContact() {
+			
+			public Collection<Contact> getContacts() {
 				return contacts;
 			}
-			public void setContact(Collection<Contact> contact) {
-				this.contacts = contact;
+
+			public void setContacts(Collection<Contact> contacts) {
+				this.contacts = contacts;
 			}
-			public Collection<Document> getDocument() {
+
+
+			public Collection<Document> getDocuments() {
 				return documents;
 			}
-			public void setDocument(Collection<Document> document) {
-				this.documents = document;
+
+			public void setDocuments(Collection<Document> documents) {
+				this.documents = documents;
+			}
+
+			public Collection<LogicielEtApplication> getLogicielEtApplication() {
+				return logicielEtApplication;
+			}
+
+			public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+				this.logicielEtApplication = logicielEtApplication;
 			}
 		   
    

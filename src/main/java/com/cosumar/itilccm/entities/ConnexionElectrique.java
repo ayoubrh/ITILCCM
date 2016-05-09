@@ -11,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -53,6 +56,10 @@ public class ConnexionElectrique implements Serializable{
    	@ManyToMany(mappedBy="connexionElectrique")
   	@Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
+   	
+   	@ManyToOne
+   	@JoinColumn(name="id_lieu")
+   private Lieu lieu;
    	
 
 	public ConnexionElectrique() {
@@ -201,6 +208,14 @@ public class ConnexionElectrique implements Serializable{
 	public ConnexionElectrique(String nom) {
 		super();
 		this.nom = nom;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
 	}
    	
    	

@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,11 +31,23 @@ public class Document implements Serializable {
 	   private String statut;
 	   private String version;
 	   private String description;
-	   private String typeDocument;
+	  
 	  
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<Contrat> contrats;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<LogicielEtApplication> logicielEtApplication;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<LicenseLogiciel> licenseLogiciel;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<LicenseOs> licenseOs;
 
 		public Document() {
 			super();
@@ -102,16 +115,29 @@ public class Document implements Serializable {
 			this.contrats = contrats;
 		}
 
-		public String getTypeDocument() {
-			return typeDocument;
+		public Collection<LogicielEtApplication> getLogicielEtApplication() {
+			return logicielEtApplication;
 		}
 
-		public void setTypeDocument(String typeDocument) {
-			this.typeDocument = typeDocument;
+		public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+			this.logicielEtApplication = logicielEtApplication;
 		}
-		   
-		   
-   
-   
+
+		public Collection<LicenseLogiciel> getLicenseLogiciel() {
+			return licenseLogiciel;
+		}
+
+		public void setLicenseLogiciel(Collection<LicenseLogiciel> licenseLogiciel) {
+			this.licenseLogiciel = licenseLogiciel;
+		}
+
+		public Collection<LicenseOs> getLicenseOs() {
+			return licenseOs;
+		}
+
+		public void setLicenseOs(Collection<LicenseOs> licenseOs) {
+			this.licenseOs = licenseOs;
+		}
+		
 
 }

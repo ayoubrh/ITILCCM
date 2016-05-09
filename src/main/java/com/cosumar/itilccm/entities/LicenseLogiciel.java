@@ -3,10 +3,12 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -33,6 +35,10 @@ public class LicenseLogiciel implements Serializable {
 	   
 	   @OneToOne
 	   private LogicielEtApplication logicielEtApplications;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Document> documents;
         
 		public LicenseLogiciel() {
 			super();
@@ -121,6 +127,14 @@ public class LicenseLogiciel implements Serializable {
 
 		public void setLogicielEtApplications(LogicielEtApplication logicielEtApplications) {
 			this.logicielEtApplications = logicielEtApplications;
+		}
+
+		public Collection<Document> getDocuments() {
+			return documents;
+		}
+
+		public void setDocuments(Collection<Document> documents) {
+			this.documents = documents;
 		}
 
 		
