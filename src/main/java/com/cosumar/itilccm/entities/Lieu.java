@@ -42,6 +42,9 @@ public class Lieu implements Serializable {
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="lieu")
 	   private Collection<Contact> contacts;
+	   
+	   @OneToMany(mappedBy="lieu")
+		private Collection<Ordinateur> ordinateur;
 	
 		public Lieu() {
 			super();
@@ -154,6 +157,20 @@ public class Lieu implements Serializable {
 		public void setContacts(Collection<Contact> contacts) {
 			this.contacts = contacts;
 		}
+
+
+
+		public Collection<Ordinateur> getOrdinateur() {
+			return ordinateur;
+		}
+
+
+
+		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+		
+		
 		
 
 

@@ -48,6 +48,10 @@ public class Contact implements Serializable {
 	   @JoinColumn(name="id_lieu")
 	   private Lieu lieu;
 	   
+	   @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Ordinateur> ordinateur;
+	   
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private Collection<Contrat> contrats;
@@ -143,6 +147,24 @@ public class Contact implements Serializable {
 		public void setContrat(Collection<Contrat> contrat) {
 			this.contrats = contrat;
 		}
+
+		public Collection<Ordinateur> getOrdinateur() {
+			return ordinateur;
+		}
+
+		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+		
+		
 			   
 
 }

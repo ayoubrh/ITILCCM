@@ -174,11 +174,49 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return pc.getId();
 	}
 	
-	@SuppressWarnings("null")
 	@Override
-	public Long addPCAll(Ordinateur pc, List<Long> logicielEtApplication, List<Long> equipementReseau,
-			List<Long> intefaceReseau, List<Long> peripherique) {
+	public Long addPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
+			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
 		
+		if(user != null){
+			User u = getUser(user);
+			pc.setUser(u);
+		}else {
+			pc.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			pc.setLieu(lie);
+		} else {
+			pc.setLieu(null);
+		}
+		if(licenseos != null){
+			LicenseOs los = getLicenseOs(licenseos);
+			pc.setLicenseOs(los);
+		} else {
+			pc.setLicenseOs(null);
+		}
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			pc.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			pc.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			pc.setContrat(contr);
+		}
 		if(logicielEtApplication != null){
 			Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
 			for (Long l : logicielEtApplication) {

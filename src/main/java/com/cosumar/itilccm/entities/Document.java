@@ -35,6 +35,10 @@ public class Document implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<Contrat> contrats;
+	   
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Ordinateur> ordinateur;
 
 		public Document() {
 			super();
@@ -101,6 +105,16 @@ public class Document implements Serializable {
 		public void setContrats(Collection<Contrat> contrats) {
 			this.contrats = contrats;
 		}
+
+		public Collection<Ordinateur> getOrdinateur() {
+			return ordinateur;
+		}
+
+		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+		
+		
 		   
 		   
    

@@ -36,9 +36,9 @@ public class TestMetierA2 {
 			LogicielEtApplication logapp = m.getLogicielEtApplication(1L);
 			System.out.println("*Test test : "+logapp.getNom());
 			System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
-			m.addPCAll(new Ordinateur("HP 10", "Poste"), log, er, ir, per);
+			m.addPCAll(new Ordinateur("HP 10", "Poste"), null,  null, null,log, er, ir, per, null, null, null);
 			System.out.println("BBBBBBBBBBBBBBBBBBBBBB");
-			m.addPCAll(new Ordinateur("HP 11", "Poste"), log, er, ir, per);
+			m.addPCAll(new Ordinateur("HP 11", "Poste"), null, null, null, log, er, ir, per, null, null, null);
 			System.out.println("CCCCCCCCCCCCCCCCCCCCCC");
 			List<Ordinateur> pc2 = m.ListPC();
 			assertTrue(pc1.size()+2 == pc2.size());
@@ -53,8 +53,8 @@ public class TestMetierA2 {
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			List<Ordinateur> pc1 = m.ListPC();
 
-			m.addPCAll(new Ordinateur("HP 20", "Poste"), null, null, null, null);
-			m.addPCAll(new Ordinateur("HP 30", "Poste"), null, null, null, null);
+			m.addPCAll(new Ordinateur("HP 20", "Poste"), null, null, null, null, null, null, null, null, null, null);
+			m.addPCAll(new Ordinateur("HP 30", "Poste"), null, null, null, null, null, null, null, null, null, null);
 			List<Ordinateur> pc2 = m.ListPC();
 			assertTrue(pc1.size()+2 == pc2.size());
 		}catch (Exception e){

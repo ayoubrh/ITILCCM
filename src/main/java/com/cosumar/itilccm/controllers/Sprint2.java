@@ -1,7 +1,10 @@
 package com.cosumar.itilccm.controllers;
 
 import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +15,14 @@ import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +42,15 @@ public class Sprint2 {
 	@Autowired
 	private UtilisateurMetier mu;
 	
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+	    dateFormat.setLenient(false);
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+	
+
 	@RequestMapping(value="/admin/dashboard")
 	public String index(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -93,14 +108,27 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
-		model.addAttribute("pc", new Ordinateur() );
+		model.addAttribute("ordinateur", new Ordinateur() );
 		model.addAttribute("logiciels", m.listLogicielPc());
 		model.addAttribute("peripheriques", m.ListPeriph());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUser());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("licenseos", m.listLicenseOs());
 		return "sprint2/addPC";
 	}
 	
 	@RequestMapping(value="/admin/add/savePC", method = RequestMethod.POST)
 	public String savePC(@Valid Ordinateur pc,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		System.out.println("Date : "+pc.getDateD_achat());
+		System.out.println("User : "+pc.getUser().getId());
+		System.out.println("LocenseOS : "+pc.getLicenseOs().getId());
+		System.out.println("Lieu : "+pc.getLieu().getId());
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    String logged_m = auth.getName();
@@ -108,29 +136,97 @@ public class Sprint2 {
 			model.addAttribute("logged", logged);
 			//model.addAttribute("pc", pc );
 			model.addAttribute("logiciels", m.listLogicielPc());
+			model.addAttribute("peripheriques", m.ListPeriph());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("users", m.listUser());
+			model.addAttribute("lieus", m.listLieu());
+			model.addAttribute("licenseos", m.listLicenseOs());
 			return "sprint2/addPC";
 		}
 		System.out.println("Test test 3");
 		String[] chLogiciels = req.getParameterValues("chLogiciels");
+		System.out.println("Test test 4");
+		List<Long> chlog = null;
+		System.out.println("---------chLogiciels : "+chLogiciels+" chlog : "+chlog);
 		String[] chper = req.getParameterValues("chPeriph");
+		List<Long> chp = null;
+		System.out.println("---------chper : "+chper+" chp : "+chp);
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
 		if(chLogiciels != null){
+			chlog = new ArrayList<Long>();
 			for (int i = 0; i < chLogiciels.length; i++) {
-				//String[] chLogicielsvalue = req.getParameterValues(chLogiciels[i]);
-				System.out.println("---------"+chLogiciels[i]);
+				System.out.println("---------chLogiciels"+chLogiciels[i]);
+				chlog.add(Long.parseLong(chLogiciels[i]));
 			}
-			if(chper != null){
-				for (int i = 0; i < chper.length; i++) {
-					System.out.println("---------"+chper[i]);
-				}
-			}
-		}else {
-			if(pc.getUser() != null){
-				System.out.println("Ajout ordi avec user");
-			}else {
-				m.addPC(pc);
+			
+		}
+		if(chper != null){
+			chp = new ArrayList<Long>();
+			for (int i = 0; i < chper.length; i++) {
+				System.out.println("---------chper"+chper[i]);
+				chp.add(Long.parseLong(chper[i]));
 			}
 		}
-		return "redirect:/config/admin/dashboard";
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau"+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux"+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument"+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat"+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact"+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		System.out.println("user : "+pc.getUser()+" ID : "+pc.getUser().getId());
+		System.out.println("Lieu : "+pc.getLieu()+" ID : "+pc.getLieu().getId());
+		System.out.println("Lieu : "+pc.getLicenseOs()+" ID : "+pc.getLicenseOs().getId());
+			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		
+		m.addPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/admin/add/lieu")

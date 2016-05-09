@@ -50,6 +50,10 @@ public class Contrat implements Serializable {
 		   @ManyToMany
 		   private Collection<Document> documents;
 		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Ordinateur> ordinateur;
+		   
 			public Contrat() {
 				super();
 				// TODO Auto-generated constructor stub
@@ -171,6 +175,33 @@ public class Contrat implements Serializable {
 			public void setDocument(Collection<Document> document) {
 				this.documents = document;
 			}
+
+			public Collection<Contact> getContacts() {
+				return contacts;
+			}
+
+			public void setContacts(Collection<Contact> contacts) {
+				this.contacts = contacts;
+			}
+
+			public Collection<Document> getDocuments() {
+				return documents;
+			}
+
+			public void setDocuments(Collection<Document> documents) {
+				this.documents = documents;
+			}
+
+			public Collection<Ordinateur> getOrdinateur() {
+				return ordinateur;
+			}
+
+			public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+				this.ordinateur = ordinateur;
+			}
+			
+			
+			
 		   
    
    
