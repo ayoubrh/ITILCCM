@@ -39,6 +39,14 @@ public class Document implements Serializable {
 	   	@ManyToMany(mappedBy="document")
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Imprimante> imprimante;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Peripherique> peripherique;
 
 		public Document() {
 			super();
@@ -113,7 +121,23 @@ public class Document implements Serializable {
 		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
 			this.ordinateur = ordinateur;
 		}
-		
+
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
 		
 		   
 		   

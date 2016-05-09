@@ -54,6 +54,14 @@ public class Contrat implements Serializable {
 		   	@Column(nullable = true)
 		   private Collection<Ordinateur> ordinateur;
 		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Imprimante> imprimante;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Peripherique> peripherique;
+		   
 			public Contrat() {
 				super();
 				// TODO Auto-generated constructor stub
@@ -199,7 +207,23 @@ public class Contrat implements Serializable {
 			public void setOrdinateur(Collection<Ordinateur> ordinateur) {
 				this.ordinateur = ordinateur;
 			}
-			
+
+			public Collection<Imprimante> getImprimante() {
+				return imprimante;
+			}
+
+			public void setImprimante(Collection<Imprimante> imprimante) {
+				this.imprimante = imprimante;
+			}
+
+			public Collection<Peripherique> getPeripherique() {
+				return peripherique;
+			}
+
+			public void setPeripherique(Collection<Peripherique> peripherique) {
+				this.peripherique = peripherique;
+			}
+
 			
 			
 		   

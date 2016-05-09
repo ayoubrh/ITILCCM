@@ -90,7 +90,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -750,7 +750,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Imprimante</span></a>
+													<a href="<c:url value="/config/admin/add/imp"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Imprimante</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Imprimante</span></a>
 												</div>
 											</div>
@@ -764,7 +764,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Périphérique</span></a>
+													<a href="<c:url value="/config/admin/add/per"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Périphérique</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Périphérique</span></a>
 												</div>
 											</div>

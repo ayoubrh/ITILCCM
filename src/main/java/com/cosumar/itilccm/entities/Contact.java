@@ -52,6 +52,14 @@ public class Contact implements Serializable {
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
 	   
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Imprimante> imprimante;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Peripherique> peripherique;
+	   
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private Collection<Contrat> contrats;
@@ -163,7 +171,23 @@ public class Contact implements Serializable {
 		public void setContrats(Collection<Contrat> contrats) {
 			this.contrats = contrats;
 		}
-		
+
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
 		
 			   
 

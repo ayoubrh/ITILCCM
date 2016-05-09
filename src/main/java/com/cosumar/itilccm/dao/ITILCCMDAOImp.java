@@ -1817,10 +1817,94 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public DocumentNote getDocumentNote(Long id) {
 		return em.find(DocumentNote.class, id);
 	}
+
+	@Override
+	public Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(user != null){
+			User u = getUser(user);
+			imp.setUser(u);
+		}else {
+			imp.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			imp.setLieu(lie);
+		} else {
+			imp.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			imp.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			imp.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			imp.setContrat(contr);
+		}
+
+		em.persist(imp);
+		return imp.getId();
+	}
 	
 
 
+	@Override
+	public Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(pc != null){
+			Ordinateur ordi = getPC(pc);
+			per.setOrdinateur(ordi);
+		}else {
+			per.setOrdinateur(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			per.setLieu(lie);
+		} else {
+			per.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			per.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			per.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			per.setContrat(contr);
+		}
 
+		em.persist(per);
+		return per.getId();
+	}
 	
 
 }

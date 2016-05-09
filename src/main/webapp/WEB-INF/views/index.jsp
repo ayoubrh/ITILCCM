@@ -90,7 +90,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -470,7 +470,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : ${Processusmetier }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -485,7 +485,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : ${Solutionapplicative }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -499,7 +499,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${Contact }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -514,7 +514,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${Lieu }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -529,7 +529,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${Contrat }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -544,7 +544,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : ${Serveur }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -559,7 +559,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : ${Equipementreseau }
 													</a>
 												</div>
 												<div class="col-md-12">

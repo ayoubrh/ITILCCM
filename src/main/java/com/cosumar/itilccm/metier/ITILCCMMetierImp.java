@@ -1602,7 +1602,17 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.getDocumentNote(id);
 	}
 
-	
+	@Override
+	public Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addImpAll(imp, user, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addPerAll(per, pc, lieu, document, contact, contrat);
+	}
 
 	
 

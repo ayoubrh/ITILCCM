@@ -43,8 +43,14 @@ public class Lieu implements Serializable {
 	   @OneToMany(mappedBy="lieu")
 	   private Collection<Contact> contacts;
 	   
-	   @OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu")
 		private Collection<Ordinateur> ordinateur;
+	   
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Imprimante> imprimante;
+	   	
+		@OneToMany(mappedBy="lieu")
+		private Collection<Peripherique> peripherique;
 	
 		public Lieu() {
 			super();
@@ -169,6 +175,33 @@ public class Lieu implements Serializable {
 		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
 			this.ordinateur = ordinateur;
 		}
+
+
+
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
+
+
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
+
+
 		
 		
 		

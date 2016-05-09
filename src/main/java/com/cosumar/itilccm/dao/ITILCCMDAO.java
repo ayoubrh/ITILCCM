@@ -120,6 +120,7 @@ public interface ITILCCMDAO {
 
 	// Imprimente
 	public  Long addImp(Imprimante imp);
+	public  Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addImpUser(Imprimante imp, Long u);
 	public void editImp(Imprimante imp);
 	public List<Imprimante> ListImp();
@@ -160,6 +161,7 @@ public interface ITILCCMDAO {
 	
 	// Peripherique
 	public  Long addPeriph(Peripherique per);
+	public  Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addPeriphPC(Peripherique per, Long pc);
 	public void editPeriph(Peripherique per);
 	public List<Peripherique> ListPeriph();
