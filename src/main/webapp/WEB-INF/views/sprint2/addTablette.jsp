@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouvelle Imprimante - ITIL-CCM</title>
+	<title>Nouvelle Tablette - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -609,10 +609,10 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouvelle Imprimante</span>
+						<span class="panel-title">Nouvelle Tablette</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="imprimante" action="saveImp" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="tablette" action="saveTablette" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		

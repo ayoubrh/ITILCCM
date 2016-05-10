@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouvelle Imprimante - ITIL-CCM</title>
+	<title>Nouveau Téléphone Fixe - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -609,10 +609,10 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouvelle Imprimante</span>
+						<span class="panel-title">Nouveau Téléphone Fixe</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="imprimante" action="saveImp" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="telephoneFixe" action="saveTeleFixe" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -707,6 +707,14 @@ Use search to find needed section.
 											<f:errors path="lieu.id" cssClass="help-block"></f:errors>
 										</div>
 										
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-marque" class="col-sm-3 control-label">Numéro</label>
+										<div class="col-sm-9">
+											<f:input path="numero" type="text" class="form-control" id="inputError-4" name="jq-validation-marque" />
+											<f:errors path="numero" cssClass="help-block"></f:errors>
+										</div>
 									</div>
 									
 									

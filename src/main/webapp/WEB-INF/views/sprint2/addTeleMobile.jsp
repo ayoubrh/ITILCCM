@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouvelle Imprimante - ITIL-CCM</title>
+	<title>Nouveau Téléphone Mobile - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -609,10 +609,10 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouvelle Imprimante</span>
+						<span class="panel-title">Nouveau Téléphone Mobile</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="imprimante" action="saveImp" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="telephneMobile" action="saveTeleMobile" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -726,6 +726,13 @@ Use search to find needed section.
 										</div>
 									</div>
 									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">IMEI</label>
+										<div class="col-sm-9">
+											<f:input path="imei" type="text" class="form-control" id="inputError-4" name="jq-validation-modele" />
+											<f:errors path="imei" cssClass="help-block"></f:errors>
+										</div>
+									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>

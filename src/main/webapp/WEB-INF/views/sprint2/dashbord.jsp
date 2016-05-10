@@ -708,7 +708,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Téléphone fixe</span></a>
+													<a href="<c:url value="/config/admin/add/telefixe"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Téléphone fixe</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Téléphone fixe</span></a>
 												</div>
 											</div>
@@ -722,7 +722,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Téléphone mobile</span></a>
+													<a href="<c:url value="/config/admin/add/telemobile"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Téléphone mobile</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Téléphone mobile</span></a>
 												</div>
 											</div>
@@ -736,7 +736,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Tablette</span></a>
+													<a href="<c:url value="/config/admin/add/tablette"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Tablette</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Tablette</span></a>
 												</div>
 											</div>

@@ -129,6 +129,7 @@ public interface ITILCCMDAO {
 	
 	// Telephone Mobile
 	public  Long addTeleMobile(TelephneMobile telem);
+	public  Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleMobileUser(TelephneMobile telem, Long u);
 	public void editTeleMobile(TelephneMobile telem);
 	public List<TelephneMobile> ListTeleMobile();
@@ -137,6 +138,7 @@ public interface ITILCCMDAO {
 	
 	// SIM
 	public  Long addSIM(Sim sim);
+	public  Long addSIMAll(Sim sim, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addSIMUser(Sim sim, Long u);
 	public void editSIM(Sim sim);
 	public List<Sim> ListSIM();
@@ -145,6 +147,7 @@ public interface ITILCCMDAO {
 	
 	// Tablette
 	public  Long addTablette(Tablette tab);
+	public  Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTabletteUser(Tablette tab, Long u);
 	public void editTablette(Tablette tab);
 	public List<Tablette> ListTablette();
@@ -153,6 +156,7 @@ public interface ITILCCMDAO {
 	
 	// Telephone Fixe
 	public  Long addTeleFixe(TelephoneFixe fixe);
+	public  Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleFixeUser(TelephoneFixe fixe, Long u);
 	public void editTeleFixe(TelephoneFixe fixe);
 	public List<TelephoneFixe> ListTeleFixe();

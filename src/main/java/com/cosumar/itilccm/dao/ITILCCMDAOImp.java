@@ -1905,7 +1905,175 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(per);
 		return per.getId();
 	}
+
+	@Override
+	public Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			telem.setUser(u);
+		}else {
+			telem.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			telem.setLieu(lie);
+		} else {
+			telem.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			telem.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			telem.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			telem.setContrat(contr);
+		}
+
+		em.persist(telem);
+		return telem.getId();
+	}
+	
+	
+	@Override
+	public Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			fixe.setUser(u);
+		}else {
+			fixe.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			fixe.setLieu(lie);
+		} else {
+			fixe.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			fixe.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			fixe.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			fixe.setContrat(contr);
+		}
+
+		em.persist(fixe);
+		return fixe.getId();
+	}
 	
 
+	@Override
+	public Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			tab.setUser(u);
+		}else {
+			tab.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			tab.setLieu(lie);
+		} else {
+			tab.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			tab.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			tab.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			tab.setContrat(contr);
+		}
+
+		em.persist(tab);
+		return tab.getId();
+	}
+	
+	
+	@Override
+	public Long addSIMAll(Sim sim, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			sim.setUser(u);
+		}else {
+			sim.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			sim.setLieu(lie);
+		} else {
+			sim.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			sim.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			sim.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			sim.setContrat(contr);
+		}
+
+		em.persist(sim);
+		return sim.getId();
+	}
 }
 

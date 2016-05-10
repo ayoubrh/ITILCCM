@@ -1614,7 +1614,29 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.addPerAll(per, pc, lieu, document, contact, contrat);
 	}
 
+	@Override
+	public Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addTeleMobileAll(telem, user, lieu, document, contact, contrat);
+	}
 	
+	
+	@Override
+	public Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addTabletteAll(tab, user, lieu, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addTeleFixeAll(fixe, user, lieu, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addSIMAll(Sim sim, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addSIMAll(sim, user, lieu, document, contact, contrat);
+	}
 
 }
 

@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -24,7 +27,7 @@ public class Sim implements Serializable{
 	
 	@NotEmpty
    	@Size(max=16)
-   	@Pattern(regexp="(^$|[0-9]{10})")
+   	@Pattern(regexp="(^$|[0-9]{10})",message="Doit contenir que des nombres, et sous la forme 05(6) xx xx xx xx")
 	@Column(unique=true)
    private String numero;
 	
@@ -42,8 +45,25 @@ public class Sim implements Serializable{
 	@Size(min=2,max=20)
    private String operateur;
    
-   @OneToOne
+   @OneToOne(cascade = CascadeType.ALL)
    private User user;
+   
+   
+   @ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="lieu_id")
+  private Lieu lieu;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+   @Column(nullable = true)
+  private Collection<Document> document;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+   @Column(nullable = true)
+  private Collection<Contrat> contrat;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+   @Column(nullable = true)
+  private Collection<Contact> contact;
 
 	public Long getId() {
 		return id;
@@ -102,6 +122,38 @@ public class Sim implements Serializable{
 		super();
 		this.numero = numero;
 		this.operateur = operateur;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
 	}
 	
 	

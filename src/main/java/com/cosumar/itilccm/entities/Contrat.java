@@ -60,7 +60,24 @@ public class Contrat implements Serializable {
 		   
 		   @ManyToMany(mappedBy="contrat")
 		   	@Column(nullable = true)
+		   private Collection<TelephneMobile> telephonemobile;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
 		   private Collection<Peripherique> peripherique;
+		   
+		   
+		    @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<TelephoneFixe> telephonefixe;
+		    
+		    @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Tablette> tablette;
+		    
+		    @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Sim> sim;
 		   
 			public Contrat() {
 				super();
@@ -222,6 +239,38 @@ public class Contrat implements Serializable {
 
 			public void setPeripherique(Collection<Peripherique> peripherique) {
 				this.peripherique = peripherique;
+			}
+
+			public Collection<TelephneMobile> getTelephonemobile() {
+				return telephonemobile;
+			}
+
+			public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
+				this.telephonemobile = telephonemobile;
+			}
+
+			public Collection<TelephoneFixe> getTelephonefixe() {
+				return telephonefixe;
+			}
+
+			public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
+				this.telephonefixe = telephonefixe;
+			}
+
+			public Collection<Tablette> getTablette() {
+				return tablette;
+			}
+
+			public void setTablette(Collection<Tablette> tablette) {
+				this.tablette = tablette;
+			}
+
+			public Collection<Sim> getSim() {
+				return sim;
+			}
+
+			public void setSim(Collection<Sim> sim) {
+				this.sim = sim;
 			}
 
 			

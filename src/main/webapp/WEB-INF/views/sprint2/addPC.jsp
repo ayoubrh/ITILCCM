@@ -871,7 +871,7 @@ Use search to find needed section.
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité</label>
 										<div class="col-sm-9">
 											<f:select  path="criticite" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
 												<f:option value="" label=""/>
