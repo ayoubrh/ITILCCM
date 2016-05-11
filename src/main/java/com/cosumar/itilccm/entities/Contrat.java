@@ -54,6 +54,15 @@ public class Contrat implements Serializable {
 		   	@Column(nullable = true)
 		   private Collection<Ordinateur> ordinateur;
 		   
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Rack> rack;
+
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Chassis> chassis;
+		   
 		   @ManyToMany(mappedBy="contrat")
 		   	@Column(nullable = true)
 		   private Collection<Imprimante> imprimante;
@@ -271,6 +280,22 @@ public class Contrat implements Serializable {
 
 			public void setSim(Collection<Sim> sim) {
 				this.sim = sim;
+			}
+
+			public Collection<Rack> getRack() {
+				return rack;
+			}
+
+			public void setRack(Collection<Rack> rack) {
+				this.rack = rack;
+			}
+
+			public Collection<Chassis> getChassis() {
+				return chassis;
+			}
+
+			public void setChassis(Collection<Chassis> chassis) {
+				this.chassis = chassis;
 			}
 
 			

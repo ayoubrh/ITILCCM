@@ -45,6 +45,12 @@ public class Lieu implements Serializable {
 	   
 	   	@OneToMany(mappedBy="lieu")
 		private Collection<Ordinateur> ordinateur;
+	   	
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Rack> rack;
+	   	
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Chassis> chassis;
 	   
 	   	@OneToMany(mappedBy="lieu")
 		private Collection<Imprimante> imprimante;
@@ -249,7 +255,31 @@ public class Lieu implements Serializable {
 
 
 
+		public Collection<Rack> getRack() {
+			return rack;
+		}
 
+
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
+		}
+
+
+
+		
 
 
 		

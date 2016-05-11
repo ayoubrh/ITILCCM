@@ -666,7 +666,7 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group">
+									<div class="form-group required">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
 										<div class="col-sm-9">
 											<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />

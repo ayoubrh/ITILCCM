@@ -48,9 +48,17 @@ public class Contact implements Serializable {
 	   @JoinColumn(name="id_lieu")
 	   private Lieu lieu;
 	   
-	   @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact")
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
+	   
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Rack> rack;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Chassis> chassis;
 	   
 	    @ManyToMany(mappedBy="contact")
 	   	@Column(nullable = true)
@@ -234,6 +242,22 @@ public class Contact implements Serializable {
 
 		public void setSim(Collection<Sim> sim) {
 			this.sim = sim;
+		}
+
+		public Collection<Rack> getRack() {
+			return rack;
+		}
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
 		}
 
 		

@@ -3,12 +3,14 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
@@ -27,24 +29,40 @@ public class Chassis implements Serializable{
 	@Column(unique = true)
    private String nom;
    private String statut;
-   private String oriticite;
+   private String criticite;
    private String marque;
    private String modele;
-   private String nbUnite;
    private String numeroDeSerie;
-   private String numeroDeAsset;
+   private String numeroAsset;
    private Date dateDeMiseEnProduction;
    private Date dateD_achat;
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@ManyToOne
+   	@ManyToOne(cascade = CascadeType.ALL)
  	@JoinColumn(name="chassis_id")
    private Rack rack;
    
    	@OneToMany(mappedBy="chassis")
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
+   	
+   	
+   	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
 
 	public Long getId() {
 		return id;
@@ -70,13 +88,7 @@ public class Chassis implements Serializable{
 		this.statut = statut;
 	}
 
-	public String getOriticite() {
-		return oriticite;
-	}
-
-	public void setOriticite(String oriticite) {
-		this.oriticite = oriticite;
-	}
+	
 
 	public String getMarque() {
 		return marque;
@@ -94,12 +106,14 @@ public class Chassis implements Serializable{
 		this.modele = modele;
 	}
 
-	public String getNbUnite() {
-		return nbUnite;
+	
+
+	public String getCriticite() {
+		return criticite;
 	}
 
-	public void setNbUnite(String nbUnite) {
-		this.nbUnite = nbUnite;
+	public void setCriticite(String criticite) {
+		this.criticite = criticite;
 	}
 
 	public String getNumeroDeSerie() {
@@ -110,12 +124,14 @@ public class Chassis implements Serializable{
 		this.numeroDeSerie = numeroDeSerie;
 	}
 
-	public String getNumeroDeAsset() {
-		return numeroDeAsset;
+	
+
+	public String getNumeroAsset() {
+		return numeroAsset;
 	}
 
-	public void setNumeroDeAsset(String numeroDeAsset) {
-		this.numeroDeAsset = numeroDeAsset;
+	public void setNumeroAsset(String numeroAsset) {
+		this.numeroAsset = numeroAsset;
 	}
 
 	public Date getDateDeMiseEnProduction() {
@@ -174,6 +190,38 @@ public class Chassis implements Serializable{
 	public Chassis(String nom) {
 		super();
 		this.nom = nom;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
 	}
    	
    	

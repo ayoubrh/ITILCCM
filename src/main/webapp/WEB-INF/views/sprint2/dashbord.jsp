@@ -511,7 +511,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Rack</span></a>
+													<a href="<c:url value="/config/admin/add/rack" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Rack</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Rack</span></a>
 												</div>
 											</div>
@@ -525,7 +525,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
+													<a href="<c:url value="/config/admin/add/chassis" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
 												</div>
 											</div>

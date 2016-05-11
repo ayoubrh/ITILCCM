@@ -42,6 +42,14 @@ public class Document implements Serializable {
 	   	
 	   	@ManyToMany(mappedBy="document")
 	   	@Column(nullable = true)
+	   private Collection<Rack> rack;
+	   	
+		@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Chassis> chassis;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
 	   private Collection<Imprimante> imprimante;
 	   	
 	   	@ManyToMany(mappedBy="document")
@@ -186,6 +194,22 @@ public class Document implements Serializable {
 
 		public void setSim(Collection<Sim> sim) {
 			this.sim = sim;
+		}
+
+		public Collection<Rack> getRack() {
+			return rack;
+		}
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
 		}
 
 		

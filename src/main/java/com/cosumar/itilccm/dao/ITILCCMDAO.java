@@ -14,6 +14,10 @@ public interface ITILCCMDAO {
 	public List<User> listUser();
 	public User getUser(Long id);
 	public User getUserByMatricule(String matricule);
+	public List<User> listUserSim();
+	public List<User> listUserTeleMobile();
+	public List<User> listUserTeleFixe();
+	public List<User> listUserTablette();
 	
 	// Departement
 	

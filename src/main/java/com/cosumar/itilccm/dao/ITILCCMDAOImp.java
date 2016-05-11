@@ -48,6 +48,38 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select u from User u");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<User> listUserSim() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.sim s where us.id = s.user.id and s.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<User> listUserTeleMobile() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.telephneMobile t where us.id = t.user.id and t.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<User> listUserTeleFixe() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.telephoneFixe t where us.id = t.user.id and t.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<User> listUserTablette() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.tablette t where us.id = t.user.id and t.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
 
 	@Override
 	public User getUser(Long id) {
@@ -388,6 +420,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select sim from Sim sim");
 		return req.getResultList();
 	}
+	
+	
 
 	@Override
 	public Sim getSIM(Long id) {

@@ -48,6 +48,26 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public List<User> listUser() {
 		return dao.listUser();
 	}
+	
+	@Override
+	public List<User> listUserSim() {
+		return dao.listUserSim();
+	}
+	
+	@Override
+	public List<User> listUserTeleMobile() {
+		return dao.listUserTeleMobile();
+	}
+	
+	@Override
+	public List<User> listUserTeleFixe() {
+		return dao.listUserTeleFixe();
+	}
+	
+	@Override
+	public List<User> listUserTablette() {
+		return dao.listUserTablette();
+	}
 
 	@Override
 	public Long ajouterDepartement(Departement d) {

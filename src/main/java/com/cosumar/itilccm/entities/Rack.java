@@ -3,11 +3,15 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
@@ -24,11 +28,10 @@ public class Rack implements Serializable{
 	@Size(min=2,max=20)
 	@Column(unique = true)
    private String nom;
-   private String staut;
+   private String statut;
    private String criticite;
    private String marque;
    private String modele;
-   private String nbUnite;
    private String numeroDeSerie;
    private String numeroAsset;
    private Date dateDeMiseEnProduction;
@@ -39,14 +42,32 @@ public class Rack implements Serializable{
    	@OneToMany(mappedBy="rack")
   	@Column(nullable = true)
    private Collection<Chassis> chassis;
-   /*
+   
    	@OneToMany(mappedBy="rack")
    	@Column(nullable = true)
    private Collection<PduElectrique> pduElectrique;
-   */
+ 
    	@OneToMany(mappedBy="rack")
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
+   	
+   	
+   	
+	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
 
 	public Long getId() {
 		return id;
@@ -64,14 +85,16 @@ public class Rack implements Serializable{
 		this.nom = nom;
 	}
 	
-	public String getStaut() {
-		return staut;
-	}
 	
-	public void setStaut(String staut) {
-		this.staut = staut;
-	}
 	
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
 	public String getCriticite() {
 		return criticite;
 	}
@@ -96,13 +119,7 @@ public class Rack implements Serializable{
 		this.modele = modele;
 	}
 	
-	public String getNbUnite() {
-		return nbUnite;
-	}
 	
-	public void setNbUnite(String nbUnite) {
-		this.nbUnite = nbUnite;
-	}
 	
 	public String getNumeroDeSerie() {
 		return numeroDeSerie;
@@ -161,7 +178,7 @@ public class Rack implements Serializable{
 	}
 
 		
-/*
+
 	public Collection<PduElectrique> getPduElectrique() {
 		return pduElectrique;
 	}
@@ -169,7 +186,7 @@ public class Rack implements Serializable{
 	public void setPduElectrique(Collection<PduElectrique> pduElectrique) {
 		this.pduElectrique = pduElectrique;
 	}
-*/
+
 	public Collection<Infrastructure> getInfrastructure() {
 		return infrastructure;
 	}
@@ -186,6 +203,38 @@ public class Rack implements Serializable{
 	public Rack(String nom) {
 		super();
 		this.nom = nom;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
 	}
 	
 		

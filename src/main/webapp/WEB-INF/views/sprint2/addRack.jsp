@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Téléphone Fixe - ITIL-CCM</title>
+	<title>Nouveau Rack - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -475,8 +475,6 @@ Use search to find needed section.
 -->
 				
 				
-				
-				
 				<!-- Modal document -->
 				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
 					<div class="modal-dialog modal-lg">
@@ -630,10 +628,10 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Téléphone Fixe</span>
+						<span class="panel-title">Nouveau Rack</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="telephoneFixe" action="saveTeleFixe" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="rack" action="saveRack" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -645,8 +643,13 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
+								<li>
+									<a href="#profile-tabs-chassis" data-toggle="tab">Chassis</a>
+								</li>
 								
-								
+								<li>
+									<a href="#profile-tabs-materiels" data-toggle="tab">Matériels</a>
+								</li>
 								
 								<li>
 									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
@@ -701,19 +704,7 @@ Use search to find needed section.
 										</div>
 									</div>
 									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Utilisateur</label>
-										<div class="col-sm-9">
-											<f:select  path="user.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<c:forEach items="${users }" var="u">
-													<f:option value="${u.id }" label="${u.nom } ${u.prenom } - ${u.departement.libelle } - ${u.role.libelle }"/>
-												</c:forEach>
-											</f:select>
-											<f:errors path="user.id" cssClass="help-block"></f:errors>
-										</div>
-										
-									</div>
+									
 									
 									
 									<div class="form-group">
@@ -728,14 +719,6 @@ Use search to find needed section.
 											<f:errors path="lieu.id" cssClass="help-block"></f:errors>
 										</div>
 										
-									</div>
-									
-									<div class="form-group required">
-										<label for="jq-validation-marque" class="col-sm-3 control-label">Numéro</label>
-										<div class="col-sm-9">
-											<f:input path="numero" type="text" class="form-control" id="inputError-4" name="jq-validation-marque" />
-											<f:errors path="numero" cssClass="help-block"></f:errors>
-										</div>
 									</div>
 									
 									
@@ -754,7 +737,6 @@ Use search to find needed section.
 											<f:errors path="modele" cssClass="help-block"></f:errors>
 										</div>
 									</div>
-									
 									
 									<div class="form-group">
 										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>
@@ -820,6 +802,24 @@ Use search to find needed section.
 		
 								</div> <!-- / .tab-pane -->
 								
+								<div class="tab-pane fade widget-chassis" id="profile-tabs-chassis">
+									
+		
+		
+									Chassis
+		
+									
+								</div>
+								
+								
+								<div class="tab-pane fade widget-materiels" id="profile-tabs-materiels">
+									
+		
+
+									Matériels
+		
+									
+								</div> <!-- / .tab-pane -->
 								
 								
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
@@ -1044,10 +1044,117 @@ Use search to find needed section.
 			$('.jq-datatables-example_wrapper .table-caption').text('');
 			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 			
-			
+			document.getElementById("addL").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckLogiciels:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
+			    	$( "#tableLogicile" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	//Document.getElementById("")
+		    	
+		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
+		    };
 		    
-		  
-		  
+		    
+		    
+		    document.getElementById("suppL").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckLogiciels:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
+			    	$( "#tableLogicilepopup" ).append(tr);
+                    this.checked = false;
+		    	});
+		    };
+		    
+		    
+		  //<!-- Modal Périphérique -->
+		    document.getElementById("addP").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckPer:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_per_".concat($(this).val()));
+			    	$( "#tablePer" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	//Document.getElementById("")
+		    	
+		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
+		    };
+		    
+		    
+		    
+		    document.getElementById("suppP").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckPer:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_per_".concat($(this).val()));
+			    	$( "#tablePerepopup" ).append(tr);
+                    this.checked = false;
+		    	});
+		    };
+		    
+		  //<!-- Modal Interface reseaux -->
+		    
+		    document.getElementById("addir").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckir:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
+			    	$( "#tableinterfacereseau" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	
+		    };
+		    
+		    
+		    
+		    document.getElementById("suppir").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckir:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
+			    	$( "#tableinterfacereseaupopup" ).append(tr);
+                    this.checked = false;
+		    	});
+		    };
+		    
+		    
+		  //<!-- Modal Equipement reseaux -->
+		    document.getElementById("adder").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".cker:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_er_".concat($(this).val()));
+			    	$( "#tableEquipementreseaux" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	
+		    };
+		    
+		    
+		    
+		    document.getElementById("supper").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".cker:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_er_".concat($(this).val()));
+			    	$( "#tableEquipementreseauxpopup" ).append(tr);
+			    	
+                    this.checked = false;
+		    	});
+		    };
+		    
 		    
 		    //<!-- Modal document -->
 		    document.getElementById("addDoc").onclick = function () {
