@@ -217,6 +217,12 @@ public class TelephoneFixe implements Serializable{
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
 	}
+
+	public TelephoneFixe(String nom, String numero) {
+		super();
+		this.nom = nom;
+		this.numero = numero;
+	}
 	
 	
    	

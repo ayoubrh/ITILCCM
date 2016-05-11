@@ -384,7 +384,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -407,6 +407,27 @@ Use search to find needed section.
 					<ul>
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -727,6 +748,21 @@ Use search to find needed section.
 												</div>
 											</div>
 										</div>
+										
+										<div class="col-sm-4 col-md-4">
+											<div class="stat-panel">
+												<div class="col-md-12">
+													<a href="#" style="color:black;">
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/sim.png" alt="" class="">&nbsp; Carte SIM : ${sim }
+													</a>
+												</div>
+												<div class="col-md-12">
+													<a href="<c:url value="/config/admin/add/sim"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Carte SIM</span></a>
+													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Carte SIM</span></a>
+												</div>
+											</div>
+										</div>
+										
 										
 										<div class="col-sm-4 col-md-4">
 											<div class="stat-panel">

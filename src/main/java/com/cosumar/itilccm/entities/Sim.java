@@ -42,27 +42,28 @@ public class Sim implements Serializable{
    private String puk;
 	
 	@NotEmpty
-	@Size(min=2,max=20)
+	@Size(max=20)
    private String operateur;
+	
+	private Date dateDeMiseEnProduction;
+	private Date dateD_achat;
+	private Date dateDeFinDeGarantie;
+	private String description;
    
    @OneToOne(cascade = CascadeType.ALL)
    private User user;
    
-   
-   @ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="lieu_id")
-  private Lieu lieu;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-   @Column(nullable = true)
+    @Column(nullable = true)
   private Collection<Document> document;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-   @Column(nullable = true)
+    @Column(nullable = true)
   private Collection<Contrat> contrat;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-   @Column(nullable = true)
+    @Column(nullable = true)
   private Collection<Contact> contact;
 
 	public Long getId() {
@@ -124,13 +125,6 @@ public class Sim implements Serializable{
 		this.operateur = operateur;
 	}
 
-	public Lieu getLieu() {
-		return lieu;
-	}
-
-	public void setLieu(Lieu lieu) {
-		this.lieu = lieu;
-	}
 
 	public Collection<Document> getDocument() {
 		return document;
@@ -154,6 +148,38 @@ public class Sim implements Serializable{
 
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
+	}
+
+	public Date getDateDeMiseEnProduction() {
+		return dateDeMiseEnProduction;
+	}
+
+	public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+	}
+
+	public Date getDateD_achat() {
+		return dateD_achat;
+	}
+
+	public void setDateD_achat(Date dateD_achat) {
+		this.dateD_achat = dateD_achat;
+	}
+
+	public Date getDateDeFinDeGarantie() {
+		return dateDeFinDeGarantie;
+	}
+
+	public void setDateDeFinDeGarantie(Date dateDeFinDeGarantie) {
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

@@ -75,6 +75,7 @@ public class Sprint2 {
 		model.addAttribute("Ordinateur", m.ListPC().size());
 		model.addAttribute("Telephonefixe", m.ListTeleFixe().size());
 		model.addAttribute("Telephonemobile", m.ListTeleMobile().size());
+		model.addAttribute("sim", m.ListSIM().size());
 		model.addAttribute("Tablette", m.ListTablette().size());
 		model.addAttribute("Imprimante", m.ListImp().size());
 		model.addAttribute("Peripherique", m.ListPeriph().size());
@@ -629,7 +630,7 @@ public class Sprint2 {
 		model.addAttribute("contacts", m.listContact());
 		model.addAttribute("users", m.listUser());
 		model.addAttribute("lieus", m.listLieu());
-		return "sprint2/addTablette";
+		return "sprint2/addSim";
 	}
 	
 	
@@ -648,7 +649,7 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("users", m.listUser());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addTablette";
+			return "sprint2/addSim";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -684,10 +685,9 @@ public class Sprint2 {
 			}
 		}
 		System.out.println("user : "+sim.getUser()+" ID : "+sim.getUser().getId());
-		System.out.println("Lieu : "+sim.getLieu()+" ID : "+sim.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
-		m.addSIMAll(sim, sim.getUser().getId(), sim.getLieu().getId(), chdoc, chcontact, chcontrat);
+		m.addSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboard";
 	}
 	

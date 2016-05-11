@@ -1634,8 +1634,8 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 	
 	@Override
-	public Long addSIMAll(Sim sim, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat) {
-		return dao.addSIMAll(sim, user, lieu, document, contact, contrat);
+	public Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addSIMAll(sim, user, document, contact, contrat);
 	}
 
 }

@@ -112,10 +112,10 @@ public class TestMetierA {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			List<TelephoneFixe> imp1 = m.ListTeleFixe();
-			m.addTeleFixe(new TelephoneFixe("Fixe 1"));
-			m.addTeleFixe(new TelephoneFixe("Fixe 2"));
-			m.addTeleFixeUser(new TelephoneFixe("Fixe 3"), 1L);
-			m.addTeleFixeUser(new TelephoneFixe("Fixe 4"), 2L);
+			m.addTeleFixe(new TelephoneFixe("Fixe 1","0512365478"));
+			m.addTeleFixe(new TelephoneFixe("Fixe 2","0647125863"));
+			m.addTeleFixeUser(new TelephoneFixe("Fixe 3","0547123495"), 1L);
+			m.addTeleFixeUser(new TelephoneFixe("Fixe 4","0612457878"), 2L);
 			List<TelephoneFixe> imp2 = m.ListTeleFixe();
 			assertTrue(imp1.size()+4 == imp2.size());
 		}catch (Exception e){

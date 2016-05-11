@@ -61,8 +61,7 @@ public class Lieu implements Serializable {
 		@OneToMany(mappedBy="lieu")
 		private Collection<Tablette> tablette;
 		
-		@OneToMany(mappedBy="lieu")
-		private Collection<Sim> sim;
+		
 	
 		public Lieu() {
 			super();
@@ -250,15 +249,6 @@ public class Lieu implements Serializable {
 
 
 
-		public Collection<Sim> getSim() {
-			return sim;
-		}
-
-
-
-		public void setSim(Collection<Sim> sim) {
-			this.sim = sim;
-		}
 
 
 

@@ -2036,19 +2036,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 	
 	@Override
-	public Long addSIMAll(Sim sim, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat) {
+	public Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
 		if(user != null){
 			User u = getUser(user);
 			sim.setUser(u);
 		}else {
 			sim.setUser(null);
 		}
-		if(lieu != null){
-			Lieu lie = getLieu(lieu);
-			sim.setLieu(lie);
-		} else {
-			sim.setLieu(null);
-		}
+		
 		
 		if(document != null){
 			Collection<Document> doc = new ArrayList<Document>();

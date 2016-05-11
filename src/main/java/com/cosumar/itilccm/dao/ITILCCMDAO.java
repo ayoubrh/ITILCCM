@@ -138,7 +138,7 @@ public interface ITILCCMDAO {
 	
 	// SIM
 	public  Long addSIM(Sim sim);
-	public  Long addSIMAll(Sim sim, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addSIMUser(Sim sim, Long u);
 	public void editSIM(Sim sim);
 	public List<Sim> ListSIM();
