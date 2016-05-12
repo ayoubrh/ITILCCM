@@ -473,6 +473,118 @@ Use search to find needed section.
 
 		Content
 -->
+
+	<!-- Modal chassis -->
+				<div id="myModalchassis" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Chassis</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tablechassispopup">
+											<c:forEach items="${chasiss}" var="chas">
+												<tr class="gradeA" id="tr_chassis_${chas.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckchassis" name="chchassis" value="${chas.id }"></td>
+													<td>${chas.nom }</td>
+													<td>${chas.statut }</td>
+													<td>${chas.criticite }</td>
+													<td>${chas.numeroDeSerie }</td>
+													<td>${chas.numeroAsset }</td>
+													<td>${chas.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addchassis">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
+				
+				
+				<!-- Modal Materiels -->
+				<div id="myModalmetriels" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Matériel</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tableMatrielpopup">
+											<c:forEach items="${materiels}" var="mat">
+												<tr class="gradeA" id="tr_mat_Mat_${mat.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckMat" name="chMateriel" value="Mat_${mat.id }"></td>
+													<td>${mat.nom }</td>
+													<td>${mat.statut }</td>
+													<td>${mat.criticite }</td>
+													<td>${mat.numeroDeSerie }</td>
+													<td>${mat.numeroAsset }</td>
+													<td>${mat.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
+
+
+											<c:forEach items="${pduelect}" var="pdu">
+												<tr class="gradeA" id="tr_mat_PDU_${pdu.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckMat" name="chMateriel" value="PDU_${pdu.id }"></td>
+													<td>${pdu.nom }</td>
+													<td>${pdu.statut }</td>
+													<td>${pdu.criticite }</td>
+													<td>${pdu.numeroDeSerie }</td>
+													<td>${pdu.numeroAsset }</td>
+													<td>${pdu.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
+
+
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addMat">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
 				
 				
 				<!-- Modal document -->
@@ -512,7 +624,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -563,7 +675,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -612,7 +724,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -806,7 +918,41 @@ Use search to find needed section.
 									
 		
 		
-									Chassis
+									
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tablechassis">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppchassis">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalchassis">Ajouter des Chassis</button>
+										</div>
+										
+									</div>
+
+
 		
 									
 								</div>
@@ -816,7 +962,40 @@ Use search to find needed section.
 									
 		
 
-									Matériels
+									
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tableMatriel">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppMat">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalmetriels">Ajouter des Matériels</button>
+										</div>
+										
+									</div>
+
 		
 									
 								</div> <!-- / .tab-pane -->
@@ -1044,116 +1223,63 @@ Use search to find needed section.
 			$('.jq-datatables-example_wrapper .table-caption').text('');
 			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 			
-			document.getElementById("addL").onclick = function () {
+			
+			
+
+			//<!-- Modal Materiels -->
+ 			document.getElementById("addMat").onclick = function () {
 		    	var chkArray = [];
-		    	
-		    	$(".ckLogiciels:checked").each(function() {
+		    	//alert("aaaaaaaaaaa");
+		    	$(".ckMat:checked").each(function() {
 		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
-			    	$( "#tableLogicile" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	//Document.getElementById("")
-		    	
-		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-		    };
-		    
-		    
-		    
-		    document.getElementById("suppL").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckLogiciels:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
-			    	$( "#tableLogicilepopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-		    
-		    
-		  //<!-- Modal Périphérique -->
-		    document.getElementById("addP").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ckPer:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_per_".concat($(this).val()));
-			    	$( "#tablePer" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	//Document.getElementById("")
-		    	
-		    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-		    };
-		    
-		    
-		    
-		    document.getElementById("suppP").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckPer:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_per_".concat($(this).val()));
-			    	$( "#tablePerepopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-		    
-		  //<!-- Modal Interface reseaux -->
-		    
-		    document.getElementById("addir").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ckir:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
-			    	$( "#tableinterfacereseau" ).append(tr);
+		    		//alert($(this).val());
+		    		var tr = document.getElementById("tr_mat_".concat($(this).val()));
+			    	$( "#tableMatriel" ).append(tr);
 			    	//this.checked = false;
 		    	});
 		    	
 		    };
 		    
-		    
-		    
-		    document.getElementById("suppir").onclick = function () {
+		    document.getElementById("suppMat").onclick = function () {
 				var chkArray = [];
 		    	
-		    	$(".ckir:checked").each(function() {
+		    	$(".ckMat:checked").each(function() {
 		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
-			    	$( "#tableinterfacereseaupopup" ).append(tr);
+		    		//alert($(this).val());
+		    		var tr = document.getElementById("tr_mat_".concat($(this).val()));
+			    	$( "#tableMatrielpopup" ).append(tr);
                     this.checked = false;
 		    	});
 		    };
-		    
-		    
-		  //<!-- Modal Equipement reseaux -->
-		    document.getElementById("adder").onclick = function () {
+
+			//<!-- Modal chassis -->
+ 			document.getElementById("addchassis").onclick = function () {
 		    	var chkArray = [];
-		    	
-		    	$(".cker:checked").each(function() {
+		    	//alert("aaaaaaaaaaa");
+		    	$(".ckchassis:checked").each(function() {
 		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_er_".concat($(this).val()));
-			    	$( "#tableEquipementreseaux" ).append(tr);
+		    		//alert($(this).val());
+		    		var tr = document.getElementById("tr_chassis_".concat($(this).val()));
+			    	$( "#tablechassis" ).append(tr);
 			    	//this.checked = false;
 		    	});
 		    	
 		    };
 		    
-		    
-		    
-		    document.getElementById("supper").onclick = function () {
+		    document.getElementById("suppchassis").onclick = function () {
 				var chkArray = [];
 		    	
-		    	$(".cker:checked").each(function() {
+		    	$(".ckchassis:checked").each(function() {
 		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_er_".concat($(this).val()));
-			    	$( "#tableEquipementreseauxpopup" ).append(tr);
-			    	
+		    		//alert($(this).val());
+		    		var tr = document.getElementById("tr_chassis_".concat($(this).val()));
+			    	$( "#tablechassispopup" ).append(tr);
                     this.checked = false;
 		    	});
 		    };
+
+			
+			
 		    
 		    
 		    //<!-- Modal document -->
@@ -1228,6 +1354,8 @@ Use search to find needed section.
                     this.checked = false;
 		    	});
 		    };
+		    
+
 
 
 

@@ -2104,5 +2104,124 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(sim);
 		return sim.getId();
 	}
+	
+	@Override
+	public Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			rack.setLieu(lie);
+		} else {
+			rack.setLieu(null);
+		}
+		
+		if(chassis != null){
+			Collection<Chassis> chass = new ArrayList<Chassis>();
+			for (Long chas : chassis) {
+				Chassis cha = getChassis(chas);
+				chass.add(cha);
+				cha.setRack(rack);
+			}
+			rack.setChassis(chass);
+		}
+		
+		if(materiels != null){
+			Collection<Infrastructure> infrastructure = new ArrayList<Infrastructure>();
+			for (Long mat : materiels) {
+				Infrastructure infra = getInfrastructure(mat);
+				infrastructure.add(infra);
+				infra.setRack(rack);
+			}
+			rack.setInfrastructure(infrastructure);
+		}
+		
+		if(pdu != null){
+			Collection<PduElectrique> pduelec = new ArrayList<PduElectrique>();
+			for (Long p : pdu) {
+				PduElectrique pdue = getPduElectrique(p);
+				pduelec.add(pdue);
+				pdue.setRack(rack);
+			}
+			rack.setPduElectrique(pduelec);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			rack.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			rack.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			rack.setContrat(contr);
+		}
+
+		em.persist(rack);
+		return rack.getId();
+	}
+	
+	@Override
+	public Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Chassis.setLieu(lie);
+		} else {
+			Chassis.setLieu(null);
+		}
+		if(rack != null){
+			Rack ra = getRack(rack);
+			Chassis.setRack(ra);
+		} else {
+			Chassis.setRack(null);
+		}
+		
+		if(materiels != null){
+			Collection<Infrastructure> infrastructure = new ArrayList<Infrastructure>();
+			for (Long mat : materiels) {
+				Infrastructure infra = getInfrastructure(mat);
+				infrastructure.add(infra);
+				infra.setChassis(Chassis);
+			}
+			Chassis.setInfrastructure(infrastructure);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Chassis.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Chassis.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Chassis.setContrat(contr);
+		}
+
+		em.persist(Chassis);
+		return Chassis.getId();
+	}
 }
 

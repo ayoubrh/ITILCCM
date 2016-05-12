@@ -706,6 +706,9 @@ public class Sprint2 {
 		model.addAttribute("contrats", m.listContrat());
 		model.addAttribute("contacts", m.listContact());
 		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("chasiss", m.ListChassis());
+		model.addAttribute("materiels", m.ListInfrastructure());
+		model.addAttribute("pduelect", m.ListPduElectrique());
 		return "sprint2/addRack";
 	}
 	
@@ -723,22 +726,20 @@ public class Sprint2 {
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("lieus", m.listLieu());
+			model.addAttribute("chasiss", m.ListChassis());
+			model.addAttribute("materiels", m.ListInfrastructure());
+			model.addAttribute("pduelect", m.ListPduElectrique());
 			return "sprint2/addRack";
 		}
 		System.out.println("Test test 3");
-		String[] chLogiciels = req.getParameterValues("chLogiciels");
+		String[] chchassis = req.getParameterValues("chchassis");
 		System.out.println("Test test 4");
-		List<Long> chlog = null;
-		System.out.println("---------chLogiciels : "+chLogiciels+" chlog : "+chlog);
-		String[] chper = req.getParameterValues("chPeriph");
-		List<Long> chp = null;
-		System.out.println("---------chper : "+chper+" chp : "+chp);
-		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
-		List<Long> chir = null;
-		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
-		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
-		List<Long> cher = null;
-		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+		List<Long> chchas = null;
+		System.out.println("---------chchassis : "+chchassis+" chchas : "+chchas);
+		String[] chMateriel = req.getParameterValues("chMateriel");
+		List<Long> chmat = null;
+		List<Long> pdu = null;
+		System.out.println("---------chMateriel : "+chMateriel+" chmat : "+chmat);
 		String[] chdocument = req.getParameterValues("chdocument");
 		List<Long> chdoc = null;
 		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
@@ -748,35 +749,35 @@ public class Sprint2 {
 		String[] chContact = req.getParameterValues("chContact");
 		List<Long> chcontact = null;
 		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
-		if(chLogiciels != null){
-			chlog = new ArrayList<Long>();
-			for (int i = 0; i < chLogiciels.length; i++) {
-				System.out.println("---------chLogiciels"+chLogiciels[i]);
-				chlog.add(Long.parseLong(chLogiciels[i]));
+		if(chchassis != null){
+			chchas = new ArrayList<Long>();
+			for (int i = 0; i < chchassis.length; i++) {
+				System.out.println("---------chchassis"+chchassis[i]);
+				chchas.add(Long.parseLong(chchassis[i]));
 			}
 			
 		}
-		if(chper != null){
-			chp = new ArrayList<Long>();
-			for (int i = 0; i < chper.length; i++) {
-				System.out.println("---------chper"+chper[i]);
-				chp.add(Long.parseLong(chper[i]));
+		if(chMateriel != null){
+			chmat = new ArrayList<Long>();
+			pdu = new ArrayList<Long>();
+			for (int i = 0; i < chMateriel.length; i++) {
+				System.out.println("---------chMateriel"+chMateriel[i]);
+				//chmat.add(Long.parseLong(chMateriel[i]));
+				System.out.println("---------chMateriel id : "+chMateriel[i].substring(4));
+				System.out.println("---------chMateriel Class : "+chMateriel[i].substring(0,3));
+				if(chMateriel[i].substring(0,3).equals("Mat")){
+					chmat.add(Long.parseLong(chMateriel[i].substring(4)));
+					System.out.println("--------- Mat : "+chmat);
+				}else {
+					pdu.add(Long.parseLong(chMateriel[i].substring(4)));
+					System.out.println("--------- PDU : "+pdu);
+				}
 			}
+			if(chmat.size() == 0) chmat=null;
+			if(pdu.size() == 0) pdu = null;
+			
 		}
-		if(chinterfacereseau != null){
-			chir = new ArrayList<Long>();
-			for (int i = 0; i < chinterfacereseau.length; i++) {
-				System.out.println("---------chinterfacereseau"+chinterfacereseau[i]);
-				chir.add(Long.parseLong(chinterfacereseau[i]));
-			}
-		}
-		if(chequipementreseaux != null){
-			cher = new ArrayList<Long>();
-			for (int i = 0; i < chequipementreseaux.length; i++) {
-				System.out.println("---------chequipementreseaux"+chequipementreseaux[i]);
-				cher.add(Long.parseLong(chequipementreseaux[i]));
-			}
-		}
+		System.out.println("---------pdu : "+pdu+" chmat : "+chmat);
 		if(chdocument != null){
 			chdoc = new ArrayList<Long>();
 			for (int i = 0; i < chdocument.length; i++) {
@@ -802,6 +803,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		//m.addRackAll(rack, rack.getLieu().getId(), chchassis, chmateriels, chdoc, chcontact, chcontrat);
+		m.addRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboard";
 	}
 	
@@ -819,7 +821,8 @@ public class Sprint2 {
 		model.addAttribute("contrats", m.listContrat());
 		model.addAttribute("contacts", m.listContact());
 		model.addAttribute("lieus", m.listLieu());
-		model.addAttribute("racks", m.ListChassis());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("materiels", m.ListInfrastructure());
 		return "sprint2/addChassis";
 	}
 	
@@ -837,23 +840,14 @@ public class Sprint2 {
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("lieus", m.listLieu());
-			model.addAttribute("racks", m.ListChassis());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("materiels", m.ListInfrastructure());
 			return "sprint2/addChassis";
 		}
 		System.out.println("Test test 3");
-		String[] chLogiciels = req.getParameterValues("chLogiciels");
-		System.out.println("Test test 4");
-		List<Long> chlog = null;
-		System.out.println("---------chLogiciels : "+chLogiciels+" chlog : "+chlog);
-		String[] chper = req.getParameterValues("chPeriph");
-		List<Long> chp = null;
-		System.out.println("---------chper : "+chper+" chp : "+chp);
-		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
-		List<Long> chir = null;
-		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
-		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
-		List<Long> cher = null;
-		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+		String[] chMateriel = req.getParameterValues("chMateriel");
+		List<Long> chmat = null;
+		System.out.println("---------chMateriel : "+chMateriel+" chmat : "+chmat);
 		String[] chdocument = req.getParameterValues("chdocument");
 		List<Long> chdoc = null;
 		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
@@ -863,34 +857,13 @@ public class Sprint2 {
 		String[] chContact = req.getParameterValues("chContact");
 		List<Long> chcontact = null;
 		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
-		if(chLogiciels != null){
-			chlog = new ArrayList<Long>();
-			for (int i = 0; i < chLogiciels.length; i++) {
-				System.out.println("---------chLogiciels"+chLogiciels[i]);
-				chlog.add(Long.parseLong(chLogiciels[i]));
+		if(chMateriel != null){
+			chmat = new ArrayList<Long>();
+			for (int i = 0; i < chMateriel.length; i++) {
+				System.out.println("---------chMateriel"+chMateriel[i]);
+				chmat.add(Long.parseLong(chMateriel[i]));
 			}
 			
-		}
-		if(chper != null){
-			chp = new ArrayList<Long>();
-			for (int i = 0; i < chper.length; i++) {
-				System.out.println("---------chper"+chper[i]);
-				chp.add(Long.parseLong(chper[i]));
-			}
-		}
-		if(chinterfacereseau != null){
-			chir = new ArrayList<Long>();
-			for (int i = 0; i < chinterfacereseau.length; i++) {
-				System.out.println("---------chinterfacereseau"+chinterfacereseau[i]);
-				chir.add(Long.parseLong(chinterfacereseau[i]));
-			}
-		}
-		if(chequipementreseaux != null){
-			cher = new ArrayList<Long>();
-			for (int i = 0; i < chequipementreseaux.length; i++) {
-				System.out.println("---------chequipementreseaux"+chequipementreseaux[i]);
-				cher.add(Long.parseLong(chequipementreseaux[i]));
-			}
 		}
 		if(chdocument != null){
 			chdoc = new ArrayList<Long>();
@@ -914,10 +887,12 @@ public class Sprint2 {
 			}
 		}
 		System.out.println("Lieu : "+chassis.getLieu()+" ID : "+chassis.getLieu().getId());
-			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		System.out.println("Rack : "+chassis.getRack()+" ID : "+chassis.getRack().getId());
+
+		//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
-		//m.addChassisAll(rack, rack.getLieu().getId(), chchassis, chmateriels, chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		m.addChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
+		return "redirect:/index";
 	}
 	
 	

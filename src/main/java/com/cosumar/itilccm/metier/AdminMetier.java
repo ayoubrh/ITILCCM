@@ -392,6 +392,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Rack
 	public  Long addRack(Rack Rack);
+	public  Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editRack(Rack Rack);
 	public List<Rack> ListRack();
@@ -400,6 +401,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Chassis
 	public  Long addChassis(Chassis Chassis);
+	public  Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editChassis(Chassis Chassis);
 	public List<Chassis> ListChassis();

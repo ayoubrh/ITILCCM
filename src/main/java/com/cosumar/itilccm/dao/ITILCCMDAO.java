@@ -283,7 +283,7 @@ public interface ITILCCMDAO {
 	
 	// Rack
 	public  Long addRack(Rack Rack);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editRack(Rack Rack);
 	public List<Rack> ListRack();
 	public Rack getRack(Long id);
@@ -291,7 +291,7 @@ public interface ITILCCMDAO {
 	
 	// Chassis
 	public  Long addChassis(Chassis Chassis);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editChassis(Chassis Chassis);
 	public List<Chassis> ListChassis();
 	public Chassis getChassis(Long id);

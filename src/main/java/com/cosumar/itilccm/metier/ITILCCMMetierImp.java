@@ -1657,6 +1657,18 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
 		return dao.addSIMAll(sim, user, document, contact, contrat);
 	}
+	
+	@Override
+	public Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addRackAll(rack, lieu, chassis, materiels, pdu, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.addChassisAll(Chassis, lieu, rack, materiels, document, contact, contrat);
+	}
 
 }
 
