@@ -50,7 +50,45 @@ public class Contrat implements Serializable {
 		   @ManyToMany
 		   private Collection<Document> documents;
 		   
-		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Ordinateur> ordinateur;
+		   
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Rack> rack;
+
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Chassis> chassis;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Imprimante> imprimante;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<TelephneMobile> telephonemobile;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Peripherique> peripherique;
+		   
+		   
+		    @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<TelephoneFixe> telephonefixe;
+		    
+		    @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Tablette> tablette;
+		    
+		    @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Sim> sim;
+
+		    @Column(nullable=true)
 		   @ManyToMany(mappedBy="contrats")
 		   private Collection<LogicielEtApplication> logicielEtApplication;
 		   
@@ -97,93 +135,119 @@ public class Contrat implements Serializable {
 				this.statut = statut;
 				this.typeDeContrat = typeDeContrat;
 			}
-	
+
 			public Long getId() {
 				return id;
 			}
+
 			public void setId(Long id) {
 				this.id = id;
 			}
+
 			public String getNom() {
 				return nom;
 			}
+
 			public void setNom(String nom) {
 				this.nom = nom;
 			}
+
 			public String getClient() {
 				return client;
 			}
+
 			public void setClient(String client) {
 				this.client = client;
 			}
+
 			public String getDescription() {
 				return description;
 			}
+
 			public void setDescription(String description) {
 				this.description = description;
 			}
+
 			public Date getDateDeDebut() {
 				return dateDeDebut;
 			}
+
 			public void setDateDeDebut(Date dateDeDebut) {
 				this.dateDeDebut = dateDeDebut;
 			}
+
 			public Date getDateDeFin() {
 				return dateDeFin;
 			}
+
 			public void setDateDeFin(Date dateDeFin) {
 				this.dateDeFin = dateDeFin;
 			}
-			
+
 			public double getCout() {
 				return cout;
 			}
+
 			public void setCout(double cout) {
 				this.cout = cout;
 			}
+
 			public String getMonnaie() {
 				return monnaie;
 			}
+
 			public void setMonnaie(String monnaie) {
 				this.monnaie = monnaie;
 			}
+
 			public String getPeriodiciteDeFacturation() {
 				return periodiciteDeFacturation;
 			}
+
 			public void setPeriodiciteDeFacturation(String periodiciteDeFacturation) {
 				this.periodiciteDeFacturation = periodiciteDeFacturation;
 			}
+
 			public String getUniteDeCout() {
 				return uniteDeCout;
 			}
+
 			public void setUniteDeCout(String uniteDeCout) {
 				this.uniteDeCout = uniteDeCout;
 			}
+
 			public String getFournisseur() {
 				return fournisseur;
 			}
+
 			public void setFournisseur(String fournisseur) {
 				this.fournisseur = fournisseur;
 			}
+
 			public String getNiveauDeService() {
 				return niveauDeService;
 			}
+
 			public void setNiveauDeService(String niveauDeService) {
 				this.niveauDeService = niveauDeService;
 			}
+
 			public String getStatut() {
 				return statut;
 			}
+
 			public void setStatut(String statut) {
 				this.statut = statut;
 			}
+
 			public String getTypeDeContrat() {
 				return typeDeContrat;
 			}
+
 			public void setTypeDeContrat(String typeDeContrat) {
 				this.typeDeContrat = typeDeContrat;
 			}
-			
+
 			public Collection<Contact> getContacts() {
 				return contacts;
 			}
@@ -192,13 +256,84 @@ public class Contrat implements Serializable {
 				this.contacts = contacts;
 			}
 
-
 			public Collection<Document> getDocuments() {
 				return documents;
 			}
 
 			public void setDocuments(Collection<Document> documents) {
 				this.documents = documents;
+			}
+
+			public Collection<Ordinateur> getOrdinateur() {
+				return ordinateur;
+			}
+
+			public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+				this.ordinateur = ordinateur;
+			}
+
+			public Collection<Rack> getRack() {
+				return rack;
+			}
+
+			public void setRack(Collection<Rack> rack) {
+				this.rack = rack;
+			}
+
+			public Collection<Chassis> getChassis() {
+				return chassis;
+			}
+
+			public void setChassis(Collection<Chassis> chassis) {
+				this.chassis = chassis;
+			}
+
+			public Collection<Imprimante> getImprimante() {
+				return imprimante;
+			}
+
+			public void setImprimante(Collection<Imprimante> imprimante) {
+				this.imprimante = imprimante;
+			}
+
+			public Collection<TelephneMobile> getTelephonemobile() {
+				return telephonemobile;
+			}
+
+			public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
+				this.telephonemobile = telephonemobile;
+			}
+
+			public Collection<Peripherique> getPeripherique() {
+				return peripherique;
+			}
+
+			public void setPeripherique(Collection<Peripherique> peripherique) {
+				this.peripherique = peripherique;
+			}
+
+			public Collection<TelephoneFixe> getTelephonefixe() {
+				return telephonefixe;
+			}
+
+			public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
+				this.telephonefixe = telephonefixe;
+			}
+
+			public Collection<Tablette> getTablette() {
+				return tablette;
+			}
+
+			public void setTablette(Collection<Tablette> tablette) {
+				this.tablette = tablette;
+			}
+
+			public Collection<Sim> getSim() {
+				return sim;
+			}
+
+			public void setSim(Collection<Sim> sim) {
+				this.sim = sim;
 			}
 
 			public Collection<LogicielEtApplication> getLogicielEtApplication() {
@@ -248,6 +383,7 @@ public class Contrat implements Serializable {
 			public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 				this.virtualisation = virtualisation;
 			}
+	
 			
 
 }

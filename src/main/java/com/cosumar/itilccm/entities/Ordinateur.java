@@ -39,15 +39,37 @@ public class Ordinateur implements Serializable{
    private String ram;
    private String numeroDeSerie;
    private String numeroAsset;
+   
+   @Column(nullable = true)
    private Date dateDeMiseEnProduction;
+   
+   @Column(nullable = true)
    private Date dateD_achat;
+   
+   @Column(nullable = true)
    private Date dateDeFinDeGarantie;
    private String description;
    
    
-   	@ManyToOne
+   	@ManyToOne(cascade = CascadeType.ALL)
    	@JoinColumn(name="user_id")
    private User user;
+   	
+   	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
    	
    @ManyToMany(cascade = CascadeType.ALL)
    @Column(nullable = true)
@@ -60,7 +82,7 @@ public class Ordinateur implements Serializable{
    	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    private Collection<Peripherique> peripherique;
    	
-	 @ManyToOne
+	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name="id_licenseOs")
    	private LicenseOs licenseOs;
 	   
@@ -218,6 +240,33 @@ public class Ordinateur implements Serializable{
 		this.type = type;
 		this.user = user;
 	}
+	public Lieu getLieu() {
+		return lieu;
+	}
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+	public Collection<Document> getDocument() {
+		return document;
+	}
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
+	}
+	
+	
+	
 	
 	
 	

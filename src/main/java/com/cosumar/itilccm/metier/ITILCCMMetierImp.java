@@ -48,6 +48,26 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public List<User> listUser() {
 		return dao.listUser();
 	}
+	
+	@Override
+	public List<User> listUserSim() {
+		return dao.listUserSim();
+	}
+	
+	@Override
+	public List<User> listUserTeleMobile() {
+		return dao.listUserTeleMobile();
+	}
+	
+	@Override
+	public List<User> listUserTeleFixe() {
+		return dao.listUserTeleFixe();
+	}
+	
+	@Override
+	public List<User> listUserTablette() {
+		return dao.listUserTablette();
+	}
 
 	@Override
 	public Long ajouterDepartement(Departement d) {
@@ -125,9 +145,9 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 	
 	@Override
-	public Long addPCAll(Ordinateur pc, List<Long> logicielEtApplication, List<Long> equipementReseau,
-			List<Long> intefaceReseau, List<Long> peripherique) {
-		return dao.addPCAll(pc, logicielEtApplication, equipementReseau, intefaceReseau, peripherique);
+	public Long addPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
+			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addPCAll(pc, user, lieu, licenseos, logicielEtApplication, equipementReseau, intefaceReseau, peripherique, document, contact, contrat);
 	}
 
 	@Override
@@ -1610,6 +1630,53 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
+	public Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addImpAll(imp, user, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addPerAll(per, pc, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addTeleMobileAll(telem, user, lieu, document, contact, contrat);
+	}
+	
+	
+	@Override
+	public Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addTabletteAll(tab, user, lieu, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addTeleFixeAll(fixe, user, lieu, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addSIMAll(sim, user, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addRackAll(rack, lieu, chassis, materiels, pdu, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.addChassisAll(Chassis, lieu, rack, materiels, document, contact, contrat);
+	}
+	
 	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
 		return dao.ajouterAutreLogicielAll(al,l, contacts, documents, solutionsApplicatives, contrats);
@@ -1691,10 +1758,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public Long addPduElectriqueAll(PduElectrique pdue, Long lieu, Long rack, Long arrivee, List<Long> contacts,
 			List<Long> documents, List<Long> contrats) {
 		return dao.addPduElectriqueAll(pdue, lieu, rack, arrivee, contacts, documents, contrats);
-		
 	}
-
-	
 
 }
 

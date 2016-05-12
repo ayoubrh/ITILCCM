@@ -49,6 +49,42 @@ public class Contact implements Serializable {
 	   @JoinColumn(name="id_lieu")
 	   private Lieu lieu;
 	   
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Ordinateur> ordinateur;
+	   
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Rack> rack;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Chassis> chassis;
+	   
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Imprimante> imprimante;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<TelephneMobile> telephonemobile;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<TelephoneFixe> telephonefixe;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Tablette> tablette;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Sim> sim;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Peripherique> peripherique;
+	   
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private Collection<Contrat> contrats;
@@ -162,12 +198,7 @@ public class Contact implements Serializable {
 		public void setLieu(Lieu lieu) {
 			this.lieu = lieu;
 		}
-		public Collection<Contrat> getContrats() {
-			return contrats;
-		}
-		public void setContrats(Collection<Contrat> contrats) {
-			this.contrats = contrats;
-		}
+		
 
 		public Collection<LogicielEtApplication> getLogicielEtApplication() {
 			return logicielEtApplication;
@@ -216,6 +247,88 @@ public class Contact implements Serializable {
 		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 			this.virtualisation = virtualisation;
 		}
+
+		public Collection<Ordinateur> getOrdinateur() {
+			return ordinateur;
+		}
+
+		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
+		public Collection<TelephneMobile> getTelephonemobile() {
+			return telephonemobile;
+		}
+
+		public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
+			this.telephonemobile = telephonemobile;
+		}
+
+		public Collection<TelephoneFixe> getTelephonefixe() {
+			return telephonefixe;
+		}
+
+		public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
+			this.telephonefixe = telephonefixe;
+		}
+
+		public Collection<Tablette> getTablette() {
+			return tablette;
+		}
+
+		public void setTablette(Collection<Tablette> tablette) {
+			this.tablette = tablette;
+		}
+
+		public Collection<Sim> getSim() {
+			return sim;
+		}
+
+		public void setSim(Collection<Sim> sim) {
+			this.sim = sim;
+		}
+
+		public Collection<Rack> getRack() {
+			return rack;
+		}
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
+		}
+
+		
 			   
 
 }

@@ -37,6 +37,44 @@ public class Document implements Serializable {
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<Contrat> contrats;
 	   
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Ordinateur> ordinateur;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Rack> rack;
+	   	
+		@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Chassis> chassis;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Imprimante> imprimante;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<TelephneMobile> telephonemobile;
+	   	
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Peripherique> peripherique;
+	   	
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<TelephoneFixe> telephonefixe;
+	    
+	    @ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Tablette> tablette;
+	    
+	    @ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Sim> sim;
+	    
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<LogicielEtApplication> logicielEtApplication;
@@ -83,8 +121,6 @@ public class Document implements Serializable {
 			
 		}
 
-
-
 		public Long getId() {
 			return id;
 		}
@@ -117,8 +153,6 @@ public class Document implements Serializable {
 			this.version = version;
 		}
 
-		
-
 		public String getDescription() {
 			return description;
 		}
@@ -135,6 +169,78 @@ public class Document implements Serializable {
 			this.contrats = contrats;
 		}
 
+		public Collection<Ordinateur> getOrdinateur() {
+			return ordinateur;
+		}
+
+		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+
+		public Collection<Rack> getRack() {
+			return rack;
+		}
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
+		}
+
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+		public Collection<TelephneMobile> getTelephonemobile() {
+			return telephonemobile;
+		}
+
+		public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
+			this.telephonemobile = telephonemobile;
+		}
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
+		public Collection<TelephoneFixe> getTelephonefixe() {
+			return telephonefixe;
+		}
+
+		public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
+			this.telephonefixe = telephonefixe;
+		}
+
+		public Collection<Tablette> getTablette() {
+			return tablette;
+		}
+
+		public void setTablette(Collection<Tablette> tablette) {
+			this.tablette = tablette;
+		}
+
+		public Collection<Sim> getSim() {
+			return sim;
+		}
+
+		public void setSim(Collection<Sim> sim) {
+			this.sim = sim;
+		}
+
 		public Collection<LogicielEtApplication> getLogicielEtApplication() {
 			return logicielEtApplication;
 		}
@@ -143,20 +249,20 @@ public class Document implements Serializable {
 			this.logicielEtApplication = logicielEtApplication;
 		}
 
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
+		}
+
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+
 		public Collection<LicenseLogiciel> getLicenseLogiciel() {
 			return licenseLogiciel;
 		}
 
 		public void setLicenseLogiciel(Collection<LicenseLogiciel> licenseLogiciel) {
 			this.licenseLogiciel = licenseLogiciel;
-		}
-
-		public Collection<LicenseOs> getLicenseOs() {
-			return licenseOs;
-		}
-
-		public void setLicenseOs(Collection<LicenseOs> licenseOs) {
-			this.licenseOs = licenseOs;
 		}
 
 		public Collection<ApplicationWeb> getApplicationWeb() {
@@ -183,12 +289,12 @@ public class Document implements Serializable {
 			this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
 		}
 
-		public Collection<ConnexionElectrique> getConnexionElectrique() {
-			return connexionElectrique;
+		public Collection<LicenseOs> getLicenseOs() {
+			return licenseOs;
 		}
 
-		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
-			this.connexionElectrique = connexionElectrique;
+		public void setLicenseOs(Collection<LicenseOs> licenseOs) {
+			this.licenseOs = licenseOs;
 		}
 
 		public Collection<Virtualisation> getVirtualisation() {
@@ -198,6 +304,7 @@ public class Document implements Serializable {
 		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 			this.virtualisation = virtualisation;
 		}
+
 		
 
 }

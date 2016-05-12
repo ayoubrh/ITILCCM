@@ -212,6 +212,15 @@ public interface UtilisateurMetier {
 	public List<Dvr> ListDvr();
 	public Dvr getDvr(Long id);
 		
-
+	// Serveur
+	public void editServeur(Serveur Serveur);
+	public List<Serveur> ListServeur();
+	public Serveur getServeur(Long id);
+	
+	
+	//EquipementReseau
+	public void editEquipementReseau(EquipementReseau er);
+	public List<EquipementReseau> ListEquipementReseau();
+	public EquipementReseau getEquipementReseau(Long id);
 
 }

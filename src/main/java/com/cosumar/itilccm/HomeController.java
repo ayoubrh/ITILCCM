@@ -41,6 +41,7 @@ import antlr.ParserSharedInputState;
 @Controller
 public class HomeController implements HandlerExceptionResolver {
 	
+	
 	@Autowired
 	private AdminMetier m;
 	
@@ -60,13 +61,13 @@ public class HomeController implements HandlerExceptionResolver {
 	      String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
-		model.addAttribute("Processusmetier", m.ListProcessusMetier().size());
-		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative().size());
-		model.addAttribute("contact", m.listContact().size());
-		model.addAttribute("lieu", m.listLieu().size());
-		model.addAttribute("contrat", m.listContrat().size());
-		model.addAttribute("Serveur", m.ListServeur().size());
-		model.addAttribute("Equipementreseau", m.ListEquipementReseau().size());
+		model.addAttribute("Processusmetier", mu.ListProcessusMetier().size());
+		model.addAttribute("Solutionapplicative", mu.ListSolutionApplicative().size());
+		model.addAttribute("Contact", mu.listContact().size());
+		model.addAttribute("Lieu", mu.listLieu().size());
+		model.addAttribute("Contrat", mu.listContrat().size());
+		model.addAttribute("Serveur", mu.ListServeur().size());
+		model.addAttribute("Equipementreseau", mu.ListEquipementReseau().size());
 	    return "index";
 	}
 	
@@ -76,6 +77,13 @@ public class HomeController implements HandlerExceptionResolver {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
+		model.addAttribute("Processusmetier", mu.ListProcessusMetier().size());
+		model.addAttribute("Solutionapplicative", mu.ListSolutionApplicative().size());
+		model.addAttribute("Contact", mu.listContact().size());
+		model.addAttribute("Lieu", mu.listLieu().size());
+		model.addAttribute("Contrat", mu.listContrat().size());
+		model.addAttribute("Serveur", mu.ListServeur().size());
+		model.addAttribute("Equipementreseau", mu.ListEquipementReseau().size());
 		model.addAttribute("v", v);
 	    return "index";
 	}

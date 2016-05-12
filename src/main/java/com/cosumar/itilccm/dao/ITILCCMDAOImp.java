@@ -48,6 +48,38 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select u from User u");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<User> listUserSim() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.sim s where us.id = s.user.id and s.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<User> listUserTeleMobile() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.telephneMobile t where us.id = t.user.id and t.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<User> listUserTeleFixe() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.telephoneFixe t where us.id = t.user.id and t.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<User> listUserTablette() {
+		Query req = em.createQuery("select u from User u  where u.id not in ( select us.id from User us join us.tablette t where us.id = t.user.id and t.user.id is not null)");
+
+		//Query req = em.createQuery("select u from User u join u.sim s where u.id not in s.user.id and s.user.id is not null");
+		return req.getResultList();
+	}
 
 	@Override
 	public User getUser(Long id) {
@@ -174,11 +206,49 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return pc.getId();
 	}
 	
-	@SuppressWarnings("null")
 	@Override
-	public Long addPCAll(Ordinateur pc, List<Long> logicielEtApplication, List<Long> equipementReseau,
-			List<Long> intefaceReseau, List<Long> peripherique) {
+	public Long addPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
+			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
 		
+		if(user != null){
+			User u = getUser(user);
+			pc.setUser(u);
+		}else {
+			pc.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			pc.setLieu(lie);
+		} else {
+			pc.setLieu(null);
+		}
+		if(licenseos != null){
+			LicenseOs los = getLicenseOs(licenseos);
+			pc.setLicenseOs(los);
+		} else {
+			pc.setLicenseOs(null);
+		}
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			pc.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			pc.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			pc.setContrat(contr);
+		}
 		if(logicielEtApplication != null){
 			Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
 			for (Long l : logicielEtApplication) {
@@ -350,6 +420,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select sim from Sim sim");
 		return req.getResultList();
 	}
+	
+	
 
 	@Override
 	public Sim getSIM(Long id) {
@@ -1834,6 +1906,377 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
+	public Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(user != null){
+			User u = getUser(user);
+			imp.setUser(u);
+		}else {
+			imp.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			imp.setLieu(lie);
+		} else {
+			imp.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			imp.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			imp.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			imp.setContrat(contr);
+		}
+
+		em.persist(imp);
+		return imp.getId();
+	}
+	
+
+
+	@Override
+	public Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(pc != null){
+			Ordinateur ordi = getPC(pc);
+			per.setOrdinateur(ordi);
+		}else {
+			per.setOrdinateur(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			per.setLieu(lie);
+		} else {
+			per.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			per.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			per.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			per.setContrat(contr);
+		}
+
+		em.persist(per);
+		return per.getId();
+	}
+
+	@Override
+	public Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			telem.setUser(u);
+		}else {
+			telem.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			telem.setLieu(lie);
+		} else {
+			telem.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			telem.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			telem.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			telem.setContrat(contr);
+		}
+
+		em.persist(telem);
+		return telem.getId();
+	}
+	
+	
+	@Override
+	public Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			fixe.setUser(u);
+		}else {
+			fixe.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			fixe.setLieu(lie);
+		} else {
+			fixe.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			fixe.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			fixe.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			fixe.setContrat(contr);
+		}
+
+		em.persist(fixe);
+		return fixe.getId();
+	}
+	
+
+	@Override
+	public Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			tab.setUser(u);
+		}else {
+			tab.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			tab.setLieu(lie);
+		} else {
+			tab.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			tab.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			tab.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			tab.setContrat(contr);
+		}
+
+		em.persist(tab);
+		return tab.getId();
+	}
+	
+	
+	@Override
+	public Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			sim.setUser(u);
+		}else {
+			sim.setUser(null);
+		}
+		
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			sim.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			sim.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			sim.setContrat(contr);
+		}
+
+		em.persist(sim);
+		return sim.getId();
+	}
+	
+	@Override
+	public Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			rack.setLieu(lie);
+		} else {
+			rack.setLieu(null);
+		}
+		
+		if(chassis != null){
+			Collection<Chassis> chass = new ArrayList<Chassis>();
+			for (Long chas : chassis) {
+				Chassis cha = getChassis(chas);
+				chass.add(cha);
+				cha.setRack(rack);
+			}
+			rack.setChassis(chass);
+		}
+		
+		if(materiels != null){
+			Collection<Infrastructure> infrastructure = new ArrayList<Infrastructure>();
+			for (Long mat : materiels) {
+				Infrastructure infra = getInfrastructure(mat);
+				infrastructure.add(infra);
+				infra.setRack(rack);
+			}
+			rack.setInfrastructure(infrastructure);
+		}
+		
+		if(pdu != null){
+			Collection<PduElectrique> pduelec = new ArrayList<PduElectrique>();
+			for (Long p : pdu) {
+				PduElectrique pdue = getPduElectrique(p);
+				pduelec.add(pdue);
+				pdue.setRack(rack);
+			}
+			rack.setPduElectrique(pduelec);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			rack.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			rack.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			rack.setContrat(contr);
+		}
+
+		em.persist(rack);
+		return rack.getId();
+	}
+	
+	@Override
+	public Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Chassis.setLieu(lie);
+		} else {
+			Chassis.setLieu(null);
+		}
+		if(rack != null){
+			Rack ra = getRack(rack);
+			Chassis.setRack(ra);
+		} else {
+			Chassis.setRack(null);
+		}
+		
+		if(materiels != null){
+			Collection<Infrastructure> infrastructure = new ArrayList<Infrastructure>();
+			for (Long mat : materiels) {
+				Infrastructure infra = getInfrastructure(mat);
+				infrastructure.add(infra);
+				infra.setChassis(Chassis);
+			}
+			Chassis.setInfrastructure(infrastructure);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Chassis.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Chassis.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Chassis.setContrat(contr);
+		}
+		em.persist(Chassis);
+		return Chassis.getId();
+	}
+
+	@Override
 	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
 		
@@ -2684,5 +3127,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return v.getId();
 	}
 
+		
 }
 

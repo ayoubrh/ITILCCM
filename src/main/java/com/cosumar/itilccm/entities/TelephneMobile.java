@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
@@ -35,11 +38,28 @@ public class TelephneMobile implements Serializable{
    private String numeroAsset;
    private Date dateDeMiseEnProduction;
    private Date dateD_achat;
-   private Date dateDeFinGarantie;
+   private Date dateDeFinDeGarantie;
    private String description;
    
-   @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
    private User user;
+   
+    @ManyToOne(cascade = CascadeType.ALL)
+  	@JoinColumn(name="lieu_id")
+  private Lieu lieu;
+  	
+  	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+   private Collection<Document> document;
+  	
+  	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+   private Collection<Contrat> contrat;
+  	
+  	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+   private Collection<Contact> contact;
+
 
 	public Long getId() {
 		return id;
@@ -129,14 +149,15 @@ public class TelephneMobile implements Serializable{
 		this.dateD_achat = dateD_achat;
 	}
 	
-	public Date getDateDeFinGarantie() {
-		return dateDeFinGarantie;
-	}
 	
-	public void setDateDeFinGarantie(Date dateDeFinGarantie) {
-		this.dateDeFinGarantie = dateDeFinGarantie;
+	public Date getDateDeFinDeGarantie() {
+		return dateDeFinDeGarantie;
 	}
-	
+
+	public void setDateDeFinDeGarantie(Date dateDeFinDeGarantie) {
+		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -168,9 +189,41 @@ public class TelephneMobile implements Serializable{
 		this.nom = nom;
 		this.user = user;
 	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
+	}
 	
 	
-	   
+	 
    
 
 }

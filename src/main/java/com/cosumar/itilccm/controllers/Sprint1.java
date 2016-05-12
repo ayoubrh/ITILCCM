@@ -58,7 +58,6 @@ public class Sprint1 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
-	
 		return "sprint1/index";
 	}
 	

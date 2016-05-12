@@ -14,6 +14,10 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<User> listUser();
 	public User getUser(Long id);
 	public User getUserByMatricule(String matricule);
+	public List<User> listUserSim();
+	public List<User> listUserTeleMobile();
+	public List<User> listUserTeleFixe();
+	public List<User> listUserTablette();
 			
 			// Departement
 	public Long ajouterDepartement(Departement d);
@@ -41,7 +45,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Ordinateur
 	
 	public  Long addPC(Ordinateur pc);
-	public  Long addPCAll(Ordinateur pc,List<Long> logicielEtApplication, List<Long> equipementReseau, List<Long> intefaceReseau, List<Long> peripherique);
+	public  Long addPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addPCUser(Ordinateur pc, Long u);
 	public void editPC(Ordinateur pc);
 	public List<Ordinateur> ListPC();
@@ -240,6 +244,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	// Imprimente
 	public  Long addImp(Imprimante imp);
+	public  Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addImpUser(Imprimante imp, Long u);
 	public void editImp(Imprimante imp);
 	public List<Imprimante> ListImp();
@@ -248,6 +253,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	// Telephone Mobile
 	public  Long addTeleMobile(TelephneMobile telem);
+	public  Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleMobileUser(TelephneMobile telem, Long u);
 	public void editTeleMobile(TelephneMobile telem);
 	public List<TelephneMobile> ListTeleMobile();
@@ -256,6 +262,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	// SIM
 	public  Long addSIM(Sim sim);
+	public  Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addSIMUser(Sim sim, Long u);
 	public void editSIM(Sim sim);
 	public List<Sim> ListSIM();
@@ -264,6 +271,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	// Tablette
 	public  Long addTablette(Tablette tab);
+	public  Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTabletteUser(Tablette tab, Long u);
 	public void editTablette(Tablette tab);
 	public List<Tablette> ListTablette();
@@ -272,6 +280,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	// Telephone Fixe
 	public  Long addTeleFixe(TelephoneFixe fixe);
+	public  Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleFixeUser(TelephoneFixe fixe, Long u);
 	public void editTeleFixe(TelephoneFixe fixe);
 	public List<TelephoneFixe> ListTeleFixe();
@@ -280,6 +289,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	// Peripherique
 	public  Long addPeriph(Peripherique per);
+	public  Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addPeriphPC(Peripherique per, Long pc);
 	public void editPeriph(Peripherique per);
 	public List<Peripherique> ListPeriph();
@@ -393,6 +403,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Rack
 	public  Long addRack(Rack Rack);
+	public  Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editRack(Rack Rack);
 	public List<Rack> ListRack();
@@ -401,6 +412,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Chassis
 	public  Long addChassis(Chassis Chassis);
+	public  Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editChassis(Chassis Chassis);
 	public List<Chassis> ListChassis();

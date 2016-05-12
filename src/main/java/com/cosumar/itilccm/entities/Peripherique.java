@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,16 +30,34 @@ public class Peripherique implements Serializable{
    private String nom;
    private String statut;
    private String criticite;
+   private String marque;
+   private String modele;
    private String numeroDeSerie;
    private String numeroAsset;
    private Date dateDeMiseEnProduction;
    private Date dateD_achat;
    private Date dateDeFinDeGarantie;
-   private String decription;
+   private String description;
    
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="ordinateur_id")
    private Ordinateur ordinateur;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
 
 	public Long getId() {
 		return id;
@@ -112,14 +131,16 @@ public class Peripherique implements Serializable{
 		this.dateDeFinDeGarantie = dateDeFinDeGarantie;
 	}
 	
-	public String getDecription() {
-		return decription;
-	}
 	
-	public void setDecription(String decription) {
-		this.decription = decription;
-	}
 	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Ordinateur getOrdinateur() {
 		return ordinateur;
 	}
@@ -136,6 +157,54 @@ public class Peripherique implements Serializable{
 	public Peripherique(String nom) {
 		super();
 		this.nom = nom;
+	}
+
+	public String getMarque() {
+		return marque;
+	}
+
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+
+	public String getModele() {
+		return modele;
+	}
+
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
 	}
 	
 	

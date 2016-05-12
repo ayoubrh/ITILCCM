@@ -90,7 +90,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -384,7 +384,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -406,7 +406,28 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
