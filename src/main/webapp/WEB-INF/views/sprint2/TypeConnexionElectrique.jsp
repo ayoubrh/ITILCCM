@@ -32,7 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Acceuil - ITIL-CCM</title>
+	<title>Type Connexion Electrique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -90,7 +90,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="<c:url value="/index" />" class="navbar-brand">
+				<a href="index.html" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -317,7 +317,7 @@ Use search to find needed section.
 										<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 									</c:if>
 									<c:if test="${logged.bphoto != null }">
-										<img src="photo?id=${logged.id }" alt="" class=""/>
+										<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 									</c:if>
 									<span>${logged.prenom } ${logged.nom }</span>
 								</a>
@@ -373,7 +373,7 @@ Use search to find needed section.
 						<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 					</c:if>
 					<c:if test="${logged.bphoto != null }">
-						<img src="photo?id=${logged.id }" alt="" class=""/>
+						<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 					</c:if>
 					<div class="btn-group">
 						<a href="<c:url value="/users/profil?id=${logged.id }" />" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
@@ -384,7 +384,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -406,29 +406,9 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
 						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						
 					</ul>
 				</li>
 
@@ -467,143 +447,39 @@ Use search to find needed section.
 <!-- /4. $MAIN_MENU -->
 
 
-	<div id="content-wrapper">
+	<div  id="content-wrapper">
 <!-- 5. $CONTENT ===================================================================================
 
 		Content
 -->
 
 		<!-- Content here -->
-		<c:if test="${v != null }">
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				Votre compte est bien valide.
-			</div>
-		</c:if>
+		
 	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; <strong> CIs</strong></span>
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/power-connection.png" alt="" class="">&nbsp; <strong>Type Connection Electrique</strong></span>
 					</div>
 					<div class="panel-body">
+					<form action="typeDocumentRedirect">
+						<div class="form-group">
 					
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : ${Processusmetier }
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/processusMetier" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : ${Solutionapplicative }
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/solutionApplicative" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
-												</div>
-											</div>
-										</div>
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-<<<<<<< HEAD
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${Contact }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${contact }
->>>>>>> refs/remotes/origin/tawfiq-jpa
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/contact" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-<<<<<<< HEAD
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${Lieu }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${lieu }
->>>>>>> refs/remotes/origin/tawfiq-jpa
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/lieu" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-<<<<<<< HEAD
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${Contrat }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${contrat }
->>>>>>> refs/remotes/origin/tawfiq-jpa
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/contrat" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contrat</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contrat</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : ${Serveur }
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : ${Equipementreseau }
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
-												</div>
-											</div>
-										</div>
-					
-					
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de Connection Electrique à créer  :</label>
+								<div class="col-sm-3">
+									<select   class="form-control" name="type">
+							             <option value="/config/admin/add/arriveeElectrique">Arrivée électrique</option>
+										 <option value="/config/admin/add/pduElectrique">PDU</option>
+									</select>
+									
+							    </div>
+							    <button type="submit" class="btn btn-primary">Appliquer</button>
+						
+						</div>
+					</form>					
+									
 					</div>
+					
+					
 		</div>
 					
 

@@ -87,6 +87,30 @@ public class Contrat implements Serializable {
 		    @ManyToMany(mappedBy="contrat")
 		   	@Column(nullable = true)
 		   private Collection<Sim> sim;
+
+		    @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<LogicielEtApplication> logicielEtApplication;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<ApplicationWeb> applicationWeb;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<InstanceMiddleware> instanceMiddleware;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<ConnexionElectrique> connexionElectrique;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<Virtualisation> virtualisation;
 		   
 			public Contrat() {
 				super();
@@ -111,103 +135,117 @@ public class Contrat implements Serializable {
 				this.statut = statut;
 				this.typeDeContrat = typeDeContrat;
 			}
-	
+
 			public Long getId() {
 				return id;
 			}
+
 			public void setId(Long id) {
 				this.id = id;
 			}
+
 			public String getNom() {
 				return nom;
 			}
+
 			public void setNom(String nom) {
 				this.nom = nom;
 			}
+
 			public String getClient() {
 				return client;
 			}
+
 			public void setClient(String client) {
 				this.client = client;
 			}
+
 			public String getDescription() {
 				return description;
 			}
+
 			public void setDescription(String description) {
 				this.description = description;
 			}
+
 			public Date getDateDeDebut() {
 				return dateDeDebut;
 			}
+
 			public void setDateDeDebut(Date dateDeDebut) {
 				this.dateDeDebut = dateDeDebut;
 			}
+
 			public Date getDateDeFin() {
 				return dateDeFin;
 			}
+
 			public void setDateDeFin(Date dateDeFin) {
 				this.dateDeFin = dateDeFin;
 			}
-			
+
 			public double getCout() {
 				return cout;
 			}
+
 			public void setCout(double cout) {
 				this.cout = cout;
 			}
+
 			public String getMonnaie() {
 				return monnaie;
 			}
+
 			public void setMonnaie(String monnaie) {
 				this.monnaie = monnaie;
 			}
+
 			public String getPeriodiciteDeFacturation() {
 				return periodiciteDeFacturation;
 			}
+
 			public void setPeriodiciteDeFacturation(String periodiciteDeFacturation) {
 				this.periodiciteDeFacturation = periodiciteDeFacturation;
 			}
+
 			public String getUniteDeCout() {
 				return uniteDeCout;
 			}
+
 			public void setUniteDeCout(String uniteDeCout) {
 				this.uniteDeCout = uniteDeCout;
 			}
+
 			public String getFournisseur() {
 				return fournisseur;
 			}
+
 			public void setFournisseur(String fournisseur) {
 				this.fournisseur = fournisseur;
 			}
+
 			public String getNiveauDeService() {
 				return niveauDeService;
 			}
+
 			public void setNiveauDeService(String niveauDeService) {
 				this.niveauDeService = niveauDeService;
 			}
+
 			public String getStatut() {
 				return statut;
 			}
+
 			public void setStatut(String statut) {
 				this.statut = statut;
 			}
+
 			public String getTypeDeContrat() {
 				return typeDeContrat;
 			}
+
 			public void setTypeDeContrat(String typeDeContrat) {
 				this.typeDeContrat = typeDeContrat;
-			}
-			public Collection<Contact> getContact() {
-				return contacts;
-			}
-			public void setContact(Collection<Contact> contact) {
-				this.contacts = contact;
-			}
-			public Collection<Document> getDocument() {
-				return documents;
-			}
-			public void setDocument(Collection<Document> document) {
-				this.documents = document;
 			}
 
 			public Collection<Contact> getContacts() {
@@ -234,6 +272,22 @@ public class Contrat implements Serializable {
 				this.ordinateur = ordinateur;
 			}
 
+			public Collection<Rack> getRack() {
+				return rack;
+			}
+
+			public void setRack(Collection<Rack> rack) {
+				this.rack = rack;
+			}
+
+			public Collection<Chassis> getChassis() {
+				return chassis;
+			}
+
+			public void setChassis(Collection<Chassis> chassis) {
+				this.chassis = chassis;
+			}
+
 			public Collection<Imprimante> getImprimante() {
 				return imprimante;
 			}
@@ -242,20 +296,20 @@ public class Contrat implements Serializable {
 				this.imprimante = imprimante;
 			}
 
-			public Collection<Peripherique> getPeripherique() {
-				return peripherique;
-			}
-
-			public void setPeripherique(Collection<Peripherique> peripherique) {
-				this.peripherique = peripherique;
-			}
-
 			public Collection<TelephneMobile> getTelephonemobile() {
 				return telephonemobile;
 			}
 
 			public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
 				this.telephonemobile = telephonemobile;
+			}
+
+			public Collection<Peripherique> getPeripherique() {
+				return peripherique;
+			}
+
+			public void setPeripherique(Collection<Peripherique> peripherique) {
+				this.peripherique = peripherique;
 			}
 
 			public Collection<TelephoneFixe> getTelephonefixe() {
@@ -282,27 +336,54 @@ public class Contrat implements Serializable {
 				this.sim = sim;
 			}
 
-			public Collection<Rack> getRack() {
-				return rack;
+			public Collection<LogicielEtApplication> getLogicielEtApplication() {
+				return logicielEtApplication;
 			}
 
-			public void setRack(Collection<Rack> rack) {
-				this.rack = rack;
+			public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+				this.logicielEtApplication = logicielEtApplication;
 			}
 
-			public Collection<Chassis> getChassis() {
-				return chassis;
+			public Collection<ApplicationWeb> getApplicationWeb() {
+				return applicationWeb;
 			}
 
-			public void setChassis(Collection<Chassis> chassis) {
-				this.chassis = chassis;
+			public void setApplicationWeb(Collection<ApplicationWeb> applicationWeb) {
+				this.applicationWeb = applicationWeb;
 			}
 
+			public Collection<InstanceMiddleware> getInstanceMiddleware() {
+				return instanceMiddleware;
+			}
+
+			public void setInstanceMiddleware(Collection<InstanceMiddleware> instanceMiddleware) {
+				this.instanceMiddleware = instanceMiddleware;
+			}
+
+			public Collection<InstanceDeBasseDeDonnes> getInstanceDeBasseDeDonnes() {
+				return instanceDeBasseDeDonnes;
+			}
+
+			public void setInstanceDeBasseDeDonnes(Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes) {
+				this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
+			}
+
+			public Collection<ConnexionElectrique> getConnexionElectrique() {
+				return connexionElectrique;
+			}
+
+			public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+				this.connexionElectrique = connexionElectrique;
+			}
+
+			public Collection<Virtualisation> getVirtualisation() {
+				return virtualisation;
+			}
+
+			public void setVirtualisation(Collection<Virtualisation> virtualisation) {
+				this.virtualisation = virtualisation;
+			}
+	
 			
-			
-		   
-   
-   
-   
 
 }

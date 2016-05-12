@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.cosumar.itilccm.entities.LogicielEtApplication;
+import com.cosumar.itilccm.entities.*;
 import com.cosumar.itilccm.metier.AdminMetier;
 
 public class Test {
@@ -19,7 +19,7 @@ public class Test {
 		
 	}
 
-	@org.junit.Test
+	/*@org.junit.Test
 	public void LogicielEtApplication() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
@@ -27,6 +27,19 @@ public class Test {
 			for(LogicielEtApplication l : list ){
 				System.out.println(l.getNom()+"----"+l.getId()+"-----");
 			}
+			
+			assertTrue(true);
+		
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	}*/
+	@org.junit.Test
+	public void DocumentFichier() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			m.ajouterDocumentFichier(new DocumentFichier("fichier1", null, null, null));
+			m.ajouterDocumentWeb(new DocumentWeb("web", null, null, null));
 			
 			assertTrue(true);
 		

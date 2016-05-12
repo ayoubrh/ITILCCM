@@ -56,7 +56,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Contact
 	
 	public Long ajouterContact(Contact c);
-	public Long ajouterContactLieu(Contact c, Long idlieu);
+	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats);
 	public void modifierContact(Contact c);
 	public void supprimerContact(Long id);
 	public List<Contact> listContact();
@@ -65,6 +65,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Contrat
 	
 	public Long ajouterContrat(Contrat c);
+	public Long ajouterContratAll(Contrat c ,List<Long> contacts,List<Long> documents);
 	public void modifierContrat(Contrat c);
 	public void supprimerContrat(Long id);
 	public List<Contrat> listContrat();
@@ -111,6 +112,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	//Application Web
 	
 	public Long ajouterApplicationWeb(ApplicationWeb aw);
+	public Long ajouterApplicationWebAll(ApplicationWeb aw,Long sw,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierApplicationWeb(ApplicationWeb aw);
 	public void supprimerApplicationWeb(Long id);
 	public List<ApplicationWeb> listApplicationWeb();
@@ -119,6 +121,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	//Instance Middleware
 
 	public Long ajouterInstanceMiddleware(InstanceMiddleware im);
+	public Long ajouterInstanceMiddlewareAll(InstanceMiddleware im,Long m,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierInstanceMiddleware(InstanceMiddleware im);
 	public void supprimerInstanceMiddleware(Long id);
 	public List<InstanceMiddleware> listInstanceMiddleware();
@@ -127,6 +130,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Instance de basse de donnés
 		
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
+	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd,Long sbd,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public void supprimerInstanceDeBasseDeDonnes(Long id);
 	public List<InstanceDeBasseDeDonnes> listInstanceDeBasseDeDonnes();
@@ -164,6 +168,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Autre logiciel
 		
 	public Long ajouterAutreLogiciel(AutreLogiciel al);
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierAutreLogiciel(AutreLogiciel al);
 	public void supprimerAutreLogiciel(Long id);
 	public List<AutreLogiciel> listAutreLogiciel();
@@ -172,6 +177,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Logiciel PC
 		
 	public Long ajouterLogicielPc(LogicielPc lp);
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierLogicielPc(LogicielPc lp);
 	public void supprimerLogicielPc(Long id);
 	public List<LogicielPc> listLogicielPc();
@@ -180,6 +186,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Serveur Web
 		
 	public Long ajouterServeurWeb(ServeurWeb sw);
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
 	public void modifierServeurWeb(ServeurWeb sw);
 	public void supprimerServeurWeb(Long id);
 	public List<ServeurWeb> listServeurWeb();
@@ -188,6 +195,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Middleware
 		
 	public Long ajouterMiddleware(Middleware m);
+	public Long ajouterMiddlewareAll(Middleware m,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
 	public void modifierMiddleware(Middleware m);
 	public void supprimerMiddleware(Long id);
 	public List<Middleware> listMiddleware();
@@ -196,6 +204,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	//Serveur de basse de données
 		
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
 	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
 	public void supprimerServeurDeBasseDeDonnees(Long id);
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
@@ -217,6 +226,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Vcluster
 		
 	public Long ajouterVcluster(Vcluster v);
+	public Long ajouterVclusterAll(Vcluster v,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> volumesLogiques,List<Long> machinesVirtuelles,List<Long> hyperviseurs,List<Long> contrats);
 	public void modifierVcluster(Vcluster v);
 	public void supprimerVcluster(Long id);
 	public List<Vcluster> listVcluster();
@@ -225,6 +235,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Hyperviseur
 		
 	public Long ajouterHyperviseur(Hyperviseur h);
+	public Long ajouterHyperviseurAll(Hyperviseur h,Long vCluster,Long Serveur,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> volumesLogiques,List<Long> machinesVirtuelles,List<Long> contrats);
 	public void modifierHyperviseur(Hyperviseur h);
 	public void supprimerHyperviseur(Long id);
 	public List<Hyperviseur> listHyperviseur();
@@ -376,7 +387,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// ArriveeElectrique
 	public  Long addArriveeElectrique(ArriveeElectrique ae);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addArriveeElectriqueAll(ArriveeElectrique ae,Long lieu,List<Long> pdus,List<Long> contacts,List<Long> documents,List<Long> contrats);
 	public void editArriveeElectrique(ArriveeElectrique ae);
 	public List<ArriveeElectrique> ListArriveeElectrique();
 	public ArriveeElectrique getArriveeElectrique(Long id);
@@ -384,7 +395,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// PduElectrique
 	public  Long addPduElectrique(PduElectrique pdue);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addPduElectriqueAll(PduElectrique pdue,Long lieu,Long rack,Long arrivee, List<Long> contacts,List<Long> documents,List<Long> contrats);
 	public void editPduElectrique(PduElectrique pdue);
 	public List<PduElectrique> ListPduElectrique();
 	public PduElectrique getPduElectrique(Long id);

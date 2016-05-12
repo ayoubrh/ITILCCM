@@ -3,8 +3,10 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
+@Entity
 @DiscriminatorValue("Document Note")
 public class DocumentNote extends Document implements Serializable {
 

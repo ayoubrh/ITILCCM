@@ -25,6 +25,7 @@ public class Contact implements Serializable {
 	   
 	   @NotEmpty
 	   @Size(min=4,max=25)
+	   @Column(unique = true)
 	   private String nom;
 	   
 	   @NotEmpty
@@ -87,6 +88,30 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private Collection<Contrat> contrats;
+	   
+	    @Column(nullable=true)
+		@ManyToMany(mappedBy="contacts")
+	   private Collection<LogicielEtApplication> logicielEtApplication;
+    
+       @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<ApplicationWeb> applicationWeb;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<InstanceMiddleware> instanceMiddleware;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<ConnexionElectrique> connexionElectrique;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<Virtualisation> virtualisation;
    
 		public Contact() {
 			super();
@@ -173,11 +198,54 @@ public class Contact implements Serializable {
 		public void setLieu(Lieu lieu) {
 			this.lieu = lieu;
 		}
-		public Collection<Contrat> getContrat() {
-			return contrats;
+		
+
+		public Collection<LogicielEtApplication> getLogicielEtApplication() {
+			return logicielEtApplication;
 		}
-		public void setContrat(Collection<Contrat> contrat) {
-			this.contrats = contrat;
+
+		public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+			this.logicielEtApplication = logicielEtApplication;
+		}
+
+		public Collection<ApplicationWeb> getApplicationWeb() {
+			return applicationWeb;
+		}
+
+		public void setApplicationWeb(Collection<ApplicationWeb> applicationWeb) {
+			this.applicationWeb = applicationWeb;
+		}
+
+		public Collection<InstanceMiddleware> getInstanceMiddleware() {
+			return instanceMiddleware;
+		}
+
+		public void setInstanceMiddleware(Collection<InstanceMiddleware> instanceMiddleware) {
+			this.instanceMiddleware = instanceMiddleware;
+		}
+
+		public Collection<InstanceDeBasseDeDonnes> getInstanceDeBasseDeDonnes() {
+			return instanceDeBasseDeDonnes;
+		}
+
+		public void setInstanceDeBasseDeDonnes(Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes) {
+			this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
+		}
+
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
+		}
+
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+
+		public Collection<Virtualisation> getVirtualisation() {
+			return virtualisation;
+		}
+
+		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
+			this.virtualisation = virtualisation;
 		}
 
 		public Collection<Ordinateur> getOrdinateur() {

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -48,6 +49,11 @@ public class LicenseOs implements Serializable {
 		   @Column(nullable=true)
 		   @OneToMany(mappedBy="licenseOs")
 		   private Collection<MachineVirtuelle> machineVirtuelle;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany
+		   private Collection<Document> documents;
+	        
 
 			public LicenseOs() {
 				super();
@@ -160,6 +166,14 @@ public class LicenseOs implements Serializable {
 
 			public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
 				this.machineVirtuelle = machineVirtuelle;
+			}
+
+			public Collection<Document> getDocuments() {
+				return documents;
+			}
+
+			public void setDocuments(Collection<Document> documents) {
+				this.documents = documents;
 			}
 			   
 			   

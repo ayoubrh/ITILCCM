@@ -68,6 +68,9 @@ public class Lieu implements Serializable {
 		private Collection<Tablette> tablette;
 		
 		
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="lieu")
+	   private Collection<ConnexionElectrique> connexionElectrique;
 	
 		public Lieu() {
 			super();
@@ -105,72 +108,87 @@ public class Lieu implements Serializable {
 		public Long getId() {
 			return id;
 		}
-		
-		
+
+
+
 		public void setId(Long id) {
 			this.id = id;
 		}
-		
-		
+
+
+
 		public String getStatut() {
 			return statut;
 		}
-		
-		
+
+
+
 		public void setStatut(String statut) {
 			this.statut = statut;
 		}
-		
-		
+
+
+
 		public String getOrganisme() {
 			return organisme;
 		}
-		
-		
+
+
+
 		public void setOrganisme(String organisme) {
 			this.organisme = organisme;
 		}
-		
-		
+
+
+
 		public String getAdresse() {
 			return adresse;
 		}
-		
-		
+
+
+
 		public void setAdresse(String adresse) {
 			this.adresse = adresse;
 		}
-		
-		
+
+
+
 		public String getCodePostale() {
 			return codePostale;
 		}
-		
-		
+
+
+
 		public void setCodePostale(String codePostale) {
 			this.codePostale = codePostale;
 		}
-		
-		
+
+
+
 		public String getVille() {
 			return ville;
 		}
-		
-		
+
+
+
 		public void setVille(String ville) {
 			this.ville = ville;
 		}
-		
-		
+
+
+
 		public String getPays() {
 			return pays;
 		}
-		
-		
+
+
+
 		public void setPays(String pays) {
 			this.pays = pays;
 		}
-		
+
+
+
 		public Collection<Contact> getContacts() {
 			return contacts;
 		}
@@ -191,66 +209,6 @@ public class Lieu implements Serializable {
 
 		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
 			this.ordinateur = ordinateur;
-		}
-
-
-
-		public Collection<Imprimante> getImprimante() {
-			return imprimante;
-		}
-
-
-
-		public void setImprimante(Collection<Imprimante> imprimante) {
-			this.imprimante = imprimante;
-		}
-
-
-
-		public Collection<Peripherique> getPeripherique() {
-			return peripherique;
-		}
-
-
-
-		public void setPeripherique(Collection<Peripherique> peripherique) {
-			this.peripherique = peripherique;
-		}
-
-
-
-		public Collection<TelephneMobile> getTelephonemobile() {
-			return telephonemobile;
-		}
-
-
-
-		public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
-			this.telephonemobile = telephonemobile;
-		}
-
-
-
-		public Collection<TelephoneFixe> getTelephonefixe() {
-			return telephonefixe;
-		}
-
-
-
-		public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
-			this.telephonefixe = telephonefixe;
-		}
-
-
-
-		public Collection<Tablette> getTablette() {
-			return tablette;
-		}
-
-
-
-		public void setTablette(Collection<Tablette> tablette) {
-			this.tablette = tablette;
 		}
 
 
@@ -279,11 +237,76 @@ public class Lieu implements Serializable {
 
 
 
-		
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
 
 
-		
-		
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+
+
+		public Collection<TelephneMobile> getTelephonemobile() {
+			return telephonemobile;
+		}
+
+
+
+		public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
+			this.telephonemobile = telephonemobile;
+		}
+
+
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
+
+
+		public Collection<TelephoneFixe> getTelephonefixe() {
+			return telephonefixe;
+		}
+
+
+
+		public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
+			this.telephonefixe = telephonefixe;
+		}
+
+
+
+		public Collection<Tablette> getTablette() {
+			return tablette;
+		}
+
+
+
+		public void setTablette(Collection<Tablette> tablette) {
+			this.tablette = tablette;
+		}
+
+
+
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
+		}
+
+
+
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+
 		
 
 

@@ -1203,12 +1203,34 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(c);
 		return c.getId();
 	}
+	
 
 	@Override
-	public Long ajouterContactLieu(Contact c, Long idlieu) {
-		Lieu lieu = getLieu(idlieu);
-		c.setLieu(lieu);
+	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats) {
+		
+		if(idlieu !=null){
+			
+			Lieu lieu = getLieu(idlieu);
+			c.setLieu(lieu);
+		
+		}else{
+			c.setLieu(null);
+		}
+		
+		if(contrats != null){
+			
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			c.setContrats(contrat);
+			
+		}
+		
 		em.persist(c);
+		
 		return c.getId();
 	}
 
@@ -1244,6 +1266,37 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(c);
 		return c.getId();
 	}
+
+	@Override
+	public Long ajouterContratAll(Contrat c, List<Long> contacts, List<Long> documents) {
+		
+			if(contacts != null){
+						
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				c.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				c.setDocuments(document);
+				
+			}
+			em.persist(c);
+		return c.getId();
+	}
+	
 
 	@Override
 	public void modifierContrat(Contrat c) {
@@ -2219,9 +2272,861 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			}
 			Chassis.setContrat(contr);
 		}
-
 		em.persist(Chassis);
 		return Chassis.getId();
 	}
+
+	@Override
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		if(l !=null){
+					
+			        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+					al.setLicenseLogiciel(licenseLogiciel);
+				
+		}else{
+					al.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			al.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			al.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			al.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			al.setContrats(contrat);
+					
+		}
+		
+		em.persist(al);
+		
+		return al.getId();
+	}
+
+	@Override
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long l ,List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			lp.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+					lp.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			lp.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			lp.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			lp.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			lp.setContrats(contrat);
+					
+		}
+		
+		em.persist(lp);
+
+		return lp.getId();
+	}
+
+	@Override
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
+		
+        if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			sw.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+					sw.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sw.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sw.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			sw.setSolutionApplicative(solutionsAppl);
+			
+		}
+		/*
+		if(applicationWeb != null){
+					
+			Collection<ApplicationWeb> applicationWe = new ArrayList<ApplicationWeb>();
+			for (Long aw : applicationWeb) {
+				ApplicationWeb appl = getApplicationWeb(aw);
+				applicationWe.add(appl);
+			}
+			
+			sw.setApplicationWeb(applicationWe);
+					
+		}*/
+		if(contrats != null){
+			
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sw.setContrats(contrat);
+					
+		}
+		
+		em.persist(sw);
+		return sw.getId();
+	}
+
+	@Override
+	public Long ajouterMiddlewareAll(Middleware m,Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> instancesMiddleware, List<Long> contrats) {
+		
+        if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			m.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+					m.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			m.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			m.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			m.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			m.setContrats(contrat);
+					
+		}
+		
+		em.persist(m);
+		return m.getId();
+	}
+
+	@Override
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD, List<Long> contrats) {
+		
+        if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			sbd.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+			sbd.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sbd.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sbd.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			sbd.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sbd.setContrats(contrat);
+					
+		}
+		
+		em.persist(sbd);
+		return sbd.getId();
+	}
+
+	@Override
+	public Long ajouterApplicationWebAll(ApplicationWeb aw,Long sw, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		    if(sw !=null){
+				
+		    	ServeurWeb serveurWeb = getServeurWeb(sw);
+				aw.setServeurWeb(serveurWeb);
+			
+			}else{
+				aw.setServeurWeb(null);
+			}
+		    
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				aw.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				aw.setDocuments(document);
+				
+			}
+			
+			if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				aw.setSolutionApplicative(solutionsAppl);
+				
+			}
+			if(contrats != null){
+						
+				Collection<Contrat> contrat = new ArrayList<Contrat>();
+				for (Long cc : contrats) {
+					Contrat con = getContrat(cc);
+					contrat.add(con);
+				}
+				
+				aw.setContrats(contrat);
+						
+			}
+			
+			em.persist(aw);
+		return aw.getId();
+	}
+
+	@Override
+	public Long ajouterInstanceMiddlewareAll(InstanceMiddleware im,Long m, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		 
+		   if(m !=null){
+			
+			   Middleware middleware = getMiddleware(m);
+				im.setMiddleware(middleware);
+			
+			}else{
+				im.setMiddleware(null);
+			}
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				im.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				im.setDocuments(document);
+				
+			}
+			
+			if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				im.setSolutionApplicative(solutionsAppl);
+				
+			}
+			if(contrats != null){
+						
+				Collection<Contrat> contrat = new ArrayList<Contrat>();
+				for (Long cc : contrats) {
+					Contrat con = getContrat(cc);
+					contrat.add(con);
+				}
+				
+				im.setContrats(contrat);
+						
+			}
+			
+			em.persist(im);
+		return im.getId();
+	}
+
+	@Override
+	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd,Long sbd, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		    if(sbd !=null){
+				
+			  ServeurDeBasseDeDonnees serveurDeBasseDeDonnees = getServeurDeBasseDeDonnees(sbd);
+				ibd.setServeurDeBasseDeDonnees(serveurDeBasseDeDonnees);
+			
+			}else{
+				ibd.setServeurDeBasseDeDonnees(null);
+			}
+			
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				ibd.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				ibd.setDocuments(document);
+				
+			}
+			
+			if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				ibd.setSolutionApplicative(solutionsAppl);
+				
+			}
+			if(contrats != null){
+						
+				Collection<Contrat> contrat = new ArrayList<Contrat>();
+				for (Long cc : contrats) {
+					Contrat con = getContrat(cc);
+					contrat.add(con);
+				}
+				
+				ibd.setContrats(contrat);
+						
+			}
+			
+			em.persist(ibd);
+		return null;
+	}
+
+	@Override
+	public Long addArriveeElectriqueAll(ArriveeElectrique ae, Long lieu,List<Long> pdus, List<Long> contacts, List<Long> documents,
+			List<Long> contrats) {
+		
+	    if(lieu !=null){
+			
+	        Lieu l = getLieu(lieu);
+			ae.setLieu(l);
+		
+		}else{
+			ae.setLieu(null);
+		}
+	    if(pdus != null){
+			
+			Collection<PduElectrique> pduElectrique = new ArrayList<PduElectrique>();
+			for (Long pdu : pdus) {
+				PduElectrique pe = getPduElectrique(pdu);
+				pduElectrique.add(pe);
+				pe.setArriveeElectrique(ae);
+			}
+			
+			ae.setPduElectrique(pduElectrique);
+					
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			ae.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			ae.setDocuments(document);
+			
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			ae.setContrats(contrat);
+					
+		}
+		
+		em.persist(ae);
+		
+		return ae.getId();
+	}
+
+	@Override
+	public Long addPduElectriqueAll(PduElectrique pdue, Long lieu,Long rack,Long arrivee, List<Long> contacts, List<Long> documents,
+			List<Long> contrats) {
+		
+		if(lieu !=null){
+				
+		        Lieu l = getLieu(lieu);
+				pdue.setLieu(l);
+			
+			}else{
+				pdue.setLieu(null);
+		}
+		
+		if(rack !=null){
+			
+	        Rack r = getRack(rack);
+			pdue.setRack(r);
+		
+		}else{
+			pdue.setRack(null);
+	    }
+		
+        if(arrivee !=null){
+			
+        	ArriveeElectrique arriveeElectrique = getArriveeElectrique(arrivee);
+			pdue.setArriveeElectrique(arriveeElectrique);
+		
+		}else{
+			pdue.setArriveeElectrique(null);
+	    }
+        
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			pdue.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			pdue.setDocuments(document);
+			
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			pdue.setContrats(contrat);
+					
+		}
+		
+		em.persist(pdue);
+		
+		return pdue.getId();
+	}
+
+	@Override
+	public Long ajouterHyperviseurAll(Hyperviseur h, Long vCluster, Long Serveur, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> volumesLogiques,
+			List<Long> machinesVirtuelles, List<Long> contrats) {
+		
+		    if(vCluster !=null){
+				
+		    	Vcluster vcluster = getVcluster(vCluster );
+				h.setVcluster(vcluster);
+			
+			}else{
+				h.setVcluster(null);
+			}
+            if(Serveur !=null){
+				
+            	Serveur serveur = getServeur(Serveur );
+				h.setServeur(serveur);
+			
+			}else{
+				h.setServeur(null);
+			}
+			
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				h.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				h.setDocuments(document);
+				
+			}
+            if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				h.setSolutionApplicative(solutionsAppl);
+				
+			}
+            
+           if(volumesLogiques!=null){
+				
+				Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+				for (Long vl : volumesLogiques) {
+					VolumeLogique vol = getVolumeLogique(vl);
+					volumeslogique.add(vol);
+				}
+				
+				h.setVolumelogique(volumeslogique);
+			}
+           
+           if(machinesVirtuelles!=null){
+				
+				Collection<MachineVirtuelle> machineVirtuelle = new ArrayList<MachineVirtuelle>();
+				for (Long mv : machinesVirtuelles) {
+					MachineVirtuelle mach = getMachineVirtuelle(mv);
+					machineVirtuelle.add(mach);
+					mach.setVirtualisation(h);
+				}
+				
+				h.setMachineVirtuelle(machineVirtuelle);
+			}
+			
+			if(contrats != null){
+						
+				Collection<Contrat> contrat = new ArrayList<Contrat>();
+				for (Long cc : contrats) {
+					Contrat con = getContrat(cc);
+					contrat.add(con);
+				}
+				
+				h.setContrats(contrat);
+						
+			}
+			
+			em.persist(h);
+		return h.getId();
+	}
+
+	@Override
+	public Long ajouterVclusterAll(Vcluster v, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> volumesLogiques, List<Long> machinesVirtuelles,
+			List<Long> hyperviseurs, List<Long> contrats) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			v.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			v.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			v.setSolutionApplicative(solutionsAppl);
+			
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			v.setVolumelogique(volumeslogique);
+		}
+       
+       if(machinesVirtuelles!=null){
+			
+			Collection<MachineVirtuelle> machineVirtuelle = new ArrayList<MachineVirtuelle>();
+			for (Long mv : machinesVirtuelles) {
+				MachineVirtuelle mach = getMachineVirtuelle(mv);
+				machineVirtuelle.add(mach);
+				mach.setVirtualisation(v);
+			}
+			
+			v.setMachineVirtuelle(machineVirtuelle);
+		}
+       
+       if(hyperviseurs != null){
+			
+			Collection<Hyperviseur> hyperviseur = new ArrayList<Hyperviseur>();
+			for (Long h : hyperviseurs) {
+				Hyperviseur hyp = getHyperviseur(h);
+				hyperviseur.add(hyp);
+				hyp.setVcluster(v);
+			}
+			
+			v.setHyperviseur(hyperviseur);
+					
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			v.setContrats(contrat);
+					
+		}
+		
+		em.persist(v);
+		return v.getId();
+	}
+
+		
 }
 

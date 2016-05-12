@@ -473,6 +473,8 @@ Use search to find needed section.
 
 		Content
 -->
+
+
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Lieu</span>
@@ -487,21 +489,11 @@ Use search to find needed section.
 						<div class="profile-content">
 		
 							<ul id="profile-tabs" class="nav nav-tabs">
+							
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								
-								
-								<li>
-									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Matériels</a>
-								</li>
-								
-								
-								
+							
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -525,11 +517,11 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value="NONE"> -- choisir une valeur --</f:option>
+							            <f:option value=""> -- choisir une valeur --</f:option>
 										<f:option value="Actif"> Actif</f:option>
 										<f:option value="Inactif"> Inactif</f:option>
 									</f:select>
-							<f:errors path="nom" cssClass="help-block"></f:errors>
+							<f:errors path="statut" cssClass="help-block"></f:errors>
 							</div>
 							</div>
 							<div class="form-group">
@@ -573,63 +565,7 @@ Use search to find needed section.
 							          
 							
 							</div>
-		
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									
-									logiciels
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
-									
-		
-		
-									intarfaces_reseaux
-		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-equipement_reseaux" id="profile-equipement_reseaux">
-									
-		
-									equipement_reseaux
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								
-								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
-									
-		
-									contacts
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									
-		
-									documents
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-		
-									contrats
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
+			
 							</div> <!-- / .tab-content -->
 						</div>
 				

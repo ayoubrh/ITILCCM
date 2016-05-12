@@ -34,6 +34,18 @@ public class ApplicationWeb implements Serializable {
 	   @ManyToMany
 	   private java.util.Collection<SolutionApplicative> solutionApplicative;
 	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contact> contacts;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contrat> contrats;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Document> documents;
+	   
 	   @ManyToOne
 	   @JoinColumn(name="id_serveurWeb")
 	   private ServeurWeb serveurWeb;
@@ -97,6 +109,24 @@ public class ApplicationWeb implements Serializable {
 		}
 		public void setServeurWeb(ServeurWeb serveurWeb) {
 			this.serveurWeb = serveurWeb;
+		}
+		public Collection<Contact> getContacts() {
+			return contacts;
+		}
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
+		}
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+		public Collection<Document> getDocuments() {
+			return documents;
+		}
+		public void setDocuments(Collection<Document> documents) {
+			this.documents = documents;
 		}
 		   
 		      

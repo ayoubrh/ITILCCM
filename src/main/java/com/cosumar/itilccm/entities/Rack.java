@@ -47,6 +47,7 @@ public class Rack implements Serializable{
    	@Column(nullable = true)
    private Collection<PduElectrique> pduElectrique;
  
+
    	@OneToMany(mappedBy="rack")
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;

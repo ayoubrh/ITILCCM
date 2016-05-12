@@ -30,6 +30,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cosumar.itilccm.entities.User;
+import com.cosumar.itilccm.metier.AdminMetier;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
 
 import antlr.ParserSharedInputState;
@@ -40,6 +41,9 @@ import antlr.ParserSharedInputState;
 @Controller
 public class HomeController implements HandlerExceptionResolver {
 	
+	
+	@Autowired
+	private AdminMetier m;
 	
 	@Autowired
 	private UtilisateurMetier mu;

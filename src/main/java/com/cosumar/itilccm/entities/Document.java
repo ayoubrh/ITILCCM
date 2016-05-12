@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Document implements Serializable {
 	   private String statut;
 	   private String version;
 	   private String description;
-	   
+	  
 	  
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
@@ -73,6 +74,38 @@ public class Document implements Serializable {
 	    @ManyToMany(mappedBy="document")
 	   	@Column(nullable = true)
 	   private Collection<Sim> sim;
+	    
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<LogicielEtApplication> logicielEtApplication;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<ConnexionElectrique> connexionElectrique;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<LicenseLogiciel> licenseLogiciel;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<ApplicationWeb> applicationWeb;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<InstanceMiddleware> instanceMiddleware;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<LicenseOs> licenseOs;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<Virtualisation> virtualisation;
 
 		public Document() {
 			super();
@@ -87,8 +120,6 @@ public class Document implements Serializable {
 			this.description = description;
 			
 		}
-
-
 
 		public Long getId() {
 			return id;
@@ -122,8 +153,6 @@ public class Document implements Serializable {
 			this.version = version;
 		}
 
-		
-
 		public String getDescription() {
 			return description;
 		}
@@ -148,6 +177,22 @@ public class Document implements Serializable {
 			this.ordinateur = ordinateur;
 		}
 
+		public Collection<Rack> getRack() {
+			return rack;
+		}
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
+		}
+
 		public Collection<Imprimante> getImprimante() {
 			return imprimante;
 		}
@@ -156,20 +201,20 @@ public class Document implements Serializable {
 			this.imprimante = imprimante;
 		}
 
-		public Collection<Peripherique> getPeripherique() {
-			return peripherique;
-		}
-
-		public void setPeripherique(Collection<Peripherique> peripherique) {
-			this.peripherique = peripherique;
-		}
-
 		public Collection<TelephneMobile> getTelephonemobile() {
 			return telephonemobile;
 		}
 
 		public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
 			this.telephonemobile = telephonemobile;
+		}
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
 		}
 
 		public Collection<TelephoneFixe> getTelephonefixe() {
@@ -196,26 +241,70 @@ public class Document implements Serializable {
 			this.sim = sim;
 		}
 
-		public Collection<Rack> getRack() {
-			return rack;
+		public Collection<LogicielEtApplication> getLogicielEtApplication() {
+			return logicielEtApplication;
 		}
 
-		public void setRack(Collection<Rack> rack) {
-			this.rack = rack;
+		public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+			this.logicielEtApplication = logicielEtApplication;
 		}
 
-		public Collection<Chassis> getChassis() {
-			return chassis;
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
 		}
 
-		public void setChassis(Collection<Chassis> chassis) {
-			this.chassis = chassis;
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+
+		public Collection<LicenseLogiciel> getLicenseLogiciel() {
+			return licenseLogiciel;
+		}
+
+		public void setLicenseLogiciel(Collection<LicenseLogiciel> licenseLogiciel) {
+			this.licenseLogiciel = licenseLogiciel;
+		}
+
+		public Collection<ApplicationWeb> getApplicationWeb() {
+			return applicationWeb;
+		}
+
+		public void setApplicationWeb(Collection<ApplicationWeb> applicationWeb) {
+			this.applicationWeb = applicationWeb;
+		}
+
+		public Collection<InstanceMiddleware> getInstanceMiddleware() {
+			return instanceMiddleware;
+		}
+
+		public void setInstanceMiddleware(Collection<InstanceMiddleware> instanceMiddleware) {
+			this.instanceMiddleware = instanceMiddleware;
+		}
+
+		public Collection<InstanceDeBasseDeDonnes> getInstanceDeBasseDeDonnes() {
+			return instanceDeBasseDeDonnes;
+		}
+
+		public void setInstanceDeBasseDeDonnes(Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes) {
+			this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
+		}
+
+		public Collection<LicenseOs> getLicenseOs() {
+			return licenseOs;
+		}
+
+		public void setLicenseOs(Collection<LicenseOs> licenseOs) {
+			this.licenseOs = licenseOs;
+		}
+
+		public Collection<Virtualisation> getVirtualisation() {
+			return virtualisation;
+		}
+
+		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
+			this.virtualisation = virtualisation;
 		}
 
 		
-		   
-		   
-   
-   
 
 }

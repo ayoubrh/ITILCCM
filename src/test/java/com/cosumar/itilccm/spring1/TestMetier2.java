@@ -55,7 +55,7 @@ public class TestMetier2 {
 			assertTrue(e.getMessage(), false);
 		}
 	}
-	
+	/*
 	@Test
 	public void IntefaceReseau() {
 		try{
@@ -94,5 +94,5 @@ public class TestMetier2 {
 			assertTrue(e.getMessage(), false);
 		}
 	}
-
+*/
 }
