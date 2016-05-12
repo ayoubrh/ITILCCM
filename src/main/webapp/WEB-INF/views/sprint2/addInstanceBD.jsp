@@ -478,7 +478,7 @@ Use search to find needed section.
 										<tbody id="tableContactpopup">
 											<c:forEach items="${contacts}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="Contacts" value="${contact.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
 													<td>${contact.nom } ${contact.prenom }</td>
 													<td>${contact.statut }</td>
 													<td>${contact.organisme }</td>
@@ -528,7 +528,7 @@ Use search to find needed section.
 										<tbody id="tableContratpopup">
 											<c:forEach items="${contrats}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="Contrats" value="${contrat.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
 													<td>${contrat.nom }</td>
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
@@ -575,7 +575,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -619,7 +619,7 @@ Use search to find needed section.
 										<tbody id="tableSolutionApplicativepopup">
 											<c:forEach items="${solutionsApplicatives}" var="sa">
 												<tr class="gradeA" id="tr_SolutionApplicative_${sa.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckSol" name="chSolutionApplicative" value="${sa.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckSol" name="ckSolutionApplicative" value="${sa.id }"></td>
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
@@ -644,7 +644,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau Instance de base de données</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="instanceBD" action="InstanceBD" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="instanceBD" action="saveInstanceBD" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -696,7 +696,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Serveur de base de données</label>
 								<div class="col-sm-9">
 									<f:select  path="serveurDeBasseDeDonnees.id" class="form-control" name="jq-validation-serveurDeBasseDeDonnees" id="jq-validation-serveurDeBasseDeDonnees">
-										<f:option value="NONE"> -- choisir une valeur --</f:option>
+										<f:option value=""> -- choisir une valeur --</f:option>
 										<f:options items="${sbd }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="serveurDeBasseDeDonnees.id" cssClass="help-block"></f:errors>
@@ -707,7 +707,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
 										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value="NONE"> -- choisir une valeur --</f:option>
+										            <f:option value=""> -- choisir une valeur --</f:option>
 													<f:option value="haute"> haute</f:option>
 													<f:option value="basse"> basse</f:option>
 													<f:option value="moyenne"> moyenne</f:option>
@@ -736,8 +736,10 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeMiseEnProduction" type="text" class="form-control" name="dateDeMiseEnProduction"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>
+							
+							 <f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>				
 						</div>
 				</div>
 							

@@ -43,11 +43,31 @@ public class Document implements Serializable {
 	   
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
+	   private Collection<ConnexionElectrique> connexionElectrique;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
 	   private Collection<LicenseLogiciel> licenseLogiciel;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
+	   private Collection<ApplicationWeb> applicationWeb;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<InstanceMiddleware> instanceMiddleware;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
 	   private Collection<LicenseOs> licenseOs;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<Virtualisation> virtualisation;
 
 		public Document() {
 			super();
@@ -137,6 +157,46 @@ public class Document implements Serializable {
 
 		public void setLicenseOs(Collection<LicenseOs> licenseOs) {
 			this.licenseOs = licenseOs;
+		}
+
+		public Collection<ApplicationWeb> getApplicationWeb() {
+			return applicationWeb;
+		}
+
+		public void setApplicationWeb(Collection<ApplicationWeb> applicationWeb) {
+			this.applicationWeb = applicationWeb;
+		}
+
+		public Collection<InstanceMiddleware> getInstanceMiddleware() {
+			return instanceMiddleware;
+		}
+
+		public void setInstanceMiddleware(Collection<InstanceMiddleware> instanceMiddleware) {
+			this.instanceMiddleware = instanceMiddleware;
+		}
+
+		public Collection<InstanceDeBasseDeDonnes> getInstanceDeBasseDeDonnes() {
+			return instanceDeBasseDeDonnes;
+		}
+
+		public void setInstanceDeBasseDeDonnes(Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes) {
+			this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
+		}
+
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
+		}
+
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+
+		public Collection<Virtualisation> getVirtualisation() {
+			return virtualisation;
+		}
+
+		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
+			this.virtualisation = virtualisation;
 		}
 		
 

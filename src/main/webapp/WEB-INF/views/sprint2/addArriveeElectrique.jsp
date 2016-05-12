@@ -478,7 +478,7 @@ Use search to find needed section.
 										<tbody id="tableContactpopup">
 											<c:forEach items="${contacts}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="Contacts" value="${contact.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
 													<td>${contact.nom } ${contact.prenom }</td>
 													<td>${contact.statut }</td>
 													<td>${contact.organisme }</td>
@@ -528,7 +528,7 @@ Use search to find needed section.
 										<tbody id="tableContratpopup">
 											<c:forEach items="${contrats}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="Contrats" value="${contrat.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
 													<td>${contrat.nom }</td>
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
@@ -575,7 +575,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -595,12 +595,62 @@ Use search to find needed section.
 					</div> <!-- / .modal-dialog -->
 				</div> <!-- /.modal -->
 				<!-- / Modal Document -->
+				<!-- Modal PDUs -->
+				<div id="myModalPDUs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout PDUs</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+												<th>Date de mise en production</th>
+											</tr>
+										</thead>
+										<tbody id="tablePDUspopup">
+											<c:forEach items="${pdus}" var="pdu">
+												<tr class="gradeA" id="tr_pdu_${pdu.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckpdu" name="ckPDUs" value="${pdu.id }"></td>
+													<td>${pdu.nom }</td>
+													<td>${pdu.statut }</td>
+													<td>${pdu.criticite }</td>
+													<td>${pdu.marque }</td>
+													<td>${pdu.modele }</td>
+													<td>${pdu.numeroDeSerie }</td>
+													<td>${pdu.dateDeMiseEnProduction }</td>
+
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addpdu">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal PDUs -->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau  Arrivée électrique</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="arrivee" action="saveArrivee" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="arriveeElectrique" action="saveArriveeElectrique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -611,6 +661,9 @@ Use search to find needed section.
 							<ul id="profile-tabs" class="nav nav-tabs">
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-pdus" data-toggle="tab">PDUs</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
@@ -635,7 +688,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -716,9 +769,16 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
-						    $('#bs-datepicker-component2').datepicker();
-						    $('#bs-datepicker-component3').datepicker();
+							$('#bs-datepicker-component').datepicker({
+      							format: 'dd/mm/yyyy'
+							});
+						    $('#bs-datepicker-component2').datepicker({
+						    	format: 'dd/mm/yyyy'
+							    });
+						    $('#bs-datepicker-component3').datepicker({
+						    	format: 'dd/mm/yyyy'
+							    });
+						  
 						
 
 					});
@@ -731,8 +791,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeMiseEnProduction" type="text" class="form-control" name="dateDeMiseEnProduction"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>	
+							<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 				<div class="form-group ">
@@ -742,8 +803,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component2">
 								<f:input path="dateD_achat" type="text" class="form-control" name="dateD_achat"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>	
+							<f:errors path="dateD_achat" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 				<div class="form-group ">
@@ -753,8 +815,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component3">
 								<f:input path="dateDeFinDeGarantie" type="text" class="form-control" name="dateDeFinDeGarantie"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
-							</div>				
+							
+							</div>
+								<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>				
 						</div>
 				</div>
 							
@@ -770,6 +833,42 @@ Use search to find needed section.
 							
 							</div>
 		
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-pdus" id="profile-tabs-pdus">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+												<th>Date de mise en production</th>
+											</tr>
+										</thead>
+										<tbody id="tablePDUs">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="supppdu">Retirer !</button>
+										</div>
+										
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalPDUs">Ajouter des PDUs</button>
+										</div>
+										
+									</div>
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
 									<div class="table-primary">
@@ -940,6 +1039,29 @@ Use search to find needed section.
 		$('.jq-datatables-example').dataTable();
 		$('.jq-datatables-example_wrapper .table-caption').text('');
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		 document.getElementById("addpdu").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckpdu:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_pdu_".concat($(this).val()));
+			    	$( "#tablePDUs" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    	
+		    };
+		    
+		    document.getElementById("supppdu").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckpdu:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_pdu_".concat($(this).val()));
+			    	$( "#tablePDUspopup" ).append(tr);
+	                this.checked = false;
+		    	});
+		    };
 		
 		document.getElementById("addContact").onclick = function () {
 	    	var chkArray = [];

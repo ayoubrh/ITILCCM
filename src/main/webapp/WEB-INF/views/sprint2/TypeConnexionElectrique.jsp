@@ -28,12 +28,11 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Contrat - ITIL-CCM</title>
+	<title>Type Connexion Electrique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -48,7 +47,6 @@ Use search to find needed section.
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/pages.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
-	
 
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
@@ -71,7 +69,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -410,6 +408,7 @@ Use search to find needed section.
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
 						</li>
+						
 					</ul>
 				</li>
 
@@ -448,371 +447,41 @@ Use search to find needed section.
 <!-- /4. $MAIN_MENU -->
 
 
-	<div id="content-wrapper">
+	<div  id="content-wrapper">
 <!-- 5. $CONTENT ===================================================================================
 
 		Content
 -->
-	<!-- Modal contact -->
-				<div id="myModalcontact" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Contacts</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table  cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Contact</th>
-												<th>Statut</th>
-												<th>Organisation</th>
-												<th>Email</th>
-												<th>Téléphone</th>
-												<th>Fonction</th>	
-											</tr>
-										</thead>
-										<tbody id="tablecontactpopup">
-											<c:forEach items="${contacts}" var="contact">
-												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
-													<td>${contact.nom } ${contact.prenom }</td>
-													<td>${contact.statut }</td>
-													<td>${contact.organisme }</td>
-													<td>${contact.email }</td>
-													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
-													<td>${contact.fonction }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-		<!-- / Modal contact -->
-				
-		<!-- Modal document -->
-				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Type de document</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tabledocpopup">
-											<c:forEach items="${documents}" var="doc">
-												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
-													<td>${doc.nom }</td>
-													<td>${doc.statut }</td>
-													<td> </td>
-													<td>${doc.description }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-		<!-- / Modal document -->
+
+		<!-- Content here -->
 		
+	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Contrat</span>
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/power-connection.png" alt="" class="">&nbsp; <strong>Type Connection Electrique</strong></span>
 					</div>
-					
 					<div class="panel-body">
-						<f:form modelAttribute="contrat" action="saveContrat" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+					<form action="typeDocumentRedirect">
+						<div class="form-group">
 					
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-								
-								
-								<li>
-									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
-								</li>
-								
-							</ul>
-		                  </div>
-		                  
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de Connection Electrique à créer  :</label>
+								<div class="col-sm-3">
+									<select   class="form-control" name="type">
+							             <option value="/config/admin/add/arriveeElectrique">Arrivée électrique</option>
+										 <option value="/config/admin/add/pduElectrique">PDU</option>
+									</select>
 									
-		
-						<div class="panel-body">
-						
-						
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
 							    </div>
-							
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Client</label>
-								<div class="col-sm-9">
-									<f:input path="client" type="text" class="form-control" id="inputError-4" name="jq-validation-client" />
-									<f:errors path="client" cssClass="help-block"></f:errors>
-							    </div>
-							
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="inputError-4" id="jq-validation-statut">
-									            <f:option value=""> -- choisir une valeur --</f:option>
-												<f:option value="implémentation">implémentation</f:option>
-												<f:option value="obsolète"> obsolète</f:option>
-												<f:option value="production"> production</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-							     </div>
-				           </div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Type de contrat</label>
-								<div class="col-sm-9">
-									<f:select  path="typeDeContrat" class="form-control" name="jq-validation-typeDeContrat" id="jq-validation-typeDeContrat">
-									            <f:option value=""> -- choisir une valeur --</f:option>
-									</f:select>
-									<f:errors path="typeDeContrat" cssClass="help-block"></f:errors>
-							     </div>
-				             </div> 
-				             <!--  
-							<script>
-					init.push(function () {
+							    <button type="submit" class="btn btn-primary">Appliquer</button>
 						
-						var options = {
-								
-								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-							}
-							$('#bs-datepicker-component').datepicker();
-						
-						    $('#bs-datepicker-component2').datepicker(options);
-
-					});
-				</script>
-				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début</label>
-					
-						<div class=" col-sm-9" >
-							<div class=" input-group date" id="bs-datepicker-component">
-								<f:input path="dateDeDebut" type="text" class="form-control" name="start" />
-								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-							</div>	
-							<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>			
 						</div>
-				</div>
-				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin</label>
-				     		<div class=" col-sm-9" >
-								<div class="input-group date" id="bs-datepicker-component2">
-									<f:input path="dateDeFin" type="text" class="form-control" name="end" />
-									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-								</div>
-									<f:errors path="dateDeFin" cssClass="help-block"></f:errors>
-							</div>
-				
-				</div>	
-				-->
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Coût</label>
-								<div class="col-sm-9">
-									<f:input path="cout" type="text" class="form-control" id="jq-validation-cout" name="jq-validation-cout" />
-									<f:errors path="cout" cssClass="help-block"></f:errors>
-								</div>
-				</div>
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Monnaie</label>
-								<div class="col-sm-9">
-									<f:select  path="monnaie" class="form-control" name="jq-validation-monnaie" id="jq-validation-monnaie">
-									            <f:option value=""> -- choisir une valeur --</f:option>
-												<f:option value="Dirham">Dirham</f:option>
-												<f:option value="Euros"> Euros</f:option>
-												<f:option value="Dollars"> Dollars</f:option>
-									</f:select>
-									<f:errors path="monnaie" cssClass="help-block"></f:errors>
-							     </div>
-				</div>
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Périodicité de facturation</label>
-								<div class="col-sm-9">
-									<f:input path="periodiciteDeFacturation" type="text" class="form-control" id="jq-validation-periodiciteDeFacturation" name="jq-validation-periodiciteDeFacturation" />
-									<f:errors path="periodiciteDeFacturation" cssClass="help-block"></f:errors>
-								</div>
-				</div>
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Unité de coût</label>
-								<div class="col-sm-9">
-									<f:input path="uniteDeCout" type="text" class="form-control" id="jq-validation-uniteDeCout" name="jq-validation-uniteDeCout" />
-									<f:errors path="uniteDeCout" cssClass="help-block"></f:errors>
-								</div>
-				</div>
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Fournisseur</label>
-								<div class="col-sm-9">
-									<f:input path="fournisseur" type="text" class="form-control" id="inputError-4" name="jq-validation-fournisseur" />
-									<f:errors path="fournisseur" cssClass="help-block"></f:errors>
-								</div>
-				</div>
-				<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-							    </div>
-							
-				</div>
-				
-					</div>
-					</div> <!-- / .tab-pane -->
-					
-								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
-								<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th id="supchek"> </th>
-													<th>Nom complet</th>
-													<th>Statut</th>
-													<th>Organisation</th>
-													<th>Email</th>
-													<th>Téléphone</th>
-													<th>Fonction</th>	
-													
-												</tr>
-											</thead>
-											<tbody id="tablecontact">
-												
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppContact">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalcontact">Ajouter des Contacts</button>
-										</div>
-										
-									</div>
+					</form>					
 									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th id="supchek"> </th>
-													<th>Nom</th>
-												    <th>Statut</th>
-												    <th>Type de document</th>
-												    <th>Description</th>
-													
-												</tr>
-											</thead>
-											<tbody id="tabledocument">
-												
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppDoc">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
-										</div>
-										
-									</div>
-		
-									
-									
-								</div> <!-- / .tab-pane -->
-								
-							</div> <!-- / .tab-content -->
-						
-				
-					
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
 					</div>
 					
 					
 		</div>
-
-		<!-- Content here -->
-		
-		
-		
+					
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -833,68 +502,9 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-init.push(function () {
-	$('#profile-tabs').tabdrop();
-
-	$("#leave-comment-form").expandingInput({
-		target: 'textarea',
-		hidden_content: '> div',
-		placeholder: 'Write message',
-		onAfterExpand: function () {
-			$('#leave-comment-form textarea').attr('rows', '3').autosize();
-		}
+	init.push(function () {
+		// Javascript code here
 	});
-		$('.jq-datatables-example').dataTable();
-		$('.jq-datatables-example_wrapper .table-caption').text('');
-		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-		
-		document.getElementById("addContact").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckContact:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
-		    	$( "#tablecontact" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
-	    
-	    document.getElementById("suppContact").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckContact:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
-		    	$( "#tablecontactpopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
-	    document.getElementById("addDoc").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckdoc:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
-		    	$( "#tabledocument" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
-	    
-	    document.getElementById("suppDoc").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckdoc:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
-		    	$( "#tabledocpopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
-  
-	
-});
 	window.PixelAdmin.start(init);
 </script>
 

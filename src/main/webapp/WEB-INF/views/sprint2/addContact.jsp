@@ -478,7 +478,7 @@ Use search to find needed section.
 										<tbody id="tableContratepopup">
 											<c:forEach items="${contrat}" var="c">
 												<tr class="gradeA" id="tr_${c.id }">
-													<td class="supchekbox"><input type="checkbox" class="ck" name="contrats" value="${c.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ck" name="ckContrats" value="${c.id }"></td>
 													<td>${c.nom }</td>
 													<td>${c.typeDeContrat }</td>
 													<td>${c.client }</td>

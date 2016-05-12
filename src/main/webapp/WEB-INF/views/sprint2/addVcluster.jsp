@@ -477,7 +477,7 @@ Use search to find needed section.
 										<tbody id="tableContactpopup">
 											<c:forEach items="${contacts}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="Contacts" value="${contact.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
 													<td>${contact.nom } ${contact.prenom }</td>
 													<td>${contact.statut }</td>
 													<td>${contact.organisme }</td>
@@ -527,7 +527,7 @@ Use search to find needed section.
 										<tbody id="tableContratpopup">
 											<c:forEach items="${contrats}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="Contrats" value="${contrat.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
 													<td>${contrat.nom }</td>
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
@@ -574,7 +574,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -617,7 +617,7 @@ Use search to find needed section.
 										<tbody id="tableSolutionApplicativepopup">
 											<c:forEach items="${solutionsApplicatives}" var="sa">
 												<tr class="gradeA" id="tr_SolutionApplicative_${sa.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckSol" name="chSolutionApplicative" value="${sa.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckSol" name="ckSolutionApplicative" value="${sa.id }"></td>
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
@@ -662,7 +662,7 @@ Use search to find needed section.
 										<tbody id="tableVolumesLogiquespopup">
 											<c:forEach items="${volumesLogiques}" var="vl">
 												<tr class="gradeA" id="tr_vl_${vl.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckvl" name="volumesLogiques" value="${vl.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckvl" name="ckVolumesLogiques" value="${vl.id }"></td>
 													<td>${vl.nom }</td>
 													<td>${vl.lunId }</td>
 													<td>${vl.systemeDeStockage }</td>
@@ -684,12 +684,109 @@ Use search to find needed section.
 					</div> <!-- / .modal-dialog -->
 				</div> <!-- /.modal -->
 				<!-- / Modal Volumes logiques -->
+				<!-- Modal Machines Virtuelles -->
+				<div id="myModalMachinesVirtuelles" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Machines Virtuelles </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Machines Virtuelles</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableMachinesVirtuellespopup">
+											<c:forEach items="${machinesVirtuelles}" var="mv">
+												<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckmv" name="ckMachinesVirtuelles" value="${mv.id }"></td>
+													<td>${mv.nom }</td>
+													<td>${mv.statut }</td>
+													<td>${mv.criticite}</td>
+													<td>${mv.ip}</td>
+													<td>${mv.dateDeMiseEnProduction }</td>
+													<td>${mv.description}</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addmv">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Machines Virtuelles -->
+				
+					<!-- Modal Hyperviseur-->
+				<div id="myModalHyperviseurs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Hyperviseurs </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Hyperviseur</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Serveur</th>
+												<th>vCluster</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableHyperviseurspopup">
+											<c:forEach items="${hyperviseurs}" var="h">
+												<tr class="gradeA" id="tr_Hyperviseur_${h.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckh" name="ckHyperviseurs" value="${h.id }"></td>
+													<td>${h.nom }</td>
+													<td>${h.statut }</td>
+													<td>${h.criticite}</td>
+													<td>${h.serveur.nom}</td>
+													<td>${h.vcluster.nom}</td>
+													<td>${h.dateDeMiseEnProduction }</td>
+													<td>${h.description}</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addh">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Hyperviseur-->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau vCluster</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="vCluster" action="saveVcluster" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="vcluster" action="saveVcluster" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -716,6 +813,12 @@ Use search to find needed section.
 									<a href="#profile-tabs-volumes_logiques" data-toggle="tab">Volumes logiques</a>
 								</li>
 								<li>
+									<a href="#profile-tabs-hyperviseurs" data-toggle="tab">Hyperviseurs</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-Machines_Virtuelles" data-toggle="tab">Machines Virtuelles</a>
+								</li>
+								<li>
 									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
 								</li>
 								
@@ -730,7 +833,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group ">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -786,8 +889,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeMiseEnProduction" type="text" class="form-control" name="dateDeMiseEnProduction"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>	
+							<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 							
@@ -947,6 +1051,75 @@ Use search to find needed section.
 										
 									</div>
 								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-hyperviseurs" id="profile-tabs-hyperviseurs">
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+											 <tr>
+												<th id="supchek"> </th>
+												<th>Hyperviseur</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Serveur</th>
+												<th>vCluster</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+											</thead>
+											<tbody id="tableHyperviseurs">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="supph">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalHyperviseurs">Ajouter des Hyperviseurs</button>
+										</div>
+										
+									</div>
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-Machines_Virtuelles" id="profile-tabs-Machines_Virtuelles">
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+											 <tr>
+												<th id="supchek"> </th>
+												<th>Machines Virtuelles</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+											</thead>
+											<tbody id="tableMachinesVirtuelles">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppmv">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalMachinesVirtuelles">Ajouter des Machines Virtuelles</button>
+										</div>
+										
+									</div>
+								</div> <!-- / .tab-pane -->
 								
 								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
 									<div class="table-primary">
@@ -988,11 +1161,6 @@ Use search to find needed section.
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
-					
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -1154,6 +1322,50 @@ Use search to find needed section.
 	    		chkArray.push($(this).val());
 	    		var tr = document.getElementById("tr_vl_".concat($(this).val()));
 		    	$( "#tableVolumesLogiquespopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+	    document.getElementById("addmv").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckmv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
+		    	$( "#tableMachinesVirtuelles" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppmv").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckmv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
+		    	$( "#tableMachinesVirtuellespopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+	    document.getElementById("addh").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckh:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_Hyperviseur_".concat($(this).val()));
+		    	$( "#tableHyperviseurs" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("supph").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckh:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_Hyperviseur_".concat($(this).val()));
+		    	$( "#tableHyperviseurspopup" ).append(tr);
                 this.checked = false;
 	    	});
 	    };

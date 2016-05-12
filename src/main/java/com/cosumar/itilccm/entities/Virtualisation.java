@@ -46,6 +46,18 @@ public class Virtualisation implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private Collection<SolutionApplicative> solutionApplicative;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contact> contacts;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contrat> contrats;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Document> documents;
 		   
 		public Virtualisation() {
 			super();
@@ -114,10 +126,24 @@ public class Virtualisation implements Serializable {
 		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 			this.solutionApplicative = solutionApplicative;
 		}
-		   
-		   
-   
-   
-   
+		public Collection<Contact> getContacts() {
+			return contacts;
+		}
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
+		}
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+		public Collection<Document> getDocuments() {
+			return documents;
+		}
+		public void setDocuments(Collection<Document> documents) {
+			this.documents = documents;
+		}
+		
 
 }

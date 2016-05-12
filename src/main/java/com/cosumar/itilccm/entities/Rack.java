@@ -39,11 +39,11 @@ public class Rack implements Serializable{
    	@OneToMany(mappedBy="rack")
   	@Column(nullable = true)
    private Collection<Chassis> chassis;
-   /*
+  
    	@OneToMany(mappedBy="rack")
    	@Column(nullable = true)
    private Collection<PduElectrique> pduElectrique;
-   */
+   
    	@OneToMany(mappedBy="rack")
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;

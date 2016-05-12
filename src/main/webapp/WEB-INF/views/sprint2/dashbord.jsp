@@ -576,7 +576,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Connection Electrique</span></a>
+													<a tabindex="-1" href="<c:url value="/config/admin/add/typeConnexionElectrique" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Connection Electrique</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Connection Electrique</span></a>
 												</div>
 											</div>

@@ -478,7 +478,7 @@ Use search to find needed section.
 										<tbody id="tableContactpopup">
 											<c:forEach items="${contacts}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="Contacts" value="${contact.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
 													<td>${contact.nom } ${contact.prenom }</td>
 													<td>${contact.statut }</td>
 													<td>${contact.organisme }</td>
@@ -528,7 +528,7 @@ Use search to find needed section.
 										<tbody id="tableContratpopup">
 											<c:forEach items="${contrats}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="Contrats" value="${contrat.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
 													<td>${contrat.nom }</td>
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
@@ -575,7 +575,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -600,7 +600,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau  PDU</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="pdu" action="savePdu" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="pduElectrique" action="savePduElectrique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -637,7 +637,7 @@ Use search to find needed section.
 						
 							
 							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
+								<label for="jq-validation-email required" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
@@ -680,7 +680,7 @@ Use search to find needed section.
 									<f:errors path="lieu.id" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-								<div class="form-group">
+								<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Rack</label>
 								<div class="col-sm-9">
 									<f:select  path="rack.id" class="form-control" name="jq-validation-rack" id="jq-validation-rack">
@@ -752,8 +752,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeMiseEnProduction" type="text" class="form-control" name="dateDeMiseEnProduction"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>
+							<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>				
 						</div>
 				</div>
 				<div class="form-group ">
@@ -763,8 +764,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component2">
 								<f:input path="dateD_achat" type="text" class="form-control" name="dateD_achat"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>	
+							<f:errors path="dateD_achat" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 				<div class="form-group ">
@@ -774,8 +776,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component3">
 								<f:input path="dateDeFinDeGarantie" type="text" class="form-control" name="dateDeFinDeGarantie"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>	
+							<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 							

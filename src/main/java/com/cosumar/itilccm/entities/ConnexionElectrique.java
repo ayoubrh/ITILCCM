@@ -57,6 +57,18 @@ public class ConnexionElectrique implements Serializable{
   	@Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    	
+   @Column(nullable=true)
+   @ManyToMany
+   private Collection<Contact> contacts;
+   
+   @Column(nullable=true)
+   @ManyToMany
+   private Collection<Contrat> contrats;
+   
+   @Column(nullable=true)
+   @ManyToMany
+   private Collection<Document> documents;
+   	
    	@ManyToOne
    	@JoinColumn(name="id_lieu")
    private Lieu lieu;
@@ -216,6 +228,30 @@ public class ConnexionElectrique implements Serializable{
 
 	public void setLieu(Lieu lieu) {
 		this.lieu = lieu;
+	}
+
+	public Collection<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(Collection<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Collection<Contrat> getContrats() {
+		return contrats;
+	}
+
+	public void setContrats(Collection<Contrat> contrats) {
+		this.contrats = contrats;
+	}
+
+	public Collection<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Collection<Document> documents) {
+		this.documents = documents;
 	}
    	
    	

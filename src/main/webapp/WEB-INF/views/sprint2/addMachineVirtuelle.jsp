@@ -883,16 +883,6 @@ Use search to find needed section.
 							</div>
 							
 							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Famille OS</label>
-								<div class="col-sm-9">
-									<f:select  path="licenseOs.id" class="form-control" name="jq-validation-versionOs_id" id="jq-validation-versionOs_id">
-										<f:option value=""> -- choisir une valeur --</f:option>
-										<f:options items="${l }" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="licenseOs.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">IP</label>
 								<div class="col-sm-9">
 									<f:input path="ip" type="text" class="form-control" id="inputError-4" name="jq-validation-ip" />

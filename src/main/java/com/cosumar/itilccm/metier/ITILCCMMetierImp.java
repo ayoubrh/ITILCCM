@@ -1609,8 +1609,90 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.getDocumentNote(id);
 	}
 
+	@Override
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		return dao.ajouterAutreLogicielAll(al,l, contacts, documents, solutionsApplicatives, contrats);
+		
+	}
 
-	
+	@Override
+	public Long ajouterLogicielPcAll(LogicielPc lp, Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		return dao.ajouterLogicielPcAll(lp, l, contacts, documents, solutionsApplicatives, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterServeurWebAll(ServeurWeb sw, Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
+		return dao.ajouterServeurWebAll(sw, l, contacts, documents, solutionsApplicatives, applicationWeb, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterMiddlewareAll(Middleware m, Long l, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> instancesMiddleware, List<Long> contrats) {
+		return dao.ajouterMiddlewareAll(m, l, contacts, documents, solutionsApplicatives, instancesMiddleware, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD, List<Long> contrats) {
+		return dao.ajouterServeurDeBasseDeDonneesAll(sbd, l, contacts, documents, solutionsApplicatives, instancesBD, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterApplicationWebAll(ApplicationWeb aw, Long sw, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		return dao.ajouterApplicationWebAll(aw, sw, contacts, documents, solutionsApplicatives, contrats);
+	}
+
+	@Override
+	public Long ajouterInstanceMiddlewareAll(InstanceMiddleware im, Long m, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		return dao.ajouterInstanceMiddlewareAll(im, m, contacts, documents, solutionsApplicatives, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd, Long sbd, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		return dao.ajouterInstanceDeBasseDeDonnesAll(ibd, sbd, contacts, documents, solutionsApplicatives, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterHyperviseurAll(Hyperviseur h, Long vCluster, Long Serveur, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> volumesLogiques,
+			List<Long> machinesVirtuelles, List<Long> contrats) {
+		return dao.ajouterHyperviseurAll(h, vCluster, Serveur, contacts, documents, solutionsApplicatives, volumesLogiques, machinesVirtuelles, contrats);
+		
+	}
+
+	@Override
+	public Long ajouterVclusterAll(Vcluster v, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> volumesLogiques, List<Long> machinesVirtuelles,
+			List<Long> hyperviseurs, List<Long> contrats) {
+		return dao.ajouterVclusterAll(v, contacts, documents, solutionsApplicatives, volumesLogiques, machinesVirtuelles, hyperviseurs, contrats);
+		
+	}
+
+	@Override
+	public Long addArriveeElectriqueAll(ArriveeElectrique ae, Long lieu, List<Long> pdus, List<Long> contacts,
+			List<Long> documents, List<Long> contrats) {
+		return dao.addArriveeElectriqueAll(ae, lieu, pdus, contacts, documents, contrats);
+		
+	}
+
+	@Override
+	public Long addPduElectriqueAll(PduElectrique pdue, Long lieu, Long rack, Long arrivee, List<Long> contacts,
+			List<Long> documents, List<Long> contrats) {
+		return dao.addPduElectriqueAll(pdue, lieu, rack, arrivee, contacts, documents, contrats);
+		
+	}
 
 	
 
