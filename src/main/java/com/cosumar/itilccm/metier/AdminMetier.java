@@ -441,6 +441,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Serveur
 	public  Long addServeur(Serveur Serveur);
+	public  Long addServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos, List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editServeur(Serveur Serveur);
 	public List<Serveur> ListServeur();

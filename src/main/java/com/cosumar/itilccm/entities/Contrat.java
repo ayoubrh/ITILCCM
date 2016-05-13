@@ -54,6 +54,9 @@ public class Contrat implements Serializable {
 		   	@Column(nullable = true)
 		   private Collection<Ordinateur> ordinateur;
 		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Infrastructure> infrastructure;
 		   
 		   @ManyToMany(mappedBy="contrat")
 		   	@Column(nullable = true)
@@ -382,6 +385,14 @@ public class Contrat implements Serializable {
 
 			public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 				this.virtualisation = virtualisation;
+			}
+
+			public Collection<Infrastructure> getInfrastructure() {
+				return infrastructure;
+			}
+
+			public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+				this.infrastructure = infrastructure;
 			}
 	
 			

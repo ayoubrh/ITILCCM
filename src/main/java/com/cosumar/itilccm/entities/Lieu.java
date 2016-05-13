@@ -47,6 +47,9 @@ public class Lieu implements Serializable {
 		private Collection<Ordinateur> ordinateur;
 	   	
 	   	@OneToMany(mappedBy="lieu")
+		private Collection<Infrastructure> infrastructure;
+	   	
+	   	@OneToMany(mappedBy="lieu")
 		private Collection<Rack> rack;
 	   	
 	   	@OneToMany(mappedBy="lieu")
@@ -307,8 +310,20 @@ public class Lieu implements Serializable {
 			this.connexionElectrique = connexionElectrique;
 		}
 
-		
 
+
+		public Collection<Infrastructure> getInfrastructure() {
+			return infrastructure;
+		}
+
+
+
+		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+			this.infrastructure = infrastructure;
+		}
+
+		
+		
 
    
 

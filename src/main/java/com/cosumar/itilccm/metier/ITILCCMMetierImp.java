@@ -1759,6 +1759,14 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> documents, List<Long> contrats) {
 		return dao.addPduElectriqueAll(pdue, lieu, rack, arrivee, contacts, documents, contrats);
 	}
+	
+	@Override
+	public Long addServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos,
+			List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.addServeurAll(Serveur, lieu, rack, chassis, licenseos, sourceelec, Logiciel, SolutionApplicative, interfacereseau, equipementreseaux, San, volumesLogique, document, contact, contrat);
+	}
 
 }
 

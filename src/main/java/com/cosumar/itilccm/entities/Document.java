@@ -43,6 +43,10 @@ public class Document implements Serializable {
 	   	
 	   	@ManyToMany(mappedBy="document")
 	   	@Column(nullable = true)
+	   private Collection<Infrastructure> infrastructure;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
 	   private Collection<Rack> rack;
 	   	
 		@ManyToMany(mappedBy="document")
@@ -303,6 +307,14 @@ public class Document implements Serializable {
 
 		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 			this.virtualisation = virtualisation;
+		}
+
+		public Collection<Infrastructure> getInfrastructure() {
+			return infrastructure;
+		}
+
+		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+			this.infrastructure = infrastructure;
 		}
 
 		

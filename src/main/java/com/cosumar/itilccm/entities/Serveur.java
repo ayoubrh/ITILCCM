@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Serveur extends Infrastructure implements Serializable{
 	
-   private String familleOs;
-   private String versionOs;
    private String cpu;
    private String ram;
    
@@ -38,18 +36,7 @@ public class Serveur extends Infrastructure implements Serializable{
 	 @ManyToMany(mappedBy="serveur")
 	private Collection<LogicielEtApplication> logicielEtApplication;
    
-	public String getFamilleOs() {
-		return familleOs;
-	}
-	public void setFamilleOs(String familleOs) {
-		this.familleOs = familleOs;
-	}
-	public String getVersionOs() {
-		return versionOs;
-	}
-	public void setVersionOs(String versionOs) {
-		this.versionOs = versionOs;
-	}
+	
 	public String getCpu() {
 		return cpu;
 	}
