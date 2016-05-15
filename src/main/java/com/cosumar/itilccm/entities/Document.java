@@ -106,6 +106,10 @@ public class Document implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<Virtualisation> virtualisation;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<Camera> camera;
 
 		public Document() {
 			super();
@@ -305,6 +309,15 @@ public class Document implements Serializable {
 			this.virtualisation = virtualisation;
 		}
 
+		public Collection<Camera> getCamera() {
+			return camera;
+		}
+
+		public void setCamera(Collection<Camera> camera) {
+			this.camera = camera;
+		}
+		
+		
 		
 
 }

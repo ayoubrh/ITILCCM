@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -86,7 +87,7 @@ public class Contact implements Serializable {
 	   private Collection<Peripherique> peripherique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<Contrat> contrats;
 	   
 	    @Column(nullable=true)
@@ -112,6 +113,10 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="contacts")
 	   private Collection<Virtualisation> virtualisation;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<Camera> camera;
    
 		public Contact() {
 			super();
@@ -326,6 +331,14 @@ public class Contact implements Serializable {
 
 		public void setChassis(Collection<Chassis> chassis) {
 			this.chassis = chassis;
+		}
+
+		public Collection<Camera> getCamera() {
+			return camera;
+		}
+
+		public void setCamera(Collection<Camera> camera) {
+			this.camera = camera;
 		}
 
 		

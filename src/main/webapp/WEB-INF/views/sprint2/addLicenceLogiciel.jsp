@@ -497,7 +497,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -511,7 +511,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary"  id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -522,7 +522,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau Licence Logiciel</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="licenceLogiciel" action="saveLicenceLogiciel" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="licenseLogiciel" action="saveLicenseLogiciel" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -549,7 +549,7 @@ Use search to find needed section.
 						<div class="panel-body">
 						
 						
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -558,11 +558,11 @@ Use search to find needed section.
 							
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Logiciel</label>
 								<div class="col-sm-9">
 									<f:select  path="logicielEtApplications.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="NONE"> -- choisir une valeur --</f:option>
+										<f:option value=""> -- choisir une valeur --</f:option>
 										<f:options items="${la }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="logicielEtApplications.id" cssClass="help-block"></f:errors>
@@ -577,11 +577,11 @@ Use search to find needed section.
 							
 							</div>
 						
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
 								<div class="col-sm-9">
 									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value="NONE"> -- choisir une valeur --</f:option>
+									            <f:option value=""> -- choisir une valeur --</f:option>
 									            <f:option value="non">non</f:option>
 												<f:option value="oui"> oui</f:option>
 									</f:select>
@@ -595,9 +595,13 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
+							$('#bs-datepicker-component').datepicker({ 
+									format: 'dd/mm/yyyy'
+								 });
 						
-						    $('#bs-datepicker-component2').datepicker(options);
+						    $('#bs-datepicker-component2').datepicker({ 
+						    	    format: 'dd/mm/yyyy'
+							    });
 
 					});
 				</script>

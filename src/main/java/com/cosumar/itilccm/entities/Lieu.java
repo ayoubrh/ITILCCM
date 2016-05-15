@@ -33,7 +33,7 @@ public class Lieu implements Serializable {
 	   
 	   @Column(nullable=true)
 	   @Size(max=5)
-	   @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
+	   //@Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
 	   private String codePostale;
 	   
 	   private String ville;
@@ -66,6 +66,9 @@ public class Lieu implements Serializable {
 		
 		@OneToMany(mappedBy="lieu")
 		private Collection<Tablette> tablette;
+		
+		@OneToMany(mappedBy="lieu")
+		private Collection<Camera> camera;
 		
 		
 	   @Column(nullable=true)

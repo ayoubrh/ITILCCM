@@ -520,11 +520,9 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-<<<<<<< HEAD
+
 														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${Contact }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${contact }
->>>>>>> refs/remotes/origin/tawfiq-jpa
+
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -539,11 +537,9 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-<<<<<<< HEAD
+
 														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${Lieu }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${lieu }
->>>>>>> refs/remotes/origin/tawfiq-jpa
+
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -558,11 +554,9 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-<<<<<<< HEAD
+
 														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${Contrat }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${contrat }
->>>>>>> refs/remotes/origin/tawfiq-jpa
+
 													</a>
 												</div>
 												<div class="col-md-12">

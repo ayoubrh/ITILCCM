@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +24,6 @@ public class Contrat implements Serializable {
 	       
 	       @NotEmpty
 		   private String nom;
-	       
-	       @NotEmpty
 		   private String client;
 	       
 		   private String description;
@@ -34,8 +33,6 @@ public class Contrat implements Serializable {
 		   private String monnaie;
 		   private String periodiciteDeFacturation;
 		   private String uniteDeCout;
-		   
-		   @NotEmpty
 		   private String fournisseur;
 		   
 		   private String niveauDeService;
@@ -43,7 +40,7 @@ public class Contrat implements Serializable {
 		   private String typeDeContrat;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(cascade = CascadeType.ALL)
 		   private Collection<Contact> contacts;
 		   
 		   @Column(nullable=true)
@@ -111,6 +108,10 @@ public class Contrat implements Serializable {
 		   @Column(nullable=true)
 		   @ManyToMany(mappedBy="contrats")
 		   private Collection<Virtualisation> virtualisation;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<Camera> camera;
 		   
 			public Contrat() {
 				super();
@@ -382,6 +383,14 @@ public class Contrat implements Serializable {
 
 			public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 				this.virtualisation = virtualisation;
+			}
+
+			public Collection<Camera> getCamera() {
+				return camera;
+			}
+
+			public void setCamera(Collection<Camera> camera) {
+				this.camera = camera;
 			}
 	
 			

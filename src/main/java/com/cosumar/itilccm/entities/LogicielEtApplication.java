@@ -56,15 +56,16 @@ public class LogicielEtApplication implements Serializable {
 	   @ManyToMany
 	   private Collection<Document> documents;
 	   
-	   @Column(nullable=true)
-	   @ManyToMany
-	   private Collection<Serveur> serveur;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany
-	   private Collection<MachineVirtuelle> machineVirtuelle;
 	  
+	   @ManyToOne
+	   @JoinColumn(name="id_serveur")
+	   private Serveur serveur;
 	   
+	  
+	   @ManyToOne
+	   @JoinColumn(name="id_machineVirtuelle")
+	   private MachineVirtuelle machineVirtuelle;
+	  
 	   @ManyToOne
 	   @JoinColumn(name="id_licenseLogiciel")
 	   private LicenseLogiciel licenseLogiciel;
@@ -156,20 +157,20 @@ public class LogicielEtApplication implements Serializable {
 		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 			this.solutionApplicative = solutionApplicative;
 		}
-
-		public Collection<Serveur> getServeur() {
+        
+		public Serveur getServeur() {
 			return serveur;
 		}
 
-		public void setServeur(Collection<Serveur> serveur) {
+		public void setServeur(Serveur serveur) {
 			this.serveur = serveur;
 		}
 
-		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+		public MachineVirtuelle getMachineVirtuelle() {
 			return machineVirtuelle;
 		}
 
-		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+		public void setMachineVirtuelle(MachineVirtuelle machineVirtuelle) {
 			this.machineVirtuelle = machineVirtuelle;
 		}
 

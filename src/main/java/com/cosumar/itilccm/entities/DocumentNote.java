@@ -25,6 +25,12 @@ public class DocumentNote extends Document implements Serializable {
 	}
 
 
+	public DocumentNote(String nom, String statut, String version, String description, String texte) {
+		super(nom, statut, version, description);
+		this.texte = texte;
+	}
+
+
 	public String getTexte() {
 		return texte;
 	}

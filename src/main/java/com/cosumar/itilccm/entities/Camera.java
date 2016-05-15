@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
@@ -25,8 +26,8 @@ public class Camera implements Serializable{
 	@Size(min=2,max=20)
 	@Column(unique = true)
    private String nom;
-   private String status;
-   private String critcite;
+   private String statut;
+   private String criticite;
    private String marque;
    private String modele;
    private String position;
@@ -40,6 +41,22 @@ public class Camera implements Serializable{
    	@ManyToOne
   	@JoinColumn(name="dvr_id")
    private Dvr dvr;
+   	
+    @Column(nullable=true)
+    @ManyToMany
+    private Collection<Contact> contacts;
+    
+    @Column(nullable=true)
+    @ManyToMany
+    private Collection<Contrat> contrats;
+    
+    @Column(nullable=true)
+    @ManyToMany
+    private Collection<Document> documents;
+    	
+    @ManyToOne
+    @JoinColumn(name="id_lieu")
+    private Lieu lieu;
 
 	public Long getId() {
 		return id;
@@ -57,20 +74,20 @@ public class Camera implements Serializable{
 		this.nom = nom;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getStatut() {
+		return statut;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 
-	public String getCritcite() {
-		return critcite;
+	public String getCriticite() {
+		return criticite;
 	}
 
-	public void setCritcite(String critcite) {
-		this.critcite = critcite;
+	public void setCriticite(String criticite) {
+		this.criticite = criticite;
 	}
 
 	public String getMarque() {
@@ -153,6 +170,46 @@ public class Camera implements Serializable{
 	public Camera(String nom) {
 		super();
 		this.nom = nom;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Collection<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(Collection<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Collection<Contrat> getContrats() {
+		return contrats;
+	}
+
+	public void setContrats(Collection<Contrat> contrats) {
+		this.contrats = contrats;
+	}
+
+	public Collection<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Collection<Document> documents) {
+		this.documents = documents;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
 	}
    	
    	

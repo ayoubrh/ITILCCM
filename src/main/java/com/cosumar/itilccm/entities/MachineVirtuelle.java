@@ -55,7 +55,7 @@ public class MachineVirtuelle implements Serializable {
 	   private LicenseOs licenseOs;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="machineVirtuelle")
+	   @OneToMany(mappedBy="machineVirtuelle")
 	   private Collection<LogicielEtApplication> logicielEtApplication;
 		   
 		public MachineVirtuelle() {

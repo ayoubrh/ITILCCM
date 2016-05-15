@@ -59,7 +59,7 @@ public interface ITILCCMDAO {
 	// Contact
 		
 	public Long ajouterContact(Contact c);
-	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats);
+	public Long ajouterContactAll(Contact c, Long idlieu);
 	public void modifierContact(Contact c);
 	public void supprimerContact(Long id);
 	public List<Contact> listContact();
@@ -362,6 +362,7 @@ public interface ITILCCMDAO {
 	 //License Logiciel
 	
 	public Long ajouterLicenseLogiciel(LicenseLogiciel ll);
+	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel,List<Long> documents);
 	public void modifierLicenseLogiciel(LicenseLogiciel ll);
 	public void supprimerLicenseLogiciel(Long id);
 	public List<LicenseLogiciel> listLicenseLogiciel();
@@ -370,6 +371,7 @@ public interface ITILCCMDAO {
    // License OS
 	
 	public Long ajouterLicenseOs(LicenseOs lo);
+	public Long ajouterLicenseOsAll(LicenseOs lo,Long versionOs,List<Long> documents,List<Long> serveurs,List<Long> machineVirtuelle);
 	public void modifierLicenseOs(LicenseOs lo);
 	public void supprimerLicenseOs(Long id);
 	public List<LicenseOs> listLicenseOs();
@@ -391,7 +393,7 @@ public interface ITILCCMDAO {
 	// Autre logiciel
 	
 	public Long ajouterAutreLogiciel(AutreLogiciel al);
-	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach, Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierAutreLogiciel(AutreLogiciel al);
 	public void supprimerAutreLogiciel(Long id);
 	public List<AutreLogiciel> listAutreLogiciel();
@@ -400,7 +402,7 @@ public interface ITILCCMDAO {
 	// Logiciel PC
 	
 	public Long ajouterLogicielPc(LogicielPc lp);
-	public Long ajouterLogicielPcAll(LogicielPc lp,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierLogicielPc(LogicielPc lp);
 	public void supprimerLogicielPc(Long id);
 	public List<LogicielPc> listLogicielPc();
@@ -409,7 +411,7 @@ public interface ITILCCMDAO {
 	// Serveur Web
 	
 	public Long ajouterServeurWeb(ServeurWeb sw);
-	public Long ajouterServeurWebAll(ServeurWeb sw,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
 	public void modifierServeurWeb(ServeurWeb sw);
 	public void supprimerServeurWeb(Long id);
 	public List<ServeurWeb> listServeurWeb();
@@ -418,7 +420,7 @@ public interface ITILCCMDAO {
 	// Middleware
 	
 	public Long ajouterMiddleware(Middleware m);
-	public Long ajouterMiddlewareAll(Middleware m,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
+	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
 	public void modifierMiddleware(Middleware m);
 	public void supprimerMiddleware(Long id);
 	public List<Middleware> listMiddleware();
@@ -427,7 +429,7 @@ public interface ITILCCMDAO {
 	//Serveur de basse de données
 	
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
-	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
 	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
 	public void supprimerServeurDeBasseDeDonnees(Long id);
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();

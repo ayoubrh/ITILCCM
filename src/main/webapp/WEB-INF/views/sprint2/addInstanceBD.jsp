@@ -744,7 +744,9 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
+							$('#bs-datepicker-component').datepicker({
+									format: 'dd/mm/yyyy'
+								});
 						
 
 					});

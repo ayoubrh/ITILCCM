@@ -686,7 +686,7 @@ Use search to find needed section.
 													<td class="supchekbox"><input type="checkbox" class="ckvl" name="ckVolumesLogiques" value="${vl.id }"></td>
 													<td>${vl.nom }</td>
 													<td>${vl.lunId }</td>
-													<td>${vl.systemeDeStockage }</td>
+													<td>${vl.systemedestockage.nom }</td>
 													<td>${vl.niveauRaid }</td>
 													<td>${vl.taille}</td>
 													<td>${vl.description}</td>
