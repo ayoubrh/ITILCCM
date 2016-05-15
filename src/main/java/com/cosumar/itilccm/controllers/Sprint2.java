@@ -1075,7 +1075,7 @@ public class Sprint2 {
 		
 		//m.addServeurAll(serveur, pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		m.addServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/index";
 	}
 	
 	

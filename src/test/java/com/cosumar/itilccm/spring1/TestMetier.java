@@ -35,10 +35,10 @@ public class TestMetier {
 			List<User> u1 = m.listUser();
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			//m.ajouterUser(new User("EEEEEEEE", s.hashmd5password("0000000000"), "RHNABRI", "Ayoub", "ayoub0@gmail.com","Technicien"), d1);
-			m.ajouterUserRole(new User("AAAAAAA", m.hashmd5password("123456789"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d1, r1);
-			m.ajouterUserRole(new User("FFFFFFF", m.hashmd5password("123456789"), "FERHAOUI", "Toufiq", "toufik.ferhaoui@gmail.com","Chef de Département","M"), d1, r1);
-			m.ajouterUserRole(new User("BBBBBBB", m.hashmd5password("azertyuiop"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d1, r2);
-			Long id = m.ajouterUserRole(new User("CCCCCCC", m.hashmd5password("qsdfghjklm"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d1, r3);
+			m.ajouterUserRole(new User("admin", m.hashmd5password("adminpass"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d1, r1);
+			m.ajouterUserRole(new User("admin2", m.hashmd5password("adminpass"), "FERHAOUI", "Toufiq", "toufik.ferhaoui@gmail.com","Chef de Département","M"), d1, r1);
+			m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d1, r2);
+			Long id = m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d1, r3);
 			User um = m.getUser(id);
 			um.setAge("30");
 			m.modifierUser(um);
