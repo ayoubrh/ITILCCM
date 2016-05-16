@@ -222,9 +222,9 @@ public interface ITILCCMDAO {
 	public Camera getCamera(Long id);
 	public void deleteCamera(Long id);
 	
-	// ProcessusMetier
+	// ProcessusMetier 
 	public  Long addProcessusMetier(ProcessusMetier pm);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addProcessusMetierAll(ProcessusMetier pm,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives);
 	public void editProcessusMetier(ProcessusMetier pm);
 	public List<ProcessusMetier> ListProcessusMetier();
 	public ProcessusMetier getProcessusMetier(Long id);
@@ -426,7 +426,7 @@ public interface ITILCCMDAO {
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 	
-	//Serveur de basse de données
+	//Serveur de basse de donnes
 	
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
 	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
@@ -455,7 +455,7 @@ public interface ITILCCMDAO {
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 	
-   //Instance de basse de donnés
+   //Instance de basse de donns
 	
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd,Long sbd,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
@@ -467,6 +467,7 @@ public interface ITILCCMDAO {
 	// Machine Virtuelle
 	
 	public Long ajouterMachineVirtuelle(MachineVirtuelle mv);
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv,Long virtualisation,Long license,List<Long> logiciels,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> interfacesReseaux,List<Long> volumesLogiques,List<Long> contrats);
 	public void modifierMachineVirtuelle(MachineVirtuelle mv);
 	public void supprimerMachineVirtuelle(Long id);
 	public List<MachineVirtuelle> listMachineVirtuelle();

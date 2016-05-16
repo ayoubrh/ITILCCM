@@ -96,7 +96,21 @@ public class Sprint2 {
 
 		return "sprint2/dashbord";
 	}
+	@RequestMapping(value="/admin/add/neveauCI")
+	public String neveauCI(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		return "sprint2/TypeCI_fonctionnel";
+	}
 	
+	@RequestMapping(value="/admin/add/neveauCIdirect")
+	public String neveauCIdirect(Model model,HttpServletRequest req){
+		String[] neveauCI = req.getParameterValues("type");
+		
+		return "redirect:"+neveauCI[0];
+	}
 	
 	@RequestMapping(value="/admin/add/pc")
 	public String addPC(Model model){
@@ -1038,6 +1052,51 @@ public class Sprint2 {
 		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 		return "sprint2/addProcessusMetier";
 	}
+	@RequestMapping(value="/admin/add/saveProcessusMetier", method = RequestMethod.POST)
+	public String saveProcessusMetier(@Valid ProcessusMetier pm,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			return "sprint2/addProcessusMetier";
+		}
+		
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> sol = new ArrayList<Long>();
+		
+		String[] Contacts = req.getParameterValues("ckContacts");
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		
+		if(solutionsApplicatives != null ){
+			for (int i = 0; i < solutionsApplicatives.length; i++) {
+				
+				sol.add(Long.parseLong(solutionsApplicatives[i]));
+			}
+		}
+		
+		m.addProcessusMetierAll(pm, cont, doc, sol);
+		
+		return "redirect:/config/admin/dashboard";
+	}
 	@RequestMapping(value="/admin/add/typeLicense")
 	public String typeLicense(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -1174,7 +1233,7 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("machineVirtuelle", new MachineVirtuelle());
 		model.addAttribute("v", m.listVirtualisation());
-		model.addAttribute("l", m.listLicenseOs());
+		model.addAttribute("licenseos", m.listLicenseOs());
 		//model.addAttribute("vo", m.listVersionOs());
 		model.addAttribute("contacts", m.listContact());
 		model.addAttribute("documents", m.listDocument());
@@ -1184,6 +1243,87 @@ public class Sprint2 {
 		model.addAttribute("interfacereseaux", m.ListLogique());
 		model.addAttribute("logiciels", m.listLogicielEtApplication());
 		return "sprint2/addMachineVirtuelle";
+	}
+	@RequestMapping(value="/admin/add/saveMachineVirtuelle", method = RequestMethod.POST)
+	public String saveMachineVirtuelle(@Valid MachineVirtuelle mv,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("v", m.listVirtualisation());
+			model.addAttribute("licenseos", m.listLicenseOs());
+			//model.addAttribute("vo", m.listVersionOs());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+			model.addAttribute("interfacereseaux", m.ListLogique());
+			model.addAttribute("logiciels", m.listLogicielEtApplication());
+			return "sprint2/addMachineVirtuelle";
+		}
+		List<Long> log = new ArrayList<Long>();
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> sol = new ArrayList<Long>();
+		List<Long> contr = new ArrayList<Long>();
+		List<Long> vol = new ArrayList<Long>();
+		List<Long> inter = new ArrayList<Long>();
+		String[] logiciels = req.getParameterValues("ckLogiciel");
+		String[] Contacts = req.getParameterValues("ckContacts");
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
+		String[] contrats = req.getParameterValues("ckContrats");
+		String[] volumesLogiques = req.getParameterValues("ckVolumesLogiques");
+		String[] interfacesReseaux = req.getParameterValues("ckInterfacesReseaux");
+		
+		if(logiciels != null ){
+			for (int i = 0; i < logiciels.length; i++) {
+				log.add(Long.parseLong(logiciels[i]));
+			}
+		}
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		
+		if(solutionsApplicatives != null ){
+			for (int i = 0; i < solutionsApplicatives.length; i++) {
+				
+				sol.add(Long.parseLong(solutionsApplicatives[i]));
+			}
+		}
+		
+		if(contrats  != null ){
+			for (int i = 0; i < contrats.length; i++) {
+				
+				contr.add(Long.parseLong(contrats[i]));
+			}
+		}
+		if(volumesLogiques  != null ){
+			for (int i = 0; i < volumesLogiques.length; i++) {
+				
+				vol.add(Long.parseLong(volumesLogiques[i]));
+			}
+		}
+		if(interfacesReseaux != null ){
+			for (int i = 0; i < interfacesReseaux.length; i++) {
+				
+				inter.add(Long.parseLong(interfacesReseaux[i]));
+			}
+		}	
+		m.ajouterMachineVirtuelleAll(mv, mv.getVirtualisation().getId(), mv.getLicenseOs().getId(), log, cont, doc, sol, inter, vol, contr);
+		return "redirect:/config/admin/dashboard";
 	}
 	@RequestMapping(value="/admin/add/hyperviseur")
 	public String addHyperviseur(Model model){

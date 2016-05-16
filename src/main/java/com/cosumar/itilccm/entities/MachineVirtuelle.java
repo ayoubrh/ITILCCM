@@ -57,6 +57,18 @@ public class MachineVirtuelle implements Serializable {
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="machineVirtuelle")
 	   private Collection<LogicielEtApplication> logicielEtApplication;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contact> contacts;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contrat> contrats;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Document> documents;
 		   
 		public MachineVirtuelle() {
 			super();
@@ -164,10 +176,23 @@ public class MachineVirtuelle implements Serializable {
 		public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
 			this.logicielEtApplication = logicielEtApplication;
 		}
-		   
-		   
-   
-   
-   
-
+		public Collection<Contact> getContacts() {
+			return contacts;
+		}
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
+		}
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+		public Collection<Document> getDocuments() {
+			return documents;
+		}
+		public void setDocuments(Collection<Document> documents) {
+			this.documents = documents;
+		}
+	     
 }

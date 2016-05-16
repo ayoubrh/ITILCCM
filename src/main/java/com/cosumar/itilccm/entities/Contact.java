@@ -117,6 +117,14 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="contacts")
 	   private Collection<Camera> camera;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<ProcessusMetier> processusMetier;
    
 		public Contact() {
 			super();
@@ -341,7 +349,21 @@ public class Contact implements Serializable {
 			this.camera = camera;
 		}
 
+		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+			return machineVirtuelle;
+		}
+
+		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+			this.machineVirtuelle = machineVirtuelle;
+		}
+
+		public Collection<ProcessusMetier> getProcessusMetier() {
+			return processusMetier;
+		}
+
+		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
+			this.processusMetier = processusMetier;
+		}
 		
-			   
 
 }

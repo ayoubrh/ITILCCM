@@ -55,7 +55,7 @@
 		ACCES REFUSE .... VOUS N'AVEZ PAS LE DROIT D'ENTRER DANS CE ESPACE
 		<br>
 		<br>
-		<span class="solve">Nous espérons résoudre prochainement</span>
+		<span class="solve">Nous esprons rsoudre prochainement</span>
 	</div> <!-- / .error-text -->
 
 <!-- Get jQuery from Google CDN -->

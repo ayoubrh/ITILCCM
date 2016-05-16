@@ -3311,6 +3311,155 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return lo.getId();
 	}
 
+	@Override
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		
+		if(virtualisation !=null){
+			
+			Virtualisation virt = getVirtualisation(virtualisation);
+			mv.setVirtualisation(virt);
+		
+		}else{
+			mv.setVirtualisation(null);
+		}
+        if(license !=null){
+			
+        	LicenseOs licenseOs = getLicenseOs(license);
+			mv.setLicenseOs(licenseOs);
+		
+		}else{
+			mv.setLicenseOs(null);
+		}
+        if(logiciels != null){
+			
+			Collection<LogicielEtApplication> logiciel = new ArrayList<LogicielEtApplication>();
+			for (Long l : logiciels) {
+				LogicielEtApplication logicielEtApplication = getLogicielEtApplication(l);
+				logiciel.add(logicielEtApplication);
+				logicielEtApplication.setMachineVirtuelle(mv);
+			}
+			
+			mv.setLogicielEtApplication(logiciel);
+					
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			mv.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			mv.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			mv.setSolutionApplicative(solutionsAppl);
+			
+		}
+       if(interfacesReseaux!=null){
+			
+			Collection<IntefaceReseau> logique = new ArrayList<IntefaceReseau>();
+			for (Long ir : interfacesReseaux) {
+				IntefaceReseau log = getInterfaceReseau(ir);
+				logique.add(log);
+				log.setMachineVirtuelle(mv);
+			}
+			
+			    mv.setIntefaceReseau(logique);
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			mv.setVolumelogique(volumeslogique);
+		}
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			mv.setContrats(contrat);
+					
+		}
+		
+		em.persist(mv);
+		return mv.getId();
+	}
+
+	@Override
+	public Long addProcessusMetierAll(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				pm.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				pm.setDocuments(document);
+				
+			}
+	        if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				pm.setSolutionApplicative(solutionsAppl);
+				
+			}
+		em.persist(pm);
+		return pm.getId();
+	}
+
 		
 }
 

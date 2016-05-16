@@ -119,8 +119,8 @@ public class HomeController implements HandlerExceptionResolver {
 		}
 		if(u.getEmail().equals(mail) ) {
 			String url = "http://localhost:8080/itilccm/password?id="+u.getId();
-			mu.SendEmail(u.getEmail(), "Récupiration de mot de passee", "Vous avez demander de récuperer votre mot de passe.<br>"
-					+"Pour récuprer le mot de passe "
+			mu.SendEmail(u.getEmail(), "Rcupiration de mot de passee", "Vous avez demander de rcuperer votre mot de passe.<br>"
+					+"Pour rcuprer le mot de passe "
 					+"<a href="+url+">Clickez ici</a>. <br>"
 					+"Si ce n'est pas vous, oublier ce message !"
 					);
@@ -153,7 +153,7 @@ public class HomeController implements HandlerExceptionResolver {
 				return "redirect:/password?id="+id+"&error=true";
 			}
 			mu.modifierUser(u);
-			mu.SendEmail(u.getEmail(), "Nouveau mot de passee", "Vous avez chnagé votre mot de passe avec success.<br>"
+			mu.SendEmail(u.getEmail(), "Nouveau mot de passee", "Vous avez chnag votre mot de passe avec success.<br>"
 					+"Les informations de votre comptes sont : <br>"
 					+"matricule : "+u.getMatricule()+"<br>"
 					+"Password : "+password+"<br>"

@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -691,9 +691,6 @@ Use search to find needed section.
 											<f:errors path="criticite" cssClass="help-block"></f:errors>
 										</div>
 									</div>
-									
-									
-									
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu</label>

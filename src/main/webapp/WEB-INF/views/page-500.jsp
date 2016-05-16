@@ -56,7 +56,7 @@
 		<br>
 		${ex}
 		<br>
-		<span class="solve">Nous espérons résoudre prochainement</span>
+		<span class="solve">Nous esprons rsoudre prochainement</span>
 	</div> <!-- / .error-text -->
 
 <!-- Get jQuery from Google CDN -->

@@ -110,6 +110,14 @@ public class Document implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<Camera> camera;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<ProcessusMetier> processusMetier;
 
 		public Document() {
 			super();
@@ -315,6 +323,22 @@ public class Document implements Serializable {
 
 		public void setCamera(Collection<Camera> camera) {
 			this.camera = camera;
+		}
+
+		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+			return machineVirtuelle;
+		}
+
+		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+			this.machineVirtuelle = machineVirtuelle;
+		}
+
+		public Collection<ProcessusMetier> getProcessusMetier() {
+			return processusMetier;
+		}
+
+		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
+			this.processusMetier = processusMetier;
 		}
 		
 		

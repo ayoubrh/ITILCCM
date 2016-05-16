@@ -1775,6 +1775,18 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterLicenseOsAll(lo, versionOs, documents, serveurs, machineVirtuelle); 
 	}
 
+	@Override
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		return dao.ajouterMachineVirtuelleAll(mv, virtualisation, license, logiciels, contacts, documents, solutionsApplicatives, interfacesReseaux, volumesLogiques, contrats);
+	}
+
+	@Override
+	public Long addProcessusMetierAll(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		return dao.addProcessusMetierAll(pm, contacts, documents, solutionsApplicatives); 
+	}
 	
 
 }

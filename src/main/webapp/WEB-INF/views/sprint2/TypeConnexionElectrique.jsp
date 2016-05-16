@@ -464,7 +464,7 @@ Use search to find needed section.
 					<form action="typeDocumentRedirect">
 						<div class="form-group">
 					
-								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de Connection Electrique à créer  :</label>
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de Connection Electrique à créer :</label>
 								<div class="col-sm-3">
 									<select   class="form-control" name="type">
 							             <option value="/config/admin/add/arriveeElectrique">Arrivée électrique</option>

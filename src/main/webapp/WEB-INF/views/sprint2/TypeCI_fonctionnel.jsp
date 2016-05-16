@@ -28,12 +28,11 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau  Interface Fibre - ITIL-CCM</title>
+	<title>Type CI fonctionnel - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -70,7 +69,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -468,111 +467,71 @@ Use search to find needed section.
 <!-- /4. $MAIN_MENU -->
 
 
-	<div id="content-wrapper">
+	<div  id="content-wrapper">
 <!-- 5. $CONTENT ===================================================================================
 
 		Content
 -->
+
+		<!-- Content here -->
+		
+	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Interface Fibre</span>
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; <strong>Type CI fonctionnel</strong></span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="fibre" action="saveFibre" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+					<form action="typeDocumentRedirect">
+						<div class="form-group">
 					
-					
-		
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-														
-							</ul>
-		                 </div>
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de CI fonctionnel à créer :</label>
+								<div class="col-sm-3">
+									<select   class="form-control" name="type">
+							             <option value="/config/admin/add/applicationWeb">Application Web</option>
+										 <option value="/config/admin/add/arriveeElectrique">Arrivée électrique</option>
+									     <option value="/config/admin/add/autreLogiciel"  >Autre logiciel</option>
+									     <option value="/config/admin/add/">Bandothèque</option>
+									     <option value="/config/admin/add/chassis"  >Chassis</option>
+										 <option value="/config/admin/add/">DVR</option>
+									     <option value="/config/admin/add/">Equipement réseau</option>
+										 <option value="/config/admin/add/hyperviseur">Hyperviseur</option>
+									     <option value="/config/admin/add/imp"  >Imprimante</option>
+									     <option value="/config/admin/add/instanceMiddleware">Instance Middleware</option>
+										 <option value="/config/admin/add/instanceBD">Instance de base de données</option>
+									     <option value="/config/admin/add/logicielPc"  >Logiciel PC</option>
+									     <option value="/config/admin/add/machineVirtuelle">Machine Virtuelle</option>
+										 <option value="/config/admin/add/middleware">Middleware</option>
+									     <option value="/config/admin/add/"  >NAS</option>
+									     <option value="/config/admin/add/pc">PC</option>
+										 <option value="/config/admin/add/pduElectrique">PDU</option>
+									     <option value="/config/admin/add/processusMetier"  >Processus métier</option>
+									     <option value="/config/admin/add/per"  >Périphérique</option>
+									     <option value="/config/admin/add/rack"  >Rack</option>
+									     <option value="/config/admin/add/"  >Serveur</option>
+									     <option value="/config/admin/add/serveurWeb"  >Serveur Web</option>
+									     <option value="/config/admin/add/serveurBD"  >Serveur de base de données</option>
+									     <option value="/config/admin/add/sim"  >SIM</option>
+									     <option value="/config/admin/add/solutionApplication"  >Solution applicative</option>
+									     <option value="/config/admin/add/"  >Switch SAN</option>
+									     <option value="/config/admin/add/"  >Système de Stockage</option>
+									     <option value="/config/admin/add/tablette"  >Tablette</option>
+									     <option value="/config/admin/add/telefixe"  >Téléphone fixe</option>
+									     <option value="/config/admin/add/telemobile"  >Téléphone mobile</option>
+									     <option value="/config/admin/add/vCluster"  >vCluster</option>
+									     
+									</select>
 									
-		
-									<div class="panel-body">
+							    </div>
+							    <button type="submit" class="btn btn-primary">Appliquer</button>
 						
-						
-							
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Matériel</label>
-								<div class="col-sm-9">
-									<f:select  path="" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value=""> -- choisir une valeur --</f:option>
-										<f:options items="${m}" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Vitesse</label>
-								<div class="col-sm-9">
-									<f:input path="vitesse" type="text" class="form-control" id="inputError-4" name="jq-validation-vitesse" />
-									<f:errors path="vitesse" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Topologie</label>
-								<div class="col-sm-9">
-									<f:input path="topologie" type="text" class="form-control" id="inputError-4" name="jq-validation-topologie" />
-									<f:errors path="topologie" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">WWN</label>
-								<div class="col-sm-9">
-									<f:input path="wwn" type="text" class="form-control" id="inputError-4" name="jq-validation-wwn" />
-									<f:errors path="wwn" cssClass="help-block"></f:errors>
-								</div>
-							</div> 
-							
-							</div>
-		
-								</div> <!-- / .tab-pane -->
-								
-								
-								
-							</div> <!-- / .tab-content -->
-						
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
+						</div>
+					</form>					
+									
 					</div>
 					
 					
 		</div>
-
-		
-
-		<!-- Content here -->
-		
-		
-		
+					
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -593,46 +552,10 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-init.push(function () {
-	$('#profile-tabs').tabdrop();
-
-	$("#leave-comment-form").expandingInput({
-		target: 'textarea',
-		hidden_content: '> div',
-		placeholder: 'Write message',
-		onAfterExpand: function () {
-			$('#leave-comment-form textarea').attr('rows', '3').autosize();
-		}
+	init.push(function () {
+		// Javascript code here
 	});
-	
-		$('.jq-datatables-example').dataTable();
-		$('.jq-datatables-example_wrapper .table-caption').text('');
-		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-		
-		document.getElementById("addContrat").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ck:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_".concat($(this).val()));
-		    	$( "#tableContrat" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    
-	    };
-	    document.getElementById("suppContrat").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ck:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_".concat($(this).val()));
-		    	$( "#tableContratepopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    }
-	
-});
-window.PixelAdmin.start(init);
+	window.PixelAdmin.start(init);
 </script>
 
 </body>

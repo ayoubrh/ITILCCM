@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -498,7 +498,7 @@ Use search to find needed section.
 										<tbody id="tableContactpopup">
 											<c:forEach items="${contacts}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="Contacts" value="${contact.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
 													<td>${contact.nom } ${contact.prenom }</td>
 													<td>${contact.statut }</td>
 													<td>${contact.organisme }</td>
@@ -515,7 +515,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -548,7 +548,7 @@ Use search to find needed section.
 										<tbody id="tableContratpopup">
 											<c:forEach items="${contrats}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="Contrats" value="${contrat.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
 													<td>${contrat.nom }</td>
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
@@ -566,7 +566,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -595,7 +595,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -609,7 +609,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -638,7 +638,7 @@ Use search to find needed section.
 										<tbody id="tableSolutionApplicativepopup">
 											<c:forEach items="${solutionsApplicatives}" var="sa">
 												<tr class="gradeA" id="tr_SolutionApplicative_${sa.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckSol" name="chSolutionApplicative" value="${sa.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckSol" name="ckSolutionApplicative" value="${sa.id }"></td>
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
@@ -652,7 +652,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addSol">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addSol">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -685,7 +685,7 @@ Use search to find needed section.
 										<tbody id="tableinterfacereseaupopup">
 											<c:forEach items="${interfacereseaux}" var="ir">
 												<tr class="gradeA" id="tr_ir_${ir.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckir" name="chinterfacereseau" value="${ir.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckir" name="ckInterfacesReseaux" value="${ir.id }"></td>
 													<td>${ir.nom }</td>
 													<td>${ir.adresseIp }</td>
 													<td>${ir.adresseMac }</td>
@@ -702,7 +702,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addir">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addir">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -734,7 +734,7 @@ Use search to find needed section.
 										<tbody id="tableVolumesLogiquespopup">
 											<c:forEach items="${volumesLogiques}" var="vl">
 												<tr class="gradeA" id="tr_vl_${vl.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckvl" name="volumesLogiques" value="${vl.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckvl" name="ckVolumesLogiques" value="${vl.id }"></td>
 													<td>${vl.nom }</td>
 													<td>${vl.lunId }</td>
 													<td>${vl.systemedestockage.nom }</td>
@@ -750,7 +750,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addvl">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addvl">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -783,7 +783,7 @@ Use search to find needed section.
 										<tbody id="tableLogicielpopup">
 											<c:forEach items="${logiciels}" var="l">
 												<tr class="gradeA" id="tr_logiciel_${l.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckla" name="logiciel" value="${l.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckla" name="ckLogiciel" value="${l.id }"></td>
 													<td>${l.nom }</td>
 													<td>${l.statut }</td>
 													<td>${l.criticite }</td>
@@ -800,7 +800,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addla">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addla">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -902,7 +902,18 @@ Use search to find needed section.
 									<f:errors path="virtualisation.id" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence OS</label>
+								<div class="col-sm-9">
+									<f:select  path="licenseOs.id" class="form-control" name="jq-validation-licenseOs" id="jq-validation-licenseOs">
+										<f:option value=""> -- choisir une valeur --</f:option>
+										<c:forEach items="${licenseos }" var="los">
+										<f:option value="${los.id}" label="${los.nom } - ${los.versionOs.nom } - ${los.versionOs.familleOs }" />
+										</c:forEach>
+									</f:select>
+									<f:errors path="licenseOs.id" cssClass="help-block"></f:errors>
+								</div>
+							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">IP</label>
 								<div class="col-sm-9">
@@ -910,16 +921,7 @@ Use search to find needed section.
 									<f:errors path="ip" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence OS</label>
-								<div class="col-sm-9">
-									<f:select  path="licenseOs.id" class="form-control" name="jq-validation-licenseOs" id="jq-validation-licenseOs">
-										<f:option value=""> -- choisir une valeur --</f:option>
-										<f:options items="${l}" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="licenseOs.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
+							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">CPU</label>
 								<div class="col-sm-9">
@@ -941,7 +943,9 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
+							$('#bs-datepicker-component').datepicker({
+                                 format: 'dd/mm/yyyy'
+								 });
 						
 
 					});

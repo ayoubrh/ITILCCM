@@ -205,7 +205,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -215,7 +215,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -225,7 +225,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -235,7 +235,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -245,7 +245,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -255,7 +255,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -265,7 +265,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -275,7 +275,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -285,7 +285,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -295,7 +295,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -479,7 +479,7 @@ Use search to find needed section.
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">*</button>
 								<h4 class="modal-title" id="myModalLabel">Ajout Contacts</h4>
 							</div>
 							<div class="modal-body">
@@ -528,7 +528,7 @@ Use search to find needed section.
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">*</button>
 								<h4 class="modal-title" id="myModalLabel">Ajout Contrats</h4>
 							</div>
 							<div class="modal-body">
@@ -578,7 +578,7 @@ Use search to find needed section.
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">*</button>
 								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
 							</div>
 							<div class="modal-body">
@@ -622,7 +622,7 @@ Use search to find needed section.
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">*</button>
 								<h4 class="modal-title" id="myModalLabel">Ajout Solutions Applicatives </h4>
 							</div>
 							<div class="modal-body">
