@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Serveur - ITIL-CCM</title>
+	<title>Nouveau Switch SAN - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -473,52 +473,6 @@ Use search to find needed section.
 
 		Content
 -->
-				<!-- Modal Logiciel -->
-				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Logiciels</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Chemin d'installation</th>
-												<th>Date de mise en production</th>
-											</tr>
-										</thead>
-										<tbody id="tableLogicilepopup">
-											<c:forEach items="${logiciels}" var="l">
-												<tr class="gradeA" id="tr_log_${l.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckLogiciels" name="chLogiciels" value="${l.id }"></td>
-													<td>${l.nom }</td>
-													<td>${l.statut }</td>
-													<td>${l.criticite }</td>
-													<td>${l.cheminD_installation }</td>
-													<td>${l.dateDeMiseEnProduction }</td>
-
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addL">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
 				
 				
 				
@@ -652,7 +606,7 @@ Use search to find needed section.
 													<td>${er.nom }</td>
 													<td>${er.statut }</td>
 													<td>${er.criticite }</td>
-													<td>    </td>
+													<td>${er.lieu.nom }</td>
 													<td>${er.marque }</td>
 													<td>${er.modele }</td>
 													<td>${er.numeroDeSerie }</td>
@@ -672,103 +626,6 @@ Use search to find needed section.
 				</div> <!-- /.modal -->
 				<!-- / Modal -->
 				
-				
-				<!-- Modal San -->
-				<div id="myModalsan" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Switch SAN</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Numèro de Série</th>
-												<th>Numèro Asset</th>
-												<th>Date de mise en production</th>	
-											</tr>
-										</thead>
-										<tbody id="tableSanpopup">
-											<c:forEach items="${sans}" var="san">
-												<tr class="gradeA" id="tr_san_${san.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckSan" name="chSan" value="${san.id }"></td>
-													<td>${san.nom }</td>
-													<td>${san.statut }</td>
-													<td>${san.criticite }</td>
-													<td>${san.numeroDeSerie }</td>
-													<td>${san.numeroAsset }</td>
-													<td>${san.dateDeMiseEnProduction }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addSan">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				<!-- Modal Volumes logiques -->
-				<div id="myModalVolumesLogiques" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Volumes logiques</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th> 	 	 	 	 		
-												<th>Volume logique</th>
-												<th>LUN ID</th>
-												<th>Système de stockage</th>
-												<th>Niveau RAID</th>
-												<th>Taille</th>	
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tableVolumesLogiquespopup">
-											<c:forEach items="${volumesLogiques}" var="vl">
-												<tr class="gradeA" id="tr_vl_${vl.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckvl" name="volumesLogiques" value="${vl.id }"></td>
-													<td>${vl.nom }</td>
-													<td>${vl.lunId }</td>
-													<td>${vl.systemeDeStockage }</td>
-													<td>${vl.niveauRaid }</td>
-													<td>${vl.taille}</td>
-													<td>${vl.description}</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addvl">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Volumes logiques -->
 				
 				
 				<!-- Modal document -->
@@ -924,10 +781,10 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Serveur</span>
+						<span class="panel-title">Nouveau Switch SAN</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="serveur" action="saveServeur" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="switchSan" action="saveSwitchSan" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -939,9 +796,7 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								<li>
-									<a href="#profile-tabs-logiciels" data-toggle="tab">Logiciels</a>
-								</li>
+								
 								<li>
 									<a href="#profile-tabs-solutions_applicatives" data-toggle="tab">Solutions Applicatives</a>
 								</li>
@@ -951,12 +806,7 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-equipementreseaux" data-toggle="tab">Equipement réseaux</a>
 								</li>
-								<li>
-									<a href="#profile-tabs-san" data-toggle="tab">SANs</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-volumes_logiques" data-toggle="tab">Volumes Logiques</a>
-								</li>
+								
 								<li>
 									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
 								</li>
@@ -1066,19 +916,6 @@ Use search to find needed section.
 									</div>
 									
 									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS</label>
-										<div class="col-sm-9">
-											<f:select  path="licenseOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<c:forEach items="${licenseos }" var="los">
-													<f:option value="${los.id }" label="${los.nom } - ${los.versionOs.nom } - ${los.versionOs.familleOs }"/>
-												</c:forEach>
-											</f:select>
-											<f:errors path="licenseOs.id" cssClass="help-block"></f:errors>
-										</div>
-										
-									</div>
 									
 									
 									<div class="form-group">
@@ -1086,14 +923,6 @@ Use search to find needed section.
 										<div class="col-sm-9">
 											<f:input path="ip" type="text" class="form-control" id="inputError-4" name="jq-validation-cpu" />
 											<f:errors path="ip" cssClass="help-block"></f:errors>
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM</label>
-										<div class="col-sm-9">
-											<f:input path="ram" type="text" class="form-control" id="inputError-4" name="jq-validation-ram" />
-											<f:errors path="ram" cssClass="help-block"></f:errors>
 										</div>
 									</div>
 									
@@ -1196,43 +1025,7 @@ Use search to find needed section.
 		
 								</div> <!-- / .tab-pane -->
 								
-								
-								
-								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Chemin d'installation</th>
-												<th>Date de mise en production</th>
-												
-											</tr>
-										</thead>
-										<tbody id="tableLogicile">
-											
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppL">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Logiciels</button>
-										</div>
-										
-									</div>
-									
-								</div> <!-- / .tab-pane -->
+							
 								
 								<div class="tab-pane fade widget-solutions_applicatives" id="profile-tabs-solutions_applicatives">
 									
@@ -1359,86 +1152,6 @@ Use search to find needed section.
 		
 									
 								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-san" id="profile-tabs-san">
-									
-										
-
-									<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Numèro de Série</th>
-												<th>Numèro Asset</th>
-												<th>Date de mise en production</th>	
-											</tr>
-										</thead>
-										<tbody id="tableSan">
-											
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppSan">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalsan">Ajouter des Switch Sans</button>
-										</div>
-										
-									</div>
-		
-									
-								</div>
-								
-								
-								<div class="tab-pane fade widget-volumes_logiques" id="profile-tabs-volumes_logiques">
-									
-										
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-												<th id="supchek"> </th> 	 	 	 	 		
-												<th>Volume logique</th>
-												<th>LUN ID</th>
-												<th>Système de stockage</th>
-												<th>Niveau RAID</th>
-												<th>Taille</th>	
-												<th>Description</th>
-											</tr>
-											</thead>
-											<tbody id="tableVolumesLogiques">
-												
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppvl">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalVolumesLogiques">Ajouter des Volumes Logiques</button>
-										</div>
-										
-									</div>
-		
-									
-								</div>
 								
 								
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
@@ -1663,30 +1376,7 @@ Use search to find needed section.
 			$('.jq-datatables-example_wrapper .table-caption').text('');
 			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 			
-			 //<!-- Modal Logiciel -->
-			document.getElementById("addL").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ckLogiciels:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
-			    	$( "#tableLogicile" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		 
-		    document.getElementById("suppL").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckLogiciels:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_log_".concat($(this).val()));
-			    	$( "#tableLogicilepopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-		    
+			
 		    
 		  //<!-- Modal Solutions Applicatives -->    
 	        document.getElementById("addSol").onclick = function () {
@@ -1694,7 +1384,7 @@ Use search to find needed section.
 		    	$(".ckSol:checked").each(function() {
 		    		chkArray.push($(this).val());
 		    		var tr = document.getElementById("tr_SolutionApplicative_".concat($(this).val()));
-			    	$( "#tableSolutionApplicative").append(tr);
+		    		$( "#tableSolutionApplicative").append(tr);
 			    	//this.checked = false;
 		    	});
 		    	
@@ -1766,54 +1456,6 @@ Use search to find needed section.
 		    };
 		    
 		    
-
-			//<!-- Modal San -->
- 			document.getElementById("addSan").onclick = function () {
-		    	var chkArray = [];
-		    	$(".ckSan:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_san_".concat($(this).val()));
-			    	$( "#tableSan" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    document.getElementById("suppSan").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckSan:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_san_".concat($(this).val()));
-			    	$( "#tableSanpopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-
-		    
-
-		    //<!-- Modal Volumes logiques -->
-		    document.getElementById("addvl").onclick = function () {
-		 	    	var chkArray = [];
-		 	    	$(".ckvl:checked").each(function() {
-		 	    		chkArray.push($(this).val());
-		 	    		var tr = document.getElementById("tr_vl_".concat($(this).val()));
-		 		    	$( "#tableVolumesLogiques" ).append(tr);
-		 		    	//this.checked = false;
-		 	    	});
-		 	    	
-		 	    };
-		 	    
-		 	    document.getElementById("suppvl").onclick = function () {
-		 			var chkArray = [];
-		 	    	
-		 	    	$(".ckvl:checked").each(function() {
-		 	    		chkArray.push($(this).val());
-		 	    		var tr = document.getElementById("tr_vl_".concat($(this).val()));
-		 		    	$( "#tableVolumesLogiquespopup" ).append(tr);
-		                 this.checked = false;
-		 	    	});
-		 	    };
 		    
 		    //<!-- Modal document -->
 		    document.getElementById("addDoc").onclick = function () {

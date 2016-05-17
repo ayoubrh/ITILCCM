@@ -3240,5 +3240,274 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(Serveur);
 		return Serveur.getId();
 	}
+	
+	
+	@Override
+	public Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			er.setLieu(lie);
+		} else {
+			er.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			er.setRack(rac);
+		}else {
+			er.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			er.setChassis(chas);
+		}else {
+			er.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			er.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			er.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			er.setContrat(contr);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setEquipementReseau(er);
+			}
+			er.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			er.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			er.setSolutionApplicative(solapp);
+		}
+		
+		
+
+		em.persist(er);
+		return er.getId();
+	}
+	
+	@Override
+	public Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis,
+			List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			sds.setLieu(lie);
+		} else {
+			sds.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			sds.setRack(rac);
+		}else {
+			sds.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			sds.setChassis(chas);
+		}else {
+			sds.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			sds.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			sds.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			sds.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			sds.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(sds);
+			}
+			sds.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			sds.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			sds.setSolutionApplicative(solapp);
+		}
+		
+		if(San != null){
+			Collection<SwitchSan> switchsan = new ArrayList<SwitchSan>();
+			for (Long s : San) {
+				switchsan.add(getSwitchSan(s));
+			}
+			sds.setSwitchSan(switchsan);
+		}
+		
+		if(volumesLogique != null){
+			Collection<VolumeLogique> volumelog = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogique) {
+				volumelog.add(getVolumeLogique(vl));
+			}
+			sds.setVolumelogique(volumelog);
+		}
+
+		em.persist(sds);
+		return sds.getId();
+	}
+	
+	@Override
+	public Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			san.setLieu(lie);
+		} else {
+			san.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			san.setRack(rac);
+		}else {
+			san.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			san.setChassis(chas);
+		}else {
+			san.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			san.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			san.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			san.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			san.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(san);
+			}
+			san.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			san.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			san.setSolutionApplicative(solapp);
+		}
+		
+		em.persist(san);
+		return san.getId();
+	}
 }
 

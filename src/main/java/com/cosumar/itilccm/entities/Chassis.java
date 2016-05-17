@@ -47,6 +47,10 @@ public class Chassis implements Serializable{
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
+	@OneToMany(mappedBy="chassis")
+   	@Column(nullable = true)
+   private Collection<EquipementReseau> equipementreseau;
+   	
    	
    	@ManyToOne(cascade = CascadeType.ALL)
    	@JoinColumn(name="lieu_id")
@@ -222,6 +226,14 @@ public class Chassis implements Serializable{
 
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
+	}
+
+	public Collection<EquipementReseau> getEquipementreseau() {
+		return equipementreseau;
+	}
+
+	public void setEquipementreseau(Collection<EquipementReseau> equipementreseau) {
+		this.equipementreseau = equipementreseau;
 	}
    	
    	

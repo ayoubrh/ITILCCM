@@ -56,6 +56,10 @@ public class Contrat implements Serializable {
 		   
 		   @ManyToMany(mappedBy="contrat")
 		   	@Column(nullable = true)
+		   private Collection<EquipementReseau> equipementreseaux;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
 		   private Collection<Infrastructure> infrastructure;
 		   
 		   @ManyToMany(mappedBy="contrat")
@@ -393,6 +397,14 @@ public class Contrat implements Serializable {
 
 			public void setInfrastructure(Collection<Infrastructure> infrastructure) {
 				this.infrastructure = infrastructure;
+			}
+
+			public Collection<EquipementReseau> getEquipementreseaux() {
+				return equipementreseaux;
+			}
+
+			public void setEquipementreseaux(Collection<EquipementReseau> equipementreseaux) {
+				this.equipementreseaux = equipementreseaux;
 			}
 	
 			

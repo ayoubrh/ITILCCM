@@ -52,6 +52,10 @@ public class Contact implements Serializable {
 	    @ManyToMany(mappedBy="contact")
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
+
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<EquipementReseau> equipementreseaux;
 	    
 	    @ManyToMany(mappedBy="contact")
 	   	@Column(nullable = true)
@@ -338,6 +342,14 @@ public class Contact implements Serializable {
 
 		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
 			this.infrastructure = infrastructure;
+		}
+
+		public Collection<EquipementReseau> getEquipementreseaux() {
+			return equipementreseaux;
+		}
+
+		public void setEquipementreseaux(Collection<EquipementReseau> equipementreseaux) {
+			this.equipementreseaux = equipementreseaux;
 		}
 
 		

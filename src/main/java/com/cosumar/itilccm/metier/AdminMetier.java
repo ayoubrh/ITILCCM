@@ -450,6 +450,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// SystemeDeStockage
 	public  Long addSystemeDeStockage(SystemeDeStockage sds);
+	public  Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editSystemeDeStockage(SystemeDeStockage sds);
 	public List<SystemeDeStockage> ListSystemeDeStockage();
@@ -458,7 +459,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// SwitchSan
 	public  Long addSwitchSan(SwitchSan san);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editSwitchSan(SwitchSan san);
 	public List<SwitchSan> ListSwitchSan();
 	public SwitchSan getSwitchSan(Long id);
@@ -482,6 +483,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	//EquipementReseau
 	public  Long addEquipementReseau(EquipementReseau er);
+	public  Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editEquipementReseau(EquipementReseau er);
 	public List<EquipementReseau> ListEquipementReseau();

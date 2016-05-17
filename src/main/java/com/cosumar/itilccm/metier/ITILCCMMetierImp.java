@@ -1767,6 +1767,28 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> contact, List<Long> contrat) {
 		return dao.addServeurAll(Serveur, lieu, rack, chassis, licenseos, sourceelec, Logiciel, SolutionApplicative, interfacereseau, equipementreseaux, San, volumesLogique, document, contact, contrat);
 	}
+	
+	@Override
+	public Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addEquipementReseauAll(er, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis,
+			List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.addSystemeDeStockageAll(sds, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, equipementreseaux, San, volumesLogique, document, contact, contrat);
+	}
+	
+	@Override
+	public Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.addSwitchSanAll(san, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
 
 }
 

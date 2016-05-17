@@ -491,6 +491,17 @@ Use search to find needed section.
 					});
 				</script>
 				<!-- / Javascript -->
+				
+				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien enregistrer.
+					</div>
+				</c:if>
+				
+				
+				
 
 		<!-- Content here -->
 		<div class="panel">
@@ -555,7 +566,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Switch SAN</span></a>
+													<a href="<c:url value="/config/admin/add/switchsan" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Switch SAN</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Switch SAN</span></a>
 												</div>
 											</div>
@@ -625,7 +636,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
+													<a href="<c:url value="/config/admin/add/equipementreseau" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
 												</div>
 											</div>
@@ -639,7 +650,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Système de stockage</span></a><br>
+													<a href="<c:url value="/config/admin/add/systemedestockage" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Système de stockage</span></a><br>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Système de stockage</span></a>
 												</div>
 											</div>
