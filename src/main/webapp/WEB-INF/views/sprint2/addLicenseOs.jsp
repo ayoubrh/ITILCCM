@@ -411,7 +411,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -498,7 +498,7 @@ Use search to find needed section.
 										<tbody id="tabledocpopup">
 											<c:forEach items="${documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
 													<td> </td>
@@ -512,12 +512,110 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
 				</div> <!-- /.modal -->
 				<!-- / Modal Document -->
+				<!-- Modal Machines Virtuelles -->
+				<div id="myModalMachinesVirtuelles" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Machines Virtuelles </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Machines Virtuelles</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableMachinesVirtuellespopup">
+											<c:forEach items="${machinesVirtuelles}" var="mv">
+												<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckmv" name="ckMachinesVirtuelles" value="${mv.id }"></td>
+													<td>${mv.nom }</td>
+													<td>${mv.statut }</td>
+													<td>${mv.criticite}</td>
+													<td>${mv.ip}</td>
+													<td>${mv.dateDeMiseEnProduction }</td>
+													<td>${mv.description}</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addmv">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Machines Virtuelles -->
+				<!-- Modal Serveurs-->
+				<div id="myModalServeurs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Serveurs </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Serveur</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableServeurspopup">
+											<c:forEach items="${serveurs}" var="s">
+												<tr class="gradeA" id="tr_Serveurs_${s.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckserv" name="ckServeurs" value="${s.id }"></td>
+													<td>${s.nom }</td>
+													<td>${s.statut }</td>
+													<td>${s.criticite}</td>
+													<td>${s.marque}</td>
+													<td>${s.modele}</td>
+													<td>${s.ip}</td>
+													<td>${s.dateDeMiseEnProduction }</td>
+													<td>${s.description}</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addserv">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Serveurs -->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Licence OS</span>
@@ -539,6 +637,12 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
 								</li>
+								<li>
+									<a href="#profile-tabs-serveurs" data-toggle="tab">Serveurs</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
+								</li>
 								
 							</ul>
 		
@@ -550,7 +654,7 @@ Use search to find needed section.
 						<div class="panel-body">
 						
 						
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -559,7 +663,7 @@ Use search to find needed section.
 							
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
 								<div class="col-sm-9">
 									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
@@ -578,13 +682,14 @@ Use search to find needed section.
 							
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
 								<div class="col-sm-9">
 									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
 									            <f:option value=""> -- choisir une valeur --</f:option>
+									            <f:option value="oui"> oui</f:option>
 									            <f:option value="non">non</f:option>
-												<f:option value="oui"> oui</f:option>
+												
 									</f:select>
 									<f:errors path="perpetuelle" cssClass="help-block"></f:errors>
 							     </div>
@@ -596,9 +701,13 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
+							$('#bs-datepicker-component').datepicker({ 
+								format: 'dd/mm/yyyy'
+								});
 						
-						    $('#bs-datepicker-component2').datepicker(options);
+						    $('#bs-datepicker-component2').datepicker({ 
+						    	format: 'dd/mm/yyyy'
+							    });
 
 					});
 				</script>
@@ -610,8 +719,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>	
+							<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>			
 						</div>
 				</div>
 				
@@ -621,8 +731,9 @@ Use search to find needed section.
 								<div class="input-group date" id="bs-datepicker-component2">
 									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
+									
 								</div>
+								<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
 							</div>
 				
 				</div>	
@@ -648,8 +759,6 @@ Use search to find needed section.
 						
 					</div>
 					
-					
-		
 								</div> <!-- / .tab-pane -->
 								
 								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
@@ -681,6 +790,76 @@ Use search to find needed section.
 										
 										<div class="col-sm-offset-1 col-sm-7">
 											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
+										</div>
+										
+									</div>
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-serveurs" id="profile-tabs-serveurs">
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+											 <tr>
+												<th id="supchek"> </th>
+												<th>Serveur</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+											</thead>
+											<tbody id="tableServeurs">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppserv">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalServeurs">Ajouter des Serveurs</button>
+										</div>
+										
+									</div>
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-machines" id="profile-tabs-machines">
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+											 <tr>
+												<th id="supchek"> </th>
+												<th>Machines Virtuelles</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+											</thead>
+											<tbody id="tableMachinesVirtuelles">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppmv">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalMachinesVirtuelles">Ajouter des Machines Virtuelles</button>
 										</div>
 										
 									</div>
@@ -768,6 +947,50 @@ Use search to find needed section.
 	    		chkArray.push($(this).val());
 	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
 		    	$( "#tabledocpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+	    document.getElementById("addmv").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckmv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
+		    	$( "#tableMachinesVirtuelles" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppmv").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckmv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
+		    	$( "#tableMachinesVirtuellespopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+	    document.getElementById("addserv").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckserv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_Serveurs_".concat($(this).val()));
+		    	$( "#tableServeurs" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppserv").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckserv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_Serveurs_".concat($(this).val()));
+		    	$( "#tableServeurspopup" ).append(tr);
                 this.checked = false;
 	    	});
 	    };

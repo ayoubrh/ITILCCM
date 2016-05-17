@@ -28,7 +28,6 @@ public class Subnet implements Serializable{
 	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
    private String masqueIp;
    private String nomDeSubnnet;
-   private String organisation;
    private String description;
    
    	@ManyToMany(mappedBy="subnet")
@@ -66,15 +65,6 @@ public class Subnet implements Serializable{
 	public void setNomDeSubnnet(String nomDeSubnnet) {
 		this.nomDeSubnnet = nomDeSubnnet;
 	}
-
-	public String getOrganisation() {
-		return organisation;
-	}
-
-	public void setOrganisation(String organisation) {
-		this.organisation = organisation;
-	}
-
 	public String getDescription() {
 		return description;
 	}

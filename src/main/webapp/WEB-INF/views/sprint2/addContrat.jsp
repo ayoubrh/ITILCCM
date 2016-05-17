@@ -411,7 +411,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -515,7 +515,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -559,7 +559,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -603,7 +603,7 @@ Use search to find needed section.
 						<div class="panel-body">
 						
 						
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -625,7 +625,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="inputError-4" id="jq-validation-statut">
-									            <f:option value=""> -- choisir une valeur --</f:option>
+									            <f:option value="NULL"> -- choisir une valeur --</f:option>
 												<f:option value="implémentation">implémentation</f:option>
 												<f:option value="obsolète"> obsolète</f:option>
 												<f:option value="production"> production</f:option>
@@ -637,13 +637,11 @@ Use search to find needed section.
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Type de contrat</label>
 								<div class="col-sm-9">
-									<f:select  path="typeDeContrat" class="form-control" name="jq-validation-typeDeContrat" id="jq-validation-typeDeContrat">
-									            <f:option value=""> -- choisir une valeur --</f:option>
-									</f:select>
-									<f:errors path="typeDeContrat" cssClass="help-block"></f:errors>
+								<f:input path="typeDeContrat" type="text" class="form-control" name="jq-validation-typeDeContrat" id="jq-validation-typeDeContrat" />
+								<f:errors path="typeDeContrat" cssClass="help-block"></f:errors>
 							     </div>
 				             </div> 
-				             <!--  
+				             
 							<script>
 					init.push(function () {
 						
@@ -651,9 +649,13 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
+							$('#bs-datepicker-component').datepicker({ 
+								format: 'dd/mm/yyyy'
+								});
 						
-						    $('#bs-datepicker-component2').datepicker(options);
+						    $('#bs-datepicker-component2').datepicker({  
+						    	format: 'dd/mm/yyyy'
+							     });
 
 					});
 				</script>
@@ -681,7 +683,7 @@ Use search to find needed section.
 							</div>
 				
 				</div>	
-				-->
+				
 				<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Coût</label>
 								<div class="col-sm-9">

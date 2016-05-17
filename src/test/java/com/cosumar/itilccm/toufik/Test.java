@@ -40,6 +40,8 @@ public class Test {
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			m.ajouterDocumentFichier(new DocumentFichier("fichier1", null, null, null));
 			m.ajouterDocumentWeb(new DocumentWeb("web", null, null, null));
+			m.ajouterDocumentNote(new DocumentNote("note", null, null, null, "aaaaaaaaaaaaa"));
+			//m.ajouterAutreLogicielAll(new AutreLogiciel("test", null, null, null, null, null), null, 1l, 1l, null, null, null, null);
 			
 			assertTrue(true);
 		

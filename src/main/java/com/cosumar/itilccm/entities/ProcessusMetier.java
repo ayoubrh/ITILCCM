@@ -31,8 +31,16 @@ public class ProcessusMetier implements Serializable{
    
    	@ManyToMany
    	@Column(nullable=true)
-   private Collection<SolutionApplicative> solutionApplicative;
-
+    private Collection<SolutionApplicative> solutionApplicative;
+   	
+   	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Contact> contacts;
+	
+	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Document> documents;
+   	
 	public Long getId() {
 		return id;
 	}
@@ -108,8 +116,21 @@ public class ProcessusMetier implements Serializable{
 		super();
 		this.nom = nom;
 	}
-   
-   	
-   
 
+	public Collection<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(Collection<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Collection<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Collection<Document> documents) {
+		this.documents = documents;
+	}
+ 
 }

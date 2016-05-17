@@ -166,11 +166,16 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 	@Override
 	public Long ajouterLieuCont(Lieu l, List<Long> contacts) {
-		Collection<Contact> list=null;
-		for(Long cts : contacts ){
-			list.add(getContact(cts));
+		
+		if(contacts!=null){
+			Collection<Contact> list = new ArrayList<Contact>();
+			for(Long cts : contacts ){
+				Contact contact = getContact(cts);
+				list.add(contact);
+				contact.setLieu(l); 
+			}
+			l.setContacts(list);
 		}
-		l.setContacts(list);
 		em.persist(l);
 		return l.getId();
 	}
@@ -1206,7 +1211,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 
 	@Override
-	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats) {
+	public Long ajouterContactAll(Contact c, Long idlieu) {
 		
 		if(idlieu !=null){
 			
@@ -1217,17 +1222,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			c.setLieu(null);
 		}
 		
-		if(contrats != null){
-			
-			Collection<Contrat> contrat = new ArrayList<Contrat>();
-			for (Long cc : contrats) {
-				Contrat con = getContrat(cc);
-				contrat.add(con);
-			}
-			
-			c.setContrats(contrat);
-			
-		}
 		
 		em.persist(c);
 		
@@ -1271,9 +1265,10 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long ajouterContratAll(Contrat c, List<Long> contacts, List<Long> documents) {
 		
 			if(contacts != null){
-						
+				
 				Collection<Contact> contact = new ArrayList<Contact>();
 				for (Long cc : contacts) {
+					
 					Contact con = getContact(cc);
 					contact.add(con);
 				}
@@ -2277,8 +2272,26 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			al.setServeur(serveur);
+				
+		}else{
+			al.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			al.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			al.setMachineVirtuelle(null);
+		}
 		
 		if(l !=null){
 					
@@ -2342,8 +2355,26 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterLogicielPcAll(LogicielPc lp,Long l ,List<Long> contacts, List<Long> documents,
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach,Long l ,List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+        if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			lp.setServeur(serveur);
+				
+		}else{
+			lp.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			lp.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			lp.setMachineVirtuelle(null);
+		}
 		
 		if(l !=null){
 			
@@ -2407,16 +2438,33 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterServeurWebAll(ServeurWeb sw,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
 		
-        if(l !=null){
+	  if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			sw.setServeur(serveur);
+				
+		}else{
+			sw.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			sw.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			sw.setMachineVirtuelle(null);
+		}
+		if(l !=null){
 			
 	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
 			sw.setLicenseLogiciel(licenseLogiciel);
 		
 		}else{
-					sw.setLicenseLogiciel(null);
+			sw.setLicenseLogiciel(null);
 		}
 		
 		if(contacts != null){
@@ -2454,18 +2502,19 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sw.setSolutionApplicative(solutionsAppl);
 			
 		}
-		/*
+		
 		if(applicationWeb != null){
 					
 			Collection<ApplicationWeb> applicationWe = new ArrayList<ApplicationWeb>();
 			for (Long aw : applicationWeb) {
 				ApplicationWeb appl = getApplicationWeb(aw);
 				applicationWe.add(appl);
+				appl.setServeurWeb(sw); 
 			}
 			
 			sw.setApplicationWeb(applicationWe);
 					
-		}*/
+		}
 		if(contrats != null){
 			
 			Collection<Contrat> contrat = new ArrayList<Contrat>();
@@ -2483,9 +2532,25 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterMiddlewareAll(Middleware m,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> instancesMiddleware, List<Long> contrats) {
+	  if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			m.setServeur(serveur);
+				
+		}else{
+			m.setServeur(null);
+		}
 		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			m.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			m.setMachineVirtuelle(null);
+		}
         if(l !=null){
 			
 	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
@@ -2530,6 +2595,18 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			m.setSolutionApplicative(solutionsAppl);
 			
 		}
+        if(instancesMiddleware != null){
+			
+			Collection<InstanceMiddleware> instanceMiddleware = new ArrayList<InstanceMiddleware>();
+			for (Long im : instancesMiddleware) {
+				InstanceMiddleware inst = getInstanceMiddleware(im);
+				instanceMiddleware.add(inst);
+				inst.setMiddleware(m); 
+			}
+			
+			m.setInstanceMiddleware(instanceMiddleware);
+			
+		}
 		if(contrats != null){
 					
 			Collection<Contrat> contrat = new ArrayList<Contrat>();
@@ -2547,9 +2624,26 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l, List<Long> contacts,
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l, List<Long> contacts,
 			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD, List<Long> contrats) {
 		
+	  if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			sbd.setServeur(serveur);
+				
+		}else{
+			sbd.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			sbd.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			sbd.setMachineVirtuelle(null);
+		}
         if(l !=null){
 			
 	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
@@ -2594,6 +2688,18 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sbd.setSolutionApplicative(solutionsAppl);
 			
 		}
+		if(instancesBD != null){
+			
+			Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes = new ArrayList<InstanceDeBasseDeDonnes>();
+			for (Long ibd : instancesBD) {
+				InstanceDeBasseDeDonnes inst = getInstanceDeBasseDeDonnes(ibd);
+				instanceDeBasseDeDonnes.add(inst);
+				inst.setServeurDeBasseDeDonnees(sbd);
+			}
+			
+			sbd.setInstanceDeBasseDeDonnes(instanceDeBasseDeDonnes);
+			
+		}
 		if(contrats != null){
 					
 			Collection<Contrat> contrat = new ArrayList<Contrat>();
@@ -2613,7 +2719,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public Long ajouterApplicationWebAll(ApplicationWeb aw,Long sw, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
-		
+		    
 		    if(sw !=null){
 				
 		    	ServeurWeb serveurWeb = getServeurWeb(sw);
@@ -3240,8 +3346,234 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(Serveur);
 		return Serveur.getId();
 	}
-	
-	
+
+	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel, List<Long> documents) {
+		
+		if(logiciel !=null){
+			
+			LogicielEtApplication logicielEtApplications = getLogicielEtApplication(logiciel);
+			ll.setLogicielEtApplications(logicielEtApplications);
+		
+		}else{
+			ll.setLogicielEtApplications(null);
+		}
+		
+       if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			ll.setDocuments(document);
+			
+		}
+        em.persist(ll); 
+		return ll.getId();
+	}
+
+	@Override
+	public Long ajouterLicenseOsAll(LicenseOs lo, Long versionOs, List<Long> documents, List<Long> serveurs,
+			List<Long> machineVirtuelle) {
+       if(versionOs !=null){
+			
+    	   VersionOs vo = getVersionOs(versionOs);
+			lo.setVersionOs(vo);
+		
+		}else{
+			lo.setVersionOs(null);
+		}
+		
+       if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			lo.setDocuments(document);
+			
+		}
+       if(serveurs != null){
+			
+			Collection<Serveur> serveur = new ArrayList<Serveur>();
+			for (Long s : serveurs) {
+				Serveur serv = getServeur(s);
+				serveur.add(serv);
+				serv.setLicenseOs(lo);
+			}
+			
+			lo.setServeur(serveur);;
+			
+		}
+       if(machineVirtuelle != null){
+			
+			Collection<MachineVirtuelle> mach = new ArrayList<MachineVirtuelle>();
+			for (Long mv : machineVirtuelle) {
+				MachineVirtuelle machV = getMachineVirtuelle(mv);
+				mach.add(machV);
+				machV.setLicenseOs(lo); 
+			}
+			
+			lo.setMachineVirtuelle(mach);;
+			
+		}
+        em.persist(lo);
+		return lo.getId();
+	}
+
+	@Override
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		
+		if(virtualisation !=null){
+			
+			Virtualisation virt = getVirtualisation(virtualisation);
+			mv.setVirtualisation(virt);
+		
+		}else{
+			mv.setVirtualisation(null);
+		}
+        if(license !=null){
+			
+        	LicenseOs licenseOs = getLicenseOs(license);
+			mv.setLicenseOs(licenseOs);
+		
+		}else{
+			mv.setLicenseOs(null);
+		}
+        if(logiciels != null){
+			
+			Collection<LogicielEtApplication> logiciel = new ArrayList<LogicielEtApplication>();
+			for (Long l : logiciels) {
+				LogicielEtApplication logicielEtApplication = getLogicielEtApplication(l);
+				logiciel.add(logicielEtApplication);
+				logicielEtApplication.setMachineVirtuelle(mv);
+			}
+			
+			mv.setLogicielEtApplication(logiciel);
+					
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			mv.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			mv.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			mv.setSolutionApplicative(solutionsAppl);
+			
+		}
+       if(interfacesReseaux!=null){
+			
+			Collection<IntefaceReseau> logique = new ArrayList<IntefaceReseau>();
+			for (Long ir : interfacesReseaux) {
+				IntefaceReseau log = getInterfaceReseau(ir);
+				logique.add(log);
+				log.setMachineVirtuelle(mv);
+			}
+			
+			    mv.setIntefaceReseau(logique);
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			mv.setVolumelogique(volumeslogique);
+		}
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			mv.setContrats(contrat);
+					
+		}
+		
+		em.persist(mv);
+		return mv.getId();
+	}
+
+	@Override
+	public Long addProcessusMetierAll(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				pm.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				pm.setDocuments(document);
+				
+			}
+	        if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				pm.setSolutionApplicative(solutionsAppl);
+				
+			}
+		em.persist(pm);
+		return pm.getId();
+	}
+		
+		
 	@Override
 	public Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
 			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact,

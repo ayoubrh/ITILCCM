@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -704,7 +704,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -735,16 +735,17 @@ Use search to find needed section.
 										<f:errors path="criticite" cssClass="help-block"></f:errors>
 							     </div>
 							</div>
-							<div class="form-group">
+						<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Système</label>
 								<div class="col-sm-9">
-									<select name="" class="form-control">
+									<select name="systeme" class="form-control">
 									<option value=""> -- choisir une valeur --</option>
-									<c:forEach items="${s}" var="ser">
-									<option value="${ser.nom}" >${ser.nom}</option>
+									<c:forEach  items="${s}" var="ser">
+									<option value="serv_${ser.id}" >${ser.nom}</option>
 									</c:forEach>
+									
 									<c:forEach items="${mv}" var="m">
-									<option value="${m.nom}" >${m.nom}</option>
+									<option value="mach_${m.id}" >${m.nom}</option>
 									</c:forEach>
 									</select>
 								</div>

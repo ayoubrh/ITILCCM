@@ -37,6 +37,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	//Lieu
 	
 	public Long ajouterLieu(Lieu l);
+	public Long ajouterLieuCont(Lieu l,List<Long> contacts);
 	public void modifierLieu(Lieu l);
 	public void supprimerLieu(Long id);
 	public List<Lieu> listLieu();
@@ -56,7 +57,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Contact
 	
 	public Long ajouterContact(Contact c);
-	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats);
+	public Long ajouterContactAll(Contact c, Long idlieu);
 	public void modifierContact(Contact c);
 	public void supprimerContact(Long id);
 	public List<Contact> listContact();
@@ -127,7 +128,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 		
-	// Instance de basse de donnés
+	// Instance de basse de donns
 		
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd,Long sbd,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
@@ -139,6 +140,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	 // License Logiciel
 	
 	public Long ajouterLicenseLogiciel(LicenseLogiciel ll);
+	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel,List<Long> documents);
 	public void modifierLicenseLogiciel(LicenseLogiciel ll);
 	public void supprimerLicenseLogiciel(Long id);
 	public List<LicenseLogiciel> listLicenseLogiciel();
@@ -147,6 +149,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// License OS
 		
 	public Long ajouterLicenseOs(LicenseOs lo);
+	public Long ajouterLicenseOsAll(LicenseOs lo,Long versionOs,List<Long> documents,List<Long> serveurs,List<Long> machineVirtuelle);
 	public void modifierLicenseOs(LicenseOs lo);
 	public void supprimerLicenseOs(Long id);
 	public List<LicenseOs> listLicenseOs();
@@ -168,7 +171,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Autre logiciel
 		
 	public Long ajouterAutreLogiciel(AutreLogiciel al);
-	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierAutreLogiciel(AutreLogiciel al);
 	public void supprimerAutreLogiciel(Long id);
 	public List<AutreLogiciel> listAutreLogiciel();
@@ -177,7 +180,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Logiciel PC
 		
 	public Long ajouterLogicielPc(LogicielPc lp);
-	public Long ajouterLogicielPcAll(LogicielPc lp,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierLogicielPc(LogicielPc lp);
 	public void supprimerLogicielPc(Long id);
 	public List<LogicielPc> listLogicielPc();
@@ -186,7 +189,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Serveur Web
 		
 	public Long ajouterServeurWeb(ServeurWeb sw);
-	public Long ajouterServeurWebAll(ServeurWeb sw,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
 	public void modifierServeurWeb(ServeurWeb sw);
 	public void supprimerServeurWeb(Long id);
 	public List<ServeurWeb> listServeurWeb();
@@ -195,16 +198,16 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Middleware
 		
 	public Long ajouterMiddleware(Middleware m);
-	public Long ajouterMiddlewareAll(Middleware m,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
+	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
 	public void modifierMiddleware(Middleware m);
 	public void supprimerMiddleware(Long id);
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 		
-	//Serveur de basse de données
+	//Serveur de basse de donnes
 		
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
-	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
 	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
 	public void supprimerServeurDeBasseDeDonnees(Long id);
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
@@ -213,6 +216,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Machine Virtuelle
 		
 	public Long ajouterMachineVirtuelle(MachineVirtuelle mv);
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv,Long virtualisation,Long license,List<Long> logiciels,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> interfacesReseaux,List<Long> volumesLogiques,List<Long> contrats);
 	public void modifierMachineVirtuelle(MachineVirtuelle mv);
 	public void supprimerMachineVirtuelle(Long id);
 	public List<MachineVirtuelle> listMachineVirtuelle();
@@ -350,7 +354,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// ProcessusMetier
 	public  Long addProcessusMetier(ProcessusMetier pm);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addProcessusMetierAll(ProcessusMetier pm,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives);
 	public void editProcessusMetier(ProcessusMetier pm);
 	public List<ProcessusMetier> ListProcessusMetier();
 	public ProcessusMetier getProcessusMetier(Long id);
@@ -358,7 +362,6 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// SolutionApplicative
 	public  Long addSolutionApplicative(SolutionApplicative sa);
-	//public  Long addFibre(Fibre f, Long pc);
 	public void editSolutionApplicative(SolutionApplicative sa);
 	public List<SolutionApplicative> ListSolutionApplicative();
 	public SolutionApplicative getSolutionApplicative(Long id);

@@ -476,7 +476,7 @@ Use search to find needed section.
 		<!-- Content here -->
 		<c:if test="${v != null }">
 			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">×</button>
+				<button type="button" class="close" data-dismiss="alert"></button>
 				Votre compte est bien valide.
 			</div>
 		</c:if>

@@ -353,7 +353,11 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		
 		return dao.ajouterLieu(l);
 	}
-
+	@Override
+	public Long ajouterLieuCont(Lieu l, List<Long> contacts) {
+		
+		return dao.ajouterLieuCont(l, contacts); 
+	}
 	@Override
 	public void modifierLieu(Lieu l) {
 		dao.modifierLieu(l);
@@ -415,9 +419,9 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats){
+	public Long ajouterContactAll(Contact c, Long idlieu){
 		 
-		return dao.ajouterContactAll(c, idlieu, contrats);
+		return dao.ajouterContactAll(c, idlieu);
 		
 	}
 
@@ -1677,38 +1681,38 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.addChassisAll(Chassis, lieu, rack, materiels, document, contact, contrat);
 	}
 	
-	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
-		return dao.ajouterAutreLogicielAll(al,l, contacts, documents, solutionsApplicatives, contrats);
+		return dao.ajouterAutreLogicielAll(al, serv, mach, l, contacts, documents, solutionsApplicatives, contrats);
 		
 	}
 
 	@Override
-	public Long ajouterLogicielPcAll(LogicielPc lp, Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach, Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
-		return dao.ajouterLogicielPcAll(lp, l, contacts, documents, solutionsApplicatives, contrats);
-		
+		return dao.ajouterLogicielPcAll(lp, serv, mach, l, contacts, documents, solutionsApplicatives, contrats);
+		 
 	}
 
 	@Override
-	public Long ajouterServeurWebAll(ServeurWeb sw, Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach, Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
-		return dao.ajouterServeurWebAll(sw, l, contacts, documents, solutionsApplicatives, applicationWeb, contrats);
+		return dao.ajouterServeurWebAll(sw, serv, mach, l, contacts, documents, solutionsApplicatives, applicationWeb, contrats);
 		
 	}
 
 	@Override
-	public Long ajouterMiddlewareAll(Middleware m, Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach, Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> instancesMiddleware, List<Long> contrats) {
-		return dao.ajouterMiddlewareAll(m, l, contacts, documents, solutionsApplicatives, instancesMiddleware, contrats);
+		return dao.ajouterMiddlewareAll(m, serv, mach, l, contacts, documents, solutionsApplicatives, instancesMiddleware, contrats);
 		
-	}
+	} 
 
 	@Override
-	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd, Long l, List<Long> contacts,
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach, Long l, List<Long> contacts,
 			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD, List<Long> contrats) {
-		return dao.ajouterServeurDeBasseDeDonneesAll(sbd, l, contacts, documents, solutionsApplicatives, instancesBD, contrats);
-		
+		return dao.ajouterServeurDeBasseDeDonneesAll(sbd, serv, mach, l, contacts, documents, solutionsApplicatives, instancesBD, contrats);
+		 
 	}
 
 	@Override
@@ -1789,6 +1793,31 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> document, List<Long> contact, List<Long> contrat) {
 		return dao.addSwitchSanAll(san, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
 	}
+
+	@Override
+	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll, Long logiciel, List<Long> documents) {
+		return dao.ajouterLicenseLogicielAll(ll, logiciel, documents); 
+	}
+
+	@Override
+	public Long ajouterLicenseOsAll(LicenseOs lo, Long versionOs, List<Long> documents, List<Long> serveurs,
+			List<Long> machineVirtuelle) {
+		return dao.ajouterLicenseOsAll(lo, versionOs, documents, serveurs, machineVirtuelle); 
+	}
+
+	@Override
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		return dao.ajouterMachineVirtuelleAll(mv, virtualisation, license, logiciels, contacts, documents, solutionsApplicatives, interfacesReseaux, volumesLogiques, contrats);
+	}
+
+	@Override
+	public Long addProcessusMetierAll(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		return dao.addProcessusMetierAll(pm, contacts, documents, solutionsApplicatives); 
+	}
+	
 
 }
 

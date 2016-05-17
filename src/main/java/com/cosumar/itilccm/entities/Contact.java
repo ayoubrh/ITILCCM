@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -94,7 +95,7 @@ public class Contact implements Serializable {
 	   private Collection<Peripherique> peripherique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<Contrat> contrats;
 	   
 	    @Column(nullable=true)
@@ -120,6 +121,18 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="contacts")
 	   private Collection<Virtualisation> virtualisation;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<Camera> camera;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<ProcessusMetier> processusMetier;
    
 		public Contact() {
 			super();
@@ -352,7 +365,29 @@ public class Contact implements Serializable {
 			this.equipementreseaux = equipementreseaux;
 		}
 
+		public Collection<Camera> getCamera() {
+			return camera;
+		}
+
+		public void setCamera(Collection<Camera> camera) {
+			this.camera = camera;
+		}
+
+		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+			return machineVirtuelle;
+		}
+
+		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+			this.machineVirtuelle = machineVirtuelle;
+		}
+
+		public Collection<ProcessusMetier> getProcessusMetier() {
+			return processusMetier;
+		}
+
+		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
+			this.processusMetier = processusMetier;
+		}
 		
-			   
 
 }

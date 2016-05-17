@@ -323,7 +323,7 @@ Use search to find needed section.
 								<ul class="dropdown-menu">
 									<li><a href="<c:url value="/users/profil?id=${logged.id }" />">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Déconnexion</a></li>
+									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Dconnexion</a></li>
 								</ul>
 							</li>
 						</ul> <!-- / .navbar-nav -->
@@ -449,7 +449,7 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des données</span></a>
+					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donnes</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>

@@ -18,7 +18,6 @@ public class Physique extends IntefaceReseau implements Serializable{
 	@Size(min=2,max=20)
 	@Column(unique = true)
    private String nom;
-   private String materiel;
    
    	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
 	@Column(nullable = true)
@@ -39,14 +38,6 @@ public class Physique extends IntefaceReseau implements Serializable{
 
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public String getMateriel() {
-		return materiel;
-	}
-
-	public void setMateriel(String materiel) {
-		this.materiel = materiel;
 	}
 
 	public String getAdresseIp() {

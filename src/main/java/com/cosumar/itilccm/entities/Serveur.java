@@ -33,7 +33,7 @@ public class Serveur extends Infrastructure implements Serializable{
 	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="serveur")
+	 @OneToMany(mappedBy="serveur")
 	private Collection<LogicielEtApplication> logicielEtApplication;
    
 	
