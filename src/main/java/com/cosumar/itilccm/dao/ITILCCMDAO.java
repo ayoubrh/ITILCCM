@@ -200,7 +200,7 @@ public interface ITILCCMDAO {
 	
 	// Vlan
 	public  Long addVlan(Vlan Vlan);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addVlanAll(Vlan Vlan, List<Long> subnets,List<Long> intefaceReseau);
 	public void editVlan(Vlan Vlan);
 	public List<Vlan> ListVlan();
 	public Vlan getVlan(Long id);
@@ -240,7 +240,7 @@ public interface ITILCCMDAO {
 	
 	// VolumeLogique
 	public  Long addVolumeLogique(VolumeLogique vl);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs,List<Long> machinevertuelle);
 	public void editVolumeLogique(VolumeLogique vl);
 	public List<VolumeLogique> ListVolumeLogique();
 	public VolumeLogique getVolumeLogique(Long id);

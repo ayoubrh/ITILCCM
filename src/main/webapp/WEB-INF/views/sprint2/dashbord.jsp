@@ -622,7 +622,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type DVR</span></a><br>
+													<a href="<c:url value="/config/admin/add/dvr" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type DVR</span></a><br>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type DVR</span></a>
 												</div>
 											</div>

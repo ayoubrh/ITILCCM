@@ -621,10 +621,12 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Système de stockage</label>
 								<div class="col-sm-9">
 									<f:select  path="systemedestockage.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-									    <f:option value=""> -- choisir une valeur --</f:option>
+									    <f:option value=""></f:option>
 										<f:options items="${ss }" itemValue="id" itemLabel="nom" />
 									</f:select>
-									<f:errors path="systemedestockage.id" cssClass="help-block"></f:errors>
+									<c:if test="${error == true}">
+										<div class="help-block">Choisissez un Système de stockage</div>
+									</c:if>
 								</div>
 							</div>
 							<div class="form-group required">

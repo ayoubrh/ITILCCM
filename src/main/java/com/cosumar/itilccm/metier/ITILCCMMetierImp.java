@@ -1833,6 +1833,16 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> contrat) {
 		return dao.addCameraAll(Cam, lieu, dvr, document, contact, contrat);
 	}
+	
+	@Override
+	public Long addVlanAll(Vlan Vlan, List<Long> subnets, List<Long> intefaceReseau) {
+		return dao.addVlanAll(Vlan, subnets, intefaceReseau);
+	}
+	
+	@Override
+	public Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs, List<Long> machinevertuelle) {
+		return dao.addVolumeLogiqueAll(vl, serveurs, machinevertuelle);
+	}
 
 }
 

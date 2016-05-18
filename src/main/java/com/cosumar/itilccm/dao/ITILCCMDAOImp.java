@@ -3915,5 +3915,52 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(Cam);
 		return Cam.getId();
 	}
+	
+	@Override
+	public Long addVlanAll(Vlan Vlan, List<Long> subnets, List<Long> intefaceReseau) {
+		
+		if(subnets != null){
+			Collection<Subnet> subnet = new ArrayList<Subnet>();
+			for (Long s : subnets) {
+				subnet.add(getSubnet(s));
+			}
+			Vlan.setSubnet(subnet);
+		}
+		
+		if(intefaceReseau != null){
+			Collection<Physique> ph = new ArrayList<Physique>();
+			for (Long i : intefaceReseau) {
+				ph.add(getPhysique(i));
+			}
+			Vlan.setPhysique(ph);
+		}
+		
+		em.persist(Vlan);
+		return Vlan.getId();
+	}
+	
+	@Override
+	public Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs, List<Long> machinevertuelle) {
+
+
+		if(serveurs != null){
+			Collection<Serveur> serveur = new ArrayList<Serveur>();
+			for (Long s : serveurs) {
+				serveur.add(getServeur(s));
+			}
+			vl.setServeur(serveur);
+		}
+		
+		if(machinevertuelle != null){
+			Collection<MachineVirtuelle> mv = new ArrayList<MachineVirtuelle>();
+			for (Long m : machinevertuelle) {
+				mv.add(getMachineVirtuelle(m));
+			}
+			vl.setMachinevertuelle(mv);
+		}
+		
+		em.persist(vl);
+		return vl.getId();
+	}
 }
 
