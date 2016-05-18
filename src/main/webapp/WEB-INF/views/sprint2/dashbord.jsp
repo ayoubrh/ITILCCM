@@ -969,7 +969,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Interface Réseau</span></a>
+													<a href="<c:url value="/config/admin/add/interfacereseau" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Interface Réseau</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Interface Réseau</span></a>
 												</div>
 											</div>
@@ -983,7 +983,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Subnet</span></a>
+													<a href="<c:url value="/config/admin/add/subnet" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Subnet</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Subnet</span></a>
 												</div>
 											</div>
@@ -997,7 +997,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type VLAN</span></a>
+													<a href="<c:url value="/config/admin/add/vlan" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type VLAN</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type VLAN</span></a>
 												</div>
 											</div>
@@ -1011,7 +1011,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Volume logique</span></a>
+													<a href="<c:url value="/config/admin/add/volumeLogique" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Volume logique</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Volume logique</span></a>
 												</div>
 											</div>
@@ -1067,7 +1067,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Camera</span></a>
+													<a href="<c:url value="/config/admin/add/camera" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Camera</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Camera</span></a>
 												</div>
 											</div>

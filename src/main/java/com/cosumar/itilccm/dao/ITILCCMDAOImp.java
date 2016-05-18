@@ -3841,5 +3841,79 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(san);
 		return san.getId();
 	}
+	
+	@Override
+	public Long addPhysiqueAll(Physique Physique, List<Long> vlans) {
+		
+		if(vlans != null){
+			Collection<Vlan> vlan = new ArrayList<Vlan>();
+			for (Long v : vlans) {
+				vlan.add(getVlan(v));
+			}
+			Physique.setVlan(vlan);
+		}
+		
+		em.persist(Physique);
+		return Physique.getId();
+	}
+	
+	@Override
+	public Long addSubnetAll(Subnet Subnet, List<Long> vlans) {
+
+		if(vlans != null){
+			Collection<Vlan> vlan = new ArrayList<Vlan>();
+			for (Long v : vlans) {
+				vlan.add(getVlan(v));
+			}
+			Subnet.setVlan(vlan);
+		}
+		
+		em.persist(Subnet);
+		return Subnet.getId();
+	}
+	
+	
+	@Override
+	public Long addCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Cam.setLieu(lie);
+		} else {
+			Cam.setLieu(null);
+		}
+		if(dvr != null){
+			Dvr dvrc = getDvr(dvr);
+			Cam.setDvr(dvrc);
+		} else {
+			Cam.setDvr(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Cam.setDocuments(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Cam.setContacts(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Cam.setContrats(contr);
+		}
+		
+		em.persist(Cam);
+		return Cam.getId();
+	}
 }
 

@@ -192,7 +192,7 @@ public interface ITILCCMDAO {
 	
 	// Physique
 	public  Long addPhysique(Physique Physique);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addPhysiqueAll(Physique Physique, List<Long> vlans);
 	public void editPhysique(Physique Physique);
 	public List<Physique> ListPhysique();
 	public Physique getPhysique(Long id);
@@ -208,7 +208,7 @@ public interface ITILCCMDAO {
 	
 	// Subnet
 	public  Long addSubnet(Subnet Subnet);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addSubnetAll(Subnet Subnet, List<Long> vlans);
 	public void editSubnet(Subnet Subnet);
 	public List<Subnet> ListSubnet();
 	public Subnet getSubnet(Long id);
@@ -216,7 +216,7 @@ public interface ITILCCMDAO {
 	
 	// Camera
 	public  Long addCamera(Camera Cam);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editCamera(Camera Cam);
 	public List<Camera> ListCamera();
 	public Camera getCamera(Long id);

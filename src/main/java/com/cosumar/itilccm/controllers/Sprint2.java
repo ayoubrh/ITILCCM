@@ -146,6 +146,7 @@ public class Sprint2 {
 		model.addAttribute("save", save);
 		return "sprint2/dashbord";
 	}
+	
 	@RequestMapping(value="/admin/add/neveauCI")
 	public String neveauCI(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3094,6 +3095,22 @@ public class Sprint2 {
 		return "redirect:/config/admin/dashboard";
 	}
 	
+	@RequestMapping(value="/admin/add/interfacereseau")
+	public String interfacereseau(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		return "sprint2/TypeInterfaceReseau";
+	}
+	
+	@RequestMapping(value="/admin/add/typeinterfacereseau")
+	public String typeinterfacereseau(Model model,HttpServletRequest req){
+		String[] interfacereseau = req.getParameterValues("type");
+		
+		return "redirect:"+interfacereseau[0];
+	}
+	
 	@RequestMapping(value="/admin/add/fibre")
 	public String addFibre(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3101,8 +3118,48 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("fibre", new Fibre());
+		model.addAttribute("infra", m.ListServeur());
+		model.addAttribute("equip", m.ListEquipementReseau());
+		model.addAttribute("error", false);
 		return "sprint2/addInterfaceFibre";
 	}
+	
+
+	@RequestMapping(value="/admin/add/saveFibre", method = RequestMethod.POST)
+	public String saveFibre(@Valid Fibre fibre,BindingResult bind,HttpServletRequest req,Model model) {
+		
+		String[] Materiel = req.getParameterValues("materiel");
+		if(bind.hasErrors() || Materiel[0].equals("")){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("infra", m.ListServeur());
+			model.addAttribute("equip", m.ListEquipementReseau());
+			if(Materiel[0].equals("")){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addInterfaceFibre";
+		}
+		if(Materiel[0].substring(0,2).equals("IN")){
+			Long infra = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("---------infra : "+infra);
+			fibre.setInfrastructure(m.getInfrastructure(infra));
+		} else {
+			Long er = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("--------- er : "+er);
+			fibre.setEquipementReseau(m.getEquipementReseau(er));
+		}
+		
+		m.addFibre(fibre);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/admin/add/logique")
 	public String addLogique(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3110,8 +3167,39 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("logique", new Logique());
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("error", false);
 		return "sprint2/addInterfaceLogique";
 	}
+	
+
+	@RequestMapping(value="/admin/add/saveLogique", method = RequestMethod.POST)
+	public String saveLogique(@Valid Logique log,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("--------- Nom : "+log.getNom());
+		String[] mv = req.getParameterValues("machinevirtuelle");
+		System.out.println("------------ MV : "+mv[0]);
+		if(bind.hasErrors() || mv[0].equals("")){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("logique", new Logique());
+			model.addAttribute("mv", m.listMachineVirtuelle());
+			if(mv[0].equals("")){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addInterfaceLogique";
+		}
+		System.out.println("--------- fvdfvdfvdfvdfv ");
+		log.setMachineVirtuelle(m.getMachineVirtuelle(Long.parseLong(mv[0])));
+		
+		m.addLogique(log);
+		return "redirect:/config/admin/dashboards?save="+true;
+		//return "redirect:/index";
+	}
+	
 	@RequestMapping(value="/admin/add/physique")
 	public String addPhysique(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3120,8 +3208,61 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("physique", new Physique());
 		model.addAttribute("vlans", m.ListVlan());
+		model.addAttribute("infra", m.ListServeur());
+		model.addAttribute("equip", m.ListEquipementReseau());
+		model.addAttribute("error", false);
 		return "sprint2/addInterfacePhysique";
 	}
+	
+
+	@RequestMapping(value="/admin/add/savePhysique", method = RequestMethod.POST)
+	public String savePhysique(@Valid Physique physique,BindingResult bind,HttpServletRequest req,Model model) {
+		String[] Materiel = req.getParameterValues("materiel");
+		System.out.println("---------Materiel : "+Materiel[0]);
+		if(bind.hasErrors() || Materiel[0].equals("")){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("vlans", m.ListVlan());
+			model.addAttribute("infra", m.ListServeur());
+			model.addAttribute("equip", m.ListEquipementReseau());
+			if(Materiel[0].equals("")){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addInterfacePhysique";
+		}
+		if(Materiel[0].substring(0,2).equals("IN")){
+			Long infra = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("---------infra : "+infra);
+			physique.setInfrastructure(m.getInfrastructure(infra));
+		} else {
+			Long er = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("--------- er : "+er);
+			physique.setEquipementReseau(m.getEquipementReseau(er));
+		}
+		
+		String[] chvlan = req.getParameterValues("ckVlans");
+		List<Long> vlan = null;
+		System.out.println("---------chvlan : "+chvlan+" vlan : "+vlan);
+		
+		
+		if(chvlan != null){
+			vlan = new ArrayList<Long>();
+			for (int i = 0; i < chvlan.length; i++) {
+				System.out.println("---------chvlan "+chvlan[i]);
+				vlan.add(Long.parseLong(chvlan[i]));
+			}
+			
+		}
+		
+		m.addPhysiqueAll(physique, vlan);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
 	@RequestMapping(value="/admin/add/subnet")
 	public String addSubnet(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3132,6 +3273,39 @@ public class Sprint2 {
 		model.addAttribute("vlans", m.ListVlan());
 		return "sprint2/addSubnet";
 	}
+	
+	@RequestMapping(value="/admin/add/saveSubnet", method = RequestMethod.POST)
+	public String saveSubnet(@Valid Subnet subnet,BindingResult bind,HttpServletRequest req,Model model) {
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("vlans", m.ListVlan());
+			
+			return "sprint2/addSubnet";
+		}
+		
+		
+		String[] chvlan = req.getParameterValues("ckVlans");
+		List<Long> vlan = null;
+		System.out.println("---------chvlan : "+chvlan+" vlan : "+vlan);
+		
+		
+		if(chvlan != null){
+			vlan = new ArrayList<Long>();
+			for (int i = 0; i < chvlan.length; i++) {
+				System.out.println("---------chvlan "+chvlan[i]);
+				vlan.add(Long.parseLong(chvlan[i]));
+			}
+			
+		}
+		
+		m.addSubnetAll(subnet, vlan);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
 	@RequestMapping(value="/admin/add/volumeLogique")
 	public String addVolumeLogique(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3144,6 +3318,7 @@ public class Sprint2 {
 		model.addAttribute("ss", m.ListSystemeDeStockage());
 		return "sprint2/addVolumeLogique";
 	}
+	
 	@RequestMapping(value="/admin/add/vlan")
 	public String addVlan(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -3169,6 +3344,71 @@ public class Sprint2 {
 		model.addAttribute("lieus", m.listLieu());
 		model.addAttribute("dvr", m.ListDvr());
 		return "sprint2/addCamera";
+	}
+	
+	
+	@RequestMapping(value="/admin/add/saveCamera", method = RequestMethod.POST)
+	public String saveCamera(@Valid Camera camera,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			//model.addAttribute("pc", pc );
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("lieus", m.listLieu());
+			model.addAttribute("dvr", m.ListDvr());
+			return "sprint2/addCamera";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		System.out.println("Chassis : "+camera.getDvr()+" ID : "+camera.getDvr().getId());
+		System.out.println("Lieu : "+camera.getLieu()+" ID : "+camera.getLieu().getId());
+		
+		m.addCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
+		return "redirect:/config/admin/dashboards?save="+true;
+		//return "redirect:/index";
 	}
 	
 }

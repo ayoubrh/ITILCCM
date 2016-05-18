@@ -552,16 +552,25 @@ Use search to find needed section.
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Matériel</label>
-								<div class="col-sm-9">
-									<f:select  path="" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value=""> -- choisir une valeur --</f:option>
-										<f:options items="${m}" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="" cssClass="help-block"></f:errors>
-								</div>
-							</div>
+									<div class="form-group required">
+										<label for="jq-validation-email" class="col-sm-3 control-label">Matériel</label>
+										<div class="col-sm-9">
+											<select class="form-control" name="materiel">
+									            <option value=""></option>
+												<c:forEach items="${infra }" var="inf">
+													<option value="IN_${inf.id }" >${inf.nom }</option>
+												</c:forEach>
+												
+												<c:forEach items="${equip }" var="er">
+													<option value="ER_${er.id }" >${er.nom }</option>
+												</c:forEach>
+											</select>
+											<c:if test="${error == true}">
+												<div class="help-block">Choisissez un Matériel</div>
+											</c:if>
+											
+									    </div>
+									</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Adresse IP</label>
 								<div class="col-sm-9">

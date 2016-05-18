@@ -669,7 +669,7 @@ Use search to find needed section.
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
 										<div class="col-sm-9">
 											<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value=""> -- choisir une valeur --</f:option>
+												<f:option value=""></f:option>
 												<f:option value="implementation" label="implementation"/>
 												<f:option value="obsolète" label="obsolète"/>
 												<f:option value="production" label="production"/>
@@ -683,7 +683,7 @@ Use search to find needed section.
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité</label>
 										<div class="col-sm-9">
 											<f:select  path="criticite" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value=""> -- choisir une valeur --</f:option>
+												<f:option value=""></f:option>
 												<f:option value="haute" label="haute"/>
 												<f:option value="basse" label="basse"/>
 												<f:option value="moyenne" label="moyenne"/>
@@ -696,7 +696,7 @@ Use search to find needed section.
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu</label>
 										<div class="col-sm-9">
 											<f:select  path="lieu.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value=""> -- choisir une valeur --</f:option>
+												<f:option value=""></f:option>
 												<c:forEach items="${lieus }" var="lieu">
 													<f:option value="${lieu.id }" label="${lieu.nom } - ${lieu.organisme }"/>
 												</c:forEach>
@@ -711,7 +711,7 @@ Use search to find needed section.
 										<label for="jq-validation-select2" class="col-sm-3 control-label">DVR</label>
 										<div class="col-sm-9">
 											<f:select  path="dvr.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value=""> -- choisir une valeur --</f:option>
+												<f:option value=""></f:option>
 												<f:options items="${dvr }" itemValue="id" itemLabel="nom"/>
 											</f:select>
 											<f:errors path="dvr.id" cssClass="help-block"></f:errors>
