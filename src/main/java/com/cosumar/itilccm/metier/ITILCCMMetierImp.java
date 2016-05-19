@@ -1843,6 +1843,13 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs, List<Long> machinevertuelle) {
 		return dao.addVolumeLogiqueAll(vl, serveurs, machinevertuelle);
 	}
+	
+	@Override
+	public Long addDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras,
+			List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.addDvrAll(dvr, lieu, rack, chassis, sourceelec, cameras, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
 
 }
 

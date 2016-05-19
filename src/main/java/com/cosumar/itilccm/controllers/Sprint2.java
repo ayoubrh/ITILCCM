@@ -1464,7 +1464,7 @@ public class Sprint2 {
 		System.out.println("Chassis : "+dvr.getChassis()+" ID : "+dvr.getChassis().getId());
 		System.out.println("Lieu : "+dvr.getLieu()+" ID : "+dvr.getLieu().getId());
 		
-		//m.addSwitchSanAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		m.addDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 

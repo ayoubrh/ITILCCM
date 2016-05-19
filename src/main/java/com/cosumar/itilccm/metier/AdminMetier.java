@@ -377,7 +377,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Dvr
 	public  Long addDvr(Dvr dvr);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editDvr(Dvr dvr);
 	public List<Dvr> ListDvr();
 	public Dvr getDvr(Long id);

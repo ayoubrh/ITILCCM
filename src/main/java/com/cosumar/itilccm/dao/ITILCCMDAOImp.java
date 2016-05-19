@@ -3962,5 +3962,91 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(vl);
 		return vl.getId();
 	}
+	
+	@Override
+	public Long addDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras,
+			List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			dvr.setLieu(lie);
+		} else {
+			dvr.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			dvr.setRack(rac);
+		}else {
+			dvr.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			dvr.setChassis(chas);
+		}else {
+			dvr.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			dvr.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			dvr.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			dvr.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			dvr.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(dvr);
+			}
+			dvr.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			dvr.setConnexionElectrique(elec);
+		}
+		
+		if(cameras != null){
+			Collection<Camera> cam = new ArrayList<Camera>();
+			for (Long c : cameras) {
+				Camera ca = getCamera(c);
+				cam.add(ca);
+				ca.setDvr(dvr);
+			}
+			dvr.setCamera(cam);
+		}
+		
+		em.persist(dvr);
+		return dvr.getId();
+	}
 }
 
