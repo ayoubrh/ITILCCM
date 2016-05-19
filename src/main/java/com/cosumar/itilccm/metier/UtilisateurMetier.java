@@ -22,6 +22,7 @@ public interface UtilisateurMetier {
 	
 	// Ordinateur
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	
 

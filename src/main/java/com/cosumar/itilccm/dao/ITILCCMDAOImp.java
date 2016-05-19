@@ -313,6 +313,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select pc from Ordinateur pc");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Ordinateur> SearchPC(String s) {
+		Query req = em.createQuery("select pc from Ordinateur pc where pc.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
 
 	@Override
 	public Ordinateur getPC(Long id) {

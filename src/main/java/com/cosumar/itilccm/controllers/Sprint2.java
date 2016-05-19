@@ -3655,4 +3655,24 @@ public class Sprint2 {
 		//return "redirect:/index";
 	}
 	
+	
+	@RequestMapping(value="/admin/search/pc")
+	public String searchPC(Model model,String s){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListPC());
+		} else {
+			model.addAttribute("cis",m.SearchPC(s));
+		}
+		
+		return "sprint2/SearchPC";
+	}
+	
+	
 }

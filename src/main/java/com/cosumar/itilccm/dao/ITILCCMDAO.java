@@ -43,6 +43,7 @@ public interface ITILCCMDAO {
 	public  Long addPCUser(Ordinateur pc, Long u);
 	public void editPC(Ordinateur pc);
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	public void deletePC(Long id);
 		

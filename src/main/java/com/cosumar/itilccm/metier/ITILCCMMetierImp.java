@@ -1850,6 +1850,11 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> contrat) {
 		return dao.addDvrAll(dvr, lieu, rack, chassis, sourceelec, cameras, interfacereseau, equipementreseaux, document, contact, contrat);
 	}
+	
+	@Override
+	public List<Ordinateur> SearchPC(String s) {
+		return dao.SearchPC(s);
+	}
 
 }
 

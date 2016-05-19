@@ -412,9 +412,6 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
-						</li>
-						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
