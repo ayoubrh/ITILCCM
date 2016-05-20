@@ -32,7 +32,6 @@ public class VolumeLogique implements Serializable{
 	@Column(unique = true)
    private String lunId;
    private String description;
-   private String systemeDeStockage;
    private String niveauRaid;
    private String taille;
    
@@ -76,12 +75,6 @@ public class VolumeLogique implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getSystemeDeStockage() {
-		return systemeDeStockage;
-	}
-	public void setSystemeDeStockage(String systemeDeStockage) {
-		this.systemeDeStockage = systemeDeStockage;
 	}
 	public String getNiveauRaid() {
 		return niveauRaid;

@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Ordinateur implements Serializable{
    private String statut;
    private String criticite;
    private String marque;
+   private String modele;
    	
    	@NotEmpty
 	@Size(min=2,max=20)
@@ -37,32 +39,55 @@ public class Ordinateur implements Serializable{
    private String ram;
    private String numeroDeSerie;
    private String numeroAsset;
+   
+   @Column(nullable = true)
    private Date dateDeMiseEnProduction;
+   
+   @Column(nullable = true)
    private Date dateD_achat;
+   
+   @Column(nullable = true)
    private Date dateDeFinDeGarantie;
    private String description;
    
    
-   	@ManyToOne
+   	@ManyToOne(cascade = CascadeType.ALL)
    	@JoinColumn(name="user_id")
    private User user;
-   @ManyToMany
+   	
+   	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
+   	
+   @ManyToMany(cascade = CascadeType.ALL)
    @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(mappedBy="ordinateur")
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
-   	@OneToMany(mappedBy="ordinateur")
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    private Collection<Peripherique> peripherique;
    	
-	 @ManyToOne
+	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name="id_licenseOs")
    	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="ordinateur")
+	 @ManyToMany(cascade = CascadeType.ALL)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 
    
@@ -150,6 +175,14 @@ public class Ordinateur implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
+	public String getModele() {
+		return modele;
+	}
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -207,6 +240,33 @@ public class Ordinateur implements Serializable{
 		this.type = type;
 		this.user = user;
 	}
+	public Lieu getLieu() {
+		return lieu;
+	}
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+	public Collection<Document> getDocument() {
+		return document;
+	}
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
+	}
+	
+	
+	
 	
 	
 	

@@ -90,7 +90,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -324,7 +324,7 @@ Use search to find needed section.
 								<ul class="dropdown-menu">
 									<li><a href="<c:url value="/users/profil?id=${logged.id }" />">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Déconnexion</a></li>
+									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Dconnexion</a></li>
 								</ul>
 							</li>
 						</ul> <!-- / .navbar-nav -->
@@ -384,7 +384,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -406,7 +406,28 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -430,7 +451,7 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des données</span></a>
+					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donnes</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
@@ -501,7 +522,7 @@ Use search to find needed section.
 							</div>
 							<div class="list-group">
 								<div class="list-group-item"><strong>Fonction : </strong> ${user.fonction }</div>
-								<div class="list-group-item"><strong>Département : </strong> ${user.departement.libelle }</div>
+								<div class="list-group-item"><strong>Dpartement : </strong> ${user.departement.libelle }</div>
 								<div class="list-group-item"><strong>Role : </strong> ${user.role.libelle }</div>
 							</div>
 						</div>
@@ -572,7 +593,7 @@ Use search to find needed section.
 											<div class="comment-footer">
 												<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 												<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-												&nbsp;&nbsp;·&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;
 												<a href="#">Reply</a>
 											</div>
 										</div> <!-- / .comment-body -->
@@ -589,7 +610,7 @@ Use search to find needed section.
 												<div class="comment-footer">
 													<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 													<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-													&nbsp;&nbsp;·&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;
 													<a href="#">Reply</a>
 												</div>
 											</div> <!-- / .comment-body -->
@@ -607,7 +628,7 @@ Use search to find needed section.
 												<div class="comment-footer">
 													<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 													<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-													&nbsp;&nbsp;·&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;
 													<a href="#">Reply</a>
 												</div>
 											</div> <!-- / .comment-body -->
@@ -624,7 +645,7 @@ Use search to find needed section.
 													<div class="comment-footer">
 														<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 														<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-														&nbsp;&nbsp;·&nbsp;&nbsp;
+														&nbsp;&nbsp;&nbsp;&nbsp;
 														<a href="#">Reply</a>
 													</div>
 												</div> <!-- / .comment-body -->
@@ -644,7 +665,7 @@ Use search to find needed section.
 											<div class="comment-footer">
 												<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 												<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-												&nbsp;&nbsp;·&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;
 												<a href="#">Reply</a>
 											</div>
 										</div> <!-- / .comment-body -->
@@ -662,7 +683,7 @@ Use search to find needed section.
 											<div class="comment-footer">
 												<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 												<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-												&nbsp;&nbsp;·&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;
 												<a href="#">Reply</a>
 											</div>
 										</div> <!-- / .comment-body -->
@@ -679,7 +700,7 @@ Use search to find needed section.
 												<div class="comment-footer">
 													<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 													<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-													&nbsp;&nbsp;·&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;
 													<a href="#">Reply</a>
 												</div>
 											</div> <!-- / .comment-body -->
@@ -697,7 +718,7 @@ Use search to find needed section.
 												<div class="comment-footer">
 													<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 													<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-													&nbsp;&nbsp;·&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;&nbsp;
 													<a href="#">Reply</a>
 												</div>
 											</div> <!-- / .comment-body -->
@@ -714,7 +735,7 @@ Use search to find needed section.
 													<div class="comment-footer">
 														<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 														<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-														&nbsp;&nbsp;·&nbsp;&nbsp;
+														&nbsp;&nbsp;&nbsp;&nbsp;
 														<a href="#">Reply</a>
 													</div>
 												</div> <!-- / .comment-body -->
@@ -734,7 +755,7 @@ Use search to find needed section.
 											<div class="comment-footer">
 												<a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
 												<a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-												&nbsp;&nbsp;·&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;&nbsp;
 												<a href="#">Reply</a>
 											</div>
 										</div> <!-- / .comment-body -->

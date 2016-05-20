@@ -3,12 +3,14 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
@@ -27,6 +29,8 @@ public class Imprimante implements Serializable{
    private String nom;
    private String statut;
    private String criticite;
+   private String marque;
+   private String modele;
    private String numeroDeSerie;
    private String numeroAsset;
    private Date dateDeMiseEnProduction;
@@ -34,9 +38,25 @@ public class Imprimante implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@ManyToOne
+   	@ManyToOne(cascade = CascadeType.ALL)
   	@JoinColumn(name="user_id")
    private User user;
+   	
+	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
 
 	public Long getId() {
 		return id;
@@ -141,6 +161,56 @@ public class Imprimante implements Serializable{
 		this.nom = nom;
 		this.user = user;
 	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
+	}
+
+	public String getMarque() {
+		return marque;
+	}
+
+	public void setMarque(String marque) {
+		this.marque = marque;
+	}
+
+	public String getModele() {
+		return modele;
+	}
+
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
+	
+	
 	
 	
    	

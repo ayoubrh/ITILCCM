@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Licence OS - ITIL-CCM</title>
+	<title>Nouveau Volume logique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -92,7 +92,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -386,7 +386,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -408,7 +408,28 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -453,12 +474,111 @@ Use search to find needed section.
 
 		Content
 -->
+
+	<!-- Modal Machines Virtuelles -->
+				<div id="myModalMachinesVirtuelles" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Machines Virtuelles </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Machines Virtuelles</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableMachinesVirtuellespopup">
+											<c:forEach items="${machinesVirtuelles}" var="mv">
+												<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckmv" name="ckMachinesVirtuelles" value="${mv.id }"></td>
+													<td>${mv.nom }</td>
+													<td>${mv.statut }</td>
+													<td>${mv.criticite}</td>
+													<td>${mv.ip}</td>
+													<td>${mv.dateDeMiseEnProduction }</td>
+													<td>${mv.description}</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addmv">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Machines Virtuelles -->
+				<!-- Modal Serveurs-->
+				<div id="myModalServeurs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Serveurs </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Serveur</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableServeurspopup">
+											<c:forEach items="${serveurs}" var="s">
+												<tr class="gradeA" id="tr_Serveurs_${s.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckserv" name="ckServeurs" value="${s.id }"></td>
+													<td>${s.nom }</td>
+													<td>${s.statut }</td>
+													<td>${s.criticite}</td>
+													<td>${s.marque}</td>
+													<td>${s.modele}</td>
+													<td>${s.ip}</td>
+													<td>${s.dateDeMiseEnProduction }</td>
+													<td>${s.description}</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addserv">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Serveurs -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Licence OS</span>
+						<span class="panel-title">Nouveau Volume Logique</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="licenceOs" action="saveLicenceOs" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="volumeLogique" action="saveVolumeLogique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -472,18 +592,11 @@ Use search to find needed section.
 								</li>
 								
 								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
-								</li>
-								
-								
-								<li>
 									<a href="#profile-tabs-serveurs" data-toggle="tab">Serveurs</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
 								</li>
-								
-								
 								
 							</ul>
 		
@@ -495,132 +608,139 @@ Use search to find needed section.
 						<div class="panel-body">
 						
 						
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 							    </div>
 							
 							</div>
 							
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
-								<div class="col-sm-4">
-									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-									    <f:option value="NONE"> -- choisir une valeur --</f:option>
-										<f:options items="${v }" itemValue="id" itemLabel="nom" />
+							<div class="form-group required">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Système de stockage</label>
+								<div class="col-sm-9">
+									<f:select  path="systemedestockage.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+									    <f:option value=""></f:option>
+										<f:options items="${ss }" itemValue="id" itemLabel="nom" />
 									</f:select>
-									<f:errors path="versionOs.id" cssClass="help-block"></f:errors>
+									<c:if test="${error == true}">
+										<div class="help-block">Choisissez un Système de stockage</div>
+									</c:if>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Limite d'utilisation</label>
-								<div class="col-sm-5">
-									<f:input path="limiteD_utilisation" type="text" class="form-control" id="inputError-4" name="jq-validation-limiteD_utilisation" />
-									<f:errors path="limiteD_utilisation" cssClass="help-block"></f:errors>
+							<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">LUN ID</label>
+								<div class="col-sm-9">
+									<f:input path="lunId" type="text" class="form-control" id="inputError-4" name="jq-validation-lunId" />
+									<f:errors path="lunId" cssClass="help-block"></f:errors>
 							    </div>
 							
 							</div>
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Niveau RAID</label>
+								<div class="col-sm-9">
+									<f:input path="niveauRaid" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-niveauRaid" />
+									<f:errors path="niveauRaid" cssClass="help-block"></f:errors>
+								</div>
+				</div>
 							
+							
+				<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Taille</label>
+								<div class="col-sm-9">
+									<f:input path="taille" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-taille" />
+									<f:errors path="taille" cssClass="help-block"></f:errors>
+								</div>
+				</div>
+				
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-5">
+								<div class="col-sm-9">
 									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
 									<f:errors path="description" cssClass="help-block"></f:errors>
 							    </div>
 							
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
-								<div class="col-sm-4">
-									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value="NONE"> -- choisir une valeur --</f:option>
-									            <f:option value="non">non</f:option>
-												<f:option value="oui"> oui</f:option>
-									</f:select>
-									<f:errors path="perpetuelle" cssClass="help-block"></f:errors>
-							     </div>
-				             </div> 
-							<script>
-					init.push(function () {
-						
-						var options = {
-								
-								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-							}
-							$('#bs-datepicker-component').datepicker();
-						
-						    $('#bs-datepicker-component2').datepicker(options);
-
-					});
-				</script>
-				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début de validité</label>
-					
-						<div class=" col-sm-3" >
-							<div class=" input-group date" id="bs-datepicker-component">
-								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
-								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>
-							</div>				
-						</div>
-				</div>
-				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin de validité</label>
-				     		<div class=" col-sm-3" >
-								<div class="input-group date" id="bs-datepicker-component2">
-									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
-									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-				
-				</div>	
-				
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Clé</label>
-								<div class="col-sm-5">
-									<f:input path="cle" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-cle" />
-									<f:errors path="cle" cssClass="help-block"></f:errors>
-								</div>
-				</div>
-				
 				
 					
 						
 					</div>
 					
-					
-		
 								</div> <!-- / .tab-pane -->
 								
-								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									
-		
-		
-									Documents
-		
-									
-									
-								</div> <!-- / .tab-pane -->
+								
 								<div class="tab-pane fade widget-serveurs" id="profile-tabs-serveurs">
-									
-		
-		
-									Serveurs
-		
-									
-									
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+											 <tr>
+												<th id="supchek"> </th>
+												<th>Serveur</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+											</thead>
+											<tbody id="tableServeurs">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppserv">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalServeurs">Ajouter des Serveurs</button>
+										</div>
+										
+									</div>
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-machines" id="profile-tabs-machines">
-									
-								Machines Virtuelles
-									
-									
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+											 <tr>
+												<th id="supchek"> </th>
+												<th>Machines Virtuelles</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>IP</th>
+												<th>Date de mise en production</th>
+												<th>Description</th>
+											</tr>
+											</thead>
+											<tbody id="tableMachinesVirtuelles">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppmv">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalMachinesVirtuelles">Ajouter des Machines Virtuelles</button>
+										</div>
+										
+									</div>
 								</div> <!-- / .tab-pane -->
+								
 								
 							</div> <!-- / .tab-content -->
 						</div>
@@ -679,6 +799,56 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		
+	    document.getElementById("addmv").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckmv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
+		    	$( "#tableMachinesVirtuelles" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppmv").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckmv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
+		    	$( "#tableMachinesVirtuellespopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+	    document.getElementById("addserv").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckserv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_Serveurs_".concat($(this).val()));
+		    	$( "#tableServeurs" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppserv").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckserv:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_Serveurs_".concat($(this).val()));
+		    	$( "#tableServeurspopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
 	});
 	window.PixelAdmin.start(init);
 </script>

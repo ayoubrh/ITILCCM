@@ -31,8 +31,10 @@ public class TestMetierA {
 			m.addPC(new Ordinateur("Acer", "Portable"));
 			m.addPCUser(new Ordinateur("DELL", "Poste"),1L);
 			m.addPCUser(new Ordinateur("Mac", "Portable"),2L);
+			m.addPCAll(new Ordinateur("HP 2", "Poste"), null, null, null, null, null, null, null, null, null, null);
+			m.addPCAll(new Ordinateur("HP 3", "Poste"), null, null, null, null, null, null, null, null, null, null);
 			List<Ordinateur> pc2 = m.ListPC();
-			assertTrue(pc1.size()+4 == pc2.size());
+			assertTrue(pc1.size()+6 == pc2.size());
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
 		}
@@ -110,10 +112,10 @@ public class TestMetierA {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			List<TelephoneFixe> imp1 = m.ListTeleFixe();
-			m.addTeleFixe(new TelephoneFixe("Fixe 1"));
-			m.addTeleFixe(new TelephoneFixe("Fixe 2"));
-			m.addTeleFixeUser(new TelephoneFixe("Fixe 3"), 1L);
-			m.addTeleFixeUser(new TelephoneFixe("Fixe 4"), 2L);
+			m.addTeleFixe(new TelephoneFixe("Fixe 1","0512365478"));
+			m.addTeleFixe(new TelephoneFixe("Fixe 2","0647125863"));
+			m.addTeleFixeUser(new TelephoneFixe("Fixe 3","0547123495"), 1L);
+			m.addTeleFixeUser(new TelephoneFixe("Fixe 4","0612457878"), 2L);
 			List<TelephoneFixe> imp2 = m.ListTeleFixe();
 			assertTrue(imp1.size()+4 == imp2.size());
 		}catch (Exception e){

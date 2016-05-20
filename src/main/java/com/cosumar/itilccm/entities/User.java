@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -30,7 +31,7 @@ public class User implements Serializable {
    private Long id;
 	
 	@NotEmpty
-	@Size(min=6,max=20)
+	@Size(min=4,max=20)
 	@Column(unique = true)
    private String matricule;
 	
@@ -67,12 +68,12 @@ public class User implements Serializable {
    	
     @Column(nullable=true)
    	@Size(max=16)
-   	@Pattern(regexp="(^$|[0-9]{10})")
+   	@Pattern(regexp="(^$|[0-9]{10})",message="Doit contenir que des nombres, et sous la forme 05(6) xx xx xx xx")
    private String tele;
    
     @Column(nullable=true)
    	@Size(max=16)
-   	@Pattern(regexp="(^$|[0-9]{10})")
+   	@Pattern(regexp="(^$|[0-9]{10})",message="Doit contenir que des nombres, et sous la forme 05(6) xx xx xx xx")
    private String fixe;
    
     @NotEmpty
@@ -120,7 +121,7 @@ public class User implements Serializable {
    	
    	 @OneToMany(mappedBy="user")
 	private Collection<Imprimante> imprimante;
-   	
+   	 
 	public Long getId() {
 		return id;
 	}

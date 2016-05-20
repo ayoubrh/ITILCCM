@@ -32,7 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Comptes utilisateurs - ITIL-CCM</title>
+	<title>Type CI fonctionnel - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -51,8 +51,7 @@ Use search to find needed section.
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	
 
 </head>
 
@@ -91,7 +90,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -385,7 +384,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -407,7 +406,28 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -447,7 +467,7 @@ Use search to find needed section.
 <!-- /4. $MAIN_MENU -->
 
 
-	<div id="content-wrapper">
+	<div  id="content-wrapper">
 <!-- 5. $CONTENT ===================================================================================
 
 		Content
@@ -455,95 +475,67 @@ Use search to find needed section.
 
 		<!-- Content here -->
 		
-		<script>
-					init.push(function () {
-
-						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('');
-						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-
-					});
-					
-					
-		</script>
-		
-				<!-- / Javascript -->
-
-				<div class="panel">
+	
+		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Liste de tous les utilisateurs</span>
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; <strong>Type CI fonctionnel</strong></span>
 					</div>
 					<div class="panel-body">
-						<div class="table-primary">
-							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
-								<thead>
-									<tr>
-										<th id="supchek"> </th>
-										<th>Matricule</th>
-										<th>Nom complet</th>
-										<th>E-mail</th>
-										<th>tele/fixe</th>
-										<th>Fonction</th>
-										<th>Département</th>
-										<th>Role</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${users}" var="u">
-										<tr class="gradeA">
-											<td class="supchekbox"><input type="checkbox" class="ck" name="sup" value="${u.id }"></td>
-											<td><a href="<c:url value="/users/profil?id=${u.id }" />">${u.matricule }</a></td>
-											<td>${u.prenom } ${u.nom }</td>
-											<td>${u.email }</td>
-											<td>${u.tele }/${u.fixe }</td>
-											<td>${u.fonction }</td>
-											<td>${u.departement.libelle }</td>
-											<c:if  test="${u.role.libelle != null}">
-												<td>${u.role.libelle}</td>
-											</c:if>
-											<c:if  test="${u.role.libelle == null }">
-												<td> </td>
-											</c:if>
-											<td>
-												<c:if test="${u.actived == true }">
-													<input type="checkbox" class="switcher-example-2" checked="checked" disabled="disabled">
-												</c:if>
-												<c:if test="${u.actived == false }">
-													<input type="checkbox" class="switcher-example-2" disabled="disabled">
-												</c:if>
-											</td>
-										</tr>
-									</c:forEach>
+					<form action="typeDocumentRedirect">
+						<div class="form-group">
+					
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de CI fonctionnel à créer :</label>
+								<div class="col-sm-3">
+									<select   class="form-control" name="type">
+							             <option value="/config/admin/add/applicationWeb">Application Web</option>
+										 <option value="/config/admin/add/arriveeElectrique">Arrivée électrique</option>
+									     <option value="/config/admin/add/autreLogiciel"  >Autre logiciel</option>
+									     <option value="/config/admin/add/">Bandothèque</option>
+									     <option value="/config/admin/add/chassis"  >Chassis</option>
+										 <option value="/config/admin/add/">DVR</option>
+									     <option value="/config/admin/add/">Equipement réseau</option>
+										 <option value="/config/admin/add/hyperviseur">Hyperviseur</option>
+									     <option value="/config/admin/add/imp"  >Imprimante</option>
+									     <option value="/config/admin/add/instanceMiddleware">Instance Middleware</option>
+										 <option value="/config/admin/add/instanceBD">Instance de base de données</option>
+									     <option value="/config/admin/add/logicielPc"  >Logiciel PC</option>
+									     <option value="/config/admin/add/machineVirtuelle">Machine Virtuelle</option>
+										 <option value="/config/admin/add/middleware">Middleware</option>
+									     <option value="/config/admin/add/"  >NAS</option>
+									     <option value="/config/admin/add/pc">PC</option>
+										 <option value="/config/admin/add/pduElectrique">PDU</option>
+									     <option value="/config/admin/add/processusMetier"  >Processus métier</option>
+									     <option value="/config/admin/add/per"  >Périphérique</option>
+									     <option value="/config/admin/add/rack"  >Rack</option>
+									     <option value="/config/admin/add/"  >Serveur</option>
+									     <option value="/config/admin/add/serveurWeb"  >Serveur Web</option>
+									     <option value="/config/admin/add/serveurBD"  >Serveur de base de données</option>
+									     <option value="/config/admin/add/sim"  >SIM</option>
+									     <option value="/config/admin/add/solutionApplication"  >Solution applicative</option>
+									     <option value="/config/admin/add/"  >Switch SAN</option>
+									     <option value="/config/admin/add/"  >Système de Stockage</option>
+									     <option value="/config/admin/add/tablette"  >Tablette</option>
+									     <option value="/config/admin/add/telefixe"  >Téléphone fixe</option>
+									     <option value="/config/admin/add/telemobile"  >Téléphone mobile</option>
+									     <option value="/config/admin/add/vCluster"  >vCluster</option>
+									     
+									</select>
 									
-								</tbody>
-							</table>
+							    </div>
+							    <button type="submit" class="btn btn-primary">Appliquer</button>
+						
 						</div>
+					</form>					
+									
 					</div>
-				</div>
-
-
-
-
-
-
-
+					
+					
+		</div>
+					
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
-<script>
-					init.push(function () {
-
-						$('.switcher-example-2').switcher({
-							theme: 'square',
-							on_state_content: '<span class="fa fa-check"></span>',
-							off_state_content: '<span class="fa fa-times"></span>'
-						});
-					});
-					
-					
-</script>
 
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
@@ -560,54 +552,10 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-	
-		init.push(function () {
-			
-			var s = "${fn:length(users)}";
-			
-			var tab = "${ids}";
-			var tab = tab.match(/\d/g);
-			
-			$("#supchek").hide();
-			//for(i=0;i<s;i++){
-				//var aid = "#supchek".concat(tab[i]);
-				//alert(aid);
-				$(".supchekbox").hide();
-			//}
-			//$("#supchek").hide();
-			$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='add'>Nouveau</button>&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn btn-danger btn-flat' id='supp'>Supprimer</button></div>");
-			// Javascript code here
-			document.getElementById("add").onclick = function () {
-		        location.href = "http://localhost:8080/itilccm/users/admin/add";
-		    };
-		    document.getElementById("supp").onclick = function () {
-		    	$("#supchek").show();
-				//for(i=0;i<=s;i++){
-					//var aid = "#supchek".concat(tab[i]);
-					$(".supchekbox").show();
-				//}
-				$(".table-caption").replaceWith("<div class='table-caption'><button class='btn btn-labeled' id='annulle'><span class='btn-label icon fa fa-angle-double-left'></span>Annuler</button>  <button class='btn btn-labeled btn-danger' id='approuv'><span class='btn-label icon fa fa-angle-double-right'></span>Supprimer!</button></div>");
-		   		
-				
-				document.getElementById("annulle").onclick = function () {
-			    	//alert("annulle")
-			        location.href = "http://localhost:8080/itilccm/users/admin/all";
-			    };
-			    
-			    document.getElementById("approuv").onclick = function () {
-			    	var chkArray = [];
-			    	
-			    	$(".ck:checked").each(function() {
-			    		chkArray.push($(this).val());
-			    	});
-			    	//alert("http://localhost:8080/itilccm/users/delete?ids="+chkArray);
-			    	location.href = "http://localhost:8080/itilccm/users/admin/delete?ids="+chkArray;
-			    };
-			    
-		    };
-		    
-		});
-		window.PixelAdmin.start(init);
+	init.push(function () {
+		// Javascript code here
+	});
+	window.PixelAdmin.start(init);
 </script>
 
 </body>

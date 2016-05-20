@@ -91,7 +91,7 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
+				<a href="<c:url value="/index" />" class="navbar-brand">
 					<div><img alt="Pixel Admin" src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo.png"></div>
 				</a>
 
@@ -385,7 +385,7 @@ Use search to find needed section.
 			</div>
 			<ul class="navigation">
 				<li>
-					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableau de bord</span></a>
+					<a href="<%=request.getContextPath()%>/index"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Tableaux de bord</span></a>
 				</li>
 				<s:authorize ifAnyGranted="ROLE_ADMIN">
 				<li class="mm-dropdown">
@@ -407,7 +407,28 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableau de bord</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -457,7 +478,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau Contact</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="pc" action="savePC" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="contact" action="saveContact" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -469,23 +490,9 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								
-								
-								<li>
-									<a href="#profile-tabs-groupes" data-toggle="tab">Groupe</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-cis" data-toggle="tab">CIs</a>
-								</li>
-								
-								
+														
 							</ul>
-		
+		                 </div>
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
@@ -493,44 +500,45 @@ Use search to find needed section.
 		
 									<div class="panel-body">
 						
-						<f:form modelAttribute="contact" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Prenom</label>
 								<div class="col-sm-9">
 									<f:input path="prenom" type="text" class="form-control" id="inputError-4" name="jq-validation-prenom" />
 									<f:errors path="prenom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Organisation</label>
 								<div class="col-sm-9">
 									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-organisation" />
 									<f:errors path="organisme" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value="NONE"> -- choisir une valeur --</f:option>
+							            <f:option value="NULL"> -- choisir une valeur --</f:option>
 										<f:option value="Actif"> Actif</f:option>
 										<f:option value="Inactif"> Inactif</f:option>
 									</f:select>
-							<f:errors path="nom" cssClass="help-block"></f:errors>
+							<f:errors path="statut" cssClass="help-block"></f:errors>
 							</div>
 							</div>
 							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Site</label>
+								<label for="jq-validation-email" class="col-sm-3 control-label">Site</label>
 								<div class="col-sm-9">
 									<f:select  path="lieu.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										<f:option value=""> -- choisir une valeur --</f:option>
 										<f:options items="${l }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="lieu.id" cssClass="help-block"></f:errors>
@@ -572,46 +580,14 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							
-							          
-							</f:form>
 							</div>
 		
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-groupes" id="profile-tabs-groupes">
-									
-									Groupes
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
-									
-		
-		
-									Tickets
-		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-cis" id="profile-tabs-cis">
-									
-		
-									CIs
-		
-		
-									
-								</div> <!-- / .tab-pane -->
+								
+								
+								
 							</div> <!-- / .tab-content -->
-						</div>
-				
-					
-					
-					
-					
-					
+						
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -631,23 +607,6 @@ Use search to find needed section.
 		</div>
 
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<!-- Content here -->
 		
@@ -673,19 +632,46 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-	init.push(function () {
-		$('#profile-tabs').tabdrop();
+init.push(function () {
+	$('#profile-tabs').tabdrop();
 
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
+	$("#leave-comment-form").expandingInput({
+		target: 'textarea',
+		hidden_content: '> div',
+		placeholder: 'Write message',
+		onAfterExpand: function () {
+			$('#leave-comment-form textarea').attr('rows', '3').autosize();
+		}
 	});
-	window.PixelAdmin.start(init);
+	
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		document.getElementById("addContrat").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ck:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    	$( "#tableContrat" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    
+	    };
+	    document.getElementById("suppContrat").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ck:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_".concat($(this).val()));
+		    	$( "#tableContratepopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    }
+	
+});
+window.PixelAdmin.start(init);
 </script>
 
 </body>

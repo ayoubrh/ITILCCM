@@ -20,6 +20,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	
 	// Ordinateur
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	
 
@@ -34,12 +35,30 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public Contrat getContrat(Long id);
 			
 	// Document
-			
-	public Long ajouterDocument(Document d);
-	public void modifierDocument(Document d);
-	public void supprimerDocument(Long id);
+	
 	public List<Document> listDocument();
 	public Document getDocument(Long id);
+	
+     //  Document  Fichier
+	
+	public Long ajouterDocumentFichier(DocumentFichier df);
+	public void modifierDocumentFichier(DocumentFichier df);
+	public List<DocumentFichier> listDocumentFichier();
+	public DocumentFichier getDocumentFichier(Long id);
+	
+    //  Document  Web
+	
+	public Long ajouterDocumentWeb(DocumentWeb dw);
+	public void modifierDocumentWeb(DocumentWeb dw);
+	public List<DocumentWeb> listDocumentWeb();
+	public DocumentWeb getDocumentWeb(Long id);
+	
+	 //  Document Note
+	
+	public Long ajouterDocumentNote(DocumentNote dn);
+	public void modifierDocumentNote(DocumentNote dn);
+	public List<DocumentNote> listDocumentNote();
+	public DocumentNote getDocumentNote(Long id);
 			
 	// Groupe
 		
@@ -50,7 +69,6 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	
 	public Long ajouterApplicationWeb(ApplicationWeb aw);
 	public void modifierApplicationWeb(ApplicationWeb aw);
-	public void supprimerApplicationWeb(Long id);
 	public List<ApplicationWeb> listApplicationWeb();
 	public ApplicationWeb getApplicationWeb(Long id);
 			
@@ -58,15 +76,13 @@ public interface EquipeITMetier extends UtilisateurMetier {
 
 	public Long ajouterInstanceMiddleware(InstanceMiddleware im);
 	public void modifierInstanceMiddleware(InstanceMiddleware im);
-	public void supprimerInstanceMiddleware(Long id);
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 			
-	// Instance de basse de donnés
+	// Instance de basse de donns
 			
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
-	public void supprimerInstanceDeBasseDeDonnes(Long id);
 	public List<InstanceDeBasseDeDonnes> listInstanceDeBasseDeDonnes();
 	public InstanceDeBasseDeDonnes getInstanceDeBasseDeDonnes(Long id);
 	
@@ -110,7 +126,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 		
-	// Serveur de basse de données
+	// Serveur de basse de donnes
 	
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
 	public ServeurDeBasseDeDonnees getServeurDeBasseDeDonnees(Long id);
@@ -157,7 +173,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<TelephoneFixe> ListTeleFixe();
 	public TelephoneFixe getTeleFixe(Long id);
 	
-	// Periphérique
+	// Periphrique
 	public List<Peripherique> ListPeriph();
 	public Peripherique getPeriph(Long id);
 	
@@ -226,7 +242,16 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public void editDvr(Dvr dvr);
 	public List<Dvr> ListDvr();
 	public Dvr getDvr(Long id);
+	
+	
+	// Serveur
+	public void editServeur(Serveur Serveur);
+	public List<Serveur> ListServeur();
+	public Serveur getServeur(Long id);
 		
-
+	//EquipementReseau
+	public void editEquipementReseau(EquipementReseau er);
+	public List<EquipementReseau> ListEquipementReseau();
+	public EquipementReseau getEquipementReseau(Long id);
 
 }

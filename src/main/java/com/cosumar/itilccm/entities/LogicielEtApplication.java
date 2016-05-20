@@ -37,7 +37,7 @@ public class LogicielEtApplication implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(mappedBy="logicielEtApplication")
 	   private Collection<Ordinateur> ordinateur;
 	   
 	   @Column(nullable=true)
@@ -46,13 +46,26 @@ public class LogicielEtApplication implements Serializable {
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
-	   private Collection<Serveur> serveur;
+	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
-	   private Collection<MachineVirtuelle> machineVirtuelle;
-	  
+	   private Collection<Contrat> contrats;
 	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Document> documents;
+	   
+	  
+	   @ManyToOne
+	   @JoinColumn(name="id_serveur")
+	   private Serveur serveur;
+	   
+	  
+	   @ManyToOne
+	   @JoinColumn(name="id_machineVirtuelle")
+	   private MachineVirtuelle machineVirtuelle;
+	  
 	   @ManyToOne
 	   @JoinColumn(name="id_licenseLogiciel")
 	   private LicenseLogiciel licenseLogiciel;
@@ -144,20 +157,20 @@ public class LogicielEtApplication implements Serializable {
 		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 			this.solutionApplicative = solutionApplicative;
 		}
-
-		public Collection<Serveur> getServeur() {
+        
+		public Serveur getServeur() {
 			return serveur;
 		}
 
-		public void setServeur(Collection<Serveur> serveur) {
+		public void setServeur(Serveur serveur) {
 			this.serveur = serveur;
 		}
 
-		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+		public MachineVirtuelle getMachineVirtuelle() {
 			return machineVirtuelle;
 		}
 
-		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+		public void setMachineVirtuelle(MachineVirtuelle machineVirtuelle) {
 			this.machineVirtuelle = machineVirtuelle;
 		}
 
@@ -168,11 +181,30 @@ public class LogicielEtApplication implements Serializable {
 		public void setLicenseLogiciel(LicenseLogiciel licenseLogiciel) {
 			this.licenseLogiciel = licenseLogiciel;
 		}
-		
-		
-		   
-   
-   
-   
+
+		public Collection<Contact> getContacts() {
+			return contacts;
+		}
+
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
+		}
+
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+
+		public Collection<Document> getDocuments() {
+			return documents;
+		}
+
+		public void setDocuments(Collection<Document> documents) {
+			this.documents = documents;
+		}
+	
 
 }

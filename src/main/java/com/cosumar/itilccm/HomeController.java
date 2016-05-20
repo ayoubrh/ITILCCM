@@ -30,6 +30,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cosumar.itilccm.entities.User;
+import com.cosumar.itilccm.metier.AdminMetier;
 import com.cosumar.itilccm.metier.UtilisateurMetier;
 
 import antlr.ParserSharedInputState;
@@ -39,6 +40,10 @@ import antlr.ParserSharedInputState;
  */
 @Controller
 public class HomeController implements HandlerExceptionResolver {
+	
+	
+	@Autowired
+	private AdminMetier m;
 	
 	@Autowired
 	private UtilisateurMetier mu;
@@ -56,6 +61,13 @@ public class HomeController implements HandlerExceptionResolver {
 	      String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
+		model.addAttribute("Processusmetier", mu.ListProcessusMetier().size());
+		model.addAttribute("Solutionapplicative", mu.ListSolutionApplicative().size());
+		model.addAttribute("Contact", mu.listContact().size());
+		model.addAttribute("Lieu", mu.listLieu().size());
+		model.addAttribute("Contrat", mu.listContrat().size());
+		model.addAttribute("Serveur", mu.ListServeur().size());
+		model.addAttribute("Equipementreseau", mu.ListEquipementReseau().size());
 	    return "index";
 	}
 	
@@ -65,6 +77,13 @@ public class HomeController implements HandlerExceptionResolver {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
+		model.addAttribute("Processusmetier", mu.ListProcessusMetier().size());
+		model.addAttribute("Solutionapplicative", mu.ListSolutionApplicative().size());
+		model.addAttribute("Contact", mu.listContact().size());
+		model.addAttribute("Lieu", mu.listLieu().size());
+		model.addAttribute("Contrat", mu.listContrat().size());
+		model.addAttribute("Serveur", mu.ListServeur().size());
+		model.addAttribute("Equipementreseau", mu.ListEquipementReseau().size());
 		model.addAttribute("v", v);
 	    return "index";
 	}
@@ -100,8 +119,8 @@ public class HomeController implements HandlerExceptionResolver {
 		}
 		if(u.getEmail().equals(mail) ) {
 			String url = "http://localhost:8080/itilccm/password?id="+u.getId();
-			mu.SendEmail(u.getEmail(), "Récupiration de mot de passee", "Vous avez demander de récuperer votre mot de passe.<br>"
-					+"Pour récuprer le mot de passe "
+			mu.SendEmail(u.getEmail(), "Rcupiration de mot de passee", "Vous avez demander de rcuperer votre mot de passe.<br>"
+					+"Pour rcuprer le mot de passe "
 					+"<a href="+url+">Clickez ici</a>. <br>"
 					+"Si ce n'est pas vous, oublier ce message !"
 					);
@@ -134,7 +153,7 @@ public class HomeController implements HandlerExceptionResolver {
 				return "redirect:/password?id="+id+"&error=true";
 			}
 			mu.modifierUser(u);
-			mu.SendEmail(u.getEmail(), "Nouveau mot de passee", "Vous avez chnagé votre mot de passe avec success.<br>"
+			mu.SendEmail(u.getEmail(), "Nouveau mot de passee", "Vous avez chnag votre mot de passe avec success.<br>"
 					+"Les informations de votre comptes sont : <br>"
 					+"matricule : "+u.getMatricule()+"<br>"
 					+"Password : "+password+"<br>"

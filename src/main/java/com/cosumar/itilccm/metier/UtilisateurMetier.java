@@ -22,6 +22,7 @@ public interface UtilisateurMetier {
 	
 	// Ordinateur
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	
 
@@ -39,6 +40,21 @@ public interface UtilisateurMetier {
 	
 	public List<Document> listDocument();
 	public Document getDocument(Long id);
+	
+    //  Document  Fichier
+	
+	public List<DocumentFichier> listDocumentFichier();
+	public DocumentFichier getDocumentFichier(Long id);
+	
+    //  Document  Web
+	
+	public List<DocumentWeb> listDocumentWeb();
+	public DocumentWeb getDocumentWeb(Long id);
+	
+	 //  Document Note
+	
+	public List<DocumentNote> listDocumentNote();
+	public DocumentNote getDocumentNote(Long id);
 		
 	// Groupe
 	
@@ -55,7 +71,7 @@ public interface UtilisateurMetier {
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 		
-	//Instance de basse de donnés
+	//Instance de basse de donns
 	
 	public List<InstanceDeBasseDeDonnes> listInstanceDeBasseDeDonnes();
 	public InstanceDeBasseDeDonnes getInstanceDeBasseDeDonnes(Long id);
@@ -100,7 +116,7 @@ public interface UtilisateurMetier {
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 		
-	// Serveur de basse de données
+	// Serveur de basse de donnes
 	
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
 	public ServeurDeBasseDeDonnees getServeurDeBasseDeDonnees(Long id);
@@ -148,7 +164,7 @@ public interface UtilisateurMetier {
 	public List<TelephoneFixe> ListTeleFixe();
 	public TelephoneFixe getTeleFixe(Long id);
 	
-	// Periphérique
+	// Periphrique
 	public List<Peripherique> ListPeriph();
 	public Peripherique getPeriph(Long id);
 	
@@ -197,6 +213,15 @@ public interface UtilisateurMetier {
 	public List<Dvr> ListDvr();
 	public Dvr getDvr(Long id);
 		
-
+	// Serveur
+	public void editServeur(Serveur Serveur);
+	public List<Serveur> ListServeur();
+	public Serveur getServeur(Long id);
+	
+	
+	//EquipementReseau
+	public void editEquipementReseau(EquipementReseau er);
+	public List<EquipementReseau> ListEquipementReseau();
+	public EquipementReseau getEquipementReseau(Long id);
 
 }

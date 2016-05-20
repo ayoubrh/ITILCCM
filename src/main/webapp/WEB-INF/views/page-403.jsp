@@ -40,7 +40,7 @@
 <script>var init = [];</script>
 
 	<div class="header">
-		<a href="<c:url value="/users/index" />" class="logo">
+		<a href="<c:url value="/index" />" class="logo">
 			<div><img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" alt=""></div>&nbsp;
 			<strong>ITIL-CCM</strong>
 		</a> <!-- / .logo -->
@@ -55,7 +55,7 @@
 		ACCES REFUSE .... VOUS N'AVEZ PAS LE DROIT D'ENTRER DANS CE ESPACE
 		<br>
 		<br>
-		<span class="solve">Nous espérons résoudre prochainement</span>
+		<span class="solve">Nous esprons rsoudre prochainement</span>
 	</div> <!-- / .error-text -->
 
 <!-- Get jQuery from Google CDN -->

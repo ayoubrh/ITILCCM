@@ -33,7 +33,7 @@ public class Lieu implements Serializable {
 	   
 	   @Column(nullable=true)
 	   @Size(max=5)
-	   @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
+	   //@Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
 	   private String codePostale;
 	   
 	   private String ville;
@@ -42,6 +42,44 @@ public class Lieu implements Serializable {
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="lieu")
 	   private Collection<Contact> contacts;
+	   
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Ordinateur> ordinateur;
+		
+		@OneToMany(mappedBy="lieu")
+		private Collection<EquipementReseau> equipementreseaux;
+	   	
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Infrastructure> infrastructure;
+	   	
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Rack> rack;
+	   	
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Chassis> chassis;
+	   
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<Imprimante> imprimante;
+	   	
+	   	@OneToMany(mappedBy="lieu")
+		private Collection<TelephneMobile> telephonemobile;
+	   	
+		@OneToMany(mappedBy="lieu")
+		private Collection<Peripherique> peripherique;
+		
+		@OneToMany(mappedBy="lieu")
+		private Collection<TelephoneFixe> telephonefixe;
+		
+		@OneToMany(mappedBy="lieu")
+		private Collection<Tablette> tablette;
+		
+		@OneToMany(mappedBy="lieu")
+		private Collection<Camera> camera;
+		
+		
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="lieu")
+	   private Collection<ConnexionElectrique> connexionElectrique;
 	
 		public Lieu() {
 			super();
@@ -79,72 +117,87 @@ public class Lieu implements Serializable {
 		public Long getId() {
 			return id;
 		}
-		
-		
+
+
+
 		public void setId(Long id) {
 			this.id = id;
 		}
-		
-		
+
+
+
 		public String getStatut() {
 			return statut;
 		}
-		
-		
+
+
+
 		public void setStatut(String statut) {
 			this.statut = statut;
 		}
-		
-		
+
+
+
 		public String getOrganisme() {
 			return organisme;
 		}
-		
-		
+
+
+
 		public void setOrganisme(String organisme) {
 			this.organisme = organisme;
 		}
-		
-		
+
+
+
 		public String getAdresse() {
 			return adresse;
 		}
-		
-		
+
+
+
 		public void setAdresse(String adresse) {
 			this.adresse = adresse;
 		}
-		
-		
+
+
+
 		public String getCodePostale() {
 			return codePostale;
 		}
-		
-		
+
+
+
 		public void setCodePostale(String codePostale) {
 			this.codePostale = codePostale;
 		}
-		
-		
+
+
+
 		public String getVille() {
 			return ville;
 		}
-		
-		
+
+
+
 		public void setVille(String ville) {
 			this.ville = ville;
 		}
-		
-		
+
+
+
 		public String getPays() {
 			return pays;
 		}
-		
-		
+
+
+
 		public void setPays(String pays) {
 			this.pays = pays;
 		}
-		
+
+
+
 		public Collection<Contact> getContacts() {
 			return contacts;
 		}
@@ -154,8 +207,141 @@ public class Lieu implements Serializable {
 		public void setContacts(Collection<Contact> contacts) {
 			this.contacts = contacts;
 		}
-		
 
+
+
+		public Collection<Ordinateur> getOrdinateur() {
+			return ordinateur;
+		}
+
+
+
+		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+
+
+
+		public Collection<Rack> getRack() {
+			return rack;
+		}
+
+
+
+		public void setRack(Collection<Rack> rack) {
+			this.rack = rack;
+		}
+
+
+
+		public Collection<Chassis> getChassis() {
+			return chassis;
+		}
+
+
+
+		public void setChassis(Collection<Chassis> chassis) {
+			this.chassis = chassis;
+		}
+
+
+
+		public Collection<Imprimante> getImprimante() {
+			return imprimante;
+		}
+
+
+
+		public void setImprimante(Collection<Imprimante> imprimante) {
+			this.imprimante = imprimante;
+		}
+
+
+
+		public Collection<TelephneMobile> getTelephonemobile() {
+			return telephonemobile;
+		}
+
+
+
+		public void setTelephonemobile(Collection<TelephneMobile> telephonemobile) {
+			this.telephonemobile = telephonemobile;
+		}
+
+
+
+		public Collection<Peripherique> getPeripherique() {
+			return peripherique;
+		}
+
+
+
+		public void setPeripherique(Collection<Peripherique> peripherique) {
+			this.peripherique = peripherique;
+		}
+
+
+
+		public Collection<TelephoneFixe> getTelephonefixe() {
+			return telephonefixe;
+		}
+
+
+
+		public void setTelephonefixe(Collection<TelephoneFixe> telephonefixe) {
+			this.telephonefixe = telephonefixe;
+		}
+
+
+
+		public Collection<Tablette> getTablette() {
+			return tablette;
+		}
+
+
+
+		public void setTablette(Collection<Tablette> tablette) {
+			this.tablette = tablette;
+		}
+
+
+
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
+		}
+
+
+
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+
+
+
+		public Collection<Infrastructure> getInfrastructure() {
+			return infrastructure;
+		}
+
+
+
+		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+			this.infrastructure = infrastructure;
+		}
+
+
+
+		public Collection<EquipementReseau> getEquipementreseaux() {
+			return equipementreseaux;
+		}
+
+
+
+		public void setEquipementreseaux(Collection<EquipementReseau> equipementreseaux) {
+			this.equipementreseaux = equipementreseaux;
+		}
+
+		
+		
 
    
 

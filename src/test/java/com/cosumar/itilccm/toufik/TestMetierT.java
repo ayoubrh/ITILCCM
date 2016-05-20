@@ -58,8 +58,8 @@ public class TestMetierT {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			
-			m.ajouterContrat(new Contrat("Travail", "FERHAOUI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
-			m.ajouterContrat(new Contrat("Travail2", "RHNABRI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
+			m.ajouterContrat(new Contrat("Contrat", "FERHAOUI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
+			m.ajouterContrat(new Contrat("Contrat2", "RHNABRI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
 			assertTrue(true);
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
@@ -67,7 +67,7 @@ public class TestMetierT {
 	
 		
 	}
-	@Test
+	/*@Test
 	public void Document() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
@@ -79,7 +79,7 @@ public class TestMetierT {
 		}
 	
 		
-	}
+	}*/
 	
 	@Test
 	public void Groupe() {

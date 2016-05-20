@@ -28,11 +28,23 @@ public class ApplicationWeb implements Serializable {
 	   private String url;
 	   private String criticite;
 	   private Date dateDeMiseEnProduction;
-	   private String decription;
+	   private String description;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
 	   private java.util.Collection<SolutionApplicative> solutionApplicative;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contact> contacts;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Contrat> contrats;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany
+	   private Collection<Document> documents;
 	   
 	   @ManyToOne
 	   @JoinColumn(name="id_serveurWeb")
@@ -42,13 +54,13 @@ public class ApplicationWeb implements Serializable {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public ApplicationWeb(String nom, String url, String criticite, Date dateDeMiseEnProduction, String decription) {
+		public ApplicationWeb(String nom, String url, String criticite, Date dateDeMiseEnProduction, String description) {
 			super();
 			this.nom = nom;
 			this.url = url;
 			this.criticite = criticite;
 			this.dateDeMiseEnProduction = dateDeMiseEnProduction;
-			this.decription = decription;
+			this.description = description;
 		}
 		public Long getId() {
 			return id;
@@ -80,11 +92,11 @@ public class ApplicationWeb implements Serializable {
 		public void setDateDeMiseEnProduction(Date dateDeMiseEnProduction) {
 			this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 		}
-		public String getDecription() {
-			return decription;
+		public String getDescription() {
+			return description;
 		}
-		public void setDecription(String decription) {
-			this.decription = decription;
+		public void setDescription(String decription) {
+			this.description = decription;
 		}
 		public java.util.Collection<SolutionApplicative> getSolutionApplicative() {
 			return solutionApplicative;
@@ -97,6 +109,24 @@ public class ApplicationWeb implements Serializable {
 		}
 		public void setServeurWeb(ServeurWeb serveurWeb) {
 			this.serveurWeb = serveurWeb;
+		}
+		public Collection<Contact> getContacts() {
+			return contacts;
+		}
+		public void setContacts(Collection<Contact> contacts) {
+			this.contacts = contacts;
+		}
+		public Collection<Contrat> getContrats() {
+			return contrats;
+		}
+		public void setContrats(Collection<Contrat> contrats) {
+			this.contrats = contrats;
+		}
+		public Collection<Document> getDocuments() {
+			return documents;
+		}
+		public void setDocuments(Collection<Document> documents) {
+			this.documents = documents;
 		}
 		   
 		      
