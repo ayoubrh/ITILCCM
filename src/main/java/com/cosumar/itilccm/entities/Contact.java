@@ -125,6 +125,10 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="contacts")
 	   private Collection<ProcessusMetier> processusMetier;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<SolutionApplicative> solutionApplicative;
    
 		public Contact() {
 			super();
@@ -363,6 +367,14 @@ public class Contact implements Serializable {
 
 		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
 			this.processusMetier = processusMetier;
+		}
+
+		public Collection<SolutionApplicative> getSolutionApplicative() {
+			return solutionApplicative;
+		}
+
+		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+			this.solutionApplicative = solutionApplicative;
 		}
 		
 

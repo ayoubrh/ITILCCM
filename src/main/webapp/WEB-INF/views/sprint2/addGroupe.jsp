@@ -513,7 +513,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-6">
+								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
@@ -521,9 +521,9 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-4">
+								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value="NONE"> -- choisir une valeur --</f:option>
+							             <f:option value=""> -- choisir une valeur --</f:option>
 										 <f:option value="implémentation">implémentation</f:option>
 										 <f:option value="obsolète"> obsolète</f:option>
 										 <f:option value="production"> production</f:option>
@@ -533,22 +533,23 @@ Use search to find needed section.
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-6">
+								<div class="col-sm-9">
 									<f:input path="type" type="text" class="form-control" id="inputError-4" name="jq-validation-type" />
 									<f:errors path="type" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-6">
+								<div class="col-sm-9">
 									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Groupe parent</label>
-								<div class="col-sm-6">
+								<div class="col-sm-9">
 									<f:select  path="groupe_parent.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										<f:option value=""> -- choisir une valeur --</f:option>
 										<f:options items="${g }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="groupe_parent.id" cssClass="help-block"></f:errors>

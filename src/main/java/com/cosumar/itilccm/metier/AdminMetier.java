@@ -362,6 +362,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// SolutionApplicative
 	public  Long addSolutionApplicative(SolutionApplicative sa);
+	public  Long addSolutionApplicativeAll(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> cis,List<Long> processusMetiers,List<Long> contrats);
 	public void editSolutionApplicative(SolutionApplicative sa);
 	public List<SolutionApplicative> ListSolutionApplicative();
 	public SolutionApplicative getSolutionApplicative(Long id);

@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,8 @@ public class ProcessusMetier implements Serializable{
    private Date dateDeMiseEnProduction;
    private String description;
    
-   	@ManyToMany
    	@Column(nullable=true)
+   	@ManyToMany(cascade = CascadeType.ALL)
     private Collection<SolutionApplicative> solutionApplicative;
    	
    	@Column(nullable=true)

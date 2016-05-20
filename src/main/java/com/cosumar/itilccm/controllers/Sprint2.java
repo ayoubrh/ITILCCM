@@ -625,8 +625,6 @@ public class Sprint2 {
 		return "redirect:/config/admin/dashboard";
 	}
 	
-	
-	
 	@RequestMapping(value="/admin/add/sim")
 	public String addSim(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -644,8 +642,6 @@ public class Sprint2 {
 		return "sprint2/addSim";
 	}
 	
-	
-
 	@RequestMapping(value="/admin/add/saveSim", method = RequestMethod.POST)
 	public String saveSim(@Valid Sim sim,BindingResult bind,HttpServletRequest req,Model model) {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -1027,6 +1023,20 @@ public class Sprint2 {
 		model.addAttribute("g", m.listGroupe());
 		return "sprint2/addGroupe";
 	}
+	@RequestMapping(value="/admin/add/saveGroupe", method = RequestMethod.POST)
+	public String saveGroupe(@Valid Groupe g,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("g", m.listGroupe());
+			return "sprint2/addGroupe";
+		}
+		m.ajouterGroupe(g, g.getGroupe_parent().getId());
+		return "redirect:/config/admin/dashboard";
+	}
 	@RequestMapping(value="/admin/add/solutionApplicative")
 	public String addSolutionApplicative(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -1039,6 +1049,60 @@ public class Sprint2 {
 		model.addAttribute("contrats", m.listContrat());
 		model.addAttribute("processusMetiers", m.ListProcessusMetier());
 		return "sprint2/addSolutionApplicative";
+	}
+	@RequestMapping(value="/admin/add/saveSolutionApplicative", method = RequestMethod.POST)
+	public String saveSolutionApplicative(@Valid SolutionApplicative sa,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("processusMetiers", m.ListProcessusMetier());
+			return "sprint2/addSolutionApplicative";
+		}
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> pro = new ArrayList<Long>();
+		List<Long> contr = new ArrayList<Long>();
+		
+		String[] Contacts = req.getParameterValues("ckContacts");
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] processusMetiers = req.getParameterValues("ckProcessusMetiers");
+		String[] contrats = req.getParameterValues("ckContrats");
+		
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		
+		if(processusMetiers != null ){
+			for (int i = 0; i < processusMetiers.length; i++) {
+				
+				pro.add(Long.parseLong(processusMetiers[i]));
+			}
+		}
+		
+		if(contrats  != null ){
+			for (int i = 0; i < contrats.length; i++) {
+				
+				contr.add(Long.parseLong(contrats[i]));
+			}
+		}
+			
+		m.addSolutionApplicativeAll(sa, cont, doc, null, pro, contr);
+		return "redirect:/config/admin/dashboard";
 	}
 	@RequestMapping(value="/admin/add/processusMetier")
 	public String addProcessusMetier(Model model){
@@ -2351,7 +2415,6 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
-		    model.addAttribute("instanceBD", new InstanceDeBasseDeDonnes());
 			model.addAttribute("sbd", m.listServeurDeBasseDeDonnees());
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("documents", m.listDocument());
