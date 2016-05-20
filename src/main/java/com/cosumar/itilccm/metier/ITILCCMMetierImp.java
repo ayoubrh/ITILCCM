@@ -1817,6 +1817,12 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> solutionsApplicatives) {
 		return dao.addProcessusMetierAll(pm, contacts, documents, solutionsApplicatives); 
 	}
+
+	@Override
+	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
+			List<Long> cis, List<Long> processusMetiers, List<Long> contrats) {
+		return dao.addSolutionApplicativeAll(sa, contacts, documents, cis, processusMetiers, contrats); 
+	}
 	
 	@Override
 	public Long addPhysiqueAll(Physique Physique, List<Long> vlans) {

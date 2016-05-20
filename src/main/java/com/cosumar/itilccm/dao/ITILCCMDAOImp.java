@@ -1344,8 +1344,12 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 	@Override
 	public Long ajouterGroupe(Groupe g, Long id_groupe) {
+		if(id_groupe!=null){
 		Groupe groupe = getGroupe(id_groupe);
 		g.setGroupe_parent(groupe);
+		}else{
+			g.setGroupe_parent(null);
+		}
 		em.persist(g);
 		return g.getId();
 	}
@@ -3666,6 +3670,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
 			List<Long> contact, List<Long> contrat) {
 
+<<<<<<< HEAD
 
 
 		if(lieu != null){
@@ -3709,6 +3714,67 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sds.setContrat(contr);
 		}
 		
+=======
+	@Override
+	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
+			List<Long> cis, List<Long> processusMetiers, List<Long> contrats) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sa.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sa.setDocuments(document);
+			
+		}
+        if(cis != null){
+			
+			
+		}
+       if(processusMetiers!=null){
+			
+			Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
+			for (Long pm : processusMetiers) {
+				ProcessusMetier pro = getProcessusMetier(pm);
+				processusMetier.add(pro);
+				
+			}
+			
+			    sa.setProcessusMetier(processusMetier);
+		}
+      
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sa.setContrats(contrat);
+					
+		}
+		em.persist(sa); 
+		return sa.getId();
+	}
+
+>>>>>>> refs/remotes/origin/tawfiq-jpa
 		
 		if(equipementreseaux != null){
 			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();

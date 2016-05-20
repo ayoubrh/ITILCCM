@@ -124,6 +124,10 @@ public class Contrat implements Serializable {
 		   @ManyToMany(mappedBy="contrats")
 		   private Collection<MachineVirtuelle> machineVirtuelle;
 		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<SolutionApplicative> solutionApplicative;
+		   
 			public Contrat() {
 				super();
 				// TODO Auto-generated constructor stub
@@ -427,6 +431,14 @@ public class Contrat implements Serializable {
 
 			public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
 				this.machineVirtuelle = machineVirtuelle;
+			}
+
+			public Collection<SolutionApplicative> getSolutionApplicative() {
+				return solutionApplicative;
+			}
+
+			public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+				this.solutionApplicative = solutionApplicative;
 			}
 			
 	

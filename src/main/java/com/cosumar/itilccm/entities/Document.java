@@ -126,6 +126,10 @@ public class Document implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<ProcessusMetier> processusMetier;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<SolutionApplicative> solutionApplicative;
 
 		public Document() {
 			super();
@@ -364,6 +368,20 @@ public class Document implements Serializable {
 		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
 			this.processusMetier = processusMetier;
 		}
+<<<<<<< HEAD
 			
+=======
+
+		public Collection<SolutionApplicative> getSolutionApplicative() {
+			return solutionApplicative;
+		}
+
+		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+			this.solutionApplicative = solutionApplicative;
+		}
+		
+		
+		
+>>>>>>> refs/remotes/origin/tawfiq-jpa
 
 }
