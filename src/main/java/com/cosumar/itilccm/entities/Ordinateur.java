@@ -6,6 +6,7 @@ import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -75,7 +76,7 @@ public class Ordinateur implements Serializable{
    @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
+   	@OneToMany(fetch = FetchType.EAGER,mappedBy="ordinateur",cascade = CascadeType.ALL)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	

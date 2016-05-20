@@ -3737,5 +3737,22 @@ public class Sprint2 {
 		return "sprint2/SearchPC";
 	}
 	
+	@RequestMapping(value="/view/pc")
+	public String viewPC(Model model,String id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("ordinateur", m.getPC(Long.parseLong(id)) );
+		Ordinateur pc =  m.getPC(Long.parseLong(id));
+			for (Peripherique p : pc.getPeripherique()) {
+				System.out.println("nom periph : "+p.getNom());
+			}
+		
+		return "sprint2/viewPC";
+	}
+	
 	
 }

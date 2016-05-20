@@ -29,10 +29,11 @@ Use search to find needed section.
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Profil utilisateur - ITIL-CCM</title>
+	<title>Détail Ordinateur - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -317,14 +318,14 @@ Use search to find needed section.
 										<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 									</c:if>
 									<c:if test="${logged.bphoto != null }">
-										<img src="photo?id=${logged.id }" alt="" class=""/>
+										<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 									</c:if>
 									<span>${logged.prenom } ${logged.nom }</span>
 								</a>
 								<ul class="dropdown-menu">
 									<li><a href="<c:url value="/users/profil?id=${logged.id }" />">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Dconnexion</a></li>
+									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Déconnexion</a></li>
 								</ul>
 							</li>
 						</ul> <!-- / .navbar-nav -->
@@ -373,7 +374,7 @@ Use search to find needed section.
 						<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 					</c:if>
 					<c:if test="${logged.bphoto != null }">
-						<img src="photo?id=${logged.id }" alt="" class=""/>
+						<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 					</c:if>
 					<div class="btn-group">
 						<a href="<c:url value="/users/profil?id=${logged.id }" />" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
@@ -409,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -451,7 +452,7 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donnes</span></a>
+					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des données</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
@@ -472,74 +473,24 @@ Use search to find needed section.
 
 		Content
 -->
-
-
-			<div class="profile-full-name">
-					<span class="text-semibold"> ${user.prenom } ${user.nom } </span>
-				</div>
-			 	<div class="profile-row">
-					<div class="left-col">
-						<div class="profile-block">
-							<div class="panel profile-photo">
-								<c:if test="${user.bphoto == null }">
-									<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png">
-								</c:if>
-								<c:if test="${user.bphoto != null }">
-									<img src="photo?id=${user.id }"/>
-								</c:if>
-							</div><br>
-							
-							<div class="list-group-item"><strong>${user.matricule }</strong></div><br>
-							<a href="edit?id=${user.id }" class="btn btn-success"><i class="fa fa-edit"></i>&nbsp;Modifier</a>&nbsp;&nbsp;
-							<s:authorize ifAnyGranted="ROLE_ADMIN">
-								<a href="admin/delete?ids=${user.id }" class="btn btn-danger"><i class="fa  fa-trash-o"></i>&nbsp;Supprimer</a>
-							</s:authorize>
-						</div>
-						
-						<div class="panel panel-transparent">
-							<div class="panel-heading">
-								<span class="panel-title">Informations personnels</span>
-							</div>
-							<div class="list-group-item"><strong>CIN :</strong> ${user.cin }</div>
-							<div class="list-group-item"><strong>Sexe :</strong> 
-								<c:if test="${user.sexe == 'M' }">
-									Homme
-								</c:if>
-								<c:if test="${user.sexe == 'F' }">
-									Femme
-								</c:if>
-							</div>
-							<div class="list-group-item"><strong>Age :</strong> ${user.age } ans</div>
-							<div class="list-group-item"><strong>Pays :</strong> ${user.pays }</div>
-							<div class="list-group-item"><strong>Ville :</strong> ${user.ville }</div>
-							<div class="list-group-item"><strong>Code Postale :</strong> ${user.codepostale }</div>
-							<div class="list-group-item"><strong>Adresse :</strong> ${user.adresse }</div>
-						</div>
-		
-						<div class="panel panel-transparent">
-							<div class="panel-heading">
-								<span class="panel-title">Informations professionnels</span>
-							</div>
-							<div class="list-group">
-								<div class="list-group-item"><strong>Fonction : </strong> ${user.fonction }</div>
-								<div class="list-group-item"><strong>Dpartement : </strong> ${user.departement.libelle }</div>
-								<div class="list-group-item"><strong>Role : </strong> ${user.role.libelle }</div>
-							</div>
-						</div>
-		
-						<div class="panel panel-transparent">
-							<div class="panel-heading">
-								<span class="panel-title">Contacts</span>
-							</div>
-							<div class="list-group">
-								<div class="list-group-item"><i class="profile-list-icon fa fa-mobile" ></i> ${user.tele }</div>
-								<div class="list-group-item"><i class="profile-list-icon fa fa-phone" style="color: #1a7ab9"></i> ${user.fixe }</div>
-								<div class="list-group-item"><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> ${user.email }</div>
-							</div>
-						</div>
-		
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Détail d'un Ordinateur</span>
 					</div>
-					<div class="right-col">
+					<div class="panel-body">
+					
+					
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
 						
@@ -547,221 +498,431 @@ Use search to find needed section.
 		
 							<ul id="profile-tabs" class="nav nav-tabs">
 								<li class="active">
-									<a href="#profile-tabs-materiels" data-toggle="tab">Matériels</a>
+									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-incidents" data-toggle="tab">Tickets Incidents</a>
+									<a href="#profile-tabs-peripheriques" data-toggle="tab">Périphérique</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-changements" data-toggle="tab">Tickets Chanegements</a>
+									<a href="#profile-tabs-logiciels" data-toggle="tab">Logiciels</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-following" data-toggle="tab">Following</a>
+									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Intarfaces réseaux</a>
 								</li>
+								<li>
+									<a href="#profile-tabs-equipementreseaux" data-toggle="tab">Equipement réseaux</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
+								</li>
+								
+								
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-materiels">
+								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-											Materiels
-		
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade" id="profile-tabs-incidents">
+									<div class="form-group required">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
+										: ${ordinateur.nom }
+									</div>
 									
-											Incidents
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
+										: ${ordinateur.statut }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité</label>
+										: ${ordinateur.criticite }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Utilisateur</label>
+										: <a href="#">${ordinateur.user.prenom } ${ordinateur.user.nom }</a>
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu</label>
+										: <a href="#">${ordinateur.lieu.nom }</a>
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque</label>
+										: ${ordinateur.marque }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle</label>
+										: ${ordinateur.modele }
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS</label>
+										: <a href="#">${ordinateur.licenseOs.nom }</a>
+									</div>
+									
+									<div class="form-group required">
+										<label class="col-sm-3 control-label">Type</label>
+										: ${ordinateur.type }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU</label>
+										: ${ordinateur.cpu }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM</label>
+										: ${ordinateur.ram }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>
+										: ${ordinateur.numeroDeSerie }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset</label>
+										: ${ordinateur.numeroAsset }
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat</label>
+										: ${ordinateur.dateD_achat }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production</label>
+										: ${ordinateur.dateDeMiseEnProduction }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie</label>
+										: ${ordinateur.dateDeFinDeGarantie }
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
+										: ${ordinateur.description }
+									</div>
+									
+									
+									
+		
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-peripheriques" id="profile-tabs-peripheriques">
+									
+		
+		
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tablePer">
+											<c:forEach items="${ordinateur.peripherique}" var="per">
+												<tr class="gradeA" id="tr_per_${per.id }">
+													<a href="#"></a><td>${per.nom }</td>
+													<td>${per.statut }</td>
+													<td>${per.criticite }</td>
+													<td>${per.numeroDeSerie }</td>
+													<td>${per.numeroAsset }</td>
+													<td>${per.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+									
+								</div>
+								
+								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Chemin d'installation</th>
+												<th>Date de mise en production</th>
+												
+											</tr>
+										</thead>
+										<tbody id="tableLogicile">
+											<c:forEach items="${ordinateur.logicielEtApplication}" var="l">
+												<tr class="gradeA" id="tr_log_${l.id }">
+													<a href="#"><td>${l.nom }</td></a>
+													<td>${l.statut }</td>
+													<td>${l.criticite }</td>
+													<td>${l.cheminD_installation }</td>
+													<td>${l.dateDeMiseEnProduction }</td>
+
+												</tr>
+											</c:forEach>
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									
 									
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-followers" id="profile-tabs-changements">
+								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
 									
-											Changements
 		
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Adresse IP</th>
+													<th>Adresse MAC</th>
+													<th>Commentaire</th>
+													<th>Passerelle</th>
+													<th>Masque de sous réseau </th>
+													<th>Vitesse</th>	
+													
+												</tr>
+											</thead>
+											<tbody id="tableinterfacereseau">
+												<c:forEach items="${ordinateur.intefaceReseau}" var="ir">
+												<tr class="gradeA" id="tr_ir_${ir.id }">
+													<a href="#"><td>${ir.nom }</td></a>
+													<td>${ir.adresseIp }</td>
+													<td>${ir.adresseMac }</td>
+													<td>${ir.commentaire }</td>
+													<td>${ir.passerelle }</td>
+													<td>${ir.masqueDeSousReseau }</td>
+													<td>${ir.vitesse }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+
+		
+									
+		
+									
+		
+									
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-followers" id="profile-tabs-following">
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-											</div>
-											<a href="#" class="follower-name">John Doe</a><br>
-											<a href="#" class="follower-username">@jdoe</a>
-										</div>
-									</div>
+								<div class="tab-pane fade widget-equipementreseaux" id="profile-tabs-equipementreseaux">
+									
 		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Michelle Bortz</a><br>
-											<a href="#" class="follower-username">@mbortz</a>
-										</div>
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Statut</th>
+													<th>Criticité</th>
+													<th>Lieu</th>
+													<th>Marque</th>
+													<th>Modèle</th>
+													<th>Numéro de série</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tableEquipementreseaux">
+												<c:forEach items="${ordinateur.equipementReseau}" var="er">
+												<tr class="gradeA" id="tr_er_${er.id }">
+													<a href="#"><td>${er.nom }</td></a>
+													<td>${er.statut }</td>
+													<td>${er.criticite }</td>
+													<a href="#"><td>${er.lieu.nom }</td></a>
+													<td>${er.marque }</td>
+													<td>${er.modele }</td>
+													<td>${er.numeroDeSerie }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
 									</div>
+									<br>
+									<br>
+
+									
+
 		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Timothy Owens</a><br>
-											<a href="#" class="follower-username">@towens</a>
-										</div>
-									</div>
 		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Denise Steiner</a><br>
-											<a href="#" class="follower-username">@dsteiner</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-											</div>
-											<a href="#" class="follower-name">John Doe</a><br>
-											<a href="#" class="follower-username">@jdoe</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Michelle Bortz</a><br>
-											<a href="#" class="follower-username">@mbortz</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Timothy Owens</a><br>
-											<a href="#" class="follower-username">@towens</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Denise Steiner</a><br>
-											<a href="#" class="follower-username">@dsteiner</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-											</div>
-											<a href="#" class="follower-name">John Doe</a><br>
-											<a href="#" class="follower-username">@jdoe</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Michelle Bortz</a><br>
-											<a href="#" class="follower-username">@mbortz</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Timothy Owens</a><br>
-											<a href="#" class="follower-username">@towens</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Denise Steiner</a><br>
-											<a href="#" class="follower-username">@dsteiner</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-											</div>
-											<a href="#" class="follower-name">John Doe</a><br>
-											<a href="#" class="follower-username">@jdoe</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Michelle Bortz</a><br>
-											<a href="#" class="follower-username">@mbortz</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Timothy Owens</a><br>
-											<a href="#" class="follower-username">@towens</a>
-										</div>
-									</div>
-		
-									<div class="follower">
-										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-										<div class="body">
-											<div class="follower-controls">
-												<a href="#" class="btn btn-sm btn-outline">Follow</a>
-											</div>
-											<a href="#" class="follower-name">Denise Steiner</a><br>
-											<a href="#" class="follower-username">@dsteiner</a>
-										</div>
-									</div>
+									
 								</div> <!-- / .tab-pane -->
+								
+								
+								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom complet</th>
+													<th>Statut</th>
+													<th>Organisation</th>
+													<th>Email</th>
+													<th>Téléphone</th>
+													<th>Fonction</th>	
+													
+												</tr>
+											</thead>
+											<tbody id="tablecontact">
+												<c:forEach items="${ordinateur.contact}" var="contact">
+												<tr class="gradeA" id="tr_contact_${contact.id }">
+													<a href="#"><td>${contact.nom } ${contact.prenom }</td></a>
+													<td>${contact.statut }</td>
+													<td>${contact.organisme }</td>
+													<td>${contact.email }</td>
+													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+													<td>${contact.fonction }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Statut</th>
+													<th>Type de document</th>
+													<th>Description</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tabledocument">
+												<c:forEach items="${ordinateur.document}" var="doc">
+												<tr class="gradeA" id="tr_doc_${doc.id }">
+													<a href="#"><td>${doc.nom }</td></a>
+													<td>${doc.statut }</td>
+													<td> </td>
+													<td>${doc.description }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Type</th>
+													<th>Client</th>
+													<th>Description</th>
+													<th>Date de début</th>
+													<th>Date de fin</th>
+													<th>Fournisseur</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tablecontrat">
+												<c:forEach items="${ordinateur.contrat}" var="contrat">
+												<tr class="gradeA" id="tr_contrat_${contrat.id }">
+													<a href="#"><td>${contrat.nom }</td></a>
+													<td>${contrat.typeDeContrat }</td>
+													<td>${contrat.client }</td>
+													<td>${contrat.description }</td>
+													<td>${contrat.dateDeDebut }</td>
+													<td>${contrat.dateDeFin }</td>
+													<td>${contrat.fournisseur }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
 							</div> <!-- / .tab-content -->
 						</div>
-					</div>
-				</div>
 				
+					
+					
+					
+					
+					
+							
+					</div>
+					
+					
+		</div>
+
 		
-			
-
-
 
 
 
@@ -815,6 +976,29 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
+		var options = {
+				todayBtn: "linked",
+				orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+			}
+		
+			$('#bs-datepicker-dateDeMiseEnProduction').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			$('#bs-datepicker-dateD_achat').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			$('#bs-datepicker-dateDeFinDeGarantie').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			
+			$('.jq-datatables-example').dataTable();
+			$('.jq-datatables-example_wrapper .table-caption').text('');
+			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			
+		    
+
 	});
 	window.PixelAdmin.start(init);
 </script>
