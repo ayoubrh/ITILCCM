@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -473,7 +473,53 @@ Use search to find needed section.
 
 		Content
 -->
-
+<!-- Modal contact -->
+				<div id="myModalcontact" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Contacts</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table  cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Contact</th>
+												<th>Statut</th>
+												<th>Organisation</th>
+												<th>Email</th>
+												<th>Téléphone</th>
+												<th>Fonction</th>	
+											</tr>
+										</thead>
+										<tbody id="tablecontactpopup">
+											<c:forEach items="${contacts}" var="contact">
+												<tr class="gradeA" id="tr_contact_${contact.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
+													<td>${contact.nom } ${contact.prenom }</td>
+													<td>${contact.statut }</td>
+													<td>${contact.organisme }</td>
+													<td>${contact.email }</td>
+													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+													<td>${contact.fonction }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+		<!-- / Modal contact -->
 
 		<div class="panel">
 					<div class="panel-heading">
@@ -493,6 +539,9 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
+								<li>
+									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
+								</li>
 							
 							</ul>
 		
@@ -505,7 +554,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -517,14 +566,14 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value=""> -- choisir une valeur --</f:option>
+							            <f:option value="NULL"> -- choisir une valeur --</f:option>
 										<f:option value="Actif"> Actif</f:option>
 										<f:option value="Inactif"> Inactif</f:option>
 									</f:select>
 							<f:errors path="statut" cssClass="help-block"></f:errors>
 							</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Organisation</label>
 								<div class="col-sm-9">
 									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-organisation" />
@@ -560,20 +609,46 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-					
-							
-							          
-							
 							</div>
-			
+							</div> <!-- / .tab-pane -->
+			            <div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
+								<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th id="supchek"> </th>
+													<th>Contact</th>
+													<th>Statut</th>
+													<th>Organisation</th>
+													<th>Email</th>
+													<th>Téléphone</th>
+													<th>Fonction</th>	
+													
+												</tr>
+											</thead>
+											<tbody id="tablecontact">
+												
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppContact">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalcontact">Ajouter des Contacts</button>
+										</div>
+										
+									</div>
+								</div> <!-- / .tab-pane -->
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
-					
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -592,30 +667,9 @@ Use search to find needed section.
 					
 		</div>
 
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<!-- Content here -->
 		
-		
-		
-
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
@@ -646,6 +700,32 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		document.getElementById("addContact").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckContact:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
+		    	$( "#tablecontact" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppContact").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckContact:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
+		    	$( "#tablecontactpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
 	});
 	window.PixelAdmin.start(init);
 </script>

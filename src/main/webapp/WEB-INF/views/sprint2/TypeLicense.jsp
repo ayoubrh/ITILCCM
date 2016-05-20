@@ -204,7 +204,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -214,7 +214,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -224,7 +224,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -234,7 +234,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -244,7 +244,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -254,7 +254,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -264,7 +264,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -274,7 +274,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -284,7 +284,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -294,7 +294,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -409,7 +409,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>

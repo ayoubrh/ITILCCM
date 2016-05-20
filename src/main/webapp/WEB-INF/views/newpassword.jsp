@@ -105,7 +105,7 @@
 					}
 				},
 				messages: {
-					'signup_name': 'Le matricule doit être entre 6 et 20 caractères ',
+					'signup_name': 'Le matricule doit tre entre 6 et 20 caractres ',
 					'signup_email': 'Entrez un E-mail valide'
 				}
 			});
@@ -119,7 +119,7 @@
 		<div class="signup-form">
 				
 				<div class="signup-text">
-					<span>Mot de passe oubliè !</span>
+					<span>Mot de passe oublié !</span>
 				</div>
 				
 		            <div class="note note-success">

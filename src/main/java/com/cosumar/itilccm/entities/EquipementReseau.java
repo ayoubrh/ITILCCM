@@ -3,12 +3,15 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -34,22 +37,27 @@ public class EquipementReseau implements Serializable{
    private String type;
    private String marque;
    private String modele;
-   private String versionIso;
+   private String versionIos;
    
    	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
 	@Column(nullable = true)
    private String ip;
    private String ram;
    
-    @Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-	@Column(nullable = true)
-   private String nbUnite;
    private String numeroDeSerie;
    private String numeroAsset;
    private Date dateDeMiseEnProduction;
-   private Date dateD_ahat;
+   private Date dateD_achat;
    private Date dateDeFinDeGarantie;
    private String description;
+   
+	@ManyToOne
+  	@JoinColumn(name="rack_id")
+   private Rack rack;
+   
+   	@ManyToOne
+  	@JoinColumn(name="chassis_id")
+   private Chassis chassis;
    
    	@ManyToMany
    private java.util.Collection<ConnexionElectrique> connexionElectrique;
@@ -69,6 +77,24 @@ public class EquipementReseau implements Serializable{
    	@ManyToMany(mappedBy="equipementReseau")
    	@Column(nullable = true)
    private Collection<Ordinateur> ordinateur;
+   	
+	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private Collection<Contact> contact;
+   	
+   	
 
 	public Long getId() {
 		return id;
@@ -126,13 +152,7 @@ public class EquipementReseau implements Serializable{
 		this.modele = modele;
 	}
 	
-	public String getVersionIso() {
-		return versionIso;
-	}
 	
-	public void setVersionIso(String versionIso) {
-		this.versionIso = versionIso;
-	}
 	
 	public String getIp() {
 		return ip;
@@ -150,13 +170,7 @@ public class EquipementReseau implements Serializable{
 		this.ram = ram;
 	}
 	
-	public String getNbUnite() {
-		return nbUnite;
-	}
 	
-	public void setNbUnite(String nbUnite) {
-		this.nbUnite = nbUnite;
-	}
 	
 	public String getNumeroDeSerie() {
 		return numeroDeSerie;
@@ -182,13 +196,6 @@ public class EquipementReseau implements Serializable{
 		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
 	}
 	
-	public Date getDateD_ahat() {
-		return dateD_ahat;
-	}
-	
-	public void setDateD_ahat(Date dateD_ahat) {
-		this.dateD_ahat = dateD_ahat;
-	}
 	
 	public Date getDateDeFinDeGarantie() {
 		return dateDeFinDeGarantie;
@@ -255,6 +262,70 @@ public class EquipementReseau implements Serializable{
 		super();
 		this.nom = nom;
 		this.type = type;
+	}
+
+	public String getVersionIos() {
+		return versionIos;
+	}
+
+	public void setVersionIos(String versionIos) {
+		this.versionIos = versionIos;
+	}
+
+	public Date getDateD_achat() {
+		return dateD_achat;
+	}
+
+	public void setDateD_achat(Date dateD_achat) {
+		this.dateD_achat = dateD_achat;
+	}
+
+	public Lieu getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+
+	public Collection<Document> getDocument() {
+		return document;
+	}
+
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
+	}
+
+	public Rack getRack() {
+		return rack;
+	}
+
+	public void setRack(Rack rack) {
+		this.rack = rack;
+	}
+
+	public Chassis getChassis() {
+		return chassis;
+	}
+
+	public void setChassis(Chassis chassis) {
+		this.chassis = chassis;
 	}
    
    

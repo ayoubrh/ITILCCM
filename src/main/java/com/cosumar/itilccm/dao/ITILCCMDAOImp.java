@@ -166,11 +166,16 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 	@Override
 	public Long ajouterLieuCont(Lieu l, List<Long> contacts) {
-		Collection<Contact> list=null;
-		for(Long cts : contacts ){
-			list.add(getContact(cts));
+		
+		if(contacts!=null){
+			Collection<Contact> list = new ArrayList<Contact>();
+			for(Long cts : contacts ){
+				Contact contact = getContact(cts);
+				list.add(contact);
+				contact.setLieu(l); 
+			}
+			l.setContacts(list);
 		}
-		l.setContacts(list);
 		em.persist(l);
 		return l.getId();
 	}
@@ -306,6 +311,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public List<Ordinateur> ListPC() {
 		Query req = em.createQuery("select pc from Ordinateur pc");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<Ordinateur> SearchPC(String s) {
+		Query req = em.createQuery("select pc from Ordinateur pc where pc.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
 
@@ -1206,7 +1218,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 
 	@Override
-	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats) {
+	public Long ajouterContactAll(Contact c, Long idlieu) {
 		
 		if(idlieu !=null){
 			
@@ -1217,17 +1229,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			c.setLieu(null);
 		}
 		
-		if(contrats != null){
-			
-			Collection<Contrat> contrat = new ArrayList<Contrat>();
-			for (Long cc : contrats) {
-				Contrat con = getContrat(cc);
-				contrat.add(con);
-			}
-			
-			c.setContrats(contrat);
-			
-		}
 		
 		em.persist(c);
 		
@@ -1271,9 +1272,10 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long ajouterContratAll(Contrat c, List<Long> contacts, List<Long> documents) {
 		
 			if(contacts != null){
-						
+				
 				Collection<Contact> contact = new ArrayList<Contact>();
 				for (Long cc : contacts) {
+					
 					Contact con = getContact(cc);
 					contact.add(con);
 				}
@@ -1342,8 +1344,12 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 	@Override
 	public Long ajouterGroupe(Groupe g, Long id_groupe) {
+		if(id_groupe!=null){
 		Groupe groupe = getGroupe(id_groupe);
 		g.setGroupe_parent(groupe);
+		}else{
+			g.setGroupe_parent(null);
+		}
 		em.persist(g);
 		return g.getId();
 	}
@@ -2277,8 +2283,26 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			al.setServeur(serveur);
+				
+		}else{
+			al.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			al.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			al.setMachineVirtuelle(null);
+		}
 		
 		if(l !=null){
 					
@@ -2342,8 +2366,26 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterLogicielPcAll(LogicielPc lp,Long l ,List<Long> contacts, List<Long> documents,
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach,Long l ,List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+        if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			lp.setServeur(serveur);
+				
+		}else{
+			lp.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			lp.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			lp.setMachineVirtuelle(null);
+		}
 		
 		if(l !=null){
 			
@@ -2407,16 +2449,33 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterServeurWebAll(ServeurWeb sw,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
 		
-        if(l !=null){
+	  if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			sw.setServeur(serveur);
+				
+		}else{
+			sw.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			sw.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			sw.setMachineVirtuelle(null);
+		}
+		if(l !=null){
 			
 	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
 			sw.setLicenseLogiciel(licenseLogiciel);
 		
 		}else{
-					sw.setLicenseLogiciel(null);
+			sw.setLicenseLogiciel(null);
 		}
 		
 		if(contacts != null){
@@ -2454,18 +2513,19 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sw.setSolutionApplicative(solutionsAppl);
 			
 		}
-		/*
+		
 		if(applicationWeb != null){
 					
 			Collection<ApplicationWeb> applicationWe = new ArrayList<ApplicationWeb>();
 			for (Long aw : applicationWeb) {
 				ApplicationWeb appl = getApplicationWeb(aw);
 				applicationWe.add(appl);
+				appl.setServeurWeb(sw); 
 			}
 			
 			sw.setApplicationWeb(applicationWe);
 					
-		}*/
+		}
 		if(contrats != null){
 			
 			Collection<Contrat> contrat = new ArrayList<Contrat>();
@@ -2483,9 +2543,25 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterMiddlewareAll(Middleware m,Long l, List<Long> contacts, List<Long> documents,
+	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach,Long l, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> instancesMiddleware, List<Long> contrats) {
+	  if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			m.setServeur(serveur);
+				
+		}else{
+			m.setServeur(null);
+		}
 		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			m.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			m.setMachineVirtuelle(null);
+		}
         if(l !=null){
 			
 	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
@@ -2530,6 +2606,18 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			m.setSolutionApplicative(solutionsAppl);
 			
 		}
+        if(instancesMiddleware != null){
+			
+			Collection<InstanceMiddleware> instanceMiddleware = new ArrayList<InstanceMiddleware>();
+			for (Long im : instancesMiddleware) {
+				InstanceMiddleware inst = getInstanceMiddleware(im);
+				instanceMiddleware.add(inst);
+				inst.setMiddleware(m); 
+			}
+			
+			m.setInstanceMiddleware(instanceMiddleware);
+			
+		}
 		if(contrats != null){
 					
 			Collection<Contrat> contrat = new ArrayList<Contrat>();
@@ -2547,9 +2635,26 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l, List<Long> contacts,
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l, List<Long> contacts,
 			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD, List<Long> contrats) {
 		
+	  if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			sbd.setServeur(serveur);
+				
+		}else{
+			sbd.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			sbd.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			sbd.setMachineVirtuelle(null);
+		}
         if(l !=null){
 			
 	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
@@ -2594,6 +2699,18 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sbd.setSolutionApplicative(solutionsAppl);
 			
 		}
+		if(instancesBD != null){
+			
+			Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes = new ArrayList<InstanceDeBasseDeDonnes>();
+			for (Long ibd : instancesBD) {
+				InstanceDeBasseDeDonnes inst = getInstanceDeBasseDeDonnes(ibd);
+				instanceDeBasseDeDonnes.add(inst);
+				inst.setServeurDeBasseDeDonnees(sbd);
+			}
+			
+			sbd.setInstanceDeBasseDeDonnes(instanceDeBasseDeDonnes);
+			
+		}
 		if(contrats != null){
 					
 			Collection<Contrat> contrat = new ArrayList<Contrat>();
@@ -2613,7 +2730,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public Long ajouterApplicationWebAll(ApplicationWeb aw,Long sw, List<Long> contacts, List<Long> documents,
 			List<Long> solutionsApplicatives, List<Long> contrats) {
-		
+		    
 		    if(sw !=null){
 				
 		    	ServeurWeb serveurWeb = getServeurWeb(sw);
@@ -3127,6 +3244,876 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return v.getId();
 	}
 
+	@Override
+	public Long addServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos,
+			List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+
 		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Serveur.setLieu(lie);
+		} else {
+			Serveur.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			Serveur.setRack(rac);
+		}else {
+			Serveur.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			Serveur.setChassis(chas);
+		}else {
+			Serveur.setChassis(null);
+		}
+		if(licenseos != null){
+			LicenseOs los = getLicenseOs(licenseos);
+			Serveur.setLicenseOs(los);
+		} else {
+			Serveur.setLicenseOs(null);
+		}
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Serveur.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Serveur.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Serveur.setContrat(contr);
+		}
+		if(Logiciel != null){
+			Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
+			for (Long l : Logiciel) {
+				LogicielEtApplication log = getLogicielEtApplication(l);
+				la.add(log);
+			}
+			Serveur.setLogicielEtApplication(la);
+		}
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			Serveur.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(Serveur);
+			}
+			Serveur.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			Serveur.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			Serveur.setSolutionApplicative(solapp);
+		}
+		
+		if(San != null){
+			Collection<SwitchSan> switchsan = new ArrayList<SwitchSan>();
+			for (Long s : San) {
+				switchsan.add(getSwitchSan(s));
+			}
+			Serveur.setSwitchSan(switchsan);
+		}
+		
+		if(volumesLogique != null){
+			Collection<VolumeLogique> volumelog = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogique) {
+				volumelog.add(getVolumeLogique(vl));
+			}
+			Serveur.setVolumelogique(volumelog);
+		}
+
+		em.persist(Serveur);
+		return Serveur.getId();
+	}
+
+	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel, List<Long> documents) {
+		
+		if(logiciel !=null){
+			
+			LogicielEtApplication logicielEtApplications = getLogicielEtApplication(logiciel);
+			ll.setLogicielEtApplications(logicielEtApplications);
+		
+		}else{
+			ll.setLogicielEtApplications(null);
+		}
+		
+       if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			ll.setDocuments(document);
+			
+		}
+        em.persist(ll); 
+		return ll.getId();
+	}
+
+	@Override
+	public Long ajouterLicenseOsAll(LicenseOs lo, Long versionOs, List<Long> documents, List<Long> serveurs,
+			List<Long> machineVirtuelle) {
+       if(versionOs !=null){
+			
+    	   VersionOs vo = getVersionOs(versionOs);
+			lo.setVersionOs(vo);
+		
+		}else{
+			lo.setVersionOs(null);
+		}
+		
+       if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			lo.setDocuments(document);
+			
+		}
+       if(serveurs != null){
+			
+			Collection<Serveur> serveur = new ArrayList<Serveur>();
+			for (Long s : serveurs) {
+				Serveur serv = getServeur(s);
+				serveur.add(serv);
+				serv.setLicenseOs(lo);
+			}
+			
+			lo.setServeur(serveur);;
+			
+		}
+       if(machineVirtuelle != null){
+			
+			Collection<MachineVirtuelle> mach = new ArrayList<MachineVirtuelle>();
+			for (Long mv : machineVirtuelle) {
+				MachineVirtuelle machV = getMachineVirtuelle(mv);
+				mach.add(machV);
+				machV.setLicenseOs(lo); 
+			}
+			
+			lo.setMachineVirtuelle(mach);;
+			
+		}
+        em.persist(lo);
+		return lo.getId();
+	}
+
+	@Override
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		
+		if(virtualisation !=null){
+			
+			Virtualisation virt = getVirtualisation(virtualisation);
+			mv.setVirtualisation(virt);
+		
+		}else{
+			mv.setVirtualisation(null);
+		}
+        if(license !=null){
+			
+        	LicenseOs licenseOs = getLicenseOs(license);
+			mv.setLicenseOs(licenseOs);
+		
+		}else{
+			mv.setLicenseOs(null);
+		}
+        if(logiciels != null){
+			
+			Collection<LogicielEtApplication> logiciel = new ArrayList<LogicielEtApplication>();
+			for (Long l : logiciels) {
+				LogicielEtApplication logicielEtApplication = getLogicielEtApplication(l);
+				logiciel.add(logicielEtApplication);
+				logicielEtApplication.setMachineVirtuelle(mv);
+			}
+			
+			mv.setLogicielEtApplication(logiciel);
+					
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			mv.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			mv.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			mv.setSolutionApplicative(solutionsAppl);
+			
+		}
+       if(interfacesReseaux!=null){
+			
+			Collection<IntefaceReseau> logique = new ArrayList<IntefaceReseau>();
+			for (Long ir : interfacesReseaux) {
+				IntefaceReseau log = getInterfaceReseau(ir);
+				logique.add(log);
+				log.setMachineVirtuelle(mv);
+			}
+			
+			    mv.setIntefaceReseau(logique);
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			mv.setVolumelogique(volumeslogique);
+		}
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			mv.setContrats(contrat);
+					
+		}
+		
+		em.persist(mv);
+		return mv.getId();
+	}
+
+	@Override
+	public Long addProcessusMetierAll(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				pm.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				pm.setDocuments(document);
+				
+			}
+	        if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				pm.setSolutionApplicative(solutionsAppl);
+				
+			}
+		em.persist(pm);
+		return pm.getId();
+	}
+	
+	@Override
+	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
+			List<Long> cis, List<Long> processusMetiers, List<Long> contrats) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sa.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sa.setDocuments(document);
+			
+		}
+        if(cis != null){
+			
+			
+		}
+       if(processusMetiers!=null){
+			
+			Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
+			for (Long pm : processusMetiers) {
+				ProcessusMetier pro = getProcessusMetier(pm);
+				processusMetier.add(pro);
+				
+			}
+			
+			    sa.setProcessusMetier(processusMetier);
+		}
+      
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sa.setContrats(contrat);
+					
+		}
+		em.persist(sa); 
+		return sa.getId();
+	}
+
+
+	@Override
+	public Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			er.setLieu(lie);
+		} else {
+			er.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			er.setRack(rac);
+		}else {
+			er.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			er.setChassis(chas);
+		}else {
+			er.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			er.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			er.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			er.setContrat(contr);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setEquipementReseau(er);
+			}
+			er.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			er.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			er.setSolutionApplicative(solapp);
+		}
+		
+		
+
+		em.persist(er);
+		return er.getId();
+	}
+	
+	@Override
+	public Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis,
+			List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			sds.setLieu(lie);
+		} else {
+			sds.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			sds.setRack(rac);
+		}else {
+			sds.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			sds.setChassis(chas);
+		}else {
+			sds.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			sds.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			sds.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			sds.setContrat(contr);
+		}
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			sds.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(sds);
+			}
+			sds.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			sds.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			sds.setSolutionApplicative(solapp);
+		}
+		
+		if(San != null){
+			Collection<SwitchSan> switchsan = new ArrayList<SwitchSan>();
+			for (Long s : San) {
+				switchsan.add(getSwitchSan(s));
+			}
+			sds.setSwitchSan(switchsan);
+		}
+		
+		if(volumesLogique != null){
+			Collection<VolumeLogique> volumelog = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogique) {
+				volumelog.add(getVolumeLogique(vl));
+			}
+			sds.setVolumelogique(volumelog);
+		}
+
+		em.persist(sds);
+		return sds.getId();
+	}
+	
+	@Override
+	public Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			san.setLieu(lie);
+		} else {
+			san.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			san.setRack(rac);
+		}else {
+			san.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			san.setChassis(chas);
+		}else {
+			san.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			san.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			san.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			san.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			san.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(san);
+			}
+			san.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			san.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			san.setSolutionApplicative(solapp);
+		}
+		
+		em.persist(san);
+		return san.getId();
+	}
+	
+	@Override
+	public Long addPhysiqueAll(Physique Physique, List<Long> vlans) {
+		
+		if(vlans != null){
+			Collection<Vlan> vlan = new ArrayList<Vlan>();
+			for (Long v : vlans) {
+				vlan.add(getVlan(v));
+			}
+			Physique.setVlan(vlan);
+		}
+		
+		em.persist(Physique);
+		return Physique.getId();
+	}
+	
+	@Override
+	public Long addSubnetAll(Subnet Subnet, List<Long> vlans) {
+
+		if(vlans != null){
+			Collection<Vlan> vlan = new ArrayList<Vlan>();
+			for (Long v : vlans) {
+				vlan.add(getVlan(v));
+			}
+			Subnet.setVlan(vlan);
+		}
+		
+		em.persist(Subnet);
+		return Subnet.getId();
+	}
+	
+	
+	@Override
+	public Long addCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Cam.setLieu(lie);
+		} else {
+			Cam.setLieu(null);
+		}
+		if(dvr != null){
+			Dvr dvrc = getDvr(dvr);
+			Cam.setDvr(dvrc);
+		} else {
+			Cam.setDvr(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Cam.setDocuments(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Cam.setContacts(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Cam.setContrats(contr);
+		}
+		
+		em.persist(Cam);
+		return Cam.getId();
+	}
+	
+	@Override
+	public Long addVlanAll(Vlan Vlan, List<Long> subnets, List<Long> intefaceReseau) {
+		
+		if(subnets != null){
+			Collection<Subnet> subnet = new ArrayList<Subnet>();
+			for (Long s : subnets) {
+				subnet.add(getSubnet(s));
+			}
+			Vlan.setSubnet(subnet);
+		}
+		
+		if(intefaceReseau != null){
+			Collection<Physique> ph = new ArrayList<Physique>();
+			for (Long i : intefaceReseau) {
+				ph.add(getPhysique(i));
+			}
+			Vlan.setPhysique(ph);
+		}
+		
+		em.persist(Vlan);
+		return Vlan.getId();
+	}
+	
+	@Override
+	public Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs, List<Long> machinevertuelle) {
+
+
+		if(serveurs != null){
+			Collection<Serveur> serveur = new ArrayList<Serveur>();
+			for (Long s : serveurs) {
+				serveur.add(getServeur(s));
+			}
+			vl.setServeur(serveur);
+		}
+		
+		if(machinevertuelle != null){
+			Collection<MachineVirtuelle> mv = new ArrayList<MachineVirtuelle>();
+			for (Long m : machinevertuelle) {
+				mv.add(getMachineVirtuelle(m));
+			}
+			vl.setMachinevertuelle(mv);
+		}
+		
+		em.persist(vl);
+		return vl.getId();
+	}
+	
+	@Override
+	public Long addDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras,
+			List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			dvr.setLieu(lie);
+		} else {
+			dvr.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			dvr.setRack(rac);
+		}else {
+			dvr.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			dvr.setChassis(chas);
+		}else {
+			dvr.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			dvr.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			dvr.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			dvr.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			dvr.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(dvr);
+			}
+			dvr.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			dvr.setConnexionElectrique(elec);
+		}
+		
+		if(cameras != null){
+			Collection<Camera> cam = new ArrayList<Camera>();
+			for (Long c : cameras) {
+				Camera ca = getCamera(c);
+				cam.add(ca);
+				ca.setDvr(dvr);
+			}
+			dvr.setCamera(cam);
+		}
+		
+		em.persist(dvr);
+		return dvr.getId();
+	}
 }
 

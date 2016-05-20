@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +24,6 @@ public class Contrat implements Serializable {
 	       
 	       @NotEmpty
 		   private String nom;
-	       
-	       @NotEmpty
 		   private String client;
 	       
 		   private String description;
@@ -34,8 +33,6 @@ public class Contrat implements Serializable {
 		   private String monnaie;
 		   private String periodiciteDeFacturation;
 		   private String uniteDeCout;
-		   
-		   @NotEmpty
 		   private String fournisseur;
 		   
 		   private String niveauDeService;
@@ -43,7 +40,7 @@ public class Contrat implements Serializable {
 		   private String typeDeContrat;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(cascade = CascadeType.ALL)
 		   private Collection<Contact> contacts;
 		   
 		   @Column(nullable=true)
@@ -54,6 +51,13 @@ public class Contrat implements Serializable {
 		   	@Column(nullable = true)
 		   private Collection<Ordinateur> ordinateur;
 		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<EquipementReseau> equipementreseaux;
+		   
+		   @ManyToMany(mappedBy="contrat")
+		   	@Column(nullable = true)
+		   private Collection<Infrastructure> infrastructure;
 		   
 		   @ManyToMany(mappedBy="contrat")
 		   	@Column(nullable = true)
@@ -111,6 +115,18 @@ public class Contrat implements Serializable {
 		   @Column(nullable=true)
 		   @ManyToMany(mappedBy="contrats")
 		   private Collection<Virtualisation> virtualisation;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<Camera> camera;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<MachineVirtuelle> machineVirtuelle;
+		   
+		   @Column(nullable=true)
+		   @ManyToMany(mappedBy="contrats")
+		   private Collection<SolutionApplicative> solutionApplicative;
 		   
 			public Contrat() {
 				super();
@@ -383,7 +399,47 @@ public class Contrat implements Serializable {
 			public void setVirtualisation(Collection<Virtualisation> virtualisation) {
 				this.virtualisation = virtualisation;
 			}
-	
-			
 
+			public Collection<Infrastructure> getInfrastructure() {
+				return infrastructure;
+			}
+
+			public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+				this.infrastructure = infrastructure;
+			}
+
+			public Collection<EquipementReseau> getEquipementreseaux() {
+				return equipementreseaux;
+			}
+
+			public void setEquipementreseaux(Collection<EquipementReseau> equipementreseaux) {
+				this.equipementreseaux = equipementreseaux;
+			}
+	
+
+			public Collection<Camera> getCamera() {
+				return camera;
+			}
+
+			public void setCamera(Collection<Camera> camera) {
+				this.camera = camera;
+			}
+
+			public Collection<MachineVirtuelle> getMachineVirtuelle() {
+				return machineVirtuelle;
+			}
+
+			public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+				this.machineVirtuelle = machineVirtuelle;
+			}
+
+			public Collection<SolutionApplicative> getSolutionApplicative() {
+				return solutionApplicative;
+			}
+
+			public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+				this.solutionApplicative = solutionApplicative;
+			}
+			
+	
 }

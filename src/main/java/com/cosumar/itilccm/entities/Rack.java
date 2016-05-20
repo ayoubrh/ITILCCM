@@ -52,6 +52,10 @@ public class Rack implements Serializable{
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
+	@OneToMany(mappedBy="rack")
+   	@Column(nullable = true)
+   private Collection<EquipementReseau> equipementreseau;
+   	
    	
    	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -236,6 +240,14 @@ public class Rack implements Serializable{
 
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
+	}
+
+	public Collection<EquipementReseau> getEquipementreseau() {
+		return equipementreseau;
+	}
+
+	public void setEquipementreseau(Collection<EquipementReseau> equipementreseau) {
+		this.equipementreseau = equipementreseau;
 	}
 	
 		

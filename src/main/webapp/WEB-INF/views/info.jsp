@@ -8,7 +8,7 @@
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Mot de passe oubliè - ITIL-CCM</title>
+	<title>Mot de passe oublié - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
 
@@ -104,7 +104,7 @@
 					}
 				},
 				messages: {
-					'signup_name': 'Le matricule doit être entre 6 et 20 caractères ',
+					'signup_name': 'Le matricule doit tre entre 6 et 20 caractres ',
 					'signup_email': 'Entrez un E-mail valide'
 				}
 			});
@@ -118,13 +118,13 @@
 		<div class="signup-form">
 				
 				<div class="signup-text">
-					<span>Mot de passe oubliè !</span>
+					<span>Mot de passe oublié !</span>
 				</div>
 				
 		            <div class="note note-success">
 		            	<div class="note-title">
-			                - Un E-mail de validation pour récuprer vote mot de passe, est envoyé à votre boite mail.<br>
-			                - Si vous n'avez rien reçu, ressai plus tard !
+			                - Un E-mail de validation pour récuprer vote mot de passe, est envoyé  votre boite mail.<br>
+			                - Si vous n'avez rien reu, ressai plus tard !
 		                </div>
 		            </div>
 		       

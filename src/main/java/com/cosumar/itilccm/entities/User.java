@@ -31,7 +31,7 @@ public class User implements Serializable {
    private Long id;
 	
 	@NotEmpty
-	@Size(min=6,max=20)
+	@Size(min=4,max=20)
 	@Column(unique = true)
    private String matricule;
 	

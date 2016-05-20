@@ -43,6 +43,7 @@ public interface ITILCCMDAO {
 	public  Long addPCUser(Ordinateur pc, Long u);
 	public void editPC(Ordinateur pc);
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	public void deletePC(Long id);
 		
@@ -59,7 +60,7 @@ public interface ITILCCMDAO {
 	// Contact
 		
 	public Long ajouterContact(Contact c);
-	public Long ajouterContactAll(Contact c, Long idlieu,List<Long> contrats);
+	public Long ajouterContactAll(Contact c, Long idlieu);
 	public void modifierContact(Contact c);
 	public void supprimerContact(Long id);
 	public List<Contact> listContact();
@@ -192,7 +193,7 @@ public interface ITILCCMDAO {
 	
 	// Physique
 	public  Long addPhysique(Physique Physique);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addPhysiqueAll(Physique Physique, List<Long> vlans);
 	public void editPhysique(Physique Physique);
 	public List<Physique> ListPhysique();
 	public Physique getPhysique(Long id);
@@ -200,7 +201,7 @@ public interface ITILCCMDAO {
 	
 	// Vlan
 	public  Long addVlan(Vlan Vlan);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addVlanAll(Vlan Vlan, List<Long> subnets,List<Long> intefaceReseau);
 	public void editVlan(Vlan Vlan);
 	public List<Vlan> ListVlan();
 	public Vlan getVlan(Long id);
@@ -208,7 +209,7 @@ public interface ITILCCMDAO {
 	
 	// Subnet
 	public  Long addSubnet(Subnet Subnet);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addSubnetAll(Subnet Subnet, List<Long> vlans);
 	public void editSubnet(Subnet Subnet);
 	public List<Subnet> ListSubnet();
 	public Subnet getSubnet(Long id);
@@ -216,15 +217,15 @@ public interface ITILCCMDAO {
 	
 	// Camera
 	public  Long addCamera(Camera Cam);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editCamera(Camera Cam);
 	public List<Camera> ListCamera();
 	public Camera getCamera(Long id);
 	public void deleteCamera(Long id);
 	
-	// ProcessusMetier
+	// ProcessusMetier 
 	public  Long addProcessusMetier(ProcessusMetier pm);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addProcessusMetierAll(ProcessusMetier pm,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives);
 	public void editProcessusMetier(ProcessusMetier pm);
 	public List<ProcessusMetier> ListProcessusMetier();
 	public ProcessusMetier getProcessusMetier(Long id);
@@ -232,7 +233,7 @@ public interface ITILCCMDAO {
 	
 	// SolutionApplicative
 	public  Long addSolutionApplicative(SolutionApplicative sa);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addSolutionApplicativeAll(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> cis,List<Long> processusMetiers,List<Long> contrats); 
 	public void editSolutionApplicative(SolutionApplicative sa);
 	public List<SolutionApplicative> ListSolutionApplicative();
 	public SolutionApplicative getSolutionApplicative(Long id);
@@ -240,7 +241,7 @@ public interface ITILCCMDAO {
 	
 	// VolumeLogique
 	public  Long addVolumeLogique(VolumeLogique vl);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs,List<Long> machinevertuelle);
 	public void editVolumeLogique(VolumeLogique vl);
 	public List<VolumeLogique> ListVolumeLogique();
 	public VolumeLogique getVolumeLogique(Long id);
@@ -248,7 +249,7 @@ public interface ITILCCMDAO {
 	
 	// Dvr
 	public  Long addDvr(Dvr dvr);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editDvr(Dvr dvr);
 	public List<Dvr> ListDvr();
 	public Dvr getDvr(Long id);
@@ -312,6 +313,7 @@ public interface ITILCCMDAO {
 	
 	// Serveur
 	public  Long addServeur(Serveur Serveur);
+	public  Long addServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos, List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editServeur(Serveur Serveur);
 	public List<Serveur> ListServeur();
@@ -320,7 +322,7 @@ public interface ITILCCMDAO {
 	
 	// SystemeDeStockage
 	public  Long addSystemeDeStockage(SystemeDeStockage sds);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editSystemeDeStockage(SystemeDeStockage sds);
 	public List<SystemeDeStockage> ListSystemeDeStockage();
 	public SystemeDeStockage getSystemeDeStockage(Long id);
@@ -328,7 +330,7 @@ public interface ITILCCMDAO {
 	
 	// SwitchSan
 	public  Long addSwitchSan(SwitchSan san);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editSwitchSan(SwitchSan san);
 	public List<SwitchSan> ListSwitchSan();
 	public SwitchSan getSwitchSan(Long id);
@@ -336,7 +338,6 @@ public interface ITILCCMDAO {
 	
 	// Nas
 	public  Long addNas(Nas Nas);
-	//public  Long addFibre(Fibre f, Long pc);
 	public void editNas(Nas Nas);
 	public List<Nas> ListNas();
 	public Nas getNas(Long id);
@@ -352,6 +353,7 @@ public interface ITILCCMDAO {
 	
 	//EquipementReseau
 	public  Long addEquipementReseau(EquipementReseau er);
+	public  Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact, List<Long> contrat);
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editEquipementReseau(EquipementReseau er);
 	public List<EquipementReseau> ListEquipementReseau();
@@ -362,6 +364,7 @@ public interface ITILCCMDAO {
 	 //License Logiciel
 	
 	public Long ajouterLicenseLogiciel(LicenseLogiciel ll);
+	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel,List<Long> documents);
 	public void modifierLicenseLogiciel(LicenseLogiciel ll);
 	public void supprimerLicenseLogiciel(Long id);
 	public List<LicenseLogiciel> listLicenseLogiciel();
@@ -370,6 +373,7 @@ public interface ITILCCMDAO {
    // License OS
 	
 	public Long ajouterLicenseOs(LicenseOs lo);
+	public Long ajouterLicenseOsAll(LicenseOs lo,Long versionOs,List<Long> documents,List<Long> serveurs,List<Long> machineVirtuelle);
 	public void modifierLicenseOs(LicenseOs lo);
 	public void supprimerLicenseOs(Long id);
 	public List<LicenseOs> listLicenseOs();
@@ -391,7 +395,7 @@ public interface ITILCCMDAO {
 	// Autre logiciel
 	
 	public Long ajouterAutreLogiciel(AutreLogiciel al);
-	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
+	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach, Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierAutreLogiciel(AutreLogiciel al);
 	public void supprimerAutreLogiciel(Long id);
 	public List<AutreLogiciel> listAutreLogiciel();
@@ -400,7 +404,7 @@ public interface ITILCCMDAO {
 	// Logiciel PC
 	
 	public Long ajouterLogicielPc(LogicielPc lp);
-	public Long ajouterLogicielPcAll(LogicielPc lp,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
+	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void modifierLogicielPc(LogicielPc lp);
 	public void supprimerLogicielPc(Long id);
 	public List<LogicielPc> listLogicielPc();
@@ -409,7 +413,7 @@ public interface ITILCCMDAO {
 	// Serveur Web
 	
 	public Long ajouterServeurWeb(ServeurWeb sw);
-	public Long ajouterServeurWebAll(ServeurWeb sw,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
+	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
 	public void modifierServeurWeb(ServeurWeb sw);
 	public void supprimerServeurWeb(Long id);
 	public List<ServeurWeb> listServeurWeb();
@@ -418,16 +422,16 @@ public interface ITILCCMDAO {
 	// Middleware
 	
 	public Long ajouterMiddleware(Middleware m);
-	public Long ajouterMiddlewareAll(Middleware m,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
+	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
 	public void modifierMiddleware(Middleware m);
 	public void supprimerMiddleware(Long id);
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 	
-	//Serveur de basse de données
+	//Serveur de basse de donnes
 	
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
-	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
+	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
 	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
 	public void supprimerServeurDeBasseDeDonnees(Long id);
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
@@ -453,7 +457,7 @@ public interface ITILCCMDAO {
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 	
-   //Instance de basse de donnés
+   //Instance de basse de donns
 	
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd,Long sbd,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
@@ -465,6 +469,7 @@ public interface ITILCCMDAO {
 	// Machine Virtuelle
 	
 	public Long ajouterMachineVirtuelle(MachineVirtuelle mv);
+	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv,Long virtualisation,Long license,List<Long> logiciels,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> interfacesReseaux,List<Long> volumesLogiques,List<Long> contrats);
 	public void modifierMachineVirtuelle(MachineVirtuelle mv);
 	public void supprimerMachineVirtuelle(Long id);
 	public List<MachineVirtuelle> listMachineVirtuelle();

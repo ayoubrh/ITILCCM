@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,10 +30,18 @@ public class ProcessusMetier implements Serializable{
    private Date dateDeMiseEnProduction;
    private String description;
    
-   	@ManyToMany
    	@Column(nullable=true)
-   private Collection<SolutionApplicative> solutionApplicative;
-
+   	@ManyToMany(cascade = CascadeType.ALL)
+    private Collection<SolutionApplicative> solutionApplicative;
+   	
+   	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Contact> contacts;
+	
+	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Document> documents;
+   	
 	public Long getId() {
 		return id;
 	}
@@ -108,8 +117,21 @@ public class ProcessusMetier implements Serializable{
 		super();
 		this.nom = nom;
 	}
-   
-   	
-   
 
+	public Collection<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(Collection<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Collection<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Collection<Document> documents) {
+		this.documents = documents;
+	}
+ 
 }

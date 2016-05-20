@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,6 +53,14 @@ public class Contact implements Serializable {
 	    @ManyToMany(mappedBy="contact")
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
+
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<EquipementReseau> equipementreseaux;
+	    
+	    @ManyToMany(mappedBy="contact")
+	   	@Column(nullable = true)
+	   private Collection<Infrastructure> infrastructure;
 	   
 	    @ManyToMany(mappedBy="contact")
 	   	@Column(nullable = true)
@@ -86,7 +95,7 @@ public class Contact implements Serializable {
 	   private Collection<Peripherique> peripherique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<Contrat> contrats;
 	   
 	    @Column(nullable=true)
@@ -112,6 +121,22 @@ public class Contact implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="contacts")
 	   private Collection<Virtualisation> virtualisation;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<Camera> camera;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<ProcessusMetier> processusMetier;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="contacts")
+	   private Collection<SolutionApplicative> solutionApplicative;
    
 		public Contact() {
 			super();
@@ -328,7 +353,53 @@ public class Contact implements Serializable {
 			this.chassis = chassis;
 		}
 
+		public Collection<Infrastructure> getInfrastructure() {
+			return infrastructure;
+		}
+
+		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+			this.infrastructure = infrastructure;
+		}
+
+		public Collection<EquipementReseau> getEquipementreseaux() {
+			return equipementreseaux;
+		}
+
+		public void setEquipementreseaux(Collection<EquipementReseau> equipementreseaux) {
+			this.equipementreseaux = equipementreseaux;
+		}
+
+		public Collection<Camera> getCamera() {
+			return camera;
+		}
+
+		public void setCamera(Collection<Camera> camera) {
+			this.camera = camera;
+		}
+
+		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+			return machineVirtuelle;
+		}
+
+		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+			this.machineVirtuelle = machineVirtuelle;
+		}
+
+		public Collection<ProcessusMetier> getProcessusMetier() {
+			return processusMetier;
+		}
+
+		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
+			this.processusMetier = processusMetier;
+		}
+
+		public Collection<SolutionApplicative> getSolutionApplicative() {
+			return solutionApplicative;
+		}
+
+		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+			this.solutionApplicative = solutionApplicative;
+		}
 		
-			   
 
 }

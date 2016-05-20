@@ -21,7 +21,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_ConnexionElectrique")
 public class ConnexionElectrique implements Serializable{

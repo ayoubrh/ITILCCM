@@ -109,7 +109,7 @@ public class Sprint1 {
 	    					+user.getMatricule()
 	    					+"<br>Mot de passe : "
 	    					+password
-	    					+"<br>Pour validé votre compte et pouvoir accéder librement "
+	    					+"<br>Pour valid votre compte et pouvoir accder librement "
 	    					+"<a href="+url+">Clickez ici</a>."
 	    		);
 		if(user.getRole().getId() == null){

@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -513,7 +513,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addL">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addL">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -561,7 +561,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addP">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addP">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -611,7 +611,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addir">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addir">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -662,7 +662,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="adder">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="adder">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -707,7 +707,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -758,7 +758,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -807,7 +807,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->

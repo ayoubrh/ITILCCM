@@ -41,6 +41,14 @@ public class Document implements Serializable {
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
 	   	
+		@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<EquipementReseau> equipementreseaux;
+	   	
+	   	@ManyToMany(mappedBy="document")
+	   	@Column(nullable = true)
+	   private Collection<Infrastructure> infrastructure;
+	   	
 	   	@ManyToMany(mappedBy="document")
 	   	@Column(nullable = true)
 	   private Collection<Rack> rack;
@@ -106,6 +114,22 @@ public class Document implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="documents")
 	   private Collection<Virtualisation> virtualisation;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<Camera> camera;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<MachineVirtuelle> machineVirtuelle;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<ProcessusMetier> processusMetier;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="documents")
+	   private Collection<SolutionApplicative> solutionApplicative;
 
 		public Document() {
 			super();
@@ -305,6 +329,53 @@ public class Document implements Serializable {
 			this.virtualisation = virtualisation;
 		}
 
-		
+		public Collection<Infrastructure> getInfrastructure() {
+			return infrastructure;
+		}
+
+		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+			this.infrastructure = infrastructure;
+		}
+
+		public Collection<EquipementReseau> getEquipementreseaux() {
+			return equipementreseaux;
+		}
+
+		public void setEquipementreseaux(Collection<EquipementReseau> equipementreseaux) {
+			this.equipementreseaux = equipementreseaux;
+		}
+
+		public Collection<Camera> getCamera() {
+			return camera;
+		}
+
+		public void setCamera(Collection<Camera> camera) {
+			this.camera = camera;
+		}
+
+		public Collection<MachineVirtuelle> getMachineVirtuelle() {
+			return machineVirtuelle;
+		}
+
+		public void setMachineVirtuelle(Collection<MachineVirtuelle> machineVirtuelle) {
+			this.machineVirtuelle = machineVirtuelle;
+		}
+
+		public Collection<ProcessusMetier> getProcessusMetier() {
+			return processusMetier;
+		}
+
+		public void setProcessusMetier(Collection<ProcessusMetier> processusMetier) {
+			this.processusMetier = processusMetier;
+		}
+
+		public Collection<SolutionApplicative> getSolutionApplicative() {
+			return solutionApplicative;
+		}
+
+		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
+			this.solutionApplicative = solutionApplicative;
+		}
+
 
 }

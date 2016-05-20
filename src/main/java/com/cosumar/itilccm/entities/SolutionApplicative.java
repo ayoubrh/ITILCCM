@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class SolutionApplicative implements Serializable{
   	@Column(nullable = true)
    private java.util.Collection<EquipementReseau> equipementReseau;
    
-   	@ManyToMany(mappedBy="solutionApplicative")
+   	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
  	@Column(nullable = true)
    private Collection<ProcessusMetier> processusMetier;
    	
@@ -65,6 +66,33 @@ public class SolutionApplicative implements Serializable{
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
 	private Collection<ApplicationWeb> applicationWeb;
+	 
+	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Contact> contacts;
+	   
+	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Contrat> contrats;
+	   
+	@Column(nullable=true)
+	@ManyToMany
+	private Collection<Document> documents;
+	
+	public SolutionApplicative() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SolutionApplicative(String nom, String statut, String criticite, Date dateDeMiseEnProduction,
+			String description) {
+		super();
+		this.nom = nom;
+		this.statut = statut;
+		this.criticite = criticite;
+		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
+		this.description = description;
+	}
 
 	public Long getId() {
 		return id;
@@ -185,28 +213,33 @@ public class SolutionApplicative implements Serializable{
 	public void setApplicationWeb(Collection<ApplicationWeb> applicationWeb) {
 		this.applicationWeb = applicationWeb;
 	}
-
-	public SolutionApplicative() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Collection<Contact> getContacts() {
+		return contacts;
 	}
 
-	public SolutionApplicative(String nom, String statut, String criticite, Date dateDeMiseEnProduction,
-			String description) {
-		super();
-		this.nom = nom;
-		this.statut = statut;
-		this.criticite = criticite;
-		this.dateDeMiseEnProduction = dateDeMiseEnProduction;
-		this.description = description;
+	public void setContacts(Collection<Contact> contacts) {
+		this.contacts = contacts;
+	}
+
+	public Collection<Contrat> getContrats() {
+		return contrats;
+	}
+
+	public void setContrats(Collection<Contrat> contrats) {
+		this.contrats = contrats;
+	}
+
+	public Collection<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(Collection<Document> documents) {
+		this.documents = documents;
 	}
 
 	
-	
-	
 
-   
-	 
-   
+	
+	
 
 }

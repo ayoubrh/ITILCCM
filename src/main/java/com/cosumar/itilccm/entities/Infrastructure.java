@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,9 +37,6 @@ public class Infrastructure implements Serializable{
    private String marque;
    private String modele;
    
-   	@Column(nullable=true)
-   	@Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
-   private String nbUnite;
    
    	@Pattern(regexp="^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$",message="Entrez une Adress IP")
 	@Column(nullable = true)
@@ -72,6 +70,22 @@ public class Infrastructure implements Serializable{
    	@ManyToMany
    	@Column(nullable = true)
    private Collection<SolutionApplicative> solutionApplicative;
+   	
+   	@ManyToOne(cascade = CascadeType.ALL)
+   	@JoinColumn(name="lieu_id")
+   private Lieu lieu;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+   private Collection<Document> document;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+   private Collection<Contrat> contrat;
+   	
+   	@ManyToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+   private Collection<Contact> contact;
    
 	public Long getId() {
 		return id;
@@ -109,12 +123,7 @@ public class Infrastructure implements Serializable{
 	public void setModele(String modele) {
 		this.modele = modele;
 	}
-	public String getNbUnite() {
-		return nbUnite;
-	}
-	public void setNbUnite(String nbUnite) {
-		this.nbUnite = nbUnite;
-	}
+
 	public String getIp() {
 		return ip;
 	}
@@ -204,6 +213,30 @@ public class Infrastructure implements Serializable{
 	public Infrastructure(String nom) {
 		super();
 		this.nom = nom;
+	}
+	public Lieu getLieu() {
+		return lieu;
+	}
+	public void setLieu(Lieu lieu) {
+		this.lieu = lieu;
+	}
+	public Collection<Document> getDocument() {
+		return document;
+	}
+	public void setDocument(Collection<Document> document) {
+		this.document = document;
+	}
+	public Collection<Contrat> getContrat() {
+		return contrat;
+	}
+	public void setContrat(Collection<Contrat> contrat) {
+		this.contrat = contrat;
+	}
+	public Collection<Contact> getContact() {
+		return contact;
+	}
+	public void setContact(Collection<Contact> contact) {
+		this.contact = contact;
 	}
 	
 		

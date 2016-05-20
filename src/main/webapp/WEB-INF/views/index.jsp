@@ -476,7 +476,7 @@ Use search to find needed section.
 		<!-- Content here -->
 		<c:if test="${v != null }">
 			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert">×</button>
+				<button type="button" class="close" data-dismiss="alert"></button>
 				Votre compte est bien valide.
 			</div>
 		</c:if>
@@ -520,11 +520,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-<<<<<<< HEAD
 														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${Contact }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${contact }
->>>>>>> refs/remotes/origin/tawfiq-jpa
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -539,11 +535,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-<<<<<<< HEAD
 														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${Lieu }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${lieu }
->>>>>>> refs/remotes/origin/tawfiq-jpa
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -558,11 +550,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-<<<<<<< HEAD
 														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${Contrat }
-=======
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${contrat }
->>>>>>> refs/remotes/origin/tawfiq-jpa
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -581,7 +569,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
+													<a href="<c:url value="/config/admin/add/serveur" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
 												</div>
 											</div>

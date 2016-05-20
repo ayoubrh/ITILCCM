@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -93,8 +93,74 @@ public class Sprint2 {
 		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative().size());
 		model.addAttribute("Groupe", m.listGroupe().size());
 		model.addAttribute("Camera", m.ListCamera().size());
-
+		model.addAttribute("save", false);
 		return "sprint2/dashbord";
+	}
+	
+	
+	@RequestMapping(value="/admin/dashboards")
+	public String index(Model model, String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("Rack", m.ListRack().size());
+		model.addAttribute("Chassis", m.ListChassis().size());
+		model.addAttribute("Serveur", m.ListServeur().size());
+		model.addAttribute("SwitchSAN", m.ListSwitchSan().size());
+		model.addAttribute("NAS", m.ListNas().size());
+		model.addAttribute("Bandotheque", m.ListBandotheque().size());
+		model.addAttribute("ConnectionElectrique", m.ListConnexionElectrique().size());
+		model.addAttribute("DVR", m.ListDvr().size());
+		model.addAttribute("Equipementreseau", m.ListEquipementReseau().size());
+		model.addAttribute("Systemedestockage", m.ListSystemeDeStockage().size());
+		model.addAttribute("vCluster", m.listVcluster().size());
+		model.addAttribute("Hyperviseur", m.listHyperviseur().size());
+		model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle().size());
+		model.addAttribute("Ordinateur", m.ListPC().size());
+		model.addAttribute("Telephonefixe", m.ListTeleFixe().size());
+		model.addAttribute("Telephonemobile", m.ListTeleMobile().size());
+		model.addAttribute("sim", m.ListSIM().size());
+		model.addAttribute("Tablette", m.ListTablette().size());
+		model.addAttribute("Imprimante", m.ListImp().size());
+		model.addAttribute("Peripherique", m.ListPeriph().size());
+		model.addAttribute("Middleware", m.listMiddleware().size());
+		model.addAttribute("ServeurWeb", m.listServeurWeb().size());
+		model.addAttribute("Serveurdebasededonnees", m.listServeurDeBasseDeDonnees().size());
+		model.addAttribute("LogicielPC", m.listLogicielPc().size());
+		model.addAttribute("Autrelogiciel", m.listAutreLogiciel().size());
+		model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware().size());
+		model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes().size());
+		model.addAttribute("ApplicationWeb", m.listApplicationWeb().size());
+		model.addAttribute("License", m.listLicenseLogiciel().size()+m.listLicenseOs().size());
+		model.addAttribute("InterfaceReseau", m.ListInterfaceReseau().size());
+		model.addAttribute("Subnet", m.ListSubnet().size());
+		model.addAttribute("VLAN", m.ListVlan().size());
+		model.addAttribute("Volumelogique", m.ListVolumeLogique().size());
+		model.addAttribute("Processusmetier", m.ListProcessusMetier().size());
+		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative().size());
+		model.addAttribute("Groupe", m.listGroupe().size());
+		model.addAttribute("Camera", m.ListCamera().size());
+		model.addAttribute("save", save);
+		return "sprint2/dashbord";
+	}
+	
+	@RequestMapping(value="/admin/add/neveauCI")
+	public String neveauCI(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		return "sprint2/TypeCI_fonctionnel";
+	}
+	
+	@RequestMapping(value="/admin/add/neveauCIdirect")
+	public String neveauCIdirect(Model model,HttpServletRequest req){
+		String[] neveauCI = req.getParameterValues("type");
+		
+		return "redirect:"+neveauCI[0];
 	}
 	
 	
@@ -224,7 +290,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/imp")
@@ -611,8 +677,6 @@ public class Sprint2 {
 		return "redirect:/config/admin/dashboard";
 	}
 	
-	
-	
 	@RequestMapping(value="/admin/add/sim")
 	public String addSim(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -630,8 +694,6 @@ public class Sprint2 {
 		return "sprint2/addSim";
 	}
 	
-	
-
 	@RequestMapping(value="/admin/add/saveSim", method = RequestMethod.POST)
 	public String saveSim(@Valid Sim sim,BindingResult bind,HttpServletRequest req,Model model) {
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -889,9 +951,798 @@ public class Sprint2 {
 		//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
-		return "redirect:/index";
+		return "redirect:/config/admin/dashboard";
 	}
 	
+	
+	
+	@RequestMapping(value="/admin/add/serveur")
+	public String addServeur(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("serveur", new Serveur() );
+		model.addAttribute("logiciels", m.listLogicielEtApplication());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("sans", m.ListSwitchSan());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("licenseos", m.listLicenseOs());
+		return "sprint2/addServeur";
+	}
+	
+	@RequestMapping(value="/admin/add/saveServeur", method = RequestMethod.POST)
+	public String saveServeur(@Valid Serveur serveur,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			//model.addAttribute("pc", pc );
+			model.addAttribute("logiciels", m.listLogicielEtApplication());
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("sans", m.ListSwitchSan());
+			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			model.addAttribute("licenseos", m.listLicenseOs());
+			return "sprint2/addServeur";
+		}
+		System.out.println("Test test 3");
+		String[] chLogiciels = req.getParameterValues("chLogiciels");
+		List<Long> chlog = null;
+		System.out.println("---------chLogiciels : "+chLogiciels+" chlog : "+chlog);
+		
+		String[] chSolutionApplicative = req.getParameterValues("chSolutionApplicative");
+		List<Long> chsolapp = null;
+		System.out.println("---------chSolutionApplicative : "+chSolutionApplicative+" chsolapp : "+chsolapp);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+
+		String[] chSan = req.getParameterValues("chSan");
+		List<Long> chSanlong = null;
+		System.out.println("---------chSan : "+chSan+" chSanlong : "+chSanlong);
+		
+		String[] volumesLogiques = req.getParameterValues("volumesLogiques");
+		List<Long> chvl = null;
+		System.out.println("---------volumesLogiques : "+volumesLogiques+" chvl : "+chvl);
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		if(chLogiciels != null){
+			chlog = new ArrayList<Long>();
+			for (int i = 0; i < chLogiciels.length; i++) {
+				System.out.println("---------chLogiciels "+chLogiciels[i]);
+				chlog.add(Long.parseLong(chLogiciels[i]));
+			}
+			
+		}
+		
+		if(chSolutionApplicative != null){
+			chsolapp = new ArrayList<Long>();
+			for (int i = 0; i < chSolutionApplicative.length; i++) {
+				System.out.println("---------chSolutionApplicative "+chSolutionApplicative[i]);
+				chsolapp.add(Long.parseLong(chSolutionApplicative[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux "+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		
+		if(chSan != null){
+			chSanlong = new ArrayList<Long>();
+			for (int i = 0; i < chSan.length; i++) {
+				System.out.println("---------chSan "+chSan[i]);
+				chSanlong.add(Long.parseLong(chSan[i]));
+			}
+		}
+		
+		if(volumesLogiques != null){
+			chvl = new ArrayList<Long>();
+			for (int i = 0; i < volumesLogiques.length; i++) {
+				System.out.println("---------volumesLogiques "+volumesLogiques[i]);
+				chvl.add(Long.parseLong(volumesLogiques[i]));
+			}
+		}
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+serveur.getRack()+" ID : "+serveur.getRack().getId());
+		System.out.println("Chassis : "+serveur.getChassis()+" ID : "+serveur.getChassis().getId());
+		System.out.println("Lieu : "+serveur.getLieu()+" ID : "+serveur.getLieu().getId());
+		System.out.println("LicenseOs : "+serveur.getLicenseOs()+" ID : "+serveur.getLicenseOs().getId());
+		
+		//m.addServeurAll(serveur, pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		m.addServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+
+	@RequestMapping(value="/admin/add/systemedestockage")
+	public String addSystemedestockage(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("systemeDeStockage", new SystemeDeStockage() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("sans", m.ListSwitchSan());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addSystemedestockage";
+	}
+	
+	@RequestMapping(value="/admin/add/saveSystemedestokage", method = RequestMethod.POST)
+	public String saveSystemedestokage(@Valid SystemeDeStockage sds,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			//model.addAttribute("pc", pc );
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("sans", m.ListSwitchSan());
+			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			return "sprint2/addSystemedestockage";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chSolutionApplicative = req.getParameterValues("chSolutionApplicative");
+		List<Long> chsolapp = null;
+		System.out.println("---------chSolutionApplicative : "+chSolutionApplicative+" chsolapp : "+chsolapp);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+
+		String[] chSan = req.getParameterValues("chSan");
+		List<Long> chSanlong = null;
+		System.out.println("---------chSan : "+chSan+" chSanlong : "+chSanlong);
+		
+		String[] volumesLogiques = req.getParameterValues("volumesLogiques");
+		List<Long> chvl = null;
+		System.out.println("---------volumesLogiques : "+volumesLogiques+" chvl : "+chvl);
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		if(chSolutionApplicative != null){
+			chsolapp = new ArrayList<Long>();
+			for (int i = 0; i < chSolutionApplicative.length; i++) {
+				System.out.println("---------chSolutionApplicative "+chSolutionApplicative[i]);
+				chsolapp.add(Long.parseLong(chSolutionApplicative[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux "+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		
+		if(chSan != null){
+			chSanlong = new ArrayList<Long>();
+			for (int i = 0; i < chSan.length; i++) {
+				System.out.println("---------chSan "+chSan[i]);
+				chSanlong.add(Long.parseLong(chSan[i]));
+			}
+		}
+		
+		if(volumesLogiques != null){
+			chvl = new ArrayList<Long>();
+			for (int i = 0; i < volumesLogiques.length; i++) {
+				System.out.println("---------volumesLogiques "+volumesLogiques[i]);
+				chvl.add(Long.parseLong(volumesLogiques[i]));
+			}
+		}
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+sds.getRack()+" ID : "+sds.getRack().getId());
+		System.out.println("Chassis : "+sds.getChassis()+" ID : "+sds.getChassis().getId());
+		System.out.println("Lieu : "+sds.getLieu()+" ID : "+sds.getLieu().getId());
+		
+		m.addSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	@RequestMapping(value="/admin/add/dvr")
+	public String addDvr(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("dvr", new Dvr() );
+		model.addAttribute("cameras", m.ListCamera());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addDVR";
+	}
+	
+	
+
+	@RequestMapping(value="/admin/add/saveDvr", method = RequestMethod.POST)
+	public String saveDvr(@Valid Dvr dvr,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("cameras", m.ListCamera());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			return "sprint2/addDVR";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chCamera = req.getParameterValues("chCamera");
+		List<Long> cam = null;
+		System.out.println("---------chSolutionApplicative : "+chCamera+" chsolapp : "+cam);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		if(chCamera != null){
+			cam = new ArrayList<Long>();
+			for (int i = 0; i < chCamera.length; i++) {
+				System.out.println("---------chCamera "+chCamera[i]);
+				cam.add(Long.parseLong(chCamera[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux "+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+dvr.getRack()+" ID : "+dvr.getRack().getId());
+		System.out.println("Chassis : "+dvr.getChassis()+" ID : "+dvr.getChassis().getId());
+		System.out.println("Lieu : "+dvr.getLieu()+" ID : "+dvr.getLieu().getId());
+		
+		m.addDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+
+	@RequestMapping(value="/admin/add/switchsan")
+	public String addSwitchsan(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("switchSan", new SwitchSan() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addSwitchSAN";
+	}
+	
+
+	
+	@RequestMapping(value="/admin/add/saveSwitchSan", method = RequestMethod.POST)
+	public String saveSwitchSan(@Valid SwitchSan san,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			//model.addAttribute("pc", pc );
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			return "sprint2/addSwitchSAN";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chSolutionApplicative = req.getParameterValues("chSolutionApplicative");
+		List<Long> chsolapp = null;
+		System.out.println("---------chSolutionApplicative : "+chSolutionApplicative+" chsolapp : "+chsolapp);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		if(chSolutionApplicative != null){
+			chsolapp = new ArrayList<Long>();
+			for (int i = 0; i < chSolutionApplicative.length; i++) {
+				System.out.println("---------chSolutionApplicative "+chSolutionApplicative[i]);
+				chsolapp.add(Long.parseLong(chSolutionApplicative[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux "+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+san.getRack()+" ID : "+san.getRack().getId());
+		System.out.println("Chassis : "+san.getChassis()+" ID : "+san.getChassis().getId());
+		System.out.println("Lieu : "+san.getLieu()+" ID : "+san.getLieu().getId());
+		
+		m.addSwitchSanAll(san, san.getLieu().getId(), san.getRack().getId(), san.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+	@RequestMapping(value="/admin/add/equipementreseau")
+	public String addEquipementreseau(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("equipementReseau", new EquipementReseau() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addEquipementreseau";
+	}
+	
+	@RequestMapping(value="/admin/add/saveEquipementreseau", method = RequestMethod.POST)
+	public String saveEquipementreseau(@Valid EquipementReseau er,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			return "sprint2/addEquipementreseau";
+		}
+		System.out.println("Test test 3");
+		
+		
+		String[] chSolutionApplicative = req.getParameterValues("chSolutionApplicative");
+		List<Long> chsolapp = null;
+		System.out.println("---------chSolutionApplicative : "+chSolutionApplicative+" chsolapp : "+chsolapp);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		if(chSolutionApplicative != null){
+			chsolapp = new ArrayList<Long>();
+			for (int i = 0; i < chSolutionApplicative.length; i++) {
+				System.out.println("---------chSolutionApplicative "+chSolutionApplicative[i]);
+				chsolapp.add(Long.parseLong(chSolutionApplicative[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		
+		
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+er.getRack()+" ID : "+er.getRack().getId());
+		System.out.println("Chassis : "+er.getChassis()+" ID : "+er.getChassis().getId());
+		System.out.println("Lieu : "+er.getLieu()+" ID : "+er.getLieu().getId());
+		
+		m.addEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
+		return "redirect:/index";
+	}
 	
 	
 	@RequestMapping(value="/admin/add/lieu")
@@ -901,18 +1752,30 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("lieu", new Lieu() );
+		model.addAttribute("contacts", m.listContact());
 		return "sprint2/addLieu";
 	}
 	@RequestMapping(value="/admin/add/saveLieu", method = RequestMethod.POST)
-	public String saveLieu(@Valid Lieu l,BindingResult bind,Model model) {
+	public String saveLieu(@Valid Lieu l,BindingResult bind,Model model,HttpServletRequest req) {
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 			model.addAttribute("logged", logged);
+			model.addAttribute("contacts", m.listContact());
 			return "sprint2/addLieu";
 		}
-		m.ajouterLieu(l);
+		List<Long> cont = new ArrayList<Long>();
+		
+		String[] Contacts = req.getParameterValues("ckContacts");
+		
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		m.ajouterLieuCont(l, cont);
 		return "redirect:/index";
 	}
 	@RequestMapping(value="/admin/add/contact")
@@ -940,21 +1803,8 @@ public class Sprint2 {
 			
 			return "sprint2/addContact";
 		}
-		List<Long> cont = null;
-		String[] Contrats = req.getParameterValues("ckContrats");
-		System.out.println(Contrats.length);
-		for(int i=0;i<Contrats.length; i++){
-			
-		    System.out.println("--------------"+Contrats[i]);}
 		
-		if(Contrats != null ){
-			cont = new ArrayList<Long>();
-			for (int i = 0; i < Contrats.length; i++) {
-				
-				cont.add(Long.parseLong(Contrats[i]));
-			}
-		}
-		m.ajouterContactAll(c, c.getLieu().getId(), cont);
+		m.ajouterContactAll(c, c.getLieu().getId());
 		return "redirect:/index";
 	}
 	
@@ -1014,6 +1864,20 @@ public class Sprint2 {
 		model.addAttribute("g", m.listGroupe());
 		return "sprint2/addGroupe";
 	}
+	@RequestMapping(value="/admin/add/saveGroupe", method = RequestMethod.POST)
+	public String saveGroupe(@Valid Groupe g,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("g", m.listGroupe());
+			return "sprint2/addGroupe";
+		}
+		m.ajouterGroupe(g, g.getGroupe_parent().getId());
+		return "redirect:/config/admin/dashboard";
+	}
 	@RequestMapping(value="/admin/add/solutionApplicative")
 	public String addSolutionApplicative(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -1027,6 +1891,60 @@ public class Sprint2 {
 		model.addAttribute("processusMetiers", m.ListProcessusMetier());
 		return "sprint2/addSolutionApplicative";
 	}
+	@RequestMapping(value="/admin/add/saveSolutionApplicative", method = RequestMethod.POST)
+	public String saveSolutionApplicative(@Valid SolutionApplicative sa,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("processusMetiers", m.ListProcessusMetier());
+			return "sprint2/addSolutionApplicative";
+		}
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> pro = new ArrayList<Long>();
+		List<Long> contr = new ArrayList<Long>();
+		
+		String[] Contacts = req.getParameterValues("ckContacts");
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] processusMetiers = req.getParameterValues("ckProcessusMetiers");
+		String[] contrats = req.getParameterValues("ckContrats");
+		
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		
+		if(processusMetiers != null ){
+			for (int i = 0; i < processusMetiers.length; i++) {
+				
+				pro.add(Long.parseLong(processusMetiers[i]));
+			}
+		}
+		
+		if(contrats  != null ){
+			for (int i = 0; i < contrats.length; i++) {
+				
+				contr.add(Long.parseLong(contrats[i]));
+			}
+		}
+			
+		m.addSolutionApplicativeAll(sa, cont, doc, null, pro, contr);
+		return "redirect:/config/admin/dashboard";
+	}
 	@RequestMapping(value="/admin/add/processusMetier")
 	public String addProcessusMetier(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -1038,6 +1956,51 @@ public class Sprint2 {
 		model.addAttribute("documents", m.listDocument());
 		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 		return "sprint2/addProcessusMetier";
+	}
+	@RequestMapping(value="/admin/add/saveProcessusMetier", method = RequestMethod.POST)
+	public String saveProcessusMetier(@Valid ProcessusMetier pm,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			return "sprint2/addProcessusMetier";
+		}
+		
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> sol = new ArrayList<Long>();
+		
+		String[] Contacts = req.getParameterValues("ckContacts");
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		
+		if(solutionsApplicatives != null ){
+			for (int i = 0; i < solutionsApplicatives.length; i++) {
+				
+				sol.add(Long.parseLong(solutionsApplicatives[i]));
+			}
+		}
+		
+		m.addProcessusMetierAll(pm, cont, doc, sol);
+		
+		return "redirect:/config/admin/dashboard";
 	}
 	@RequestMapping(value="/admin/add/typeLicense")
 	public String typeLicense(Model model){
@@ -1062,10 +2025,35 @@ public class Sprint2 {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
-		model.addAttribute("licenceLogiciel", new LicenseLogiciel());
+		model.addAttribute("licenseLogiciel", new LicenseLogiciel());
 		model.addAttribute("la", m.listLogicielEtApplication());
 		model.addAttribute("documents", m.listDocument());
 		return "sprint2/addLicenceLogiciel";
+	}
+	@RequestMapping(value="/admin/add/saveLicenseLogiciel", method = RequestMethod.POST)
+	public String saveLicenseLogiciel(@Valid LicenseLogiciel ll,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("la", m.listLogicielEtApplication());
+			model.addAttribute("documents", m.listDocument());
+			return "sprint2/addLicenceLogiciel";
+		}
+		
+		List<Long> doc = new ArrayList<Long>();
+		String[] documents = req.getParameterValues("ckDocuments");
+		
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		m.ajouterLicenseLogicielAll(ll, ll.getLogicielEtApplications().getId(), doc);
+		
+		return "redirect:/config/admin/dashboard";
 	}
 	@RequestMapping(value="/admin/add/licenseOs")
 	public String addLicenseOs(Model model){
@@ -1076,7 +2064,50 @@ public class Sprint2 {
 		model.addAttribute("licenseOs", new LicenseOs());
 		model.addAttribute("v", m.listVersionOs());
 		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("serveurs", m.ListServeur());
+		model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
 		return "sprint2/addLicenseOs";
+	}
+	@RequestMapping(value="/admin/add/saveLicenseOs", method = RequestMethod.POST)
+	public String saveLicenseOs(@Valid LicenseOs lo,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("v", m.listVersionOs());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("serveurs", m.ListServeur());
+			model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
+			return "sprint2/addLicenseOs";
+		}
+		
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> serv = new ArrayList<Long>();
+		List<Long> mach = new ArrayList<Long>();
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] serveurs = req.getParameterValues("ckServeurs");
+		String[] machineVirtuelle = req.getParameterValues("ckMachinesVirtuelles");
+		
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		if(serveurs != null ){
+			for (int i = 0; i < serveurs.length; i++) {
+				serv.add(Long.parseLong(serveurs[i]));
+			}
+		}
+		if(machineVirtuelle != null ){
+			for (int i = 0; i < machineVirtuelle.length; i++) {
+				mach.add(Long.parseLong(machineVirtuelle[i]));
+			}
+		}
+		m.ajouterLicenseOsAll(lo, lo.getVersionOs().getId(), doc, serv, mach);
+		
+		return "redirect:/config/admin/dashboard";
 	}
 	@RequestMapping(value="/admin/add/versionOs")
 	public String addVersionOs(Model model){
@@ -1087,6 +2118,18 @@ public class Sprint2 {
 		model.addAttribute("versionOs", new VersionOs());
 		return "sprint2/addVersionOs";
 	}
+	@RequestMapping(value="/admin/add/saveVersionOs")
+	public String saveVersionOs(@Valid VersionOs vo,BindingResult bind,Model model){
+		if(bind.hasErrors()){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		return "sprint2/addVersionOs";
+		}
+		m.ajouterVersionOs(vo);
+		return "redirect:/config/admin/dashboard";
+	}
 	@RequestMapping(value="/admin/add/machineVirtuelle")
 	public String addMachineVirtuelle(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -1095,7 +2138,7 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("machineVirtuelle", new MachineVirtuelle());
 		model.addAttribute("v", m.listVirtualisation());
-		model.addAttribute("l", m.listLicenseOs());
+		model.addAttribute("licenseos", m.listLicenseOs());
 		//model.addAttribute("vo", m.listVersionOs());
 		model.addAttribute("contacts", m.listContact());
 		model.addAttribute("documents", m.listDocument());
@@ -1105,6 +2148,87 @@ public class Sprint2 {
 		model.addAttribute("interfacereseaux", m.ListLogique());
 		model.addAttribute("logiciels", m.listLogicielEtApplication());
 		return "sprint2/addMachineVirtuelle";
+	}
+	@RequestMapping(value="/admin/add/saveMachineVirtuelle", method = RequestMethod.POST)
+	public String saveMachineVirtuelle(@Valid MachineVirtuelle mv,BindingResult bind,Model model,HttpServletRequest req) {
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    model.addAttribute("v", m.listVirtualisation());
+			model.addAttribute("licenseos", m.listLicenseOs());
+			//model.addAttribute("vo", m.listVersionOs());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+			model.addAttribute("interfacereseaux", m.ListLogique());
+			model.addAttribute("logiciels", m.listLogicielEtApplication());
+			return "sprint2/addMachineVirtuelle";
+		}
+		List<Long> log = new ArrayList<Long>();
+		List<Long> cont = new ArrayList<Long>();
+		List<Long> doc = new ArrayList<Long>();
+		List<Long> sol = new ArrayList<Long>();
+		List<Long> contr = new ArrayList<Long>();
+		List<Long> vol = new ArrayList<Long>();
+		List<Long> inter = new ArrayList<Long>();
+		String[] logiciels = req.getParameterValues("ckLogiciel");
+		String[] Contacts = req.getParameterValues("ckContacts");
+		String[] documents = req.getParameterValues("ckDocuments");
+		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
+		String[] contrats = req.getParameterValues("ckContrats");
+		String[] volumesLogiques = req.getParameterValues("ckVolumesLogiques");
+		String[] interfacesReseaux = req.getParameterValues("ckInterfacesReseaux");
+		
+		if(logiciels != null ){
+			for (int i = 0; i < logiciels.length; i++) {
+				log.add(Long.parseLong(logiciels[i]));
+			}
+		}
+		
+		if(Contacts != null ){
+			for (int i = 0; i < Contacts.length; i++) {
+				cont.add(Long.parseLong(Contacts[i]));
+			}
+		}
+		if(documents != null ){
+			for (int i = 0; i < documents.length; i++) {
+				
+				doc.add(Long.parseLong(documents[i]));
+			}
+		}
+		
+		if(solutionsApplicatives != null ){
+			for (int i = 0; i < solutionsApplicatives.length; i++) {
+				
+				sol.add(Long.parseLong(solutionsApplicatives[i]));
+			}
+		}
+		
+		if(contrats  != null ){
+			for (int i = 0; i < contrats.length; i++) {
+				
+				contr.add(Long.parseLong(contrats[i]));
+			}
+		}
+		if(volumesLogiques  != null ){
+			for (int i = 0; i < volumesLogiques.length; i++) {
+				
+				vol.add(Long.parseLong(volumesLogiques[i]));
+			}
+		}
+		if(interfacesReseaux != null ){
+			for (int i = 0; i < interfacesReseaux.length; i++) {
+				
+				inter.add(Long.parseLong(interfacesReseaux[i]));
+			}
+		}	
+		m.ajouterMachineVirtuelleAll(mv, mv.getVirtualisation().getId(), mv.getLicenseOs().getId(), log, cont, doc, sol, inter, vol, contr);
+		return "redirect:/config/admin/dashboard";
 	}
 	@RequestMapping(value="/admin/add/hyperviseur")
 	public String addHyperviseur(Model model){
@@ -1515,11 +2639,28 @@ public class Sprint2 {
 		List<Long> doc = new ArrayList<Long>();
 		List<Long> sol = new ArrayList<Long>();
 		List<Long> contr = new ArrayList<Long>();
-		
+		Long serv = null;
+		Long mach = null;
 		String[] Contacts = req.getParameterValues("ckContacts");
 		String[] documents = req.getParameterValues("ckDocuments");
 		String[] solutionsApplicatives = req.getParameterValues("chSolutionApplicative");
 		String[] contrats = req.getParameterValues("ckContrats");
+		String[] systeme = req.getParameterValues("systeme");
+		
+		if(systeme != null){
+			
+			for (int i = 0; i < systeme.length; i++) {
+				
+				if(systeme[i].substring(0,4).equals("serv")){
+					serv = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- serv : "+serv);
+				}else {
+					mach = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- mach : "+mach);
+				}
+		  }
+			
+		}
 		
 		if(Contacts != null ){
 			for (int i = 0; i < Contacts.length; i++) {
@@ -1551,7 +2692,7 @@ public class Sprint2 {
 			}
 		}
 		
-		m.ajouterAutreLogicielAll(al,al.getLicenseLogiciel().getId(), cont, doc, sol, contr);
+		m.ajouterAutreLogicielAll(al, serv, mach, al.getLicenseLogiciel().getId(), cont, doc, sol, contr);
 		
 		return "redirect:/config/admin/dashboard";
 	}
@@ -1593,12 +2734,29 @@ public class Sprint2 {
 		List<Long> doc = new ArrayList<Long>();
 		List<Long> sol = new ArrayList<Long>();
 		List<Long> contr = new ArrayList<Long>();
+		Long serv = null;
+		Long mach = null;
 		
 		String[] Contacts = req.getParameterValues("ckContacts");
 		String[] documents = req.getParameterValues("ckDocuments");
 		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
 		String[] contrats = req.getParameterValues("ckContrats");
+        String[] systeme = req.getParameterValues("systeme");
 		
+		if(systeme != null){
+			
+			for (int i = 0; i < systeme.length; i++) {
+				
+				if(systeme[i].substring(0,4).equals("serv")){
+					serv = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- serv : "+serv);
+				}else {
+					mach = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- mach : "+mach);
+				}
+		  }
+			
+		}
 		if(Contacts != null ){
 			for (int i = 0; i < Contacts.length; i++) {
 				System.out.println("Contact--------------"+Contacts[i]);
@@ -1629,7 +2787,7 @@ public class Sprint2 {
 			}
 		}
 		
-		m.ajouterLogicielPcAll(lp, lp.getLicenseLogiciel().getId(), cont, doc, sol, contr);
+		m.ajouterLogicielPcAll(lp, serv, mach, lp.getLicenseLogiciel().getId(), cont, doc, sol, contr);
 		
 		return "redirect:/config/admin/dashboard";
 	}
@@ -1665,7 +2823,7 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
-			//model.addAttribute("applicationWeb", m.listApplicationWeb());
+			model.addAttribute("applicationWeb", m.listApplicationWeb());
 			return "sprint2/addServeurWeb";
 		}
 		
@@ -1673,11 +2831,31 @@ public class Sprint2 {
 		List<Long> doc = new ArrayList<Long>();
 		List<Long> sol = new ArrayList<Long>();
 		List<Long> contr = new ArrayList<Long>();
+		List<Long> appl = new ArrayList<Long>();
+		Long serv = null;
+		Long mach = null;
 		
 		String[] Contacts = req.getParameterValues("ckContacts");
 		String[] documents = req.getParameterValues("ckDocuments");
 		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
 		String[] contrats = req.getParameterValues("ckContrats");
+		String[] applicationWeb = req.getParameterValues("ckApplicationWeb");
+        String[] systeme = req.getParameterValues("systeme");
+		
+		if(systeme != null){
+			
+			for (int i = 0; i < systeme.length; i++) {
+				
+				if(systeme[i].substring(0,4).equals("serv")){
+					serv = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- serv : "+serv);
+				}else {
+					mach = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- mach : "+mach);
+				}
+		  }
+			
+		}
 		
 		if(Contacts != null ){
 			for (int i = 0; i < Contacts.length; i++) {
@@ -1697,6 +2875,12 @@ public class Sprint2 {
 				sol.add(Long.parseLong(solutionsApplicatives[i]));
 			}
 		}
+		if(applicationWeb != null ){
+			for (int i = 0; i < applicationWeb.length; i++) {
+				
+				appl.add(Long.parseLong(applicationWeb[i]));
+			}
+		}
 		if(contrats  != null ){
 			for (int i = 0; i < contrats.length; i++) {
 				
@@ -1704,7 +2888,7 @@ public class Sprint2 {
 			}
 		}
 		
-		m.ajouterServeurWebAll(sw, sw.getLicenseLogiciel().getId(), cont, doc, sol, null, contr);	
+		m.ajouterServeurWebAll(sw, serv, mach, sw.getLicenseLogiciel().getId(), cont, doc, sol, appl, contr); 	
 		
 		return "redirect:/config/admin/dashboard";
 	}
@@ -1741,7 +2925,7 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
-			//model.addAttribute("instanceMiddleware", m.listInstanceMiddleware());
+			model.addAttribute("instanceMiddleware", m.listInstanceMiddleware());
 			return "sprint2/addMiddleware";
 			
 		}
@@ -1750,12 +2934,31 @@ public class Sprint2 {
 		List<Long> doc = new ArrayList<Long>();
 		List<Long> sol = new ArrayList<Long>();
 		List<Long> contr = new ArrayList<Long>();
+		List<Long> midl = new ArrayList<Long>();
+		Long serv = null;
+		Long mach = null;
 		
 		String[] Contacts = req.getParameterValues("ckContacts");
 		String[] documents = req.getParameterValues("ckDocuments");
 		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
 		String[] contrats = req.getParameterValues("ckContrats");
+		String[] instanceMiddleware = req.getParameterValues("ckInstanceMiddleware");
+        String[] systeme = req.getParameterValues("systeme");
 		
+		if(systeme != null){
+			
+			for (int i = 0; i < systeme.length; i++) {
+				
+				if(systeme[i].substring(0,4).equals("serv")){
+					serv = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- serv : "+serv);
+				}else {
+					mach = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- mach : "+mach);
+				}
+		  }
+			
+		}
 		if(Contacts != null ){
 			for (int i = 0; i < Contacts.length; i++) {
 				cont.add(Long.parseLong(Contacts[i]));
@@ -1774,6 +2977,12 @@ public class Sprint2 {
 				sol.add(Long.parseLong(solutionsApplicatives[i]));
 			}
 		}
+		if(instanceMiddleware != null ){
+			for (int i = 0; i < instanceMiddleware.length; i++) {
+				
+				midl.add(Long.parseLong(instanceMiddleware[i]));
+			}
+		}
 		if(contrats  != null ){
 			for (int i = 0; i < contrats.length; i++) {
 				
@@ -1781,7 +2990,7 @@ public class Sprint2 {
 			}
 		}
 		
-		m.ajouterMiddlewareAll(mi, mi.getLicenseLogiciel().getId(), cont, doc, sol, null, contr);
+		m.ajouterMiddlewareAll(mi, serv, mach, mi.getLicenseLogiciel().getId(), cont, doc, sol, midl, contr);
 		
 		return "redirect:/config/admin/dashboard";
 	}
@@ -1817,7 +3026,7 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
-			//model.addAttribute("instanceBD", m.listInstanceDeBasseDeDonnes());
+			model.addAttribute("instanceBD", m.listInstanceDeBasseDeDonnes());
 			return "sprint2/addServeurBD";
 		}
 		
@@ -1825,12 +3034,31 @@ public class Sprint2 {
 		List<Long> doc = new ArrayList<Long>();
 		List<Long> sol = new ArrayList<Long>();
 		List<Long> contr = new ArrayList<Long>();
+		List<Long> ser = new ArrayList<Long>();
+		Long serv = null;
+		Long mach = null;
 		
 		String[] Contacts = req.getParameterValues("ckContacts");
 		String[] documents = req.getParameterValues("ckDocuments");
 		String[] solutionsApplicatives = req.getParameterValues("ckSolutionApplicative");
 		String[] contrats = req.getParameterValues("ckContrats");
+		String[] instanceBD = req.getParameterValues("ckInstanceBD");
+        String[] systeme = req.getParameterValues("systeme");
 		
+		if(systeme != null){
+			
+			for (int i = 0; i < systeme.length; i++) {
+				
+				if(systeme[i].substring(0,4).equals("serv")){
+					serv = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- serv : "+serv);
+				}else {
+					mach = Long.parseLong(systeme[i].substring(5));
+					System.out.println("--------- mach : "+mach);
+				}
+		  }
+			
+		}
 		if(Contacts != null ){
 			for (int i = 0; i < Contacts.length; i++) {
 				cont.add(Long.parseLong(Contacts[i]));
@@ -1849,13 +3077,19 @@ public class Sprint2 {
 				sol.add(Long.parseLong(solutionsApplicatives[i]));
 			}
 		}
+		if(instanceBD != null ){
+			for (int i = 0; i < instanceBD.length; i++) {
+				
+				ser.add(Long.parseLong(instanceBD[i]));
+			}
+		}
 		if(contrats  != null ){
 			for (int i = 0; i < contrats.length; i++) {
 				
 				contr.add(Long.parseLong(contrats[i]));
 			}
 		}
-		m.ajouterServeurDeBasseDeDonneesAll(sbd, sbd.getLicenseLogiciel().getId(), cont, doc, sol, null, contr);
+		m.ajouterServeurDeBasseDeDonneesAll(sbd, serv, mach, sbd.getLicenseLogiciel().getId(), cont, doc, sol, ser, contr);
 		
 		return "redirect:/config/admin/dashboard";
 	}
@@ -1871,6 +3105,7 @@ public class Sprint2 {
 		model.addAttribute("documents", m.listDocument());
 		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("serveurWeb", m.listServeurWeb());
 		return "sprint2/addApplicationWeb";
 	}
 	@RequestMapping(value="/admin/add/saveApplicationWeb", method = RequestMethod.POST)
@@ -1886,6 +3121,7 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("serveurWeb", m.listServeurWeb());
 			return "sprint2/addApplicationWeb";
 		}
 		
@@ -1939,6 +3175,7 @@ public class Sprint2 {
 		model.addAttribute("documents", m.listDocument());
 		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("middleware", m.listMiddleware());
 		return "sprint2/addInstanceMiddleware";
 	}
 	@RequestMapping(value="/admin/add/saveInstanceMiddleware", method = RequestMethod.POST)
@@ -1954,6 +3191,7 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("middleware", m.listMiddleware());
 			return "sprint2/addInstanceMiddleware";
 		}
 		
@@ -2007,6 +3245,7 @@ public class Sprint2 {
 		model.addAttribute("documents", m.listDocument());
 		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("serveurDeBasseDeDonnees", m.listServeurDeBasseDeDonnees());
 		return "sprint2/addInstanceBD";
 	}
 	@RequestMapping(value="/admin/add/saveInstanceBD", method = RequestMethod.POST)
@@ -2017,12 +3256,12 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
-		    model.addAttribute("instanceBD", new InstanceDeBasseDeDonnes());
 			model.addAttribute("sbd", m.listServeurDeBasseDeDonnees());
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("serveurDeBasseDeDonnees", m.listServeurDeBasseDeDonnees());
 			return "sprint2/addInstanceBD";
 		}
 		
@@ -2064,5 +3303,439 @@ public class Sprint2 {
 		
 		return "redirect:/config/admin/dashboard";
 	}
+	
+	@RequestMapping(value="/admin/add/interfacereseau")
+	public String interfacereseau(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		return "sprint2/TypeInterfaceReseau";
+	}
+	
+	@RequestMapping(value="/admin/add/typeinterfacereseau")
+	public String typeinterfacereseau(Model model,HttpServletRequest req){
+		String[] interfacereseau = req.getParameterValues("type");
+		
+		return "redirect:"+interfacereseau[0];
+	}
+	
+	@RequestMapping(value="/admin/add/fibre")
+	public String addFibre(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("fibre", new Fibre());
+		model.addAttribute("infra", m.ListServeur());
+		model.addAttribute("equip", m.ListEquipementReseau());
+		model.addAttribute("error", false);
+		return "sprint2/addInterfaceFibre";
+	}
+	
+
+	@RequestMapping(value="/admin/add/saveFibre", method = RequestMethod.POST)
+	public String saveFibre(@Valid Fibre fibre,BindingResult bind,HttpServletRequest req,Model model) {
+		
+		String[] Materiel = req.getParameterValues("materiel");
+		if(bind.hasErrors() || Materiel[0].equals("")){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("infra", m.ListServeur());
+			model.addAttribute("equip", m.ListEquipementReseau());
+			if(Materiel[0].equals("")){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addInterfaceFibre";
+		}
+		if(Materiel[0].substring(0,2).equals("IN")){
+			Long infra = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("---------infra : "+infra);
+			fibre.setInfrastructure(m.getInfrastructure(infra));
+		} else {
+			Long er = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("--------- er : "+er);
+			fibre.setEquipementReseau(m.getEquipementReseau(er));
+		}
+		
+		m.addFibre(fibre);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+	
+	
+	@RequestMapping(value="/admin/add/logique")
+	public String addLogique(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("logique", new Logique());
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("error", false);
+		return "sprint2/addInterfaceLogique";
+	}
+	
+
+	@RequestMapping(value="/admin/add/saveLogique", method = RequestMethod.POST)
+	public String saveLogique(@Valid Logique log,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("--------- Nom : "+log.getNom());
+		String[] mv = req.getParameterValues("machinevirtuelle");
+		System.out.println("------------ MV : "+mv[0]);
+		if(bind.hasErrors() || mv[0].equals("")){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("logique", new Logique());
+			model.addAttribute("mv", m.listMachineVirtuelle());
+			if(mv[0].equals("")){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addInterfaceLogique";
+		}
+		System.out.println("--------- fvdfvdfvdfvdfv ");
+		log.setMachineVirtuelle(m.getMachineVirtuelle(Long.parseLong(mv[0])));
+		
+		m.addLogique(log);
+		return "redirect:/config/admin/dashboards?save="+true;
+		//return "redirect:/index";
+	}
+	
+	@RequestMapping(value="/admin/add/physique")
+	public String addPhysique(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("physique", new Physique());
+		model.addAttribute("vlans", m.ListVlan());
+		model.addAttribute("infra", m.ListServeur());
+		model.addAttribute("equip", m.ListEquipementReseau());
+		model.addAttribute("error", false);
+		return "sprint2/addInterfacePhysique";
+	}
+	
+
+	@RequestMapping(value="/admin/add/savePhysique", method = RequestMethod.POST)
+	public String savePhysique(@Valid Physique physique,BindingResult bind,HttpServletRequest req,Model model) {
+		String[] Materiel = req.getParameterValues("materiel");
+		if(bind.hasErrors() || Materiel[0].equals("")){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("vlans", m.ListVlan());
+			model.addAttribute("infra", m.ListServeur());
+			model.addAttribute("equip", m.ListEquipementReseau());
+			if(Materiel[0].equals("")){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addInterfacePhysique";
+		}
+		if(Materiel[0].substring(0,2).equals("IN")){
+			Long infra = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("---------infra : "+infra);
+			physique.setInfrastructure(m.getInfrastructure(infra));
+		} else {
+			Long er = Long.parseLong(Materiel[0].substring(3));
+			System.out.println("--------- er : "+er);
+			physique.setEquipementReseau(m.getEquipementReseau(er));
+		}
+		
+		String[] chvlan = req.getParameterValues("ckVlans");
+		List<Long> vlan = null;
+		System.out.println("---------chvlan : "+chvlan+" vlan : "+vlan);
+		
+		
+		if(chvlan != null){
+			vlan = new ArrayList<Long>();
+			for (int i = 0; i < chvlan.length; i++) {
+				System.out.println("---------chvlan "+chvlan[i]);
+				vlan.add(Long.parseLong(chvlan[i]));
+			}
+			
+		}
+		
+		m.addPhysiqueAll(physique, vlan);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+	@RequestMapping(value="/admin/add/subnet")
+	public String addSubnet(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("subnet", new Subnet());
+		model.addAttribute("vlans", m.ListVlan());
+		return "sprint2/addSubnet";
+	}
+	
+	@RequestMapping(value="/admin/add/saveSubnet", method = RequestMethod.POST)
+	public String saveSubnet(@Valid Subnet subnet,BindingResult bind,HttpServletRequest req,Model model) {
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("vlans", m.ListVlan());
+			
+			return "sprint2/addSubnet";
+		}
+		
+		
+		String[] chvlan = req.getParameterValues("ckVlans");
+		List<Long> vlan = null;
+		System.out.println("---------chvlan : "+chvlan+" vlan : "+vlan);
+		
+		
+		if(chvlan != null){
+			vlan = new ArrayList<Long>();
+			for (int i = 0; i < chvlan.length; i++) {
+				System.out.println("---------chvlan "+chvlan[i]);
+				vlan.add(Long.parseLong(chvlan[i]));
+			}
+			
+		}
+		
+		m.addSubnetAll(subnet, vlan);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+	@RequestMapping(value="/admin/add/volumeLogique")
+	public String addVolumeLogique(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("volumeLogique", new VolumeLogique());
+		model.addAttribute("serveurs", m.ListServeur());
+		model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
+		model.addAttribute("ss", m.ListSystemeDeStockage());
+		model.addAttribute("error", false);
+		return "sprint2/addVolumeLogique";
+	}
+
+	@RequestMapping(value="/admin/add/saveVolumeLogique", method = RequestMethod.POST)
+	public String saveVolumeLogique(@Valid VolumeLogique vl,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("ftghn : "+vl.getSystemedestockage().getId());
+		if(bind.hasErrors() || vl.getSystemedestockage().getId() == null){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("serveurs", m.ListServeur());
+			model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
+			model.addAttribute("ss", m.ListSystemeDeStockage());
+			if(vl.getSystemedestockage().getId() == null){
+				model.addAttribute("error", true);
+			} else {
+				model.addAttribute("error", false);
+			}
+			return "sprint2/addVolumeLogique";
+		}
+		
+		
+		String[] chserver = req.getParameterValues("ckServeurs");
+		List<Long> server = null;
+		System.out.println("---------chserver : "+chserver+" server : "+server);
+		
+		
+		if(chserver != null){
+			server = new ArrayList<Long>();
+			for (int i = 0; i < chserver.length; i++) {
+				System.out.println("---------chserver "+chserver[i]);
+				server.add(Long.parseLong(chserver[i]));
+			}
+		}
+		
+
+		String[] chmv = req.getParameterValues("ckMachinesVirtuelles");
+		List<Long> mv = null;
+		System.out.println("---------chmv : "+chmv+" mv : "+mv);
+		
+		
+		if(chmv != null){
+			mv = new ArrayList<Long>();
+			for (int i = 0; i < chmv.length; i++) {
+				System.out.println("---------chmv "+chmv[i]);
+				mv.add(Long.parseLong(chmv[i]));
+			}
+		}
+		m.addVolumeLogiqueAll(vl, server, mv);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	@RequestMapping(value="/admin/add/vlan")
+	public String addVlan(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("vlan", new Vlan());
+		model.addAttribute("subnets", m.ListSubnet());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		return "sprint2/addVlan";
+	}
+	
+
+	@RequestMapping(value="/admin/add/saveVlan", method = RequestMethod.POST)
+	public String saveVlan(@Valid Vlan vlan,BindingResult bind,HttpServletRequest req,Model model) {
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("subnets", m.ListSubnet());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			return "sprint2/addVlan";
+		}
+		
+		
+		String[] chsubnet = req.getParameterValues("ckSubnets");
+		List<Long> subnet = null;
+		System.out.println("---------chsubnet : "+chsubnet+" subnet : "+subnet);
+		
+		
+		if(chsubnet != null){
+			subnet = new ArrayList<Long>();
+			for (int i = 0; i < chsubnet.length; i++) {
+				System.out.println("---------chsubnet "+chsubnet[i]);
+				subnet.add(Long.parseLong(chsubnet[i]));
+			}
+			
+		}
+		
+
+		String[] chinter_res = req.getParameterValues("chinterfacereseau");
+		List<Long> inter_res = null;
+		System.out.println("---------chinter_res : "+chinter_res+" inter_res : "+inter_res);
+		
+		
+		if(chinter_res != null){
+			inter_res = new ArrayList<Long>();
+			for (int i = 0; i < chinter_res.length; i++) {
+				System.out.println("---------chinter_res "+chinter_res[i]);
+				inter_res.add(Long.parseLong(chinter_res[i]));
+			}
+			
+		}
+		m.addVlanAll(vlan, subnet, inter_res);
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	
+	@RequestMapping(value="/admin/add/camera")
+	public String addCamera(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("camera", new Camera() );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("dvr", m.ListDvr());
+		return "sprint2/addCamera";
+	}
+	
+	
+	@RequestMapping(value="/admin/add/saveCamera", method = RequestMethod.POST)
+	public String saveCamera(@Valid Camera camera,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			//model.addAttribute("pc", pc );
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("lieus", m.listLieu());
+			model.addAttribute("dvr", m.ListDvr());
+			return "sprint2/addCamera";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		System.out.println("Chassis : "+camera.getDvr()+" ID : "+camera.getDvr().getId());
+		System.out.println("Lieu : "+camera.getLieu()+" ID : "+camera.getLieu().getId());
+		
+		m.addCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
+		return "redirect:/config/admin/dashboards?save="+true;
+		//return "redirect:/index";
+	}
+	
+	
+	@RequestMapping(value="/admin/search/pc")
+	public String searchPC(Model model,String s){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListPC());
+		} else {
+			model.addAttribute("cis",m.SearchPC(s));
+		}
+		
+		return "sprint2/SearchPC";
+	}
+	
 	
 }

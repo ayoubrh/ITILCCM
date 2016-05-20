@@ -20,6 +20,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	
 	// Ordinateur
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	
 
@@ -78,7 +79,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 			
-	// Instance de basse de donnés
+	// Instance de basse de donns
 			
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
@@ -125,7 +126,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 		
-	// Serveur de basse de données
+	// Serveur de basse de donnes
 	
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
 	public ServeurDeBasseDeDonnees getServeurDeBasseDeDonnees(Long id);
@@ -172,7 +173,7 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public List<TelephoneFixe> ListTeleFixe();
 	public TelephoneFixe getTeleFixe(Long id);
 	
-	// Periphérique
+	// Periphrique
 	public List<Peripherique> ListPeriph();
 	public Peripherique getPeriph(Long id);
 	

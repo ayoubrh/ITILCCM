@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -473,57 +473,6 @@ Use search to find needed section.
 
 		Content
 -->
-	<!-- Modal -->
-				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout des Contrats</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Type</th>
-												<th>Client</th>
-												<th>Description</th>
-												<th>Date de début</th>
-												<th>Date de fin</th>
-												<th>Fournisseur</th>
-											</tr>
-										</thead>
-										<tbody id="tableContratepopup">
-											<c:forEach items="${contrat}" var="c">
-												<tr class="gradeA" id="tr_${c.id }">
-													<td class="supchekbox"><input type="checkbox" class="ck" name="ckContrats" value="${c.id }"></td>
-													<td>${c.nom }</td>
-													<td>${c.typeDeContrat }</td>
-													<td>${c.client }</td>
-													<td>${c.description }</td>
-													<td>${c.dateDeDebut }</td>
-													<td>${c.dateDeFin }</td>
-													<td>${c.fournisseur }</td>
-												</tr>
-												
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Contact</span>
@@ -541,10 +490,7 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								<li>
-									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
-								</li>
-							
+														
 							</ul>
 		                 </div>
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -556,32 +502,32 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Prenom</label>
 								<div class="col-sm-9">
 									<f:input path="prenom" type="text" class="form-control" id="inputError-4" name="jq-validation-prenom" />
 									<f:errors path="prenom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Organisation</label>
 								<div class="col-sm-9">
 									<f:input path="organisme" type="text" class="form-control" id="inputError-4" name="jq-validation-organisation" />
 									<f:errors path="organisme" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value=""> -- choisir une valeur --</f:option>
+							            <f:option value="NULL"> -- choisir une valeur --</f:option>
 										<f:option value="Actif"> Actif</f:option>
 										<f:option value="Inactif"> Inactif</f:option>
 									</f:select>
@@ -638,44 +584,7 @@ Use search to find needed section.
 		
 								</div> <!-- / .tab-pane -->
 								
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-								<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-									        <tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Type</th>
-												<th>Client</th>
-												<th>Description</th>
-												<th>Date de début</th>
-												<th>Date de fin</th>
-												<th>Fournisseur</th>
-											</tr>
-										</thead>
-										<tbody id="tableContrat">
-											
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppContrat">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModal">Ajouter des Contrats</button>
-										</div>
-										
-									</div>
-									
-									
-								</div> <!-- / .tab-pane -->
+								
 								
 							</div> <!-- / .tab-content -->
 						
