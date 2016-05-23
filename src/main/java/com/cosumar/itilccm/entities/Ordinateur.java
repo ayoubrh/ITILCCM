@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -60,27 +62,37 @@ public class Ordinateur implements Serializable{
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	
     @Column(nullable = true)
+    @ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Document> document;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	
     @Column(nullable = true)
+    @ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Contrat> contrat;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	
     @Column(nullable = true)
+    @ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Contact> contact;
    	
-   @ManyToMany(cascade = CascadeType.ALL)
+   
    @Column(nullable = true)
+   @ManyToMany(cascade = CascadeType.ALL)
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(fetch = FetchType.EAGER,mappedBy="ordinateur",cascade = CascadeType.ALL)
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
    	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Peripherique> peripherique;
    	
 	 @ManyToOne(cascade = CascadeType.ALL)
@@ -89,6 +101,7 @@ public class Ordinateur implements Serializable{
 	   
 	 @Column(nullable=true)
 	 @ManyToMany(cascade = CascadeType.ALL)
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 
    

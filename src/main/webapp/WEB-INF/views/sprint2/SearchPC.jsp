@@ -30,6 +30,7 @@ Use search to find needed section.
 <head>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Recherche Ordinateurs - ITIL-CCM</title>
@@ -484,7 +485,7 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher des Ordinateur</h1>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Ordinateurs</h1>
 			<a href="<c:url value="/config/admin/add/pc"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Ordinateur</a>
 		</div> <!-- / .page-header -->
 
@@ -501,7 +502,7 @@ Use search to find needed section.
 			<form action="pc" class="search-form bg-primary">
 				<div class="input-group input-group-lg">
 					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
-					<input type="text" name="s" class="form-control" value="${s }" placeholder="Entrez le nom à rechercher...">
+					<input type="text" name="s" class="form-control" value="${s }" placeholder="Entrez le nom à chercher...">
 					<span class="input-group-btn">
 						<button class="btn" type="submit">Search</button>
 					</span>
@@ -535,14 +536,14 @@ Use search to find needed section.
 								<tbody>
 									<c:forEach items="${cis}" var="ci">
 										<tr class="gradeA">
-											<td>${ci.nom }</td>
-											<td>${ci.user.prenom } ${ci.user.nom }</td>
+											<td><a href="<c:url value="/config/view/pc?id=${ci.id }" />">${ci.nom }</a></td>
+											<td><a href="<c:url value="/users/profil?id=${ci.user.id }" />">${ci.user.prenom } ${ci.user.nom }</a></td>
 											<td>${ci.type }</td>
 											<td>${ci.statut }</td>
 											<td>${ci.marque }</td>
 											<td>${ci.modele }</td>
-											<td>${ci.lieu.nom }</td>
-											<td>${ci.dateDeMiseEnProduction }</td>
+											<td><a href="<c:url value="/config/view/lieu?id=${ci.lieu.id }" />">${ci.lieu.nom }</a></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction}" /></td>
 										</tr>
 									
 									</c:forEach>

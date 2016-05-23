@@ -31,6 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Ordinateur - ITIL-CCM</title>
@@ -486,7 +487,10 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Détail d'un Ordinateur</span>
+						<span class="panel-title col-md-9">Détail d'un Ordinateur</span>
+						<a href="<c:url value="/config/admin/edit/pc?id=${ordinateur.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/pc?id=${ordinateur.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						
 					</div>
 					<div class="panel-body">
 					
@@ -524,7 +528,9 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
 								</li>
-								
+								<li>
+									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
+								</li>
 								
 							</ul>
 		
@@ -532,93 +538,93 @@ Use search to find needed section.
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
 									<div class="form-group required">
-										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
-										: ${ordinateur.nom }
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
+										${ordinateur.nom }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
-										: ${ordinateur.statut }
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut : </label>
+										${ordinateur.statut }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité</label>
-										: ${ordinateur.criticite }
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité : </label>
+										${ordinateur.criticite }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Utilisateur</label>
-										: <a href="#">${ordinateur.user.prenom } ${ordinateur.user.nom }</a>
-									</div>
-									
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu</label>
-										: <a href="#">${ordinateur.lieu.nom }</a>
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Utilisateur : </label>
+										<a href="<c:url value="/users/profil?id=${ci.id }" />">${ordinateur.user.prenom } ${ordinateur.user.nom }</a>
 									</div>
 									
 									
 									<div class="form-group">
-										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque</label>
-										: ${ordinateur.marque }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle</label>
-										: ${ordinateur.modele }
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu : </label>
+										<a href="<c:url value="/config/view/lieu?id=${ordinateur.lieu.id }" />">${ordinateur.lieu.nom }</a>
 									</div>
 									
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS</label>
-										: <a href="#">${ordinateur.licenseOs.nom }</a>
+										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque : </label>
+										${ordinateur.marque }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle : </label>
+										${ordinateur.modele }
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS : </label>
+										<a href="<c:url value="/config/view/licenseos?id=${ordinateur.licenseOs.id }" />">${ordinateur.licenseOs.nom }</a>
 									</div>
 									
 									<div class="form-group required">
-										<label class="col-sm-3 control-label">Type</label>
-										: ${ordinateur.type }
+										<label class="col-sm-3 control-label">Type : </label>
+										${ordinateur.type }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU</label>
-										: ${ordinateur.cpu }
+										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU : </label>
+										${ordinateur.cpu }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM</label>
-										: ${ordinateur.ram }
+										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM : </label>
+										${ordinateur.ram }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>
-										: ${ordinateur.numeroDeSerie }
+										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série : </label>
+										${ordinateur.numeroDeSerie }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset</label>
-										: ${ordinateur.numeroAsset }
-									</div>
-									
-									
-									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat</label>
-										: ${ordinateur.dateD_achat }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production</label>
-										: ${ordinateur.dateDeMiseEnProduction }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie</label>
-										: ${ordinateur.dateDeFinDeGarantie }
+										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset : </label>
+										${ordinateur.numeroAsset }
 									</div>
 									
 									
 									<div class="form-group">
-										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
-										: ${ordinateur.description }
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateD_achat}" />
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateDeMiseEnProduction}" />
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateDeFinDeGarantie}" />
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description : </label>
+										${ordinateur.description }
 									</div>
 									
 									
@@ -645,12 +651,12 @@ Use search to find needed section.
 										<tbody id="tablePer">
 											<c:forEach items="${ordinateur.peripherique}" var="per">
 												<tr class="gradeA" id="tr_per_${per.id }">
-													<a href="#"></a><td>${per.nom }</td>
+													<td><a href="<c:url value="/config/view/peripherique?id=${per.id }" />">${per.nom }</a></td>
 													<td>${per.statut }</td>
 													<td>${per.criticite }</td>
 													<td>${per.numeroDeSerie }</td>
 													<td>${per.numeroAsset }</td>
-													<td>${per.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${per.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 											
@@ -681,11 +687,11 @@ Use search to find needed section.
 										<tbody id="tableLogicile">
 											<c:forEach items="${ordinateur.logicielEtApplication}" var="l">
 												<tr class="gradeA" id="tr_log_${l.id }">
-													<a href="#"><td>${l.nom }</td></a>
+													<td><a href="<c:url value="/config/view/logicieletapplication?id=${l.id }" />">${l.nom }</a></td>
 													<td>${l.statut }</td>
 													<td>${l.criticite }</td>
 													<td>${l.cheminD_installation }</td>
-													<td>${l.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
 
 												</tr>
 											</c:forEach>
@@ -721,7 +727,7 @@ Use search to find needed section.
 											<tbody id="tableinterfacereseau">
 												<c:forEach items="${ordinateur.intefaceReseau}" var="ir">
 												<tr class="gradeA" id="tr_ir_${ir.id }">
-													<a href="#"><td>${ir.nom }</td></a>
+													<td><a href="<c:url value="/config/view/intefacereseau?id=${ir.id }" />">${ir.nom }</a></td>
 													<td>${ir.adresseIp }</td>
 													<td>${ir.adresseMac }</td>
 													<td>${ir.commentaire }</td>
@@ -766,10 +772,10 @@ Use search to find needed section.
 											<tbody id="tableEquipementreseaux">
 												<c:forEach items="${ordinateur.equipementReseau}" var="er">
 												<tr class="gradeA" id="tr_er_${er.id }">
-													<a href="#"><td>${er.nom }</td></a>
+													<td><a href="<c:url value="/config/view/equipementreseau?id=${er.id }" />">${er.nom }</a></td>
 													<td>${er.statut }</td>
 													<td>${er.criticite }</td>
-													<a href="#"><td>${er.lieu.nom }</td></a>
+													<td><a href="<c:url value="/config/view/lieu?id=${er.lieu.id }" />">${er.lieu.nom }</a></td>
 													<td>${er.marque }</td>
 													<td>${er.modele }</td>
 													<td>${er.numeroDeSerie }</td>
@@ -809,7 +815,7 @@ Use search to find needed section.
 											<tbody id="tablecontact">
 												<c:forEach items="${ordinateur.contact}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<a href="#"><td>${contact.nom } ${contact.prenom }</td></a>
+													<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
 													<td>${contact.statut }</td>
 													<td>${contact.organisme }</td>
 													<td>${contact.email }</td>
@@ -847,7 +853,7 @@ Use search to find needed section.
 											<tbody id="tabledocument">
 												<c:forEach items="${ordinateur.document}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<a href="#"><td>${doc.nom }</td></a>
+													<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
 													<td>${doc.statut }</td>
 													<td> </td>
 													<td>${doc.description }</td>
@@ -886,12 +892,12 @@ Use search to find needed section.
 											<tbody id="tablecontrat">
 												<c:forEach items="${ordinateur.contrat}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<a href="#"><td>${contrat.nom }</td></a>
+													<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
 													<td>${contrat.description }</td>
-													<td>${contrat.dateDeDebut }</td>
-													<td>${contrat.dateDeFin }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
 													<td>${contrat.fournisseur }</td>
 												</tr>
 											</c:forEach>
@@ -907,6 +913,12 @@ Use search to find needed section.
 		
 									
 								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
+								
+								Tickets
+								
+								</div>
 								
 							</div> <!-- / .tab-content -->
 						</div>

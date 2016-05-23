@@ -724,7 +724,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/pc"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Ordinateur</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Ordinateur</span></a>
+													<a href="<c:url value="/config/search/pc"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Ordinateur</span></a>
 												</div>
 											</div>
 										</div>
