@@ -4115,5 +4115,87 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(dvr);
 		return dvr.getId();
 	}
+	
+	public void editPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
+			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
+		
+		if(user != null){
+			User u = getUser(user);
+			pc.setUser(u);
+		}else {
+			pc.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			pc.setLieu(lie);
+		} else {
+			pc.setLieu(null);
+		}
+		if(licenseos != null){
+			LicenseOs los = getLicenseOs(licenseos);
+			pc.setLicenseOs(los);
+		} else {
+			pc.setLicenseOs(null);
+		}
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			pc.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			pc.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			pc.setContrat(contr);
+		}
+		if(logicielEtApplication != null){
+			Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
+			for (Long l : logicielEtApplication) {
+				LogicielEtApplication log = getLogicielEtApplication(l);
+				la.add(log);
+			}
+			pc.setLogicielEtApplication(la);
+		}
+		
+		if(equipementReseau != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementReseau) {
+				er.add(getEquipementReseau(e));
+			}
+			pc.setEquipementReseau(er);
+		}
+		
+		if(intefaceReseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : intefaceReseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setOrdinateur(pc);
+			}
+			pc.setIntefaceReseau(ir);
+		}
+		if(peripherique != null){
+			Collection<Peripherique> per = new ArrayList<Peripherique>();
+			for (Long p : peripherique) {
+				Peripherique periph = getPeriph(p);
+				per.add(periph);
+				periph.setOrdinateur(pc);
+			}
+			pc.setPeripherique(per);
+		}
+
+		em.merge(pc);
+	}
+	
 }
 

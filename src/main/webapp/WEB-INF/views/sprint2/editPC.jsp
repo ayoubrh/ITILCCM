@@ -827,7 +827,7 @@ Use search to find needed section.
 						<span class="panel-title">Modification d'un Ordinateur</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="ordinateur" action="/add/savePC" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="ordinateur" action="/config/admin/add/savePC" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		

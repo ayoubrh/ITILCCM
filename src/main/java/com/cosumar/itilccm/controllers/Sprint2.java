@@ -291,7 +291,8 @@ public class Sprint2 {
 		if(pc.getId() == null){
 			m.addPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		} else {
-			System.out.println("edit");
+			m.editPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+			return "redirect:/config/view/pc?id="+pc.getId();
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -3747,7 +3748,6 @@ public class Sprint2 {
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
 		model.addAttribute("ordinateur", m.getPC(id) );
-		
 		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		return "sprint2/viewPC";
 	}
