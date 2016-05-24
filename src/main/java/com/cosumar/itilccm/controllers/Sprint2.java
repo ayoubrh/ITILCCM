@@ -32,7 +32,9 @@ import com.cosumar.itilccm.metier.UtilisateurMetier;
 @Controller
 @RequestMapping(value="/config")
 public class Sprint2 {
-	
+	//http://www.mkyong.com/spring-mvc/spring-4-mvc-ajax-hello-world-example/
+	//http://www.mkyong.com/spring-mvc/spring-mvc-refactoring-a-jquery-ajax-post-example/
+	//http://www.mkyong.com/spring-mvc/spring-4-mvc-ajax-hello-world-example/
 	@Autowired
 	private AdminMetier m;
 	
@@ -368,8 +370,13 @@ public class Sprint2 {
 		System.out.println("user : "+imp.getUser()+" ID : "+imp.getUser().getId());
 		System.out.println("Lieu : "+imp.getLieu()+" ID : "+imp.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		if(imp.getId() == null){
+			m.addImpAll(imp, imp.getUser().getId(), imp.getLieu().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editImpAll(imp, imp.getUser().getId(), imp.getLieu().getId(), chdoc, chcontact, chcontrat);
+			return "redirect:/config/view/imp?id="+imp.getId()+"&save="+true;
+		}
 		
-		m.addImpAll(imp, imp.getUser().getId(), imp.getLieu().getId(), chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -445,8 +452,12 @@ public class Sprint2 {
 		System.out.println("user : "+per.getOrdinateur()+" ID : "+per.getOrdinateur().getId());
 		System.out.println("Lieu : "+per.getLieu()+" ID : "+per.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addPerAll(per, per.getOrdinateur().getId(), per.getLieu().getId(), chdoc, chcontact, chcontrat);
+		if(per.getId() == null){
+			m.addPerAll(per, per.getOrdinateur().getId(), per.getLieu().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editPerAll(per, per.getOrdinateur().getId(), per.getLieu().getId(), chdoc, chcontact, chcontrat);
+			return "redirect:/config/view/per?id="+per.getId()+"&save="+true;
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -522,8 +533,12 @@ public class Sprint2 {
 		System.out.println("user : "+telem.getUser()+" ID : "+telem.getUser().getId());
 		System.out.println("Lieu : "+telem.getLieu()+" ID : "+telem.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addTeleMobileAll(telem, telem.getUser().getId(), telem.getLieu().getId(), chdoc, chcontact, chcontrat);
+		if(telem.getId()==null){
+			m.addTeleMobileAll(telem, telem.getUser().getId(), telem.getLieu().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editTeleMobileAll(telem, telem.getUser().getId(), telem.getLieu().getId(), chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -599,8 +614,12 @@ public class Sprint2 {
 		System.out.println("user : "+telefixe.getUser()+" ID : "+telefixe.getUser().getId());
 		System.out.println("Lieu : "+telefixe.getLieu()+" ID : "+telefixe.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addTeleFixeAll(telefixe, telefixe.getUser().getId(), telefixe.getLieu().getId(), chdoc, chcontact, chcontrat);
+		if(telefixe.getId()==null){
+			m.addTeleFixeAll(telefixe, telefixe.getUser().getId(), telefixe.getLieu().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editTeleFixeAll(telefixe, telefixe.getUser().getId(), telefixe.getLieu().getId(), chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -676,8 +695,12 @@ public class Sprint2 {
 		System.out.println("user : "+tab.getUser()+" ID : "+tab.getUser().getId());
 		System.out.println("Lieu : "+tab.getLieu()+" ID : "+tab.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addTabletteAll(tab, tab.getUser().getId(), tab.getLieu().getId(), chdoc, chcontact, chcontrat);
+		if(tab.getId()==null){
+			m.addTabletteAll(tab, tab.getUser().getId(), tab.getLieu().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editTabletteAll(tab, tab.getUser().getId(), tab.getLieu().getId(), chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -749,8 +772,12 @@ public class Sprint2 {
 		}
 		System.out.println("user : "+sim.getUser()+" ID : "+sim.getUser().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
+		if(sim.getId()==null){
+			m.addSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -864,9 +891,12 @@ public class Sprint2 {
 		}
 		System.out.println("Lieu : "+rack.getLieu()+" ID : "+rack.getLieu().getId());
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		//m.addRackAll(rack, rack.getLieu().getId(), chchassis, chmateriels, chdoc, chcontact, chcontrat);
-		m.addRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
+		if(rack.getId()==null){
+			m.addRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
+		} else {
+			m.editRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -952,9 +982,12 @@ public class Sprint2 {
 		System.out.println("Lieu : "+chassis.getLieu()+" ID : "+chassis.getLieu().getId());
 		System.out.println("Rack : "+chassis.getRack()+" ID : "+chassis.getRack().getId());
 
-		//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
+		if(chassis.getId()==null){
+			m.addChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
+		} else {
+			m.editChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -1143,8 +1176,12 @@ public class Sprint2 {
 		System.out.println("Lieu : "+serveur.getLieu()+" ID : "+serveur.getLieu().getId());
 		System.out.println("LicenseOs : "+serveur.getLicenseOs()+" ID : "+serveur.getLicenseOs().getId());
 		
-		//m.addServeurAll(serveur, pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		m.addServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+		if(serveur.getId()==null){
+			m.addServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+		} else {
+			m.editServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -1318,7 +1355,12 @@ public class Sprint2 {
 		System.out.println("Chassis : "+sds.getChassis()+" ID : "+sds.getChassis().getId());
 		System.out.println("Lieu : "+sds.getLieu()+" ID : "+sds.getLieu().getId());
 		
-		m.addSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+		if(sds.getId()==null){
+			m.addSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+		} else {
+			m.editSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -1508,7 +1550,12 @@ public class Sprint2 {
 		System.out.println("Chassis : "+dvr.getChassis()+" ID : "+dvr.getChassis().getId());
 		System.out.println("Lieu : "+dvr.getLieu()+" ID : "+dvr.getLieu().getId());
 		
-		m.addDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
+		if(dvr.getId()==null){
+			m.addDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
+		} else {
+			m.editDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 
@@ -1655,7 +1702,12 @@ public class Sprint2 {
 		System.out.println("Chassis : "+san.getChassis()+" ID : "+san.getChassis().getId());
 		System.out.println("Lieu : "+san.getLieu()+" ID : "+san.getLieu().getId());
 		
-		m.addSwitchSanAll(san, san.getLieu().getId(), san.getRack().getId(), san.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		if(san.getId()==null){
+			m.addSwitchSanAll(san, san.getLieu().getId(), san.getRack().getId(), san.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		} else {
+			m.editSwitchSanAll(san, san.getLieu().getId(), san.getRack().getId(), san.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -1788,7 +1840,12 @@ public class Sprint2 {
 		System.out.println("Chassis : "+er.getChassis()+" ID : "+er.getChassis().getId());
 		System.out.println("Lieu : "+er.getLieu()+" ID : "+er.getLieu().getId());
 		
-		m.addEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
+		if(er.getId()==null){
+			m.addEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
+		} else {
+			m.editEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -3645,7 +3702,12 @@ public class Sprint2 {
 			
 		}
 		
-		m.addSubnetAll(subnet, vlan);
+		if(subnet.getId()==null){
+			m.addSubnetAll(subnet, vlan);
+		} else {
+			m.editSubnetAll(subnet, vlan);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -3710,7 +3772,13 @@ public class Sprint2 {
 				mv.add(Long.parseLong(chmv[i]));
 			}
 		}
-		m.addVolumeLogiqueAll(vl, server, mv);
+		
+		if(vl.getId()==null){
+			m.addVolumeLogiqueAll(vl, server, mv);
+		} else {
+			m.editVolumeLogiqueAll(vl, server, mv);
+			
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -3768,7 +3836,13 @@ public class Sprint2 {
 			}
 			
 		}
-		m.addVlanAll(vlan, subnet, inter_res);
+		
+		if(vlan.getId()==null){
+			m.addVlanAll(vlan, subnet, inter_res);
+		} else {
+			m.editVlanAll(vlan, subnet, inter_res);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -3849,7 +3923,12 @@ public class Sprint2 {
 		System.out.println("Chassis : "+camera.getDvr()+" ID : "+camera.getDvr().getId());
 		System.out.println("Lieu : "+camera.getLieu()+" ID : "+camera.getLieu().getId());
 		
-		m.addCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
+		if(camera.getId()==null){
+			m.addCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
+		} else {
+			m.editCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
+
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -3875,6 +3954,424 @@ public class Sprint2 {
 		}
 		return "sprint2/SearchPC";
 	}
+	
+	@RequestMapping(value="/search/telefixe")
+	public String searchTeleFixe(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListTeleFixe());
+		} else {
+			model.addAttribute("cis",m.SearchTeleFixe(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchTeleFixe";
+	}
+	
+	@RequestMapping(value="/search/telemobile")
+	public String searchTeleMobile(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListTeleMobile());
+		} else {
+			model.addAttribute("cis",m.SearchTeleMobile(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchTeleMobile";
+	}
+	
+	@RequestMapping(value="/search/sim")
+	public String searchSim(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListSIM());
+		} else {
+			model.addAttribute("cis",m.SearchSIM(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchSIM";
+	}
+	
+	@RequestMapping(value="/search/tablette")
+	public String searchTablette(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListTablette());
+		} else {
+			model.addAttribute("cis",m.SearchTablette(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchTablette";
+	}
+	
+	@RequestMapping(value="/search/imp")
+	public String searchImp(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListImp());
+		} else {
+			model.addAttribute("cis",m.SearchImp(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchImp";
+	}
+	
+	@RequestMapping(value="/search/per")
+	public String searchPer(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListPeriph());
+		} else {
+			model.addAttribute("cis",m.SearchPeriph(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchPer";
+	}
+	
+	@RequestMapping(value="/search/rack")
+	public String searchRack(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListRack());
+		} else {
+			model.addAttribute("cis",m.SearchRack(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchRack";
+	}
+	
+	@RequestMapping(value="/search/chassis")
+	public String searchChassis(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListChassis());
+		} else {
+			model.addAttribute("cis",m.SearchChassis(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchChassis";
+	}
+	
+	@RequestMapping(value="/search/serveur")
+	public String searchServeur(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListServeur());
+		} else {
+			model.addAttribute("cis",m.SearchServeur(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchServeur";
+	}
+	
+	@RequestMapping(value="/search/switchsan")
+	public String searchSwitchsan(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListSwitchSan());
+		} else {
+			model.addAttribute("cis",m.SearchSwitchSan(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchSwitchSan";
+	}
+	
+	@RequestMapping(value="/search/nas")
+	public String searchNas(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListNas());
+		} else {
+			model.addAttribute("cis",m.SearchNas(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchNas";
+	}
+	
+	@RequestMapping(value="/search/bandotheque")
+	public String searchBandotheque(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListBandotheque());
+		} else {
+			model.addAttribute("cis",m.SearchBandotheque(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchBandotheque";
+	}
+	
+	@RequestMapping(value="/search/dvr")
+	public String searchDvr(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListDvr());
+		} else {
+			model.addAttribute("cis",m.SearchDvr(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchDvr";
+	}
+	
+	@RequestMapping(value="/search/equipementreseau")
+	public String searchEquipementReseau(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListEquipementReseau());
+		} else {
+			model.addAttribute("cis",m.SearchEquipementReseau(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchEquipementReseau";
+	}
+	
+	@RequestMapping(value="/search/systemedestockage")
+	public String searchSystemedeStockage(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListSystemeDeStockage());
+		} else {
+			model.addAttribute("cis",m.SearchSystemeDeStockage(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchSystemeDeStockage";
+	}
+	
+	@RequestMapping(value="/search/subnet")
+	public String searchSubnet(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListSubnet());
+		} else {
+			model.addAttribute("cis",m.SearchSubnet(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchSubnet";
+	}
+	
+	@RequestMapping(value="/search/vlan")
+	public String searchVlan(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListVlan());
+		} else {
+			model.addAttribute("cis",m.SearchVlan(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchVlan";
+	}
+	
+	@RequestMapping(value="/search/volumelogique")
+	public String searchVolumelogique(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListVolumeLogique());
+		} else {
+			model.addAttribute("cis",m.SearchVolumeLogique(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchVolumeLogique";
+	}
+	
+	@RequestMapping(value="/search/camera")
+	public String searchCamera(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListCamera());
+		} else {
+			model.addAttribute("cis",m.SearchCamera(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchCamera";
+	}
 
 	
 	@RequestMapping(value="/view/pc")
@@ -3891,7 +4388,6 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("save", save );
 		}
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		return "sprint2/viewPC";
 	}
 	

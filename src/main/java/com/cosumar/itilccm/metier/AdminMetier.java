@@ -252,54 +252,66 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Imprimente
 	public  Long addImp(Imprimante imp);
 	public  Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addImpUser(Imprimante imp, Long u);
 	public void editImp(Imprimante imp);
 	public List<Imprimante> ListImp();
+	public List<Imprimante> SearchImp(String s);
 	public Imprimante getImp(Long id);
 	public void deleteImp(Long id);
 	
 	// Telephone Mobile
 	public  Long addTeleMobile(TelephneMobile telem);
 	public  Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleMobileUser(TelephneMobile telem, Long u);
 	public void editTeleMobile(TelephneMobile telem);
 	public List<TelephneMobile> ListTeleMobile();
+	public List<TelephneMobile> SearchTeleMobile(String s);
 	public TelephneMobile getTeleMobile(Long id);
 	public void deleteTeleMobile(Long id);
 	
 	// SIM
 	public  Long addSIM(Sim sim);
 	public  Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addSIMUser(Sim sim, Long u);
 	public void editSIM(Sim sim);
 	public List<Sim> ListSIM();
+	public List<Sim> SearchSIM(String s);
 	public Sim getSIM(Long id);
 	public void deleteSIM(Long id);
 	
 	// Tablette
 	public  Long addTablette(Tablette tab);
 	public  Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTabletteUser(Tablette tab, Long u);
 	public void editTablette(Tablette tab);
 	public List<Tablette> ListTablette();
+	public List<Tablette> SearchTablette(String s);
 	public Tablette getTablette(Long id);
 	public void deleteTablette(Long id);
 	
 	// Telephone Fixe
 	public  Long addTeleFixe(TelephoneFixe fixe);
 	public  Long addTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleFixeUser(TelephoneFixe fixe, Long u);
 	public void editTeleFixe(TelephoneFixe fixe);
 	public List<TelephoneFixe> ListTeleFixe();
+	public List<TelephoneFixe> SearchTeleFixe(String s);
 	public TelephoneFixe getTeleFixe(Long id);
 	public void deleteTeleFixe(Long id);
 	
 	// Peripherique
 	public  Long addPeriph(Peripherique per);
 	public  Long addPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addPeriphPC(Peripherique per, Long pc);
 	public void editPeriph(Peripherique per);
 	public List<Peripherique> ListPeriph();
+	public List<Peripherique> SearchPeriph(String s);
 	public Peripherique getPeriph(Long id);
 	public void deletePeriph(Long id);
 	
@@ -334,24 +346,30 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Vlan
 	public  Long addVlan(Vlan Vlan);
 	public  Long addVlanAll(Vlan Vlan, List<Long> subnets,List<Long> intefaceReseau);
+	public  Long editVlanAll(Vlan Vlan, List<Long> subnets,List<Long> intefaceReseau);
 	public void editVlan(Vlan Vlan);
 	public List<Vlan> ListVlan();
+	public List<Vlan> SearchVlan(String s);
 	public Vlan getVlan(Long id);
 	public void deleteVlan(Long id);
 		
 	// Subnet
 	public  Long addSubnet(Subnet Subnet);
 	public  Long addSubnetAll(Subnet Subnet, List<Long> vlans);
+	public  Long editSubnetAll(Subnet Subnet, List<Long> vlans);
 	public void editSubnet(Subnet Subnet);
 	public List<Subnet> ListSubnet();
+	public List<Subnet> SearchSubnet(String s);
 	public Subnet getSubnet(Long id);
 	public void deleteSubnet(Long id);
 		
 	// Camera
 	public  Long addCamera(Camera Cam);
 	public  Long addCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editCamera(Camera Cam);
 	public List<Camera> ListCamera();
+	public List<Camera> SearchCamera(String s);
 	public Camera getCamera(Long id);
 	public void deleteCamera(Long id);
 		
@@ -374,16 +392,20 @@ public interface AdminMetier extends UtilisateurMetier {
 	// VolumeLogique
 	public  Long addVolumeLogique(VolumeLogique vl);
 	public  Long addVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs,List<Long> machinevertuelle);
+	public  Long editVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs,List<Long> machinevertuelle);
 	public void editVolumeLogique(VolumeLogique vl);
 	public List<VolumeLogique> ListVolumeLogique();
+	public List<VolumeLogique> SearchVolumeLogique(String s);
 	public VolumeLogique getVolumeLogique(Long id);
 	public void deleteVolumeLogique(Long id);
 		
 	// Dvr
 	public  Long addDvr(Dvr dvr);
 	public  Long addDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editDvr(Dvr dvr);
 	public List<Dvr> ListDvr();
+	public List<Dvr> SearchDvr(String s);
 	public Dvr getDvr(Long id);
 	public void deleteDvr(Long id);
 	
@@ -411,18 +433,20 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Rack
 	public  Long addRack(Rack Rack);
 	public  Long addRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu, List<Long> document, List<Long> contact, List<Long> contrat);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long editRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editRack(Rack Rack);
 	public List<Rack> ListRack();
+	public List<Rack> SearchRack(String s);
 	public Rack getRack(Long id);
 	public void deleteRack(Long id);
 		
 	// Chassis
 	public  Long addChassis(Chassis Chassis);
 	public  Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document, List<Long> contact, List<Long> contrat);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long editChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editChassis(Chassis Chassis);
 	public List<Chassis> ListChassis();
+	public List<Chassis> SearchChassis(String s);
 	public Chassis getChassis(Long id);
 	public void deleteChassis(Long id);
 		
@@ -435,6 +459,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editBandotheque(Bandotheque Bandotheque);
 	public List<Bandotheque> ListBandotheque();
+	public List<Bandotheque> SearchBandotheque(String s);
 	public Bandotheque getBandotheque(Long id);
 	public void deleteBandotheque(Long id);
 		
@@ -449,26 +474,30 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Serveur
 	public  Long addServeur(Serveur Serveur);
 	public  Long addServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos, List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long editServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos, List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editServeur(Serveur Serveur);
 	public List<Serveur> ListServeur();
+	public List<Serveur> SearchServeur(String s);
 	public Serveur getServeur(Long id);
 	public void deleteServeur(Long id);
 		
 	// SystemeDeStockage
 	public  Long addSystemeDeStockage(SystemeDeStockage sds);
 	public  Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long editSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editSystemeDeStockage(SystemeDeStockage sds);
 	public List<SystemeDeStockage> ListSystemeDeStockage();
+	public List<SystemeDeStockage> SearchSystemeDeStockage(String s);
 	public SystemeDeStockage getSystemeDeStockage(Long id);
 	public void deleteSystemeDeStockage(Long id);
 		
 	// SwitchSan
 	public  Long addSwitchSan(SwitchSan san);
 	public  Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
+	public  Long editSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editSwitchSan(SwitchSan san);
 	public List<SwitchSan> ListSwitchSan();
+	public List<SwitchSan> SearchSwitchSan(String s);
 	public SwitchSan getSwitchSan(Long id);
 	public void deleteSwitchSan(Long id);
 		
@@ -477,6 +506,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	//public  Long addFibre(Fibre f, Long pc);
 	public void editNas(Nas Nas);
 	public List<Nas> ListNas();
+	public List<Nas> SearchNas(String s);
 	public Nas getNas(Long id);
 	public void deleteNas(Long id);
 		
@@ -491,9 +521,10 @@ public interface AdminMetier extends UtilisateurMetier {
 	//EquipementReseau
 	public  Long addEquipementReseau(EquipementReseau er);
 	public  Long addEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact, List<Long> contrat);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long editEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editEquipementReseau(EquipementReseau er);
 	public List<EquipementReseau> ListEquipementReseau();
+	public List<EquipementReseau> SearchEquipementReseau(String s);
 	public EquipementReseau getEquipementReseau(Long id);
 	public void deleteEquipementReseau(Long id);
 		

@@ -1874,5 +1874,207 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		dao.editPCAll(pc, user, lieu, licenseos, logicielEtApplication, equipementReseau, intefaceReseau, peripherique, document, contact, contrat);
 	}
 
+	@Override
+	public Long editImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editImpAll(imp, user, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long editTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editTeleMobileAll(telem, user, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long editSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.editSIMAll(sim, user, document, contact, contrat);
+	}
+
+	@Override
+	public Long editTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editTabletteAll(tab, user, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long editTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editTeleFixeAll(fixe, user, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long editPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editPerAll(per, pc, lieu, document, contact, contrat);
+	}
+
+	@Override
+	public Long editVlanAll(Vlan Vlan, List<Long> subnets, List<Long> intefaceReseau) {
+		return dao.editVlanAll(Vlan, subnets, intefaceReseau);
+	}
+
+	@Override
+	public Long editSubnetAll(Subnet Subnet, List<Long> vlans) {
+		return dao.editSubnetAll(Subnet, vlans);
+	}
+
+	@Override
+	public Long editCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editCameraAll(Cam, lieu, dvr, document, contact, contrat);
+	}
+
+	@Override
+	public Long editVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs, List<Long> machinevertuelle) {
+		return dao.editVolumeLogiqueAll(vl, serveurs, machinevertuelle);
+	}
+
+	@Override
+	public Long editDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras,
+			List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editDvrAll(dvr, lieu, rack, chassis, sourceelec, cameras, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
+
+	@Override
+	public Long editRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.editRackAll(rack, lieu, chassis, materiels, pdu, document, contact, contrat);
+	}
+
+	@Override
+	public Long editChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.editChassisAll(Chassis, lieu, rack, materiels, document, contact, contrat);
+	}
+
+	@Override
+	public Long editServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos,
+			List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.editServeurAll(Serveur, lieu, rack, chassis, licenseos, sourceelec, Logiciel, SolutionApplicative, interfacereseau, equipementreseaux, San, volumesLogique, document, contact, contrat);
+	}
+
+	@Override
+	public Long editSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis,
+			List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		return dao.editSystemeDeStockageAll(sds, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, equipementreseaux, San, volumesLogique, document, contact, contrat);
+	}
+
+	@Override
+	public Long editSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.editSwitchSanAll(san, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
+
+	@Override
+	public Long editEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		return dao.editEquipementReseauAll(er, lieu, rack, chassis, sourceelec, SolutionApplicative, interfacereseau, document, contact, contrat);
+	}
+
+	@Override
+	public List<Imprimante> SearchImp(String s) {
+		return dao.SearchImp(s);
+	}
+
+	@Override
+	public List<TelephneMobile> SearchTeleMobile(String s) {
+		return dao.SearchTeleMobile(s);
+	}
+
+	@Override
+	public List<Sim> SearchSIM(String s) {
+		return dao.SearchSIM(s);
+	}
+
+	@Override
+	public List<Tablette> SearchTablette(String s) {
+		return dao.SearchTablette(s);
+	}
+
+	@Override
+	public List<TelephoneFixe> SearchTeleFixe(String s) {
+		return dao.SearchTeleFixe(s);
+	}
+
+	@Override
+	public List<Peripherique> SearchPeriph(String s) {
+		return dao.SearchPeriph(s);
+	}
+
+	@Override
+	public List<Vlan> SearchVlan(String s) {
+		return dao.SearchVlan(s);
+	}
+
+	@Override
+	public List<Subnet> SearchSubnet(String s) {
+		return dao.SearchSubnet(s);
+	}
+
+	@Override
+	public List<Camera> SearchCamera(String s) {
+		return dao.SearchCamera(s);
+	}
+
+	@Override
+	public List<VolumeLogique> SearchVolumeLogique(String s) {
+		return dao.SearchVolumeLogique(s);
+	}
+
+	@Override
+	public List<Dvr> SearchDvr(String s) {
+		return dao.SearchDvr(s);
+	}
+
+	@Override
+	public List<Rack> SearchRack(String s) {
+		return dao.SearchRack(s);
+	}
+
+	@Override
+	public List<Chassis> SearchChassis(String s) {
+		return dao.SearchChassis(s);
+	}
+
+	@Override
+	public List<Bandotheque> SearchBandotheque(String s) {
+		return dao.SearchBandotheque(s);
+	}
+
+	@Override
+	public List<Serveur> SearchServeur(String s) {
+		return dao.SearchServeur(s);
+	}
+
+	@Override
+	public List<SystemeDeStockage> SearchSystemeDeStockage(String s) {
+		return dao.SearchSystemeDeStockage(s);
+	}
+
+	@Override
+	public List<SwitchSan> SearchSwitchSan(String s) {
+		return dao.SearchSwitchSan(s);
+	}
+
+	@Override
+	public List<Nas> SearchNas(String s) {
+		return dao.SearchNas(s);
+	}
+
+	@Override
+	public List<EquipementReseau> SearchEquipementReseau(String s) {
+		return dao.SearchEquipementReseau(s);
+	}
+	
+	
+
 }
 

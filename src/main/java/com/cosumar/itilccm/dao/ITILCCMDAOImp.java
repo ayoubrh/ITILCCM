@@ -1961,6 +1961,49 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return imp.getId();
 	}
 	
+	@Override
+	public Long editImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(user != null){
+			User u = getUser(user);
+			imp.setUser(u);
+		}else {
+			imp.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			imp.setLieu(lie);
+		} else {
+			imp.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			imp.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			imp.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			imp.setContrat(contr);
+		}
+
+		em.merge(imp);
+		return imp.getId();
+	}
+	
 
 
 	@Override
@@ -2005,6 +2048,49 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(per);
 		return per.getId();
 	}
+	
+	@Override
+	public Long editPerAll(Peripherique per, Long pc, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(pc != null){
+			Ordinateur ordi = getPC(pc);
+			per.setOrdinateur(ordi);
+		}else {
+			per.setOrdinateur(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			per.setLieu(lie);
+		} else {
+			per.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			per.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			per.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			per.setContrat(contr);
+		}
+
+		em.merge(per);
+		return per.getId();
+	}
 
 	@Override
 	public Long addTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
@@ -2045,6 +2131,48 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		}
 
 		em.persist(telem);
+		return telem.getId();
+	}
+	
+	@Override
+	public Long editTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			telem.setUser(u);
+		}else {
+			telem.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			telem.setLieu(lie);
+		} else {
+			telem.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			telem.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			telem.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			telem.setContrat(contr);
+		}
+
+		em.merge(telem);
 		return telem.getId();
 	}
 	
@@ -2091,6 +2219,48 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return fixe.getId();
 	}
 	
+	@Override
+	public Long editTeleFixeAll(TelephoneFixe fixe, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			fixe.setUser(u);
+		}else {
+			fixe.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			fixe.setLieu(lie);
+		} else {
+			fixe.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			fixe.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			fixe.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			fixe.setContrat(contr);
+		}
+
+		em.merge(fixe);
+		return fixe.getId();
+	}
+	
 
 	@Override
 	public Long addTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
@@ -2134,6 +2304,48 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return tab.getId();
 	}
 	
+	@Override
+	public Long editTabletteAll(Tablette tab, Long user, Long lieu, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			tab.setUser(u);
+		}else {
+			tab.setUser(null);
+		}
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			tab.setLieu(lie);
+		} else {
+			tab.setLieu(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			tab.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			tab.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			tab.setContrat(contr);
+		}
+
+		em.merge(tab);
+		return tab.getId();
+	}
+	
 	
 	@Override
 	public Long addSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
@@ -2168,6 +2380,43 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		}
 
 		em.persist(sim);
+		return sim.getId();
+	}
+	
+	
+	@Override
+	public Long editSIMAll(Sim sim, Long user, List<Long> document, List<Long> contact, List<Long> contrat) {
+		if(user != null){
+			User u = getUser(user);
+			sim.setUser(u);
+		}else {
+			sim.setUser(null);
+		}
+		
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			sim.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			sim.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			sim.setContrat(contr);
+		}
+
+		em.merge(sim);
 		return sim.getId();
 	}
 	
@@ -2239,6 +2488,73 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
+	public Long editRackAll(Rack rack, Long lieu, List<Long> chassis, List<Long> materiels, List<Long> pdu,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			rack.setLieu(lie);
+		} else {
+			rack.setLieu(null);
+		}
+		
+		if(chassis != null){
+			Collection<Chassis> chass = new ArrayList<Chassis>();
+			for (Long chas : chassis) {
+				Chassis cha = getChassis(chas);
+				chass.add(cha);
+				cha.setRack(rack);
+			}
+			rack.setChassis(chass);
+		}
+		
+		if(materiels != null){
+			Collection<Infrastructure> infrastructure = new ArrayList<Infrastructure>();
+			for (Long mat : materiels) {
+				Infrastructure infra = getInfrastructure(mat);
+				infrastructure.add(infra);
+				infra.setRack(rack);
+			}
+			rack.setInfrastructure(infrastructure);
+		}
+		
+		if(pdu != null){
+			Collection<PduElectrique> pduelec = new ArrayList<PduElectrique>();
+			for (Long p : pdu) {
+				PduElectrique pdue = getPduElectrique(p);
+				pduelec.add(pdue);
+				pdue.setRack(rack);
+			}
+			rack.setPduElectrique(pduelec);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			rack.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			rack.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			rack.setContrat(contr);
+		}
+
+		em.merge(rack);
+		return rack.getId();
+	}
+	
+	@Override
 	public Long addChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
 			List<Long> contact, List<Long> contrat) {
 		if(lieu != null){
@@ -2286,6 +2602,57 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			Chassis.setContrat(contr);
 		}
 		em.persist(Chassis);
+		return Chassis.getId();
+	}
+	
+	@Override
+	public Long editChassisAll(Chassis Chassis, Long lieu, Long rack, List<Long> materiels, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Chassis.setLieu(lie);
+		} else {
+			Chassis.setLieu(null);
+		}
+		if(rack != null){
+			Rack ra = getRack(rack);
+			Chassis.setRack(ra);
+		} else {
+			Chassis.setRack(null);
+		}
+		
+		if(materiels != null){
+			Collection<Infrastructure> infrastructure = new ArrayList<Infrastructure>();
+			for (Long mat : materiels) {
+				Infrastructure infra = getInfrastructure(mat);
+				infrastructure.add(infra);
+				infra.setChassis(Chassis);
+			}
+			Chassis.setInfrastructure(infrastructure);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Chassis.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Chassis.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Chassis.setContrat(contr);
+		}
+		em.merge(Chassis);
 		return Chassis.getId();
 	}
 
@@ -3364,6 +3731,120 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(Serveur);
 		return Serveur.getId();
 	}
+	
+	@Override
+	public Long editServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos,
+			List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Serveur.setLieu(lie);
+		} else {
+			Serveur.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			Serveur.setRack(rac);
+		}else {
+			Serveur.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			Serveur.setChassis(chas);
+		}else {
+			Serveur.setChassis(null);
+		}
+		if(licenseos != null){
+			LicenseOs los = getLicenseOs(licenseos);
+			Serveur.setLicenseOs(los);
+		} else {
+			Serveur.setLicenseOs(null);
+		}
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Serveur.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Serveur.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Serveur.setContrat(contr);
+		}
+		if(Logiciel != null){
+			Collection<LogicielEtApplication> la = new ArrayList<LogicielEtApplication>();
+			for (Long l : Logiciel) {
+				LogicielEtApplication log = getLogicielEtApplication(l);
+				la.add(log);
+			}
+			Serveur.setLogicielEtApplication(la);
+		}
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			Serveur.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(Serveur);
+			}
+			Serveur.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			Serveur.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			Serveur.setSolutionApplicative(solapp);
+		}
+		
+		if(San != null){
+			Collection<SwitchSan> switchsan = new ArrayList<SwitchSan>();
+			for (Long s : San) {
+				switchsan.add(getSwitchSan(s));
+			}
+			Serveur.setSwitchSan(switchsan);
+		}
+		
+		if(volumesLogique != null){
+			Collection<VolumeLogique> volumelog = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogique) {
+				volumelog.add(getVolumeLogique(vl));
+			}
+			Serveur.setVolumelogique(volumelog);
+		}
+
+		em.merge(Serveur);
+		return Serveur.getId();
+	}
 
 	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel, List<Long> documents) {
 		
@@ -3731,6 +4212,85 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
+	public Long editEquipementReseauAll(EquipementReseau er, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			er.setLieu(lie);
+		} else {
+			er.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			er.setRack(rac);
+		}else {
+			er.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			er.setChassis(chas);
+		}else {
+			er.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			er.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			er.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			er.setContrat(contr);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setEquipementReseau(er);
+			}
+			er.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			er.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			er.setSolutionApplicative(solapp);
+		}
+		
+		
+
+		em.merge(er);
+		return er.getId();
+	}
+	
+	@Override
 	public Long addSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis,
 			List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau,
 			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
@@ -3831,7 +4391,107 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
-	public Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+	public Long editSystemeDeStockageAll(SystemeDeStockage sds, Long lieu, Long rack, Long chassis,
+			List<Long> sourceelec, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+			List<Long> contact, List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			sds.setLieu(lie);
+		} else {
+			sds.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			sds.setRack(rac);
+		}else {
+			sds.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			sds.setChassis(chas);
+		}else {
+			sds.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			sds.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			sds.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			sds.setContrat(contr);
+		}
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			sds.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(sds);
+			}
+			sds.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			sds.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			sds.setSolutionApplicative(solapp);
+		}
+		
+		if(San != null){
+			Collection<SwitchSan> switchsan = new ArrayList<SwitchSan>();
+			for (Long s : San) {
+				switchsan.add(getSwitchSan(s));
+			}
+			sds.setSwitchSan(switchsan);
+		}
+		
+		if(volumesLogique != null){
+			Collection<VolumeLogique> volumelog = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogique) {
+				volumelog.add(getVolumeLogique(vl));
+			}
+			sds.setVolumelogique(volumelog);
+		}
+
+		em.merge(sds);
+		return sds.getId();
+	}
+	
+	@Override
+	public Long editSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
 			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
 			List<Long> document, List<Long> contact, List<Long> contrat) {
 
@@ -3916,6 +4576,93 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return san.getId();
 	}
 	
+	
+	@Override
+	public Long addSwitchSanAll(SwitchSan san, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+
+
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			san.setLieu(lie);
+		} else {
+			san.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			san.setRack(rac);
+		}else {
+			san.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			san.setChassis(chas);
+		}else {
+			san.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			san.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			san.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			san.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			san.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(san);
+			}
+			san.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			san.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			san.setSolutionApplicative(solapp);
+		}
+		
+		em.merge(san);
+		return san.getId();
+	}
+	
 	@Override
 	public Long addPhysiqueAll(Physique Physique, List<Long> vlans) {
 		
@@ -3943,6 +4690,21 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		}
 		
 		em.persist(Subnet);
+		return Subnet.getId();
+	}
+	
+	@Override
+	public Long editSubnetAll(Subnet Subnet, List<Long> vlans) {
+
+		if(vlans != null){
+			Collection<Vlan> vlan = new ArrayList<Vlan>();
+			for (Long v : vlans) {
+				vlan.add(getVlan(v));
+			}
+			Subnet.setVlan(vlan);
+		}
+		
+		em.merge(Subnet);
 		return Subnet.getId();
 	}
 	
@@ -3991,6 +4753,49 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
+	public Long editCameraAll(Camera Cam, Long lieu, Long dvr, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+		
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Cam.setLieu(lie);
+		} else {
+			Cam.setLieu(null);
+		}
+		if(dvr != null){
+			Dvr dvrc = getDvr(dvr);
+			Cam.setDvr(dvrc);
+		} else {
+			Cam.setDvr(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Cam.setDocuments(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Cam.setContacts(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Cam.setContrats(contr);
+		}
+		
+		em.merge(Cam);
+		return Cam.getId();
+	}
+	
+	@Override
 	public Long addVlanAll(Vlan Vlan, List<Long> subnets, List<Long> intefaceReseau) {
 		
 		if(subnets != null){
@@ -4010,6 +4815,29 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		}
 		
 		em.persist(Vlan);
+		return Vlan.getId();
+	}
+	
+	@Override
+	public Long editVlanAll(Vlan Vlan, List<Long> subnets, List<Long> intefaceReseau) {
+		
+		if(subnets != null){
+			Collection<Subnet> subnet = new ArrayList<Subnet>();
+			for (Long s : subnets) {
+				subnet.add(getSubnet(s));
+			}
+			Vlan.setSubnet(subnet);
+		}
+		
+		if(intefaceReseau != null){
+			Collection<Physique> ph = new ArrayList<Physique>();
+			for (Long i : intefaceReseau) {
+				ph.add(getPhysique(i));
+			}
+			Vlan.setPhysique(ph);
+		}
+		
+		em.merge(Vlan);
 		return Vlan.getId();
 	}
 	
@@ -4034,6 +4862,30 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		}
 		
 		em.persist(vl);
+		return vl.getId();
+	}
+	
+	@Override
+	public Long editVolumeLogiqueAll(VolumeLogique vl, List<Long> serveurs, List<Long> machinevertuelle) {
+
+
+		if(serveurs != null){
+			Collection<Serveur> serveur = new ArrayList<Serveur>();
+			for (Long s : serveurs) {
+				serveur.add(getServeur(s));
+			}
+			vl.setServeur(serveur);
+		}
+		
+		if(machinevertuelle != null){
+			Collection<MachineVirtuelle> mv = new ArrayList<MachineVirtuelle>();
+			for (Long m : machinevertuelle) {
+				mv.add(getMachineVirtuelle(m));
+			}
+			vl.setMachinevertuelle(mv);
+		}
+		
+		em.merge(vl);
 		return vl.getId();
 	}
 	
@@ -4122,6 +4974,93 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(dvr);
 		return dvr.getId();
 	}
+	
+	
+	@Override
+	public Long editDvrAll(Dvr dvr, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> cameras,
+			List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact,
+			List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			dvr.setLieu(lie);
+		} else {
+			dvr.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			dvr.setRack(rac);
+		}else {
+			dvr.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			dvr.setChassis(chas);
+		}else {
+			dvr.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			dvr.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			dvr.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			dvr.setContrat(contr);
+		}
+		
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			dvr.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(dvr);
+			}
+			dvr.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			dvr.setConnexionElectrique(elec);
+		}
+		
+		if(cameras != null){
+			Collection<Camera> cam = new ArrayList<Camera>();
+			for (Long c : cameras) {
+				Camera ca = getCamera(c);
+				cam.add(ca);
+				ca.setDvr(dvr);
+			}
+			dvr.setCamera(cam);
+		}
+		
+		em.merge(dvr);
+		return dvr.getId();
+	}
 
 	public void editPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
 			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
@@ -4204,6 +5143,140 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.merge(pc);
 	}
 
+	@Override
+	public List<Imprimante> SearchImp(String s) {
+		Query req = em.createQuery("select imp from Imprimante imp where imp.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<TelephneMobile> SearchTeleMobile(String s) {
+		Query req = em.createQuery("select t from TelephneMobile t where t.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Sim> SearchSIM(String s) {
+		Query req = em.createQuery("select sim from Sim sim where sim.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Tablette> SearchTablette(String s) {
+		Query req = em.createQuery("select t from Tablette t where t.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<TelephoneFixe> SearchTeleFixe(String s) {
+		Query req = em.createQuery("select t from TelephoneFixe t where t.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Peripherique> SearchPeriph(String s) {
+		Query req = em.createQuery("select p from Peripherique p where p.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Vlan> SearchVlan(String s) {
+		Query req = em.createQuery("select v from Vlan v where v.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Subnet> SearchSubnet(String s) {
+		Query req = em.createQuery("select s from Subnet s where s.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Camera> SearchCamera(String s) {
+		Query req = em.createQuery("select c from Camera c where c.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<VolumeLogique> SearchVolumeLogique(String s) {
+		Query req = em.createQuery("select v from VolumeLogique v where v.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Dvr> SearchDvr(String s) {
+		Query req = em.createQuery("select d from Dvr d where d.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Rack> SearchRack(String s) {
+		Query req = em.createQuery("select r from Rack r where r.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Chassis> SearchChassis(String s) {
+		Query req = em.createQuery("select c from Chassis c where c.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Bandotheque> SearchBandotheque(String s) {
+		Query req = em.createQuery("select b from Bandotheque b where b.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Serveur> SearchServeur(String s) {
+		Query req = em.createQuery("select s from Serveur s where s.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<SystemeDeStockage> SearchSystemeDeStockage(String s) {
+		Query req = em.createQuery("select s from SystemeDeStockage s where s.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<SwitchSan> SearchSwitchSan(String s) {
+		Query req = em.createQuery("select s from SwitchSan s where s.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Nas> SearchNas(String s) {
+		Query req = em.createQuery("select n from Nas n where n.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<EquipementReseau> SearchEquipementReseau(String s) {
+		Query req = em.createQuery("select e from EquipementReseau e where e.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+
+	
 	
 }
 
