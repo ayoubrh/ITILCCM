@@ -4122,8 +4122,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(dvr);
 		return dvr.getId();
 	}
-<<<<<<< HEAD
-	
+
 	public void editPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
 			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
 		
@@ -4204,9 +4203,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 		em.merge(pc);
 	}
-=======
 
->>>>>>> refs/remotes/origin/tawfiq-jpa
 	
 }
 

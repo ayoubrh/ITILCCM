@@ -1866,16 +1866,13 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.SearchPC(s);
 	}
 
-<<<<<<< HEAD
+
 	@Override
 	public void editPCAll(Ordinateur pc, Long user, Long lieu, Long licenseos, List<Long> logicielEtApplication,
 			List<Long> equipementReseau, List<Long> intefaceReseau, List<Long> peripherique, List<Long> document,
 			List<Long> contact, List<Long> contrat) {
 		dao.editPCAll(pc, user, lieu, licenseos, logicielEtApplication, equipementReseau, intefaceReseau, peripherique, document, contact, contrat);
 	}
-=======
-	
 
->>>>>>> refs/remotes/origin/tawfiq-jpa
 }
 
