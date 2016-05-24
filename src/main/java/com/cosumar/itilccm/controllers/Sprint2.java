@@ -1755,6 +1755,31 @@ public class Sprint2 {
 		model.addAttribute("contacts", m.listContact());
 		return "sprint2/addLieu";
 	}
+	@RequestMapping(value="/admin/edit/lieu")
+	public String searchLieu(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+	    model.addAttribute("lieu", m.getLieu(id) );
+		model.addAttribute("contacts", m.listContact());
+		return "sprint2/editLieu";
+	}
+	@RequestMapping(value="/admin/search/lieu")
+	public String searchLieu(Model model,String l){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("lieu", l);
+		model.addAttribute("logged", logged);
+		if(l == null){
+			model.addAttribute("cis", m.ListPC());
+		} else {
+			model.addAttribute("cis",m.SearchLieu(l));
+		}
+		
+		return "sprint2/SearchLieu";
+	}
 	@RequestMapping(value="/admin/add/saveLieu", method = RequestMethod.POST)
 	public String saveLieu(@Valid Lieu l,BindingResult bind,Model model,HttpServletRequest req) {
 		if(bind.hasErrors()){
@@ -1862,6 +1887,38 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("groupe", new Groupe());
 		model.addAttribute("g", m.listGroupe());
+		 model.addAttribute("ApplicationWeb", m.listApplicationWeb());
+		    model.addAttribute("ArriveeElectrique", m.ListArriveeElectrique());
+		    model.addAttribute("Autrelogiciel", m.listAutreLogiciel());
+		    model.addAttribute("Bandotheque", m.ListBandotheque());
+		    model.addAttribute("Camera", m.ListCamera());
+			model.addAttribute("Chassis", m.ListChassis());
+			model.addAttribute("DVR", m.ListDvr());
+			model.addAttribute("Equipementreseau", m.ListEquipementReseau());
+			model.addAttribute("Hyperviseur", m.listHyperviseur());
+			model.addAttribute("Imprimante", m.ListImp());
+			model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
+			model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
+			model.addAttribute("LogicielPC", m.listLogicielPc());
+			model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
+			model.addAttribute("Middleware", m.listMiddleware());
+			model.addAttribute("NAS", m.ListNas());
+			model.addAttribute("Ordinateur", m.ListPC());
+			model.addAttribute("PDU", m.ListPduElectrique());
+			model.addAttribute("Processusmetier", m.ListProcessusMetier());
+			model.addAttribute("Peripherique", m.ListPeriph());
+			model.addAttribute("Rack", m.ListRack());
+			model.addAttribute("Serveur", m.ListServeur());
+			model.addAttribute("ServeurWeb", m.listServeurWeb());
+			model.addAttribute("Serveurdebasededonnees", m.listServeurDeBasseDeDonnees());
+			model.addAttribute("sim", m.ListSIM());
+			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+			model.addAttribute("SwitchSAN", m.ListSwitchSan());
+			model.addAttribute("Systemedestockage", m.ListSystemeDeStockage());
+			model.addAttribute("Tablette", m.ListTablette());
+			model.addAttribute("Telephonefixe", m.ListTeleFixe());
+			model.addAttribute("Telephonemobile", m.ListTeleMobile());
+			model.addAttribute("vCluster", m.listVcluster());
 		return "sprint2/addGroupe";
 	}
 	@RequestMapping(value="/admin/add/saveGroupe", method = RequestMethod.POST)
@@ -1873,6 +1930,38 @@ public class Sprint2 {
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
 		    model.addAttribute("g", m.listGroupe());
+		    model.addAttribute("ApplicationWeb", m.listApplicationWeb());
+		    model.addAttribute("ArriveeElectrique", m.ListArriveeElectrique());
+		    model.addAttribute("Autrelogiciel", m.listAutreLogiciel());
+		    model.addAttribute("Bandotheque", m.ListBandotheque());
+		    model.addAttribute("Camera", m.ListCamera());
+			model.addAttribute("Chassis", m.ListChassis());
+			model.addAttribute("DVR", m.ListDvr());
+			model.addAttribute("Equipementreseau", m.ListEquipementReseau());
+			model.addAttribute("Hyperviseur", m.listHyperviseur());
+			model.addAttribute("Imprimante", m.ListImp());
+			model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
+			model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
+			model.addAttribute("LogicielPC", m.listLogicielPc());
+			model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
+			model.addAttribute("Middleware", m.listMiddleware());
+			model.addAttribute("NAS", m.ListNas());
+			model.addAttribute("Ordinateur", m.ListPC());
+			model.addAttribute("PDU", m.ListPduElectrique());
+			model.addAttribute("Processusmetier", m.ListProcessusMetier());
+			model.addAttribute("Peripherique", m.ListPeriph());
+			model.addAttribute("Rack", m.ListRack());
+			model.addAttribute("Serveur", m.ListServeur());
+			model.addAttribute("ServeurWeb", m.listServeurWeb());
+			model.addAttribute("Serveurdebasededonnees", m.listServeurDeBasseDeDonnees());
+			model.addAttribute("sim", m.ListSIM());
+			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+			model.addAttribute("SwitchSAN", m.ListSwitchSan());
+			model.addAttribute("Systemedestockage", m.ListSystemeDeStockage());
+			model.addAttribute("Tablette", m.ListTablette());
+			model.addAttribute("Telephonefixe", m.ListTeleFixe());
+			model.addAttribute("Telephonemobile", m.ListTeleMobile());
+			model.addAttribute("vCluster", m.listVcluster());
 			return "sprint2/addGroupe";
 		}
 		m.ajouterGroupe(g, g.getGroupe_parent().getId());
@@ -3736,6 +3825,7 @@ public class Sprint2 {
 		
 		return "sprint2/SearchPC";
 	}
+
 	
 	
 }

@@ -198,7 +198,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select l from Lieu l");
 		return req.getResultList();
 	}
-
+	
+	@Override
+	public List<Lieu> SearchLieu(String l) {
+		Query req = em.createQuery("select lieu from Lieu lieu where lieu.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+l+"%");
+		return req.getResultList();
+	}
+	
 	@Override
 	public Lieu getLieu(Long id) {
 		
@@ -4115,5 +4122,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(dvr);
 		return dvr.getId();
 	}
+
+	
 }
 

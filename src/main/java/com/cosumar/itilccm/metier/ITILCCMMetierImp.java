@@ -380,7 +380,11 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		
 		return dao.listLieu();
 	}
-
+	
+	@Override
+	public List<Lieu> SearchLieu(String l) {
+		return dao.SearchLieu(l); 
+	}
 	@Override
 	public Long ajouterContact(Contact c) {
 		
@@ -1861,6 +1865,8 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public List<Ordinateur> SearchPC(String s) {
 		return dao.SearchPC(s);
 	}
+
+	
 
 }
 
