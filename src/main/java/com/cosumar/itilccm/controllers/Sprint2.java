@@ -292,7 +292,7 @@ public class Sprint2 {
 			m.addPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		} else {
 			m.editPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-			return "redirect:/config/view/pc?id="+pc.getId();
+			return "redirect:/config/view/pc?id="+pc.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1320,6 +1320,50 @@ public class Sprint2 {
 		
 		m.addSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	@RequestMapping(value="/admin/add/nas")
+	public String addNAS(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("nas", new Nas() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addNAS";
+	}
+	
+	@RequestMapping(value="/admin/add/bandotheque")
+	public String addBandotheque(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("bandotheque", new Bandotheque() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addbandotheque";
 	}
 	
 	@RequestMapping(value="/admin/add/dvr")
@@ -3722,7 +3766,7 @@ public class Sprint2 {
 	
 	
 	@RequestMapping(value="/search/pc")
-	public String searchPC(Model model,String s){
+	public String searchPC(Model model,String s,String delete){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
@@ -3735,12 +3779,16 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("cis",m.SearchPC(s));
 		}
-		
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
 		return "sprint2/SearchPC";
 	}
 	
 	@RequestMapping(value="/view/pc")
-	public String viewPC(Model model,Long id){
+	public String viewPC(Model model,Long id,String save){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    System.out.println(logged_m);
@@ -3748,6 +3796,11 @@ public class Sprint2 {
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
 		model.addAttribute("ordinateur", m.getPC(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
 		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		return "sprint2/viewPC";
 	}
@@ -3761,7 +3814,7 @@ public class Sprint2 {
 	    System.out.println(logged.getNom());
 		model.addAttribute("logged", logged);
 		m.deletePC(id);
-		return "redirect:/config/search/pc";
+		return "redirect:/config/search/pc?delete="+true;
 	}
 	
 	@RequestMapping(value="/admin/edit/pc")

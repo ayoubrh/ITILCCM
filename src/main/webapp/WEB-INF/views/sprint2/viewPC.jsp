@@ -477,7 +477,12 @@ Use search to find needed section.
 				
 				
 				
-				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien modifier.
+					</div>
+				</c:if>
 				
 				
 				
