@@ -198,7 +198,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select l from Lieu l");
 		return req.getResultList();
 	}
-
+	
+	@Override
+	public List<Lieu> SearchLieu(String l) {
+		Query req = em.createQuery("select lieu from Lieu lieu where lieu.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+l+"%");
+		return req.getResultList();
+	}
+	
 	@Override
 	public Lieu getLieu(Long id) {
 		
@@ -4115,6 +4122,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(dvr);
 		return dvr.getId();
 	}
+<<<<<<< HEAD
 	
 	public void editPCAll(Ordinateur pc, Long user,Long lieu, Long licenseos, List<Long> logicielEtApplication, List<Long> equipementReseau, 
 			List<Long> intefaceReseau, List<Long> peripherique, List<Long> document, List<Long> contact, List<Long> contrat) {
@@ -4196,6 +4204,9 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 		em.merge(pc);
 	}
+=======
+
+>>>>>>> refs/remotes/origin/tawfiq-jpa
 	
 }
 

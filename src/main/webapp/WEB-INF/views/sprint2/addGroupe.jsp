@@ -473,6 +473,52 @@ Use search to find needed section.
 
 		Content
 -->
+<!-- Modal CIs -->
+				<div id="myModalCIs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout CIs</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>CI fonctionnel</th>
+												<th>type de CI</th>
+												<th>Criticité</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tableCIspopup">
+											<c:forEach items="${ApplicationWeb}" var="aw" >
+												<tr class="gradeA" id="cis_${aw.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Appl_${aw.id }"></td>
+													<td>${aw.nom }</td>
+													<td>Application Web</td>
+													<td>${aw.criticite }</td>
+													<td>${aw.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
+											
+
+
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addcis">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal -->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Groupe</span>
@@ -495,10 +541,6 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-cis" data-toggle="tab">CIs Liés</a>
 								</li>
-								
-								
-								
-								
 								
 							</ul>
 		
@@ -523,7 +565,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value=""> -- choisir une valeur --</f:option>
+							             <f:option value=""></f:option>
 										 <f:option value="implémentation">implémentation</f:option>
 										 <f:option value="obsolète"> obsolète</f:option>
 										 <f:option value="production"> production</f:option>
@@ -549,24 +591,47 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Groupe parent</label>
 								<div class="col-sm-9">
 									<f:select  path="groupe_parent.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""> </f:option>
 										<f:options items="${g }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="groupe_parent.id" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 					
-							
-							          
-							
 							</div>
 		
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-cis" id="profile-tabs-cis">
-									
-									CIs
-									
-									
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>CI fonctionnel</th>
+												<th>type de CI</th>
+												<th>Criticité</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tableCIs">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppcis">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalCIs">Ajouter des CIs</button>
+										</div>
+										
+									</div>
 								</div> <!-- / .tab-pane -->
 								
 								
@@ -634,6 +699,34 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		//<!-- Modal Materiels -->
+			document.getElementById("addcis").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckcis:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("cis_".concat($(this).val()));
+		    	$( "#tableCIs" ).append(tr);
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppcis").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckcis:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		//alert($(this).val());
+	    		var tr = document.getElementById("cis_".concat($(this).val()));
+		    	$( "#tableCIspopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
 	});
 	window.PixelAdmin.start(init);
 </script>

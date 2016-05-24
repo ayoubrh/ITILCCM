@@ -56,6 +56,7 @@ public interface ITILCCMDAO {
 	public void modifierLieu(Lieu l);
 	public void supprimerLieu(Long id);
 	public List<Lieu> listLieu();
+	public List<Lieu> SearchLieu(String l);
 	public Lieu getLieu(Long id);
 	
 	// Contact

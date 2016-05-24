@@ -41,6 +41,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public void modifierLieu(Lieu l);
 	public void supprimerLieu(Long id);
 	public List<Lieu> listLieu();
+	public List<Lieu> SearchLieu(String l);
 	public Lieu getLieu(Long id);
 	
 	// Ordinateur
