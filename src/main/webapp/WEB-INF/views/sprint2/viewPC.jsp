@@ -1,6 +1,8 @@
 
 
 <!DOCTYPE html>
+
+
 <!--
 
 TABLE OF CONTENTS.
@@ -26,9 +28,13 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Ajout utilisateur - ITIL-CCM</title>
+	<title>Détail Ordinateur - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -47,10 +53,6 @@ Use search to find needed section.
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
 	<![endif]-->
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
-	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	
 
 </head>
@@ -69,7 +71,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-default main-menu-animated page-profile">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -324,7 +326,7 @@ Use search to find needed section.
 								<ul class="dropdown-menu">
 									<li><a href="<c:url value="/users/profil?id=${logged.id }" />">Profile</a></li>
 									<li class="divider"></li>
-									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Dconnexion</a></li>
+									<li><a href="<c:url value="/j_spring_security_logout"/>"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Déconnexion</a></li>
 								</ul>
 							</li>
 						</ul> <!-- / .navbar-nav -->
@@ -368,6 +370,7 @@ Use search to find needed section.
 				 -->
 				<div>
 					<div class="text-bg"><span class="text-slim">Bonjour,</span> <span class="text-semibold">${logged.prenom }</span></div>
+
 					<c:if test="${logged.bphoto == null }">
 						<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 					</c:if>
@@ -408,7 +411,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -450,7 +453,7 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des donnes</span></a>
+					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des données</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
@@ -471,183 +474,492 @@ Use search to find needed section.
 
 		Content
 -->
-
-		<!-- Content here -->
+				
+				
+				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien modifier.
+					</div>
+				</c:if>
+				
+				
+				
+				
+				
+				
+				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau utilisateur</span>
+						<span class="panel-title col-md-9">Détail d'un Ordinateur</span>
+						<a href="<c:url value="/config/admin/edit/pc?id=${ordinateur.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/pc?id=${ordinateur.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						
 					</div>
 					<div class="panel-body">
+					
+					
+		
+						<hr class="profile-content-hr no-grid-gutter-h">
 						
-						<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Matricule</label>
-								<div class="col-sm-9">
-									<f:input path="matricule" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
-									<f:errors path="matricule" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-4">
-									<f:input path="nom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="jquery-validate-error help-block"></f:errors>
-								</div>
-								<label for="jq-validation-email" class="col-sm-1 control-label">Prenom</label>
-								<div class="col-sm-4">
-									<f:input path="prenom" type="text" class="form-control" id="jq-validation-nom" name="jq-validation-nom" />
-									<f:errors path="prenom" cssClass="has-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">CIN</label>
-								<div class="col-sm-9">
-									<f:input path="cin" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
-									<f:errors path="cin" cssClass="has-error help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Sexe</label>
-								<div class="col-sm-9">
-									<div class="radio">
-										<label>
-											<f:radiobutton path="sexe" name="jq-validation-radios" value="M" class="px"/>
-											<span class="lbl">Homme</span>
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<f:radiobutton path="sexe" name="jq-validation-radios" value="F" class="px"/>
-											<span class="lbl">Femme</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Age</label>
-								<div class="col-sm-9">
-									<f:input path="age" type="text" class="form-control" id="jq-validation-age" name="jq-validation-age" />
-									<f:errors path="age" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">E-mail</label>
-								<div class="col-sm-9">
-									<f:input path="email" type="text" class="form-control" id="jq-validation-email" name="jq-validation-email" />
-									<f:errors path="email" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Pays</label>
-								<div class="col-sm-9">
-									<f:input path="pays" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
-									<f:errors path="pays" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Ville</label>
-								<div class="col-sm-9">
-									<f:input path="ville" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
-									<f:errors path="ville" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Code postale</label>
-								<div class="col-sm-9">
-									<f:input path="codepostale" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
-									<f:errors path="codepostale" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Adresse</label>
-								<div class="col-sm-9">
-									<f:textarea path="adresse" class="form-control" name="jq-validation-text" id="jq-validation-text" />
-									<f:errors path="adresse" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Telephone</label>
-								<div class="col-sm-9">
-									<f:input path="tele" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
-									<f:errors path="tele" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Fixe</label>
-								<div class="col-sm-9">
-									<f:input path="fixe" type="text" class="form-control" id="jq-validation-phone" name="jq-validation-phone" />
-									<f:errors path="fixe" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Fonction</label>
-								<div class="col-sm-9">
-									<f:input path="fonction" type="text" class="form-control" id="jq-validation-fonction" name="jq-validation-fonction" />
-									<f:errors path="fonction" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Departement</label>
-								<div class="col-sm-9">
-									<f:select  path="departement.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="" label=""/>
-										<f:options items="${d }" itemValue="id" itemLabel="libelle" />	
-									</f:select>
-									<f:errors path="departement.id" cssClass="help-block"></f:errors>
-								</div>
+						<div class="profile-content">
+		
+							<ul id="profile-tabs" class="nav nav-tabs">
+								<li class="active">
+									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-peripheriques" data-toggle="tab">Périphérique</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-logiciels" data-toggle="tab">Logiciels</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Intarfaces réseaux</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-equipementreseaux" data-toggle="tab">Equipement réseaux</a>
+								</li>
 								
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Role dans le systeme</label>
-								<div class="col-sm-9">
-									<f:select  path="role.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:options items="${r }" itemValue="id" itemLabel="libelle" />
-									</f:select>
-									<f:errors path="role.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Photo</label>
-								<div class="col-sm-9">
-									<input type="file" name="file" />
-								</div>
-							</div>
-							
-	
+								<li>
+									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
+								</li>
+								
+							</ul>
+		
+							<div class="tab-content tab-content-bordered panel-padding">
+								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
+		
+									<div class="form-group required">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
+										${ordinateur.nom }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut : </label>
+										${ordinateur.statut }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité : </label>
+										${ordinateur.criticite }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Utilisateur : </label>
+										<a href="<c:url value="/users/profil?id=${ci.id }" />">${ordinateur.user.prenom } ${ordinateur.user.nom }</a>
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu : </label>
+										<a href="<c:url value="/config/view/lieu?id=${ordinateur.lieu.id }" />">${ordinateur.lieu.nom }</a>
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque : </label>
+										${ordinateur.marque }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle : </label>
+										${ordinateur.modele }
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS : </label>
+										<a href="<c:url value="/config/view/licenseos?id=${ordinateur.licenseOs.id }" />">${ordinateur.licenseOs.nom }</a>
+									</div>
+									
+									<div class="form-group required">
+										<label class="col-sm-3 control-label">Type : </label>
+										${ordinateur.type }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU : </label>
+										${ordinateur.cpu }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM : </label>
+										${ordinateur.ram }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série : </label>
+										${ordinateur.numeroDeSerie }
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset : </label>
+										${ordinateur.numeroAsset }
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateD_achat}" />
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateDeMiseEnProduction}" />
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateDeFinDeGarantie}" />
+									</div>
+									
+									
+									<div class="form-group">
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description : </label>
+										${ordinateur.description }
+									</div>
+									
+									
+									
+		
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-peripheriques" id="profile-tabs-peripheriques">
+									
+		
+		
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Numèro de Série</th>
+												<th>Numèro Asset</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody id="tablePer">
+											<c:forEach items="${ordinateur.peripherique}" var="per">
+												<tr class="gradeA" id="tr_per_${per.id }">
+													<td><a href="<c:url value="/config/view/peripherique?id=${per.id }" />">${per.nom }</a></td>
+													<td>${per.statut }</td>
+													<td>${per.criticite }</td>
+													<td>${per.numeroDeSerie }</td>
+													<td>${per.numeroAsset }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${per.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
 
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									
+		
+									
 								</div>
 								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
+								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Chemin d'installation</th>
+												<th>Date de mise en production</th>
+												
+											</tr>
+										</thead>
+										<tbody id="tableLogicile">
+											<c:forEach items="${ordinateur.logicielEtApplication}" var="l">
+												<tr class="gradeA" id="tr_log_${l.id }">
+													<td><a href="<c:url value="/config/view/logicieletapplication?id=${l.id }" />">${l.nom }</a></td>
+													<td>${l.statut }</td>
+													<td>${l.criticite }</td>
+													<td>${l.cheminD_installation }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
+
+												</tr>
+											</c:forEach>
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
+									
+		
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Adresse IP</th>
+													<th>Adresse MAC</th>
+													<th>Commentaire</th>
+													<th>Passerelle</th>
+													<th>Masque de sous réseau </th>
+													<th>Vitesse</th>	
+													
+												</tr>
+											</thead>
+											<tbody id="tableinterfacereseau">
+												<c:forEach items="${ordinateur.intefaceReseau}" var="ir">
+												<tr class="gradeA" id="tr_ir_${ir.id }">
+													<td><a href="<c:url value="/config/view/intefacereseau?id=${ir.id }" />">${ir.nom }</a></td>
+													<td>${ir.adresseIp }</td>
+													<td>${ir.adresseMac }</td>
+													<td>${ir.commentaire }</td>
+													<td>${ir.passerelle }</td>
+													<td>${ir.masqueDeSousReseau }</td>
+													<td>${ir.vitesse }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+
+		
+									
+		
+									
+		
+									
+								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-equipementreseaux" id="profile-tabs-equipementreseaux">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Statut</th>
+													<th>Criticité</th>
+													<th>Lieu</th>
+													<th>Marque</th>
+													<th>Modèle</th>
+													<th>Numéro de série</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tableEquipementreseaux">
+												<c:forEach items="${ordinateur.equipementReseau}" var="er">
+												<tr class="gradeA" id="tr_er_${er.id }">
+													<td><a href="<c:url value="/config/view/equipementreseau?id=${er.id }" />">${er.nom }</a></td>
+													<td>${er.statut }</td>
+													<td>${er.criticite }</td>
+													<td><a href="<c:url value="/config/view/lieu?id=${er.lieu.id }" />">${er.lieu.nom }</a></td>
+													<td>${er.marque }</td>
+													<td>${er.modele }</td>
+													<td>${er.numeroDeSerie }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								
+								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom complet</th>
+													<th>Statut</th>
+													<th>Organisation</th>
+													<th>Email</th>
+													<th>Téléphone</th>
+													<th>Fonction</th>	
+													
+												</tr>
+											</thead>
+											<tbody id="tablecontact">
+												<c:forEach items="${ordinateur.contact}" var="contact">
+												<tr class="gradeA" id="tr_contact_${contact.id }">
+													<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
+													<td>${contact.statut }</td>
+													<td>${contact.organisme }</td>
+													<td>${contact.email }</td>
+													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+													<td>${contact.fonction }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Statut</th>
+													<th>Type de document</th>
+													<th>Description</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tabledocument">
+												<c:forEach items="${ordinateur.document}" var="doc">
+												<tr class="gradeA" id="tr_doc_${doc.id }">
+													<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
+													<td>${doc.statut }</td>
+													<td> </td>
+													<td>${doc.description }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
+									
+		
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th>Nom</th>
+													<th>Type</th>
+													<th>Client</th>
+													<th>Description</th>
+													<th>Date de début</th>
+													<th>Date de fin</th>
+													<th>Fournisseur</th>
+													
+												</tr>
+											</thead>
+											<tbody id="tablecontrat">
+												<c:forEach items="${ordinateur.contrat}" var="contrat">
+												<tr class="gradeA" id="tr_contrat_${contrat.id }">
+													<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
+													<td>${contrat.typeDeContrat }</td>
+													<td>${contrat.client }</td>
+													<td>${contrat.description }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
+													<td>${contrat.fournisseur }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									
+		
+		
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
+								
+								Tickets
+								
 								</div>
 								
-							</div>
+							</div> <!-- / .tab-content -->
+						</div>
+				
+					
+					
+					
+					
+					
 							
-						</f:form>
 					</div>
-				</div>
+					
+					
+		</div>
 
-	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- Content here -->
+		
 		
 		
 
@@ -671,7 +983,39 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		// Javascript code here
+		$('#profile-tabs').tabdrop();
+
+		$("#leave-comment-form").expandingInput({
+			target: 'textarea',
+			hidden_content: '> div',
+			placeholder: 'Write message',
+			onAfterExpand: function () {
+				$('#leave-comment-form textarea').attr('rows', '3').autosize();
+			}
+		});
+		
+		var options = {
+				todayBtn: "linked",
+				orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+			}
+		
+			$('#bs-datepicker-dateDeMiseEnProduction').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			$('#bs-datepicker-dateD_achat').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			$('#bs-datepicker-dateDeFinDeGarantie').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			
+			$('.jq-datatables-example').dataTable();
+			$('.jq-datatables-example_wrapper .table-caption').text('');
+			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			
+		    
+
 	});
 	window.PixelAdmin.start(init);
 </script>

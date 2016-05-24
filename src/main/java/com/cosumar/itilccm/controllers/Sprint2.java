@@ -287,9 +287,13 @@ public class Sprint2 {
 		System.out.println("user : "+pc.getUser()+" ID : "+pc.getUser().getId());
 		System.out.println("Lieu : "+pc.getLieu()+" ID : "+pc.getLieu().getId());
 		System.out.println("Lieu : "+pc.getLicenseOs()+" ID : "+pc.getLicenseOs().getId());
-			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
-		
-		m.addPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		System.out.println("Ordinateur ID : "+pc.getId());
+		if(pc.getId() == null){
+			m.addPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+		} else {
+			m.editPCAll(pc, pc.getUser().getId(), pc.getLieu().getId(), pc.getLicenseOs().getId(),chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
+			return "redirect:/config/view/pc?id="+pc.getId()+"&save="+true;
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -366,7 +370,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addImpAll(imp, imp.getUser().getId(), imp.getLieu().getId(), chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -443,7 +447,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addPerAll(per, per.getOrdinateur().getId(), per.getLieu().getId(), chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -520,7 +524,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addTeleMobileAll(telem, telem.getUser().getId(), telem.getLieu().getId(), chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -597,7 +601,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addTeleFixeAll(telefixe, telefixe.getUser().getId(), telefixe.getLieu().getId(), chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -674,7 +678,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addTabletteAll(tab, tab.getUser().getId(), tab.getLieu().getId(), chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/sim")
@@ -747,7 +751,7 @@ public class Sprint2 {
 			//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -863,7 +867,7 @@ public class Sprint2 {
 		
 		//m.addRackAll(rack, rack.getLieu().getId(), chchassis, chmateriels, chdoc, chcontact, chcontrat);
 		m.addRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -951,7 +955,7 @@ public class Sprint2 {
 		//m.addPCAll(pc, null, chlog, cher, chir, chp, chdoc, chcontact, chcontrat);
 		
 		m.addChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -1316,6 +1320,50 @@ public class Sprint2 {
 		
 		m.addSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
+	@RequestMapping(value="/admin/add/nas")
+	public String addNAS(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("nas", new Nas() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addNAS";
+	}
+	
+	@RequestMapping(value="/admin/add/bandotheque")
+	public String addBandotheque(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("bandotheque", new Bandotheque() );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/addbandotheque";
 	}
 	
 	@RequestMapping(value="/admin/add/dvr")
@@ -1741,7 +1789,7 @@ public class Sprint2 {
 		System.out.println("Lieu : "+er.getLieu()+" ID : "+er.getLieu().getId());
 		
 		m.addEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
-		return "redirect:/index";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	
@@ -1830,7 +1878,7 @@ public class Sprint2 {
 		}
 		
 		m.ajouterContactAll(c, c.getLieu().getId());
-		return "redirect:/index";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/contrat")
@@ -1876,7 +1924,7 @@ public class Sprint2 {
 		}
 		m.ajouterContratAll(c, cont, doc);
 		
-		return "redirect:/index";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/groupe")
@@ -1965,7 +2013,7 @@ public class Sprint2 {
 			return "sprint2/addGroupe";
 		}
 		m.ajouterGroupe(g, g.getGroupe_parent().getId());
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/solutionApplicative")
 	public String addSolutionApplicative(Model model){
@@ -2032,7 +2080,7 @@ public class Sprint2 {
 		}
 			
 		m.addSolutionApplicativeAll(sa, cont, doc, null, pro, contr);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/processusMetier")
 	public String addProcessusMetier(Model model){
@@ -2089,7 +2137,7 @@ public class Sprint2 {
 		
 		m.addProcessusMetierAll(pm, cont, doc, sol);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/typeLicense")
 	public String typeLicense(Model model){
@@ -2142,7 +2190,7 @@ public class Sprint2 {
 		}
 		m.ajouterLicenseLogicielAll(ll, ll.getLogicielEtApplications().getId(), doc);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/licenseOs")
 	public String addLicenseOs(Model model){
@@ -2196,7 +2244,7 @@ public class Sprint2 {
 		}
 		m.ajouterLicenseOsAll(lo, lo.getVersionOs().getId(), doc, serv, mach);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/versionOs")
 	public String addVersionOs(Model model){
@@ -2217,7 +2265,7 @@ public class Sprint2 {
 		return "sprint2/addVersionOs";
 		}
 		m.ajouterVersionOs(vo);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/machineVirtuelle")
 	public String addMachineVirtuelle(Model model){
@@ -2317,7 +2365,7 @@ public class Sprint2 {
 			}
 		}	
 		m.ajouterMachineVirtuelleAll(mv, mv.getVirtualisation().getId(), mv.getLicenseOs().getId(), log, cont, doc, sol, inter, vol, contr);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/hyperviseur")
 	public String addHyperviseur(Model model){
@@ -2406,7 +2454,7 @@ public class Sprint2 {
 			}
 		}	
 		m.ajouterHyperviseurAll(h, h.getVcluster().getId(), h.getServeur().getId(), cont, doc, sol, vol, mach, contr);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/vCluster")
 	public String addVcluster(Model model){
@@ -2500,7 +2548,7 @@ public class Sprint2 {
 			}
 		}
 		m.ajouterVclusterAll(v, cont, doc, sol, vol, mach, hyp, contr);
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/typeConnexionElectrique")
 	public String typeConnexionElectrique(Model model){
@@ -2583,7 +2631,7 @@ public class Sprint2 {
 		
 		m.addArriveeElectriqueAll(ae, ae.getLieu().getId(), pdu, cont, doc, contr);	
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/pduElectrique")
 	public String addPduElectrique(Model model){
@@ -2645,7 +2693,7 @@ public class Sprint2 {
 		
 		m.addPduElectriqueAll(pe, pe.getLieu().getId(),pe.getRack().getId(),pe.getArriveeElectrique().getId(), cont, doc, contr);	
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/typeDocument")
 	public String typeDocument(Model model){
@@ -2783,7 +2831,7 @@ public class Sprint2 {
 		
 		m.ajouterAutreLogicielAll(al, serv, mach, al.getLicenseLogiciel().getId(), cont, doc, sol, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/logicielPc")
 	public String addLogicielPc(Model model){
@@ -2878,7 +2926,7 @@ public class Sprint2 {
 		
 		m.ajouterLogicielPcAll(lp, serv, mach, lp.getLicenseLogiciel().getId(), cont, doc, sol, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/serveurWeb")
 	public String addServeurWeb(Model model){
@@ -2979,7 +3027,7 @@ public class Sprint2 {
 		
 		m.ajouterServeurWebAll(sw, serv, mach, sw.getLicenseLogiciel().getId(), cont, doc, sol, appl, contr); 	
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/middleware")
@@ -3081,7 +3129,7 @@ public class Sprint2 {
 		
 		m.ajouterMiddlewareAll(mi, serv, mach, mi.getLicenseLogiciel().getId(), cont, doc, sol, midl, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/serveurBD")
 	public String addServeurBD(Model model){
@@ -3180,7 +3228,7 @@ public class Sprint2 {
 		}
 		m.ajouterServeurDeBasseDeDonneesAll(sbd, serv, mach, sbd.getLicenseLogiciel().getId(), cont, doc, sol, ser, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/applicationWeb")
 	public String addApplicationWeb(Model model){
@@ -3250,7 +3298,7 @@ public class Sprint2 {
 		}
 		m.ajouterApplicationWebAll(aw, aw.getServeurWeb().getId(), cont, doc, sol, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/instanceMiddleware")
 	public String addInstanceMiddleware(Model model){
@@ -3320,7 +3368,7 @@ public class Sprint2 {
 		}
 		m.ajouterInstanceMiddlewareAll(im, im.getMiddleware().getId(), cont, doc, sol, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/instanceBD")
 	public String addInstanceDeBasseDeDonnes(Model model){
@@ -3390,7 +3438,7 @@ public class Sprint2 {
 		}
 		m.ajouterInstanceDeBasseDeDonnesAll(ibd, ibd.getServeurDeBasseDeDonnees().getId(), cont, doc, sol, contr);
 		
-		return "redirect:/config/admin/dashboard";
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/interfacereseau")
@@ -3495,7 +3543,6 @@ public class Sprint2 {
 		
 		m.addLogique(log);
 		return "redirect:/config/admin/dashboards?save="+true;
-		//return "redirect:/index";
 	}
 	
 	@RequestMapping(value="/admin/add/physique")
@@ -3804,12 +3851,11 @@ public class Sprint2 {
 		
 		m.addCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
 		return "redirect:/config/admin/dashboards?save="+true;
-		//return "redirect:/index";
 	}
 	
 	
-	@RequestMapping(value="/admin/search/pc")
-	public String searchPC(Model model,String s){
+	@RequestMapping(value="/search/pc")
+	public String searchPC(Model model,String s,String delete){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
@@ -3822,10 +3868,66 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("cis",m.SearchPC(s));
 		}
-		
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
 		return "sprint2/SearchPC";
 	}
 
+	
+	@RequestMapping(value="/view/pc")
+	public String viewPC(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("ordinateur", m.getPC(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		return "sprint2/viewPC";
+	}
+	
+	@RequestMapping(value="/admin/delete/pc")
+	public String deletePC(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deletePC(id);
+		return "redirect:/config/search/pc?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/edit/pc")
+	public String editPC(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("ordinateur",  m.getPC(id) );
+		model.addAttribute("logiciels", m.listLogicielPc());
+		model.addAttribute("peripheriques", m.ListPeriph());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUser());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("licenseos", m.listLicenseOs());
+		return "sprint2/editPC";
+	}
 	
 	
 }

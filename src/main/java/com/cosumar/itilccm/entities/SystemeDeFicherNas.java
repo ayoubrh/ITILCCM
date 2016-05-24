@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class SystemeDeFicherNas implements Serializable{
@@ -16,6 +19,11 @@ public class SystemeDeFicherNas implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
    private Long id;
+	
+	@NotEmpty
+	@Size(min=2,max=20)
+	@Column(unique = true)
+   private String nom;
    private String niveauRaid;
    private String taille;
    private String description;
@@ -30,6 +38,15 @@ public class SystemeDeFicherNas implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getNiveauRaid() {
@@ -69,9 +86,9 @@ public class SystemeDeFicherNas implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public SystemeDeFicherNas(String niveauRaid, String taille) {
+	public SystemeDeFicherNas(String nom, String taille) {
 		super();
-		this.niveauRaid = niveauRaid;
+		this.nom = nom;
 		this.taille = taille;
 	}
    	

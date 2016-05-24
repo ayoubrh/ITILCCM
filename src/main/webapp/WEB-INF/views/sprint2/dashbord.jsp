@@ -577,7 +577,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type NAS</span></a>
+													<a href="<c:url value="/config/admin/add/nas" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type NAS</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type NAS</span></a>
 												</div>
 											</div>
@@ -591,7 +591,7 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Bandothèque</span></a>
+													<a href="<c:url value="/config/admin/add/bandotheque" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Bandothèque</span></a>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Bandothèque</span></a>
 												</div>
 											</div>
@@ -724,7 +724,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/pc"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Ordinateur</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Ordinateur</span></a>
+													<a href="<c:url value="/config/search/pc"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Ordinateur</span></a>
 												</div>
 											</div>
 										</div>
