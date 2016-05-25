@@ -7,14 +7,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class SwitchSan extends Infrastructure implements Serializable{
 	
 	 @ManyToMany(mappedBy="switchSan")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	 @Column(nullable = true)
 	private Collection<Serveur> serveur;
 	
 	 @ManyToMany(mappedBy="switchSan")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	 @Column(nullable = true)
 	private Collection<SystemeDeStockage> systemeDeStockage;
 

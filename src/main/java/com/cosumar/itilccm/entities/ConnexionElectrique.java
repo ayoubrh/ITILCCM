@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -49,10 +51,12 @@ public class ConnexionElectrique implements Serializable{
    private String description;
    
    	@ManyToMany(mappedBy="connexionElectrique")
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    
    	@ManyToMany(mappedBy="connexionElectrique")
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    	
@@ -62,10 +66,12 @@ public class ConnexionElectrique implements Serializable{
    
    @Column(nullable=true)
    @ManyToMany
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Contrat> contrats;
    
    @Column(nullable=true)
    @ManyToMany
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Document> documents;
    	
    	@ManyToOne

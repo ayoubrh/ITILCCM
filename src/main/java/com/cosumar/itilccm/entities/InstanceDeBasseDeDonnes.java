@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -31,18 +33,22 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private java.util.Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
 	   //@NotEmpty

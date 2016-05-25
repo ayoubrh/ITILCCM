@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -50,14 +52,17 @@ public class TelephoneFixe implements Serializable{
    private Lieu lieu;
  	
  	@ManyToMany(cascade = CascadeType.ALL)
+ 	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Document> document;
  	
  	@ManyToMany(cascade = CascadeType.ALL)
+ 	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Contrat> contrat;
  	
  	@ManyToMany(cascade = CascadeType.ALL)
+ 	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Contact> contact;
 

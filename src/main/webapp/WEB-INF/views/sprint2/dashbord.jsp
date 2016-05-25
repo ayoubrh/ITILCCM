@@ -520,7 +520,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/rack" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Rack</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Rack</span></a>
+													<a href="<c:url value="/config/search/rack"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Rack</span></a>
 												</div>
 											</div>
 										</div>
@@ -534,7 +534,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/chassis" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Chassis</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
+													<a href="<c:url value="/config/search/chassis"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Chassis</span></a>
 												</div>
 											</div>
 										</div>
@@ -548,7 +548,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/serveur" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
+													<a href="<c:url value="/config/search/serveur"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
 												</div>
 											</div>
 										</div>
@@ -564,7 +564,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/switchsan" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Switch SAN</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Switch SAN</span></a>
+													<a href="<c:url value="/config/search/switchsan"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Switch SAN</span></a>
 												</div>
 											</div>
 										</div>
@@ -578,7 +578,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/nas" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type NAS</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type NAS</span></a>
+													<a href="<c:url value="/config/search/nas"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type NAS</span></a>
 												</div>
 											</div>
 										</div>
@@ -592,7 +592,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/bandotheque" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Bandothèque</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Bandothèque</span></a>
+													<a href="<c:url value="/config/search/bandotheque"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Bandothèque</span></a>
 												</div>
 											</div>
 										</div>
@@ -620,7 +620,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/dvr" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type DVR</span></a><br>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type DVR</span></a>
+													<a href="<c:url value="/config/search/dvr"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type DVR</span></a>
 												</div>
 											</div>
 										</div>
@@ -634,7 +634,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/equipementreseau" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
+													<a href="<c:url value="/config/search/equipementreseau"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
 												</div>
 											</div>
 										</div>
@@ -648,7 +648,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/systemedestockage" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Système de stockage</span></a><br>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Système de stockage</span></a>
+													<a href="<c:url value="/config/search/systemedestockage"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Système de stockage</span></a>
 												</div>
 											</div>
 										</div>
@@ -738,7 +738,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/telefixe"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Téléphone fixe</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Téléphone fixe</span></a>
+													<a href="<c:url value="/config/search/telefixe"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Téléphone fixe</span></a>
 												</div>
 											</div>
 										</div>
@@ -752,7 +752,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/telemobile"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Téléphone mobile</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Téléphone mobile</span></a>
+													<a href="<c:url value="/config/search/telemobile"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Téléphone mobile</span></a>
 												</div>
 											</div>
 										</div>
@@ -766,7 +766,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/sim"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Carte SIM</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Carte SIM</span></a>
+													<a href="<c:url value="/config/search/sim"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Carte SIM</span></a>
 												</div>
 											</div>
 										</div>
@@ -781,7 +781,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/tablette"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Tablette</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Tablette</span></a>
+													<a href="<c:url value="/config/search/tablette"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Tablette</span></a>
 												</div>
 											</div>
 										</div>
@@ -795,7 +795,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/imp"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Imprimante</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Imprimante</span></a>
+													<a href="<c:url value="/config/search/imp"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Imprimante</span></a>
 												</div>
 											</div>
 										</div>
@@ -809,7 +809,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/per"/>"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Périphérique</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Périphérique</span></a>
+													<a href="<c:url value="/config/search/per"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Périphérique</span></a>
 												</div>
 											</div>
 										</div>
@@ -981,7 +981,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/subnet" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Subnet</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Subnet</span></a>
+													<a href="<c:url value="/config/search/subnet"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Subnet</span></a>
 												</div>
 											</div>
 										</div>
@@ -995,7 +995,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/vlan" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type VLAN</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type VLAN</span></a>
+													<a href="<c:url value="/config/search/vlan"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type VLAN</span></a>
 												</div>
 											</div>
 										</div>
@@ -1009,7 +1009,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/volumeLogique" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Volume logique</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Volume logique</span></a>
+													<a href="<c:url value="/config/search/volumelogique"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Volume logique</span></a>
 												</div>
 											</div>
 										</div>
@@ -1065,7 +1065,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/camera" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Camera</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Camera</span></a>
+													<a href="<c:url value="/config/search/camera"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Camera</span></a>
 												</div>
 											</div>
 										</div>

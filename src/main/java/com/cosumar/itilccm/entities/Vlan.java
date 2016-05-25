@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -27,10 +29,12 @@ public class Vlan implements Serializable{
    private String description;
    
    	@ManyToMany(mappedBy="vlan")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Physique> physique;
    	
    	@ManyToMany
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Subnet> subnet;
 

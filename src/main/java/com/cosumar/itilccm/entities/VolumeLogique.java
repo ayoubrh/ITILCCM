@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -36,6 +38,7 @@ public class VolumeLogique implements Serializable{
    private String taille;
    
    	@ManyToMany(mappedBy="volumelogique")
+   	@LazyCollection(LazyCollectionOption.FALSE)
 	@Column(nullable = true)
    private Collection<Serveur> serveur;
    	
@@ -45,10 +48,12 @@ public class VolumeLogique implements Serializable{
    
    	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="volumelogique")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<MachineVirtuelle> machinevertuelle;
 	   
 	  @Column(nullable=true)
 	  @ManyToMany(mappedBy="volumelogique")
+	  @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Virtualisation> virtualisation;
 
    

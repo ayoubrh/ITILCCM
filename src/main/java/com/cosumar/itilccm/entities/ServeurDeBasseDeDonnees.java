@@ -8,12 +8,16 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @DiscriminatorValue("ServeurDeBasseDeDonnees")
 public class ServeurDeBasseDeDonnees extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
 			@OneToMany(mappedBy="serveurDeBasseDeDonnees")
+			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 			
 		

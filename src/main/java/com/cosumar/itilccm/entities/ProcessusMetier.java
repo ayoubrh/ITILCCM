@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -32,14 +34,17 @@ public class ProcessusMetier implements Serializable{
    
    	@Column(nullable=true)
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<SolutionApplicative> solutionApplicative;
    	
    	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contact> contacts;
 	
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Document> documents;
    	
 	public Long getId() {

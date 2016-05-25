@@ -9,6 +9,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class Dvr extends Infrastructure implements Serializable{
 	
@@ -18,6 +21,7 @@ public class Dvr extends Infrastructure implements Serializable{
    private String nbrCaneaux;
    
 	@OneToMany(mappedBy="dvr")
+	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Camera> camera;
 

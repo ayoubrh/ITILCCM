@@ -8,12 +8,16 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @DiscriminatorValue("Vcluster")
 public class Vcluster extends Virtualisation implements Serializable {
 	
 		@Column(nullable=true)
 		@OneToMany(mappedBy="vcluster")
+		@LazyCollection(LazyCollectionOption.FALSE)
 		private Collection<Hyperviseur> hyperviseur;
 	
 	

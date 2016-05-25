@@ -5159,7 +5159,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<Sim> SearchSIM(String s) {
-		Query req = em.createQuery("select sim from Sim sim where sim.nom LIKE :searchKeyword");
+		Query req = em.createQuery("select sim from Sim sim where sim.numero LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
@@ -5187,14 +5187,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<Vlan> SearchVlan(String s) {
-		Query req = em.createQuery("select v from Vlan v where v.nom LIKE :searchKeyword");
+		Query req = em.createQuery("select v from Vlan v where v.vlantag LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
 
 	@Override
 	public List<Subnet> SearchSubnet(String s) {
-		Query req = em.createQuery("select s from Subnet s where s.nom LIKE :searchKeyword");
+		Query req = em.createQuery("select s from Subnet s where s.nomDeSubnnet LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}

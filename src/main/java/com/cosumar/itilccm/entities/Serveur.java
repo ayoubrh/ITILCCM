@@ -10,6 +10,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class Serveur extends Infrastructure implements Serializable{
 	
@@ -17,15 +20,18 @@ public class Serveur extends Infrastructure implements Serializable{
    private String ram;
    
    	@ManyToMany
+   	@LazyCollection(LazyCollectionOption.FALSE)
  	@Column(nullable=true)
    private Collection<SwitchSan> switchSan;
    
    	@ManyToMany
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable=true)
    private Collection<VolumeLogique> volumelogique;
    	
    	 @Column(nullable=true)
 	 @OneToMany(mappedBy="serveur")
+   	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Hyperviseur> hyperviseur;
 	   
 	 @ManyToOne
@@ -34,6 +40,7 @@ public class Serveur extends Infrastructure implements Serializable{
 	   
 	 @Column(nullable=true)
 	 @OneToMany(mappedBy="serveur")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
    
 	

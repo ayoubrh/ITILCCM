@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -40,19 +42,23 @@ public class Rack implements Serializable{
    private String description;
    
    	@OneToMany(mappedBy="rack")
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Chassis> chassis;
    
    	@OneToMany(mappedBy="rack")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<PduElectrique> pduElectrique;
  
 
    	@OneToMany(mappedBy="rack")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
 	@OneToMany(mappedBy="rack")
+	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<EquipementReseau> equipementreseau;
    	
@@ -63,14 +69,17 @@ public class Rack implements Serializable{
    private Lieu lieu;
    	
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Document> document;
    	
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contrat> contrat;
    	
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;
 

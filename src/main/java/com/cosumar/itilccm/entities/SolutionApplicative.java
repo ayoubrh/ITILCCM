@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -31,52 +33,64 @@ public class SolutionApplicative implements Serializable{
    private String description;
    
    	@ManyToMany(mappedBy="solutionApplicative")
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
    	@ManyToMany(mappedBy="solutionApplicative")
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private java.util.Collection<EquipementReseau> equipementReseau;
    
    	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
  	@Column(nullable = true)
    private Collection<ProcessusMetier> processusMetier;
    	
    	
    	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Virtualisation> virtualisation;
 	   
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 	   
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<InstanceMiddleware> instanceMiddleware;
 	   
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<ApplicationWeb> applicationWeb;
 	 
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contact> contacts;
 	   
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contrat> contrats;
 	   
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Document> documents;
 	
 	public SolutionApplicative() {

@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -44,14 +46,17 @@ public class Camera implements Serializable{
    	
     @Column(nullable=true)
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Contact> contacts;
     
     @Column(nullable=true)
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Contrat> contrats;
     
     @Column(nullable=true)
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Document> documents;
     	
     @ManyToOne

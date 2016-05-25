@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -37,26 +39,32 @@ public class Virtualisation implements Serializable {
 	   
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="virtualisation")
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private java.util.Collection<VolumeLogique> volumelogique;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
 	   @ManyToMany
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 		   
 		public Virtualisation() {

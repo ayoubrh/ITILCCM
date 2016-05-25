@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -40,18 +42,22 @@ public class LicenseOs implements Serializable {
 		   
 		   @Column(nullable=true)
 		   @OneToMany(mappedBy="licenseOs")
+		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Ordinateur> ordinateur;
 		   
 		   @Column(nullable=true)
 		   @OneToMany(mappedBy="licenseOs")
+		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Serveur> serveur;
 		   
 		   @Column(nullable=true)
 		   @OneToMany(mappedBy="licenseOs")
+		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<MachineVirtuelle> machineVirtuelle;
 		   
 		   @Column(nullable=true)
 		   @ManyToMany
+		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Document> documents;
 	        
 

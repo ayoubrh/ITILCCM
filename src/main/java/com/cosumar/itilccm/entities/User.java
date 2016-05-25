@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -105,6 +107,7 @@ public class User implements Serializable {
    	private Departement departement;
    	
    	 @OneToMany(mappedBy="user")
+   	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Ordinateur> ordinateur;
    	
    	 @OneToOne(mappedBy="user")
@@ -120,6 +123,7 @@ public class User implements Serializable {
 	private TelephoneFixe telephoneFixe;
    	
    	 @OneToMany(mappedBy="user")
+   	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Imprimante> imprimante;
    	 
 	public Long getId() {

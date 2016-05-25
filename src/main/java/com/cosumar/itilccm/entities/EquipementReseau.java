@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -60,21 +62,26 @@ public class EquipementReseau implements Serializable{
    private Chassis chassis;
    
    	@ManyToMany
+   	@LazyCollection(LazyCollectionOption.FALSE)
    private java.util.Collection<ConnexionElectrique> connexionElectrique;
    
    	@ManyToMany(mappedBy="equipementReseau")
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
    	@OneToMany(mappedBy="equipementReseau")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<IntefaceReseau> intefaceReseau;
    
    	@ManyToMany
+   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<SolutionApplicative> solutionApplicative;
 
    	@ManyToMany(mappedBy="equipementReseau")
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Ordinateur> ordinateur;
    	
@@ -83,14 +90,17 @@ public class EquipementReseau implements Serializable{
    private Lieu lieu;
    	
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Document> document;
    	
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contrat> contrat;
    	
    	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;
    	

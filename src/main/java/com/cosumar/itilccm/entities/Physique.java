@@ -9,6 +9,8 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -29,6 +31,7 @@ public class Physique extends IntefaceReseau implements Serializable{
    private String vitesse;
    
    	@ManyToMany
+   	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Vlan> vlan;
 

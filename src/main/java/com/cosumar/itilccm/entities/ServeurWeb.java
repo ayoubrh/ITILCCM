@@ -8,6 +8,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 
 @Entity
 @DiscriminatorValue("ServeurWeb")
@@ -15,6 +18,7 @@ public class ServeurWeb extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
 			@OneToMany(mappedBy="serveurWeb")
+			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<ApplicationWeb> applicationWeb;
 			
 

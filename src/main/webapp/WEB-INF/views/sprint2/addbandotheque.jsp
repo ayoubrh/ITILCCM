@@ -666,20 +666,20 @@ Use search to find needed section.
 									<div class="form-group required">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="inputError-bande_nom" name="bande_nom" />
+											<input type="text" class="form-control" id="id_bande_nom" name="bande_nom" />
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Taille</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="inputError-4" name="bande_taille" />
+											<input type="text" class="form-control" id="id_bande_taille" name="bande_taille" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
 										<div class="col-sm-9">
-											<textarea class="form-control" name="bande_description" ></textarea>
+											<textarea class="form-control" id="id_bande_description" name="bande_description" ></textarea>
 										</div>
 									</div>
 								</form>
@@ -1569,16 +1569,45 @@ Use search to find needed section.
 		    
 
 			//<!-- Modal bandes -->
- 			document.getElementById("addbande").onclick = function () {
-		    	var chkArray = [];
-		    	$(".ckSan:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_san_".concat($(this).val()));
-			    	$( "#tableSan" ).append(tr);
-			    	//this.checked = false;
-		    	});
+ 				jQuery(document).ready(
+ 						function($) {
+ 						  $("#addbande").click(function(event) {
+ 							 alert("aaaaaaaa");
+ 							var nom = $('#id_bande_nom').val();
+ 							var taille = $('#id_bande_taille').val();
+ 							var description = $('#id_bande_description').val();
+ 							
+							alert(nom);
+							alert(taille);
+							alert(description);
+
+ 							$.post("/itilccm/config/admin/add/bande", {
+ 								nom : nom,
+ 								taille : taille,
+ 								description : description,
+ 								
+ 							}, function(data) {
+
+ 								var json = JSON.parse(data);
+ 								alert("data");
+ 								alert(data);
+ 								//...
+
+ 							}).done(function() {
+ 								alert("done");
+ 							}).fail(function(xhr, textStatus, errorThrown) {
+ 								alert(xhr);
+ 								alert(textStatus);
+ 								alert(errorThrown);
+ 							}).complete(function() {
+ 								alert("saved");
+ 										
+ 							});
+
+ 						});
+
+ 					  });
 		    	
-		    };
 		    
 		    document.getElementById("suppbande").onclick = function () {
 				var chkArray = [];

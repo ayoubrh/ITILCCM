@@ -8,14 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class SystemeDeStockage extends Infrastructure implements Serializable{
 	
 	 @ManyToMany
+	 @LazyCollection(LazyCollectionOption.FALSE)
   	 @Column(nullable=true)
 	private Collection<SwitchSan> switchSan;
 	
 	 @OneToMany(mappedBy="systemedestockage")
+	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<VolumeLogique> volumelogique;
 
 	public Collection<SwitchSan> getSwitchSan() {

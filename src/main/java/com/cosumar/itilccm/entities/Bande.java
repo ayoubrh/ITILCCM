@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -28,6 +30,7 @@ public class Bande implements Serializable{
    private String description;
    
    	@OneToMany(mappedBy="bande")
+   	@LazyCollection(LazyCollectionOption.FALSE)
  	@Column(nullable = true)
    private Collection<Bandotheque> bandotheque;
 
