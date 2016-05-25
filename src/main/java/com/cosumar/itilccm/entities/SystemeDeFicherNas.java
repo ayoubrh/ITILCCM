@@ -3,11 +3,14 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
@@ -30,10 +33,11 @@ public class SystemeDeFicherNas implements Serializable{
    private String taille;
    private String description;
    
-   	@OneToMany(mappedBy="systemeDeFicherNas")
-   	@LazyCollection(LazyCollectionOption.FALSE)
-	@Column(nullable = true)
-   private Collection<Nas> nas;
+   	
+   	
+	 @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	 @JoinColumn(name="nas_id")
+	private Nas nas;
 
 	public Long getId() {
 		return id;
@@ -75,12 +79,12 @@ public class SystemeDeFicherNas implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public Collection<Nas> getNas() {
+	
+	public Nas getNas() {
 		return nas;
 	}
 
-	public void setNas(Collection<Nas> nas) {
+	public void setNas(Nas nas) {
 		this.nas = nas;
 	}
 

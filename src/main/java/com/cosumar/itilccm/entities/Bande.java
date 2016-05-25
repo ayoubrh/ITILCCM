@@ -3,11 +3,14 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
@@ -29,11 +32,13 @@ public class Bande implements Serializable{
    private String taille;
    private String description;
    
-   	@OneToMany(mappedBy="bande")
-   	@LazyCollection(LazyCollectionOption.FALSE)
- 	@Column(nullable = true)
-   private Collection<Bandotheque> bandotheque;
 
+
+   	
+    @ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	 @JoinColumn(name="bandotheque_id")
+	private Bandotheque bandotheque;
+   	
 	public Long getId() {
 		return id;
 	}
@@ -66,11 +71,12 @@ public class Bande implements Serializable{
 		this.description = description;
 	}
 
-	public Collection<Bandotheque> getBandotheque() {
+	
+	public Bandotheque getBandotheque() {
 		return bandotheque;
 	}
 
-	public void setBandotheque(Collection<Bandotheque> bandotheque) {
+	public void setBandotheque(Bandotheque bandotheque) {
 		this.bandotheque = bandotheque;
 	}
 
