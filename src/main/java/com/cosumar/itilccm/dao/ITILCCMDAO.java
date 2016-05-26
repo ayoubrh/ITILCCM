@@ -327,7 +327,7 @@ public interface ITILCCMDAO {
 	
 	// Bandotheque
 	public  Long addBandotheque(Bandotheque Bandotheque);
-	//public  Long addFibre(Fibre f, Long pc);
+	public  Long addBandothequeAll(Bandotheque Bandotheque, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> Bandes, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editBandotheque(Bandotheque Bandotheque);
 	public List<Bandotheque> ListBandotheque();
 	public List<Bandotheque> SearchBandotheque(String s);
@@ -374,6 +374,7 @@ public interface ITILCCMDAO {
 	
 	// Nas
 	public  Long addNas(Nas Nas);
+	public  Long addNasAll(Nas Nas, Long lieu, Long rack, Long chassis, List<Long> sourceelec, List<Long> SystemedeFichierNAS, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat);
 	public void editNas(Nas Nas);
 	public List<Nas> ListNas();
 	public List<Nas> SearchNas(String s);

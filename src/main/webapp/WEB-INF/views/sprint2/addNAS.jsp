@@ -636,11 +636,38 @@ Use search to find needed section.
 								<h4 class="modal-title" id="myModalLabel">Ajout Système de fichier NAS</h4>
 							</div>
 							<div class="modal-body">
-								Nouveau fichier NAS
+								<form action="fichiernas" class="form-horizontal" id="FichierNASForm" method="POST">
+									<div class="form-group required">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="id_fichier_nas_nom" name="nom" />
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Niveau RAID</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="id_fichier_nas_niveauRaid" name="niveauRaid" />
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Taille</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" id="id_fichier_nas_taille" name="taille" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
+										<div class="col-sm-9">
+											<textarea class="form-control" id="id_fichier_nas_description" name="description" ></textarea>
+										</div>
+									</div>
+								</form>
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addfichiernas">Ajouter</button>
+								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addfichiernas">Créer</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -1522,28 +1549,61 @@ Use search to find needed section.
 		    
 		    
 
-			//<!-- Modal San -->
- 			document.getElementById("addfichiernas").onclick = function () {
-		    	var chkArray = [];
-		    	$(".ckSan:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_san_".concat($(this).val()));
-			    	$( "#tableSan" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
+			//<!-- Modal Systeme de fichier NAS -->
+ 			
 		    
-		    document.getElementById("suppfichiernas").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckSan:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_san_".concat($(this).val()));
-			    	$( "#tableSanpopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
+		    $(document).ready(function() {
+	    		   
+	    		  $('#addfichiernas').click(function(event) {
+	    		       
+
+					  var nom = $('#id_fichier_nas_nom').val();
+					  var niveauRaid = $('#id_fichier_nas_niveauRaid').val();
+					  var taille = $('#id_fichier_nas_taille').val();
+					  var description = $('#id_fichier_nas_description').val();
+	    		      var json = { "nom" : nom, "niveauRaid" : niveauRaid , "taille" : taille, "description": description};
+	    		    $.ajax({
+	    		        type: "POST",
+	    		        data: JSON.stringify(json),
+	    		        url: $("#FichierNASForm").attr("action"),
+	    		         
+	    		        beforeSend: function(xhr) {
+	    		            xhr.setRequestHeader("Accept", "application/json");
+	    		            xhr.setRequestHeader("Content-Type", "application/json");
+	    		        },
+	    		        success: function(fichiernas) {
+	    		        	if(fichiernas.id != null){
+	    		      		var tr = '<tr class="gradeA" id="tr_fichier_nas_'+fichiernas.id+'">'+
+	    		      				'<td class="supchekbox"><input type="checkbox" checked="checked" class="ckFichierNAS" name="chFichierNAS" value="'+fichiernas.id+'"></td>'+
+	    		      				'<td>'+fichiernas.nom+'</td>'+
+	    		      				'<td>'+fichiernas.niveauRaid+'</td>'+
+	    		      				'<td>'+fichiernas.taille+'</td>'+
+	    		      				'<td>'+fichiernas.description+'</td>'+
+	    		      				'</tr>'
+	    		      			;
+	    		      		$( "#tablefichiernas" ).append(tr);
+	    		      		
+	    		      		document.forms['FichierNASForm'].reset();
+	    		        	}
+	    		        }
+	    		    });
+	    		  });
+	    		    
+	    		});
+	    	
+	    	
+	    
+	    document.getElementById("suppfichiernas").onclick = function () {
+	    	
+	    	$(".ckFichierNAS:checked").each(function() {
+	    		//var tr = document.getElementById("tr_bande_".concat($(this).val()));
+		    	$( "#tr_fichier_nas_".concat($(this).val())).hide();
+               this.checked = false;
+	    	});
+	    };
+
+		    
+		    
 
 		    
 		    

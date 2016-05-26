@@ -27,7 +27,6 @@ public class SystemeDeFicherNas implements Serializable{
 	
 	@NotEmpty
 	@Size(min=2,max=20)
-	@Column(unique = true)
    private String nom;
    private String niveauRaid;
    private String taille;

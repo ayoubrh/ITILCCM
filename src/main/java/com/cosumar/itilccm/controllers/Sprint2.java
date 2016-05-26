@@ -13,6 +13,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -1388,6 +1390,15 @@ public class Sprint2 {
 		return "sprint2/addNAS";
 	}
 	
+
+	@RequestMapping(value="/admin/add/fichiernas", method=RequestMethod.POST, 
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SystemeDeFicherNas fichiernas(@RequestBody final SystemeDeFicherNas fichiernas) {
+		System.out.println("nom : "+fichiernas.getNom()+" NiveauRaid : "+fichiernas.getNiveauRaid()+" taille : "+fichiernas.getTaille()+"description : "+fichiernas.getDescription());
+		fichiernas.setId(m.addSystemeDeFicherNas(fichiernas));
+		return fichiernas;
+    }
+	
 	@RequestMapping(value="/admin/add/bandotheque")
 	public String addBandotheque(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -1410,11 +1421,15 @@ public class Sprint2 {
 		return "sprint2/addbandotheque";
 	}
 	
-	@RequestMapping(value = "/admin/add/bande", method = RequestMethod.POST)
-	@ResponseBody
-    public boolean bande(@RequestParam String nom, @RequestParam String taile,@RequestParam String description) {
-		System.out.println("nom : "+nom+"taile : "+taile+"description : "+description);
-		return true;
+	
+	
+	@RequestMapping(value="/admin/add/bande", method=RequestMethod.POST, 
+           produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Bande bande(@RequestBody final Bande bande) {
+		System.out.println("Bande 2");
+		System.out.println("nom : "+bande.getNom()+" taille : "+bande.getTaille()+"description : "+bande.getDescription());
+		bande.setId(m.addBande(bande));
+		return bande;
     }
 	
 	@RequestMapping(value="/admin/add/dvr")

@@ -661,25 +661,26 @@ Use search to find needed section.
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 								<h4 class="modal-title" id="myModalLabel">Ajout Bande</h4>
 							</div>
+							
 							<div class="modal-body">
-								<form action="saveBande" methode="post" class="form-horizontal" id="jq-validation-form">
+								<form action="bande" class="form-horizontal" id="BandeForm" method="POST">
 									<div class="form-group required">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="id_bande_nom" name="bande_nom" />
+											<input type="text" class="form-control" id="id_bande_nom" name="nom" />
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Taille</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" id="id_bande_taille" name="bande_taille" />
+											<input type="text" class="form-control" id="id_bande_taille" name="taille" />
 										</div>
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
 										<div class="col-sm-9">
-											<textarea class="form-control" id="id_bande_description" name="bande_description" ></textarea>
+											<textarea class="form-control" id="id_bande_description" name="description" ></textarea>
 										</div>
 									</div>
 								</form>
@@ -1454,7 +1455,7 @@ Use search to find needed section.
 <!-- Pixel Admin's javascripts -->
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
-
+<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  -->
 <script type="text/javascript">
 	init.push(function () {
 		$('#profile-tabs').tabdrop();
@@ -1569,7 +1570,7 @@ Use search to find needed section.
 		    
 
 			//<!-- Modal bandes -->
- 				jQuery(document).ready(
+ 			/**	jQuery(document).ready(
  						function($) {
  						  $("#addbande").click(function(event) {
  							 alert("aaaaaaaa");
@@ -1607,15 +1608,51 @@ Use search to find needed section.
  						});
 
  					  });
+		    	**/
+		    	
+		    	$(document).ready(function() {
+		    		   
+		    		  $('#addbande').click(function(event) {
+		    		       
+
+						  var nom = $('#id_bande_nom').val();
+						  var taille = $('#id_bande_taille').val();
+						  var description = $('#id_bande_description').val();
+		    		      var json = { "nom" : nom, "taille" : taille, "description": description};
+		    		    $.ajax({
+		    		        type: "POST",
+		    		        data: JSON.stringify(json),
+		    		        url: $("#BandeForm").attr("action"),
+		    		         
+		    		        beforeSend: function(xhr) {
+		    		            xhr.setRequestHeader("Accept", "application/json");
+		    		            xhr.setRequestHeader("Content-Type", "application/json");
+		    		        },
+		    		        success: function(bande) {
+		    		        	if(bande.id != null){
+		    		      		var tr = '<tr class="gradeA" id="tr_bande_'+bande.id+'">'+
+		    		      				'<td class="supchekbox"><input type="checkbox" checked="checked" class="ckBande" name="chBande" value="'+bande.id+'"></td>'+
+		    		      				'<td>'+bande.nom+'</td>'+
+		    		      				'<td>'+bande.taille+'</td>'+
+		    		      				'<td>'+bande.description+'</td>'+
+		    		      				'</tr>'
+		    		      			;
+		    		      		$( "#tablebandes" ).append(tr);
+		    		      		document.forms['BandeForm'].reset();
+		    		        }
+		    		        }
+		    		    });
+		    		  });
+		    		    
+		    		});
+		    	
 		    	
 		    
 		    document.getElementById("suppbande").onclick = function () {
-				var chkArray = [];
 		    	
-		    	$(".ckSan:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_san_".concat($(this).val()));
-			    	$( "#tableSanpopup" ).append(tr);
+		    	$(".ckBande:checked").each(function() {
+		    		//var tr = document.getElementById("tr_bande_".concat($(this).val()));
+			    	$( "#tr_bande_".concat($(this).val())).hide();
                     this.checked = false;
 		    	});
 		    };
