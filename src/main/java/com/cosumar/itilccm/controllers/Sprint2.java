@@ -320,6 +320,23 @@ public class Sprint2 {
 		return "sprint2/addImp";
 	}
 	
+	@RequestMapping(value="/admin/edit/imp")
+	public String ditImp(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("imprimante", m.getImp(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUser());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editImp";
+	}
+	
 	
 
 	@RequestMapping(value="/admin/add/saveImp", method = RequestMethod.POST)
@@ -400,6 +417,24 @@ public class Sprint2 {
 		model.addAttribute("users", m.listUser());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addPer";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/per")
+	public String editper(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("Peripherique", m.getPeriph(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUser());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editPer";
 	}
 	
 	
@@ -484,6 +519,24 @@ public class Sprint2 {
 	}
 	
 	
+	@RequestMapping(value="/admin/edit/telemobile")
+	public String editTeleMobile(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("telephneMobile", m.getTeleMobile(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUserTeleMobile());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editTeleMobile";
+	}
+	
+	
 
 	@RequestMapping(value="/admin/add/saveTeleMobile", method = RequestMethod.POST)
 	public String saveTeleMobile(@Valid TelephneMobile telem,BindingResult bind,HttpServletRequest req,Model model) {
@@ -541,7 +594,7 @@ public class Sprint2 {
 			m.addTeleMobileAll(telem, telem.getUser().getId(), telem.getLieu().getId(), chdoc, chcontact, chcontrat);
 		} else {
 			m.editTeleMobileAll(telem, telem.getUser().getId(), telem.getLieu().getId(), chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/telemobile?id="+telem.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -564,6 +617,23 @@ public class Sprint2 {
 		return "sprint2/addTeleFixe";
 	}
 	
+	
+	@RequestMapping(value="/admin/edit/telefixe")
+	public String editTeleFixe(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("telephoneFixe", m.getTeleFixe(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUserTeleFixe());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editTeleFixe";
+	}
 	
 
 	@RequestMapping(value="/admin/add/saveTeleFixe", method = RequestMethod.POST)
@@ -622,7 +692,7 @@ public class Sprint2 {
 			m.addTeleFixeAll(telefixe, telefixe.getUser().getId(), telefixe.getLieu().getId(), chdoc, chcontact, chcontrat);
 		} else {
 			m.editTeleFixeAll(telefixe, telefixe.getUser().getId(), telefixe.getLieu().getId(), chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/telefixe?id="+telefixe.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -645,6 +715,23 @@ public class Sprint2 {
 		return "sprint2/addTablette";
 	}
 	
+	
+	@RequestMapping(value="/admin/edit/tablette")
+	public String editTablette(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("tablette",  m.getTablette(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUserTablette());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editTablette";
+	}
 	
 
 	@RequestMapping(value="/admin/add/saveTablette", method = RequestMethod.POST)
@@ -703,7 +790,7 @@ public class Sprint2 {
 			m.addTabletteAll(tab, tab.getUser().getId(), tab.getLieu().getId(), chdoc, chcontact, chcontrat);
 		} else {
 			m.editTabletteAll(tab, tab.getUser().getId(), tab.getLieu().getId(), chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/tablette?id="+tab.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -723,6 +810,24 @@ public class Sprint2 {
 		model.addAttribute("users", m.listUserSim());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addSim";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/sim")
+	public String editSim(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("sim", m.getSIM(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("users", m.listUserSim());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editSim";
 	}
 	
 	@RequestMapping(value="/admin/add/saveSim", method = RequestMethod.POST)
@@ -780,7 +885,7 @@ public class Sprint2 {
 			m.addSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
 		} else {
 			m.editSIMAll(sim, sim.getUser().getId(), chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/sim?id="+sim.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -804,6 +909,26 @@ public class Sprint2 {
 		model.addAttribute("materiels", m.ListInfrastructure());
 		model.addAttribute("pduelect", m.ListPduElectrique());
 		return "sprint2/addRack";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/rack")
+	public String editRack(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("rack", m.getRack(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("chasiss", m.ListChassis());
+		model.addAttribute("materiels", m.ListInfrastructure());
+		model.addAttribute("pduelect", m.ListPduElectrique());
+		return "sprint2/editRack";
 	}
 	
 	@RequestMapping(value="/admin/add/saveRack", method = RequestMethod.POST)
@@ -899,7 +1024,7 @@ public class Sprint2 {
 			m.addRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
 		} else {
 			m.editRackAll(rack, rack.getLieu().getId(), chchas, chmat, pdu, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/rack?id="+rack.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -922,6 +1047,26 @@ public class Sprint2 {
 		model.addAttribute("materiels", m.ListInfrastructure());
 		return "sprint2/addChassis";
 	}
+	
+	
+	@RequestMapping(value="/admin/edit/chassis")
+	public String editChassis(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("chassis", m.getChassis(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("materiels", m.ListInfrastructure());
+		return "sprint2/editChassis";
+	}
+	
 	
 	@RequestMapping(value="/admin/add/saveChassis", method = RequestMethod.POST)
 	public String saveChassis(@Valid Chassis chassis,BindingResult bind,HttpServletRequest req,Model model) {
@@ -990,7 +1135,7 @@ public class Sprint2 {
 			m.addChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
 		} else {
 			m.editChassisAll(chassis, chassis.getLieu().getId(), chassis.getRack().getId(), chmat, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/chassis?id="+chassis.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1021,6 +1166,33 @@ public class Sprint2 {
 		model.addAttribute("lieus", m.listLieu());
 		model.addAttribute("licenseos", m.listLicenseOs());
 		return "sprint2/addServeur";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/serveur")
+	public String editServeur(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("serveur", m.getServeur(id));
+		model.addAttribute("logiciels", m.listLogicielEtApplication());
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("sans", m.ListSwitchSan());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("licenseos", m.listLicenseOs());
+		return "sprint2/editServeur";
 	}
 	
 	@RequestMapping(value="/admin/add/saveServeur", method = RequestMethod.POST)
@@ -1184,7 +1356,7 @@ public class Sprint2 {
 			m.addServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
 		} else {
 			m.editServeurAll(serveur, serveur.getLieu().getId(), serveur.getRack().getId(), serveur.getChassis().getId(), serveur.getLicenseOs().getId(), chsourceelec, chlog, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/serveur?id="+serveur.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1213,6 +1385,31 @@ public class Sprint2 {
 		model.addAttribute("sourceelec", m.ListConnexionElectrique());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addSystemedestockage";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/systemedestockage")
+	public String editSystemedestockage(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("systemeDeStockage", m.getSystemeDeStockage(id) );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("sans", m.ListSwitchSan());
+		model.addAttribute("volumesLogiques", m.ListVolumeLogique());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editSystemedestockage";
 	}
 	
 	@RequestMapping(value="/admin/add/saveSystemedestokage", method = RequestMethod.POST)
@@ -1363,7 +1560,7 @@ public class Sprint2 {
 			m.addSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
 		} else {
 			m.editSystemeDeStockageAll(sds, sds.getLieu().getId(), sds.getRack().getId(), sds.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chSanlong, chvl, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/systemedestockage?id="+sds.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1388,6 +1585,29 @@ public class Sprint2 {
 		model.addAttribute("sourceelec", m.ListConnexionElectrique());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addNAS";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/nas")
+	public String editNAS(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("nas", m.getNas(id) );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editNAS";
 	}
 	
 	@RequestMapping(value="/admin/add/saveNAS", method = RequestMethod.POST)
@@ -1524,6 +1744,7 @@ public class Sprint2 {
 			m.addNasAll(nas, nas.getLieu().getId(), nas.getRack().getId(), nas.getChassis().getId(), chsourceelec, fichiernas, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
 		} else {
 			m.editNasAll(nas, nas.getLieu().getId(), nas.getRack().getId(), nas.getChassis().getId(), chsourceelec, fichiernas, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+			return "redirect:/config/view/nas?id="+nas.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1557,6 +1778,28 @@ public class Sprint2 {
 		model.addAttribute("sourceelec", m.ListConnexionElectrique());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addbandotheque";
+	}
+	
+	@RequestMapping(value="/admin/edit/bandotheque")
+	public String editBandotheque(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("bandotheque", m.getBandotheque(id) );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editbandotheque";
 	}
 	
 	@RequestMapping(value="/admin/add/saveBandotheque", method = RequestMethod.POST)
@@ -1693,6 +1936,7 @@ public class Sprint2 {
 			m.addBandothequeAll(bando, bando.getLieu().getId(), bando.getRack().getId(), bando.getChassis().getId(), chsourceelec, bande, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
 		} else {
 			m.editBandothequeAll(bando, bando.getLieu().getId(), bando.getRack().getId(), bando.getChassis().getId(), chsourceelec, bande, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+			return "redirect:/config/view/bandotheque?id="+bando.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1729,7 +1973,27 @@ public class Sprint2 {
 		return "sprint2/addDVR";
 	}
 	
-	
+	@RequestMapping(value="/admin/edit/dvr")
+	public String editDvr(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("dvr", m.getDvr(id) );
+		model.addAttribute("cameras", m.ListCamera());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editDVR";
+	}
 
 	@RequestMapping(value="/admin/add/saveDvr", method = RequestMethod.POST)
 	public String saveDvr(@Valid Dvr dvr,BindingResult bind,HttpServletRequest req,Model model) {
@@ -1853,7 +2117,7 @@ public class Sprint2 {
 			m.addDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
 		} else {
 			m.editDvrAll(dvr, dvr.getLieu().getId(), dvr.getRack().getId(), dvr.getChassis().getId(), chsourceelec, cam, chir, cher, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/dvr?id="+dvr.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -1878,6 +2142,29 @@ public class Sprint2 {
 		model.addAttribute("sourceelec", m.ListConnexionElectrique());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addSwitchSAN";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/switchsan")
+	public String editSwitchsan(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("switchSan", m.getSwitchSan(id));
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editSwitchSAN";
 	}
 	
 
@@ -2005,7 +2292,7 @@ public class Sprint2 {
 			m.addSwitchSanAll(san, san.getLieu().getId(), san.getRack().getId(), san.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
 		} else {
 			m.editSwitchSanAll(san, san.getLieu().getId(), san.getRack().getId(), san.getChassis().getId(), chsourceelec, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/switchsan?id="+san.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -2030,6 +2317,28 @@ public class Sprint2 {
 		model.addAttribute("sourceelec", m.ListConnexionElectrique());
 		model.addAttribute("lieus", m.listLieu());
 		return "sprint2/addEquipementreseau";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/equipementreseau")
+	public String editEquipementreseau(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("equipementReseau", m.getEquipementReseau(id) );
+		model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("racks", m.ListRack());
+		model.addAttribute("chassiss", m.ListChassis());
+		model.addAttribute("sourceelec", m.ListConnexionElectrique());
+		model.addAttribute("lieus", m.listLieu());
+		return "sprint2/editEquipementreseau";
 	}
 	
 	@RequestMapping(value="/admin/add/saveEquipementreseau", method = RequestMethod.POST)
@@ -2143,7 +2452,7 @@ public class Sprint2 {
 			m.addEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
 		} else {
 			m.editEquipementReseauAll(er, er.getLieu().getId(), er.getRack().getId(), er.getChassis().getId(), chsourceelec, chsolapp, chir, chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/equipementreseau?id="+er.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -3974,6 +4283,17 @@ public class Sprint2 {
 		return "sprint2/addSubnet";
 	}
 	
+	@RequestMapping(value="/admin/edit/subnet")
+	public String editSubnet(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("subnet", m.getSubnet(id));
+		model.addAttribute("vlans", m.ListVlan());
+		return "sprint2/editSubnet";
+	}
+	
 	@RequestMapping(value="/admin/add/saveSubnet", method = RequestMethod.POST)
 	public String saveSubnet(@Valid Subnet subnet,BindingResult bind,HttpServletRequest req,Model model) {
 		if(bind.hasErrors()){
@@ -4005,7 +4325,7 @@ public class Sprint2 {
 			m.addSubnetAll(subnet, vlan);
 		} else {
 			m.editSubnetAll(subnet, vlan);
-
+			return "redirect:/config/view/subnet?id="+subnet.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -4023,6 +4343,21 @@ public class Sprint2 {
 		model.addAttribute("ss", m.ListSystemeDeStockage());
 		model.addAttribute("error", false);
 		return "sprint2/addVolumeLogique";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/volumeLogique")
+	public String editVolumeLogique(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("volumeLogique", m.getVolumeLogique(id));
+		model.addAttribute("serveurs", m.ListServeur());
+		model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
+		model.addAttribute("ss", m.ListSystemeDeStockage());
+		model.addAttribute("error", false);
+		return "sprint2/editVolumeLogique";
 	}
 
 	@RequestMapping(value="/admin/add/saveVolumeLogique", method = RequestMethod.POST)
@@ -4076,7 +4411,7 @@ public class Sprint2 {
 			m.addVolumeLogiqueAll(vl, server, mv);
 		} else {
 			m.editVolumeLogiqueAll(vl, server, mv);
-			
+			return "redirect:/config/view/volumelogique?id="+vl.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -4091,6 +4426,19 @@ public class Sprint2 {
 		model.addAttribute("subnets", m.ListSubnet());
 		model.addAttribute("interfacereseaux", m.ListPhysique());
 		return "sprint2/addVlan";
+	}
+	
+	
+	@RequestMapping(value="/admin/edit/vlan")
+	public String editVlan(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("vlan", new Vlan());
+		model.addAttribute("subnets", m.ListSubnet());
+		model.addAttribute("interfacereseaux", m.ListPhysique());
+		return "sprint2/editVlan";
 	}
 	
 
@@ -4140,7 +4488,7 @@ public class Sprint2 {
 			m.addVlanAll(vlan, subnet, inter_res);
 		} else {
 			m.editVlanAll(vlan, subnet, inter_res);
-
+			return "redirect:/config/view/vlan?id="+vlan.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -4162,6 +4510,22 @@ public class Sprint2 {
 		return "sprint2/addCamera";
 	}
 	
+	
+	@RequestMapping(value="/admin/edit/camera")
+	public String editCamera(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("camera", m.getCamera(id) );
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("lieus", m.listLieu());
+		model.addAttribute("dvr", m.ListDvr());
+		return "sprint2/editCamera";
+	}
 	
 	@RequestMapping(value="/admin/add/saveCamera", method = RequestMethod.POST)
 	public String saveCamera(@Valid Camera camera,BindingResult bind,HttpServletRequest req,Model model) {
@@ -4226,7 +4590,7 @@ public class Sprint2 {
 			m.addCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
 		} else {
 			m.editCameraAll(camera, camera.getLieu().getId(), camera.getDvr().getId(), chdoc, chcontact, chcontrat);
-
+			return "redirect:/config/view/camera?id="+camera.getId()+"&save="+true;
 		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
@@ -5027,6 +5391,234 @@ public class Sprint2 {
 		model.addAttribute("logged", logged);
 		m.deletePC(id);
 		return "redirect:/config/search/pc?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/telefixe")
+	public String deletePTeleFixe(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteTeleFixe(id);
+		return "redirect:/config/search/telefixe?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/telemobile")
+	public String deletetTeleMobile(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteTeleMobile(id);
+		return "redirect:/config/search/telemobile?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/sim")
+	public String deleteSIM(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteSIM(id);
+		return "redirect:/config/search/sim?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/tablette")
+	public String deleteTablette(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteTablette(id);
+		return "redirect:/config/search/tablette?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/imp")
+	public String deletePImp(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteImp(id);
+		return "redirect:/config/search/imp?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/per")
+	public String deletePer(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deletePeriph(id);
+		return "redirect:/config/search/per?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/rack")
+	public String deleteRack(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteRack(id);
+		return "redirect:/config/search/rack?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/chassis")
+	public String deleteChassis(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteChassis(id);
+		return "redirect:/config/search/chassis?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/serveur")
+	public String deleteServeur(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteServeur(id);
+		return "redirect:/config/search/serveur?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/switchsan")
+	public String deleteSwitchSan(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteSwitchSan(id);
+		return "redirect:/config/search/switchsan?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/nas")
+	public String deleteNas(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteNas(id);
+		return "redirect:/config/search/nas?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/bandotheque")
+	public String deleteBandotheque(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteBandotheque(id);
+		return "redirect:/config/search/bandotheque?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/dvr")
+	public String deleteDvr(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteDvr(id);
+		return "redirect:/config/search/dvr?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/equipementreseau")
+	public String deleteEquipementReseau(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteEquipementReseau(id);
+		return "redirect:/config/search/equipementreseau?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/systemedestockage")
+	public String deletePSystemedeStockage(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteSystemeDeStockage(id);
+		return "redirect:/config/search/systemedestockage?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/subnet")
+	public String deleteSubnet(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteSubnet(id);
+		return "redirect:/config/search/subnet?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/vlan")
+	public String deleteVlan(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteVlan(id);
+		return "redirect:/config/search/vlan?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/volumelogique")
+	public String deleteVolumeLogique(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteVolumeLogique(id);
+		return "redirect:/config/search/volumelogique?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/camera")
+	public String deleteCamera(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteCamera(id);
+		return "redirect:/config/search/camera?delete="+true;
 	}
 	
 	@RequestMapping(value="/admin/edit/pc")

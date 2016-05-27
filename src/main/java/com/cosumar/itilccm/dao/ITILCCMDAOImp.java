@@ -5358,7 +5358,9 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		if(SystemedeFichierNAS != null){
 			Collection<SystemeDeFicherNas> fichiernas = new ArrayList<SystemeDeFicherNas>();
 			for (Long s : SystemedeFichierNAS) {
-				fichiernas.add(getSystemeDeFicherNas(s));
+				SystemeDeFicherNas sysfichiernas = getSystemeDeFicherNas(s);
+				fichiernas.add(sysfichiernas);
+				sysfichiernas.setNas(Nas);
 			}
 			Nas.setSystemeDeFicherNas(fichiernas);
 		}
@@ -5450,7 +5452,9 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		if(SystemedeFichierNAS != null){
 			Collection<SystemeDeFicherNas> fichiernas = new ArrayList<SystemeDeFicherNas>();
 			for (Long s : SystemedeFichierNAS) {
-				fichiernas.add(getSystemeDeFicherNas(s));
+				SystemeDeFicherNas sysfichiernas = getSystemeDeFicherNas(s);
+				fichiernas.add(sysfichiernas);
+				sysfichiernas.setNas(Nas);
 			}
 			Nas.setSystemeDeFicherNas(fichiernas);
 		}
@@ -5543,7 +5547,9 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		if(Bandes != null){
 			Collection<Bande> bande = new ArrayList<Bande>();
 			for (Long b : Bandes) {
-				bande.add(getBande(b));
+				Bande band = getBande(b);
+				bande.add(band);
+				band.setBandotheque(Bandotheque);
 			}
 			Bandotheque.setBande(bande);
 		}
@@ -5635,7 +5641,9 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		if(Bandes != null){
 			Collection<Bande> bande = new ArrayList<Bande>();
 			for (Long b : Bandes) {
-				bande.add(getBande(b));
+				Bande band = getBande(b);
+				bande.add(band);
+				band.setBandotheque(Bandotheque);
 			}
 			Bandotheque.setBande(bande);
 		}

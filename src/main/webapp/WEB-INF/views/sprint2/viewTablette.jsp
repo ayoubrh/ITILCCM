@@ -31,10 +31,9 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Détail Ordinateur - ITIL-CCM</title>
+	<title>Détail Tablette - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -488,13 +487,11 @@ Use search to find needed section.
 				
 				
 				
-				
-				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail d'un Ordinateur</span>
-						<a href="<c:url value="/config/admin/edit/pc?id=${ordinateur.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
-						<a href="<c:url value="/config/admin/delete/pc?id=${ordinateur.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						<span class="panel-title col-md-9">Détail d'une Tablette</span>
+						<a href="<c:url value="/config/admin/edit/tablette?id=${tablette.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/tablette?id=${tablette.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
 						
 					</div>
 					<div class="panel-body">
@@ -509,18 +506,8 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								<li>
-									<a href="#profile-tabs-peripheriques" data-toggle="tab">Périphérique</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-logiciels" data-toggle="tab">Logiciels</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Intarfaces réseaux</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-equipementreseaux" data-toggle="tab">Equipement réseaux</a>
-								</li>
+								
+								
 								
 								<li>
 									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
@@ -542,94 +529,76 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
-										${ordinateur.nom }
+										${tablette.nom }
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut : </label>
-										${ordinateur.statut }
+										${tablette.statut }
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité : </label>
-										${ordinateur.criticite }
+										${tablette.criticite }
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Utilisateur : </label>
-										<a href="<c:url value="/users/profil?id=${ordinateur.user.id }" />">${ordinateur.user.prenom } ${ordinateur.user.nom }</a>
+										<a href="<c:url value="/users/profil?id=${tablette.user.id }" />">${tablette.user.prenom } ${tablette.user.nom }</a>
+										
 									</div>
 									
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu : </label>
-										<a href="<c:url value="/config/view/lieu?id=${ordinateur.lieu.id }" />">${ordinateur.lieu.nom }</a>
+										<a href="<c:url value="/config/view/lieu?id=${tablette.lieu.id }" />">${tablette.lieu.nom }</a>
+										
 									</div>
 									
 									
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque : </label>
-										${ordinateur.marque }
+										${tablette.marque }
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle : </label>
-										${ordinateur.modele }
+										${tablette.modele }
 									</div>
 									
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS : </label>
-										<a href="<c:url value="/config/view/licenseos?id=${ordinateur.licenseOs.id }" />">${ordinateur.licenseOs.nom }</a>
-									</div>
-									
-									<div class="form-group required">
-										<label class="col-sm-3 control-label">Type : </label>
-										${ordinateur.type }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-cpu" class="col-sm-3 control-label">CPU : </label>
-										${ordinateur.cpu }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-ram" class="col-sm-3 control-label">RAM : </label>
-										${ordinateur.ram }
-									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série : </label>
-										${ordinateur.numeroDeSerie }
+										${tablette.numeroDeSerie }
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset : </label>
-										${ordinateur.numeroAsset }
+										${tablette.numeroAsset }
 									</div>
 									
 									
 									<div class="form-group">
 										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat : </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateD_achat}" />
+										<fmt:formatDate type="date" dateStyle="long" value="${tablette.dateD_achat}" />
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production : </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateDeMiseEnProduction}" />
+										<fmt:formatDate type="date" dateStyle="long" value="${tablette.dateDeMiseEnProduction}" />
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie : </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${ordinateur.dateDeFinDeGarantie}" />
+										<fmt:formatDate type="date" dateStyle="long" value="${tablette.dateDeFinDeGarantie}" />
 									</div>
 									
 									
 									<div class="form-group">
 										<label for="jq-validation-description" class="col-sm-3 control-label">Description : </label>
-										${ordinateur.description }
+										${tablette.description }
 									</div>
 									
 									
@@ -637,168 +606,6 @@ Use search to find needed section.
 		
 								</div> <!-- / .tab-pane -->
 								
-								<div class="tab-pane fade widget-peripheriques" id="profile-tabs-peripheriques">
-									
-		
-		
-									<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Numèro de Série</th>
-												<th>Numèro Asset</th>
-												<th>Date de mise en production</th>	
-											</tr>
-										</thead>
-										<tbody id="tablePer">
-											<c:forEach items="${ordinateur.peripherique}" var="per">
-												<tr class="gradeA" id="tr_per_${per.id }">
-													<td><a href="<c:url value="/config/view/peripherique?id=${per.id }" />">${per.nom }</a></td>
-													<td>${per.statut }</td>
-													<td>${per.criticite }</td>
-													<td>${per.numeroDeSerie }</td>
-													<td>${per.numeroAsset }</td>
-													<td><fmt:formatDate type="date" dateStyle="long" value="${per.dateDeMiseEnProduction}" /></td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-									
-		
-									
-								</div>
-								
-								<div class="tab-pane fade widget-logiciels" id="profile-tabs-logiciels">
-									<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Chemin d'installation</th>
-												<th>Date de mise en production</th>
-												
-											</tr>
-										</thead>
-										<tbody id="tableLogicile">
-											<c:forEach items="${ordinateur.logicielEtApplication}" var="l">
-												<tr class="gradeA" id="tr_log_${l.id }">
-													<td><a href="<c:url value="/config/view/logicieletapplication?id=${l.id }" />">${l.nom }</a></td>
-													<td>${l.statut }</td>
-													<td>${l.criticite }</td>
-													<td>${l.cheminD_installation }</td>
-													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
-
-												</tr>
-											</c:forEach>
-											
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
-									
-		
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom</th>
-													<th>Adresse IP</th>
-													<th>Adresse MAC</th>
-													<th>Commentaire</th>
-													<th>Passerelle</th>
-													<th>Masque de sous réseau </th>
-													<th>Vitesse</th>	
-													
-												</tr>
-											</thead>
-											<tbody id="tableinterfacereseau">
-												<c:forEach items="${ordinateur.intefaceReseau}" var="ir">
-												<tr class="gradeA" id="tr_ir_${ir.id }">
-													<td><a href="<c:url value="/config/view/intefacereseau?id=${ir.id }" />">${ir.nom }</a></td>
-													<td>${ir.adresseIp }</td>
-													<td>${ir.adresseMac }</td>
-													<td>${ir.commentaire }</td>
-													<td>${ir.passerelle }</td>
-													<td>${ir.masqueDeSousReseau }</td>
-													<td>${ir.vitesse }</td>
-												</tr>
-											</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									
-
-		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-equipementreseaux" id="profile-tabs-equipementreseaux">
-									
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom</th>
-													<th>Statut</th>
-													<th>Criticité</th>
-													<th>Lieu</th>
-													<th>Marque</th>
-													<th>Modèle</th>
-													<th>Numéro de série</th>
-													
-												</tr>
-											</thead>
-											<tbody id="tableEquipementreseaux">
-												<c:forEach items="${ordinateur.equipementReseau}" var="er">
-												<tr class="gradeA" id="tr_er_${er.id }">
-													<td><a href="<c:url value="/config/view/equipementreseau?id=${er.id }" />">${er.nom }</a></td>
-													<td>${er.statut }</td>
-													<td>${er.criticite }</td>
-													<td><a href="<c:url value="/config/view/lieu?id=${er.lieu.id }" />">${er.lieu.nom }</a></td>
-													<td>${er.marque }</td>
-													<td>${er.modele }</td>
-													<td>${er.numeroDeSerie }</td>
-												</tr>
-											</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									
-
-		
-		
-									
-								</div> <!-- / .tab-pane -->
 								
 								
 								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
@@ -818,16 +625,17 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontact">
-												<c:forEach items="${ordinateur.contact}" var="contact">
-												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
-													<td>${contact.statut }</td>
-													<td>${contact.organisme }</td>
-													<td>${contact.email }</td>
-													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
-													<td>${contact.fonction }</td>
-												</tr>
-											</c:forEach>
+												<c:forEach items="${tablette.contact}" var="contact">
+													<tr class="gradeA" id="tr_contact_${contact.id }">
+														<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
+														<td>${contact.statut }</td>
+														<td>${contact.organisme }</td>
+														<td>${contact.email }</td>
+														<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+														<td>${contact.fonction }</td>
+													</tr>
+												</c:forEach>
+												
 												
 											</tbody>
 										</table>
@@ -835,8 +643,6 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									
-		
 		
 									
 								</div> <!-- / .tab-pane -->
@@ -856,7 +662,7 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tabledocument">
-												<c:forEach items="${ordinateur.document}" var="doc">
+												<c:forEach items="${tablette.document}" var="doc">
 													<tr class="gradeA" id="tr_doc_${doc.id }">
 														<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
 														<td>${doc.statut }</td>
@@ -871,7 +677,6 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									
 		
 		
 									
@@ -895,7 +700,7 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontrat">
-												<c:forEach items="${ordinateur.contrat}" var="contrat">
+												<c:forEach items="${tablette.contrat}" var="contrat">
 													<tr class="gradeA" id="tr_contrat_${contrat.id }">
 														<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
 														<td>${contrat.typeDeContrat }</td>
@@ -907,24 +712,22 @@ Use search to find needed section.
 													</tr>
 												</c:forEach>
 												
+												
 											</tbody>
 										</table>
 									</div>
 									<br>
 									<br>
 
-									
 		
 		
 									
 								</div> <!-- / .tab-pane -->
-								
 								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
 								
-								Tickets
+										Tickets
 								
 								</div>
-								
 							</div> <!-- / .tab-content -->
 						</div>
 				
@@ -933,7 +736,6 @@ Use search to find needed section.
 					
 					
 					
-							
 					</div>
 					
 					
@@ -1015,6 +817,9 @@ Use search to find needed section.
 			
 			
 		    
+		  
+
+
 
 	});
 	window.PixelAdmin.start(init);
