@@ -1390,6 +1390,144 @@ public class Sprint2 {
 		return "sprint2/addNAS";
 	}
 	
+	@RequestMapping(value="/admin/add/saveNAS", method = RequestMethod.POST)
+	public String saveNAS(@Valid Nas nas,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			return "sprint2/addNAS";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chSolutionApplicative = req.getParameterValues("chSolutionApplicative");
+		List<Long> chsolapp = null;
+		System.out.println("---------chSolutionApplicative : "+chSolutionApplicative+" chsolapp : "+chsolapp);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+
+		String[] chFichierNas = req.getParameterValues("chFichierNAS");
+		List<Long> fichiernas = null;
+		System.out.println("---------chSan : "+chFichierNas+" chSanlong : "+fichiernas);
+		
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		if(chSolutionApplicative != null){
+			chsolapp = new ArrayList<Long>();
+			for (int i = 0; i < chSolutionApplicative.length; i++) {
+				System.out.println("---------chSolutionApplicative "+chSolutionApplicative[i]);
+				chsolapp.add(Long.parseLong(chSolutionApplicative[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux "+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		
+		if(chFichierNas != null){
+			fichiernas = new ArrayList<Long>();
+			for (int i = 0; i < chFichierNas.length; i++) {
+				System.out.println("---------chSan "+chFichierNas[i]);
+				fichiernas.add(Long.parseLong(chFichierNas[i]));
+			}
+		}
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+nas.getRack()+" ID : "+nas.getRack().getId());
+		System.out.println("Chassis : "+nas.getChassis()+" ID : "+nas.getChassis().getId());
+		System.out.println("Lieu : "+nas.getLieu()+" ID : "+nas.getLieu().getId());
+		
+		if(nas.getId()==null){
+			m.addNasAll(nas, nas.getLieu().getId(), nas.getRack().getId(), nas.getChassis().getId(), chsourceelec, fichiernas, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		} else {
+			m.editNasAll(nas, nas.getLieu().getId(), nas.getRack().getId(), nas.getChassis().getId(), chsourceelec, fichiernas, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		}
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	
 
 	@RequestMapping(value="/admin/add/fichiernas", method=RequestMethod.POST, 
            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -1421,6 +1559,143 @@ public class Sprint2 {
 		return "sprint2/addbandotheque";
 	}
 	
+	@RequestMapping(value="/admin/add/saveBandotheque", method = RequestMethod.POST)
+	public String saveBandotheque(@Valid Bandotheque bando,BindingResult bind,HttpServletRequest req,Model model) {
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+			model.addAttribute("logged", logged);
+			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			model.addAttribute("interfacereseaux", m.ListPhysique());
+			model.addAttribute("equipementreseaux", m.ListEquipementReseau());
+			model.addAttribute("documents", m.listDocument());
+			model.addAttribute("contrats", m.listContrat());
+			model.addAttribute("contacts", m.listContact());
+			model.addAttribute("racks", m.ListRack());
+			model.addAttribute("chassiss", m.ListChassis());
+			model.addAttribute("sourceelec", m.ListConnexionElectrique());
+			model.addAttribute("lieus", m.listLieu());
+			return "sprint2/addbandotheque";
+		}
+		System.out.println("Test test 3");
+		
+		String[] chSolutionApplicative = req.getParameterValues("chSolutionApplicative");
+		List<Long> chsolapp = null;
+		System.out.println("---------chSolutionApplicative : "+chSolutionApplicative+" chsolapp : "+chsolapp);
+		
+		String[] chinterfacereseau = req.getParameterValues("chinterfacereseau");
+		List<Long> chir = null;
+		System.out.println("--------- chinterfacereseau : "+chinterfacereseau+" chir : "+chir);
+		
+		String[] chequipementreseaux = req.getParameterValues("chequipementreseaux");
+		List<Long> cher = null;
+		System.out.println("---------chequipementreseaux : "+chequipementreseaux+" cher : "+cher);
+
+		String[] chBande = req.getParameterValues("chBande");
+		List<Long> bande = null;
+		System.out.println("---------chBande : "+chBande+" bande : "+bande);
+		
+		
+		String[] chdocument = req.getParameterValues("chdocument");
+		List<Long> chdoc = null;
+		System.out.println("---------chdocument : "+chdocument+" chdoc : "+chdoc);
+		
+		String[] chContrat = req.getParameterValues("chContrat");
+		List<Long> chcontrat = null;
+		System.out.println("---------chContrat : "+chContrat+" chcontrat : "+chcontrat);
+		
+		String[] chContact = req.getParameterValues("chContact");
+		List<Long> chcontact = null;
+		System.out.println("---------chContact : "+chContact+" chcontact : "+chcontact);
+		
+		
+		
+		if(chSolutionApplicative != null){
+			chsolapp = new ArrayList<Long>();
+			for (int i = 0; i < chSolutionApplicative.length; i++) {
+				System.out.println("---------chSolutionApplicative "+chSolutionApplicative[i]);
+				chsolapp.add(Long.parseLong(chSolutionApplicative[i]));
+			}
+			
+		}
+		
+		if(chinterfacereseau != null){
+			chir = new ArrayList<Long>();
+			for (int i = 0; i < chinterfacereseau.length; i++) {
+				System.out.println("---------chinterfacereseau "+chinterfacereseau[i]);
+				chir.add(Long.parseLong(chinterfacereseau[i]));
+			}
+		}
+		if(chequipementreseaux != null){
+			cher = new ArrayList<Long>();
+			for (int i = 0; i < chequipementreseaux.length; i++) {
+				System.out.println("---------chequipementreseaux "+chequipementreseaux[i]);
+				cher.add(Long.parseLong(chequipementreseaux[i]));
+			}
+		}
+		
+		if(chBande != null){
+			bande = new ArrayList<Long>();
+			for (int i = 0; i < chBande.length; i++) {
+				System.out.println("---------chSan "+chBande[i]);
+				bande.add(Long.parseLong(chBande[i]));
+			}
+		}
+		
+		if(chdocument != null){
+			chdoc = new ArrayList<Long>();
+			for (int i = 0; i < chdocument.length; i++) {
+				System.out.println("---------chdocument "+chdocument[i]);
+				chdoc.add(Long.parseLong(chdocument[i]));
+			}
+		}
+		if(chContrat != null){
+			chcontrat = new ArrayList<Long>();
+			for (int i = 0; i < chContrat.length; i++) {
+				System.out.println("---------chContrat "+chContrat[i]);
+				chcontrat.add(Long.parseLong(chContrat[i]));
+			}
+		}
+		if(chContact != null){
+			chcontact = new ArrayList<Long>();
+			for (int i = 0; i < chContact.length; i++) {
+				System.out.println("---------chContact "+chContact[i]);
+				chcontact.add(Long.parseLong(chContact[i]));
+			}
+		}
+		
+		List<Long> chsourceelec = null;
+		String[] sourceelecA = req.getParameterValues("sourceelecA");
+		System.out.println(" sourceelecA : "+sourceelecA+"sourceelecA[0]"+sourceelecA[0]);
+		String[] sourceelecB = req.getParameterValues("sourceelecB");
+		System.out.println(" sourceelecB : "+sourceelecB+"sourceelecB[0]"+sourceelecB[0]);
+		
+		if(sourceelecA[0] != ""){
+			chsourceelec = new ArrayList<Long>();
+			chsourceelec.add(Long.parseLong(sourceelecA[0]));
+		}
+		if(sourceelecB[0] != ""){
+			if(chsourceelec.size() == 0){
+				chsourceelec = new ArrayList<Long>();
+			}
+			
+			chsourceelec.add(Long.parseLong(sourceelecB[0]));
+		}
+		System.out.println("######### chsourceelec : "+chsourceelec);
+		System.out.println("Rack : "+bando.getRack()+" ID : "+bando.getRack().getId());
+		System.out.println("Chassis : "+bando.getChassis()+" ID : "+bando.getChassis().getId());
+		System.out.println("Lieu : "+bando.getLieu()+" ID : "+bando.getLieu().getId());
+		
+		if(bando.getId()==null){
+			m.addBandothequeAll(bando, bando.getLieu().getId(), bando.getRack().getId(), bando.getChassis().getId(), chsourceelec, bande, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		} else {
+			m.editBandothequeAll(bando, bando.getLieu().getId(), bando.getRack().getId(), bando.getChassis().getId(), chsourceelec, bande, chsolapp, chir, cher, chdoc, chcontact, chcontrat);
+		}
+		return "redirect:/config/admin/dashboards?save="+true;
+	}
 	
 	
 	@RequestMapping(value="/admin/add/bande", method=RequestMethod.POST, 

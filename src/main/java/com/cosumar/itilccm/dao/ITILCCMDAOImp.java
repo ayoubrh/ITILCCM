@@ -5368,6 +5368,98 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return Nas.getId();
 	}
 	
+	@Override
+	public Long editNasAll(Nas Nas, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SystemedeFichierNAS, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Nas.setLieu(lie);
+		} else {
+			Nas.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			Nas.setRack(rac);
+		}else {
+			Nas.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			Nas.setChassis(chas);
+		}else {
+			Nas.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Nas.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Nas.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Nas.setContrat(contr);
+		}
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			Nas.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(Nas);
+			}
+			Nas.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			Nas.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			Nas.setSolutionApplicative(solapp);
+		}
+		
+		if(SystemedeFichierNAS != null){
+			Collection<SystemeDeFicherNas> fichiernas = new ArrayList<SystemeDeFicherNas>();
+			for (Long s : SystemedeFichierNAS) {
+				fichiernas.add(getSystemeDeFicherNas(s));
+			}
+			Nas.setSystemeDeFicherNas(fichiernas);
+		}
+		
+		
+		em.merge(Nas);
+		return Nas.getId();
+	}
+	
 	
 	@Override
 	public Long addBandothequeAll(Bandotheque Bandotheque, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
@@ -5458,6 +5550,98 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		
 		
 		em.persist(Bandotheque);
+		return Bandotheque.getId();
+	}
+	
+	@Override
+	public Long editBandothequeAll(Bandotheque Bandotheque, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> Bandes, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+
+		if(lieu != null){
+			Lieu lie = getLieu(lieu);
+			Bandotheque.setLieu(lie);
+		} else {
+			Bandotheque.setLieu(null);
+		}
+		if(rack != null){
+			Rack rac = getRack(rack);
+			Bandotheque.setRack(rac);
+		}else {
+			Bandotheque.setRack(null);
+		}
+		if(chassis != null){
+			Chassis chas = getChassis(chassis);
+			Bandotheque.setChassis(chas);
+		}else {
+			Bandotheque.setChassis(null);
+		}
+		
+		if(document != null){
+			Collection<Document> doc = new ArrayList<Document>();
+			for (Long d : document) {
+				doc.add(getDocument(d));
+			}
+			Bandotheque.setDocument(doc);
+		}
+		if(contact != null){
+			Collection<Contact> conta = new ArrayList<Contact>();
+			for (Long c : contact) {
+				conta.add(getContact(c));
+			}
+			Bandotheque.setContact(conta);
+		}
+		if(contrat != null){
+			Collection<Contrat> contr = new ArrayList<Contrat>();
+			for (Long c : contrat) {
+				contr.add(getContrat(c));
+			}
+			Bandotheque.setContrat(contr);
+		}
+		
+		if(equipementreseaux != null){
+			Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+			for (Long e : equipementreseaux) {
+				er.add(getEquipementReseau(e));
+			}
+			Bandotheque.setEquipementReseau(er);
+		}
+		
+		if(interfacereseau != null){
+			Collection<IntefaceReseau> ir = new ArrayList<IntefaceReseau>();
+			for (Long i : interfacereseau) {
+				IntefaceReseau inter = getInterfaceReseau(i);
+				ir.add(inter);
+				inter.setInfrastructure(Bandotheque);
+			}
+			Bandotheque.setIntefaceReseau(ir);
+		}
+		if(sourceelec != null){
+			Collection<ConnexionElectrique> elec = new ArrayList<ConnexionElectrique>();
+			for (Long source : sourceelec) {
+				elec.add(getConnexionElectrique(source));
+			}
+			Bandotheque.setConnexionElectrique(elec);
+		}
+		
+		if(SolutionApplicative != null){
+			Collection<SolutionApplicative> solapp = new ArrayList<SolutionApplicative>();
+			for (Long sapp : SolutionApplicative) {
+				solapp.add(getSolutionApplicative(sapp));
+			}
+			Bandotheque.setSolutionApplicative(solapp);
+		}
+		
+		if(Bandes != null){
+			Collection<Bande> bande = new ArrayList<Bande>();
+			for (Long b : Bandes) {
+				bande.add(getBande(b));
+			}
+			Bandotheque.setBande(bande);
+		}
+		
+		
+		em.merge(Bandotheque);
 		return Bandotheque.getId();
 	}
 }

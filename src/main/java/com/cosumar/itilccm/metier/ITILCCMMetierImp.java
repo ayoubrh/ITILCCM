@@ -2088,5 +2088,18 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.addNasAll(Nas, lieu, rack, chassis, sourceelec, SystemedeFichierNAS, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
 	}
 
+	@Override
+	public Long editBandothequeAll(Bandotheque Bandotheque, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> Bandes, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
+			List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.editBandothequeAll(Bandotheque, lieu, rack, chassis, sourceelec, Bandes, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
+	
+	@Override
+	public Long editNasAll(Nas Nas, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
+			List<Long> SystemedeFichierNAS, List<Long> SolutionApplicative, List<Long> interfacereseau,
+			List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat) {
+		return dao.editNasAll(Nas, lieu, rack, chassis, sourceelec, SystemedeFichierNAS, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
 }
 
