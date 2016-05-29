@@ -2075,6 +2075,11 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 	
 	@Override
+	public List<IntefaceReseau> SearchInterfaceReseau(String s) {
+		return dao.SearchInterfaceReseau(s);
+	}
+	
+	@Override
 	public Long addBandothequeAll(Bandotheque Bandotheque, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
 			List<Long> Bandes, List<Long> SolutionApplicative, List<Long> interfacereseau, List<Long> equipementreseaux,
 			List<Long> document, List<Long> contact, List<Long> contrat) {
@@ -2100,6 +2105,36 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> SystemedeFichierNAS, List<Long> SolutionApplicative, List<Long> interfacereseau,
 			List<Long> equipementreseaux, List<Long> document, List<Long> contact, List<Long> contrat) {
 		return dao.editNasAll(Nas, lieu, rack, chassis, sourceelec, SystemedeFichierNAS, SolutionApplicative, interfacereseau, equipementreseaux, document, contact, contrat);
+	}
+	
+	@Override
+	public List<Ordinateur> ListPCUser(Long id) {
+		return dao.ListPCUser(id);
+	}
+	
+	@Override
+	public List<Imprimante> ListImpUser(Long id) {
+		return dao.ListImpUser(id);
+	}
+	
+	@Override
+	public List<Sim> ListSIMUser(Long id) {
+		return dao.ListSIMUser(id);
+	}
+	
+	@Override
+	public List<Tablette> ListTabletteUser(Long id) {
+		return dao.ListTabletteUser(id);
+	}
+	
+	@Override
+	public List<TelephoneFixe> ListTeleFixeUser(Long id) {
+		return dao.ListTeleFixeUser(id);
+	}
+	
+	@Override
+	public List<TelephneMobile> ListTeleMobileUser(Long id) {
+		return dao.ListTeleMobileUser(id);
 	}
 }
 

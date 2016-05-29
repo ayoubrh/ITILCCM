@@ -563,8 +563,226 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-materiels">
 		
-											Materiels
+											<!-- Primary table -->
+								<div class="table-primary">
+									<div class="table-header">
+										<div class="table-caption">
+											<img src="<%=request.getContextPath()%>/resources/assets/images/png/laptop.png" alt="" class="">&nbsp; Ordinateurs
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Nom</th>
+												<th>Type</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:set var="id" value="1" />
+											<c:forEach items="${pc }" var="ordi">
+												<tr>
+													<td>${id }</td>
+													<td><a href="<c:url value="/config/view/pc?id=${ordi.id }" />">${ordi.nom }</a></td>
+													<td>${ordi.type }</td>
+													<td>${ordi.marque }</td>
+													<td>${ordi.modele }</td>
+													<td>${ordi.numeroDeSerie }</td>
+												</tr>
+												<c:set var="id" value="${id + 1}"/>
+											</c:forEach>
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Primary table -->
+								
+								<!-- Warning table -->
+								<div class="table-warning">
+									<div class="table-header">
+										<div class="table-caption">
+											<img src="<%=request.getContextPath()%>/resources/assets/images/png/printer.png" alt="" class="">&nbsp; Imprimante
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Nom</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:set var="id" value="1" />
+											<c:forEach items="${imp }" var="im">
+												<tr>
+													<td>${id }</td>
+													<td><a href="<c:url value="/config/view/imp?id=${im.id }" />">${im.nom }</a></td>
+													<td>${im.marque }</td>
+													<td>${im.modele }</td>
+													<td>${im.numeroDeSerie }</td>
+												</tr>
+												<c:set var="id" value="${id + 1}"/>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Warning table -->
+								
+								<!-- Success table -->
+								<div class="table-success">
+									<div class="table-header">
+										<div class="table-caption">
+											<img src="<%=request.getContextPath()%>/resources/assets/images/png/ipphone.png" alt="" class="">&nbsp; Téléphone Fixe
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Nom</th>
+												<th>Numéro</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:set var="id" value="1" />
+											<c:forEach items="${telefixe }" var="fixe">
+												<tr>
+													<td>${id }</td>
+													<td><a href="<c:url value="/config/view/telefixe?id=${fixe.id }" />">${fixe.nom }</a></td>
+													<td>${fixe.numero }</td>
+													<td>${fixe.marque }</td>
+													<td>${fixe.modele }</td>
+													<td>${fixe.numeroDeSerie }</td>
+												</tr>
+												<c:set var="id" value="${id + 1}"/>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Success table -->
+								
+								<!-- Light table -->
+								<div class="table-danger">
+									<div class="table-header">
+										<div class="table-caption">
+											<img src="<%=request.getContextPath()%>/resources/assets/images/png/mobile-phone.png" alt="" class="">&nbsp; Téléphone Mobile
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Nom</th>
+												<th>IMEI</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:set var="id" value="1" />
+											<c:forEach items="${telemobile }" var="mobile">
+												<tr>
+													<td>${id }</td>
+													<td><a href="<c:url value="/config/view/telefixe?id=${mobile.id }" />">${mobile.nom }</a></td>
+													<td>${mobile.imei }</td>
+													<td>${mobile.marque }</td>
+													<td>${mobile.modele }</td>
+													<td>${mobile.numeroDeSerie }</td>
+												</tr>
+												<c:set var="id" value="${id + 1}"/>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Light table -->
 		
+		
+								<!-- Danger table -->
+								<div class="table-light">
+									<div class="table-header">
+										<div class="table-caption">
+											<img src="<%=request.getContextPath()%>/resources/assets/images/png/sim.png" alt="" class="">&nbsp; Carte SIM
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Numéro</th>
+												<th>PIN</th>
+												<th>PUK</th>
+												<th>Opérateur</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:set var="id" value="1" />
+											<c:forEach items="${sim }" var="s">
+												<tr>
+													<td>${id }</td>
+													<td><a href="<c:url value="/config/view/sim?id=${s.id }" />">${s.numero }</a></td>
+													<td>${s.pin }</td>
+													<td>${s.puk }</td>
+													<td>${s.operateur }</td>
+												</tr>
+												<c:set var="id" value="${id + 1}"/>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Danger table -->
+								<!-- Info table -->
+								<div class="table-info">
+									<div class="table-header">
+										<div class="table-caption">
+											<img src="<%=request.getContextPath()%>/resources/assets/images/png/tablet.png" alt="" class="">&nbsp; Tablette
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Nom</th>
+												<th>Marque</th>
+												<th>Modèle</th>
+												<th>Numéro de série</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:set var="id" value="1" />
+											<c:forEach items="${tab }" var="t">
+												<tr>
+													<td>${id }</td>
+													<td><a href="<c:url value="/config/view/tablette?id=${t.id }" />">${t.nom }</a></td>
+													<td>${t.marque }</td>
+													<td>${t.modele }</td>
+													<td>${t.numeroDeSerie }</td>
+												</tr>
+												<c:set var="id" value="${id + 1}"/>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Info table -->
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade" id="profile-tabs-incidents">
 									

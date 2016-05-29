@@ -145,8 +145,12 @@ public class Sprint1 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		model.addAttribute("user", m.getUser(id));
-		//User t = m.getUser(id);
-		//System.out.println(t.getBphoto()+"\n"+t.getPhoto());
+		model.addAttribute("pc", m.ListPCUser(id));
+		model.addAttribute("imp", m.ListImpUser(id));
+		model.addAttribute("telemobile", m.ListTeleMobileUser(id));
+		model.addAttribute("telefixe", m.ListTeleFixeUser(id));
+		model.addAttribute("tab", m.ListTabletteUser(id));
+		model.addAttribute("sim", m.ListSIMUser(id));
 		return "sprint1/profil";
 	}
 	

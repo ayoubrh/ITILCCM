@@ -4596,6 +4596,28 @@ public class Sprint2 {
 	}
 	
 	
+	@RequestMapping(value="/search/interfacereseau")
+	public String searchinterfacereseau(Model model,String s,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    //String[] s = req.getParameterValues("s");
+	    System.out.println("Search : "+s);
+	    model.addAttribute("s", s);
+		model.addAttribute("logged", logged);
+		if(s == null){
+			model.addAttribute("cis", m.ListInterfaceReseau());
+		} else {
+			model.addAttribute("cis",m.SearchInterfaceReseau(s));
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchInterfaceReseau";
+	}
+	
 	@RequestMapping(value="/search/pc")
 	public String searchPC(Model model,String s,String delete){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

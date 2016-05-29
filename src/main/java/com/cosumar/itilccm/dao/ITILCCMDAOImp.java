@@ -322,6 +322,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
+	public List<Ordinateur> ListPCUser(Long id) {
+		Query req = em.createQuery("select pc from Ordinateur pc join pc.user u where u.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
+	
+	@Override
 	public List<Ordinateur> SearchPC(String s) {
 		Query req = em.createQuery("select pc from Ordinateur pc where pc.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
@@ -365,6 +372,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select imp from Imprimante imp");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Imprimante> ListImpUser(Long id) {
+		Query req = em.createQuery("select imp from Imprimante imp join imp.user u where u.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
 
 	@Override
 	public Imprimante getImp(Long id) {
@@ -404,6 +418,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
+	public List<TelephneMobile> ListTeleMobileUser(Long id) {
+		Query req = em.createQuery("select telem from TelephneMobile telem join telem.user u where u.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
+	
+	@Override
 	public TelephneMobile getTeleMobile(Long id) {
 		return em.find(TelephneMobile.class, id);
 	}
@@ -440,7 +461,12 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return req.getResultList();
 	}
 	
-	
+	@Override
+	public List<Sim> ListSIMUser(Long id) {
+		Query req = em.createQuery("select sim from Sim sim join sim.user u where u.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
 
 	@Override
 	public Sim getSIM(Long id) {
@@ -478,6 +504,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select tab from Tablette tab");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Tablette> ListTabletteUser(Long id) {
+		Query req = em.createQuery("select tab from Tablette tab join tab.user u where u.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
 
 	@Override
 	public Tablette getTablette(Long id) {
@@ -513,6 +546,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public List<TelephoneFixe> ListTeleFixe() {
 		Query req = em.createQuery("select fixe from TelephoneFixe fixe");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<TelephoneFixe> ListTeleFixeUser(Long id) {
+		Query req = em.createQuery("select fixe from TelephoneFixe fixe join fixe.user u where u.id = :userid");
+		req.setParameter("userid", id);
 		return req.getResultList();
 	}
 
@@ -5276,6 +5316,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return req.getResultList();
 	}
 
+	@Override
+	public List<IntefaceReseau> SearchInterfaceReseau(String s) {
+		Query req = em.createQuery("select i from InterfaceReseau i where i.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+	
 	@Override
 	public Long addNasAll(Nas Nas, Long lieu, Long rack, Long chassis, List<Long> sourceelec,
 			List<Long> SystemedeFichierNAS, List<Long> SolutionApplicative, List<Long> interfacereseau,

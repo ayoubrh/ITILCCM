@@ -44,6 +44,7 @@ public interface ITILCCMDAO {
 	public  Long addPCUser(Ordinateur pc, Long u);
 	public void editPC(Ordinateur pc);
 	public List<Ordinateur> ListPC();
+	public List<Ordinateur> ListPCUser(Long id);
 	public List<Ordinateur> SearchPC(String s);
 	public Ordinateur getPC(Long id);
 	public void deletePC(Long id);
@@ -124,6 +125,7 @@ public interface ITILCCMDAO {
 	public  Long editImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addImpUser(Imprimante imp, Long u);
 	public void editImp(Imprimante imp);
+	public List<Imprimante> ListImpUser(Long id);
 	public List<Imprimante> ListImp();
 	public Imprimante getImp(Long id);
 	public void deleteImp(Long id);
@@ -136,6 +138,7 @@ public interface ITILCCMDAO {
 	public  Long editTeleMobileAll(TelephneMobile telem, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
 	public  Long addTeleMobileUser(TelephneMobile telem, Long u);
 	public void editTeleMobile(TelephneMobile telem);
+	public List<TelephneMobile> ListTeleMobileUser(Long id);
 	public List<TelephneMobile> ListTeleMobile();
 	public TelephneMobile getTeleMobile(Long id);
 	public void deleteTeleMobile(Long id);
@@ -149,6 +152,7 @@ public interface ITILCCMDAO {
 	public  Long addSIMUser(Sim sim, Long u);
 	public void editSIM(Sim sim);
 	public List<Sim> ListSIM();
+	public List<Sim> ListSIMUser(Long id);
 	public List<Sim> SearchSIM(String s);
 	public Sim getSIM(Long id);
 	public void deleteSIM(Long id);
@@ -160,6 +164,7 @@ public interface ITILCCMDAO {
 	public  Long addTabletteUser(Tablette tab, Long u);
 	public void editTablette(Tablette tab);
 	public List<Tablette> ListTablette();
+	public List<Tablette> ListTabletteUser(Long id);
 	public List<Tablette> SearchTablette(String s);
 	public Tablette getTablette(Long id);
 	public void deleteTablette(Long id);
@@ -171,6 +176,7 @@ public interface ITILCCMDAO {
 	public  Long addTeleFixeUser(TelephoneFixe fixe, Long u);
 	public void editTeleFixe(TelephoneFixe fixe);
 	public List<TelephoneFixe> ListTeleFixe();
+	public List<TelephoneFixe> ListTeleFixeUser(Long id);
 	public List<TelephoneFixe> SearchTeleFixe(String s);
 	public TelephoneFixe getTeleFixe(Long id);
 	public void deleteTeleFixe(Long id);
@@ -188,6 +194,7 @@ public interface ITILCCMDAO {
 	
 	// IntefaceReseau
 	public List<IntefaceReseau> ListInterfaceReseau();
+	public List<IntefaceReseau> SearchInterfaceReseau(String s);
 	public IntefaceReseau getInterfaceReseau(Long id);
 	
 	// Fibre
