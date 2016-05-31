@@ -28,12 +28,12 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Détail Bandothèque - ITIL-CCM</title>
+	<title>Détail Interface Fibre - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -410,7 +410,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
@@ -475,54 +475,21 @@ Use search to find needed section.
 -->
 
 
-
-				<!-- Javascript -->
-				<script>
-					init.push(function () {
-						
-
-						// Setup validation
-						$("#jq-validation-form").validate({
-							rules: {
-								
-								'inputError-bande_nom': {
-									required: true,
-									minlength: 2,
-									maxlength: 20
-								}
-								
-							},
-							messages: {
-								'inputError-bande_nom': 'Ne peut pas étre vide!'
-							}
-						});
-					});
-				</script>
-				<!-- / Javascript -->
-				
-				
-				
-				
-				
-				
-				
 				<c:if test="${save == true }">
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						L'élément de configuration est bien modifier.
 					</div>
 				</c:if>
-				
-				
-				
-				
-				
-				
+		
+
+
+
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail Bandothèque</span>
-						<a href="<c:url value="/config/admin/edit/bandotheque?id=${bandotheque.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
-						<a href="<c:url value="/config/admin/delete/bandotheque?id=${bandotheque.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						<span class="panel-title col-md-9">Détail Interface Fibre</span>
+						<a href="<c:url value="/config/admin/edit/fibre?id=${fibre.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/fibre?id=${fibre.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
 						
 					</div>
 					<div class="panel-body">
@@ -538,459 +505,67 @@ Use search to find needed section.
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-bandes" data-toggle="tab">Bandes</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-solutions_applicatives" data-toggle="tab">Solutions Applicatives</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Intarfaces réseaux</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-equipementreseaux" data-toggle="tab">Equipement réseaux</a>
-								</li>
-								
-								
-								<li>
-									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
-								</li>
-								<li>
 									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
-								</li>
-								
+								</li>							
 							</ul>
-		
+		                 </div>
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group">
-										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
-										${bandotheque.nom }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut : </label>
-										${bandotheque.statut }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité : </label>
-										${bandotheque.criticite }
-									</div>
-									
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu : </label>
-										<a href="<c:url value="/config/view/lieu?id=${bandotheque.lieu.id }" />">${bandotheque.lieu.nom }</a>										
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Rack : </label>
-										<a href="<c:url value="/config/view/rack?id=${bandotheque.rack.id }" />">${bandotheque.rack.nom }</a>
-										
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Chassis : </label>
-										<a href="<c:url value="/config/view/chassis?id=${bandotheque.chassis.id }" />">${bandotheque.chassis.nom }</a>
-										
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque : </label>
-										${bandotheque.marque }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle : </label>
-										${bandotheque.modele }
-									</div>
-									
-									
-									
-									
-									<div class="form-group">
-										<label for="jq-validation-cpu" class="col-sm-3 control-label">IP : </label>
-										${bandotheque.ip }
-									</div>
-									<div class="form-group">
-										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série : </label>
-										${bandotheque.numeroDeSerie }
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset : </label>
-										${bandotheque.numeroAsset }
-									</div>
-									
-									
-									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat : </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${bandotheque.dateD_achat}" />
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production : </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${bandotheque.dateDeMiseEnProduction}" />
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie : </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${bandotheque.dateDeFinDeGarantie}" />
-									</div>
-									
-									
-									
-									<div class="form-group">
-					
-										<label for="jq-validation-email" class="col-sm-3 control-label">Source électrique A : </label>
-										${bandotheque.connexionElectrique[0].nom }
-								
-									</div>
-									
-									
-									<div class="form-group">
-					
-										<label for="jq-validation-email" class="col-sm-3 control-label">Source électrique B : </label>
-										${bandotheque.connexionElectrique[1].nom }
-								
-									</div>
-										
-										
-									
-									
-									
-									
-									<div class="form-group">
-										<label for="jq-validation-description" class="col-sm-3 control-label">Description : </label>
-										${bandotheque.description }
-									</div>
-									
-									
 									
 		
-								</div> <!-- / .tab-pane -->
-								
+									<div class="panel-body">
+						
+						
 							
-								
-								<div class="tab-pane fade widget-solutions_applicatives" id="profile-tabs-solutions_applicatives">
-									
-										
-                         			<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-											  <tr>
-												<th>Solution Applicative</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Date de mise en production</th>
-											  </tr>
-											</thead>
-											<tbody id="tableSolutionApplicative">
-												<c:forEach items="${bandotheque.solutionApplicative}" var="sa">
-													<tr class="gradeA" id="tr_SolutionApplicative_${sa.id }">
-														<td><a href="<c:url value="/config/view/solutionapplicative?id=${sa.id }" />">${sa.nom }</a></td>
-														<td>${sa.statut }</td>
-														<td>${sa.criticite}</td>
-														<td>${sa.dateDeMiseEnProduction }</td>
-													</tr>
-												</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
+								<div class="form-group required">
+									<label for="jq-validation-email" class="col-sm-3 control-label">Nom : </label>
+									${fibre.nom }
 								</div>
-								
-								<div class="tab-pane fade widget-intarfaces_reseaux" id="profile-tabs-intarfaces_reseaux">
-									
-		
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom</th>
-													<th>Adresse IP</th>
-													<th>Adresse MAC</th>
-													<th>Commentaire</th>
-													<th>Passerelle</th>
-													<th>Masque de sous réseau </th>
-													<th>Vitesse</th>	
-													
-												</tr>
-											</thead>
-											<tbody id="tableinterfacereseau">
-												<c:forEach items="${bandotheque.intefaceReseau}" var="ir">
-													<tr class="gradeA" id="tr_ir_${ir.id }">
-														<td><a href="<c:url value="/config/view/interfacereseau?id=${ir.id }" />">${ir.nom }</a></td>
-														<td>${ir.adresseIp }</td>
-														<td>${ir.adresseMac }</td>
-														<td>${ir.commentaire }</td>
-														<td>${ir.passerelle }</td>
-														<td>${ir.masqueDeSousReseau }</td>
-														<td>${ir.vitesse }</td>
-													</tr>
-												</c:forEach>
-												
-											</tbody>
-										</table>
+				
+									<div class="form-group">
+										<label for="jq-validation-email" class="col-sm-3 control-label">Matériel : </label>
+										 
+										<c:if test="${fibre.equipementReseau != null }">
+											<a href="<c:url value="/config/view/equipementreseau?id=${fibre.equipementReseau.id }" />">${fibre.equipementReseau.nom }</a>		
+										</c:if>
+										<c:if test="${fibre.infrastructure != null }">
+											<a href="<c:url value="/config/view/serveur?id=${fibre.infrastructure.id }" />">${fibre.infrastructure.nom }</a>		
+										</c:if>
 									</div>
-									<br>
-									<br>
-
-									
-
+							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Vitesse : </label>
+								${fibre.vitesse }
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Topologie : </label>
+								${fibre.topologie }
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">WWN : </label>
+								${fibre.wwn }
+							</div> 
+							
+							</div>
 		
-									
-		
-									
-		
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-equipementreseaux" id="profile-tabs-equipementreseaux">
-									
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom</th>
-													<th>Statut</th>
-													<th>Criticité</th>
-													<th>Lieu</th>
-													<th>Marque</th>
-													<th>Modèle</th>
-													<th>Numéro de série</th>
-													
-												</tr>
-											</thead>
-											<tbody id="tableEquipementreseaux">
-												<c:forEach items="${bandotheque.equipementReseau}" var="er">
-												<tr class="gradeA" id="tr_er_${er.id }">
-													<td><a href="<c:url value="/config/view/equipementreseau?id=${er.id }" />">${er.nom }</a></td>
-													<td>${er.statut }</td>
-													<td>${er.criticite }</td>
-													<td>${er.lieu.nom }</td>
-													<td>${er.marque }</td>
-													<td>${er.modele }</td>
-													<td>${er.numeroDeSerie }</td>
-												</tr>
-											</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									
-
-		
-		
-									
 								</div> <!-- / .tab-pane -->
 								
-								<div class="tab-pane fade widget-bandes" id="profile-tabs-bandes">
-									
-										
-
-									<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th>Nom</th>
-												<th>Taille</th>
-												<th>Description</th>	
-											</tr>
-										</thead>
-										<tbody id="tablebandes">
-											<c:forEach items="${bandotheque.bande}" var="bande">
-												<tr class="gradeA" id="tr_er_${er.id }">
-													<td><a href="<c:url value="/config/view/bande?id=${bande.id }" />">${bande.nom }</a></td>
-													<td>${bande.taille }</td>
-													<td>${bande.description }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-		
-									
-								</div>
-								
-								
-								
-								
-								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
-									
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom complet</th>
-													<th>Statut</th>
-													<th>Organisation</th>
-													<th>Email</th>
-													<th>Téléphone</th>
-													<th>Fonction</th>	
-													
-												</tr>
-											</thead>
-											<tbody id="tablecontact">
-												<c:forEach items="${bandotheque.contact}" var="contact">
-													<tr class="gradeA" id="tr_contact_${contact.id }">
-														<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
-														<td>${contact.statut }</td>
-														<td>${contact.organisme }</td>
-														<td>${contact.email }</td>
-														<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
-														<td>${contact.fonction }</td>
-													</tr>
-												</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom</th>
-													<th>Statut</th>
-													<th>Type de document</th>
-													<th>Description</th>
-													
-												</tr>
-											</thead>
-											<tbody id="tabledocument">
-												<c:forEach items="${bandotheque.document}" var="doc">
-													<tr class="gradeA" id="tr_doc_${doc.id }">
-														<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
-														<td>${doc.statut }</td>
-														<td> </td>
-														<td>${doc.description }</td>
-													</tr>
-												</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									
-		
-		
-									
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-		
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th>Nom</th>
-													<th>Type</th>
-													<th>Client</th>
-													<th>Description</th>
-													<th>Date de début</th>
-													<th>Date de fin</th>
-													<th>Fournisseur</th>
-													
-												</tr>
-											</thead>
-											<tbody id="tablecontrat">
-												<c:forEach items="${peripherique.contrat}" var="contrat">
-													<tr class="gradeA" id="tr_contrat_${contrat.id }">
-														<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
-														<td>${contrat.typeDeContrat }</td>
-														<td>${contrat.client }</td>
-														<td>${contrat.description }</td>
-														<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
-														<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
-														<td>${contrat.fournisseur }</td>
-													</tr>
-												</c:forEach>
-
-												
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
-
-									
-		
-		
-									
-								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
 								
 										Tickets
 								
 								</div>
+								
 							</div> <!-- / .tab-content -->
-						</div>
-				
-					
-					
-					
-					
-					
+						
+							
 					</div>
 					
 					
 		</div>
 
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<!-- Content here -->
 		
@@ -1014,46 +589,28 @@ Use search to find needed section.
 <!-- Pixel Admin's javascripts -->
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
-<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  -->
+
 <script type="text/javascript">
-	init.push(function () {
-		$('#profile-tabs').tabdrop();
+init.push(function () {
+	$('#profile-tabs').tabdrop();
 
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
-		
-		var options = {
-				todayBtn: "linked",
-				orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-			}
-		
-			$('#bs-datepicker-dateDeMiseEnProduction').datepicker({
-			    format: 'dd/mm/yyyy'
-			  });
-			$('#bs-datepicker-dateD_achat').datepicker({
-			    format: 'dd/mm/yyyy'
-			  });
-			$('#bs-datepicker-dateDeFinDeGarantie').datepicker({
-			    format: 'dd/mm/yyyy'
-			  });
-			
-			$('.jq-datatables-example').dataTable();
-			$('.jq-datatables-example_wrapper .table-caption').text('');
-			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-			
-			
-		
-
-
-
+	$("#leave-comment-form").expandingInput({
+		target: 'textarea',
+		hidden_content: '> div',
+		placeholder: 'Write message',
+		onAfterExpand: function () {
+			$('#leave-comment-form textarea').attr('rows', '3').autosize();
+		}
 	});
-	window.PixelAdmin.start(init);
+	
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+	
+	
+});
+window.PixelAdmin.start(init);
 </script>
 
 </body>

@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau NAS - ITIL-CCM</title>
+	<title>Détail NAS - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -476,352 +476,17 @@ Use search to find needed section.
 				
 				
 				
-				<!-- Modal Solutions Applicatives -->
-				<div id="myModalSolutionApplicative" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Solutions Applicatives </h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Solution Applicative</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Date de mise en production</th>
-											</tr>
-										</thead>
-										<tbody id="tablesolutionapplicativepopup">
-											<c:forEach items="${solutionsApplicatives}" var="sa">
-												<tr class="gradeA" id="tr_SolutionApplicative_${sa.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckSol" name="chSolutionApplicative" value="${sa.id }"></td>
-													<td>${sa.nom }</td>
-													<td>${sa.statut }</td>
-													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addSol">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Solutions Applicatives -->	
-                
 				
 				
 				
 				
 				
-				<!-- Modal Interface reseaux -->
-				<div id="myModalinterfacereseaux" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout interface reseau</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th> 	 	 	 	 		
-												<th>Nom</th>
-												<th>Adresse IP</th>
-												<th>Adresse MAC</th>
-												<th>Commentaire</th>
-												<th>Passerelle</th>
-												<th>Masque de sous réseau </th>
-												<th>Vitesse</th>	
-											</tr>
-										</thead>
-										<tbody id="tableinterfacereseaupopup">
-											<c:forEach items="${interfacereseaux}" var="ir">
-												<tr class="gradeA" id="tr_ir_${ir.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckir" name="chinterfacereseau" value="${ir.id }"></td>
-													<td>${ir.nom }</td>
-													<td>${ir.adresseIp }</td>
-													<td>${ir.adresseMac }</td>
-													<td>${ir.commentaire }</td>
-													<td>${ir.passerelle }</td>
-													<td>${ir.masqueDeSousReseau }</td>
-													<td>${ir.vitesse }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addir">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				<!-- Modal Equipement reseaux -->
-				<div id="myModalEquipementreseaux" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Equipement réseaux</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supcheker"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Lieu</th>
-												<th>Marque</th>
-												<th>Modèle</th>
-												<th>Numéro de série</th>
-											</tr>
-										</thead>
-										<tbody id="tableEquipementreseauxpopup">
-											<c:forEach items="${equipementreseaux}" var="er">
-												<tr class="gradeA" id="tr_er_${er.id }">
-													<td class="supchekboxer"><input type="checkbox" class="cker" name="chequipementreseaux" value="${er.id }"></td>
-													<td>${er.nom }</td>
-													<td>${er.statut }</td>
-													<td>${er.criticite }</td>
-													<td>${er.lieu.nom }</td>
-													<td>${er.marque }</td>
-													<td>${er.modele }</td>
-													<td>${er.numeroDeSerie }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="adder">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				<!-- Modal Système de fichiers NAS -->
-				<div id="myModalfichiernas" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Système de fichier NAS</h4>
-							</div>
-							<div class="modal-body">
-								<form action="fichiernas" class="form-horizontal" id="FichierNASForm" method="POST">
-									<div class="form-group required">
-										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" id="id_fichier_nas_nom" name="nom" />
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-nom" class="col-sm-3 control-label">Niveau RAID</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" id="id_fichier_nas_niveauRaid" name="niveauRaid" />
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label for="jq-validation-nom" class="col-sm-3 control-label">Taille</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" id="id_fichier_nas_taille" name="taille" />
-										</div>
-									</div>
-									<div class="form-group">
-										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
-										<div class="col-sm-9">
-											<textarea class="form-control" id="id_fichier_nas_description" name="description" ></textarea>
-										</div>
-									</div>
-								</form>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addfichiernas">Créer</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				
-				<!-- Modal document -->
-				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Type de document</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tabledocpopup">
-											<c:forEach items="${documents}" var="doc">
-												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="chdocument" value="${doc.id }"></td>
-													<td>${doc.nom }</td>
-													<td>${doc.statut }</td>
-													<td> </td>
-													<td>${doc.description }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				<!-- Modal contrat -->
-				<div id="myModalcontrat" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Contrats</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Type</th>
-												<th>Client</th>
-												<th>Description</th>
-												<th>Date de début</th>
-												<th>Date de fin</th>
-												<th>Fournisseur</th>
-											</tr>
-										</thead>
-										<tbody id="tablecontratpopup">
-											<c:forEach items="${contrats}" var="contrat">
-												<tr class="gradeA" id="tr_contrat_${contrat.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="chContrat" value="${contrat.id }"></td>
-													<td>${contrat.nom }</td>
-													<td>${contrat.typeDeContrat }</td>
-													<td>${contrat.client }</td>
-													<td>${contrat.description }</td>
-													<td>${contrat.dateDeDebut }</td>
-													<td>${contrat.dateDeFin }</td>
-													<td>${contrat.fournisseur }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				<!-- Modal contact -->
-				<div id="myModalcontact" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout contacts</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom complet</th>
-												<th>Statut</th>
-												<th>Organisation</th>
-												<th>Email</th>
-												<th>Téléphone</th>
-												<th>Fonction</th>	
-											</tr>
-										</thead>
-										<tbody id="tablecontactpopup">
-											<c:forEach items="${contacts}" var="contact">
-												<tr class="gradeA" id="tr_contact_${contact.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckContact" name="chContact" value="${contact.id }"></td>
-													<td>${contact.nom } ${contact.prenom }</td>
-													<td>${contact.statut }</td>
-													<td>${contact.organisme }</td>
-													<td>${contact.email }</td>
-													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
-													<td>${contact.fonction }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-				
-				
-				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien modifier.
+					</div>
+				</c:if>
 				
 				
 				
@@ -829,10 +494,12 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau NAS</span>
+						<span class="panel-title col-md-9">Détail NAS</span>
+						<a href="<c:url value="/config/admin/edit/nas?id=${nas.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/nas?id=${nas.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="nas" action="saveNAS" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -870,101 +537,57 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
 								</li>
-								
+								<li>
+									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
+								</li>
 								
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group required">
-										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom</label>
-										<div class="col-sm-9">
-											<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-											<f:errors path="nom" cssClass="help-block"></f:errors>
-										</div>
+									<div class="form-group">
+										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
+										${nas.nom }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut</label>
-										<div class="col-sm-9">
-											<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<f:option value="implementation" label="implementation"/>
-												<f:option value="obsolète" label="obsolète"/>
-												<f:option value="production" label="production"/>
-												<f:option value="stock" label="stock"/>
-											</f:select>
-											<f:errors path="statut" cssClass="help-block"></f:errors>
-										</div>
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Statut : </label>
+										${nas.statut }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité</label>
-										<div class="col-sm-9">
-											<f:select  path="criticite" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<f:option value="haute" label="haute"/>
-												<f:option value="basse" label="basse"/>
-												<f:option value="moyenne" label="moyenne"/>
-											</f:select>
-											<f:errors path="criticite" cssClass="help-block"></f:errors>
-										</div>
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Criticité : </label>
+										${nas.criticite }
 									</div>
 									
 									
 									<div class="form-group">
-										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu</label>
-										<div class="col-sm-9">
-											<f:select  path="lieu.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<c:forEach items="${lieus }" var="lie">
-													<f:option value="${lie.id }" label="${lie.nom } - ${lie.organisme }"/>
-												</c:forEach>
-											</f:select>
-											<f:errors path="lieu.id" cssClass="help-block"></f:errors>
-										</div>
+										<label for="jq-validation-select2" class="col-sm-3 control-label">Lieu : </label>
+										<a href="<c:url value="/config/view/lieu?id=${nas.lieu.id }" />">${nas.lieu.nom }</a>
 										
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Rack</label>
-										<div class="col-sm-9">
-											<f:select  path="rack.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<f:options items="${racks }" itemValue="id" itemLabel="nom" />	
-											</f:select>
-											<f:errors path="rack.id" cssClass="help-block"></f:errors>
-										</div>
+										<a href="<c:url value="/config/view/rack?id=${nas.rack.id }" />">${nas.rack.nom }</a>
 										
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Chassis</label>
-										<div class="col-sm-9">
-											<f:select  path="chassis.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-												<f:option value="" label=""/>
-												<f:options items="${chassiss }" itemValue="id" itemLabel="nom" />	
-											</f:select>
-											<f:errors path="chassis.id" cssClass="help-block"></f:errors>
-										</div>
+										<a href="<c:url value="/config/view/chassis?id=${nas.chassis.id }" />">${nas.chassis.nom }</a>
 										
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Marque</label>
-										<div class="col-sm-9">
-											<f:input path="marque" type="text" class="form-control" id="inputError-4" name="jq-validation-marque" />
-											<f:errors path="marque" cssClass="help-block"></f:errors>
-										</div>
+										${switchSan.marque }
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-modele" class="col-sm-3 control-label">Modèle</label>
-										<div class="col-sm-9">
-											<f:input path="modele" type="text" class="form-control" id="inputError-4" name="jq-validation-modele" />
-											<f:errors path="modele" cssClass="help-block"></f:errors>
-										</div>
+										${switchSan.modele }
 									</div>
 									
 									
@@ -972,91 +595,49 @@ Use search to find needed section.
 									
 									<div class="form-group">
 										<label for="jq-validation-cpu" class="col-sm-3 control-label">IP</label>
-										<div class="col-sm-9">
-											<f:input path="ip" type="text" class="form-control" id="inputError-4" name="jq-validation-cpu" />
-											<f:errors path="ip" cssClass="help-block"></f:errors>
-										</div>
+										${nas.ip }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série</label>
-										<div class="col-sm-9">
-											<f:input path="numeroDeSerie" type="text" class="form-control" id="inputError-4" name="jq-validation-numeroDeSerie" />
-											<f:errors path="numeroDeSerie" cssClass="help-block"></f:errors>
-										</div>
+										<label for="jq-validation-numeroDeSerie" class="col-sm-3 control-label">Numéro de série : </label>
+										${nas.numeroDeSerie }
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset</label>
-										<div class="col-sm-9">
-											<f:input path="numeroAsset" type="text" class="form-control" id="inputError-4" name="jq-validation-numeroAsset" />
-											<f:errors path="numeroAsset" cssClass="help-block"></f:errors>
-										</div>
+										<label for="jq-validation-numeroAsset" class="col-sm-3 control-label">Numéro Asset : </label>
+										${nas.numeroAsset }
 									</div>
 									
 									
 									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat</label>
-										<div class="col-sm-9" >
-											<div class="input-group date" id="bs-datepicker-dateD_achat">
-												<f:input path="dateD_achat" type="text" class="form-control" />
-												<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-												<f:errors path="dateD_achat" cssClass="help-block"></f:errors>
-											</div>
-										</div>
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date d'achat : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${nas.dateD_achat}" />
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production</label>
-										<div class="col-sm-9" >
-											<div class="input-group date" id="bs-datepicker-dateDeMiseEnProduction">
-												<f:input path="dateDeMiseEnProduction" type="text" class="form-control" />
-												<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-												<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
-											</div>
-										</div>
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de mise en production : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${nas.dateDeMiseEnProduction}" />
 									</div>
 									
 									<div class="form-group">
-										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie</label>
-										<div class="col-sm-9" >
-											<div class="input-group date" id="bs-datepicker-dateDeFinDeGarantie">
-												<f:input path="dateDeFinDeGarantie" type="text" class="form-control"/>
-												<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-												<f:errors path="dateDeFinDeGarantie" cssClass="help-block"></f:errors>
-											</div>
-										</div>
+										<label for="jq-validation-dateDeMiseEnProduction" class="col-sm-3 control-label">Date de fin de garantie : </label>
+										<fmt:formatDate type="date" dateStyle="long" value="${nas.dateDeFinDeGarantie}" />
 									</div>
+									
 									
 									
 									<div class="form-group">
 					
-										<label for="jq-validation-email" class="col-sm-3 control-label">Source électrique A</label>
-										<div class="col-sm-9">
-											<select   class="form-control" name="sourceelecA">
-									            <option value="" label=""/>
-												<c:forEach items="${sourceelec }" var="sourceA">
-													<option value="${sourceA.id }" >${sourceA.nom }</option>
-												</c:forEach>
-											</select>
-											
-									    </div>
+										<label for="jq-validation-email" class="col-sm-3 control-label">Source électrique A : </label>
+										${nas.connexionElectrique[0].nom }
 								
 									</div>
 									
 									
 									<div class="form-group">
 					
-										<label for="jq-validation-email" class="col-sm-3 control-label">Source électrique B</label>
-										<div class="col-sm-9">
-											<select   class="form-control" name="sourceelecB">
-									             <option value="" label=""/>
-												 <c:forEach items="${sourceelec }" var="sourceB">
-													<option value="${sourceB.id }" >${sourceB.nom }</option>
-												</c:forEach>
-											</select>
-											
-									    </div>
+										<label for="jq-validation-email" class="col-sm-3 control-label">Source électrique B : </label>
+										${nas.connexionElectrique[1].nom }
 								
 									</div>
 										
@@ -1065,11 +646,8 @@ Use search to find needed section.
 									
 									
 									<div class="form-group">
-										<label for="jq-validation-description" class="col-sm-3 control-label">Description</label>
-										<div class="col-sm-9">
-											<f:textarea path="description" class="form-control" name="jq-validation-text" />
-											<f:errors path="description" cssClass="help-block"></f:errors>
-										</div>
+										<label for="jq-validation-description" class="col-sm-3 control-label">Description : </label>
+										${nas.description }
 									</div>
 									
 									
@@ -1086,7 +664,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 											  <tr>
-												<th id="supchek"> </th>
 												<th>Solution Applicative</th>
 												<th>Statut</th>
 												<th>Criticité</th>
@@ -1095,23 +672,21 @@ Use search to find needed section.
 											</thead>
 											<tbody id="tableSolutionApplicative">
 												
-												
+												<c:forEach items="${nas.solutionApplicative}" var="sa">
+													<tr class="gradeA" id="tr_SolutionApplicative_${sa.id }">
+														<td><a href="<c:url value="/config/view/solutionapplicative?id=${sa.id }" />">${sa.nom }</a></td>
+														<td>${sa.statut }</td>
+														<td>${sa.criticite}</td>
+														<td>${sa.dateDeMiseEnProduction }</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppSol">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalSolutionApplicative">Ajouter des Solutions Applicatives</button>
-										</div>
-										
-									</div>
+									
 		
 									
 								</div>
@@ -1124,7 +699,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 												<tr>
-													<th id="supchek"> </th> 	 	 	 	 		
 													<th>Nom</th>
 													<th>Adresse IP</th>
 													<th>Adresse MAC</th>
@@ -1136,7 +710,17 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tableinterfacereseau">
-												
+												<c:forEach items="${nas.intefaceReseau}" var="ir">
+													<tr class="gradeA" id="tr_ir_${ir.id }">
+														<td><a href="<c:url value="/config/view/interfacereseau?id=${ir.id }" />">${ir.nom }</a></td>
+														<td>${ir.adresseIp }</td>
+														<td>${ir.adresseMac }</td>
+														<td>${ir.commentaire }</td>
+														<td>${ir.passerelle }</td>
+														<td>${ir.masqueDeSousReseau }</td>
+														<td>${ir.vitesse }</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -1144,16 +728,7 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppir">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalinterfacereseaux">Ajouter des Interfaces reseaux</button>
-										</div>
-										
-									</div>
+									
 
 		
 									
@@ -1169,7 +744,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 												<tr>
-													<th id="supchekertable"> </th>
 													<th>Nom</th>
 													<th>Statut</th>
 													<th>Criticité</th>
@@ -1181,7 +755,17 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tableEquipementreseaux">
-												
+												<c:forEach items="${nas.equipementReseau}" var="er">
+												<tr class="gradeA" id="tr_er_${er.id }">
+													<td><a href="<c:url value="/config/view/equipementreseau?id=${er.id }" />">${er.nom }</a></td>
+													<td>${er.statut }</td>
+													<td>${er.criticite }</td>
+													<td>${er.lieu.nom }</td>
+													<td>${er.marque }</td>
+													<td>${er.modele }</td>
+													<td>${er.numeroDeSerie }</td>
+												</tr>
+											</c:forEach>
 												
 											</tbody>
 										</table>
@@ -1189,16 +773,7 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="supper">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalEquipementreseaux">Ajouter des Equipements réseaux</button>
-										</div>
-										
-									</div>
+									
 
 		
 		
@@ -1213,7 +788,6 @@ Use search to find needed section.
 									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 										<thead>
 											<tr>
-												<th id="supchek"> </th>
 												<th>Nom</th>
 												<th>Niveau RAID</th>
 												<th>Taille</th>
@@ -1221,7 +795,14 @@ Use search to find needed section.
 											</tr>
 										</thead>
 										<tbody id="tablefichiernas">
-											
+											<c:forEach items="${nas.systemeDeFicherNas}" var="fichiernas">
+												<tr class="gradeA" id="tr_er_${er.id }">
+													<td><a href="<c:url value="/config/view/systemedefichiernas?id=${fichiernas.id }" />">${fichiernas.nom }</a></td>
+													<td>${fichiernas.niveauRaid }</td>
+													<td>${fichiernas.taille }</td>
+													<td>${fichiernas.description }</td>
+												</tr>
+											</c:forEach>
 											
 										</tbody>
 									</table>
@@ -1229,17 +810,6 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppfichiernas">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalfichiernas">Ajouter de nouveau Système de fichier NAS</button>
-										</div>
-										
-									</div>
-		
 									
 								</div>
 								
@@ -1253,7 +823,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 												<tr>
-													<th id="supchek"> </th>
 													<th>Nom complet</th>
 													<th>Statut</th>
 													<th>Organisation</th>
@@ -1264,7 +833,16 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontact">
-												
+												<c:forEach items="${nas.contact}" var="contact">
+													<tr class="gradeA" id="tr_contact_${contact.id }">
+														<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
+														<td>${contact.statut }</td>
+														<td>${contact.organisme }</td>
+														<td>${contact.email }</td>
+														<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+														<td>${contact.fonction }</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -1272,16 +850,7 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppContact">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalcontact">Ajouter des Contacts</button>
-										</div>
-										
-									</div>
+									
 		
 		
 									
@@ -1294,7 +863,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 												<tr>
-													<th id="supchek"> </th>
 													<th>Nom</th>
 													<th>Statut</th>
 													<th>Type de document</th>
@@ -1303,6 +871,14 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tabledocument">
+												<c:forEach items="${nas.document}" var="doc">
+													<tr class="gradeA" id="tr_doc_${doc.id }">
+														<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
+														<td>${doc.statut }</td>
+														<td> </td>
+														<td>${doc.description }</td>
+													</tr>
+												</c:forEach>
 												
 												
 											</tbody>
@@ -1311,16 +887,7 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppDoc">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
-										</div>
-										
-									</div>
+									
 		
 		
 									
@@ -1333,7 +900,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 												<tr>
-													<th id="supchek"> </th>
 													<th>Nom</th>
 													<th>Type</th>
 													<th>Client</th>
@@ -1345,6 +911,17 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontrat">
+												<c:forEach items="${nas.contrat}" var="contrat">
+													<tr class="gradeA" id="tr_contrat_${contrat.id }">
+														<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
+														<td>${contrat.typeDeContrat }</td>
+														<td>${contrat.client }</td>
+														<td>${contrat.description }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
+														<td>${contrat.fournisseur }</td>
+													</tr>
+												</c:forEach>
 												
 												
 											</tbody>
@@ -1353,21 +930,16 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppContrat">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalcontrat">Ajouter des Contrats</button>
-										</div>
-										
-									</div>
+									
 		
 		
 									
 								</div> <!-- / .tab-pane -->
+								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
 								
+										Tickets
+								
+								</div>
 							</div> <!-- / .tab-content -->
 						</div>
 				
@@ -1376,19 +948,7 @@ Use search to find needed section.
 					
 					
 					
-							<hr class="panel-wide">
 							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer </button>
-								</div>
-								
-							</div>
-						</f:form>
 					</div>
 					
 					
@@ -1470,215 +1030,7 @@ Use search to find needed section.
 			
 			
 		    
-		  //<!-- Modal Solutions Applicatives -->    
-	        document.getElementById("addSol").onclick = function () {
-		    	var chkArray = [];
-		    	$(".ckSol:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_SolutionApplicative_".concat($(this).val()));
-			    	$( "#tableSolutionApplicative").append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    document.getElementById("suppSol").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckSol:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_SolutionApplicative_".concat($(this).val()));
-			    	$( "#tablesolutionapplicativepopup").append(tr);
-	                this.checked = false;
-		    	});
-		    };
-		    
-		    
-		  //<!-- Modal Interface reseaux -->
-		    
-		    document.getElementById("addir").onclick = function () {
-		    	var chkArray = [];
-		    	$(".ckir:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
-			    	$( "#tableinterfacereseau" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    
-		    
-		    document.getElementById("suppir").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckir:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
-			    	$( "#tableinterfacereseaupopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-		    
-		    
-		  //<!-- Modal Equipement reseaux -->
-		    document.getElementById("adder").onclick = function () {
-		    	var chkArray = [];
-		    	$(".cker:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_er_".concat($(this).val()));
-			    	$( "#tableEquipementreseaux" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    
-		    
-		    document.getElementById("supper").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".cker:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_er_".concat($(this).val()));
-			    	$( "#tableEquipementreseauxpopup" ).append(tr);
-			    	
-                    this.checked = false;
-		    	});
-		    };
-		    
-		    
-
-			//<!-- Modal Systeme de fichier NAS -->
- 			
-		    
-		    $(document).ready(function() {
-	    		   
-	    		  $('#addfichiernas').click(function(event) {
-	    		       
-
-					  var nom = $('#id_fichier_nas_nom').val();
-					  var niveauRaid = $('#id_fichier_nas_niveauRaid').val();
-					  var taille = $('#id_fichier_nas_taille').val();
-					  var description = $('#id_fichier_nas_description').val();
-	    		      var json = { "nom" : nom, "niveauRaid" : niveauRaid , "taille" : taille, "description": description};
-	    		    $.ajax({
-	    		        type: "POST",
-	    		        data: JSON.stringify(json),
-	    		        url: $("#FichierNASForm").attr("action"),
-	    		         
-	    		        beforeSend: function(xhr) {
-	    		            xhr.setRequestHeader("Accept", "application/json");
-	    		            xhr.setRequestHeader("Content-Type", "application/json");
-	    		        },
-	    		        success: function(fichiernas) {
-	    		        	if(fichiernas.id != null){
-	    		      		var tr = '<tr class="gradeA" id="tr_fichier_nas_'+fichiernas.id+'">'+
-	    		      				'<td class="supchekbox"><input type="checkbox" checked="checked" class="ckFichierNAS" name="chFichierNAS" value="'+fichiernas.id+'"></td>'+
-	    		      				'<td>'+fichiernas.nom+'</td>'+
-	    		      				'<td>'+fichiernas.niveauRaid+'</td>'+
-	    		      				'<td>'+fichiernas.taille+'</td>'+
-	    		      				'<td>'+fichiernas.description+'</td>'+
-	    		      				'</tr>'
-	    		      			;
-	    		      		$( "#tablefichiernas" ).append(tr);
-	    		      		
-	    		      		document.forms['FichierNASForm'].reset();
-	    		        	}
-	    		        }
-	    		    });
-	    		  });
-	    		    
-	    		});
-	    	
-	    	
-	    
-	    document.getElementById("suppfichiernas").onclick = function () {
-	    	
-	    	$(".ckFichierNAS:checked").each(function() {
-	    		//var tr = document.getElementById("tr_bande_".concat($(this).val()));
-		    	$( "#tr_fichier_nas_".concat($(this).val())).hide();
-               this.checked = false;
-	    	});
-	    };
-
-		    
-		    
-
-		    
-		    
-		    //<!-- Modal document -->
-		    document.getElementById("addDoc").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ckdoc:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
-			    	$( "#tabledocument" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    document.getElementById("suppDoc").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckdoc:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
-			    	$( "#tabledocpopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-		    
-		    
-		    //<!-- Modal contrat -->
-		    document.getElementById("addContrat").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ckContrat:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
-			    	$( "#tablecontrat" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    document.getElementById("suppContrat").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckContrat:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
-			    	$( "#tablecontratpopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
-		    
-		    //<!-- Modal contact -->
-		    document.getElementById("addContact").onclick = function () {
-		    	var chkArray = [];
-		    	
-		    	$(".ckContact:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
-			    	$( "#tablecontact" ).append(tr);
-			    	//this.checked = false;
-		    	});
-		    	
-		    };
-		    
-		    document.getElementById("suppContact").onclick = function () {
-				var chkArray = [];
-		    	
-		    	$(".ckContact:checked").each(function() {
-		    		chkArray.push($(this).val());
-		    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
-			    	$( "#tablecontactpopup" ).append(tr);
-                    this.checked = false;
-		    	});
-		    };
+		 
 
 
 

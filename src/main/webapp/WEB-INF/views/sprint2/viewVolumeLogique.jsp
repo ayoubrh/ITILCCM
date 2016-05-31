@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Volume logique - ITIL-CCM</title>
+	<title>Détail Volume logique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -475,110 +475,35 @@ Use search to find needed section.
 		Content
 -->
 
-	<!-- Modal Machines Virtuelles -->
-				<div id="myModalMachinesVirtuelles" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Machines Virtuelles </h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Machines Virtuelles</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>IP</th>
-												<th>Date de mise en production</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tableMachinesVirtuellespopup">
-											<c:forEach items="${machinesVirtuelles}" var="mv">
-												<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckmv" name="ckMachinesVirtuelles" value="${mv.id }"></td>
-													<td>${mv.nom }</td>
-													<td>${mv.statut }</td>
-													<td>${mv.criticite}</td>
-													<td>${mv.ip}</td>
-													<td>${mv.dateDeMiseEnProduction }</td>
-													<td>${mv.description}</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addmv">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Machines Virtuelles -->
-				<!-- Modal Serveurs-->
-				<div id="myModalServeurs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Serveurs </h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Serveur</th>
-												<th>Statut</th>
-												<th>Criticité</th>
-												<th>Marque</th>
-												<th>Modèle</th>
-												<th>IP</th>
-												<th>Date de mise en production</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tableServeurspopup">
-											<c:forEach items="${serveurs}" var="s">
-												<tr class="gradeA" id="tr_Serveurs_${s.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckserv" name="ckServeurs" value="${s.id }"></td>
-													<td>${s.nom }</td>
-													<td>${s.statut }</td>
-													<td>${s.criticite}</td>
-													<td>${s.marque}</td>
-													<td>${s.modele}</td>
-													<td>${s.ip}</td>
-													<td>${s.dateDeMiseEnProduction }</td>
-													<td>${s.description}</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addserv">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Serveurs -->
+	
+	
+	
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien modifier.
+					</div>
+				</c:if>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Volume Logique</span>
+						<span class="panel-title col-md-9">Détail Volume Logique</span>
+						<a href="<c:url value="/config/admin/edit/volumelogique?id=${volumeLogique.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/volumelogique?id=${volumeLogique.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="volumeLogique" action="saveVolumeLogique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -597,7 +522,9 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
 								</li>
-								
+								<li>
+									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
+								</li>	
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -609,57 +536,35 @@ Use search to find needed section.
 						
 						
 							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
-							    </div>
+								<label for="jq-validation-email" class="col-sm-3 control-label">Nom : </label>
+								${volumeLogique.nom }
 							
 							</div>
 							
 							<div class="form-group required">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Système de stockage</label>
-								<div class="col-sm-9">
-									<f:select  path="systemedestockage.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-									    <f:option value=""></f:option>
-										<f:options items="${ss }" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<c:if test="${error == true}">
-										<div class="help-block">Choisissez un Système de stockage</div>
-									</c:if>
-								</div>
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Système de stockage : </label>
+								<a href="<c:url value="/config/view/systemedestockage?id=${volumeLogique.systemedestockage.id }" />">${volumeLogique.systemedestockage.nom }</a>
+								
 							</div>
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">LUN ID</label>
-								<div class="col-sm-9">
-									<f:input path="lunId" type="text" class="form-control" id="inputError-4" name="jq-validation-lunId" />
-									<f:errors path="lunId" cssClass="help-block"></f:errors>
-							    </div>
+								${volumeLogique.lunId }
 							
 							</div>
-				<div class="form-group">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Niveau RAID</label>
-								<div class="col-sm-9">
-									<f:input path="niveauRaid" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-niveauRaid" />
-									<f:errors path="niveauRaid" cssClass="help-block"></f:errors>
-								</div>
-				</div>
+								${volumeLogique.niveauRaid }
+							</div>
 							
 							
-				<div class="form-group">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Taille</label>
-								<div class="col-sm-9">
-									<f:input path="taille" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-taille" />
-									<f:errors path="taille" cssClass="help-block"></f:errors>
-								</div>
-				</div>
+								${volumeLogique.taille }
+							</div>
 				
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-							    </div>
+								${volumeLogique.description }
 							
 							</div>
 				
@@ -675,7 +580,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 											 <tr>
-												<th id="supchek"> </th>
 												<th>Serveur</th>
 												<th>Statut</th>
 												<th>Criticité</th>
@@ -687,7 +591,18 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableServeurs">
-												
+												<c:forEach items="${volumeLogique.serveur}" var="s">
+													<tr class="gradeA" id="tr_Serveurs_${s.id }">
+														<td><a href="<c:url value="/config/view/machinevertuelle?id=${mv.id }" />">${s.nom }</a></td>
+														<td>${s.statut }</td>
+														<td>${s.criticite}</td>
+														<td>${s.marque}</td>
+														<td>${s.modele}</td>
+														<td>${s.ip}</td>
+														<td>${s.dateDeMiseEnProduction }</td>
+														<td>${s.description}</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -695,23 +610,13 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppserv">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalServeurs">Ajouter des Serveurs</button>
-										</div>
-										
-									</div>
+									
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-machines" id="profile-tabs-machines">
 									<div class="table-primary">
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 											 <tr>
-												<th id="supchek"> </th>
 												<th>Machines Virtuelles</th>
 												<th>Statut</th>
 												<th>Criticité</th>
@@ -721,7 +626,16 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableMachinesVirtuelles">
-												
+												<c:forEach items="${volumeLogique.machinevertuelle}" var="mv">
+													<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
+														<td><a href="<c:url value="/config/view/machinevertuelle?id=${mv.id }" />">${mv.nom }</a></td>
+														<td>${mv.statut }</td>
+														<td>${mv.criticite}</td>
+														<td>${mv.ip}</td>
+														<td>${mv.dateDeMiseEnProduction }</td>
+														<td>${mv.description}</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -729,36 +643,18 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppmv">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalMachinesVirtuelles">Ajouter des Machines Virtuelles</button>
-										</div>
-										
-									</div>
+									
 								</div> <!-- / .tab-pane -->
 								
+								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
 								
+										Tickets
+								
+								</div>
 							</div> <!-- / .tab-content -->
 						</div>
 				
 					
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
 					</div>
 					
 					
@@ -805,50 +701,8 @@ Use search to find needed section.
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 		
 		
-	    document.getElementById("addmv").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckmv:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
-		    	$( "#tableMachinesVirtuelles" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
 	    
-	    document.getElementById("suppmv").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckmv:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_MachineVirtuelle_".concat($(this).val()));
-		    	$( "#tableMachinesVirtuellespopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
-	    document.getElementById("addserv").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckserv:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_Serveurs_".concat($(this).val()));
-		    	$( "#tableServeurs" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
-	    
-	    document.getElementById("suppserv").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckserv:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_Serveurs_".concat($(this).val()));
-		    	$( "#tableServeurspopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
+	   
 	});
 	window.PixelAdmin.start(init);
 </script>

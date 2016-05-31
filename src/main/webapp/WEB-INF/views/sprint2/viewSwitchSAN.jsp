@@ -591,8 +591,6 @@ Use search to find needed section.
 									</div>
 									
 									
-									
-									
 									<div class="form-group">
 										<label for="jq-validation-cpu" class="col-sm-3 control-label">IP : </label>
 										${switchSan.ip }

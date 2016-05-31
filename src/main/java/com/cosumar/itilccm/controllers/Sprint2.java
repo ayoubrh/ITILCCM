@@ -5358,7 +5358,7 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("save", save );
 		}
-		return "sprint2/viewNas";
+		return "sprint2/viewNAS";
 	}
 	
 	@RequestMapping(value="/view/bandotheque")
@@ -5392,7 +5392,7 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("save", save );
 		}
-		return "sprint2/viewDvr";
+		return "sprint2/viewDVR";
 	}
 	
 	@RequestMapping(value="/view/equipementreseau")
@@ -5409,7 +5409,7 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("save", save );
 		}
-		return "sprint2/viewEquipementReseau";
+		return "sprint2/viewEquipementreseau";
 	}
 	
 	@RequestMapping(value="/view/systemedestockage")
@@ -5426,7 +5426,42 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("save", save );
 		}
-		return "sprint2/viewSystemeDeStockage";
+		return "sprint2/viewSystemedestockage";
+	}
+	
+	
+	@RequestMapping(value="/view/systemedefichiernas")
+	public String viewSystemedefichiernas(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("fichiernas", m.getSystemeDeFicherNas(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewSystemedeFichierNAS";
+	}
+	
+	@RequestMapping(value="/view/bande")
+	public String viewBande(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("bande", m.getBande(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewBande";
 	}
 	
 	@RequestMapping(value="/view/subnet")
@@ -5775,6 +5810,32 @@ public class Sprint2 {
 		m.deleteCamera(id);
 		return "redirect:/config/search/camera?delete="+true;
 	}
+	
+	
+	@RequestMapping(value="/admin/delete/systemedefichiernas")
+	public String deleteSystemedefichiernas(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteSystemeDeFicherNas(id);
+		return "redirect:/config/search/nas?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/bande")
+	public String deleteBande(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteBande(id);
+		return "redirect:/config/search/bandotheque?delete="+true;
+	}
+	
 	
 	@RequestMapping(value="/admin/edit/pc")
 	public String editPC(Model model,Long id){

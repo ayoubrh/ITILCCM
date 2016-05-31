@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau VLAN - ITIL-CCM</title>
+	<title>Détail VLAN - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -475,104 +475,23 @@ Use search to find needed section.
 		Content
 -->
 
-				<!-- Modal Subnets-->
-				<div id="myModalSubnets" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Subnets </h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Subnet</th>
-												<th>IP</th>
-												<th>Masque IP</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tableSubnetspopup">
-											<c:forEach items="${subnets}" var="s">
-												<tr class="gradeA" id="tr_Subnets_${s.id }">
-													<td class="supchekbox"><input type="checkbox" class="cksub" name="ckSubnets" value="${s.id }"></td>
-													<td>${s.nomDeSubnnet }</td>
-													<td>${s.ip }</td>
-													<td>${s.masqueIp}</td>
-													<td>${s.description}</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addsub">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Subnets -->
-				<!-- Modal Interface reseaux -->
-				<div id="myModalinterfacereseaux" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout interface reseau</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th> 	 	 	 	 		
-												<th>Interface Physique</th>
-												<th>Adresse IP</th>
-												<th>Adresse MAC</th>
-												<th>Commentaire</th>
-												<th>Passerelle</th>
-												<th>Masque de sous réseau </th>
-												<th>Vitesse</th>	
-											</tr>
-										</thead>
-										<tbody id="tableinterfacereseaupopup">
-											<c:forEach items="${interfacereseaux}" var="ir">
-												<tr class="gradeA" id="tr_ir_${ir.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckir" name="chinterfacereseau" value="${ir.id }"></td>
-													<td>${ir.nom }</td>
-													<td>${ir.adresseIp }</td>
-													<td>${ir.adresseMac }</td>
-													<td>${ir.commentaire }</td>
-													<td>${ir.passerelle }</td>
-													<td>${ir.masqueDeSousReseau }</td>
-													<td>${ir.vitesse }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addir">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Interface reseaux -->
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien modifier.
+					</div>
+				</c:if>
+		
+		
+		
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau VLAN</span>
+						<span class="panel-title col-md-9">Détail VLAN</span>
+						<a href="<c:url value="/config/admin/edit/vlan?id=${vlan.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/vlan?id=${vlan.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="vlan" action="saveVlan" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -591,7 +510,9 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-Interfaces_Reseaux" data-toggle="tab">Interfaces réseaux physiques</a>
 								</li>
-								
+								<li>
+									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
+								</li>	
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -602,21 +523,15 @@ Use search to find needed section.
 						<div class="panel-body">
 						
 						
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">VLAN Tag</label>
-								<div class="col-sm-9">
-									<f:input path="vlantag" type="text" class="form-control" id="inputError-4" name="jq-validation-vlantag" />
-									<f:errors path="vlantag" cssClass="help-block"></f:errors>
-							    </div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">VLAN Tag : </label>
+								${vlan.vlantag }
 							</div>
 							
 				
 							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-							    </div>
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description : </label>
+								${vlan.description }
 							
 							</div>
 				
@@ -629,7 +544,6 @@ Use search to find needed section.
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 											<tr>
-												<th id="supchek"> </th>
 												<th>Subnet</th>
 												<th>IP</th>
 												<th>Masque IP</th>
@@ -637,7 +551,14 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableSubnets">
-												
+												<c:forEach items="${vlan.subnet}" var="s">
+													<tr class="gradeA" id="tr_Subnets_${s.id }">
+														<td><a href="<c:url value="/config/view/subnet?id=${s.id }" />">${s.nomDeSubnnet }</a></td>
+														<td>${s.ip }</td>
+														<td>${s.masqueIp}</td>
+														<td>${s.description}</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -645,23 +566,13 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppsub">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalSubnets">Ajouter des Subnets</button>
-										</div>
-										
-									</div>
+									
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-machines" id="profile-tabs-Interfaces_Reseaux">
 									<div class="table-primary">
 										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 											<thead>
 												<tr>
-													<th id="supchek"> </th> 	 	 	 	 		
 													<th>Interface Physique</th>
 													<th>Adresse IP</th>
 													<th>Adresse MAC</th>
@@ -673,7 +584,17 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tableinterfacereseau">
-												
+												<c:forEach items="${serveur.physique}" var="ir">
+													<tr class="gradeA" id="tr_ir_${ir.id }">
+														<td><a href="<c:url value="/config/view/interfacereseau?id=${ir.id }" />">${ir.nom }</a></td>
+														<td>${ir.adresseIp }</td>
+														<td>${ir.adresseMac }</td>
+														<td>${ir.commentaire }</td>
+														<td>${ir.passerelle }</td>
+														<td>${ir.masqueDeSousReseau }</td>
+														<td>${ir.vitesse }</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -681,36 +602,19 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppir">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalinterfacereseaux">Ajouter des Interfaces reseaux</button>
-										</div>
-										
-									</div>
+									
 								</div> <!-- / .tab-pane -->
 								
+								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
 								
+										Tickets
+								
+								</div>
 							</div> <!-- / .tab-content -->
 						</div>
 				
 					
-							<hr class="panel-wide">
 							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
 					</div>
 					
 					
@@ -757,51 +661,9 @@ Use search to find needed section.
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 		
 		
-		document.getElementById("addir").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckir:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
-		    	$( "#tableinterfacereseau" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
+		
 	    
-	    document.getElementById("suppir").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckir:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_ir_".concat($(this).val()));
-		    	$( "#tableinterfacereseaupopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
-
-	    document.getElementById("addsub").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".cksub:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_Subnets_".concat($(this).val()));
-		    	$( "#tableSubnets" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
-	    
-	    document.getElementById("suppsub").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".cksub:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_Subnets_".concat($(this).val()));
-		    	$( "#tableSubnetspopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
+	
 	});
 	window.PixelAdmin.start(init);
 </script>
