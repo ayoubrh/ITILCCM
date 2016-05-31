@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -35,15 +38,18 @@ public class MachineVirtuelle implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<VolumeLogique> volumelogique;
 	   
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="machineVirtuelle")
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<IntefaceReseau> intefaceReseau;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @ManyToOne
@@ -55,19 +61,23 @@ public class MachineVirtuelle implements Serializable {
 	   private LicenseOs licenseOs;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="machineVirtuelle")
+	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 		   
 		public MachineVirtuelle() {

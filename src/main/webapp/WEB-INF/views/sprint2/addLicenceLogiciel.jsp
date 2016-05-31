@@ -562,7 +562,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Logiciel</label>
 								<div class="col-sm-9">
 									<f:select  path="logicielEtApplications.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<f:options items="${la }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="logicielEtApplications.id" cssClass="help-block"></f:errors>
@@ -581,7 +581,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
 								<div class="col-sm-9">
 									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value=""> -- choisir une valeur --</f:option>
+									            <f:option value=""></f:option>
 									            <f:option value="non">non</f:option>
 												<f:option value="oui"> oui</f:option>
 									</f:select>
@@ -613,8 +613,9 @@ Use search to find needed section.
 							<div class=" input-group date" id="bs-datepicker-component">
 								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
 								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>
-							</div>				
+								
+							</div>
+							<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>				
 						</div>
 				</div>
 				
@@ -624,8 +625,9 @@ Use search to find needed section.
 								<div class="input-group date" id="bs-datepicker-component2">
 									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
 									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-									<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
+									
 								</div>
+								<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
 							</div>
 				
 				</div>	

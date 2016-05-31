@@ -3,10 +3,14 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @DiscriminatorValue("Middleware")
@@ -14,7 +18,8 @@ public class Middleware extends LogicielEtApplication implements Serializable {
 	
 
 			@Column(nullable=true)
-			@OneToMany(mappedBy="middleware")
+			@OneToMany(mappedBy="middleware",cascade = CascadeType.ALL)
+			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<InstanceMiddleware> instanceMiddleware;
 		
 			public Middleware() {

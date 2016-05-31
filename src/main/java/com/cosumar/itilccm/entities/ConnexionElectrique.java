@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -57,15 +60,18 @@ public class ConnexionElectrique implements Serializable{
    private Collection<EquipementReseau> equipementReseau;
    	
    @Column(nullable=true)
-   @ManyToMany
+   @ManyToMany(cascade = CascadeType.ALL)
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Contact> contacts;
    
    @Column(nullable=true)
-   @ManyToMany
+   @ManyToMany(cascade = CascadeType.ALL)
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Contrat> contrats;
    
    @Column(nullable=true)
-   @ManyToMany
+   @ManyToMany(cascade = CascadeType.ALL)
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Document> documents;
    	
    	@ManyToOne

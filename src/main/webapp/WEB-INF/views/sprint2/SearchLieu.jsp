@@ -534,7 +534,7 @@ Use search to find needed section.
 								<tbody>
 									<c:forEach items="${cis}" var="ci">
 										<tr class="gradeA">
-											<td>${ci.nom }</td>
+											<td><a href="<c:url value="/config/view/lieu?id=${ci.id }" />">${ci.nom }</a></td>
 											<td>${ci.statut }</td>
 											<td>${ci.organisme }</td>
 											<td>${ci.adresse }</td>
@@ -583,7 +583,7 @@ Use search to find needed section.
 <script type="text/javascript">
 	init.push(function () {
 		// Javascript code here
-		var s = "${s }";
+		var s = "${lieu }";
 		$('.add-tooltip').tooltip();
 		document.getElementsByName("jq-datatables-example_length").value="25";
 		

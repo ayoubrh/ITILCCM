@@ -667,7 +667,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
 								<div class="col-sm-9">
 									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-									    <f:option value=""> -- choisir une valeur --</f:option>
+									    <f:option value=""></f:option>
 										<f:options items="${v }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="versionOs.id" cssClass="help-block"></f:errors>
@@ -686,7 +686,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
 								<div class="col-sm-9">
 									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value=""> -- choisir une valeur --</f:option>
+									            <f:option value=""></f:option>
 									            <f:option value="oui"> oui</f:option>
 									            <f:option value="non">non</f:option>
 												

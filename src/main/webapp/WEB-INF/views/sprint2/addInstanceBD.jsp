@@ -516,7 +516,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -567,7 +567,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -610,7 +610,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -654,7 +654,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addSol">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addSol">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -665,7 +665,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau Instance de base de données</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="instanceBD" action="saveInstanceBD" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="instanceDeBasseDeDonnes" action="saveInstanceBD" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -706,18 +706,18 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Serveur de base de données</label>
 								<div class="col-sm-9">
 									<f:select  path="serveurDeBasseDeDonnees.id" class="form-control" name="jq-validation-serveurDeBasseDeDonnees" id="jq-validation-serveurDeBasseDeDonnees">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<f:options items="${sbd }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="serveurDeBasseDeDonnees.id" cssClass="help-block"></f:errors>
@@ -728,7 +728,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
 										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="haute"> haute</f:option>
 													<f:option value="basse"> basse</f:option>
 													<f:option value="moyenne"> moyenne</f:option>

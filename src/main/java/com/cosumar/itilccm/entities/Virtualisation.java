@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -36,27 +39,33 @@ public class Virtualisation implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="virtualisation")
+	   @OneToMany(mappedBy="virtualisation",cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
-	   private java.util.Collection<VolumeLogique> volumelogique;
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
+	   private Collection<VolumeLogique> volumelogique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 		   
 		public Virtualisation() {

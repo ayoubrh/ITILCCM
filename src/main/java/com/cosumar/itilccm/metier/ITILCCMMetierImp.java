@@ -359,8 +359,8 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterLieuCont(l, contacts); 
 	}
 	@Override
-	public void modifierLieu(Lieu l) {
-		dao.modifierLieu(l);
+	public void modifierLieu(Lieu l,List<Long> contacts) {
+		dao.modifierLieu(l, contacts); 
 	}
 
 	@Override
@@ -429,10 +429,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		
 	}
 
-	@Override
-	public void modifierContact(Contact c) {
-		dao.modifierContact(c);
-	}
 	
 	@Override
 	public List<TelephoneFixe> ListTeleFixe() {
@@ -493,11 +489,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		
 	}
 
-	@Override
-	public void modifierContrat(Contrat c) {
-		dao.modifierContrat(c);
-	}
-	
 	@Override
 	public List<Peripherique> ListPeriph() {
 		return dao.ListPeriph();
@@ -648,11 +639,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void modifierApplicationWeb(ApplicationWeb aw) {
-		dao.modifierApplicationWeb(aw);
-	}
-	
-	@Override
 	public void deleteSubnet(Long id) {
 		dao.deleteSubnet(id);
 		
@@ -678,12 +664,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public Long addProcessusMetier(ProcessusMetier pm) {
 		return dao.addProcessusMetier(pm);
-	}
-
-	@Override
-	public void editProcessusMetier(ProcessusMetier pm) {
-		dao.editProcessusMetier(pm);
-		
 	}
 
 	@Override
@@ -720,11 +700,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void modifierInstanceMiddleware(InstanceMiddleware im) {
-		dao.modifierInstanceMiddleware(im);
-	}
-	
-	@Override
 	public Long addVolumeLogique(VolumeLogique vl) {
 		return dao.addVolumeLogique(vl);
 	}
@@ -751,11 +726,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterInstanceDeBasseDeDonnes(ibd);
 	}
 
-	@Override
-	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd) {
-		dao.modifierInstanceDeBasseDeDonnes(ibd);
-	}
-	
 	@Override
 	public Long addDvr(Dvr dvr) {
 		return dao.addDvr(dvr);
@@ -814,12 +784,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void modifierLicenseLogiciel(LicenseLogiciel ll) {
-		dao.modifierLicenseLogiciel(ll);
-		
-	}
-
-	@Override
 	public void supprimerLicenseLogiciel(Long id) {
 		dao.supprimerLicenseLogiciel(id);
 		
@@ -828,12 +792,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public Long ajouterLicenseOs(LicenseOs lo) {
 		return dao.ajouterLicenseOs(lo);
-	}
-
-	@Override
-	public void modifierLicenseOs(LicenseOs lo) {
-		dao.modifierLicenseOs(lo);
-		
 	}
 
 	@Override
@@ -894,11 +852,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterAutreLogiciel(al);
 	}
 
-	@Override
-	public void modifierAutreLogiciel(AutreLogiciel al) {
-		dao.modifierAutreLogiciel(al);
-		
-	}
 
 	@Override
 	public void supprimerAutreLogiciel(Long id) {
@@ -911,10 +864,7 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterLogicielPc(lp);
 	}
 
-	@Override
-	public void modifierLogicielPc(LogicielPc lp) {
-		dao.modifierLogicielPc(lp);
-	}
+	
 	
 	@Override
 	public List<IntefaceReseau> ListInterfaceReseau() {
@@ -1042,12 +992,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void editArriveeElectrique(ArriveeElectrique ae) {
-		dao.editArriveeElectrique(ae);
-		
-	}
-
-	@Override
 	public void supprimerLogicielPc(Long id) {
 		dao.supprimerLogicielPc(id);
 		
@@ -1058,11 +1002,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterServeurWeb(sw);
 	}
 
-	@Override
-	public void modifierServeurWeb(ServeurWeb sw) {
-		dao.modifierServeurWeb(sw);
-		
-	}
 
 	@Override
 	public void supprimerServeurWeb(Long id) {
@@ -1075,11 +1014,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterMiddleware(m);
 	}
 
-	@Override
-	public void modifierMiddleware(Middleware m) {
-		dao.modifierMiddleware(m);
-		
-	}
 
 	@Override
 	public void supprimerMiddleware(Long id) {
@@ -1090,12 +1024,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd) {
 		return dao.ajouterServeurDeBasseDeDonnees(sbd);
-	}
-
-	@Override
-	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd) {
-		dao.modifierServeurDeBasseDeDonnees(sbd);
-		
 	}
 
 	@Override
@@ -1110,12 +1038,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void modifierMachineVirtuelle(MachineVirtuelle mv) {
-		dao.modifierMachineVirtuelle(mv);
-		
-	}
-
-	@Override
 	public void supprimerMachineVirtuelle(Long id) {
 		dao.supprimerMachineVirtuelle(id);
 		
@@ -1127,11 +1049,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return null;
 	}
 
-	@Override
-	public void modifierVcluster(Vcluster v) {
-		dao.modifierVcluster(v);
-	}
-	
 	@Override
 	public List<ArriveeElectrique> ListArriveeElectrique() {
 		return dao.ListArriveeElectrique();
@@ -1150,11 +1067,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public Long addPduElectrique(PduElectrique pdue) {
 		return dao.addPduElectrique(pdue);
-	}
-
-	@Override
-	public void editPduElectrique(PduElectrique pdue) {
-		dao.editPduElectrique(pdue);
 	}
 
 	@Override
@@ -1234,11 +1146,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterHyperviseur(h);
 	}
 
-	@Override
-	public void modifierHyperviseur(Hyperviseur h) {
-		dao.modifierHyperviseur(h);
-	}
-	
 	@Override
 	public List<Infrastructure> ListInfrastructure() {
 		return dao.ListInfrastructure();
@@ -1873,6 +1780,228 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 			List<Long> contact, List<Long> contrat) {
 		dao.editPCAll(pc, user, lieu, licenseos, logicielEtApplication, equipementReseau, intefaceReseau, peripherique, document, contact, contrat);
 	}
+
+	@Override
+	public void modifierApplicationWeb(ApplicationWeb aw, Long sw, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		dao.modifierApplicationWeb(aw, sw, contacts, documents, solutionsApplicatives, contrats); 
+	}
+
+	@Override
+	public List<ApplicationWeb> SearchApplicationWeb(String aw) {
+		return dao.SearchApplicationWeb(aw); 
+	}
+
+	@Override
+	public void modifierInstanceMiddleware(InstanceMiddleware im, Long m, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		dao.modifierInstanceMiddleware(im, m, contacts, documents, solutionsApplicatives, contrats); 
+		
+	}
+
+	@Override
+	public List<InstanceMiddleware> SearchInstanceMiddleware(String im) {
+		return dao.SearchInstanceMiddleware(im); 
+	}
+
+	@Override
+	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd, Long sbd, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		dao.modifierInstanceDeBasseDeDonnes(ibd, sbd, contacts, documents, solutionsApplicatives, contrats); 
+		
+	}
+
+	@Override
+	public List<InstanceDeBasseDeDonnes> SearchInstanceDeBasseDeDonnes(String ibd) {
+		return dao.SearchInstanceDeBasseDeDonnes(ibd); 
+	}
+
+	@Override
+	public void modifierAutreLogiciel(AutreLogiciel al, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		dao.modifierAutreLogiciel(al, serv, mach, l, contacts, documents, solutionsApplicatives, contrats); 
+		
+	}
+
+	@Override
+	public List<AutreLogiciel> SearchAutreLogiciel(String al) {
+		return dao.SearchAutreLogiciel(al); 
+	}
+
+	@Override
+	public void modifierLogicielPc(LogicielPc lp, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		dao.modifierLogicielPc(lp, serv, mach, l, contacts, documents, solutionsApplicatives, contrats); 
+		
+	}
+
+	@Override
+	public List<LogicielPc> SearchLogicielPc(String lp) {
+		return dao.SearchLogicielPc(lp); 
+	}
+
+	@Override
+	public void modifierServeurWeb(ServeurWeb sw, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
+		dao.modifierServeurWeb(sw, serv, mach, l, contacts, documents, solutionsApplicatives, applicationWeb, contrats); 
+		
+	}
+
+	@Override
+	public List<ServeurWeb> SearchServeurWeb(String sw) {
+		return dao.SearchServeurWeb(sw); 
+	}
+
+	@Override
+	public void modifierMiddleware(Middleware m, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesMiddleware,
+			List<Long> contrats) {
+		dao.modifierMiddleware(m, serv, mach, l, contacts, documents, solutionsApplicatives, instancesMiddleware, contrats); 
+		
+	}
+
+	@Override
+	public List<Middleware> SearchMiddleware(String mi) {
+		return dao.SearchMiddleware(mi); 
+	}
+
+	@Override
+	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd, Long serv, Long mach, Long l,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD,
+			List<Long> contrats) {
+		dao.modifierServeurDeBasseDeDonnees(sbd, serv, mach, l, contacts, documents, solutionsApplicatives, instancesBD, contrats); 
+		
+	}
+
+	@Override
+	public List<ServeurDeBasseDeDonnees> SearchServeurDeBasseDeDonnees(String sbd) {
+		return dao.SearchServeurDeBasseDeDonnees(sbd); 
+	}
+
+	@Override
+	public void modifierContact(Contact c, Long idlieu) {
+		dao.modifierContact(c, idlieu); 
+		
+	}
+
+	@Override
+	public List<Contact> SearchContact(String c) {
+		return dao.SearchContact(c); 
+	}
+
+	@Override
+	public void modifierContrat(Contrat c, List<Long> contacts, List<Long> documents) {
+		dao.modifierContrat(c, contacts, documents); 
+		
+	}
+
+	@Override
+	public List<Contrat> SearchContrat(String c) {
+		return dao.SearchContrat(c);
+	}
+
+	@Override
+	public void modifierLicenseLogiciel(LicenseLogiciel ll, Long logiciel, List<Long> documents) {
+		dao.modifierLicenseLogiciel(ll, logiciel, documents); 
+		
+	}
+
+	@Override
+	public List<LicenseLogiciel> SearchLicenseLogiciel(String ll) {
+		return dao.SearchLicenseLogiciel(ll); 
+	}
+
+	@Override
+	public void modifierLicenseOs(LicenseOs lo, Long versionOs, List<Long> documents, List<Long> serveurs,
+			List<Long> machineVirtuelle) {
+		dao.modifierLicenseOs(lo, versionOs, documents, serveurs, machineVirtuelle); 
+		
+	}
+
+	@Override
+	public List<LicenseOs> SearchLicenseOs(String lo) {
+		return dao.SearchLicenseOs(lo); 
+	}
+
+	@Override
+	public List<VersionOs> SearchVersionOs(String vo) {
+		return dao.SearchVersionOs(vo); 
+	}
+
+	@Override
+	public void editProcessusMetier(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		dao.editProcessusMetier(pm, contacts, documents, solutionsApplicatives); 
+	}
+
+	@Override
+	public List<ProcessusMetier> SearchProcessusMetier(String pm) {
+		return dao.SearchProcessusMetier(pm); 
+	}
+
+	@Override
+	public void editArriveeElectrique(ArriveeElectrique ae, Long lieu, List<Long> pdus, List<Long> contacts,
+			List<Long> documents, List<Long> contrats) {
+		dao.editArriveeElectrique(ae, lieu, pdus, contacts, documents, contrats); 
+		
+	}
+
+	@Override
+	public List<ArriveeElectrique> SearchArriveeElectrique(String ae) {
+		return dao.SearchArriveeElectrique(ae); 
+	}
+
+	@Override
+	public void editPduElectrique(PduElectrique pdue, Long lieu, Long rack, Long arrivee, List<Long> contacts,
+			List<Long> documents, List<Long> contrats) {
+		dao.editPduElectrique(pdue, lieu, rack, arrivee, contacts, documents, contrats); 
+		
+	}
+
+	@Override
+	public List<PduElectrique> SearchPduElectrique(String pdue) {
+		return dao.SearchPduElectrique(pdue); 
+	}
+
+	@Override
+	public void modifierMachineVirtuelle(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		dao.modifierMachineVirtuelle(mv, virtualisation, license, logiciels, contacts, documents, solutionsApplicatives, interfacesReseaux, volumesLogiques, contrats); 
+		
+	}
+
+	@Override
+	public List<MachineVirtuelle> SearchMachineVirtuelle(String mv) {
+		return dao.SearchMachineVirtuelle(mv); 
+	}
+
+	@Override
+	public void modifierVcluster(Vcluster v, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> volumesLogiques, List<Long> machinesVirtuelles,
+			List<Long> hyperviseurs, List<Long> contrats) {
+		dao.modifierVcluster(v, contacts, documents, solutionsApplicatives, volumesLogiques, machinesVirtuelles, hyperviseurs, contrats); 
+		
+	}
+
+	@Override
+	public List<Vcluster> SearchVcluster(String v) {
+		return dao.SearchVcluster(v);
+	}
+
+	@Override
+	public void modifierHyperviseur(Hyperviseur h, Long vCluster, Long Serveur, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> volumesLogiques,
+			List<Long> machinesVirtuelles, List<Long> contrats) {
+		dao.modifierHyperviseur(h, vCluster, Serveur, contacts, documents, solutionsApplicatives, volumesLogiques, machinesVirtuelles, contrats); 
+		
+	}
+
+	@Override
+	public List<Hyperviseur> SearchHyperviseur(String h) {
+		return dao.SearchHyperviseur(h); 
+	}
+
 
 }
 

@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -30,22 +33,26 @@ public class InstanceMiddleware implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
-	   @ManyToOne
+	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_middleware")
 	   private Middleware middleware;
 		   

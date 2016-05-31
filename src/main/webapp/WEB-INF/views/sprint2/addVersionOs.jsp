@@ -504,17 +504,17 @@ Use search to find needed section.
 							
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-6">
+								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Famille OS</label>
-								<div class="col-sm-4">
+								<div class="col-sm-9">
 									<f:select  path="familleOs" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value="NONE"> -- choisir une valeur --</f:option>
+							             <f:option value=""></f:option>
 										 <f:option value="Windows">Windows</f:option>
 										 <f:option value="Ubuntu"> Ubuntu</f:option>
 										 <f:option value="Debian"> Debian</f:option>

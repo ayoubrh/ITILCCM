@@ -625,7 +625,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="inputError-4" id="jq-validation-statut">
-									            <f:option value="NULL"> -- choisir une valeur --</f:option>
+									            <f:option value=""></f:option>
 												<f:option value="implémentation">implémentation</f:option>
 												<f:option value="obsolète"> obsolète</f:option>
 												<f:option value="production"> production</f:option>
@@ -695,7 +695,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Monnaie</label>
 								<div class="col-sm-9">
 									<f:select  path="monnaie" class="form-control" name="jq-validation-monnaie" id="jq-validation-monnaie">
-									            <f:option value=""> -- choisir une valeur --</f:option>
+									            <f:option value=""></f:option>
 												<f:option value="Dirham">Dirham</f:option>
 												<f:option value="Euros"> Euros</f:option>
 												<f:option value="Dollars"> Dollars</f:option>

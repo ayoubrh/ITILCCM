@@ -31,6 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Nouveau Document Fichier - ITIL-CCM</title>
@@ -473,12 +474,63 @@ Use search to find needed section.
 
 		Content
 -->
+
+				<!-- Modal Contrat -->
+				<div id="myModalContrat" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">*</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Contrats</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Type</th>
+												<th>Client</th>
+												<th>Description</th>
+												<th>Date de début</th>
+												<th>Date de fin</th>
+												<th>Fournisseur</th>
+											</tr>
+										</thead>
+										<tbody id="tableContratpopup">
+											<c:forEach items="${contrats}" var="contrat">
+												<tr class="gradeA" id="tr_contrat_${contrat.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
+													<td>${contrat.nom }</td>
+													<td>${contrat.typeDeContrat }</td>
+													<td>${contrat.client }</td>
+													<td>${contrat.description }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
+													<td>${contrat.fournisseur }</td>
+
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Contrat -->
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Document Fichier</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="fichier" action="saveFichier" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="documentFichier" action="saveFichier" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -491,15 +543,9 @@ Use search to find needed section.
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-cis" data-toggle="tab">CIs</a>
-								</li>
-								<li>
 									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
 								</li>
-								
-								
-								
-								
+							
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -511,7 +557,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -523,7 +569,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value="NONE"> -- choisir une valeur --</f:option>
+							             <f:option value=""></f:option>
 										 <f:option value="Brouillon">Brouillon</f:option>
 										 <f:option value="Obsolète"> Obsolète</f:option>
 										 <f:option value="Publié"> Publié</f:option>
@@ -547,10 +593,14 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fichier</label>
 								<div class="col-sm-9">
 									<input type="file" name="file" />
+									
+									<c:if test="${error == true}">
+												<div class="help-block">Choisissez un Fichier</div>
+									</c:if>
 								</div>
 							</div>
 					
@@ -560,28 +610,47 @@ Use search to find needed section.
 							</div>
 		
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-cis" id="profile-tabs-cis">
-									
-									CIs
-									
-									
-								</div> <!-- / .tab-pane -->
+								
 								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-									Contrats
-									
-									
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Type</th>
+												<th>Client</th>
+												<th>Description</th>
+												<th>Date de début</th>
+												<th>Date de fin</th>
+												<th>Fournisseur</th>
+											</tr>
+										</thead>
+										<tbody id="tableContrat">
+											
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppContrat">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalContrat">Ajouter des Contrats</button>
+										</div>
+										
+									</div>
 								</div> <!-- / .tab-pane -->
 								
 								
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
-					
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -638,6 +707,31 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		 document.getElementById("addContrat").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckContrat:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
+			    	$( "#tableContrat" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    
+		    };
+		    document.getElementById("suppContrat").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckContrat:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
+			    	$( "#tableContratpopup" ).append(tr);
+	                this.checked = false;
+		    	});
+		    }
 	});
 	window.PixelAdmin.start(init);
 </script>

@@ -663,7 +663,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="Actif"> Actif</f:option>
 													<f:option value="Inactif"> Inactif</f:option>
 										</f:select>
@@ -674,7 +674,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
 										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="haute"> haute</f:option>
 													<f:option value="basse"> basse</f:option>
 													<f:option value="moyenne"> moyenne</f:option>

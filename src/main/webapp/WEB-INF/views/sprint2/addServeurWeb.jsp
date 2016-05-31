@@ -515,7 +515,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContact">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -566,7 +566,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addContrat">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -609,7 +609,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addDoc">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -653,7 +653,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addSol">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addSol">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -698,7 +698,7 @@ Use search to find needed section.
 							</div> <!-- / .modal-body -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" data-dismiss="modal" id="addApp">Ajouter</button>
+								<button type="button" class="btn btn-primary" id="addApp">Ajouter</button>
 							</div>
 						</div> <!-- / .modal-content -->
 					</div> <!-- / .modal-dialog -->
@@ -765,7 +765,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										            <f:option value="NULL"> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="Actif"> Actif</f:option>
 													<f:option value="Inactif"> Inactif</f:option>
 												</f:select>
@@ -776,7 +776,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
 										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value="NULL"> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="haute"> haute</f:option>
 													<f:option value="basse"> basse</f:option>
 													<f:option value="moyenne"> moyenne</f:option>
@@ -788,7 +788,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Système</label>
 								<div class="col-sm-9">
 									<select name="systeme" class="form-control">
-									<option value=""> -- choisir une valeur --</option>
+									<option value=""></option>
 									<c:forEach  items="${s}" var="ser">
 									<option value="serv_${ser.id}" >${ser.nom}</option>
 									</c:forEach>
@@ -803,7 +803,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence logiciel</label>
 								<div class="col-sm-9">
 									<f:select  path="licenseLogiciel.id" class="form-control" name="jq-validation-licenseLogiciel" id="jq-validation-licenseLogiciel">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<f:options items="${lg }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="licenseLogiciel.id" cssClass="help-block"></f:errors>
@@ -823,7 +823,9 @@ Use search to find needed section.
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component').datepicker();
+							$('#bs-datepicker-component').datepicker({
+								format: 'dd/mm/yyyy'
+							});
 						
 
 					});

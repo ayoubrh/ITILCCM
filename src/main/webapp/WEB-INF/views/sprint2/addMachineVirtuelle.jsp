@@ -858,7 +858,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -870,7 +870,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 										            <f:option value="implémentation">implémentation</f:option>
 													<f:option value="obsolète"> obsolète</f:option>
 													<f:option value="production"> production</f:option>
@@ -883,7 +883,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
 										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="haute"> haute</f:option>
 													<f:option value="basse"> basse</f:option>
 													<f:option value="moyenne"> moyenne</f:option>
@@ -892,11 +892,11 @@ Use search to find needed section.
 							     </div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">vCluster / Hyperviseur</label>
 								<div class="col-sm-9">
 									<f:select  path="virtualisation.id" class="form-control" name="jq-validation-virtualisation" id="jq-validation-virtualisation">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<f:options items="${v }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="virtualisation.id" cssClass="help-block"></f:errors>
@@ -906,7 +906,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence OS</label>
 								<div class="col-sm-9">
 									<f:select  path="licenseOs.id" class="form-control" name="jq-validation-licenseOs" id="jq-validation-licenseOs">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<c:forEach items="${licenseos }" var="los">
 										<f:option value="${los.id}" label="${los.nom } - ${los.versionOs.nom } - ${los.versionOs.familleOs }" />
 										</c:forEach>

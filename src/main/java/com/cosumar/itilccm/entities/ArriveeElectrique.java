@@ -3,16 +3,21 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @DiscriminatorValue("ArriveeElectrique")
 public class ArriveeElectrique extends ConnexionElectrique implements Serializable{
 	
-	 @OneToMany(mappedBy="arriveeElectrique")
+	 @OneToMany(mappedBy="arriveeElectrique",cascade = CascadeType.ALL)
+	 @LazyCollection(LazyCollectionOption.FALSE)
   	 @Column(nullable = true)
 	private Collection<PduElectrique> pduElectrique;
 	 

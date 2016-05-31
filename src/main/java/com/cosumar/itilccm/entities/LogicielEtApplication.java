@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -37,36 +40,41 @@ public class LogicielEtApplication implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="logicielEtApplication")
+	   @ManyToMany(mappedBy="logicielEtApplication",cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Ordinateur> ordinateur;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
 	  
-	   @ManyToOne
+	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_serveur")
 	   private Serveur serveur;
 	   
 	  
-	   @ManyToOne
+	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_machineVirtuelle")
 	   private MachineVirtuelle machineVirtuelle;
 	  
-	   @ManyToOne
+	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_licenseLogiciel")
 	   private LicenseLogiciel licenseLogiciel;
 		   
