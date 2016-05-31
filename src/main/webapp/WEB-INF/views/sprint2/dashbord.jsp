@@ -967,7 +967,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a href="<c:url value="/config/admin/add/interfacereseau" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Interface Réseau</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Interface Réseau</span></a>
+													<a href="<c:url value="/config/search/interfacereseau" />"><span class="fa fa-angle-double-right"> Rechercher des objets de type Interface Réseau</span></a>
 												</div>
 											</div>
 										</div>

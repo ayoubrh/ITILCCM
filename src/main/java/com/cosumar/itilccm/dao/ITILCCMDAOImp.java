@@ -4719,6 +4719,21 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
+	public Long editPhysiqueAll(Physique Physique, List<Long> vlans) {
+		
+		if(vlans != null){
+			Collection<Vlan> vlan = new ArrayList<Vlan>();
+			for (Long v : vlans) {
+				vlan.add(getVlan(v));
+			}
+			Physique.setVlan(vlan);
+		}
+		
+		em.merge(Physique);
+		return Physique.getId();
+	}
+	
+	@Override
 	public Long addSubnetAll(Subnet Subnet, List<Long> vlans) {
 
 		if(vlans != null){
@@ -5318,7 +5333,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<IntefaceReseau> SearchInterfaceReseau(String s) {
-		Query req = em.createQuery("select i from InterfaceReseau i where i.nom LIKE :searchKeyword");
+		Query req = em.createQuery("select i from IntefaceReseau i where i.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}

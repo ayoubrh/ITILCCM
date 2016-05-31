@@ -4135,6 +4135,19 @@ public class Sprint2 {
 		return "sprint2/addInterfaceFibre";
 	}
 	
+	@RequestMapping(value="/admin/edit/fibre")
+	public String editFibre(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("fibre", m.getFibre(id));
+		model.addAttribute("infra", m.ListServeur());
+		model.addAttribute("equip", m.ListEquipementReseau());
+		model.addAttribute("error", false);
+		return "sprint2/editInterfaceFibre";
+	}
+	
 
 	@RequestMapping(value="/admin/add/saveFibre", method = RequestMethod.POST)
 	public String saveFibre(@Valid Fibre fibre,BindingResult bind,HttpServletRequest req,Model model) {
@@ -4163,8 +4176,11 @@ public class Sprint2 {
 			System.out.println("--------- er : "+er);
 			fibre.setEquipementReseau(m.getEquipementReseau(er));
 		}
-		
-		m.addFibre(fibre);
+		if(fibre.getId() == null){
+			m.addFibre(fibre);
+		} else {
+			m.editFibre(fibre);
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -4183,6 +4199,17 @@ public class Sprint2 {
 		return "sprint2/addInterfaceLogique";
 	}
 	
+	@RequestMapping(value="/admin/edit/logique")
+	public String editLogique(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("logique", m.getLogique(id));
+		model.addAttribute("mv", m.listMachineVirtuelle());
+		model.addAttribute("error", false);
+		return "sprint2/editInterfaceLogique";
+	}
 
 	@RequestMapping(value="/admin/add/saveLogique", method = RequestMethod.POST)
 	public String saveLogique(@Valid Logique log,BindingResult bind,HttpServletRequest req,Model model) {
@@ -4205,8 +4232,11 @@ public class Sprint2 {
 		}
 		System.out.println("--------- fvdfvdfvdfvdfv ");
 		log.setMachineVirtuelle(m.getMachineVirtuelle(Long.parseLong(mv[0])));
-		
-		m.addLogique(log);
+		if(log.getId() == null ){
+			m.addLogique(log);
+		} else {
+			m.editLogique(log);
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -4224,6 +4254,20 @@ public class Sprint2 {
 		return "sprint2/addInterfacePhysique";
 	}
 	
+	
+	@RequestMapping(value="/admin/edit/physique")
+	public String editPhysique(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+		model.addAttribute("physique", m.getPhysique(id));
+		model.addAttribute("vlans", m.ListVlan());
+		model.addAttribute("infra", m.ListServeur());
+		model.addAttribute("equip", m.ListEquipementReseau());
+		model.addAttribute("error", false);
+		return "sprint2/editInterfacePhysique";
+	}
 
 	@RequestMapping(value="/admin/add/savePhysique", method = RequestMethod.POST)
 	public String savePhysique(@Valid Physique physique,BindingResult bind,HttpServletRequest req,Model model) {
@@ -4266,8 +4310,11 @@ public class Sprint2 {
 			}
 			
 		}
-		
-		m.addPhysiqueAll(physique, vlan);
+		if(physique.getId() == null ){
+			m.addPhysiqueAll(physique, vlan);
+		} else {
+			m.editPhysiqueAll(physique, vlan);
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
@@ -5058,6 +5105,56 @@ public class Sprint2 {
 		return "sprint2/SearchCamera";
 	}
 
+	@RequestMapping(value="/view/fibre")
+	public String viewFibre(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("fibre", m.getFibre(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewFibre";
+	}
+	
+	@RequestMapping(value="/view/logique")
+	public String viewLogique(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("logique", m.getLogique(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewLogique";
+	}
+	
+	@RequestMapping(value="/view/physique")
+	public String viewPhysique(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		model.addAttribute("physique", m.getPhysique(id) );
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewPhysique";
+	}
 	
 	@RequestMapping(value="/view/pc")
 	public String viewPC(Model model,Long id,String save){
@@ -5401,6 +5498,42 @@ public class Sprint2 {
 			model.addAttribute("save", save );
 		}
 		return "sprint2/viewCamera";
+	}
+	
+	@RequestMapping(value="/admin/delete/fibre")
+	public String deleteFibre(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteFibre(id);
+		return "redirect:/config/search/interfacereseau?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/logique")
+	public String deleteLogique(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deleteLogique(id);
+		return "redirect:/config/search/interfacereseau?delete="+true;
+	}
+	
+	@RequestMapping(value="/admin/delete/physique")
+	public String deletePysique(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    System.out.println(logged_m);
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		m.deletePhysique(id);
+		return "redirect:/config/search/interfacereseau?delete="+true;
 	}
 	
 	@RequestMapping(value="/admin/delete/pc")

@@ -2136,5 +2136,10 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public List<TelephneMobile> ListTeleMobileUser(Long id) {
 		return dao.ListTeleMobileUser(id);
 	}
+	
+	@Override
+	public Long editPhysiqueAll(Physique Physique, List<Long> vlans) {
+		return dao.editPhysiqueAll(Physique, vlans);
+	}
 }
 

@@ -217,6 +217,7 @@ public interface ITILCCMDAO {
 	// Physique
 	public  Long addPhysique(Physique Physique);
 	public  Long addPhysiqueAll(Physique Physique, List<Long> vlans);
+	public  Long editPhysiqueAll(Physique Physique, List<Long> vlans);
 	public void editPhysique(Physique Physique);
 	public List<Physique> ListPhysique();
 	public Physique getPhysique(Long id);
