@@ -31,9 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Document Web - ITIL-CCM</title>
+	<title>Modification Document Fichier - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -473,12 +474,13 @@ Use search to find needed section.
 
 		Content
 -->
+
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Document Web</span>
+						<span class="panel-title">Modification de Document Fichier</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="documentWeb" action="saveWeb" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="documentFichier" action="/config/admin/add/saveFichier" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -501,7 +503,7 @@ Use search to find needed section.
 									<div class="panel-body">
 						
 						
-							
+							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
@@ -538,25 +540,30 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">URL</label>
+							<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Fichier</label>
+								${documentFichier.fichier }
 								<div class="col-sm-9">
-									<f:input path="url" type="text" class="form-control" id="inputError-4" name="jq-validation-version" />
-									<f:errors path="url" cssClass="help-block"></f:errors>
+									<input type="file" name="file"  value="${fichier }" />
+									
+									<c:if test="${error == true}">
+												<div class="help-block">Choisissez un Fichier</div>
+									</c:if>
 								</div>
 							</div>
+					
+							
+							          
+							
 							</div>
 		
 								</div> <!-- / .tab-pane -->
-							
+								
+								
+								
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
-					
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -613,6 +620,31 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		 document.getElementById("addContrat").onclick = function () {
+		    	var chkArray = [];
+		    	
+		    	$(".ckContrat:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
+			    	$( "#tableContrat" ).append(tr);
+			    	//this.checked = false;
+		    	});
+		    
+		    };
+		    document.getElementById("suppContrat").onclick = function () {
+				var chkArray = [];
+		    	
+		    	$(".ckContrat:checked").each(function() {
+		    		chkArray.push($(this).val());
+		    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
+			    	$( "#tableContratpopup" ).append(tr);
+	                this.checked = false;
+		    	});
+		    }
 	});
 	window.PixelAdmin.start(init);
 </script>

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -39,6 +41,7 @@ public class SolutionApplicative implements Serializable{
    private java.util.Collection<EquipementReseau> equipementReseau;
    
    	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
  	@Column(nullable = true)
    private Collection<ProcessusMetier> processusMetier;
    	
@@ -69,14 +72,17 @@ public class SolutionApplicative implements Serializable{
 	 
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contact> contacts;
 	   
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contrat> contrats;
 	   
 	@Column(nullable=true)
 	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Document> documents;
 	
 	public SolutionApplicative() {

@@ -2189,6 +2189,63 @@ public class Sprint2 {
 		model.addAttribute("processusMetiers", m.ListProcessusMetier());
 		return "sprint2/addSolutionApplicative";
 	}
+	@RequestMapping(value="/admin/edit/solutionApplicative")
+	public String editSolutionApplicative(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+	    model.addAttribute("solutionApplicative",m.getSolutionApplicative(id));
+		model.addAttribute("contacts", m.listContact());
+		model.addAttribute("documents", m.listDocument());
+		model.addAttribute("contrats", m.listContrat());
+		model.addAttribute("processusMetiers", m.ListProcessusMetier());
+		return "sprint2/editSolutionApplicative";
+	}
+	@RequestMapping(value="/search/solutionApplicative")
+	public String searchSolutionApplicative(Model model,String sa,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("solutionApplicative",sa);
+		model.addAttribute("logged", logged);
+		if(sa == null){
+			model.addAttribute("cis", m.ListSolutionApplicative());
+		} else {
+			model.addAttribute("cis",m.SearchSolutionApplicative(sa));          
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchSolutionApplicative";
+	}
+
+	@RequestMapping(value="/view/solutionApplicative")
+	public String viewSolutionApplicative(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("solutionApplicative", m.getSolutionApplicative(id));         
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewSolutionApplicative";
+	}
+	
+	@RequestMapping(value="/admin/delete/solutionApplicative")
+	public String deleteSolutionApplicative(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		m.deleteSolutionApplicative(id);         
+		return "redirect:/config/search/solutionApplicative?delete="+true;
+	}
 	@RequestMapping(value="/admin/add/saveSolutionApplicative", method = RequestMethod.POST)
 	public String saveSolutionApplicative(@Valid SolutionApplicative sa,BindingResult bind,Model model,HttpServletRequest req) {
 		
@@ -2239,8 +2296,13 @@ public class Sprint2 {
 				contr.add(Long.parseLong(contrats[i]));
 			}
 		}
-			
-		m.addSolutionApplicativeAll(sa, cont, doc, null, pro, contr);
+		if(sa.getId() == null){
+			m.addSolutionApplicativeAll(sa, cont, doc, pro, contr);
+		} else {
+			m.editSolutionApplicative(sa, cont, doc, pro, contr);       
+			return "redirect:/config/view/solutionApplicative?id="+sa.getId()+"&save="+true;
+		}
+		
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/processusMetier")
@@ -3448,8 +3510,60 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
 		model.addAttribute("documentFichier", new DocumentFichier());
-		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/addDocumentFichier";
+	}
+	@RequestMapping(value="/admin/edit/fichier")
+	public String editDocumentFichier(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+	    model.addAttribute("documentFichier",m.getDocumentFichier(id));
+		return "sprint2/editDocumentFichier";
+	}
+	@RequestMapping(value="/search/fichier")
+	public String searchDocumentFichier(Model model,String df,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("documentFichier", df);
+		model.addAttribute("logged", logged);
+		if(df == null){
+			model.addAttribute("cis", m.listDocumentFichier());
+		} else {
+			model.addAttribute("cis",m.SearchDocumentFichier(df));      
+		}
+		if(delete == null){
+			model.addAttribute("delete", false ); 
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchDocumentFichier";
+	}
+
+	@RequestMapping(value="/view/fichier")
+	public String viewDocumentFichier(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("documentFichier", m.getDocumentFichier(id));       
+		if(save == null){
+			model.addAttribute("save", false ); 
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewDocumentFichier";
+	}
+	
+	@RequestMapping(value="/admin/delete/fichier")
+	public String deleteDocumentFichier(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		m.supprimerDocumentFichier(id);      
+		return "redirect:/config/search/fichier?delete="+true;
 	}
 	@RequestMapping(value="/fichier",produces=MediaType.ALL_VALUE)
 	@ResponseBody
@@ -3465,7 +3579,6 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
-		    model.addAttribute("contrats", m.listContrat());
 			return "sprint2/addDocumentFichier";
 		}
 		if(!file.isEmpty()){
@@ -3473,7 +3586,13 @@ public class Sprint2 {
 			df.setBfichier(file.getBytes());
 			df.setFichier(file.getOriginalFilename());
 		}
-		m.ajouterDocumentFichier(df);
+		if(df.getId() == null){
+			m.ajouterDocumentFichier(df);
+		} else {
+			m.modifierDocumentFichier(df);     
+			return "redirect:/config/view/fichier?id="+df.getId()+"&save="+true;
+		}
+		
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/web")
@@ -3482,30 +3601,159 @@ public class Sprint2 {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
-		model.addAttribute("web", new DocumentWeb());
+		model.addAttribute("documentWeb", new DocumentWeb());
 		return "sprint2/addDocumentWeb";
 	}
+	@RequestMapping(value="/admin/edit/web")
+	public String editDocumentWeb(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+	    model.addAttribute("documentWeb",m.getDocumentWeb(id));
+		return "sprint2/editDocumentWeb";
+	}
+	@RequestMapping(value="/search/web")
+	public String searchDocumentWeb(Model model,String dw,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("documentWeb", dw);
+		model.addAttribute("logged", logged);
+		if(dw == null){
+			model.addAttribute("cis", m.listDocumentWeb());
+		} else {
+			model.addAttribute("cis",m.SearchDocumentWeb(dw));      
+		}
+		if(delete == null){
+			model.addAttribute("delete", false ); 
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchDocumentWeb";
+	}
+
+	@RequestMapping(value="/view/web")
+	public String viewDocumentWeb(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("documentWeb", m.getDocumentWeb(id));       
+		if(save == null){
+			model.addAttribute("save", false ); 
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewDocumentWeb";
+	}
+	
+	@RequestMapping(value="/admin/delete/web")
+	public String deleteDocumentWeb(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		m.supprimerDocumentWeb(id);      
+		return "redirect:/config/search/web?delete="+true;
+	}
 	@RequestMapping(value="/admin/add/saveWeb", method = RequestMethod.POST)
-	public String saveFichier(@Valid DocumentWeb dw,BindingResult bind,Model model,HttpServletRequest req){
-		
+	public String saveWeb(@Valid DocumentWeb dw,BindingResult bind,Model model,HttpServletRequest req) {
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
-			return "sprint2/addDocumentFichier";
+		    return "sprint2/addDocumentWeb";
 		}
-		
+		if(dw.getId() == null){
+			m.ajouterDocumentWeb(dw);
+		} else {
+			m.modifierDocumentWeb(dw);     
+			return "redirect:/config/view/web?id="+dw.getId()+"&save="+true;
+		}
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
+	
 	@RequestMapping(value="/admin/add/note")
 	public String addDocumentNote(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
-		model.addAttribute("note", new DocumentNote());
+		model.addAttribute("documentNote", new DocumentNote());
 		return "sprint2/addDocumentNote";
+	}
+	@RequestMapping(value="/admin/edit/note")
+	public String editDocumentNote(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+	    model.addAttribute("documentNote",m.getDocumentNote(id));
+		return "sprint2/editDocumentNote";
+	}
+	@RequestMapping(value="/search/note")
+	public String searchDocumentNote(Model model,String dn,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("documentNote", dn);
+		model.addAttribute("logged", logged);
+		if(dn == null){
+			model.addAttribute("cis", m.listDocumentNote());
+		} else {
+			model.addAttribute("cis",m.SearchDocumentNote(dn));      
+		}
+		if(delete == null){
+			model.addAttribute("delete", false ); 
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchDocumentNote";
+	}
+
+	@RequestMapping(value="/view/note")
+	public String viewDocumentNote(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("documentNote", m.getDocumentNote(id));       
+		if(save == null){
+			model.addAttribute("save", false ); 
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewDocumentNote";
+	}
+	
+	@RequestMapping(value="/admin/delete/note")
+	public String deleteDocumentNote(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		m.supprimerDocumentNote(id);      
+		return "redirect:/config/search/note?delete="+true;
+	}
+	@RequestMapping(value="/admin/add/saveNote", method = RequestMethod.POST)
+	public String saveNote(@Valid DocumentNote dn,BindingResult bind,Model model,HttpServletRequest req){
+		
+		if(bind.hasErrors()){
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String logged_m = auth.getName();
+		    User logged = mu.getUserByMatricule(logged_m);
+		    model.addAttribute("logged", logged);
+		    return "sprint2/addDocumentNote";
+		}
+		if(dn.getId() == null){
+			m.ajouterDocumentNote(dn);
+		} else {
+			m.modifierDocumentNote(dn);     
+			return "redirect:/config/view/note?id="+dn.getId()+"&save="+true;
+		}
+		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	
 	@RequestMapping(value="/admin/add/autreLogiciel")

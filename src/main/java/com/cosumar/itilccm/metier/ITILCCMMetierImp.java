@@ -678,12 +678,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public void editSolutionApplicative(SolutionApplicative sa) {
-		dao.editSolutionApplicative(sa);
-		
-	}
-
-	@Override
 	public void supprimerApplicationWeb(Long id) {
 		dao.supprimerApplicationWeb(id);
 	}
@@ -1730,9 +1724,9 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
-	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
-			List<Long> cis, List<Long> processusMetiers, List<Long> contrats) {
-		return dao.addSolutionApplicativeAll(sa, contacts, documents, cis, processusMetiers, contrats); 
+	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents
+			, List<Long> processusMetiers, List<Long> contrats) {
+		return dao.addSolutionApplicativeAll(sa, contacts, documents, processusMetiers, contrats); 
 	}
 	
 	@Override
@@ -2000,6 +1994,33 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public List<Hyperviseur> SearchHyperviseur(String h) {
 		return dao.SearchHyperviseur(h); 
+	}
+
+	@Override
+	public List<DocumentFichier> SearchDocumentFichier(String df) {
+		return dao.SearchDocumentFichier(df);
+	}
+
+	@Override
+	public List<DocumentWeb> SearchDocumentWeb(String dw) {
+		return dao.SearchDocumentWeb(dw);
+	}
+
+	@Override
+	public List<DocumentNote> SearchDocumentNote(String dn) {
+		return dao.SearchDocumentNote(dn); 
+	}
+
+	@Override
+	public void editSolutionApplicative(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
+			List<Long> processusMetiers, List<Long> contrats) {
+		dao.editSolutionApplicative(sa, contacts, documents, processusMetiers, contrats); 
+		
+	}
+
+	@Override
+	public List<SolutionApplicative> SearchSolutionApplicative(String sa) {
+		return dao.SearchSolutionApplicative(sa); 
 	}
 
 

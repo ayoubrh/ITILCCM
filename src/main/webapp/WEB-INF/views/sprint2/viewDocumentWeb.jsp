@@ -31,9 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Document Web - ITIL-CCM</title>
+	<title>Détail Document Web - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -473,14 +474,21 @@ Use search to find needed section.
 
 		Content
 -->
-		<div class="panel">
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien modifier.
+					</div>
+				</c:if>
+				
+					<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Document Web</span>
+						<span class="panel-title col-md-9">Détail de Document Web</span>
+						<a href="<c:url value="/config/admin/edit/web?id=${documentWeb.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						<a href="<c:url value="/config/admin/delete/web?id=${documentWeb.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
+						
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="documentWeb" action="saveWeb" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
-					
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
 						
@@ -491,85 +499,57 @@ Use search to find needed section.
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
 								
+								<li>
+									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
+								</li>
+								
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									
-		
-									<div class="panel-body">
 						
-						
-							
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
-								</div>
+								${documentWeb.nom }
 							</div>
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value=""></f:option>
-										 <f:option value="Brouillon">Brouillon</f:option>
-										 <f:option value="Obsolète"> Obsolète</f:option>
-										 <f:option value="Publié"> Publié</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-							   </div>
+								${documentWeb.statut }
 							</div>
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Version</label>
-								<div class="col-sm-9">
-									<f:input path="version" type="text" class="form-control" id="inputError-4" name="jq-validation-version" />
-									<f:errors path="version" cssClass="help-block"></f:errors>
-								</div>
+								
+								${documentWeb.version }
 							</div>
 						
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-								</div>
+								
+								${documentWeb.description}
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">URL</label>
-								<div class="col-sm-9">
-									<f:input path="url" type="text" class="form-control" id="inputError-4" name="jq-validation-version" />
-									<f:errors path="url" cssClass="help-block"></f:errors>
-								</div>
+								${documentWeb.url}
+							
 							</div>
-							</div>
+					
+							
 		
 								</div> <!-- / .tab-pane -->
-							
+								
+								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
+								
+								Tickets
+								
+								</div>
+								
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
-					
-							<hr class="panel-wide">
 							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
 					</div>
 					
 					
@@ -613,6 +593,7 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+		
 	});
 	window.PixelAdmin.start(init);
 </script>

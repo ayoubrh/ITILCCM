@@ -555,8 +555,8 @@ Use search to find needed section.
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
 													<td>${contrat.description }</td>
-													<td>${contrat.dateDeDebut }</td>
-													<td>${contrat.dateDeFin }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
 													<td>${contrat.fournisseur }</td>
 
 												</tr>

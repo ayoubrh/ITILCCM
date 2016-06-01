@@ -31,9 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Document Web - ITIL-CCM</title>
+	<title>Modification Solution applicative - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -473,12 +474,198 @@ Use search to find needed section.
 
 		Content
 -->
+<!-- Modal Contact -->
+				<div id="myModalContact" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Contacts</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Contact</th>
+												<th>Statut</th>
+												<th>Organisation</th>
+												<th>Email</th>
+												<th>Téléphone</th>
+												<th>Fonction</th>
+												
+										</thead>
+										<tbody id="tableContactpopup">
+											<c:forEach items="${contacts}" var="contact">
+												<tr class="gradeA" id="tr_contact_${contact.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckContact" name="ckContacts" value="${contact.id }"></td>
+													<td>${contact.nom } ${contact.prenom }</td>
+													<td>${contact.statut }</td>
+													<td>${contact.organisme }</td>
+													<td>${contact.email }</td>
+													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+													<td>${contact.fonction }</td>
+													
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addContact">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal  -->
+				<!-- / Modal Contact -->
+				
+				<!-- Modal Contrat -->
+				<div id="myModalContrat" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Contrats</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Type</th>
+												<th>Client</th>
+												<th>Description</th>
+												<th>Date de début</th>
+												<th>Date de fin</th>
+												<th>Fournisseur</th>
+											</tr>
+										</thead>
+										<tbody id="tableContratpopup">
+											<c:forEach items="${contrats}" var="contrat">
+												<tr class="gradeA" id="tr_contrat_${contrat.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
+													<td>${contrat.nom }</td>
+													<td>${contrat.typeDeContrat }</td>
+													<td>${contrat.client }</td>
+													<td>${contrat.description }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
+													<td>${contrat.fournisseur }</td>
+
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addContrat">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Contrat -->	
+				<!-- Modal Document -->
+				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Statut</th>
+												<th>Type de document</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tabledocpopup">
+											<c:forEach items="${documents}" var="doc">
+												<tr class="gradeA" id="tr_doc_${doc.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
+													<td>${doc.nom }</td>
+													<td>${doc.statut }</td>
+													<td> </td>
+													<td>${doc.description }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addDoc">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Document -->
+				
+				<!-- Modal Processus métiers -->
+				<div id="myModalProcessusMetiers" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout Processus métiers </h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>Processus métiers</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Date de mise en production</th>
+											</tr>
+										</thead>
+										<tbody id="tableProcessusMetierspopup">
+											<c:forEach items="${processusMetiers}" var="pm">
+												<tr class="gradeA" id="tr_processusMetiers_${pm.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckpm" name="ckProcessusMetiers" value="${pm.id }"></td>
+													<td>${pm.nom }</td>
+													<td>${pm.statut }</td>
+													<td>${pm.criticite}</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pm.dateDeMiseEnProduction }" /></td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addpm">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal -->
+				<!-- / Modal Solutions Applicatives -->	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Document Web</span>
+						<span class="panel-title">Modification de Solution applicative</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="documentWeb" action="saveWeb" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="solutionApplicative" action="/config/admin/add/saveSolutionApplicative" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -491,6 +678,21 @@ Use search to find needed section.
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
 								
+								
+								<li>
+									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
+								</li>
+								
+								<li>
+									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-processus" data-toggle="tab">Processus métiers</a>
+								</li>
+								<li>
+									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
+								</li>
+								
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -501,8 +703,8 @@ Use search to find needed section.
 									<div class="panel-body">
 						
 						
-							
-							<div class="form-group required">
+							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -513,24 +715,53 @@ Use search to find needed section.
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value=""></f:option>
-										 <f:option value="Brouillon">Brouillon</f:option>
-										 <f:option value="Obsolète"> Obsolète</f:option>
-										 <f:option value="Publié"> Publié</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-							   </div>
+										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										            <f:option value=""></f:option>
+													<f:option value="Actif"> Active</f:option>
+													<f:option value="Inactif"> Inactive</f:option>
+										</f:select>
+										<f:errors path="statut" cssClass="help-block"></f:errors>
+							     </div>
 							</div>
-							
 							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Version</label>
+								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
-									<f:input path="version" type="text" class="form-control" id="inputError-4" name="jq-validation-version" />
-									<f:errors path="version" cssClass="help-block"></f:errors>
-								</div>
+										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
+										            <f:option value=""></f:option>
+													<f:option value="haute"> haute</f:option>
+													<f:option value="basse"> basse</f:option>
+													<f:option value="moyenne"> moyenne</f:option>
+												</f:select>
+										<f:errors path="criticite" cssClass="help-block"></f:errors>
+							     </div>
 							</div>
+									<script>
+					init.push(function () {
 						
+						var options = {
+								
+								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+							}
+							$('#bs-datepicker-component').datepicker({
+								format: 'dd/mm/yyyy'
+								 });
+						
+
+					});
+				</script>
+				
+				<div class="form-group ">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de mise en production</label>
+					
+						<div class=" col-sm-9" >
+							<div class=" input-group date" id="bs-datepicker-component">
+								<f:input path="dateDeMiseEnProduction" type="text" class="form-control" name="dateDeMiseEnProduction"  />
+								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+								<f:errors path="dateDeMiseEnProduction" cssClass="help-block"></f:errors>
+							</div>				
+						</div>
+				</div>
+							
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
 								<div class="col-sm-9">
@@ -538,25 +769,197 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">URL</label>
-								<div class="col-sm-9">
-									<f:input path="url" type="text" class="form-control" id="inputError-4" name="jq-validation-version" />
-									<f:errors path="url" cssClass="help-block"></f:errors>
-								</div>
-							</div>
+							
+							
 							</div>
 		
 								</div> <!-- / .tab-pane -->
-							
+								<div class="tab-pane fade widget-contacts" id="profile-tabs-contacts">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>Contact</th>
+												<th>Statut</th>
+												<th>Organisation</th>
+												<th>Email</th>
+												<th>Téléphone</th>
+												<th>Fonction</th>
+												
+											</tr>
+										</thead>
+										<tbody id="tableContact">
+											<c:forEach items="${solutionApplicative.contacts}" var="contact">
+												<tr class="gradeA" id="tr_contact_${contact.id }">
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckContact" name="ckContacts" value="${contact.id }"></td>
+													<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
+													<td>${contact.statut }</td>
+													<td>${contact.organisme }</td>
+													<td>${contact.email }</td>
+													<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+													<td>${contact.fonction }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppContact">Retirer !</button>
+										</div>
+										
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalContact">Ajouter des Contacts</button>
+										</div>
+										
+									</div>
+									
+								</div> <!-- / .tab-pane -->
+								
+								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+													<th id="supchek"> </th>
+													<th>Nom</th>
+												    <th>Statut</th>
+												    <th>Type de document</th>
+												    <th>Description</th>
+													
+												 </tr>
+											</thead>
+											<tbody id="tabledocument">
+												<c:forEach items="${solutionApplicative.documents}" var="doc">
+													<tr class="gradeA" id="tr_doc_${doc.id }">
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
+													<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
+													<td>${doc.statut }</td>
+													<td> </td>
+													<td>${doc.description }</td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppDoc">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
+										</div>
+										
+									</div>
+		
+								</div> <!-- / .tab-pane -->
+								
+								
+								<div class="tab-pane fade widget-processus" id="profile-tabs-processus">
+									<div class="table-primary">
+										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+											<thead>
+												<tr>
+												<th id="supchek"> </th>
+												<th>Processus métiers</th>
+												<th>Statut</th>
+												<th>Criticité</th>
+												<th>Date de mise en production</th>
+											</tr>
+											</thead>
+											<tbody id="tableProcessusMetiers">
+												<c:forEach items="${solutionApplicative.processusMetier}" var="pm">
+												<tr class="gradeA" id="tr_processusMetiers_${pm.id }">
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckpm" name="ckProcessusMetiers" value="${pm.id }"></td>
+													<td><a href="<c:url value="/config/view/processusMetier?id=${pm.id }" />">${pm.nom }</a></td>
+													<td>${pm.statut }</td>
+													<td>${pm.criticite}</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pm.dateDeMiseEnProduction }" /></td>
+												</tr>
+											</c:forEach>
+												
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="supppm">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalProcessusMetiers">Ajouter des Processus Métiers</button>
+										</div>
+										
+									</div>
+		
+								</div> <!-- / .tab-pane -->
+								
+								
+								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>Nom</th>
+												<th>Type</th>
+												<th>Client</th>
+												<th>Description</th>
+												<th>Date de début</th>
+												<th>Date de fin</th>
+												<th>Fournisseur</th>
+											</tr>
+										</thead>
+										<tbody id="tableContrat">
+											<c:forEach items="${solutionApplicative.contrats}" var="contrat">
+												<tr class="gradeA" id="tr_contrat_${contrat.id }">
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckContrat" name="ckContrats" value="${contrat.id }"></td>
+													<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
+													<td>${contrat.typeDeContrat }</td>
+													<td>${contrat.client }</td>
+													<td>${contrat.description }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
+													<td>${contrat.fournisseur }</td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppContrat">Retirer !</button>
+										</div>
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalContrat">Ajouter des Contrats</button>
+										</div>
+										
+									</div>
+								</div> <!-- / .tab-pane -->
+								
+								
 							</div> <!-- / .tab-content -->
 						</div>
 				
-					
-					
-					
-					
-					
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -575,14 +978,8 @@ Use search to find needed section.
 					
 		</div>
 
-		
-
-
 		<!-- Content here -->
 		
-		
-		
-
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
@@ -613,6 +1010,99 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		document.getElementById("addContact").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckContact:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
+		    	$( "#tableContact" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    
+	    };
+	    document.getElementById("suppContact").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckContact:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_contact_".concat($(this).val()));
+		    	$( "#tableContactpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    }
+	    document.getElementById("addContrat").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckContrat:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
+		    	$( "#tableContrat" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    
+	    };
+	    document.getElementById("suppContrat").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckContrat:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_contrat_".concat($(this).val()));
+		    	$( "#tableContratpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    }
+	    document.getElementById("addDoc").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckdoc:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
+		    	$( "#tabledocument" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("suppDoc").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckdoc:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
+		    	$( "#tabledocpopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+
+	    document.getElementById("addpm").onclick = function () {
+	    	var chkArray = [];
+	    	
+	    	$(".ckpm:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_processusMetiers_".concat($(this).val()));
+		    	$( "#tableProcessusMetiers" ).append(tr);
+		    	//this.checked = false;
+	    	});
+	    	
+	    };
+	    
+	    document.getElementById("supppm").onclick = function () {
+			var chkArray = [];
+	    	
+	    	$(".ckpm:checked").each(function() {
+	    		chkArray.push($(this).val());
+	    		var tr = document.getElementById("tr_processusMetiers_".concat($(this).val()));
+		    	$( "#tableProcessusMetierspopup" ).append(tr);
+                this.checked = false;
+	    	});
+	    };
+		
 	});
 	window.PixelAdmin.start(init);
 </script>

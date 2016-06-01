@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Document Web - ITIL-CCM</title>
+	<title>Modification Document Web - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -475,10 +475,10 @@ Use search to find needed section.
 -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Document Web</span>
+						<span class="panel-title">Modification de Document Web</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="documentWeb" action="saveWeb" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="documentWeb" action="/config/admin/add/saveWeb" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -501,7 +501,7 @@ Use search to find needed section.
 									<div class="panel-body">
 						
 						
-							
+							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">

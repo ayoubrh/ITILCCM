@@ -24,7 +24,7 @@
 	<context:component-scan base-package="com.cosumar.itilccm" />
 	
 	<beans:bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="50000000"></beans:property>
+		<beans:property name="maxUploadSize" value="5000000000"></beans:property>
 	</beans:bean>
 	
 </beans:beans>

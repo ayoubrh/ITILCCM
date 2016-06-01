@@ -492,7 +492,7 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail d'un Lieu</span>
+						<span class="panel-title col-md-9">Détail de Lieu</span>
 						<a href="<c:url value="/config/admin/edit/lieu?id=${lieu.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/lieu?id=${lieu.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
 						

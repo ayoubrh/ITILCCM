@@ -793,12 +793,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void editSolutionApplicative(SolutionApplicative sa) {
-		em.merge(sa);
-		
-	}
-
-	@Override
 	public List<SolutionApplicative> ListSolutionApplicative() {
 		Query req = em.createQuery("select sa from SolutionApplicative sa");
 		return req.getResultList();
@@ -3706,8 +3700,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
-	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
-			List<Long> cis, List<Long> processusMetiers, List<Long> contrats) {
+	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents
+			, List<Long> processusMetiers, List<Long> contrats) {
 		
 		if(contacts != null){
 			
@@ -3732,10 +3726,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sa.setDocuments(document);
 			
 		}
-        if(cis != null){
-			
-			
-		}
+       
        if(processusMetiers!=null){
 			
 			Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
@@ -5473,6 +5464,90 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public List<Hyperviseur> SearchHyperviseur(String h) {
 		Query req = em.createQuery("select h from Vcluster h where h.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+h+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<DocumentFichier> SearchDocumentFichier(String df) {
+		Query req = em.createQuery("select df from DocumentFichier df where df.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+df+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<DocumentWeb> SearchDocumentWeb(String dw) {
+		Query req = em.createQuery("select dw from DocumentWeb dw where dw.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+dw+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<DocumentNote> SearchDocumentNote(String dn) {
+		Query req = em.createQuery("select dn from DocumentFichier dn where dn.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+dn+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void editSolutionApplicative(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
+			List<Long> processusMetiers, List<Long> contrats) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sa.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sa.setDocuments(document);
+			
+		}
+       
+       if(processusMetiers!=null){
+			
+			Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
+			for (Long pm : processusMetiers) {
+				ProcessusMetier pro = getProcessusMetier(pm);
+				processusMetier.add(pro);
+				
+			}
+			
+			    sa.setProcessusMetier(processusMetier);
+		}
+      
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sa.setContrats(contrat);
+					
+		}
+		em.merge(sa); 
+		
+	}
+
+	@Override
+	public List<SolutionApplicative> SearchSolutionApplicative(String sa) {
+		Query req = em.createQuery("select sa from SolutionApplicative sa where sa.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+sa+"%");
 		return req.getResultList();
 	}
 

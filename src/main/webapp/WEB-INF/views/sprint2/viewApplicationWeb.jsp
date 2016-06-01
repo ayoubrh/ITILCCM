@@ -706,10 +706,6 @@ Use search to find needed section.
 									<br>
 									<br>
 
-									
-		
-		
-									
 								</div> <!-- / .tab-pane -->
 								
 								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">

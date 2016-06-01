@@ -87,6 +87,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public Long ajouterDocumentFichier(DocumentFichier df);
 	public void modifierDocumentFichier(DocumentFichier df);
 	public void supprimerDocumentFichier(Long id);
+	public List<DocumentFichier> SearchDocumentFichier(String df);
 	public List<DocumentFichier> listDocumentFichier();
 	public DocumentFichier getDocumentFichier(Long id);
 	
@@ -95,6 +96,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public Long ajouterDocumentWeb(DocumentWeb dw);
 	public void modifierDocumentWeb(DocumentWeb dw);
 	public void supprimerDocumentWeb(Long id);
+	public List<DocumentWeb> SearchDocumentWeb(String dw);
 	public List<DocumentWeb> listDocumentWeb();
 	public DocumentWeb getDocumentWeb(Long id);
 	
@@ -103,6 +105,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public Long ajouterDocumentNote(DocumentNote dn);
 	public void modifierDocumentNote(DocumentNote dn);
 	public void supprimerDocumentNote(Long id);
+	public List<DocumentNote> SearchDocumentNote(String dn);
 	public List<DocumentNote> listDocumentNote();
 	public DocumentNote getDocumentNote(Long id);
 		
@@ -382,8 +385,9 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// SolutionApplicative
 	public  Long addSolutionApplicative(SolutionApplicative sa);
-	public  Long addSolutionApplicativeAll(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> cis,List<Long> processusMetiers,List<Long> contrats);
-	public void editSolutionApplicative(SolutionApplicative sa);
+	public  Long addSolutionApplicativeAll(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> processusMetiers,List<Long> contrats);
+	public void editSolutionApplicative(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> processusMetiers,List<Long> contrats);
+	public List<SolutionApplicative> SearchSolutionApplicative(String sa);
 	public List<SolutionApplicative> ListSolutionApplicative();
 	public SolutionApplicative getSolutionApplicative(Long id);
 	public void deleteSolutionApplicative(Long id);
