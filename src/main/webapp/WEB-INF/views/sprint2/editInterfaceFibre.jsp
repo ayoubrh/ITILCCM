@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau  Interface Fibre - ITIL-CCM</title>
+	<title>Modification Interface Fibre - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -475,11 +475,11 @@ Use search to find needed section.
 -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Interface Fibre</span>
+						<span class="panel-title">Modification Interface Fibre</span>
 					</div>
 					<div class="panel-body">
 						<f:form modelAttribute="fibre" action="saveFibre" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
+						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 					
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
@@ -564,7 +564,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/fibre?id=${fibre.id}" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

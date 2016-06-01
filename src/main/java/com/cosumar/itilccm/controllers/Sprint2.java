@@ -1084,7 +1084,9 @@ public class Sprint2 {
 			model.addAttribute("lieus", m.listLieu());
 			model.addAttribute("racks", m.ListRack());
 			model.addAttribute("materiels", m.ListInfrastructure());
-			return "sprint2/addChassis";
+			if (chassis.getId() == null){
+				return "sprint2/addChassis";
+			} else return "sprint2/editChassis";
 		}
 		System.out.println("Test test 3");
 		String[] chMateriel = req.getParameterValues("chMateriel");
@@ -4349,8 +4351,9 @@ public class Sprint2 {
 		    User logged = mu.getUserByMatricule(logged_m);
 			model.addAttribute("logged", logged);
 			model.addAttribute("vlans", m.ListVlan());
-			
+			if(subnet.getId()==null){
 			return "sprint2/addSubnet";
+			} else return "sprint2/editSubnet";
 		}
 		
 		

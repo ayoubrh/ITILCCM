@@ -33,7 +33,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau  Interface Fibre - ITIL-CCM</title>
+	<title>Modification Interface Physique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -473,13 +473,53 @@ Use search to find needed section.
 
 		Content
 -->
+ <!-- Modal VLANs-->
+				<div id="myModalVlans" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalLabel">Ajout VLANs</h4>
+							</div>
+							<div class="modal-body">
+								<div class="table-warning">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+											<tr>
+												<th id="supchek"> </th>
+												<th>VLAN</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableVlanspopup">
+											<c:forEach items="${vlans}" var="v">
+												<tr class="gradeA" id="tr_vlans_${v.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckvlan" name="ckVlans" value="${v.id }"></td>
+													<td>${v.vlantag }</td>
+													<td>${v.description }</td>
+													
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+								</div>
+							</div> <!-- / .modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+								<button type="button" class="btn btn-primary" id="addv">Ajouter</button>
+							</div>
+						</div> <!-- / .modal-content -->
+					</div> <!-- / .modal-dialog -->
+				</div> <!-- /.modal  -->
+				<!-- / Modal VLANs -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Interface Fibre</span>
+						<span class="panel-title">Modification Interface Physique</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="fibre" action="saveFibre" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
+						<f:form modelAttribute="physique" action="savePhysique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 					
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
@@ -489,6 +529,9 @@ Use search to find needed section.
 							<ul id="profile-tabs" class="nav nav-tabs">
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
+								</li>
+								<li >
+									<a href="#profile-tabs-vlans" data-toggle="tab">VLANs</a>
 								</li>
 														
 							</ul>
@@ -509,7 +552,6 @@ Use search to find needed section.
 									<f:errors path="nom" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-				
 									<div class="form-group required">
 										<label for="jq-validation-email" class="col-sm-3 control-label">Matériel</label>
 										<div class="col-sm-9">
@@ -529,7 +571,34 @@ Use search to find needed section.
 											
 									    </div>
 									</div>
-							
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Adresse IP</label>
+								<div class="col-sm-9">
+									<f:input path="adresseIp" type="text" class="form-control" id="inputError-4" name="jq-validation-adresseIp" />
+									<f:errors path="adresseIp" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Adresse MAC</label>
+								<div class="col-sm-9">
+									<f:input path="adresseMac" type="text" class="form-control" id="inputError-4" name="jq-validation-adresseMac" />
+									<f:errors path="adresseMac" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Passerelle</label>
+								<div class="col-sm-9">
+									<f:input path="passerelle" type="text" class="form-control" id="inputError-4" name="jq-validation-passerelle" />
+									<f:errors path="passerelle" cssClass="help-block"></f:errors>
+								</div>
+							</div> 
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Masque de sous réseau</label>
+								<div class="col-sm-9">
+									<f:input path="masqueDeSousReseau" type="text" class="form-control" id="inputError-4" name="jq-validation-masqueDeSousReseau" />
+									<f:errors path="masqueDeSousReseau" cssClass="help-block"></f:errors>
+								</div>
+							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Vitesse</label>
 								<div class="col-sm-9">
@@ -538,25 +607,56 @@ Use search to find needed section.
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Topologie</label>
+								<label for="jq-validation-text" class="col-sm-3 control-label">Commentaire</label>
 								<div class="col-sm-9">
-									<f:input path="topologie" type="text" class="form-control" id="inputError-4" name="jq-validation-topologie" />
-									<f:errors path="topologie" cssClass="help-block"></f:errors>
+									<f:textarea path="commentaire" class="form-control" name="jq-validation-description" id="jq-validation-commentaire" />
+									<f:errors path="commentaire" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">WWN</label>
-								<div class="col-sm-9">
-									<f:input path="wwn" type="text" class="form-control" id="inputError-4" name="jq-validation-wwn" />
-									<f:errors path="wwn" cssClass="help-block"></f:errors>
-								</div>
-							</div> 
-							
 							</div>
 		
 								</div> <!-- / .tab-pane -->
 								
+								<div class="tab-pane fade widget-vlans" id="profile-tabs-vlans">
+								<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>VLAN</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody id="tableVlans">
+											<c:forEach items="${physique.vlan}" var="v">
+												<tr class="gradeA" id="tr_vlans_${v.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckvlan" checked="checked" name="ckVlans" value="${v.id }"></td>
+													<td>${v.vlantag }</td>
+													<td>${v.description }</td>
+													
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									</div>
+									<br>
+									<br>
+
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-1">
+											<button type="button" class="btn btn-warning btn-flat" id="suppv">Retirer !</button>
+										</div>
+										
+										
+										<div class="col-sm-offset-1 col-sm-7">
+											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalVlans">Ajouter des VLANs</button>
+										</div>
+										
+									</div>
+									
 								
+								</div> <!-- / .tab-pane -->
 								
 							</div> <!-- / .tab-content -->
 						
@@ -564,7 +664,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">
@@ -620,24 +720,24 @@ init.push(function () {
 		$('.jq-datatables-example_wrapper .table-caption').text('');
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 		
-		document.getElementById("addContrat").onclick = function () {
+		document.getElementById("addv").onclick = function () {
 	    	var chkArray = [];
 	    	
-	    	$(".ck:checked").each(function() {
+	    	$(".ckvlan:checked").each(function() {
 	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_".concat($(this).val()));
-		    	$( "#tableContrat" ).append(tr);
+	    		var tr = document.getElementById("tr_vlans_".concat($(this).val()));
+		    	$( "#tableVlans" ).append(tr);
 		    	//this.checked = false;
 	    	});
 	    
 	    };
-	    document.getElementById("suppContrat").onclick = function () {
+	    document.getElementById("suppv").onclick = function () {
 			var chkArray = [];
 	    	
-	    	$(".ck:checked").each(function() {
+	    	$(".ckvlan:checked").each(function() {
 	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_".concat($(this).val()));
-		    	$( "#tableContratepopup" ).append(tr);
+	    		var tr = document.getElementById("tr_vlans_".concat($(this).val()));
+		    	$( "#tableVlanspopup" ).append(tr);
                 this.checked = false;
 	    	});
 	    }
