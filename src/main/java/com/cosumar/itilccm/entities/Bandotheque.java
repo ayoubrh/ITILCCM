@@ -46,10 +46,7 @@ public class Bandotheque extends Infrastructure implements Serializable{
 		this.bande = bande;
 	}
 
-<<<<<<< HEAD
 
-	
-=======
 	public Collection<Groupe> getGroupe() {
 		return groupe;
 	}
@@ -57,8 +54,7 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
 	}
-	 
->>>>>>> refs/remotes/origin/tawfiq-jpa
+
 	 
 
 }

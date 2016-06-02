@@ -45,8 +45,19 @@ public class Nas extends Infrastructure implements Serializable{
 	}
 
 
+	public Nas() {
+		super();
+	}
+
+
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
+	}
+
+
+	public Nas(String nom) {
+		super(nom);
+		// TODO Auto-generated constructor stub
 	}
 	
 	
