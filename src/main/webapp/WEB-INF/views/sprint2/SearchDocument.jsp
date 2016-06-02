@@ -28,12 +28,12 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau  Document Note - ITIL-CCM</title>
+	<title>Recherche Document - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -70,7 +70,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated page-search"> 
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -469,140 +469,122 @@ Use search to find needed section.
 
 
 	<div id="content-wrapper">
-<!-- 5. $CONTENT ===================================================================================
 
-		Content
+<!-- 5. $SEARCH_RESULTS_PAGE =======================================================================
+	
+		Search results page
 -->
-		<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title">Nouveau  Document Note</span>
-					</div>
-					<div class="panel-body">
-						<f:form modelAttribute="documentNote" action="saveNote" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
-					
-		
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-							
-							</ul>
-		
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
-									
-		
-									<div class="panel-body">
-						
-						
-							
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
-								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value=""></f:option>
-										 <f:option value="Brouillon">Brouillon</f:option>
-										 <f:option value="Obsolète"> Obsolète</f:option>
-										 <f:option value="Publié"> Publié</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-							   </div>
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Version</label>
-								<div class="col-sm-9">
-									<f:input path="version" type="text" class="form-control" id="inputError-4" name="jq-validation-version" />
-									<f:errors path="version" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-						
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-								
-										<!-- Javascript -->
-		<script>
-			init.push(function () {
-				if (! $('html').hasClass('ie8')) {
-					$('#summernote-example').summernote({
-						height: 200,
-						tabsize: 2,
-						codemirror: {
-							theme: 'monokai'
-						}
+
+			<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('#jq-datatables-example').dataTable();
 					});
-				}
+				</script>
+				<!-- / Javascript -->
+
+
+		<div class="page-header">
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher Document</h1>
+			<a href="<c:url value="/config/admin/add/typeDocument"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Document</a>
+		</div> <!-- / .page-header -->
+
+		<!-- / .search-text -->
+
+		<!-- Tabs -->
+		
+		<!-- / Tabs -->
+
+		<!-- Panel -->
+		<div class="panel search-panel">
+
+			<!-- Search form -->
+			<form action="document" class="search-form bg-primary">
+				<div class="input-group input-group-lg">
+					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
+					<input type="text" name="d" class="form-control" value="${document }" placeholder="Entrez le nom à rechercher...">
+					<span class="input-group-btn">
+						<button class="btn" type="submit">Search</button>
+					</span>
+				</div> <!-- / .input-group -->
+			</form>
+			<!-- / Search form -->
+
+			<!-- Search results -->
+			<div class="panel-body">
+
+				<!-- Classic search -->
 				
-			});
-		</script>
-		<!-- / Javascript -->
-								
-							<div class="form-group required">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Texte</label>
-								<div class="col-sm-9">
-									<f:textarea path="texte" class="form-control" id="summernote-example" rows="10"></f:textarea>
-								 	<f:errors path="texte" cssClass="help-block"></f:errors>
-								</div>
-								
-							</div>
-							</div>
-		
-								</div> <!-- / .tab-pane -->
-								
-								
-								
-							</div> <!-- / .tab-content -->
-						</div>
+				<!-- / Classic search -->
+
+				<!-- Users search -->
+					
+
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Nom</th>
+										<th>Type Document</th>
+										<th>Statut</th>
+										<th>Version</th>
+										<th>Description</th>
+										<th>Fichier</th>
+										<th>URL</th>
+										<th>Texte</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${cis}" var="ci">
+												<c:set var="string1" value="${ci['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+										<tr class="gradeA">
+										       <td>
+												<c:if test="${string2 == 'DocumentFichier'}">
+													<a href="<c:url value="/config/view/fichier?id=${ci.id }" />">${ci.nom }</a>
+												</c:if>
+												<c:if test="${string2 == 'DocumentWeb'}">
+													<a href="<c:url value="/config/view/web?id=${ci.id }" />">${ci.nom }</a>
+												</c:if>
+												<c:if test="${string2 == 'DocumentNote'}">
+													<a href="<c:url value="/config/view/note?id=${ci.id }" />">${ci.nom }</a>
+												</c:if>
+												</td>
+											<td>${string2 }</td>
+											<td>${ci.statut }</td>
+											<td>${ci.version }</td>
+											<td>${ci.description }</td>
+											<td>
+											<c:if test="${string2 == 'DocumentFichier'}">
+											${ci.fichier }
+											</c:if></td>
+											<td>
+											<c:if test="${string2 == 'DocumentWeb'}">
+											${ci.url }
+											</c:if></td>
+											<td>
+											<c:if test="${string2 == 'DocumentNote'}">
+											${ci.texte }
+											</c:if></td>
+										</tr>
+									
+									</c:forEach>
+									
+									
+								</tbody>
+							</table>
+				<!-- / Users search -->
+
+				<!-- Messages search -->
 				
-					
-					
-					
-					
-					
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
-					</div>
-					
-					
-		</div>
+				<!-- / Messages search -->
+			</div>
+			<!-- / Search results -->
 
-		
+			<!-- Panel Footer -->
+			<!-- / .panel-footer -->
 
-
-		<!-- Content here -->
-		
-		
-		
+		</div> 
+		<!-- / Panel -->
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -624,16 +606,12 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		$('#profile-tabs').tabdrop();
-
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
+		// Javascript code here
+		var s = "${document }";
+		$('.add-tooltip').tooltip();
+		document.getElementsByName("jq-datatables-example_length").value="25";
+		
+		$(".table-header").hide();
 	});
 	window.PixelAdmin.start(init);
 </script>

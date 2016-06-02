@@ -542,10 +542,10 @@ Use search to find needed section.
 							</div>
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fichier</label>
-								${documentFichier.fichier }
+								
 								<div class="col-sm-9">
 									<input type="file" name="file"  value="${fichier }" />
-									
+									${documentFichier.fichier }
 									<c:if test="${error == true}">
 												<div class="help-block">Choisissez un Fichier</div>
 									</c:if>
@@ -568,7 +568,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/fichier?id=${documentFichier.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

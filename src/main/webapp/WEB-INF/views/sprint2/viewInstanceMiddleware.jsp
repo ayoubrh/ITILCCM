@@ -549,7 +549,7 @@ Use search to find needed section.
 									
 									<div class="form-group">
 										<label for="jq-validation-modele" class="col-sm-3 control-label">Date de mise en production: </label>
-										${instanceMiddleware.dateDeMiseEnProduction }
+										<fmt:formatDate type="date" dateStyle="long" value="${instanceMiddleware.dateDeMiseEnProduction}" />
 									</div>
 									
 									<div class="form-group">
@@ -652,7 +652,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/solutionApplicative?id=${sa.id }" />">${sa.nom }</a></td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 												

@@ -542,7 +542,7 @@ Use search to find needed section.
 								<tbody>
 									<c:forEach items="${cis}" var="ci">
 										<tr class="gradeA">
-											<td><a href="<c:url value="/config/view/arriveeElectrique?id=${ci.id }" />">${ci.nom }</a></td>
+											<td><a href="<c:url value="/config/view/pduElectrique?id=${ci.id }" />">${ci.nom }</a></td>
 											<td>${ci.statut }</td>
 											<td>${ci.criticite }</td>
 											<td><a href="<c:url value="/config/view/lieu?id=${ci.lieu.id }" />">${ci.lieu.nom }</a></td>

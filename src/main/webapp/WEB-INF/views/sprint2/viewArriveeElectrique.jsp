@@ -621,7 +621,7 @@ Use search to find needed section.
 													<td>${pdu.marque }</td>
 													<td>${pdu.modele }</td>
 													<td>${pdu.numeroDeSerie }</td>
-													<td>${pdu.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pdu.dateDeMiseEnProduction }" /></td>
 
 												</tr>
 											</c:forEach>
@@ -651,7 +651,7 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontact">
-												<c:forEach items="${arriveeElectrique.contact}" var="contact">
+												<c:forEach items="${arriveeElectrique.contacts}" var="contact">
 												<tr class="gradeA" id="tr_contact_${contact.id }">
 													<td><a href="<c:url value="/config/view/contact?id=${contact.id }" />">${contact.nom } ${contact.prenom }</a></td>
 													<td>${contact.statut }</td>
@@ -689,7 +689,7 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tabledocument">
-												<c:forEach items="${arriveeElectrique.document}" var="doc">
+												<c:forEach items="${arriveeElectrique.documents}" var="doc">
 												<tr class="gradeA" id="tr_doc_${doc.id }">
 													<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
 													<td>${doc.statut }</td>
@@ -724,7 +724,7 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontrat">
-												<c:forEach items="${arriveeElectrique.contrat}" var="contrat">
+												<c:forEach items="${arriveeElectrique.contrats}" var="contrat">
 												<tr class="gradeA" id="tr_contrat_${contrat.id }">
 													<td><a href="<c:url value="/config/view/contrat?id=${contrat.id }" />">${contrat.nom }</a></td>
 													<td>${contrat.typeDeContrat }</td>

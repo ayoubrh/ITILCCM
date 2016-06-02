@@ -483,13 +483,7 @@ Use search to find needed section.
 						L'élément de configuration est bien modifier.
 					</div>
 				</c:if>
-				
-				
-				
-				
-				
-				
-				
+			
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title col-md-9">Détail d'Instance de base de données</span>
@@ -549,7 +543,7 @@ Use search to find needed section.
 									
 									<div class="form-group">
 										<label for="jq-validation-modele" class="col-sm-3 control-label">Date de mise en production: </label>
-										${instanceBD.dateDeMiseEnProduction }
+										<fmt:formatDate type="date" dateStyle="long" value="${instanceBD.dateDeMiseEnProduction}" />
 									</div>
 									
 									<div class="form-group">
@@ -653,7 +647,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/solutionApplicative?id=${sa.id }" />">${sa.nom }</a></td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 												

@@ -552,7 +552,7 @@ Use search to find needed section.
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-modele" class="col-sm-3 control-label">Date de mise en production: </label>
-										<fmt:formatDate type="date" dateStyle="long" value="${llicenseOs.dateDeFinDeValiite }" />
+										<fmt:formatDate type="date" dateStyle="long" value="${licenseOs.dateDeFinDeValiite }" />
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Clé : </label>
@@ -622,7 +622,7 @@ Use search to find needed section.
 													<td>${s.marque}</td>
 													<td>${s.modele}</td>
 													<td>${s.ip}</td>
-													<td>${s.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${s.dateDeMiseEnProduction }" /></td>
 													<td>${s.description}</td>
 												</tr>
 											</c:forEach>
@@ -654,7 +654,7 @@ Use search to find needed section.
 													<td>${mv.statut }</td>
 													<td>${mv.criticite}</td>
 													<td>${mv.ip}</td>
-													<td>${mv.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction }" /></td>
 													<td>${mv.description}</td>
 												</tr>
 											</c:forEach>

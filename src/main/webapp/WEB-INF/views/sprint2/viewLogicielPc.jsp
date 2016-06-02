@@ -483,12 +483,7 @@ Use search to find needed section.
 						L'élément de configuration est bien modifier.
 					</div>
 				</c:if>
-				
-				
-				
-				
-				
-				
+			
 				
 		<div class="panel">
 					<div class="panel-heading">
@@ -550,17 +545,17 @@ Use search to find needed section.
 									<div class="form-group required">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Système : </label>
 										<c:if test="${logicielPc.serveur.id != null }">
-										${logicielPc.serveur.nom }
+										<a href="<c:url value="/config/view/serveur?id=${logicielPc.serveur.id }" />">${logicielPc.serveur.nom }</a>
 										</c:if>
 										<c:if test="${logicielPc.machineVirtuelle.id != null }">
-										${logicielPc.machineVirtuelle.nom }
+										<a href="<c:url value="/config/view/machineVirtuelle?id=${logicielPc.machineVirtuelle.id }" />">${logicielPc.machineVirtuelle.nom }</a>
 										</c:if>
 										
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Licence logiciel : </label>
-										${logicielPc.licenseLogiciel.nom }
+										<a href="<c:url value="/config/view/licenceLogiciel?id=${logicielPc.licenseLogiciel.id }" />">${logicielPc.licenseLogiciel.nom }</a>
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Chemin d'installation: </label>
@@ -672,7 +667,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/solutionApplicative?id=${sa.id }" />">${sa.nom }</a></td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 												

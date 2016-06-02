@@ -63,6 +63,10 @@ public class TelephoneFixe implements Serializable{
 
    	@OneToOne(cascade = CascadeType.ALL)
    private User user;
+   	
+   	@Column(nullable=true)
+	@ManyToMany(mappedBy="telephoneFixe",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
 
 	public Long getId() {
 		return id;
@@ -222,6 +226,14 @@ public class TelephoneFixe implements Serializable{
 		super();
 		this.nom = nom;
 		this.numero = numero;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

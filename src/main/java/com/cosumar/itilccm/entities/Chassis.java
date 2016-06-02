@@ -67,6 +67,11 @@ public class Chassis implements Serializable{
    	@ManyToMany(cascade = CascadeType.ALL)
     @Column(nullable = true)
     private Collection<Contact> contact;
+   	
+   	@Column(nullable=true)
+	@ManyToMany(mappedBy="chassis",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
+
 
 	public Long getId() {
 		return id;
@@ -234,6 +239,14 @@ public class Chassis implements Serializable{
 
 	public void setEquipementreseau(Collection<EquipementReseau> equipementreseau) {
 		this.equipementreseau = equipementreseau;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
    	
    	

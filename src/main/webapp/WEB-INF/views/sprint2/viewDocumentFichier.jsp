@@ -532,13 +532,8 @@ Use search to find needed section.
 							</div>
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fichier</label>
-								<c:if test="${documentFichier.fichier != null }">
-									<div class="col-sm-1">
-									
-										<img src="fichier?id=${documentFichier.bfichier }" style="height: 54px;width: 54px; display: block;border-radius: 999999px;"/>
-									</div>
-								</c:if>
-							
+								${documentFichier.fichier }
+								
 							</div>
 					
 							

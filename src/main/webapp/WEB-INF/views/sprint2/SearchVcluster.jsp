@@ -492,8 +492,8 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche de vCluster</h1>
-			<a href="<c:url value="/config/admin/add/vcluster"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Hyperviseur</a>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher vCluster</h1>
+			<a href="<c:url value="/config/admin/add/vCluster"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau vCluster</a>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->

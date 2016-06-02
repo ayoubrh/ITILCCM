@@ -645,7 +645,7 @@ Use search to find needed section.
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction }" /></td>
 												</tr>
 											</c:forEach>
 											
@@ -892,7 +892,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/solutionApplicative?id=${sa.id }" />">${sa.nom }</a></td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction }" /></td>
 												</tr>
 											</c:forEach>
 												
@@ -969,7 +969,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/applicationWeb?id=${applicationWeb.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

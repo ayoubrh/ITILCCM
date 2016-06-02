@@ -537,7 +537,7 @@ Use search to find needed section.
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Site : </label>
-										<a href="<c:url value="/config/view/lieu?id=${contact.id }" />">${contact.lieu.nom }</a>
+										<a href="<c:url value="/config/view/lieu?id=${contact.lieu.id }" />">${contact.lieu.nom }</a>
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Fonction : </label>

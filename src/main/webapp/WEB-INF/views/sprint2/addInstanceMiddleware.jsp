@@ -31,6 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Nouveau Instance Middleware - ITIL-CCM</title>
@@ -554,8 +555,8 @@ Use search to find needed section.
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
 													<td>${contrat.description }</td>
-													<td>${contrat.dateDeDebut }</td>
-													<td>${contrat.dateDeFin }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
 													<td>${contrat.fournisseur }</td>
 
 												</tr>
@@ -644,7 +645,7 @@ Use search to find needed section.
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 											
@@ -925,7 +926,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

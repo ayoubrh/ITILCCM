@@ -553,7 +553,7 @@ Use search to find needed section.
 										${hyperviseur.criticite }
 									</div>
 									
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">vCluster : </label>
 										<a href="<c:url value="/config/view/vcluster?id=${hyperviseur.vcluster.id }" />"> ${hyperviseur.vcluster.nom }</a>
 									</div>
@@ -684,7 +684,7 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableVolumesLogiques">
-												<c:forEach items="${hyperviseur.volumeLogique}" var="vl">
+												<c:forEach items="${hyperviseur.volumelogique}" var="vl">
 												<tr class="gradeA" id="tr_vl_${vl.id }">
 													<td>${vl.nom }</td>
 													<td>${vl.lunId }</td>

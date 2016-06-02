@@ -3,8 +3,10 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,6 +22,11 @@ public class Dvr extends Infrastructure implements Serializable{
 	@OneToMany(mappedBy="dvr")
    	@Column(nullable = true)
    private Collection<Camera> camera;
+	
+	@Column(nullable=true)
+	@ManyToMany(mappedBy="dvr",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
+
 
 	
 
@@ -54,6 +61,14 @@ public class Dvr extends Infrastructure implements Serializable{
 		super(nom);
 		//setNom(nom);
 		this.nbrCaneaux = nbrCaneaux;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

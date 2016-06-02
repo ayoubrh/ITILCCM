@@ -682,7 +682,7 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableVolumesLogiques">
-												<c:forEach items="${vcluster.volumeLogique}" var="vl">
+												<c:forEach items="${vcluster.volumelogique}" var="vl">
 												<tr class="gradeA" id="tr_vl_${vl.id }">
 													<td>${vl.nom }</td>
 													<td>${vl.lunId }</td>

@@ -56,6 +56,10 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_serBD")
 	   private ServeurDeBasseDeDonnees serveurDeBasseDeDonnees;
+	   
+	   @Column(nullable=true)
+		@ManyToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.ALL)
+		private Collection<Groupe> groupe;
 		   
 		public InstanceDeBasseDeDonnes() {
 			super();
@@ -128,6 +132,12 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 		   
    

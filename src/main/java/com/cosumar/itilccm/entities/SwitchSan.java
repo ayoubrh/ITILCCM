@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -17,6 +18,10 @@ public class SwitchSan extends Infrastructure implements Serializable{
 	 @ManyToMany(mappedBy="switchSan")
 	 @Column(nullable = true)
 	private Collection<SystemeDeStockage> systemeDeStockage;
+	 
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="switchSan",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 
 	public Collection<Serveur> getServeur() {
 		return serveur;
@@ -42,6 +47,14 @@ public class SwitchSan extends Infrastructure implements Serializable{
 	public SwitchSan(String nom) {
 		super(nom);
 		// TODO Auto-generated constructor stub
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	 
 	 

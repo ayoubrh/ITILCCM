@@ -550,7 +550,7 @@ Use search to find needed section.
 										<a href="<c:url value="/config/view/lieu?id=${pduElectrique.lieu.id }" />">${pduElectrique.lieu.nom }</a>
 									</div>
 									
-									<div class="form-group">
+									<div class="form-group required">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Rack : </label>
 										<a href="<c:url value="/config/view/rack?id=${pduElectrique.rack.id }" />">${pduElectrique.rack.nom }</a>
 									</div>

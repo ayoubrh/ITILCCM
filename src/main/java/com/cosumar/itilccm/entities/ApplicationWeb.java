@@ -53,6 +53,10 @@ public class ApplicationWeb implements Serializable {
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="applicationWeb",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
+	   
 	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_serveurWeb")
 	   private ServeurWeb serveurWeb;
@@ -134,6 +138,12 @@ public class ApplicationWeb implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 		   
 		      

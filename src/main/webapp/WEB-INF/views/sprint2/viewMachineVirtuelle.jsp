@@ -609,9 +609,9 @@ Use search to find needed section.
 													<td>${l.nom }</td>
 													<td>${l.statut }</td>
 													<td>${l.criticite }</td>
-													<td>${l.licenseLogiciel.nom }</td>
+													<td><a href="<c:url value="/config/view/licenceLogiciel?id=${l.licenseLogiciel.id }" />">${l.licenseLogiciel.nom }</a></td>
 													<td>${l.cheminD_installation}</td>
-													<td>${l.dateDeMiseEnProduction}</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
 													<td>${l.description}</td>
 												</tr>
 											</c:forEach>

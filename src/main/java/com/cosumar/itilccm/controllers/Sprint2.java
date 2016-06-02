@@ -1868,7 +1868,10 @@ public class Sprint2 {
 		    User logged = mu.getUserByMatricule(logged_m);
 			model.addAttribute("logged", logged);
 			model.addAttribute("contacts", m.listContact());
+			if(l.getId()==null)
 			return "sprint2/addLieu";
+			else return "sprint2/editLieu";
+				
 		}
 		List<Long> cont = new ArrayList<Long>();
 		
@@ -1968,8 +1971,9 @@ public class Sprint2 {
 			model.addAttribute("l", m.listLieu());
 			model.addAttribute("contrat", m.listContrat());
 			System.out.println(bind.getAllErrors());
-			
+			if(c.getId()==null)
 			return "sprint2/addContact";
+			else return "sprint2/editContact";
 		}
 		if(c.getId() == null){
 			m.ajouterContactAll(c, c.getLieu().getId());
@@ -2058,7 +2062,9 @@ public class Sprint2 {
 		    model.addAttribute("logged", logged);
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("documents", m.listDocument());
+			if(c.getId()==null)
 			return "sprint2/addContrat";
+			else return "sprint2/editContrat";
 		}
 		List<Long> cont = new ArrayList<Long>();
 		List<Long> doc = new ArrayList<Long>();
@@ -2258,7 +2264,9 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("processusMetiers", m.ListProcessusMetier());
+			if(sa.getId()==null)
 			return "sprint2/addSolutionApplicative";
+			else return "sprint2/editSolutionApplicative";
 		}
 		List<Long> cont = new ArrayList<Long>();
 		List<Long> doc = new ArrayList<Long>();
@@ -2384,7 +2392,9 @@ public class Sprint2 {
 		    model.addAttribute("contacts", m.listContact());
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
+			if(pm.getId()==null)
 			return "sprint2/addProcessusMetier";
+			else return "sprint2/editProcessusMetier";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -2515,7 +2525,9 @@ public class Sprint2 {
 		    model.addAttribute("logged", logged);
 		    model.addAttribute("la", m.listLogicielEtApplication());
 			model.addAttribute("documents", m.listDocument());
+			if(ll.getId()==null)
 			return "sprint2/addLicenceLogiciel";
+			else return "sprint2/editLicenceLogiciel";
 		}
 		
 		List<Long> doc = new ArrayList<Long>();
@@ -2617,7 +2629,9 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("serveurs", m.ListServeur());
 			model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
+			if(lo.getId()==null)
 			return "sprint2/addLicenseOs";
+			else return "sprint2/editLicenseOs";
 		}
 		
 		List<Long> doc = new ArrayList<Long>();
@@ -2721,7 +2735,9 @@ public class Sprint2 {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 	    model.addAttribute("logged", logged);
+	    if(vo.getId()==null)
 		return "sprint2/addVersionOs";
+	    else return "sprint2/editVersionOs";
 		}
 		if(vo.getId() == null){
 			m.ajouterVersionOs(vo);
@@ -2831,7 +2847,9 @@ public class Sprint2 {
 			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
 			model.addAttribute("interfacereseaux", m.ListLogique());
 			model.addAttribute("logiciels", m.listLogicielEtApplication());
+			if(mv.getId()==null)
 			return "sprint2/addMachineVirtuelle";
+			else return "sprint2/editMachineVirtuelle";
 		}
 		List<Long> log = new ArrayList<Long>();
 		List<Long> cont = new ArrayList<Long>();
@@ -2994,7 +3012,9 @@ public class Sprint2 {
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
 			model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
+			if(h.getId()==null)
 			return "sprint2/addHyperviseur";
+			else return "sprint2/editHyperviseur";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -3148,7 +3168,9 @@ public class Sprint2 {
 			model.addAttribute("volumesLogiques", m.ListVolumeLogique());
 			model.addAttribute("machinesVirtuelles", m.listMachineVirtuelle());
 			model.addAttribute("hyperviseurs", m.listHyperviseur());
+			if(v.getId()==null)
 			return "sprint2/addVcluster";
+			else return "sprint2/editVcluster";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -3318,7 +3340,9 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("pdus", m.ListPduElectrique());
+			if(ae.getId()==null)
 			return "sprint2/addArriveeElectrique";
+			else return "sprint2/editArriveeElectrique";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -3450,7 +3474,9 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("contrats", m.listContrat());
+			if(pe.getId()==null)
 			return "sprint2/addPduElectrique";
+			else return "sprint2/editPduElectrique";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -3487,6 +3513,25 @@ public class Sprint2 {
 			
 		
 		return "redirect:/config/admin/dashboards?save="+true;
+	}
+	@RequestMapping(value="/search/document")
+	public String searchDocument(Model model,String d,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("document", d);
+		model.addAttribute("logged", logged);
+		if(d == null){
+			model.addAttribute("cis", m.listDocument());
+		} else {
+			model.addAttribute("cis",m.SearchDocument(d));      
+		}
+		if(delete == null){
+			model.addAttribute("delete", false ); 
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchDocument";
 	}
 	@RequestMapping(value="/admin/add/typeDocument")
 	public String typeDocument(Model model){
@@ -3579,7 +3624,9 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
+		    if(df.getId()==null)
 			return "sprint2/addDocumentFichier";
+		    else return "sprint2/editDocumentFichier";
 		}
 		if(!file.isEmpty()){
 			BufferedInputStream reader = new BufferedInputStream(file.getInputStream());
@@ -3664,7 +3711,9 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
+		    if(dw.getId()==null)
 		    return "sprint2/addDocumentWeb";
+		    else return "sprint2/editDocumentWeb";
 		}
 		if(dw.getId() == null){
 			m.ajouterDocumentWeb(dw);
@@ -3745,7 +3794,9 @@ public class Sprint2 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
+		    if(dn.getId()==null)
 		    return "sprint2/addDocumentNote";
+		    else return "sprint2/editDocumentNote";
 		}
 		if(dn.getId() == null){
 			m.ajouterDocumentNote(dn);
@@ -3847,7 +3898,9 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
+			if(al.getId()==null)
 			return "sprint2/addAutreLogiciel";
+			else return "sprint2/editAutreLogiciel";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -4007,7 +4060,9 @@ public class Sprint2 {
 			model.addAttribute("documents", m.listDocument());
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
+			if(lp.getId()==null)
 			return "sprint2/addLogicielPc";
+			else return "sprint2/editLogicielPc";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -4171,7 +4226,9 @@ public class Sprint2 {
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("applicationWeb", m.listApplicationWeb());
+			if(sw.getId()==null)
 			return "sprint2/addServeurWeb";
+			else return "sprint2/editServeurWeb";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -4339,7 +4396,9 @@ public class Sprint2 {
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("instanceMiddleware", m.listInstanceMiddleware());
+			if(mi.getId()==null)
 			return "sprint2/addMiddleware";
+			else return "sprint2/editMiddleware";
 			
 		}
 		
@@ -4507,7 +4566,9 @@ public class Sprint2 {
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("instanceBD", m.listInstanceDeBasseDeDonnes());
+			if(sbd.getId()==null)
 			return "sprint2/addServeurBD";
+			else return "sprint2/editServeurBD";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -4669,8 +4730,9 @@ public class Sprint2 {
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("serveurWeb", m.listServeurWeb());
-			
+			if(aw.getId()==null)
 			return "sprint2/addApplicationWeb";
+			else return "sprint2/editApplicationWeb";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -4805,7 +4867,9 @@ public class Sprint2 {
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("middleware", m.listMiddleware());
+			if(im.getId()==null)
 			return "sprint2/addInstanceMiddleware";
+			else return "sprint2/editInstanceMiddleware";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();
@@ -4942,7 +5006,9 @@ public class Sprint2 {
 			model.addAttribute("solutionsApplicatives", m.ListSolutionApplicative());
 			model.addAttribute("contrats", m.listContrat());
 			model.addAttribute("serveurDeBasseDeDonnees", m.listServeurDeBasseDeDonnees());
+			if(ibd.getId()==null)
 			return "sprint2/addInstanceBD";
+			else return "sprint2/editInstanceBD";
 		}
 		
 		List<Long> cont = new ArrayList<Long>();

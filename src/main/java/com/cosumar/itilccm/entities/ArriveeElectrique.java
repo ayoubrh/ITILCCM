@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
@@ -19,7 +20,11 @@ public class ArriveeElectrique extends ConnexionElectrique implements Serializab
 	 @OneToMany(mappedBy="arriveeElectrique",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
   	 @Column(nullable = true)
-	private Collection<PduElectrique> pduElectrique;
+	 private Collection<PduElectrique> pduElectrique;
+	 
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="arriveeElectrique",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 	 
 
 
@@ -47,6 +52,14 @@ public class ArriveeElectrique extends ConnexionElectrique implements Serializab
 
 	public void setPduElectrique(Collection<PduElectrique> pduElectrique) {
 		this.pduElectrique = pduElectrique;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	 
 	 

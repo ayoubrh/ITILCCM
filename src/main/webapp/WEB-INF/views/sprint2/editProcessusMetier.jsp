@@ -652,7 +652,7 @@ Use search to find needed section.
 						
 						
 							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />

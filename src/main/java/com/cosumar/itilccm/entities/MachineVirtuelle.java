@@ -79,6 +79,10 @@ public class MachineVirtuelle implements Serializable {
 	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
 		   
 		public MachineVirtuelle() {
 			super();
@@ -203,6 +207,12 @@ public class MachineVirtuelle implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 	     
 }

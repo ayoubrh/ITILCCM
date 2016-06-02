@@ -482,6 +482,13 @@ Use search to find needed section.
 					});
 				</script>
 				<!-- / Javascript -->
+				
+				<c:if test="${delete == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien supprimer.
+					</div>
+				</c:if>
 
 
 		<div class="page-header">
@@ -537,7 +544,7 @@ Use search to find needed section.
 									<c:forEach items="${cis}" var="ci">
 										<tr class="gradeA">
 											<td><a href="<c:url value="/config/view/licenceLogiciel?id=${ci.id }" />">${ci.nom }</a></td>
-											<td><a href="<c:url value="/config/view/logicielEtApplication?id=${ci.logicielEtApplications.id }" />">${ci.logicielEtApplications.nom }</a></td>
+											<td>${ci.logicielEtApplications.nom }</td>
 											<td>${ci.limiteD_utilisation }</td>
 											<td>${ci.perpetuelle }</td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeDebutDeValidite }" /></td>

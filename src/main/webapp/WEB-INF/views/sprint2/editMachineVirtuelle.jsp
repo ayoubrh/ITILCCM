@@ -554,8 +554,8 @@ Use search to find needed section.
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
 													<td>${contrat.description }</td>
-													<td>${contrat.dateDeDebut }</td>
-													<td>${contrat.dateDeFin }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
 													<td>${contrat.fournisseur }</td>
 
 												</tr>
@@ -643,7 +643,7 @@ Use search to find needed section.
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction }" /></td>
 												</tr>
 											</c:forEach>
 											
@@ -790,7 +790,7 @@ Use search to find needed section.
 													<td>${l.criticite }</td>
 													<td>${l.licenseLogiciel.nom }</td>
 													<td>${l.cheminD_installation}</td>
-													<td>${l.dateDeMiseEnProduction}</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
 													<td>${l.description}</td>
 												</tr>
 											</c:forEach>
@@ -998,7 +998,7 @@ Use search to find needed section.
 													<td>${l.nom }</td>
 													<td>${l.statut }</td>
 													<td>${l.criticite }</td>
-													<td>${l.licenseLogiciel.nom }</td>
+													<td><a href="<c:url value="/config/view/licenceLogiciel?id=${l.licenseLogiciel.id }" />">${l.licenseLogiciel.nom }</a></td>
 													<td>${l.cheminD_installation}</td>
 													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction }" /></td>
 													<td>${l.description}</td>
@@ -1218,7 +1218,7 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableVolumesLogiques">
-												<c:forEach items="${machineVirtuelle.volumeLogique}" var="vl">
+												<c:forEach items="${machineVirtuelle.volumelogique}" var="vl">
 												<tr class="gradeA" id="tr_vl_${vl.id }">
 													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckvl" name="ckVolumesLogiques" value="${vl.id }"></td>
 													<td><a href="<c:url value="/config/view/volumeLogique?id=${vl.id }" />">${vl.nom }</a></td>
@@ -1303,7 +1303,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/machineVirtuelle?id=${machineVirtuelle.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

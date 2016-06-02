@@ -567,7 +567,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 							<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							            <f:option value="NULL"> </f:option>
+							            <f:option value=""> </f:option>
 										<f:option value="Actif"> Actif</f:option>
 										<f:option value="Inactif"> Inactif</f:option>
 									</f:select>
@@ -664,7 +664,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/lieu?id=${lieu.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

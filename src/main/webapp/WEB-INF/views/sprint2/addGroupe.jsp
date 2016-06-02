@@ -495,7 +495,7 @@ Use search to find needed section.
 										</thead>
 										<tbody id="tableCIspopup">
 											<c:forEach items="${ApplicationWeb}" var="aw" >
-												<tr class="gradeA" id="cis_${aw.id }" >
+												<tr class="gradeA" id="cis_Appl_${aw.id }" >
 													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Appl_${aw.id }"></td>
 													<td>${aw.nom }</td>
 													<td>Application Web</td>
@@ -503,7 +503,15 @@ Use search to find needed section.
 													<td>${aw.dateDeMiseEnProduction }</td>
 												</tr>
 											</c:forEach>
-											
+											<c:forEach items="${Autrelogiciel}" var="al" >
+												<tr class="gradeA" id="cis_Autr_${al.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Autr_${al.id }"></td>
+													<td>${al.nom }</td>
+													<td>Autre logiciel</td>
+													<td>${al.criticite }</td>
+													<td>${al.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
 
 
 											

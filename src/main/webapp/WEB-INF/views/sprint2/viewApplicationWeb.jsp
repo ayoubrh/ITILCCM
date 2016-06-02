@@ -539,7 +539,7 @@ Use search to find needed section.
 									
 									<div class="form-group required">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Serveur Web: </label>
-										<a href="<c:url value="/config/view/serveurWeb?id=${aw.serveurWeb.id }" />">${applicationWeb.serveurWeb.nom }</a>
+										<a href="<c:url value="/config/view/serveurWeb?id=${aw.serveurWeb.id }" />">${aw.serveurWeb.nom }</a>
 									</div>
 									
 									<div class="form-group">
@@ -555,7 +555,7 @@ Use search to find needed section.
 									
 									<div class="form-group">
 										<label for="jq-validation-modele" class="col-sm-3 control-label">Date de mise en production: </label>
-										${aw.dateDeMiseEnProduction }
+										<fmt:formatDate type="date" dateStyle="long" value="${aw.dateDeMiseEnProduction }" />
 									</div>
 									
 									<div class="form-group">
@@ -658,7 +658,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/solutionApplicative?id=${sa.id }" />">${sa.nom }</a></td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction }" /></td>
 												</tr>
 											</c:forEach>
 												

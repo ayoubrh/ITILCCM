@@ -94,7 +94,9 @@ public class EquipementReseau implements Serializable{
     @Column(nullable = true)
     private Collection<Contact> contact;
    	
-   	
+   	@Column(nullable=true)
+	@ManyToMany(mappedBy="equipementReseau",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
 
 	public Long getId() {
 		return id;
@@ -326,6 +328,14 @@ public class EquipementReseau implements Serializable{
 
 	public void setChassis(Chassis chassis) {
 		this.chassis = chassis;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
    
    

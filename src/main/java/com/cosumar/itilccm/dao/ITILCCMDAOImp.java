@@ -5462,7 +5462,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<Hyperviseur> SearchHyperviseur(String h) {
-		Query req = em.createQuery("select h from Vcluster h where h.nom LIKE :searchKeyword");
+		Query req = em.createQuery("select h from Hyperviseur h where h.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+h+"%");
 		return req.getResultList();
 	}
@@ -5548,6 +5548,13 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public List<SolutionApplicative> SearchSolutionApplicative(String sa) {
 		Query req = em.createQuery("select sa from SolutionApplicative sa where sa.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+sa+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Document> SearchDocument(String d) {
+		Query req = em.createQuery("select d from Document d where d.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+d+"%");
 		return req.getResultList();
 	}
 

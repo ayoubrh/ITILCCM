@@ -550,17 +550,17 @@ Use search to find needed section.
 									<div class="form-group required">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Système : </label>
 										<c:if test="${autreLogiciel.serveur.id != null }">
-										${autreLogiciel.serveur.nom }
+										<a href="<c:url value="/config/view/serveur?id=${autreLogiciel.serveur.id }" />">${autreLogiciel.serveur.nom }</a>
 										</c:if>
 										<c:if test="${autreLogiciel.machineVirtuelle.id != null }">
-										${autreLogiciel.machineVirtuelle.nom }
+										<a href="<c:url value="/config/view/machineVirtuelle?id=${autreLogiciel.machineVirtuelle.id }" />">${autreLogiciel.machineVirtuelle.nom }</a>
 										</c:if>
 										
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Licence logiciel : </label>
-										${autreLogiciel.licenseLogiciel.nom }
+										<a href="<c:url value="/config/view/licenceLogiciel?id=${autreLogiciel.licenseLogiciel.id }" />">${autreLogiciel.licenseLogiciel.nom }</a>
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Chemin d'installation: </label>
@@ -672,7 +672,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/solutionApplicative?id=${sa.id }" />">${sa.nom }</a></td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 												

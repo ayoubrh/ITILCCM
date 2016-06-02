@@ -55,6 +55,10 @@ public class InstanceMiddleware implements Serializable {
 	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_middleware")
 	   private Middleware middleware;
+	   
+	   @Column(nullable=true)
+		@ManyToMany(mappedBy="instanceMiddleware",cascade = CascadeType.ALL)
+		private Collection<Groupe> groupe;
 		   
 		public InstanceMiddleware() {
 			super();
@@ -126,6 +130,12 @@ public class InstanceMiddleware implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 		   
 		   

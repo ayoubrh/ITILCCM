@@ -2023,6 +2023,11 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.SearchSolutionApplicative(sa); 
 	}
 
+	@Override
+	public List<Document> SearchDocument(String d) {
+		return dao.SearchDocument(d); 
+	}
+
 
 }
 

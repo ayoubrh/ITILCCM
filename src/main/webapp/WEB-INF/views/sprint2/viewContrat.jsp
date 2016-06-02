@@ -483,12 +483,7 @@ Use search to find needed section.
 						L'élément de configuration est bien modifier.
 					</div>
 				</c:if>
-				
-				
-				
-				
-				
-				
+			
 				
 		<div class="panel">
 					<div class="panel-heading">
@@ -531,7 +526,7 @@ Use search to find needed section.
 										${contrat.nom }
 									</div>
 									
-									<div class="form-group">
+									<div class="form-group required">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Client : </label>
 										${contrat.client }
 									</div>
@@ -568,7 +563,7 @@ Use search to find needed section.
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Unité de coût : </label>
 										${contrat.uniteDeCout }
 									</div>
-									<div class="form-group">
+									<div class="form-group required">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Fournisseur : </label>
 										${contrat.fournisseur }
 									</div>

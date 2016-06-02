@@ -79,6 +79,7 @@ public interface AdminMetier extends UtilisateurMetier {
 		
 	// Document
 	
+	public List<Document> SearchDocument(String d);
 	public List<Document> listDocument();
 	public Document getDocument(Long id);
 	

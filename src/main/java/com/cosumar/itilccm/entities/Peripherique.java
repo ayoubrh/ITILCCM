@@ -58,6 +58,10 @@ public class Peripherique implements Serializable{
    	@ManyToMany(cascade = CascadeType.ALL)
     @Column(nullable = true)
     private Collection<Contact> contact;
+   	
+   	@Column(nullable=true)
+	@ManyToMany(mappedBy="peripherique",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
 
 	public Long getId() {
 		return id;
@@ -205,6 +209,14 @@ public class Peripherique implements Serializable{
 
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

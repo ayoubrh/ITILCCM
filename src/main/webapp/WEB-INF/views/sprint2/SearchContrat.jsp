@@ -474,7 +474,6 @@ Use search to find needed section.
 	
 		Search results page
 -->
-
 			<!-- Javascript -->
 				<script>
 					init.push(function () {
@@ -482,6 +481,13 @@ Use search to find needed section.
 					});
 				</script>
 				<!-- / Javascript -->
+				
+				<c:if test="${delete == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien supprimer.
+					</div>
+				</c:if>
 
 
 		<div class="page-header">

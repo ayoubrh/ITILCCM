@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
@@ -20,6 +21,10 @@ public class Vcluster extends Virtualisation implements Serializable {
 		@OneToMany(mappedBy="vcluster",cascade = CascadeType.ALL)
 		@LazyCollection(LazyCollectionOption.FALSE)
 		private Collection<Hyperviseur> hyperviseur;
+		
+		@Column(nullable=true)
+		@ManyToMany(mappedBy="vcluster",cascade = CascadeType.ALL)
+		private Collection<Groupe> groupe;
 	
 	
 
@@ -39,6 +44,14 @@ public class Vcluster extends Virtualisation implements Serializable {
 
 	public void setHyperviseur(Collection<Hyperviseur> hyperviseur) {
 		this.hyperviseur = hyperviseur;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 

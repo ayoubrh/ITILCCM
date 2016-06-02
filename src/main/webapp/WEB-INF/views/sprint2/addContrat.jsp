@@ -612,7 +612,7 @@ Use search to find needed section.
 							
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Client</label>
 								<div class="col-sm-9">
 									<f:input path="client" type="text" class="form-control" id="inputError-4" name="jq-validation-client" />
@@ -717,7 +717,7 @@ Use search to find needed section.
 									<f:errors path="uniteDeCout" cssClass="help-block"></f:errors>
 								</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fournisseur</label>
 								<div class="col-sm-9">
 									<f:input path="fournisseur" type="text" class="form-control" id="inputError-4" name="jq-validation-fournisseur" />
@@ -818,7 +818,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

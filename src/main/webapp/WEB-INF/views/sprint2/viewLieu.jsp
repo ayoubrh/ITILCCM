@@ -484,12 +484,7 @@ Use search to find needed section.
 					</div>
 				</c:if>
 				
-				
-				
-				
-				
-				
-				
+			
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title col-md-9">Détail de Lieu</span>

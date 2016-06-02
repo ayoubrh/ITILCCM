@@ -555,7 +555,7 @@ Use search to find needed section.
 											<a href="<c:url value="/config/view/machineVirtuelle?id=${ci.machineVirtuelle.id }" />">${ci.machineVirtuelle.nom }</a>
 											</c:if>
 											</td>
-											<td>${ci.licenseLogiciel.nom }</td>
+											<td><a href="<c:url value="/config/view/licenceLogiciel?id=${ci.licenseLogiciel.id }" />">${ci.licenseLogiciel.nom }</a></td>
 											<td>${ci.cheminD_installation }</td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction}" /></td>
 											<td>${ci.description }</td>
