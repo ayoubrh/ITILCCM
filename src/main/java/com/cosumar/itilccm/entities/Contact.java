@@ -50,47 +50,47 @@ public class Contact implements Serializable {
 	   @JoinColumn(name="id_lieu")
 	   private Lieu lieu;
 	   
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
 
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<EquipementReseau> equipementreseaux;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Infrastructure> infrastructure;
 	   
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Rack> rack;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Chassis> chassis;
 	   
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Imprimante> imprimante;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<TelephneMobile> telephonemobile;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<TelephoneFixe> telephonefixe;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Tablette> tablette;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Sim> sim;
 	    
-	    @ManyToMany(mappedBy="contact")
+	    @ManyToMany(mappedBy="contact",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Peripherique> peripherique;
 	   
@@ -99,43 +99,43 @@ public class Contact implements Serializable {
 	   private Collection<Contrat> contrats;
 	   
 	    @Column(nullable=true)
-		@ManyToMany(mappedBy="contacts")
+		@ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<LogicielEtApplication> logicielEtApplication;
     
        @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<ApplicationWeb> applicationWeb;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<InstanceMiddleware> instanceMiddleware;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<ConnexionElectrique> connexionElectrique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<Virtualisation> virtualisation;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<Camera> camera;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<ProcessusMetier> processusMetier;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="contacts")
+	   @ManyToMany(mappedBy="contacts",cascade = CascadeType.ALL)
 	   private Collection<SolutionApplicative> solutionApplicative;
    
 		public Contact() {

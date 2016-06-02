@@ -41,22 +41,22 @@ public class LicenseOs implements Serializable {
 		   private VersionOs versionOs;
 		   
 		   @Column(nullable=true)
-		   @OneToMany(mappedBy="licenseOs")
+		   @OneToMany(mappedBy="licenseOs",cascade = CascadeType.ALL)
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Ordinateur> ordinateur;
 		   
 		   @Column(nullable=true)
-		   @OneToMany(mappedBy="licenseOs")
+		   @OneToMany(mappedBy="licenseOs",cascade = CascadeType.ALL)
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Serveur> serveur;
 		   
 		   @Column(nullable=true)
-		   @OneToMany(mappedBy="licenseOs")
+		   @OneToMany(mappedBy="licenseOs",cascade = CascadeType.ALL)
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<MachineVirtuelle> machineVirtuelle;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany
+		   @ManyToMany(cascade = CascadeType.ALL)
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Document> documents;
 	        

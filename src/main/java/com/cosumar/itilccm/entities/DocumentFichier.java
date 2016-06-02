@@ -5,12 +5,13 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+
+import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @DiscriminatorValue("Document Fichier")
 public class DocumentFichier extends Document implements Serializable {
 	
 
-	
 	 private String fichier;
 	 @Lob
 	 private byte[] bfichier;

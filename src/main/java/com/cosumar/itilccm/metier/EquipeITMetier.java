@@ -68,21 +68,18 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	// Application Web
 	
 	public Long ajouterApplicationWeb(ApplicationWeb aw);
-	public void modifierApplicationWeb(ApplicationWeb aw);
 	public List<ApplicationWeb> listApplicationWeb();
 	public ApplicationWeb getApplicationWeb(Long id);
 			
 	// Instance Middleware
 
 	public Long ajouterInstanceMiddleware(InstanceMiddleware im);
-	public void modifierInstanceMiddleware(InstanceMiddleware im);
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 			
 	// Instance de basse de donns
 			
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
-	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public List<InstanceDeBasseDeDonnes> listInstanceDeBasseDeDonnes();
 	public InstanceDeBasseDeDonnes getInstanceDeBasseDeDonnes(Long id);
 	
@@ -219,15 +216,12 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public Camera getCamera(Long id);
 		
 	// ProcessusMetier
-	public  Long addProcessusMetier(ProcessusMetier pm);
-	//public  Long addFibre(Fibre f, Long pc);
-	public void editProcessusMetier(ProcessusMetier pm);
+	
 	public List<ProcessusMetier> ListProcessusMetier();
 	public ProcessusMetier getProcessusMetier(Long id);
-	public void deleteProcessusMetier(Long id);
 		
 	// SolutionApplicative
-	//public  Long addFibre(Fibre f, Long pc);
+	
 	public List<SolutionApplicative> ListSolutionApplicative();
 	public SolutionApplicative getSolutionApplicative(Long id);
 		
@@ -253,5 +247,21 @@ public interface EquipeITMetier extends UtilisateurMetier {
 	public void editEquipementReseau(EquipementReseau er);
 	public List<EquipementReseau> ListEquipementReseau();
 	public EquipementReseau getEquipementReseau(Long id);
+	
+	// ConnexionElectrique
+	
+	public List<ConnexionElectrique> ListConnexionElectrique();
+	public ConnexionElectrique getConnexionElectrique(Long id);
+	
+	// ArriveeElectrique
+	
+	public List<ArriveeElectrique> ListArriveeElectrique();
+	public ArriveeElectrique getArriveeElectrique(Long id);
+	
+	// PduElectrique
+	
+	public List<PduElectrique> ListPduElectrique();
+	public PduElectrique getPduElectrique(Long id);
 
 }
+

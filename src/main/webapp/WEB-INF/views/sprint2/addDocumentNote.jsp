@@ -32,6 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Nouveau  Document Note - ITIL-CCM</title>
@@ -479,7 +480,7 @@ Use search to find needed section.
 						<span class="panel-title">Nouveau  Document Note</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="note" action="saveNote" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="documentNote" action="saveNote" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -491,16 +492,7 @@ Use search to find needed section.
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
 								</li>
-								<li>
-									<a href="#profile-tabs-cis" data-toggle="tab">CIs</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-contrats" data-toggle="tab">Contrats</a>
-								</li>
-								
-								
-								
-								
+							
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -512,7 +504,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -524,7 +516,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value="NONE"> -- choisir une valeur --</f:option>
+							             <f:option value=""></f:option>
 										 <f:option value="Brouillon">Brouillon</f:option>
 										 <f:option value="Obsolète"> Obsolète</f:option>
 										 <f:option value="Publié"> Publié</f:option>
@@ -566,27 +558,18 @@ Use search to find needed section.
 		</script>
 		<!-- / Javascript -->
 								
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Texte</label>
 								<div class="col-sm-9">
 									<f:textarea path="texte" class="form-control" id="summernote-example" rows="10"></f:textarea>
+								 	<f:errors path="texte" cssClass="help-block"></f:errors>
 								</div>
+								
 							</div>
 							</div>
 		
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-cis" id="profile-tabs-cis">
-									
-									CIs
-									
-									
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-contrats" id="profile-tabs-contrats">
-									
-									Contrats
-									
-									
-								</div> <!-- / .tab-pane -->
+								
 								
 								
 							</div> <!-- / .tab-content -->
@@ -601,7 +584,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

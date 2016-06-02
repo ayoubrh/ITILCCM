@@ -31,6 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Acceuil - ITIL-CCM</title>
@@ -473,6 +474,32 @@ Use search to find needed section.
 
 		Content
 -->
+<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$( "#ui-accordion" ).accordion({
+							heightStyle: "content",
+							header: "> div > h3"
+						}).sortable({
+							axis: "y",
+							handle: "h3",
+							stop: function( event, ui ) {
+								// IE doesn't register the blur when sorting
+								// so trigger focusout handlers to remove .ui-state-focus
+								ui.item.children( "h3" ).triggerHandler( "focusout" );
+							}
+						});
+					});
+				</script>
+				<!-- / Javascript -->
+				
+				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien enregistrer.
+					</div>
+				</c:if>
 
 		<!-- Content here -->
 		<c:if test="${v != null }">

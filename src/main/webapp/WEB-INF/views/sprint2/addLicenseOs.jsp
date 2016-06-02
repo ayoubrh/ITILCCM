@@ -31,7 +31,8 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Nouveau Licence OS - ITIL-CCM</title>
@@ -502,7 +503,11 @@ Use search to find needed section.
 													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
-													<td> </td>
+													<td>
+														<c:set var="string1" value="${doc['class'].name }"/>
+														<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+														${string2 }
+													</td>
 													<td>${doc.description }</td>
 												</tr>
 											</c:forEach>
@@ -549,7 +554,7 @@ Use search to find needed section.
 													<td>${mv.statut }</td>
 													<td>${mv.criticite}</td>
 													<td>${mv.ip}</td>
-													<td>${mv.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction }" /></td>
 													<td>${mv.description}</td>
 												</tr>
 											</c:forEach>
@@ -600,7 +605,7 @@ Use search to find needed section.
 													<td>${s.marque}</td>
 													<td>${s.modele}</td>
 													<td>${s.ip}</td>
-													<td>${s.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${s.dateDeMiseEnProduction }" /></td>
 													<td>${s.description}</td>
 												</tr>
 											</c:forEach>
@@ -668,7 +673,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS</label>
 								<div class="col-sm-9">
 									<f:select  path="versionOs.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-									    <f:option value=""> -- choisir une valeur --</f:option>
+									    <f:option value=""></f:option>
 										<f:options items="${v }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="versionOs.id" cssClass="help-block"></f:errors>
@@ -687,7 +692,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
 								<div class="col-sm-9">
 									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value=""> -- choisir une valeur --</f:option>
+									            <f:option value=""></f:option>
 									            <f:option value="oui"> oui</f:option>
 									            <f:option value="non">non</f:option>
 												
@@ -875,7 +880,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

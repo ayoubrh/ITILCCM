@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -22,6 +23,10 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	   	@LazyCollection(LazyCollectionOption.FALSE)
 	 	@Column(nullable = true)
 	   private Collection<Bande> bande;
+
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="bandotheque",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 
 	public Bandotheque(String nom) {
 		super(nom);
@@ -41,8 +46,19 @@ public class Bandotheque extends Infrastructure implements Serializable{
 		this.bande = bande;
 	}
 
+<<<<<<< HEAD
 
 	
+=======
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
+	}
+	 
+>>>>>>> refs/remotes/origin/tawfiq-jpa
 	 
 
 }

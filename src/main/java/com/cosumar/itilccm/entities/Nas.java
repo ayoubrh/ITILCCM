@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -24,20 +25,30 @@ public class Nas extends Infrastructure implements Serializable{
 	   private Collection<SystemeDeFicherNas> systemeDeFicherNas;
 	 
 	
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="nas",cascade = CascadeType.ALL)
+	  private Collection<Groupe> groupe;
+
+
 	public Collection<SystemeDeFicherNas> getSystemeDeFicherNas() {
-			return systemeDeFicherNas;
-		}
-		public void setSystemeDeFicherNas(Collection<SystemeDeFicherNas> systemeDeFicherNas) {
-			this.systemeDeFicherNas = systemeDeFicherNas;
-		}
-	public Nas() {
-		super();
-		// TODO Auto-generated constructor stub
+		return systemeDeFicherNas;
 	}
-	public Nas(String nom) {
-		super(nom);
-		// TODO Auto-generated constructor stub
+
+
+	public void setSystemeDeFicherNas(Collection<SystemeDeFicherNas> systemeDeFicherNas) {
+		this.systemeDeFicherNas = systemeDeFicherNas;
 	}
+
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
+	}
+	
 	
 	
 

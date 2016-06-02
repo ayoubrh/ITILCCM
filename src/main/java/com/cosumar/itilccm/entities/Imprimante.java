@@ -62,6 +62,10 @@ public class Imprimante implements Serializable{
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;
+   	
+   	@Column(nullable=true)
+	@ManyToMany(mappedBy="imprimante",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
 
 	public Long getId() {
 		return id;
@@ -213,6 +217,14 @@ public class Imprimante implements Serializable{
 
 	public void setModele(String modele) {
 		this.modele = modele;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

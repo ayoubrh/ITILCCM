@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -41,10 +43,12 @@ public class Contrat implements Serializable {
 		   
 		   @Column(nullable=true)
 		   @ManyToMany(cascade = CascadeType.ALL)
+		   @LazyCollection(LazyCollectionOption.FALSE) 
 		   private Collection<Contact> contacts;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany
+		   @ManyToMany(cascade = CascadeType.ALL)
+		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Document> documents;
 		   
 		   @ManyToMany(mappedBy="contrat")

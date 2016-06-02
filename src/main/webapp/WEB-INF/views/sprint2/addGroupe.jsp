@@ -32,6 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Nouveau Groupe - ITIL-CCM</title>
@@ -496,7 +497,7 @@ Use search to find needed section.
 										</thead>
 										<tbody id="tableCIspopup">
 											<c:forEach items="${ApplicationWeb}" var="aw" >
-												<tr class="gradeA" id="cis_${aw.id }" >
+												<tr class="gradeA" id="cis_Appl_${aw.id }" >
 													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Appl_${aw.id }"></td>
 													<td>${aw.nom }</td>
 													<td>Application Web</td>
@@ -504,7 +505,15 @@ Use search to find needed section.
 													<td>${aw.dateDeMiseEnProduction }</td>
 												</tr>
 											</c:forEach>
-											
+											<c:forEach items="${Autrelogiciel}" var="al" >
+												<tr class="gradeA" id="cis_Autr_${al.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Autr_${al.id }"></td>
+													<td>${al.nom }</td>
+													<td>Autre logiciel</td>
+													<td>${al.criticite }</td>
+													<td>${al.dateDeMiseEnProduction }</td>
+												</tr>
+											</c:forEach>
 
 
 											

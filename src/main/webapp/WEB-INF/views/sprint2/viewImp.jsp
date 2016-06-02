@@ -32,6 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Imprimante - ITIL-CCM</title>
@@ -671,7 +672,11 @@ Use search to find needed section.
 													<tr class="gradeA" id="tr_doc_${doc.id }">
 														<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
 														<td>${doc.statut }</td>
-														<td> </td>
+														<td>
+														<c:set var="string1" value="${doc['class'].name }"/>
+														<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+														${string2 }
+													</td>
 														<td>${doc.description }</td>
 													</tr>
 												</c:forEach>

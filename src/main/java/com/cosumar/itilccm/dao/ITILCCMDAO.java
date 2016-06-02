@@ -54,7 +54,7 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterLieu(Lieu l);
 	public Long ajouterLieuCont(Lieu l,List<Long> contacts);
-	public void modifierLieu(Lieu l);
+	public void modifierLieu(Lieu l,List<Long> contacts);
 	public void supprimerLieu(Long id);
 	public List<Lieu> listLieu();
 	public List<Lieu> SearchLieu(String l);
@@ -64,8 +64,9 @@ public interface ITILCCMDAO {
 		
 	public Long ajouterContact(Contact c);
 	public Long ajouterContactAll(Contact c, Long idlieu);
-	public void modifierContact(Contact c);
+	public void modifierContact(Contact c, Long idlieu);
 	public void supprimerContact(Long id);
+	public List<Contact> SearchContact(String c);
 	public List<Contact> listContact();
 	public Contact getContact(Long id);
 		
@@ -73,13 +74,15 @@ public interface ITILCCMDAO {
 		
 	public Long ajouterContrat(Contrat c);
 	public Long ajouterContratAll(Contrat c ,List<Long> contacts,List<Long> documents);
-	public void modifierContrat(Contrat c);
+	public void modifierContrat(Contrat c,List<Long> contacts,List<Long> documents);
 	public void supprimerContrat(Long id);
+	public List<Contrat> SearchContrat(String c);
 	public List<Contrat> listContrat();
 	public Contrat getContrat(Long id);
 	
 	// Document 
 	
+	public List<Document> SearchDocument(String d);
 	public List<Document> listDocument();
 	public Document getDocument(Long id);
 	
@@ -88,6 +91,7 @@ public interface ITILCCMDAO {
 	public Long ajouterDocumentFichier(DocumentFichier df);
 	public void modifierDocumentFichier(DocumentFichier df);
 	public void supprimerDocumentFichier(Long id);
+	public List<DocumentFichier> SearchDocumentFichier(String df);
 	public List<DocumentFichier> listDocumentFichier();
 	public DocumentFichier getDocumentFichier(Long id);
 	
@@ -96,6 +100,7 @@ public interface ITILCCMDAO {
 	public Long ajouterDocumentWeb(DocumentWeb dw);
 	public void modifierDocumentWeb(DocumentWeb dw);
 	public void supprimerDocumentWeb(Long id);
+	public List<DocumentWeb> SearchDocumentWeb(String dw);
 	public List<DocumentWeb> listDocumentWeb();
 	public DocumentWeb getDocumentWeb(Long id);
 	
@@ -104,6 +109,7 @@ public interface ITILCCMDAO {
 	public Long ajouterDocumentNote(DocumentNote dn);
 	public void modifierDocumentNote(DocumentNote dn);
 	public void supprimerDocumentNote(Long id);
+	public List<DocumentNote> SearchDocumentNote(String dn);
 	public List<DocumentNote> listDocumentNote();
 	public DocumentNote getDocumentNote(Long id);
 	
@@ -116,9 +122,6 @@ public interface ITILCCMDAO {
 	public List<Groupe> listGroupe();
 	public Groupe getGroupe(Long id);
 	
-	
-   
-
 	// Imprimente
 	public  Long addImp(Imprimante imp);
 	public  Long addImpAll(Imprimante imp, Long user, Long lieu, List<Long> document, List<Long> contact, List<Long> contrat);
@@ -256,15 +259,17 @@ public interface ITILCCMDAO {
 	// ProcessusMetier 
 	public  Long addProcessusMetier(ProcessusMetier pm);
 	public  Long addProcessusMetierAll(ProcessusMetier pm,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives);
-	public void editProcessusMetier(ProcessusMetier pm);
+	public void editProcessusMetier(ProcessusMetier pm,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives);
+	public List<ProcessusMetier> SearchProcessusMetier(String pm);
 	public List<ProcessusMetier> ListProcessusMetier();
 	public ProcessusMetier getProcessusMetier(Long id);
 	public void deleteProcessusMetier(Long id);
 	
 	// SolutionApplicative
 	public  Long addSolutionApplicative(SolutionApplicative sa);
-	public  Long addSolutionApplicativeAll(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> cis,List<Long> processusMetiers,List<Long> contrats); 
-	public void editSolutionApplicative(SolutionApplicative sa);
+	public  Long addSolutionApplicativeAll(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> processusMetiers,List<Long> contrats); 
+	public void editSolutionApplicative(SolutionApplicative sa,List<Long> contacts,List<Long> documents,List<Long> processusMetiers,List<Long> contrats);
+	public List<SolutionApplicative> SearchSolutionApplicative(String sa);
 	public List<SolutionApplicative> ListSolutionApplicative();
 	public SolutionApplicative getSolutionApplicative(Long id);
 	public void deleteSolutionApplicative(Long id);
@@ -296,7 +301,8 @@ public interface ITILCCMDAO {
 	// ArriveeElectrique
 	public  Long addArriveeElectrique(ArriveeElectrique ae);
 	public  Long addArriveeElectriqueAll(ArriveeElectrique ae,Long lieu,List<Long> pdus,List<Long> contacts,List<Long> documents,List<Long> contrats);
-	public void editArriveeElectrique(ArriveeElectrique ae);
+	public void editArriveeElectrique(ArriveeElectrique ae,Long lieu,List<Long> pdus,List<Long> contacts,List<Long> documents,List<Long> contrats);
+	public List<ArriveeElectrique> SearchArriveeElectrique(String ae);
 	public List<ArriveeElectrique> ListArriveeElectrique();
 	public ArriveeElectrique getArriveeElectrique(Long id);
 	public void deleteArriveeElectrique(Long id);
@@ -304,7 +310,8 @@ public interface ITILCCMDAO {
 	// PduElectrique
 	public  Long addPduElectrique(PduElectrique pdue);
 	public  Long addPduElectriqueAll(PduElectrique pdue,Long lieu,Long rack,Long arrivee, List<Long> contacts,List<Long> documents,List<Long> contrats);
-	public void editPduElectrique(PduElectrique pdue);
+	public void editPduElectrique(PduElectrique pdue,Long lieu,Long rack,Long arrivee, List<Long> contacts,List<Long> documents,List<Long> contrats);
+	public List<PduElectrique> SearchPduElectrique(String pdue);
 	public List<PduElectrique> ListPduElectrique();
 	public PduElectrique getPduElectrique(Long id);
 	public void deletePduElectrique(Long id);
@@ -413,8 +420,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterLicenseLogiciel(LicenseLogiciel ll);
 	public Long ajouterLicenseLogicielAll(LicenseLogiciel ll,Long logiciel,List<Long> documents);
-	public void modifierLicenseLogiciel(LicenseLogiciel ll);
+	public void modifierLicenseLogiciel(LicenseLogiciel ll,Long logiciel,List<Long> documents);
 	public void supprimerLicenseLogiciel(Long id);
+	public List<LicenseLogiciel> SearchLicenseLogiciel(String ll);
 	public List<LicenseLogiciel> listLicenseLogiciel();
 	public LicenseLogiciel getLicenseLogiciel(Long id);
 	
@@ -422,8 +430,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterLicenseOs(LicenseOs lo);
 	public Long ajouterLicenseOsAll(LicenseOs lo,Long versionOs,List<Long> documents,List<Long> serveurs,List<Long> machineVirtuelle);
-	public void modifierLicenseOs(LicenseOs lo);
+	public void modifierLicenseOs(LicenseOs lo,Long versionOs,List<Long> documents,List<Long> serveurs,List<Long> machineVirtuelle);
 	public void supprimerLicenseOs(Long id);
+	public List<LicenseOs> SearchLicenseOs(String lo);
 	public List<LicenseOs> listLicenseOs();
 	public LicenseOs getLicenseOs(Long id);
 	
@@ -432,6 +441,7 @@ public interface ITILCCMDAO {
 	public Long ajouterVersionOs(VersionOs vo);
 	public void modifierVersionOs(VersionOs vo);
 	public void supprimerVersionOs(Long id);
+	public List<VersionOs> SearchVersionOs(String vo);
 	public List<VersionOs> listVersionOs();
 	public VersionOs getVersionOs(Long id);
 	
@@ -444,8 +454,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterAutreLogiciel(AutreLogiciel al);
 	public Long ajouterAutreLogicielAll(AutreLogiciel al,Long serv,Long mach, Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
-	public void modifierAutreLogiciel(AutreLogiciel al);
+	public void modifierAutreLogiciel(AutreLogiciel al,Long serv,Long mach, Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void supprimerAutreLogiciel(Long id);
+	public List<AutreLogiciel> SearchAutreLogiciel(String al);
 	public List<AutreLogiciel> listAutreLogiciel();
 	public AutreLogiciel getAutreLogiciel(Long id);
 	
@@ -453,8 +464,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterLogicielPc(LogicielPc lp);
 	public Long ajouterLogicielPcAll(LogicielPc lp,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
-	public void modifierLogicielPc(LogicielPc lp);
+	public void modifierLogicielPc(LogicielPc lp,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void supprimerLogicielPc(Long id);
+	public List<LogicielPc> SearchLogicielPc(String lp);
 	public List<LogicielPc> listLogicielPc();
 	public LogicielPc getLogicielPc(Long id);
 	
@@ -462,8 +474,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterServeurWeb(ServeurWeb sw);
 	public Long ajouterServeurWebAll(ServeurWeb sw,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
-	public void modifierServeurWeb(ServeurWeb sw);
+	public void modifierServeurWeb(ServeurWeb sw,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> applicationWeb,List<Long> contrats);
 	public void supprimerServeurWeb(Long id);
+	public List<ServeurWeb> SearchServeurWeb(String sw);
 	public List<ServeurWeb> listServeurWeb();
 	public ServeurWeb getServeurWeb(Long id);
 	
@@ -471,8 +484,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterMiddleware(Middleware m);
 	public Long ajouterMiddlewareAll(Middleware m,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
-	public void modifierMiddleware(Middleware m);
+	public void modifierMiddleware(Middleware m,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesMiddleware,List<Long> contrats);
 	public void supprimerMiddleware(Long id);
+	public List<Middleware> SearchMiddleware(String mi);
 	public List<Middleware> listMiddleware();
 	public Middleware getMiddleware(Long id);
 	
@@ -480,8 +494,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
 	public Long ajouterServeurDeBasseDeDonneesAll(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
-	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd);
+	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd,Long serv,Long mach,Long l,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> instancesBD,List<Long> contrats);
 	public void supprimerServeurDeBasseDeDonnees(Long id);
+	public List<ServeurDeBasseDeDonnees> SearchServeurDeBasseDeDonnees(String sbd);
 	public List<ServeurDeBasseDeDonnees> listServeurDeBasseDeDonnees();
 	public ServeurDeBasseDeDonnees getServeurDeBasseDeDonnees(Long id);
 	
@@ -490,8 +505,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterApplicationWeb(ApplicationWeb aw);
 	public Long ajouterApplicationWebAll(ApplicationWeb aw,Long sw,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
-	public void modifierApplicationWeb(ApplicationWeb aw);
+	public void modifierApplicationWeb(ApplicationWeb aw,Long sw,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void supprimerApplicationWeb(Long id);
+	public List<ApplicationWeb> SearchApplicationWeb(String aw);
 	public List<ApplicationWeb> listApplicationWeb();
 	public ApplicationWeb getApplicationWeb(Long id);
 	
@@ -500,8 +516,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterInstanceMiddleware(InstanceMiddleware im);
 	public Long ajouterInstanceMiddlewareAll(InstanceMiddleware im,Long m,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
-	public void modifierInstanceMiddleware(InstanceMiddleware im);
+	public void modifierInstanceMiddleware(InstanceMiddleware im,Long m,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void supprimerInstanceMiddleware(Long id);
+	public List<InstanceMiddleware> SearchInstanceMiddleware(String im);
 	public List<InstanceMiddleware> listInstanceMiddleware();
 	public InstanceMiddleware getInstanceMiddleware(Long id);
 	
@@ -509,8 +526,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
 	public Long ajouterInstanceDeBasseDeDonnesAll(InstanceDeBasseDeDonnes ibd,Long sbd,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
-	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd);
+	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd,Long sbd,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> contrats);
 	public void supprimerInstanceDeBasseDeDonnes(Long id);
+	public List<InstanceDeBasseDeDonnes> SearchInstanceDeBasseDeDonnes(String ibd);
 	public List<InstanceDeBasseDeDonnes> listInstanceDeBasseDeDonnes();
 	public InstanceDeBasseDeDonnes getInstanceDeBasseDeDonnes(Long id);
 	
@@ -518,8 +536,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterMachineVirtuelle(MachineVirtuelle mv);
 	public Long ajouterMachineVirtuelleAll(MachineVirtuelle mv,Long virtualisation,Long license,List<Long> logiciels,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> interfacesReseaux,List<Long> volumesLogiques,List<Long> contrats);
-	public void modifierMachineVirtuelle(MachineVirtuelle mv);
+	public void modifierMachineVirtuelle(MachineVirtuelle mv,Long virtualisation,Long license,List<Long> logiciels,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> interfacesReseaux,List<Long> volumesLogiques,List<Long> contrats);
 	public void supprimerMachineVirtuelle(Long id);
+	public List<MachineVirtuelle> SearchMachineVirtuelle(String mv);
 	public List<MachineVirtuelle> listMachineVirtuelle();
 	public MachineVirtuelle getMachineVirtuelle(Long id);
 	
@@ -532,8 +551,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterVcluster(Vcluster v);
 	public Long ajouterVclusterAll(Vcluster v,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> volumesLogiques,List<Long> machinesVirtuelles,List<Long> hyperviseurs,List<Long> contrats);
-	public void modifierVcluster(Vcluster v);
+	public void modifierVcluster(Vcluster v,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> volumesLogiques,List<Long> machinesVirtuelles,List<Long> hyperviseurs,List<Long> contrats);
 	public void supprimerVcluster(Long id);
+	public List<Vcluster> SearchVcluster(String v);
 	public List<Vcluster> listVcluster();
 	public Vcluster getVcluster(Long id);
 	
@@ -541,8 +561,9 @@ public interface ITILCCMDAO {
 	
 	public Long ajouterHyperviseur(Hyperviseur h);
 	public Long ajouterHyperviseurAll(Hyperviseur h,Long vCluster,Long Serveur,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> volumesLogiques,List<Long> machinesVirtuelles,List<Long> contrats);
-	public void modifierHyperviseur(Hyperviseur h);
+	public void modifierHyperviseur(Hyperviseur h,Long vCluster,Long Serveur,List<Long> contacts,List<Long> documents,List<Long> solutionsApplicatives,List<Long> volumesLogiques,List<Long> machinesVirtuelles,List<Long> contrats);
 	public void supprimerHyperviseur(Long id);
+	public List<Hyperviseur> SearchHyperviseur(String h);
 	public List<Hyperviseur> listHyperviseur();
 	public Hyperviseur getHyperviseur(Long id);
 }

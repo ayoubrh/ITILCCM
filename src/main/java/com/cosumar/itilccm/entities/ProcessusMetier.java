@@ -38,14 +38,18 @@ public class ProcessusMetier implements Serializable{
     private Collection<SolutionApplicative> solutionApplicative;
    	
    	@Column(nullable=true)
-	@ManyToMany
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany(cascade = CascadeType.ALL)
+   	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contact> contacts;
 	
 	@Column(nullable=true)
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Document> documents;
+	
+	@Column(nullable=true)
+	@ManyToMany(mappedBy="processusMetier",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
    	
 	public Long getId() {
 		return id;
@@ -138,5 +142,14 @@ public class ProcessusMetier implements Serializable{
 	public void setDocuments(Collection<Document> documents) {
 		this.documents = documents;
 	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
+	}
+	
  
 }

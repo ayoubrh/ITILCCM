@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -42,7 +43,10 @@ public class Serveur extends Infrastructure implements Serializable{
 	 @OneToMany(mappedBy="serveur")
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
-   
+	 
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="serveur",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 	
 	public String getCpu() {
 		return cpu;
@@ -93,6 +97,12 @@ public class Serveur extends Infrastructure implements Serializable{
 	}
 	public Serveur(String nom) {
 		super(nom);
+	}
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	
