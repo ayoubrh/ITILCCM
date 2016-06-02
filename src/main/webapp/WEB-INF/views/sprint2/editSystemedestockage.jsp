@@ -31,6 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Modification Systéme de Stockage - ITIL-CCM</title>
@@ -881,7 +882,7 @@ Use search to find needed section.
 						<span class="panel-title">Modification d'un Systéme de Stockage</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="systemeDeStockage" action="saveSystemedestokage" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="systemeDeStockage" action="/config/admin/add/saveSystemedestokage" methode="post" class="form-horizontal" id="jq-validation-form">
 					
 						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 		

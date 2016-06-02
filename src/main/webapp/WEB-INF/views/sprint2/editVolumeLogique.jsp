@@ -31,9 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Volume logique - ITIL-CCM</title>
+	<title>Modification Volume logique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -575,12 +576,12 @@ Use search to find needed section.
 				<!-- / Modal Serveurs -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Volume Logique</span>
+						<span class="panel-title">Modification d'un Volume Logique</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="volumeLogique" action="saveVolumeLogique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="volumeLogique" action="/config/admin/add/saveVolumeLogique" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
-					
+						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
 						
@@ -687,7 +688,19 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableServeurs">
-												
+												<c:forEach items="${volumeLogique.serveur}" var="s">
+													<tr class="gradeA" id="tr_Serveurs_${s.id }">
+														<td class="supchekbox"><input type="checkbox" class="ckserv" checked="checked" name="ckServeurs" value="${s.id }"></td>
+														<td>${s.nom }</td>
+														<td>${s.statut }</td>
+														<td>${s.criticite}</td>
+														<td>${s.marque}</td>
+														<td>${s.modele}</td>
+														<td>${s.ip}</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${s.dateDeMiseEnProduction }" /></td>
+														<td>${s.description}</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -721,7 +734,17 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableMachinesVirtuelles">
-												
+												<c:forEach items="${volumeLogique.machinevertuelle}" var="mv">
+													<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
+														<td class="supchekbox"><input type="checkbox" class="ckmv" checked="checked" name="ckMachinesVirtuelles" value="${mv.id }"></td>
+														<td>${mv.nom }</td>
+														<td>${mv.statut }</td>
+														<td>${mv.criticite}</td>
+														<td>${mv.ip}</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction }" /></td>
+														<td>${mv.description}</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -750,7 +773,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/volumelogique?id=${volumeLogique.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

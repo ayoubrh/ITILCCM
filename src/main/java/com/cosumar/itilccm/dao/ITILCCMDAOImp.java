@@ -4612,7 +4612,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			san.setSolutionApplicative(solapp);
 		}
 		
-		em.persist(san);
+		em.merge(san);
 		return san.getId();
 	}
 	

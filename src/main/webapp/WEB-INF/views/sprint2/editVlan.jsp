@@ -31,9 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau VLAN - ITIL-CCM</title>
+	<title>Modification VLAN - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -569,11 +570,11 @@ Use search to find needed section.
 				<!-- / Modal Interface reseaux -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau VLAN</span>
+						<span class="panel-title">Modification d'un VLAN</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="vlan" action="saveVlan" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
+						<f:form modelAttribute="vlan" action="/config/admin/add/saveVlan" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 					
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
@@ -637,7 +638,16 @@ Use search to find needed section.
 											</tr>
 											</thead>
 											<tbody id="tableSubnets">
-												
+												<c:forEach items="${vlan.subnet}" var="s">
+												<tr class="gradeA" id="tr_Subnets_${s.id }">
+													<td class="supchekbox"><input type="checkbox" class="cksub" checked="checked" name="ckSubnets" value="${s.id }"></td>
+													<td>${s.nomDeSubnnet }</td>
+													<td>${s.ip }</td>
+													<td>${s.masqueIp}</td>
+													<td>${s.description}</td>
+												</tr>
+											</c:forEach>
+											
 												
 											</tbody>
 										</table>
@@ -673,7 +683,18 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tableinterfacereseau">
-												
+												<c:forEach items="${vlan.physique}" var="ir">
+												<tr class="gradeA" id="tr_ir_${ir.id }">
+													<td class="supchekbox"><input type="checkbox" class="ckir" checked="checked" name="chinterfacereseau" value="${ir.id }"></td>
+													<td>${ir.nom }</td>
+													<td>${ir.adresseIp }</td>
+													<td>${ir.adresseMac }</td>
+													<td>${ir.commentaire }</td>
+													<td>${ir.passerelle }</td>
+													<td>${ir.masqueDeSousReseau }</td>
+													<td>${ir.vitesse }</td>
+												</tr>
+											</c:forEach>
 												
 											</tbody>
 										</table>
@@ -702,7 +723,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/vlan?id=${vlan.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

@@ -215,7 +215,8 @@ public class Sprint2 {
 			model.addAttribute("users", m.listUser());
 			model.addAttribute("lieus", m.listLieu());
 			model.addAttribute("licenseos", m.listLicenseOs());
-			return "sprint2/addPC";
+			if(pc.getId() == null) return "sprint2/addPC";
+			else return "sprint2/editPC";
 		}
 		System.out.println("Test test 3");
 		String[] chLogiciels = req.getParameterValues("chLogiciels");
@@ -353,7 +354,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("users", m.listUser());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addImp";
+			if(imp.getId() == null)return "sprint2/addImp";
+			else return "sprint2/editImp";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -453,7 +455,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("pc", m.ListPC());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addPer";
+			if(per.getId() == null) return "sprint2/addPer";
+			else return "sprint2/editPer";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -552,7 +555,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("users", m.listUserTeleMobile());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addTeleMobile";
+			if(telem.getId() == null)return "sprint2/addTeleMobile";
+			else return "sprint2/editTeleMobile";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -650,7 +654,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("users", m.listUserTeleFixe());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addTeleFixe";
+			if(telefixe.getId() == null) return "sprint2/addTeleFixe";
+			else return "sprint2/editTeleFixe";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -748,7 +753,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("users", m.listUserTablette());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addTablette";
+			if(tab.getId() == null) return "sprint2/addTablette";
+			else return "sprint2/editTablette";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -844,7 +850,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("users", m.listUserSim());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addSim";
+			if(sim.getId() == null) return "sprint2/addSim";
+			else return "sprint2/editSim";
 		}
 		System.out.println("Test test 3");
 		String[] chdocument = req.getParameterValues("chdocument");
@@ -948,7 +955,8 @@ public class Sprint2 {
 			model.addAttribute("chasiss", m.ListChassis());
 			model.addAttribute("materiels", m.ListInfrastructure());
 			model.addAttribute("pduelect", m.ListPduElectrique());
-			return "sprint2/addRack";
+			if(rack.getId()  == null)return "sprint2/addRack";
+			else return "sprint2/editRack";
 		}
 		System.out.println("Test test 3");
 		String[] chchassis = req.getParameterValues("chchassis");
@@ -1221,7 +1229,8 @@ public class Sprint2 {
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
 			model.addAttribute("licenseos", m.listLicenseOs());
-			return "sprint2/addServeur";
+			if(serveur.getId() == null) return "sprint2/addServeur";
+			else return "sprint2/editServeur";
 		}
 		System.out.println("Test test 3");
 		String[] chLogiciels = req.getParameterValues("chLogiciels");
@@ -1436,7 +1445,8 @@ public class Sprint2 {
 			model.addAttribute("chassiss", m.ListChassis());
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addSystemedestockage";
+			if(sds.getId() == null) return "sprint2/addSystemedestockage";
+			else return "sprint2/editSystemedestockage";
 		}
 		System.out.println("Test test 3");
 		
@@ -1631,7 +1641,8 @@ public class Sprint2 {
 			model.addAttribute("chassiss", m.ListChassis());
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addNAS";
+			if(nas.getId() == null) return "sprint2/addNAS";
+			else return "sprint2/editNAS";
 		}
 		System.out.println("Test test 3");
 		
@@ -1823,7 +1834,8 @@ public class Sprint2 {
 			model.addAttribute("chassiss", m.ListChassis());
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addbandotheque";
+			if(bando.getId() == null)return "sprint2/addbandotheque";
+			else return "sprint2/editbandotheque";
 		}
 		System.out.println("Test test 3");
 		
@@ -2016,7 +2028,8 @@ public class Sprint2 {
 			model.addAttribute("chassiss", m.ListChassis());
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addDVR";
+			if(dvr.getId() == null)return "sprint2/addDVR";
+			else return "sprint2/editDVR";
 		}
 		System.out.println("Test test 3");
 		
@@ -2191,7 +2204,8 @@ public class Sprint2 {
 			model.addAttribute("chassiss", m.ListChassis());
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addSwitchSAN";
+			if(san.getId() == null)return "sprint2/addSwitchSAN";
+			else return "sprint2/editSwitchSAN";
 		}
 		System.out.println("Test test 3");
 		
@@ -2361,7 +2375,8 @@ public class Sprint2 {
 			model.addAttribute("chassiss", m.ListChassis());
 			model.addAttribute("sourceelec", m.ListConnexionElectrique());
 			model.addAttribute("lieus", m.listLieu());
-			return "sprint2/addEquipementreseau";
+			if(er.getId() == null )return "sprint2/addEquipementreseau";
+			else return "sprint2/editEquipementreseau";
 		}
 		System.out.println("Test test 3");
 		
@@ -4167,7 +4182,8 @@ public class Sprint2 {
 			} else {
 				model.addAttribute("error", false);
 			}
-			return "sprint2/addInterfaceFibre";
+			if(fibre.getId() == null) return "sprint2/addInterfaceFibre";
+			else return "sprint2/editInterfaceFibre";
 		}
 		if(Materiel[0].substring(0,2).equals("IN")){
 			Long infra = Long.parseLong(Materiel[0].substring(3));
@@ -4230,7 +4246,8 @@ public class Sprint2 {
 			} else {
 				model.addAttribute("error", false);
 			}
-			return "sprint2/addInterfaceLogique";
+			if(log.getId() == null)return "sprint2/addInterfaceLogique";
+			else return "sprint2/editInterfaceLogique";
 		}
 		System.out.println("--------- fvdfvdfvdfvdfv ");
 		log.setMachineVirtuelle(m.getMachineVirtuelle(Long.parseLong(mv[0])));
@@ -4287,7 +4304,8 @@ public class Sprint2 {
 			} else {
 				model.addAttribute("error", false);
 			}
-			return "sprint2/addInterfacePhysique";
+			if(physique.getId() == null) return "sprint2/addInterfacePhysique";
+			else return "sprint2/editInterfacePhysique";
 		}
 		if(Materiel[0].substring(0,2).equals("IN")){
 			Long infra = Long.parseLong(Materiel[0].substring(3));
@@ -4351,8 +4369,8 @@ public class Sprint2 {
 		    User logged = mu.getUserByMatricule(logged_m);
 			model.addAttribute("logged", logged);
 			model.addAttribute("vlans", m.ListVlan());
-			if(subnet.getId()==null){
-			return "sprint2/addSubnet";
+			if(subnet.getId() == null){
+				return "sprint2/addSubnet";
 			} else return "sprint2/editSubnet";
 		}
 		
@@ -4396,7 +4414,7 @@ public class Sprint2 {
 	}
 	
 	
-	@RequestMapping(value="/admin/edit/volumeLogique")
+	@RequestMapping(value="/admin/edit/volumelogique")
 	public String editVolumeLogique(Model model,Long id){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
@@ -4426,7 +4444,8 @@ public class Sprint2 {
 			} else {
 				model.addAttribute("error", false);
 			}
-			return "sprint2/addVolumeLogique";
+			if(vl.getId() == null) return "sprint2/addVolumeLogique";
+			else return "sprint2/editVolumeLogique";
 		}
 		
 		
@@ -4501,7 +4520,8 @@ public class Sprint2 {
 			model.addAttribute("logged", logged);
 			model.addAttribute("subnets", m.ListSubnet());
 			model.addAttribute("interfacereseaux", m.ListPhysique());
-			return "sprint2/addVlan";
+			if(vlan.getId() == null) return "sprint2/addVlan";
+			else return "sprint2/editVlan";
 		}
 		
 		
@@ -4592,7 +4612,8 @@ public class Sprint2 {
 			model.addAttribute("contacts", m.listContact());
 			model.addAttribute("lieus", m.listLieu());
 			model.addAttribute("dvr", m.ListDvr());
-			return "sprint2/addCamera";
+			if(camera.getId() == null) return "sprint2/addCamera";
+			else return "sprint2/editCamera";
 		}
 		System.out.println("Test test 3");
 		
@@ -5344,7 +5365,7 @@ public class Sprint2 {
 		} else {
 			model.addAttribute("save", save );
 		}
-		return "sprint2/viewSwitchSan";
+		return "sprint2/viewSwitchSAN";
 	}
 	
 	@RequestMapping(value="/view/nas")

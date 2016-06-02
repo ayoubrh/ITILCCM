@@ -31,9 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouvelle Tablette - ITIL-CCM</title>
+	<title>Modification Tablette - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -630,11 +631,11 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouvelle Tablette</span>
+						<span class="panel-title">Modification d'une Tablette</span>
 					</div>
 					<div class="panel-body">
 						<f:form modelAttribute="tablette" action="saveTablette" methode="post" class="form-horizontal" id="jq-validation-form">
-					
+						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 					
 		
 						<hr class="profile-content-hr no-grid-gutter-h">
@@ -832,7 +833,17 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontact">
-												
+												<c:forEach items="${tablette.contact}" var="contact">
+													<tr class="gradeA" id="tr_contact_${contact.id }">
+														<td class="supchekbox"><input type="checkbox" class="ckContact" checked="checked" name="chContact" value="${contact.id }"></td>
+														<td>${contact.nom } ${contact.prenom }</td>
+														<td>${contact.statut }</td>
+														<td>${contact.organisme }</td>
+														<td>${contact.email }</td>
+														<td>${contact.telephoneFixe }/${contact.telephoneMobile }</td>
+														<td>${contact.fonction }</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -871,7 +882,15 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tabledocument">
-												
+												<c:forEach items="${tablette.document}" var="doc">
+													<tr class="gradeA" id="tr_doc_${doc.id }">
+														<td class="supchekbox"><input type="checkbox" class="ckdoc" checked="checked" name="chdocument" value="${doc.id }"></td>
+														<td>${doc.nom }</td>
+														<td>${doc.statut }</td>
+														<td> </td>
+														<td>${doc.description }</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -913,7 +932,18 @@ Use search to find needed section.
 												</tr>
 											</thead>
 											<tbody id="tablecontrat">
-												
+												<c:forEach items="${tablette.contrat}" var="contrat">
+													<tr class="gradeA" id="tr_contrat_${contrat.id }">
+														<td class="supchekbox"><input type="checkbox" class="ckContrat" checked="checked" name="chContrat" value="${contrat.id }"></td>
+														<td>${contrat.nom }</td>
+														<td>${contrat.typeDeContrat }</td>
+														<td>${contrat.client }</td>
+														<td>${contrat.description }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut }" /></td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin }" /></td>
+														<td>${contrat.fournisseur }</td>
+													</tr>
+												</c:forEach>
 												
 											</tbody>
 										</table>
@@ -948,7 +978,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/tablette?id=${tablette.id }" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

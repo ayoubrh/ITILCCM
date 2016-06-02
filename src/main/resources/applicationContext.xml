@@ -61,9 +61,9 @@
 	<s:http>
 		<s:intercept-url pattern="/indexv*" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
 		<s:intercept-url pattern="/index" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
-		<s:intercept-url pattern="/config/admin/**" access="ROLE_ADMIN"/>
-		<s:intercept-url pattern="/users/admin/**" access="ROLE_ADMIN"/>
-		<s:intercept-url pattern="/uconfig/admin/**" access="ROLE_ADMIN"/>
+		<s:intercept-url pattern="/config/admin/search/**" access="ROLE_ADMIN,ROLE_IT_TEAM"/>
+		<s:intercept-url pattern="/config/view/**" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
+		<s:intercept-url pattern="/users/admin/add/**" access="ROLE_ADMIN"/>
 		<s:intercept-url pattern="/users/**" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
 		<s:form-login 
 			login-page="/login"
