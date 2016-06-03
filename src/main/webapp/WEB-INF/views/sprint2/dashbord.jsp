@@ -411,22 +411,22 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
+							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -607,8 +607,8 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/typeConnexionElectrique" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Connection Electrique</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Connection Electrique</span></a>
+													<a href="<c:url value="/config/admin/add/typeConnexionElectrique" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Connection Electrique</span></a>
+													<a href="<c:url value="/config/search/"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Connection Electrique</span></a>
 												</div>
 											</div>
 										</div>

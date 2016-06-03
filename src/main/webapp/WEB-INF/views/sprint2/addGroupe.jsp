@@ -497,26 +497,286 @@ Use search to find needed section.
 										</thead>
 										<tbody id="tableCIspopup">
 											<c:forEach items="${ApplicationWeb}" var="aw" >
-												<tr class="gradeA" id="cis_Appl_${aw.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Appl_${aw.id }"></td>
+												<tr class="gradeA" id="cis_App_${aw.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="App_${aw.id }"></td>
 													<td>${aw.nom }</td>
 													<td>Application Web</td>
 													<td>${aw.criticite }</td>
-													<td>${aw.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${aw.dateDeMiseEnProduction}" /></td>
+													
+												</tr>
+											</c:forEach>
+											<c:forEach items="${ArriveeElectrique}" var="ae" >
+												<tr class="gradeA" id="cis_Arr_${ae.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Arr_${ae.id }"></td>
+													<td>${ae.nom }</td>
+													<td>Arrivée Electrique</td>
+													<td>${ae.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ae.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 											<c:forEach items="${Autrelogiciel}" var="al" >
-												<tr class="gradeA" id="cis_Autr_${al.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Autr_${al.id }"></td>
+												<tr class="gradeA" id="cis_Aut_${al.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Aut_${al.id }"></td>
 													<td>${al.nom }</td>
 													<td>Autre logiciel</td>
 													<td>${al.criticite }</td>
-													<td>${al.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${al.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
-
-
+											<c:forEach items="${Bandotheque}" var="b" >
+												<tr class="gradeA" id="cis_Ban_${b.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Ban_${b.id }"></td>
+													<td>${b.nom }</td>
+													<td>Bandotheque</td>
+													<td>${b.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${b.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Camera}" var="ca" >
+												<tr class="gradeA" id="cis_Cam_${ca.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Cam_${ca.id }"></td>
+													<td>${ca.nom }</td>
+													<td>Camera</td>
+													<td>${ca.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ca.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+                                            <c:forEach items="${Chassis}" var="ch" >
+												<tr class="gradeA" id="cis_Cha_${ca.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Cha_${ch.id }"></td>
+													<td>${ch.nom }</td>
+													<td>Chassis</td>
+													<td>${ch.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ch.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${DVR}" var="d" >
+												<tr class="gradeA" id="cis_Dvr_${d.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Dvr_${d.id }"></td>
+													<td>${d.nom }</td>
+													<td>Dvr</td>
+													<td>${d.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${d.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Equipementreseau}" var="er" >
+												<tr class="gradeA" id="cis_Equ_${er.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Equ_${er.id }"></td>
+													<td>${er.nom }</td>
+													<td>Equipement réseau</td>
+													<td>${er.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${er.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Hyperviseur}" var="h" >
+												<tr class="gradeA" id="cis_Hyp_${h.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Hyp_${h.id }"></td>
+													<td>${h.nom }</td>
+													<td>Hyperviseur</td>
+													<td>${h.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${h.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Imprimante}" var="i" >
+												<tr class="gradeA" id="cis_Imp_${i.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Imp_${i.id }"></td>
+													<td>${i.nom }</td>
+													<td>Imprimante</td>
+													<td>${i.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${i.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${InstanceMiddleware}" var="im" >
+												<tr class="gradeA" id="cis_InM_${im.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="InM_${im.id }"></td>
+													<td>${im.nom }</td>
+													<td>Instance Middleware</td>
+													<td>${im.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${im.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Instancedebasededonnees}" var="ibd" >
+												<tr class="gradeA" id="cis_Ibd_${ibd.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Ibd_${ibd.id }"></td>
+													<td>${ibd.nom }</td>
+													<td>Instance de base de données</td>
+													<td>${ibd.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ibd.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${LogicielPC}" var="lp" >
+												<tr class="gradeA" id="cis_Log_${lp.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Log_${lp.id }"></td>
+													<td>${lp.nom }</td>
+													<td>Logiciel PC</td>
+													<td>${lp.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${lp.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Machinevirtuelle}" var="mv" >
+												<tr class="gradeA" id="cis_Mac_${mv.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Mac_${mv.id }"></td>
+													<td>${mv.nom }</td>
+													<td>Machine virtuelle</td>
+													<td>${mv.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Middleware}" var="m" >
+												<tr class="gradeA" id="cis_Mid_${m.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Mid_${m.id }"></td>
+													<td>${m.nom }</td>
+													<td>Middleware</td>
+													<td>${m.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${m.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${NAS}" var="n" >
+												<tr class="gradeA" id="cis_Nas_${n.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Nas_${n.id }"></td>
+													<td>${n.nom }</td>
+													<td>NAS</td>
+													<td>${n.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${n.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Ordinateur}" var="pc" >
+												<tr class="gradeA" id="cis_Ord_${pc.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Ord_${pc.id }"></td>
+													<td>${pc.nom }</td>
+													<td>Ordinateur</td>
+													<td>${pc.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pc.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${PDU}" var="pdu" >
+												<tr class="gradeA" id="cis_Pdu_${pdu.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Pdu_${pdu.id }"></td>
+													<td>${pdu.nom }</td>
+													<td>PDU</td>
+													<td>${pdu.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pdu.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Processusmetier}" var="pm" >
+												<tr class="gradeA" id="cis_Pro_${pm.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Pro_${pm.id }"></td>
+													<td>${pm.nom }</td>
+													<td>Processus métier</td>
+													<td>${pm.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Peripherique}" var="p" >
+												<tr class="gradeA" id="cis_Per_${p.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Per_${p.id }"></td>
+													<td>${p.nom }</td>
+													<td>Périphérique</td>
+													<td>${p.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${p.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Rack}" var="r" >
+												<tr class="gradeA" id="cis_Rac_${r.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Rac_${r.id }"></td>
+													<td>${r.nom }</td>
+													<td>Rack</td>
+													<td>${r.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${r.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Serveur}" var="s" >
+												<tr class="gradeA" id="cis_Ser_${s.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Ser_${s.id }"></td>
+													<td>${s.nom }</td>
+													<td>Serveur</td>
+													<td>${s.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${s.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${ServeurWeb}" var="sw" >
+												<tr class="gradeA" id="cis_Sew_${sw.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Sew_${sw.id }"></td>
+													<td>${sw.nom }</td>
+													<td>Serveur Web</td>
+													<td>${sw.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sw.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Serveurdebasededonnees}" var="sbd" >
+												<tr class="gradeA" id="cis_Sbd_${sbd.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Sbd_${sbd.id }"></td>
+													<td>${sbd.nom }</td>
+													<td>Serveur de base de données</td>
+													<td>${sbd.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sbd.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
 											
+											<c:forEach items="${Solutionapplicative}" var="sa" >
+												<tr class="gradeA" id="cis_Sol_${sa.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Sol_${sa.id }"></td>
+													<td>${sa.nom }</td>
+													<td>Solution applicative</td>
+													<td>${sa.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${SwitchSAN}" var="ss" >
+												<tr class="gradeA" id="cis_Swi_${ss.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Swi_${ss.id }"></td>
+													<td>${ss.nom }</td>
+													<td>Switch SAN</td>
+													<td>${ss.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ss.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Systemedestockage}" var="sst" >
+												<tr class="gradeA" id="cis_Sys_${sst.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Sys_${sst.id }"></td>
+													<td>${sst.nom }</td>
+													<td>Systeme de stockage</td>
+													<td>${sst.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sst.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Tablette}" var="t" >
+												<tr class="gradeA" id="cis_Tab_${t.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Tab_${t.id }"></td>
+													<td>${t.nom }</td>
+													<td>Tablette</td>
+													<td>${t.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Telephonefixe}" var="tf" >
+												<tr class="gradeA" id="cis_Tef_${tf.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Tef_${tf.id }"></td>
+													<td>${tf.nom }</td>
+													<td>Téléphone fixe</td>
+													<td>${tf.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${tf.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Telephonemobile}" var="tm" >
+												<tr class="gradeA" id="cis_Tem_${tm.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Tem_${tm.id }"></td>
+													<td>${tm.nom }</td>
+													<td>Téléphone mobile</td>
+													<td>${tm.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${tm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${vCluster}" var="v" >
+												<tr class="gradeA" id="cis_Vcl_${v.id }" >
+													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Vcl_${v.id }"></td>
+													<td>${v.nom }</td>
+													<td>vCluster</td>
+													<td>${v.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${v.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -563,7 +823,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -571,7 +831,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
@@ -657,7 +917,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">
