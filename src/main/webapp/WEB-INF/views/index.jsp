@@ -404,33 +404,38 @@ Use search to find needed section.
 					</ul>
 				</li>
 				</s:authorize>
-				<li class="mm-dropdown">
+				                <li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -508,8 +513,9 @@ Use search to find needed section.
 				Votre compte est bien valide.
 			</div>
 		</c:if>
-	
+	<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 		<div class="panel">
+		
 					<div class="panel-heading">
 						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; <strong> CIs</strong></span>
 					</div>
@@ -523,7 +529,9 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
+												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/processusMetier" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
+												</s:authorize>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
 												</div>
 											</div>
@@ -538,7 +546,9 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
+												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/solutionApplicative" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
+												</s:authorize>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
 												</div>
 											</div>
@@ -552,7 +562,9 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
+												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/contact" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
+												</s:authorize>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
 												</div>
 											</div>
@@ -567,13 +579,15 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
+												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/lieu" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
+												</s:authorize>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
 												</div>
 											</div>
 										</div>
 										
-										
+										<s:authorize ifAnyGranted="ROLE_ADMIN">
 										<div class="col-sm-4 col-md-4">
 											<div class="stat-panel">
 												<div class="col-md-12">
@@ -587,7 +601,8 @@ Use search to find needed section.
 												</div>
 											</div>
 										</div>
-										
+										</s:authorize>
+													
 										
 										<div class="col-sm-4 col-md-4">
 											<div class="stat-panel">
@@ -597,7 +612,9 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
+												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a href="<c:url value="/config/admin/add/serveur" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
+												</s:authorize>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
 												</div>
 											</div>
@@ -612,7 +629,9 @@ Use search to find needed section.
 													</a>
 												</div>
 												<div class="col-md-12">
+												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
+												</s:authorize>
 													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
 												</div>
 											</div>
@@ -620,8 +639,9 @@ Use search to find needed section.
 					
 					
 					</div>
+			
 		</div>
-					
+		</s:authorize>		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>

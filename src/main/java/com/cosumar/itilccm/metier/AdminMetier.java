@@ -54,6 +54,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Ordinateur> ListPC();
 	public List<Ordinateur> ListPCUser(Long id);
 	public List<Ordinateur> SearchPC(String s);
+	public List<Ordinateur> SearchPCUser(String s, Long user);
 	public Ordinateur getPC(Long id);
 	public void deletePC(Long id);
 	
@@ -279,6 +280,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Imprimante> ListImp();
 	public List<Imprimante> ListImpUser(Long id);
 	public List<Imprimante> SearchImp(String s);
+	public List<Imprimante> SearchImpUser(String s, Long user);
 	public Imprimante getImp(Long id);
 	public void deleteImp(Long id);
 	
@@ -291,6 +293,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<TelephneMobile> ListTeleMobile();
 	public List<TelephneMobile> ListTeleMobileUser(Long id);
 	public List<TelephneMobile> SearchTeleMobile(String s);
+	public List<TelephneMobile> SearchTeleMobileUser(String s, Long user);
 	public TelephneMobile getTeleMobile(Long id);
 	public void deleteTeleMobile(Long id);
 	
@@ -303,6 +306,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Sim> ListSIM();
 	public List<Sim> ListSIMUser(Long id);
 	public List<Sim> SearchSIM(String s);
+	public List<Sim> SearchSIMUser(String s, Long user);
 	public Sim getSIM(Long id);
 	public void deleteSIM(Long id);
 	
@@ -315,6 +319,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<Tablette> ListTablette();
 	public List<Tablette> ListTabletteUser(Long id);
 	public List<Tablette> SearchTablette(String s);
+	public List<Tablette> SearchTabletteUser(String s, Long user);
 	public Tablette getTablette(Long id);
 	public void deleteTablette(Long id);
 	
@@ -327,6 +332,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<TelephoneFixe> ListTeleFixe();
 	public List<TelephoneFixe> ListTeleFixeUser(Long id);
 	public List<TelephoneFixe> SearchTeleFixe(String s);
+	public List<TelephoneFixe> SearchTeleFixeUser(String s,Long user);
 	public TelephoneFixe getTeleFixe(Long id);
 	public void deleteTeleFixe(Long id);
 	

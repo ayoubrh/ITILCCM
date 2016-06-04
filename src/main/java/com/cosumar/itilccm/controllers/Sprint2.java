@@ -77,12 +77,21 @@ public class Sprint2 {
 		model.addAttribute("vCluster", m.listVcluster().size());
 		model.addAttribute("Hyperviseur", m.listHyperviseur().size());
 		model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle().size());
-		model.addAttribute("Ordinateur", m.ListPC().size());
-		model.addAttribute("Telephonefixe", m.ListTeleFixe().size());
-		model.addAttribute("Telephonemobile", m.ListTeleMobile().size());
-		model.addAttribute("sim", m.ListSIM().size());
-		model.addAttribute("Tablette", m.ListTablette().size());
-		model.addAttribute("Imprimante", m.ListImp().size());
+		if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+			model.addAttribute("Ordinateur", m.ListPC().size());
+			model.addAttribute("Telephonefixe", m.ListTeleFixe().size());
+			model.addAttribute("Telephonemobile", m.ListTeleMobile().size());
+			model.addAttribute("sim", m.ListSIM().size());
+			model.addAttribute("Tablette", m.ListTablette().size());
+			model.addAttribute("Imprimante", m.ListImp().size());
+		} else {
+			model.addAttribute("Ordinateur", m.ListPCUser(logged.getId()).size());
+			model.addAttribute("Telephonefixe", m.ListTeleFixeUser(logged.getId()).size());
+			model.addAttribute("Telephonemobile", m.ListTeleMobileUser(logged.getId()).size());
+			model.addAttribute("sim", m.ListSIMUser(logged.getId()).size());
+			model.addAttribute("Tablette", m.ListTabletteUser(logged.getId()).size());
+			model.addAttribute("Imprimante", m.ListImpUser(logged.getId()).size());
+		}
 		model.addAttribute("Peripherique", m.ListPeriph().size());
 		model.addAttribute("Middleware", m.listMiddleware().size());
 		model.addAttribute("ServeurWeb", m.listServeurWeb().size());
@@ -3071,9 +3080,17 @@ public class Sprint2 {
 	    model.addAttribute("s", s);
 		model.addAttribute("logged", logged);
 		if(s == null){
-			model.addAttribute("cis", m.ListPC());
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis", m.ListPC());
+			} else {
+				model.addAttribute("cis", m.ListPCUser(logged.getId()));
+			}
 		} else {
-			model.addAttribute("cis",m.SearchPC(s));
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis",m.SearchPC(s));
+			} else {
+				model.addAttribute("cis",m.SearchPCUser(s,logged.getId()));
+			}
 		}
 		if(delete == null){
 			model.addAttribute("delete", false );
@@ -3093,9 +3110,17 @@ public class Sprint2 {
 	    model.addAttribute("s", s);
 		model.addAttribute("logged", logged);
 		if(s == null){
-			model.addAttribute("cis", m.ListTeleFixe());
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis", m.ListTeleFixe());
+			} else {
+				model.addAttribute("cis", m.ListTeleFixeUser(logged.getId()));
+			}
 		} else {
-			model.addAttribute("cis",m.SearchTeleFixe(s));
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis",m.SearchTeleFixe(s));
+			} else {
+				model.addAttribute("cis",m.SearchTeleFixeUser(s,logged.getId()));
+			}
 		}
 		if(delete == null){
 			model.addAttribute("delete", false );
@@ -3115,9 +3140,17 @@ public class Sprint2 {
 	    model.addAttribute("s", s);
 		model.addAttribute("logged", logged);
 		if(s == null){
-			model.addAttribute("cis", m.ListTeleMobile());
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis", m.ListTeleMobile());
+			} else {
+				model.addAttribute("cis", m.ListTeleMobileUser(logged.getId()));
+			}
 		} else {
-			model.addAttribute("cis",m.SearchTeleMobile(s));
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis",m.SearchTeleMobile(s));
+			} else {
+				model.addAttribute("cis",m.SearchTeleMobileUser(s,logged.getId()));
+			}
 		}
 		if(delete == null){
 			model.addAttribute("delete", false );
@@ -3137,9 +3170,17 @@ public class Sprint2 {
 	    model.addAttribute("s", s);
 		model.addAttribute("logged", logged);
 		if(s == null){
-			model.addAttribute("cis", m.ListSIM());
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis", m.ListSIM());
+			} else {
+				model.addAttribute("cis", m.ListSIMUser(logged.getId()));
+			}
 		} else {
-			model.addAttribute("cis",m.SearchSIM(s));
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis",m.SearchSIM(s));
+			} else {
+				model.addAttribute("cis",m.SearchSIMUser(s,logged.getId()));
+			}
 		}
 		if(delete == null){
 			model.addAttribute("delete", false );
@@ -3159,9 +3200,17 @@ public class Sprint2 {
 	    model.addAttribute("s", s);
 		model.addAttribute("logged", logged);
 		if(s == null){
-			model.addAttribute("cis", m.ListTablette());
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis", m.ListTablette());
+			} else {
+				model.addAttribute("cis", m.ListTabletteUser(logged.getId()));
+			}
 		} else {
-			model.addAttribute("cis",m.SearchTablette(s));
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis",m.SearchTablette(s));
+			} else {
+				model.addAttribute("cis",m.SearchTabletteUser(s,logged.getId()));
+			}
 		}
 		if(delete == null){
 			model.addAttribute("delete", false );
@@ -3181,9 +3230,17 @@ public class Sprint2 {
 	    model.addAttribute("s", s);
 		model.addAttribute("logged", logged);
 		if(s == null){
-			model.addAttribute("cis", m.ListImp());
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis", m.ListImp());
+			} else {
+				model.addAttribute("cis", m.ListImpUser(logged.getId()));
+			}
 		} else {
-			model.addAttribute("cis",m.SearchImp(s));
+			if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("cis",m.SearchImp(s));
+			} else {
+				model.addAttribute("cis",m.SearchImpUser(s,logged.getId()));
+			}
 		}
 		if(delete == null){
 			model.addAttribute("delete", false );

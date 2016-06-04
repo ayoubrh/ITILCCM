@@ -344,6 +344,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Ordinateur> SearchPCUser(String s,Long user) {
+		Query req = em.createQuery("select pc from Ordinateur pc join pc.user u where pc.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
 
 	@Override
 	public Ordinateur getPC(Long id) {
@@ -5308,6 +5316,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Imprimante> SearchImpUser(String s,Long user) {
+		Query req = em.createQuery("select imp from Imprimante imp join imp.user u where imp.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
 
 	@Override
 	public List<TelephneMobile> SearchTeleMobile(String s) {
@@ -5315,11 +5331,27 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
-
+	
+	@Override
+	public List<TelephneMobile> SearchTeleMobileUser(String s,Long user) {
+		Query req = em.createQuery("select t from TelephneMobile t join t.user u where t.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
+	
 	@Override
 	public List<Sim> SearchSIM(String s) {
 		Query req = em.createQuery("select sim from Sim sim where sim.numero LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<Sim> SearchSIMUser(String s,Long user) {
+		Query req = em.createQuery("select sim from Sim sim join sim.user u where sim.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
 		return req.getResultList();
 	}
 
@@ -5329,11 +5361,27 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Tablette> SearchTabletteUser(String s,Long user) {
+		Query req = em.createQuery("select t from Tablette t join t.user u where t.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
 
 	@Override
 	public List<TelephoneFixe> SearchTeleFixe(String s) {
 		Query req = em.createQuery("select t from TelephoneFixe t where t.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<TelephoneFixe> SearchTeleFixeUser(String s,Long user) {
+		Query req = em.createQuery("select t from TelephoneFixe t join t.user u where t.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
 		return req.getResultList();
 	}
 
