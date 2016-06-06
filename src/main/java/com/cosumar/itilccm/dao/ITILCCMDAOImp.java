@@ -405,7 +405,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteImp(Long id) {
-		em.remove(id);
+		Imprimante imp = em.find(Imprimante.class, id);
+		em.remove(imp);
 		
 	}
 
@@ -449,7 +450,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteTeleMobile(Long id) {
-		em.remove(id);
+		TelephneMobile t = em.find(TelephneMobile.class, id);
+		em.remove(t);
 		
 	}
 
@@ -493,7 +495,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSIM(Long id) {
-		em.remove(id);
+		Sim s = em.find(Sim.class, id);
+		em.remove(s);
 		
 	}
 
@@ -537,7 +540,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteTablette(Long id) {
-		em.remove(id);
+		Tablette t = em.find(Tablette.class, id);
+		em.remove(t);
 		
 	}
 
@@ -581,7 +585,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteTeleFixe(Long id) {
-		em.remove(id);
+		TelephoneFixe t = em.find(TelephoneFixe.class, id);
+		em.remove(t);
 		
 	}
 
@@ -622,7 +627,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deletePeriph(Long id) {
-		em.remove(id);
+		Peripherique p = em.find(Peripherique.class, id);
+		em.remove(p);
 		
 	}
 
@@ -662,7 +668,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteFibre(Long id) {
-		em.remove(id);
+		Fibre f = em.find(Fibre.class, id);
+		em.remove(f);
 		
 	}
 
@@ -691,7 +698,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteLogique(Long id) {
-		em.remove(id);
+		Logique l = em.find(Logique.class, id);
+		em.remove(l);
 		
 	}
 
@@ -720,7 +728,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deletePhysique(Long id) {
-		em.remove(id);
+		Physique p = em.find(Physique.class, id);
+		em.remove(p);
 		
 	}
 
@@ -749,7 +758,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteVlan(Long id) {
-		em.remove(id);
+		Vlan v = em.find(Vlan.class, id);
+		em.remove(v);
 		
 	}
 
@@ -778,7 +788,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSubnet(Long id) {
-		em.remove(id);
+		Subnet s = em.find(Subnet.class, id);
+		em.remove(s);
 		
 	}
 
@@ -807,7 +818,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteCamera(Long id) {
-		em.remove(id);
+		Camera c = em.find(Camera.class, id);
+		em.remove(c);
 		
 	}
 
@@ -830,7 +842,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteProcessusMetier(Long id) {
-		em.remove(id);
+		ProcessusMetier p = em.find(ProcessusMetier.class, id);
+		em.remove(p);
 		
 	}
 
@@ -853,7 +866,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSolutionApplicative(Long id) {
-		em.remove(id);
+		SolutionApplicative s = em.find(SolutionApplicative.class, id);
+		em.remove(s);
 		
 	}
 
@@ -882,7 +896,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteVolumeLogique(Long id) {
-		em.remove(id);
+		VolumeLogique v = em.find(VolumeLogique.class, id);
+		em.remove(v);
 		
 	}
 
@@ -911,7 +926,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteDvr(Long id) {
-		em.remove(id);
+		Dvr d = em.find(Dvr.class, id);
+		em.remove(d);
 		
 	}
 
@@ -945,7 +961,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteArriveeElectrique(Long id) {
-		em.remove(id);		
+		ArriveeElectrique a = em.find(ArriveeElectrique.class, id);
+		em.remove(a);		
 	}
 
 	@Override
@@ -967,7 +984,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deletePduElectrique(Long id) {
-		em.remove(id);		
+		PduElectrique p = em.find(PduElectrique.class, id);
+		em.remove(p);		
 	}
 
 	@Override
@@ -994,7 +1012,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteRack(Long id) {
-		em.remove(id);		
+		Rack r = em.find(Rack.class, id);
+		em.remove(r);		
 	}
 
 	@Override
@@ -1021,7 +1040,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteChassis(Long id) {
-		em.remove(id);		
+		Chassis c = em.find(Chassis.class, id);
+		em.remove(c);		
 	}
 
 	@Override
@@ -1059,7 +1079,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteBandotheque(Long id) {
-		em.remove(id);		
+		Bandotheque b = em.find(Bandotheque.class, id);
+		em.remove(b);		
 	}
 
 	@Override
@@ -1086,7 +1107,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteBande(Long id) {
-		em.remove(id);		
+		Bande b = em.find(Bande.class, id);
+		em.remove(b);		
 	}
 
 	@Override
@@ -1113,7 +1135,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteServeur(Long id) {
-		em.remove(id);		
+		Serveur s = em.find(Serveur.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1140,7 +1163,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSystemeDeStockage(Long id) {
-		em.remove(id);		
+		SystemeDeStockage s = em.find(SystemeDeStockage.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1167,7 +1191,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSwitchSan(Long id) {
-		em.remove(id);		
+		SwitchSan s = em.find(SwitchSan.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1194,7 +1219,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteNas(Long id) {
-		em.remove(id);		
+		Nas n = em.find(Nas.class, id);
+		em.remove(n);		
 	}
 
 	@Override
@@ -1221,7 +1247,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSystemeDeFicherNas(Long id) {
-		em.remove(id);		
+		SystemeDeFicherNas s = em.find(SystemeDeFicherNas.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1248,7 +1275,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteEquipementReseau(Long id) {
-		em.remove(id);		
+		EquipementReseau e = em.find(EquipementReseau.class, id);
+		em.remove(e);		
 	}
 	
 	//Contact
