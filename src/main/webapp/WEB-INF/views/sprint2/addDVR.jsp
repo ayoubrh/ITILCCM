@@ -1419,6 +1419,12 @@ Use search to find needed section.
 			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 			
 			
+			
+			$('#jq-datatables-example-tickets').dataTable();
+			$('#jq-datatables-example-tickets_wrapper .table-caption').replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='addTicket'>Nouveau Ticket</button></div>");
+			$('#jq-datatables-example-tickets_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			
 
 			  //<!-- Modal Camera -->    
 		        document.getElementById("addCam").onclick = function () {
