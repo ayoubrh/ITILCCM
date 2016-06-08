@@ -41,44 +41,44 @@ public class Rack implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@OneToMany(mappedBy="rack")
+   	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Chassis> chassis;
    
-   	@OneToMany(mappedBy="rack")
+   	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<PduElectrique> pduElectrique;
  
 
-   	@OneToMany(mappedBy="rack")
+   	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
-	@OneToMany(mappedBy="rack")
+	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<EquipementReseau> equipementreseau;
    	
    	
    	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Document> document;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contrat> contrat;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;

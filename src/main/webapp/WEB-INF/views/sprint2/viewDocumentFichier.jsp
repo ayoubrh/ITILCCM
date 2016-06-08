@@ -32,7 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Document Fichier - ITIL-CCM</title>
@@ -509,10 +509,12 @@ Use search to find needed section.
 				
 					<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail de Document Fichier</span>
+						<span class="panel-title col-md-9">Détail du Document Fichier</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/fichier?id=${documentFichier.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/fichier?id=${documentFichier.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 		
@@ -523,10 +525,6 @@ Use search to find needed section.
 							<ul id="profile-tabs" class="nav nav-tabs">
 								<li class="active">
 									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
 								</li>
 								
 							</ul>
@@ -597,6 +595,7 @@ Use search to find needed section.
 										</div>
 								
 								</div>
+
 								
 							</div> <!-- / .tab-content -->
 						</div>

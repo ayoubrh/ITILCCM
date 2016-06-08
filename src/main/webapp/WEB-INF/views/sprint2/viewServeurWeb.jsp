@@ -510,18 +510,14 @@ Use search to find needed section.
 					</div>
 				</c:if>
 				
-				
-				
-				
-				
-				
-				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail Serveur Web</span>
+						<span class="panel-title col-md-9">Détail du Serveur Web</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/serveurWeb?id=${serveurWeb.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/serveurWeb?id=${serveurWeb.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -561,7 +557,7 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
 										${serveurWeb.nom }
 									</div>
@@ -576,20 +572,20 @@ Use search to find needed section.
 										${serveurWeb.criticite }
 									</div>
 									
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Système : </label>
 										<c:if test="${serveurWeb.serveur.id != null }">
-										${serveurWeb.serveur.nom }
+										<a href="<c:url value="/config/view/serveur?id=${serveurWeb.serveur.id }" />">${serveurWeb.serveur.nom }</a>
 										</c:if>
 										<c:if test="${serveurWeb.machineVirtuelle.id != null }">
-										${serveurWeb.machineVirtuelle.nom }
+										<a href="<c:url value="/config/view/machineVirtuelle?id=${serveurWeb.machineVirtuelle.id }" />">${serveurWeb.machineVirtuelle.nom }</a>
 										</c:if>
 										
 									</div>
 									
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Licence logiciel : </label>
-										${serveurWeb.licenseLogiciel.nom }
+										<a href="<c:url value="/config/view/licenceLogiciel?id=${serveurWeb.licenseLogiciel.id }" />">${serveurWeb.licenseLogiciel.nom }</a>
 									</div>
 									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Chemin d'installation: </label>

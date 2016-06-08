@@ -40,7 +40,7 @@ public class LicenseLogiciel implements Serializable {
 	   private LogicielEtApplication logicielEtApplications;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
         

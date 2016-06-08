@@ -56,7 +56,7 @@ public class LicenseOs implements Serializable {
 		   private Collection<MachineVirtuelle> machineVirtuelle;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(cascade = CascadeType.ALL)
+		   @ManyToMany
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Document> documents;
 	        

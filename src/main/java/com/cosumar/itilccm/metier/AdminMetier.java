@@ -115,9 +115,18 @@ public interface AdminMetier extends UtilisateurMetier {
 	// Groupe
 		
 	public Long ajouterGroupe(Groupe g);
-	public Long ajouterGroupe(Groupe g,Long id_groupe);
-	public void modifierGroupe(Groupe d);
+	public Long ajouterGroupe(Groupe g, Long id_groupe, List<Long> applicationWeb, List<Long> connexionElectrique,List<Long> logiciel,
+			List<Long> infrastructure, List<Long> camera, List<Long> chassis,List<Long> equipementreseau, List<Long> virtualisation,
+			List<Long> imprimante, List<Long> instanceMiddleware,List<Long> instancedebasededonnees, List<Long> machinevirtuelle,
+			List<Long> ordinateur, List<Long> processusmetier,List<Long> peripherique, List<Long> rack,List<Long> solutionapplicative,
+			List<Long> tablette, List<Long> telephonefixe, List<Long> telephonemobile);
+	public void modifierGroupe(Groupe g, Long id_groupe, List<Long> applicationWeb, List<Long> connexionElectrique,List<Long> logiciel,
+			List<Long> infrastructure, List<Long> camera, List<Long> chassis,List<Long> equipementreseau, List<Long> virtualisation,
+			List<Long> imprimante, List<Long> instanceMiddleware,List<Long> instancedebasededonnees, List<Long> machinevirtuelle,
+			List<Long> ordinateur, List<Long> processusmetier,List<Long> peripherique, List<Long> rack,List<Long> solutionapplicative,
+			List<Long> tablette, List<Long> telephonefixe, List<Long> telephonemobile);
 	public void supprimerGroupe(Long id);
+	public List<Groupe> SearchGroupe(String g);
 	public List<Groupe> listGroupe();
 	public Groupe getGroupe(Long id);
 	
@@ -447,6 +456,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	
 	
 	// ConnexionElectrique
+	public List<ConnexionElectrique> SearchConnexionElectrique(String ce);
 	public List<ConnexionElectrique> ListConnexionElectrique();
 	public ConnexionElectrique getConnexionElectrique(Long id);
 		

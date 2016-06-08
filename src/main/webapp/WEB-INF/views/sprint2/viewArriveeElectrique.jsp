@@ -32,7 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Arrivée électrique- ITIL-CCM</title>
@@ -510,18 +510,14 @@ Use search to find needed section.
 					</div>
 				</c:if>
 				
-				
-				
-				
-				
-				
-				
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title col-md-9">Détail d'Arrivée électrique</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/arriveeElectrique?id=${arriveeElectrique.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/arriveeElectrique?id=${arriveeElectrique.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -558,7 +554,7 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
 										${arriveeElectrique.nom }
 									</div>
@@ -641,7 +637,7 @@ Use search to find needed section.
 										<tbody id="tablePDUs">
 											<c:forEach items="${arriveeElectrique.pduElectrique}" var="pdu">
 												<tr class="gradeA" id="tr_pdu_${pdu.id }">
-													<td>${pdu.nom }</td>
+													<td><a href="<c:url value="/config/view/pduElectrique?id=${pdu.id }" />">${pdu.nom }</a></td>
 													<td>${pdu.statut }</td>
 													<td>${pdu.criticite }</td>
 													<td>${pdu.marque }</td>

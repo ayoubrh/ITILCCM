@@ -19,13 +19,10 @@ public class Middleware extends LogicielEtApplication implements Serializable {
 	
 
 			@Column(nullable=true)
-			@OneToMany(mappedBy="middleware",cascade = CascadeType.ALL)
+			@OneToMany(mappedBy="middleware",cascade = CascadeType.REMOVE, orphanRemoval = true)
 			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<InstanceMiddleware> instanceMiddleware;
 			
-			@Column(nullable=true)
-			@ManyToMany(mappedBy="middleware",cascade = CascadeType.ALL)
-			private Collection<Groupe> groupe;
 		
 			public Middleware() {
 				super();
@@ -45,14 +42,5 @@ public class Middleware extends LogicielEtApplication implements Serializable {
 			public void setInstanceMiddleware(Collection<InstanceMiddleware> instanceMiddleware) {
 				this.instanceMiddleware = instanceMiddleware;
 			}
-
-			public Collection<Groupe> getGroupe() {
-				return groupe;
-			}
-
-			public void setGroupe(Collection<Groupe> groupe) {
-				this.groupe = groupe;
-			}
-			
 
 }

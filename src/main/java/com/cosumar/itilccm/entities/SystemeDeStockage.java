@@ -20,13 +20,10 @@ public class SystemeDeStockage extends Infrastructure implements Serializable{
   	 @Column(nullable=true)
 	private Collection<SwitchSan> switchSan;
 	
-	 @OneToMany(mappedBy="systemedestockage")
+	 @OneToMany(mappedBy="systemedestockage",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<VolumeLogique> volumelogique;
-	 
-	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="systemeDeStockage",cascade = CascadeType.ALL)
-	 private Collection<Groupe> groupe;
+	
 
 	public Collection<SwitchSan> getSwitchSan() {
 		return switchSan;
@@ -54,16 +51,6 @@ public class SystemeDeStockage extends Infrastructure implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-	
-		
-   
    
    
 

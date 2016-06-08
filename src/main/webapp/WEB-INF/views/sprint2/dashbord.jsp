@@ -664,8 +664,9 @@ Use search to find needed section.
 													<a href="<c:url value="/config/admin/add/typeConnexionElectrique" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Connection Electrique</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="<c:url value="/config/search/"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Connection Electrique</span></a>
+													<a href="<c:url value="/config/search/connexionElectrique"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Connection Electrique</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -674,7 +675,7 @@ Use search to find needed section.
 											<div class="stat-panel">
 												<div class="col-md-12">
 													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/dvr.png" alt="" class="">&nbsp; DVR : 0
+														<img src="<%=request.getContextPath()%>/resources/assets/images/png/dvr.png" alt="" class="">&nbsp; DVR : ${DVR }
 													</a>
 												</div>
 												<div class="col-md-12">
@@ -749,8 +750,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/vCluster" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type vCluster</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type vCluster</span></a>
+													<a href="<c:url value="/config/search/vcluster"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type vCluster</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -768,8 +770,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/hyperviseur" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Hyperviseur</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Hyperviseur</span></a>
+													<a href="<c:url value="/config/search/hyperviseur"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Hyperviseur</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -787,8 +790,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/machineVirtuelle" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Machine virtuelle</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Machine virtuelle</span></a>
+													<a href="<c:url value="/config/search/machineVirtuelle"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Machine virtuelle</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -932,8 +936,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/middleware" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Middleware</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Middleware</span></a>
+													<a href="<c:url value="/config/search/middleware"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Middleware</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -952,8 +957,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/serveurWeb" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur Web</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur Web</span></a>
+													<a href="<c:url value="/config/search/serveurWeb"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur Web</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -971,8 +977,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/serveurBD" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur de base de données</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur de base de données</span></a>
+													<a href="<c:url value="/config/search/serveurBD"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur de base de données</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -990,8 +997,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/logicielPc" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Logiciel PC</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Logiciel PC</span></a>
+													<a href="<c:url value="/config/search/logicielPc"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Logiciel PC</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1008,8 +1016,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/autreLogiciel" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Autre logiciel</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Autre logiciel</span></a>
+													<a href="<c:url value="/config/search/autreLogiciel"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Autre logiciel</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1026,8 +1035,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/instanceMiddleware" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Instance Middleware</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Instance Middleware</span></a>
+													<a href="<c:url value="/config/search/instanceMiddleware"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Instance Middleware</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1044,8 +1054,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/instanceBD" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Instance de base de données</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Instance de base de données</span></a>
+													<a href="<c:url value="/config/search/instanceBD"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Instance de base de données</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1062,8 +1073,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/applicationWeb" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Application Web</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Application Web</span></a>
+													<a href="<c:url value="/config/search/applicationWeb"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Application Web</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1080,8 +1092,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/typeLicense" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type License</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type License</span></a>
+													<a href="<c:url value="/config/search/typeLicense"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type License</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1181,8 +1194,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/processusMetier" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
+													<a href="<c:url value="/config/search/processusMetier"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1199,8 +1213,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/solutionApplicative" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
+													<a href="<c:url value="/config/search/solutionApplicative"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>
@@ -1217,8 +1232,9 @@ Use search to find needed section.
 													<a tabindex="-1" href="<c:url value="/config/admin/add/groupe" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Groupe</span></a>
 												</s:authorize>
 												<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Groupe</span></a>
+													<a href="<c:url value="/config/search/groupe"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Groupe</span></a>
 												</s:authorize>
+
 												</div>
 											</div>
 										</div>

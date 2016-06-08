@@ -32,12 +32,12 @@ public class SolutionApplicative implements Serializable{
    private Date dateDeMiseEnProduction;
    private String description;
    
-   	@ManyToMany(mappedBy="solutionApplicative")
+   	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
-   	@ManyToMany(mappedBy="solutionApplicative")
+   	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private java.util.Collection<EquipementReseau> equipementReseau;
@@ -49,32 +49,32 @@ public class SolutionApplicative implements Serializable{
    	
    	
    	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="solutionApplicative")
+	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="solutionApplicative")
+	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Virtualisation> virtualisation;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="solutionApplicative")
+	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="solutionApplicative")
+	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="solutionApplicative")
+	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<InstanceMiddleware> instanceMiddleware;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="solutionApplicative")
+	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<ApplicationWeb> applicationWeb;
 	 

@@ -19,13 +19,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class ServeurWeb extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
-			@OneToMany(mappedBy="serveurWeb",cascade = CascadeType.ALL)
+			@OneToMany(mappedBy="serveurWeb",cascade = CascadeType.REMOVE, orphanRemoval = true)
 			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<ApplicationWeb> applicationWeb;
 			
-			@Column(nullable=true)
-			@ManyToMany(mappedBy="serveurWeb",cascade = CascadeType.ALL)
-			private Collection<Groupe> groupe;
 
 			public ServeurWeb() {
 				super();
@@ -46,15 +43,6 @@ public class ServeurWeb extends LogicielEtApplication implements Serializable {
 				this.applicationWeb = applicationWeb;
 			}
 
-			public Collection<Groupe> getGroupe() {
-				return groupe;
-			}
-
-			public void setGroupe(Collection<Groupe> groupe) {
-				this.groupe = groupe;
-			}
-			
-			
 	
 	
 

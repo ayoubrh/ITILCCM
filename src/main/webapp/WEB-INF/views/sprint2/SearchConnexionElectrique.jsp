@@ -31,10 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Recherche Document Note - ITIL-CCM</title>
+	<title>Recherche Connexion Electrique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -518,8 +518,10 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher Document Note</h1>
-			<a href="<c:url value="/config/admin/add/note"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Document Note</a>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Connexions Electriques</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
+			<a href="<c:url value="/config/admin/add/typeConnexionElectrique"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Connexion Electrique</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
@@ -532,10 +534,10 @@ Use search to find needed section.
 		<div class="panel search-panel">
 
 			<!-- Search form -->
-			<form action="note" class="search-form bg-primary">
+			<form action="connexionElectrique" class="search-form bg-primary">
 				<div class="input-group input-group-lg">
 					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
-					<input type="text" name="dn" class="form-control" value="${documentNote }" placeholder="Entrez le nom à rechercher...">
+					<input type="text" name="ce" class="form-control" value="${connexionElectrique }" placeholder="Entrez le nom à rechercher...">
 					<span class="input-group-btn">
 						<button class="btn" type="submit">Search</button>
 					</span>
@@ -557,20 +559,40 @@ Use search to find needed section.
 								<thead>
 									<tr>
 										<th>Nom</th>
+										<th>Type</th>
 										<th>Statut</th>
-										<th>Version</th>
-										<th>Description</th>
-										<th>Texte</th>
+										<th>Criticité</th>
+										<th>Marque</th>
+										<th>Modèle</th>
+										<th>Date de mise en production</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${cis}" var="ci">
+												<c:set var="string1" value="${ci['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
 										<tr class="gradeA">
-											<td><a href="<c:url value="/config/view/note?id=${ci.id }" />">${ci.nom }</a></td>
+											<td>
+											<c:if test="${string2 == 'ArriveeElectrique'}">
+													<a href="<c:url value="/config/view/arriveeElectrique?id=${ci.id }" />">${ci.nom }</a>
+												</c:if>
+												<c:if test="${string2 == 'PduElectrique'}">
+													<a href="<c:url value="/config/view/pduElectrique?id=${ci.id }" />">${ci.nom }</a>
+												</c:if>
+											</td>
+											<td>
+												<c:if test="${string2 == 'ArriveeElectrique'}">
+													Arrivée électrique
+												</c:if>
+												<c:if test="${string2 == 'PduElectrique'}">
+													PDU 
+												</c:if>
+												</td>
 											<td>${ci.statut }</td>
-											<td>${ci.version }</td>
-											<td>${ci.description }</td>
-											<td>${ci.texte }</td>
+											<td>${ci.criticite }</td>
+											<td>${ci.marque }</td>
+											<td>${ci.modele }</td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction }" /></td>
 										</tr>
 									
 									</c:forEach>
@@ -613,7 +635,7 @@ Use search to find needed section.
 <script type="text/javascript">
 	init.push(function () {
 		// Javascript code here
-		var s = "${documentNote }";
+		var s = "${connexionElectrique }";
 		$('.add-tooltip').tooltip();
 		document.getElementsByName("jq-datatables-example_length").value="25";
 		

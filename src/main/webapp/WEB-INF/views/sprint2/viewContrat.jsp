@@ -32,7 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Contrat - ITIL-CCM</title>
@@ -513,10 +513,12 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail Contrat</span>
+						<span class="panel-title col-md-9">Détail du Contrat</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/contrat?id=${contrat.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/contrat?id=${contrat.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -538,21 +540,17 @@ Use search to find needed section.
 									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
 								</li>
 								
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
-								</li>
-								
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
 										${contrat.nom }
 									</div>
 									
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Client : </label>
 										${contrat.client }
 									</div>
@@ -704,6 +702,7 @@ Use search to find needed section.
 										</div>
 								
 								</div>
+
 								
 							</div> <!-- / .tab-content -->
 						</div>

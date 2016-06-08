@@ -560,10 +560,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.ajouterGroupe(g);
 	}
 
-	@Override
-	public void modifierGroupe(Groupe d) {
-		dao.modifierGroupe(d);
-	}
 	
 	@Override
 	public Long addVlan(Vlan Vlan) {
@@ -626,11 +622,6 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	@Override
 	public Groupe getGroupe(Long id) {
 		return dao.getGroupe(id);
-	}
-
-	@Override
-	public Long ajouterGroupe(Groupe g, Long id_groupe) {
-		return dao.ajouterGroupe(g, id_groupe);
 	}
 
 	@Override
@@ -2325,7 +2316,41 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.SearchTeleFixeUser(s, user);
 	}
 
-	
+	@Override
+	public List<Groupe> SearchGroupe(String g) {
+		return dao.SearchGroupe(g); 
+	}
+
+	@Override
+	public List<ConnexionElectrique> SearchConnexionElectrique(String ce) {
+		return dao.SearchConnexionElectrique(ce); 
+	}
+
+	@Override
+	public Long ajouterGroupe(Groupe g, Long id_groupe, List<Long> applicationWeb, List<Long> connexionElectrique,
+			List<Long> logiciel, List<Long> infrastructure, List<Long> camera, List<Long> chassis,
+			List<Long> equipementreseau, List<Long> virtualisation, List<Long> imprimante,
+			List<Long> instanceMiddleware, List<Long> instancedebasededonnees, List<Long> machinevirtuelle,
+			List<Long> ordinateur, List<Long> processusmetier, List<Long> peripherique, List<Long> rack,
+			List<Long> solutionapplicative, List<Long> tablette, List<Long> telephonefixe, List<Long> telephonemobile) {
+		return dao.ajouterGroupe(g, id_groupe, applicationWeb, connexionElectrique, logiciel, infrastructure, camera, chassis,
+				equipementreseau, virtualisation, imprimante, instanceMiddleware, instancedebasededonnees, machinevirtuelle,
+				ordinateur, processusmetier, peripherique, rack, solutionapplicative, tablette, telephonefixe, telephonemobile);
+	}
+
+	@Override
+	public void modifierGroupe(Groupe g, Long id_groupe, List<Long> applicationWeb, List<Long> connexionElectrique,
+			List<Long> logiciel, List<Long> infrastructure, List<Long> camera, List<Long> chassis,
+			List<Long> equipementreseau, List<Long> virtualisation, List<Long> imprimante,
+			List<Long> instanceMiddleware, List<Long> instancedebasededonnees, List<Long> machinevirtuelle,
+			List<Long> ordinateur, List<Long> processusmetier, List<Long> peripherique, List<Long> rack,
+			List<Long> solutionapplicative, List<Long> tablette, List<Long> telephonefixe, List<Long> telephonemobile) {
+		dao.modifierGroupe(g, id_groupe, applicationWeb, connexionElectrique, logiciel, infrastructure, camera, chassis,
+				equipementreseau, virtualisation, imprimante, instanceMiddleware, instancedebasededonnees, machinevirtuelle,
+				ordinateur, processusmetier, peripherique, rack, solutionapplicative, tablette, telephonefixe, telephonemobile);
+		
+	}
+
 
 }
 

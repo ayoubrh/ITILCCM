@@ -19,14 +19,12 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	
 	
 	 
-	    @OneToMany(mappedBy="bandotheque")
+	    @OneToMany(mappedBy="bandotheque",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   	@LazyCollection(LazyCollectionOption.FALSE)
 	 	@Column(nullable = true)
 	   private Collection<Bande> bande;
 
-	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="bandotheque",cascade = CascadeType.ALL)
-	 private Collection<Groupe> groupe;
+	 
 
 	public Bandotheque(String nom) {
 		super(nom);
@@ -45,16 +43,6 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	public void setBande(Collection<Bande> bande) {
 		this.bande = bande;
 	}
-
-
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-
-	 
+ 
 
 }

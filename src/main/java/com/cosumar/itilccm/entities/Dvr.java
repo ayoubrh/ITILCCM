@@ -22,15 +22,11 @@ public class Dvr extends Infrastructure implements Serializable{
    	@Pattern(regexp="[0-9]+",message="Doit contenir que des nombres")
    private String nbrCaneaux;
    
-	@OneToMany(mappedBy="dvr")
+	@OneToMany(mappedBy="dvr",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Camera> camera;
 	
-	@Column(nullable=true)
-	@ManyToMany(mappedBy="dvr",cascade = CascadeType.ALL)
-	private Collection<Groupe> groupe;
-
 
 	
 
@@ -67,15 +63,6 @@ public class Dvr extends Infrastructure implements Serializable{
 		this.nbrCaneaux = nbrCaneaux;
 	}
 
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-	
-	
 	
 
 }

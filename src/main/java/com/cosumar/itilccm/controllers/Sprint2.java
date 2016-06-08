@@ -4621,39 +4621,101 @@ public class Sprint2 {
 	    model.addAttribute("logged", logged);
 		model.addAttribute("groupe", new Groupe());
 		model.addAttribute("g", m.listGroupe());
-		 model.addAttribute("ApplicationWeb", m.listApplicationWeb());
-		    model.addAttribute("ArriveeElectrique", m.ListArriveeElectrique());
-		    model.addAttribute("Autrelogiciel", m.listAutreLogiciel());
-		    model.addAttribute("Bandotheque", m.ListBandotheque());
-		    model.addAttribute("Camera", m.ListCamera());
-			model.addAttribute("Chassis", m.ListChassis());
-			model.addAttribute("DVR", m.ListDvr());
-			model.addAttribute("Equipementreseau", m.ListEquipementReseau());
-			model.addAttribute("Hyperviseur", m.listHyperviseur());
-			model.addAttribute("Imprimante", m.ListImp());
-			model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
-			model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
-			model.addAttribute("LogicielPC", m.listLogicielPc());
-			model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
-			model.addAttribute("Middleware", m.listMiddleware());
-			model.addAttribute("NAS", m.ListNas());
-			model.addAttribute("Ordinateur", m.ListPC());
-			model.addAttribute("PDU", m.ListPduElectrique());
-			model.addAttribute("Processusmetier", m.ListProcessusMetier());
-			model.addAttribute("Peripherique", m.ListPeriph());
-			model.addAttribute("Rack", m.ListRack());
-			model.addAttribute("Serveur", m.ListServeur());
-			model.addAttribute("ServeurWeb", m.listServeurWeb());
-			model.addAttribute("Serveurdebasededonnees", m.listServeurDeBasseDeDonnees());
-			model.addAttribute("sim", m.ListSIM());
-			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
-			model.addAttribute("SwitchSAN", m.ListSwitchSan());
-			model.addAttribute("Systemedestockage", m.ListSystemeDeStockage());
-			model.addAttribute("Tablette", m.ListTablette());
-			model.addAttribute("Telephonefixe", m.ListTeleFixe());
-			model.addAttribute("Telephonemobile", m.ListTeleMobile());
-			model.addAttribute("vCluster", m.listVcluster());
+		model.addAttribute("ApplicationWeb", m.listApplicationWeb());
+	    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
+	    model.addAttribute("Logiciel", m.listLogicielEtApplication());
+	    model.addAttribute("Infrastructure", m.ListInfrastructure());
+	    model.addAttribute("Camera", m.ListCamera());
+		model.addAttribute("Chassis", m.ListChassis());
+		model.addAttribute("Equipementreseau", m.ListEquipementReseau());
+		model.addAttribute("Virtualisation", m.listVirtualisation());
+		model.addAttribute("Imprimante", m.ListImp());
+		model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
+		model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
+		model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
+		model.addAttribute("Ordinateur", m.ListPC());
+		model.addAttribute("Processusmetier", m.ListProcessusMetier());
+		model.addAttribute("Peripherique", m.ListPeriph());
+		model.addAttribute("Rack", m.ListRack());
+		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+		model.addAttribute("Tablette", m.ListTablette());
+		model.addAttribute("Telephonefixe", m.ListTeleFixe());
+		model.addAttribute("Telephonemobile", m.ListTeleMobile());
 		return "sprint2/addGroupe";
+	}
+	@RequestMapping(value="/admin/edit/groupe")
+	public String editGroupe(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("logged", logged);
+	    model.addAttribute("groupe",m.getGroupe(id));
+		model.addAttribute("g", m.listGroupe());
+		model.addAttribute("ApplicationWeb", m.listApplicationWeb());
+	    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
+	    model.addAttribute("Logiciel", m.listLogicielEtApplication());
+	    model.addAttribute("Infrastructure", m.ListInfrastructure());
+	    model.addAttribute("Camera", m.ListCamera());
+		model.addAttribute("Chassis", m.ListChassis());
+		model.addAttribute("Equipementreseau", m.ListEquipementReseau());
+		model.addAttribute("Virtualisation", m.listVirtualisation());
+		model.addAttribute("Imprimante", m.ListImp());
+		model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
+		model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
+		model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
+		model.addAttribute("Ordinateur", m.ListPC());
+		model.addAttribute("Processusmetier", m.ListProcessusMetier());
+		model.addAttribute("Peripherique", m.ListPeriph());
+		model.addAttribute("Rack", m.ListRack());
+		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+		model.addAttribute("Tablette", m.ListTablette());
+		model.addAttribute("Telephonefixe", m.ListTeleFixe());
+		model.addAttribute("Telephonemobile", m.ListTeleMobile());
+		return "sprint2/editGroupe";
+	}
+	@RequestMapping(value="/search/groupe")
+	public String searchGroupe(Model model,String g,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("groupe",g);
+		model.addAttribute("logged", logged);
+		if(g == null){
+			model.addAttribute("cis", m.listGroupe());
+		} else {
+			model.addAttribute("cis",m.SearchGroupe(g));          
+		}
+		if(delete == null){
+			model.addAttribute("delete", false );
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchGroupe";
+	}
+
+	@RequestMapping(value="/view/groupe")
+	public String viewGroupe(Model model,Long id,String save){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("groupe", m.getGroupe(id));         
+		if(save == null){
+			model.addAttribute("save", false );
+		} else {
+			model.addAttribute("save", save );
+		}
+		return "sprint2/viewGroupe";
+	}
+	
+	@RequestMapping(value="/admin/delete/groupe")
+	public String deleteGroupe(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		m.supprimerGroupe(id);          
+		return "redirect:/config/search/groupe?delete="+true;
 	}
 	@RequestMapping(value="/admin/add/saveGroupe", method = RequestMethod.POST)
 	public String saveGroupe(@Valid Groupe g,BindingResult bind,Model model,HttpServletRequest req) {
@@ -4665,40 +4727,137 @@ public class Sprint2 {
 		    model.addAttribute("logged", logged);
 		    model.addAttribute("g", m.listGroupe());
 		    model.addAttribute("ApplicationWeb", m.listApplicationWeb());
-		    model.addAttribute("ArriveeElectrique", m.ListArriveeElectrique());
-		    model.addAttribute("Autrelogiciel", m.listAutreLogiciel());
-		    model.addAttribute("Bandotheque", m.ListBandotheque());
+		    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
+		    model.addAttribute("Logiciel", m.listLogicielEtApplication());
+		    model.addAttribute("Infrastructure", m.ListInfrastructure());
 		    model.addAttribute("Camera", m.ListCamera());
 			model.addAttribute("Chassis", m.ListChassis());
-			model.addAttribute("DVR", m.ListDvr());
 			model.addAttribute("Equipementreseau", m.ListEquipementReseau());
-			model.addAttribute("Hyperviseur", m.listHyperviseur());
+			model.addAttribute("Virtualisation", m.listVirtualisation());
 			model.addAttribute("Imprimante", m.ListImp());
 			model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
 			model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
-			model.addAttribute("LogicielPC", m.listLogicielPc());
 			model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
-			model.addAttribute("Middleware", m.listMiddleware());
-			model.addAttribute("NAS", m.ListNas());
 			model.addAttribute("Ordinateur", m.ListPC());
-			model.addAttribute("PDU", m.ListPduElectrique());
 			model.addAttribute("Processusmetier", m.ListProcessusMetier());
 			model.addAttribute("Peripherique", m.ListPeriph());
 			model.addAttribute("Rack", m.ListRack());
-			model.addAttribute("Serveur", m.ListServeur());
-			model.addAttribute("ServeurWeb", m.listServeurWeb());
-			model.addAttribute("Serveurdebasededonnees", m.listServeurDeBasseDeDonnees());
-			model.addAttribute("sim", m.ListSIM());
 			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
-			model.addAttribute("SwitchSAN", m.ListSwitchSan());
-			model.addAttribute("Systemedestockage", m.ListSystemeDeStockage());
 			model.addAttribute("Tablette", m.ListTablette());
 			model.addAttribute("Telephonefixe", m.ListTeleFixe());
 			model.addAttribute("Telephonemobile", m.ListTeleMobile());
-			model.addAttribute("vCluster", m.listVcluster());
+			if(g.getId()==null)
 			return "sprint2/addGroupe";
+			else return "sprint2/editGroupe";
 		}
-		m.ajouterGroupe(g, g.getGroupe_parent().getId());
+		List<Long> appl = new ArrayList<Long>();
+		List<Long> conn = new ArrayList<Long>();
+		List<Long> log = new ArrayList<Long>();
+		List<Long> inf = new ArrayList<Long>();
+		List<Long> came = new ArrayList<Long>();
+		List<Long> chass = new ArrayList<Long>();
+		List<Long> equi = new ArrayList<Long>();
+		List<Long> virt = new ArrayList<Long>();
+		List<Long> imp = new ArrayList<Long>();
+		List<Long> instM = new ArrayList<Long>();
+		List<Long> instBD = new ArrayList<Long>();
+		List<Long> mach = new ArrayList<Long>();
+		List<Long> pc = new ArrayList<Long>();
+		List<Long> proc = new ArrayList<Long>();
+		List<Long> per = new ArrayList<Long>();
+		List<Long> rack = new ArrayList<Long>();
+		List<Long> sol = new ArrayList<Long>();
+		List<Long> tabl = new ArrayList<Long>();
+		List<Long> telfixe = new ArrayList<Long>();
+		List<Long> telmobile = new ArrayList<Long>();
+		String[] cis = req.getParameterValues("ckCIs");
+		if(cis != null){
+			for(int j = 0; j < cis.length; j++){
+			System.out.println("cis----------------------"+cis[j].substring(0,3));
+			System.out.println("cis----------------------"+cis[j].substring(4));
+			try {
+			      Thread.currentThread().sleep(20 * 1000);
+			      }
+			    catch (InterruptedException e) {
+			      e.printStackTrace();
+			      }
+		    }
+			
+			for (int i = 0; i < cis.length; i++) {
+				
+				if(cis[i].substring(0,3).equals("App")){
+					appl.add(Long.parseLong(cis[i].substring(4)));	 
+				}
+				if(cis[i].substring(0,3).equals("Con")){
+					conn.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Log")){
+					log.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Inf")){
+					inf.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Cam")){
+					came.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Cha")){
+					chass.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Equ")){
+					equi.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Vir")){
+					virt.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Imp")){
+					imp.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("InM")){
+					instM.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Ibd")){
+					instBD.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Mac")){
+					mach.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Ord")){
+					pc.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Pro")){
+					proc.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Per")){
+					per.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Rac")){
+					rack.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Sol")){
+					sol.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Tab")){
+					tabl.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Tef")){
+					telfixe.add(Long.parseLong(cis[i].substring(4)));
+				}
+				if(cis[i].substring(0,3).equals("Tem")){
+					telmobile.add(Long.parseLong(cis[i].substring(4)));
+				}
+		  }
+			
+		}
+		
+		if(g.getId() == null){
+			m.ajouterGroupe(g, g.getGroupe_parent().getId(), appl, conn, log, inf, came, chass, equi, virt, 
+							imp, instM, instBD, mach, pc, proc, per, rack, appl, tabl, telfixe, telmobile);
+		} else {
+			m.modifierGroupe(g, g.getGroupe_parent().getId(), appl, conn, log, inf, came, chass, equi, virt, 
+							imp, instM, instBD, mach, pc, proc, per, rack, appl, tabl, telfixe, telmobile);       
+			return "redirect:/config/view/groupe?id="+g.getId()+"&save="+true;
+		}
+		
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
 	@RequestMapping(value="/admin/add/solutionApplicative")
@@ -4960,9 +5119,25 @@ public class Sprint2 {
 		model.addAttribute("logged", logged);
 		return "sprint2/TypeLicense";
 	}
-	
+
 	@RequestMapping(value="/admin/add/typelicenseredirect")
 	public String typelicenseredirect(Model model,HttpServletRequest req){
+		String[] typelicense = req.getParameterValues("type");
+		
+		return "redirect:"+typelicense[0];
+	}
+	@RequestMapping(value="/search/typeLicense")
+	public String SearchTypeLicense(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    System.out.println(logged.getNom());
+		model.addAttribute("logged", logged);
+		return "sprint2/SearchTypeLicense";
+	}
+	
+	@RequestMapping(value="/search/licenseredirect")
+	public String licenseredirect(Model model,HttpServletRequest req){
 		String[] typelicense = req.getParameterValues("type");
 		
 		return "redirect:"+typelicense[0];
@@ -5490,7 +5665,6 @@ public class Sprint2 {
 		}
 		return "sprint2/SearchHyperviseur";
 	}
-
 	@RequestMapping(value="/view/hyperviseur")
 	public String viewHyperviseur(Model model,Long id,String save){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -5646,7 +5820,6 @@ public class Sprint2 {
 		}
 		return "sprint2/SearchVcluster";
 	}
-
 	@RequestMapping(value="/view/vcluster")
 	public String viewVcluster(Model model,Long id,String save){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -5774,6 +5947,25 @@ public class Sprint2 {
 		
 		return "redirect:"+typeConnexionElectrique[0];
 	}
+	@RequestMapping(value="/search/connexionElectrique")
+	public String searchConnexionElectrique(Model model,String ce,String delete){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+	    model.addAttribute("connexionElectrique", ce);
+		model.addAttribute("logged", logged);
+		if(ce == null){
+			model.addAttribute("cis", m.ListConnexionElectrique());
+		} else {
+			model.addAttribute("cis",m.SearchConnexionElectrique(ce));      
+		}
+		if(delete == null){
+			model.addAttribute("delete", false ); 
+		} else {
+			model.addAttribute("delete", delete );
+		}
+		return "sprint2/SearchConnexionElectrique";
+	}
 	@RequestMapping(value="/admin/add/arriveeElectrique")
 	public String addArriveeElectrique(Model model){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -5802,25 +5994,6 @@ public class Sprint2 {
 		model.addAttribute("pdus", m.ListPduElectrique());
 		return "sprint2/editArriveeElectrique";
 	}
-	@RequestMapping(value="/search/arriveeElectrique")
-	public String searchArriveeElectrique(Model model,String ae,String delete){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String logged_m = auth.getName();
-	    User logged = mu.getUserByMatricule(logged_m);
-	    model.addAttribute("arriveeElectrique",ae);
-		model.addAttribute("logged", logged);
-		if(ae == null){
-			model.addAttribute("cis", m.ListArriveeElectrique());
-		} else {
-			model.addAttribute("cis",m.SearchArriveeElectrique(ae));      
-		}
-		if(delete == null){
-			model.addAttribute("delete", false );
-		} else {
-			model.addAttribute("delete", delete );
-		}
-		return "sprint2/SearchArriveeElectrique";
-	}
 
 	@RequestMapping(value="/view/arriveeElectrique")
 	public String viewArriveeElectrique(Model model,Long id,String save){
@@ -5844,7 +6017,7 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		m.deleteArriveeElectrique(id);      
-		return "redirect:/config/search/arriveeElectrique?delete="+true;
+		return "redirect:/config/search/connexionElectrique?delete="+true;
 	}
 	@RequestMapping(value="/admin/add/saveArriveeElectrique", method = RequestMethod.POST)
 	public String saveArriveeElectrique(@Valid ArriveeElectrique ae,BindingResult bind,Model model,HttpServletRequest req) {
@@ -5935,26 +6108,6 @@ public class Sprint2 {
 		model.addAttribute("contrats", m.listContrat());
 		return "sprint2/editPduElectrique";
 	}
-	@RequestMapping(value="/search/pduElectrique")
-	public String searchPduElectrique(Model model,String pdue,String delete){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String logged_m = auth.getName();
-	    User logged = mu.getUserByMatricule(logged_m);
-	    model.addAttribute("pduElectrique", pdue);
-		model.addAttribute("logged", logged);
-		if(pdue == null){
-			model.addAttribute("cis", m.ListPduElectrique());
-		} else {
-			model.addAttribute("cis",m.SearchPduElectrique(pdue));      
-		}
-		if(delete == null){
-			model.addAttribute("delete", false );
-		} else {
-			model.addAttribute("delete", delete );
-		}
-		return "sprint2/SearchPduElectrique";
-	}
-
 	@RequestMapping(value="/view/pduElectrique")
 	public String viewPduElectrique(Model model,Long id,String save){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -5977,7 +6130,7 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		m.deletePduElectrique(id);      
-		return "redirect:/config/search/pduElectrique?delete="+true;
+		return "redirect:/config/search/connexionElectrique?delete="+true;
 	}
 	@RequestMapping(value="/admin/add/savePduElectrique", method = RequestMethod.POST)
 	public String savePduElectrique(@Valid PduElectrique pe,BindingResult bind,Model model,HttpServletRequest req) {
@@ -6085,26 +6238,7 @@ public class Sprint2 {
 	    model.addAttribute("documentFichier",m.getDocumentFichier(id));
 		return "sprint2/editDocumentFichier";
 	}
-	@RequestMapping(value="/search/fichier")
-	public String searchDocumentFichier(Model model,String df,String delete){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String logged_m = auth.getName();
-	    User logged = mu.getUserByMatricule(logged_m);
-	    model.addAttribute("documentFichier", df);
-		model.addAttribute("logged", logged);
-		if(df == null){
-			model.addAttribute("cis", m.listDocumentFichier());
-		} else {
-			model.addAttribute("cis",m.SearchDocumentFichier(df));      
-		}
-		if(delete == null){
-			model.addAttribute("delete", false ); 
-		} else {
-			model.addAttribute("delete", delete );
-		}
-		return "sprint2/SearchDocumentFichier";
-	}
-
+	
 	@RequestMapping(value="/view/fichier")
 	public String viewDocumentFichier(Model model,Long id,String save){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -6127,7 +6261,7 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		m.supprimerDocumentFichier(id);      
-		return "redirect:/config/search/fichier?delete="+true;
+		return "redirect:/config/search/document?delete="+true;
 	}
 	@RequestMapping(value="/fichier",produces=MediaType.ALL_VALUE)
 	@ResponseBody
@@ -6137,7 +6271,7 @@ public class Sprint2 {
 	}
 	@RequestMapping(value="/admin/add/saveFichier", method = RequestMethod.POST)
 	public String saveFichier(@Valid DocumentFichier df,BindingResult bind,Model model,HttpServletRequest req,MultipartFile file) throws IOException {
-		String[] fich = req.getParameterValues("file");
+		//String[] fich = req.getParameterValues("file");
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    String logged_m = auth.getName();
@@ -6179,25 +6313,7 @@ public class Sprint2 {
 	    model.addAttribute("documentWeb",m.getDocumentWeb(id));
 		return "sprint2/editDocumentWeb";
 	}
-	@RequestMapping(value="/search/web")
-	public String searchDocumentWeb(Model model,String dw,String delete){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String logged_m = auth.getName();
-	    User logged = mu.getUserByMatricule(logged_m);
-	    model.addAttribute("documentWeb", dw);
-		model.addAttribute("logged", logged);
-		if(dw == null){
-			model.addAttribute("cis", m.listDocumentWeb());
-		} else {
-			model.addAttribute("cis",m.SearchDocumentWeb(dw));      
-		}
-		if(delete == null){
-			model.addAttribute("delete", false ); 
-		} else {
-			model.addAttribute("delete", delete );
-		}
-		return "sprint2/SearchDocumentWeb";
-	}
+	
 
 	@RequestMapping(value="/view/web")
 	public String viewDocumentWeb(Model model,Long id,String save){
@@ -6221,7 +6337,7 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		m.supprimerDocumentWeb(id);      
-		return "redirect:/config/search/web?delete="+true;
+		return "redirect:/config/search/document?delete="+true;
 	}
 	@RequestMapping(value="/admin/add/saveWeb", method = RequestMethod.POST)
 	public String saveWeb(@Valid DocumentWeb dw,BindingResult bind,Model model,HttpServletRequest req) {
@@ -6261,25 +6377,7 @@ public class Sprint2 {
 	    model.addAttribute("documentNote",m.getDocumentNote(id));
 		return "sprint2/editDocumentNote";
 	}
-	@RequestMapping(value="/search/note")
-	public String searchDocumentNote(Model model,String dn,String delete){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String logged_m = auth.getName();
-	    User logged = mu.getUserByMatricule(logged_m);
-	    model.addAttribute("documentNote", dn);
-		model.addAttribute("logged", logged);
-		if(dn == null){
-			model.addAttribute("cis", m.listDocumentNote());
-		} else {
-			model.addAttribute("cis",m.SearchDocumentNote(dn));      
-		}
-		if(delete == null){
-			model.addAttribute("delete", false ); 
-		} else {
-			model.addAttribute("delete", delete );
-		}
-		return "sprint2/SearchDocumentNote";
-	}
+	
 
 	@RequestMapping(value="/view/note")
 	public String viewDocumentNote(Model model,Long id,String save){
@@ -6303,7 +6401,7 @@ public class Sprint2 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		m.supprimerDocumentNote(id);      
-		return "redirect:/config/search/note?delete="+true;
+		return "redirect:/config/search/document?delete="+true;
 	}
 	@RequestMapping(value="/admin/add/saveNote", method = RequestMethod.POST)
 	public String saveNote(@Valid DocumentNote dn,BindingResult bind,Model model,HttpServletRequest req){

@@ -35,7 +35,7 @@ Use search to find needed section.
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Groupe - ITIL-CCM</title>
+	<title>Modification Groupe - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -411,32 +411,27 @@ Use search to find needed section.
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
-						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-						<li>
-							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
 						</li>
-						</s:authorize>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
+						</li>
 					</ul>
 				</li>
 
@@ -450,30 +445,10 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
+					<a href="#"><i class="menu-icon fa fa-retweet"></i><span class="mm-text">Gestion des changements</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
-						</li>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
-						</li>
-						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
 						</li>
 					</ul>
 				</li>
@@ -500,7 +475,7 @@ Use search to find needed section.
 
 		Content
 -->
-			<!-- Modal CIs -->
+<!-- Modal CIs -->
 				<div id="myModalCIs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
@@ -616,7 +591,7 @@ Use search to find needed section.
 												</tr>
 											</c:forEach>
                                             <c:forEach items="${Chassis}" var="ch" >
-												<tr class="gradeA" id="cis_Cha_${ch.id }" >
+												<tr class="gradeA" id="cis_Cha_${ca.id }" >
 													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Cha_${ch.id }"></td>
 													<td>${ch.nom }</td>
 													<td>Chassis</td>
@@ -773,10 +748,10 @@ Use search to find needed section.
 				<!-- / Modal -->
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Groupe</span>
+						<span class="panel-title">Modification du Groupe</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="groupe" action="saveGroupe" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="groupe" action="/config/admin/add/saveGroupe" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
 					
 					
 		
@@ -804,7 +779,7 @@ Use search to find needed section.
 									<div class="panel-body">
 						
 						
-							
+							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
@@ -866,7 +841,244 @@ Use search to find needed section.
 											</tr>
 										</thead>
 										<tbody id="tableCIs">
-											
+											<c:forEach items="${groupe.applicationWeb}" var="aw" >
+												<tr class="gradeA" id="cis_App_${aw.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="App_${aw.id }"></td>
+													<td>${aw.nom }</td>
+													<td>Application Web</td>
+													<td>${aw.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${aw.dateDeMiseEnProduction}" /></td>
+													
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.connexionElectrique}" var="ce" >
+												<c:set var="string1" value="${ce['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+												<tr class="gradeA" id="cis_Con_${ce.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Con_${ce.id }"></td>
+													<td>${ce.nom }</td>
+													<td>
+													<c:if test="${string2 == 'ArriveeElectrique'}">
+														Arrivée électrique
+													</c:if>
+													<c:if test="${string2 == 'PduElectrique'}">
+														PDU 
+													</c:if>
+													</td>
+													<td>${ce.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ce.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.logicielEtApplication}" var="l" >
+												<c:set var="string1" value="${l['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,60)}" />
+												<tr class="gradeA" id="cis_Log_${l.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Log_${l.id }"></td>
+													<td>${l.nom }</td>
+													<td>
+													<c:if test="${string2 == 'AutreLogiciel'}">
+														Autre Logiciel
+													</c:if>
+													<c:if test="${string2 == 'LogicielPc'}">
+														Logiciel PC
+													</c:if>
+													<c:if test="${string2 == 'ServeurWeb'}">
+														Serveur Web
+													</c:if>
+													<c:if test="${string2 == 'Middleware'}">
+														Middleware
+													</c:if>
+													<c:if test="${string2 == 'ServeurDeBasseDeDonnees'}">
+														Serveur De Basse De Données
+													</c:if>
+													</td>
+													<td>${l.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.infrastructure}" var="in" >
+												<c:set var="string1" value="${in['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+												<tr class="gradeA" id="cis_Inf_${in.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Inf_${in.id }"></td>
+													<td>${in.nom }</td>
+													<td>
+													<c:if test="${string2 == 'Bandotheque'}">
+														Bandothèque
+													</c:if>
+													<c:if test="${string2 == 'Dvr'}">
+														DVR
+													</c:if>
+													<c:if test="${string2 == 'Nas'}">
+														NAS
+													</c:if>
+													<c:if test="${string2 == 'Serveur'}">
+														Serveur
+													</c:if>
+													<c:if test="${string2 == 'SwitchSan'}">
+														Switch SAN
+													</c:if>
+													<c:if test="${string2 == 'SystemeDeStockage'}">
+														Système De Stockage
+													</c:if>
+													</td>
+													<td>${in.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${in.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.camera}" var="ca" >
+												<tr class="gradeA" id="cis_Cam_${ca.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Cam_${ca.id }"></td>
+													<td>${ca.nom }</td>
+													<td>Camera</td>
+													<td>${ca.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ca.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+                                            <c:forEach items="${groupe.chassis}" var="ch" >
+												<tr class="gradeA" id="cis_Cha_${ca.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Cha_${ch.id }"></td>
+													<td>${ch.nom }</td>
+													<td>Chassis</td>
+													<td>${ch.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ch.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.equipementReseau}" var="er" >
+												<tr class="gradeA" id="cis_Equ_${er.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Equ_${er.id }"></td>
+													<td>${er.nom }</td>
+													<td>Equipement réseau</td>
+													<td>${er.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${er.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.virtualisation}" var="v" >
+												<c:set var="string1" value="${v['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+												<tr class="gradeA" id="cis_Vir_${v.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Vir_${v.id }"></td>
+													<td>${v.nom }</td>
+													<td>
+													<c:if test="${string2 == 'Hyperviseur'}">
+														Hyperviseur
+													</c:if>
+													<c:if test="${string2 == 'Vcluster'}">
+														vCluster
+													</c:if>
+													</td>
+													<td>${v.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${v.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.imprimante}" var="i" >
+												<tr class="gradeA" id="cis_Imp_${i.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Imp_${i.id }"></td>
+													<td>${i.nom }</td>
+													<td>Imprimante</td>
+													<td>${i.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${i.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.instanceMiddleware}" var="im" >
+												<tr class="gradeA" id="cis_InM_${im.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="InM_${im.id }"></td>
+													<td>${im.nom }</td>
+													<td>Instance Middleware</td>
+													<td>${im.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${im.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.instanceDeBasseDeDonnes}" var="ibd" >
+												<tr class="gradeA" id="cis_Ibd_${ibd.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Ibd_${ibd.id }"></td>
+													<td>${ibd.nom }</td>
+													<td>Instance de base de données</td>
+													<td>${ibd.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ibd.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.machineVirtuelle}" var="mv" >
+												<tr class="gradeA" id="cis_Mac_${mv.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Mac_${mv.id }"></td>
+													<td>${mv.nom }</td>
+													<td>Machine virtuelle</td>
+													<td>${mv.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.ordinateur}" var="pc" >
+												<tr class="gradeA" id="cis_Ord_${pc.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Ord_${pc.id }"></td>
+													<td>${pc.nom }</td>
+													<td>Ordinateur</td>
+													<td>${pc.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pc.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.processusMetier}" var="pm" >
+												<tr class="gradeA" id="cis_Pro_${pm.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Pro_${pm.id }"></td>
+													<td>${pm.nom }</td>
+													<td>Processus métier</td>
+													<td>${pm.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.peripherique}" var="p" >
+												<tr class="gradeA" id="cis_Per_${p.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Per_${p.id }"></td>
+													<td>${p.nom }</td>
+													<td>Périphérique</td>
+													<td>${p.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${p.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.rack}" var="r" >
+												<tr class="gradeA" id="cis_Rac_${r.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Rac_${r.id }"></td>
+													<td>${r.nom }</td>
+													<td>Rack</td>
+													<td>${r.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${r.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.solutionApplicative}" var="sa" >
+												<tr class="gradeA" id="cis_Sol_${sa.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Sol_${sa.id }"></td>
+													<td>${sa.nom }</td>
+													<td>Solution applicative</td>
+													<td>${sa.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.tablette}" var="t" >
+												<tr class="gradeA" id="cis_Tab_${t.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Tab_${t.id }"></td>
+													<td>${t.nom }</td>
+													<td>Tablette</td>
+													<td>${t.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.telephoneFixe}" var="tf" >
+												<tr class="gradeA" id="cis_Tef_${tf.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Tef_${tf.id }"></td>
+													<td>${tf.nom }</td>
+													<td>Téléphone fixe</td>
+													<td>${tf.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${tf.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${groupe.telephneMobile}" var="tm" >
+												<tr class="gradeA" id="cis_Tem_${tm.id }" >
+													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckcis" name="ckCIs" value="Tem_${tm.id }"></td>
+													<td>${tm.nom }</td>
+													<td>Téléphone mobile</td>
+													<td>${tm.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${tm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
 											
 										</tbody>
 									</table>

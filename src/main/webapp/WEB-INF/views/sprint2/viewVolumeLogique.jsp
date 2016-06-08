@@ -31,8 +31,8 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Volume logique - ITIL-CCM</title>
@@ -513,22 +513,14 @@ Use search to find needed section.
 				</c:if>
 		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title col-md-9">Détail Volume Logique</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/volumelogique?id=${volumeLogique.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/volumelogique?id=${volumeLogique.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -562,18 +554,18 @@ Use search to find needed section.
 						<div class="panel-body">
 						
 						
-							<div class="form-group required">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom : </label>
 								${volumeLogique.nom }
 							
 							</div>
 							
-							<div class="form-group required">
+							<div class="form-group">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Système de stockage : </label>
 								<a href="<c:url value="/config/view/systemedestockage?id=${volumeLogique.systemedestockage.id }" />">${volumeLogique.systemedestockage.nom }</a>
 								
 							</div>
-							<div class="form-group required">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">LUN ID</label>
 								${volumeLogique.lunId }
 							
@@ -620,13 +612,13 @@ Use search to find needed section.
 											<tbody id="tableServeurs">
 												<c:forEach items="${volumeLogique.serveur}" var="s">
 													<tr class="gradeA" id="tr_Serveurs_${s.id }">
-														<td><a href="<c:url value="/config/view/machinevertuelle?id=${mv.id }" />">${s.nom }</a></td>
+														<td><a href="<c:url value="/config/view/serveur?id=${s.id }" />">${s.nom }</a></td>
 														<td>${s.statut }</td>
 														<td>${s.criticite}</td>
 														<td>${s.marque}</td>
 														<td>${s.modele}</td>
 														<td>${s.ip}</td>
-														<td>${s.dateDeMiseEnProduction }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${s.dateDeMiseEnProduction }" /></td>
 														<td>${s.description}</td>
 													</tr>
 												</c:forEach>
@@ -659,7 +651,7 @@ Use search to find needed section.
 														<td>${mv.statut }</td>
 														<td>${mv.criticite}</td>
 														<td>${mv.ip}</td>
-														<td>${mv.dateDeMiseEnProduction }</td>
+														<fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction }" />
 														<td>${mv.description}</td>
 													</tr>
 												</c:forEach>

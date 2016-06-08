@@ -45,32 +45,32 @@ public class Chassis implements Serializable{
  	@JoinColumn(name="chassis_id")
    private Rack rack;
    
-   	@OneToMany(mappedBy="chassis")
+   	@OneToMany(mappedBy="chassis",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
-	@OneToMany(mappedBy="chassis")
+	@OneToMany(mappedBy="chassis",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<EquipementReseau> equipementreseau;
    	
    	
-   	@ManyToOne(cascade = CascadeType.ALL)
+   	@ManyToOne
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Document> document;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contrat> contrat;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;

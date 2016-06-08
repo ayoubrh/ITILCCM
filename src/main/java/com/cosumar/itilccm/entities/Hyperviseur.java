@@ -24,9 +24,7 @@ public class Hyperviseur extends Virtualisation implements Serializable {
 			@JoinColumn(name="id_vcluster")
 			private Vcluster vcluster;
 			
-			@Column(nullable=true)
-			@ManyToMany(mappedBy="hyperviseur",cascade = CascadeType.ALL)
-			private Collection<Groupe> groupe;
+			
 			
 			public Hyperviseur() {
 				super();
@@ -49,13 +47,5 @@ public class Hyperviseur extends Virtualisation implements Serializable {
 			public void setVcluster(Vcluster vcluster) {
 				this.vcluster = vcluster;
 			}
-			public Collection<Groupe> getGroupe() {
-				return groupe;
-			}
-			public void setGroupe(Collection<Groupe> groupe) {
-				this.groupe = groupe;
-			}
 			
-			
-
 }

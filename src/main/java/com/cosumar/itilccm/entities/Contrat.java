@@ -42,94 +42,94 @@ public class Contrat implements Serializable {
 		   private String typeDeContrat;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(cascade = CascadeType.ALL)
+		   @ManyToMany
 		   @LazyCollection(LazyCollectionOption.FALSE) 
 		   private Collection<Contact> contacts;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(cascade = CascadeType.ALL)
+		   @ManyToMany
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<Document> documents;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Ordinateur> ordinateur;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<EquipementReseau> equipementreseaux;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Infrastructure> infrastructure;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Rack> rack;
 
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Chassis> chassis;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Imprimante> imprimante;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<TelephneMobile> telephonemobile;
 		   
-		   @ManyToMany(mappedBy="contrat")
+		   @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Peripherique> peripherique;
 		   
 		   
-		    @ManyToMany(mappedBy="contrat")
+		    @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<TelephoneFixe> telephonefixe;
 		    
-		    @ManyToMany(mappedBy="contrat")
+		    @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Tablette> tablette;
 		    
-		    @ManyToMany(mappedBy="contrat")
+		    @ManyToMany(mappedBy="contrat",cascade = CascadeType.ALL)
 		   	@Column(nullable = true)
 		   private Collection<Sim> sim;
 
 		    @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<LogicielEtApplication> logicielEtApplication;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<ApplicationWeb> applicationWeb;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<InstanceMiddleware> instanceMiddleware;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<ConnexionElectrique> connexionElectrique;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<Virtualisation> virtualisation;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<Camera> camera;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<MachineVirtuelle> machineVirtuelle;
 		   
 		   @Column(nullable=true)
-		   @ManyToMany(mappedBy="contrats")
+		   @ManyToMany(mappedBy="contrats",cascade = CascadeType.ALL)
 		   private Collection<SolutionApplicative> solutionApplicative;
 		   
 			public Contrat() {

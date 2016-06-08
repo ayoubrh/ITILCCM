@@ -31,8 +31,8 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Serveur - ITIL-CCM</title>
@@ -517,17 +517,14 @@ Use search to find needed section.
 				</c:if>
 				
 				
-				
-				
-				
-				
-				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail d'un Serveur</span>
+						<span class="panel-title col-md-9">Détail du Serveur</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/serveur?id=${serveur.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/serveur?id=${serveur.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -626,7 +623,7 @@ Use search to find needed section.
 									
 									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">License OS : </label>
-										<a href="<c:url value="/config/view/licenseos?id=${serveur.licenseOs.id }" />">${serveur.licenseOs.nom }</a>
+										<a href="<c:url value="/config/view/licenseOs?id=${serveur.licenseOs.id }" />">${serveur.licenseOs.nom }</a>
 										
 									</div>
 									
@@ -720,7 +717,7 @@ Use search to find needed section.
 													<td>${l.statut }</td>
 													<td>${l.criticite }</td>
 													<td>${l.cheminD_installation }</td>
-													<td>${l.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
 
 												</tr>
 											</c:forEach>
@@ -753,7 +750,7 @@ Use search to find needed section.
 														<td><a href="<c:url value="/config/view/solutionapplicative?id=${sa.id }" />">${sa.nom }</a></td>
 														<td>${sa.statut }</td>
 														<td>${sa.criticite}</td>
-														<td>${sa.dateDeMiseEnProduction }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 													</tr>
 												</c:forEach>
 												
@@ -869,7 +866,7 @@ Use search to find needed section.
 													<td>${san.criticite }</td>
 													<td>${san.numeroDeSerie }</td>
 													<td>${san.numeroAsset }</td>
-													<td>${san.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${san.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 											

@@ -30,11 +30,11 @@ Use search to find needed section.
 <head>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Recherche Document Fichier - ITIL-CCM</title>
+	<title> Recherche Type License - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -71,7 +71,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-search"> 
+<body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -206,7 +206,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -216,7 +216,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -226,7 +226,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -236,7 +236,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -246,7 +246,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -256,7 +256,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -266,7 +266,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -276,7 +276,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -286,7 +286,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -296,7 +296,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -494,102 +494,42 @@ Use search to find needed section.
 <!-- /4. $MAIN_MENU -->
 
 
-	<div id="content-wrapper">
+	<div  id="content-wrapper">
+<!-- 5. $CONTENT ===================================================================================
 
-<!-- 5. $SEARCH_RESULTS_PAGE =======================================================================
-	
-		Search results page
+		Content
 -->
-			<!-- Javascript -->
-				<script>
-					init.push(function () {
-						$('#jq-datatables-example').dataTable();
-					});
-				</script>
-				<!-- / Javascript -->
-				
-				<c:if test="${delete == true }">
-					<div class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						L'élément de configuration est bien supprimer.
-					</div>
-				</c:if>
 
-
-		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher Document Fichier</h1>
-			<a href="<c:url value="/config/admin/add/fichier"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Document Fichier</a>
-		</div> <!-- / .page-header -->
-
-		<!-- / .search-text -->
-
-		<!-- Tabs -->
+		<!-- Content here -->
 		
-		<!-- / Tabs -->
-
-		<!-- Panel -->
-		<div class="panel search-panel">
-
-			<!-- Search form -->
-			<form action="fichier" class="search-form bg-primary">
-				<div class="input-group input-group-lg">
-					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
-					<input type="text" name="df" class="form-control" value="${documentFichier }" placeholder="Entrez le nom à rechercher...">
-					<span class="input-group-btn">
-						<button class="btn" type="submit">Search</button>
-					</span>
-				</div> <!-- / .input-group -->
-			</form>
-			<!-- / Search form -->
-
-			<!-- Search results -->
-			<div class="panel-body">
-
-				<!-- Classic search -->
-				
-				<!-- / Classic search -->
-
-				<!-- Users search -->
+	
+		<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/licence.png" alt="" class="">&nbsp; <strong>Type License</strong></span>
+					</div>
+					<div class="panel-body">
+					<form action="licenseredirect">
+						<div class="form-group">
 					
-
-					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
-								<thead>
-									<tr>
-										<th>Nom</th>
-										<th>Statut</th>
-										<th>Version</th>
-										<th>Description</th>
-										<th>Fichier</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${cis}" var="ci">
-										<tr class="gradeA">
-											<td><a href="<c:url value="/config/view/fichier?id=${ci.id }" />">${ci.nom }</a></td>
-											<td>${ci.statut }</td>
-											<td>${ci.version }</td>
-											<td>${ci.description }</td>
-											<td>${ci.fichier }</td>
-										</tr>
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de License à rechercher :</label>
+								<div class="col-sm-2">
+									<select   class="form-control" name="type">
+							             <option value="/config/search/licenceLogiciel"  >License Logiciel</option>
+										 <option value="/config/search/licenseOs"  >License OS</option>
 									
-									</c:forEach>
+									</select>
 									
+							    </div>
+							    <button type="submit" class="btn btn-primary">Appliquer</button>
+						
+						</div>
+					</form>					
 									
-								</tbody>
-							</table>
-				<!-- / Users search -->
-
-				<!-- Messages search -->
-				
-				<!-- / Messages search -->
-			</div>
-			<!-- / Search results -->
-
-			<!-- Panel Footer -->
-			<!-- / .panel-footer -->
-
-		</div> 
-		<!-- / Panel -->
+					</div>
+					
+					
+		</div>
+					
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -612,11 +552,6 @@ Use search to find needed section.
 <script type="text/javascript">
 	init.push(function () {
 		// Javascript code here
-		var s = "${documentFichier }";
-		$('.add-tooltip').tooltip();
-		document.getElementsByName("jq-datatables-example_length").value="25";
-		
-		$(".table-header").hide();
 	});
 	window.PixelAdmin.start(init);
 </script>

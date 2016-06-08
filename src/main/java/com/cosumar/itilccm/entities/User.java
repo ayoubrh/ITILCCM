@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -106,23 +107,23 @@ public class User implements Serializable {
 	 @JoinColumn(name="departement_id")
    	private Departement departement;
    	
-   	 @OneToMany(mappedBy="user")
+   	 @OneToMany(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Ordinateur> ordinateur;
    	
-   	 @OneToOne(mappedBy="user")
+   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private TelephneMobile telephneMobile;
    	
-   	 @OneToOne(mappedBy="user")
+   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Sim sim;
    	
-   	 @OneToOne(mappedBy="user")
+   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private Tablette tablette;
    	
-   	 @OneToOne(mappedBy="user")
+   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private TelephoneFixe telephoneFixe;
    	
-   	 @OneToMany(mappedBy="user")
+   	 @OneToMany(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Imprimante> imprimante;
    	 

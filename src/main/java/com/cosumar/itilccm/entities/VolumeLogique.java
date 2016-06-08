@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class VolumeLogique implements Serializable{
    private String niveauRaid;
    private String taille;
    
-   	@ManyToMany(mappedBy="volumelogique")
+   	@ManyToMany(mappedBy="volumelogique",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	@Column(nullable = true)
    private Collection<Serveur> serveur;
@@ -47,12 +48,12 @@ public class VolumeLogique implements Serializable{
    private SystemeDeStockage systemedestockage;
    
    	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="volumelogique")
+	 @ManyToMany(mappedBy="volumelogique",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<MachineVirtuelle> machinevertuelle;
 	   
 	  @Column(nullable=true)
-	  @ManyToMany(mappedBy="volumelogique")
+	  @ManyToMany(mappedBy="volumelogique",cascade = CascadeType.ALL)
 	  @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Virtualisation> virtualisation;
 

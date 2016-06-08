@@ -33,32 +33,32 @@ public class InstanceMiddleware implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
-	   @ManyToOne(cascade = CascadeType.ALL)
+	   @ManyToOne
 	   @JoinColumn(name="id_middleware")
 	   private Middleware middleware;
 	   
 	   @Column(nullable=true)
-		@ManyToMany(mappedBy="instanceMiddleware",cascade = CascadeType.ALL)
-		private Collection<Groupe> groupe;
+	   @ManyToMany(mappedBy="instanceMiddleware",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
 		   
 		public InstanceMiddleware() {
 			super();
@@ -137,10 +137,6 @@ public class InstanceMiddleware implements Serializable {
 		public void setGroupe(Collection<Groupe> groupe) {
 			this.groupe = groupe;
 		}
-		   
-		   
-		   
-   
-   
+	
 
 }

@@ -18,16 +18,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class Vcluster extends Virtualisation implements Serializable {
 	
 		@Column(nullable=true)
-		@OneToMany(mappedBy="vcluster",cascade = CascadeType.ALL)
+		@OneToMany(mappedBy="vcluster",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		@LazyCollection(LazyCollectionOption.FALSE)
 		private Collection<Hyperviseur> hyperviseur;
 		
-		@Column(nullable=true)
-		@ManyToMany(mappedBy="vcluster",cascade = CascadeType.ALL)
-		private Collection<Groupe> groupe;
-	
-	
-
 	public Vcluster() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -45,14 +39,5 @@ public class Vcluster extends Virtualisation implements Serializable {
 	public void setHyperviseur(Collection<Hyperviseur> hyperviseur) {
 		this.hyperviseur = hyperviseur;
 	}
-
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-	
 
 }

@@ -521,7 +521,9 @@ Use search to find needed section.
 
 		<div class="page-header">
 			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Tablettes</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
 			<a href="<c:url value="/config/admin/add/tablette"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouvelle Tablette</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
