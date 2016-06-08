@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class MachineVirtuelle implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<VolumeLogique> volumelogique;
 	   
@@ -47,7 +48,7 @@ public class MachineVirtuelle implements Serializable {
 	   private Collection<IntefaceReseau> intefaceReseau;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
@@ -60,24 +61,28 @@ public class MachineVirtuelle implements Serializable {
 	   private LicenseOs licenseOs;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="machineVirtuelle")
+	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
 		   
 		public MachineVirtuelle() {
 			super();
@@ -202,6 +207,12 @@ public class MachineVirtuelle implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 	     
 }

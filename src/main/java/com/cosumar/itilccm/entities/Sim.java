@@ -70,6 +70,10 @@ public class Sim implements Serializable{
 	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
   private Collection<Contact> contact;
+	
+	@Column(nullable=true)
+	@ManyToMany(mappedBy="sim",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
 
 	public Long getId() {
 		return id;
@@ -185,6 +189,14 @@ public class Sim implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

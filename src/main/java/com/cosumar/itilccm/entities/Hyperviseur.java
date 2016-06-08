@@ -3,10 +3,12 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 
@@ -21,6 +23,10 @@ public class Hyperviseur extends Virtualisation implements Serializable {
 			@ManyToOne
 			@JoinColumn(name="id_vcluster")
 			private Vcluster vcluster;
+			
+			@Column(nullable=true)
+			@ManyToMany(mappedBy="hyperviseur",cascade = CascadeType.ALL)
+			private Collection<Groupe> groupe;
 			
 			public Hyperviseur() {
 				super();
@@ -42,6 +48,12 @@ public class Hyperviseur extends Virtualisation implements Serializable {
 			}
 			public void setVcluster(Vcluster vcluster) {
 				this.vcluster = vcluster;
+			}
+			public Collection<Groupe> getGroupe() {
+				return groupe;
+			}
+			public void setGroupe(Collection<Groupe> groupe) {
+				this.groupe = groupe;
 			}
 			
 			

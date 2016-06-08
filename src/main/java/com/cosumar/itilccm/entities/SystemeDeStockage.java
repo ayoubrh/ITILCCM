@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -22,6 +23,10 @@ public class SystemeDeStockage extends Infrastructure implements Serializable{
 	 @OneToMany(mappedBy="systemedestockage")
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<VolumeLogique> volumelogique;
+	 
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="systemeDeStockage",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 
 	public Collection<SwitchSan> getSwitchSan() {
 		return switchSan;
@@ -47,6 +52,14 @@ public class SystemeDeStockage extends Infrastructure implements Serializable{
 	public SystemeDeStockage(String nom) {
 		super(nom);
 		// TODO Auto-generated constructor stub
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 		

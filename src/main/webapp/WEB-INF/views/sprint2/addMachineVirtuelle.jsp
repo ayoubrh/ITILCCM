@@ -31,7 +31,8 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Nouveau Machine virtuelle - ITIL-CCM</title>
@@ -410,27 +411,32 @@ Use search to find needed section.
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -444,10 +450,30 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-retweet"></i><span class="mm-text">Gestion des changements</span></a>
+					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+						</li>
+						</s:authorize>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -554,8 +580,8 @@ Use search to find needed section.
 													<td>${contrat.typeDeContrat }</td>
 													<td>${contrat.client }</td>
 													<td>${contrat.description }</td>
-													<td>${contrat.dateDeDebut }</td>
-													<td>${contrat.dateDeFin }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeDebut}" /></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${contrat.dateDeFin}" /></td>
 													<td>${contrat.fournisseur }</td>
 
 												</tr>
@@ -599,7 +625,11 @@ Use search to find needed section.
 													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
 													<td>${doc.nom }</td>
 													<td>${doc.statut }</td>
-													<td> </td>
+													<td>
+														<c:set var="string1" value="${doc['class'].name }"/>
+														<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+														${string2 }
+													</td>
 													<td>${doc.description }</td>
 												</tr>
 											</c:forEach>
@@ -643,7 +673,7 @@ Use search to find needed section.
 													<td>${sa.nom }</td>
 													<td>${sa.statut }</td>
 													<td>${sa.criticite}</td>
-													<td>${sa.dateDeMiseEnProduction }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction }" /></td>
 												</tr>
 											</c:forEach>
 											
@@ -790,7 +820,7 @@ Use search to find needed section.
 													<td>${l.criticite }</td>
 													<td>${l.licenseLogiciel.nom }</td>
 													<td>${l.cheminD_installation}</td>
-													<td>${l.dateDeMiseEnProduction}</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
 													<td>${l.description}</td>
 												</tr>
 											</c:forEach>
@@ -859,7 +889,7 @@ Use search to find needed section.
 						
 						
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
 								<div class="col-sm-9">
 									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
@@ -871,7 +901,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
 								<div class="col-sm-9">
 										<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 										            <f:option value="implémentation">implémentation</f:option>
 													<f:option value="obsolète"> obsolète</f:option>
 													<f:option value="production"> production</f:option>
@@ -884,7 +914,7 @@ Use search to find needed section.
 								<label for="jq-validation-email" class="col-sm-3 control-label">Criticité</label>
 								<div class="col-sm-9">
 										<f:select  path="criticite" class="form-control" name="jq-validation-criticite" id="jq-validation-criticite">
-										            <f:option value=""> -- choisir une valeur --</f:option>
+										            <f:option value=""></f:option>
 													<f:option value="haute"> haute</f:option>
 													<f:option value="basse"> basse</f:option>
 													<f:option value="moyenne"> moyenne</f:option>
@@ -893,11 +923,11 @@ Use search to find needed section.
 							     </div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">vCluster / Hyperviseur</label>
 								<div class="col-sm-9">
 									<f:select  path="virtualisation.id" class="form-control" name="jq-validation-virtualisation" id="jq-validation-virtualisation">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<f:options items="${v }" itemValue="id" itemLabel="nom" />
 									</f:select>
 									<f:errors path="virtualisation.id" cssClass="help-block"></f:errors>
@@ -907,7 +937,7 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Licence OS</label>
 								<div class="col-sm-9">
 									<f:select  path="licenseOs.id" class="form-control" name="jq-validation-licenseOs" id="jq-validation-licenseOs">
-										<f:option value=""> -- choisir une valeur --</f:option>
+										<f:option value=""></f:option>
 										<c:forEach items="${licenseos }" var="los">
 										<f:option value="${los.id}" label="${los.nom } - ${los.versionOs.nom } - ${los.versionOs.familleOs }" />
 										</c:forEach>
@@ -1234,7 +1264,7 @@ Use search to find needed section.
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/users/index" />'">Annuler</button>
+									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

@@ -93,6 +93,10 @@ public class SolutionApplicative implements Serializable{
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Document> documents;
 	
+	@Column(nullable=true)
+	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
+	
 	public SolutionApplicative() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -250,6 +254,15 @@ public class SolutionApplicative implements Serializable{
 	public void setDocuments(Collection<Document> documents) {
 		this.documents = documents;
 	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
+	}
+	
 
 	
 

@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -62,6 +63,10 @@ public class Camera implements Serializable{
     @ManyToOne
     @JoinColumn(name="id_lieu")
     private Lieu lieu;
+    
+    @Column(nullable=true)
+	@ManyToMany(mappedBy="camera",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
 
 	public Long getId() {
 		return id;
@@ -215,6 +220,14 @@ public class Camera implements Serializable{
 
 	public void setLieu(Lieu lieu) {
 		this.lieu = lieu;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
    	
    	

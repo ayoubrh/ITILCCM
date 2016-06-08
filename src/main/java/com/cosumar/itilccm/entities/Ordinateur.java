@@ -103,6 +103,10 @@ public class Ordinateur implements Serializable{
 	 @ManyToMany(cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
+	 
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 
    
 	public Long getId() {
@@ -277,6 +281,12 @@ public class Ordinateur implements Serializable{
 	}
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
+	}
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

@@ -181,7 +181,17 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 	
 	@Override
-	public void modifierLieu(Lieu l) {
+	public void modifierLieu(Lieu l,List<Long> contacts) {
+		
+		if(contacts!=null){
+			Collection<Contact> list = new ArrayList<Contact>();
+			for(Long cts : contacts ){
+				Contact contact = getContact(cts);
+				list.add(contact);
+				contact.setLieu(l); 
+			}
+			l.setContacts(list);
+		}
 		em.merge(l);
 		
 	}
@@ -334,6 +344,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Ordinateur> SearchPCUser(String s,Long user) {
+		Query req = em.createQuery("select pc from Ordinateur pc join pc.user u where pc.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
 
 	@Override
 	public Ordinateur getPC(Long id) {
@@ -387,7 +405,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteImp(Long id) {
-		em.remove(id);
+		Imprimante imp = em.find(Imprimante.class, id);
+		em.remove(imp);
 		
 	}
 
@@ -431,7 +450,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteTeleMobile(Long id) {
-		em.remove(id);
+		TelephneMobile t = em.find(TelephneMobile.class, id);
+		em.remove(t);
 		
 	}
 
@@ -475,7 +495,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSIM(Long id) {
-		em.remove(id);
+		Sim s = em.find(Sim.class, id);
+		em.remove(s);
 		
 	}
 
@@ -519,7 +540,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteTablette(Long id) {
-		em.remove(id);
+		Tablette t = em.find(Tablette.class, id);
+		em.remove(t);
 		
 	}
 
@@ -563,7 +585,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteTeleFixe(Long id) {
-		em.remove(id);
+		TelephoneFixe t = em.find(TelephoneFixe.class, id);
+		em.remove(t);
 		
 	}
 
@@ -604,7 +627,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deletePeriph(Long id) {
-		em.remove(id);
+		Peripherique p = em.find(Peripherique.class, id);
+		em.remove(p);
 		
 	}
 
@@ -644,7 +668,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteFibre(Long id) {
-		em.remove(id);
+		Fibre f = em.find(Fibre.class, id);
+		em.remove(f);
 		
 	}
 
@@ -673,7 +698,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteLogique(Long id) {
-		em.remove(id);
+		Logique l = em.find(Logique.class, id);
+		em.remove(l);
 		
 	}
 
@@ -702,7 +728,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deletePhysique(Long id) {
-		em.remove(id);
+		Physique p = em.find(Physique.class, id);
+		em.remove(p);
 		
 	}
 
@@ -731,7 +758,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteVlan(Long id) {
-		em.remove(id);
+		Vlan v = em.find(Vlan.class, id);
+		em.remove(v);
 		
 	}
 
@@ -760,7 +788,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSubnet(Long id) {
-		em.remove(id);
+		Subnet s = em.find(Subnet.class, id);
+		em.remove(s);
 		
 	}
 
@@ -789,7 +818,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteCamera(Long id) {
-		em.remove(id);
+		Camera c = em.find(Camera.class, id);
+		em.remove(c);
 		
 	}
 
@@ -797,12 +827,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long addProcessusMetier(ProcessusMetier pm) {
 		em.persist(pm);
 		return pm.getId();
-	}
-
-	@Override
-	public void editProcessusMetier(ProcessusMetier pm) {
-		em.merge(pm);
-		
 	}
 
 	@Override
@@ -818,7 +842,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteProcessusMetier(Long id) {
-		em.remove(id);
+		ProcessusMetier p = em.find(ProcessusMetier.class, id);
+		em.remove(p);
 		
 	}
 
@@ -826,12 +851,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long addSolutionApplicative(SolutionApplicative sa) {
 		em.persist(sa);
 		return sa.getId();
-	}
-
-	@Override
-	public void editSolutionApplicative(SolutionApplicative sa) {
-		em.merge(sa);
-		
 	}
 
 	@Override
@@ -847,7 +866,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSolutionApplicative(Long id) {
-		em.remove(id);
+		SolutionApplicative s = em.find(SolutionApplicative.class, id);
+		em.remove(s);
 		
 	}
 
@@ -876,7 +896,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteVolumeLogique(Long id) {
-		em.remove(id);
+		VolumeLogique v = em.find(VolumeLogique.class, id);
+		em.remove(v);
 		
 	}
 
@@ -905,7 +926,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteDvr(Long id) {
-		em.remove(id);
+		Dvr d = em.find(Dvr.class, id);
+		em.remove(d);
 		
 	}
 
@@ -927,11 +949,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void editArriveeElectrique(ArriveeElectrique ae) {
-		em.merge(ae);		
-	}
-
-	@Override
 	public List<ArriveeElectrique> ListArriveeElectrique() {
 		Query req = em.createQuery("select ae from ArriveeElectrique ae");
 		return req.getResultList();
@@ -944,18 +961,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteArriveeElectrique(Long id) {
-		em.remove(id);		
+		ArriveeElectrique a = em.find(ArriveeElectrique.class, id);
+		em.remove(a);		
 	}
 
 	@Override
 	public Long addPduElectrique(PduElectrique pdue) {
 		em.persist(pdue);
 		return pdue.getId();
-	}
-
-	@Override
-	public void editPduElectrique(PduElectrique pdue) {
-		em.merge(pdue);		
 	}
 
 	@Override
@@ -971,7 +984,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deletePduElectrique(Long id) {
-		em.remove(id);		
+		PduElectrique p = em.find(PduElectrique.class, id);
+		em.remove(p);		
 	}
 
 	@Override
@@ -998,7 +1012,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteRack(Long id) {
-		em.remove(id);		
+		Rack r = em.find(Rack.class, id);
+		em.remove(r);		
 	}
 
 	@Override
@@ -1025,7 +1040,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteChassis(Long id) {
-		em.remove(id);		
+		Chassis c = em.find(Chassis.class, id);
+		em.remove(c);		
 	}
 
 	@Override
@@ -1063,7 +1079,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteBandotheque(Long id) {
-		em.remove(id);		
+		Bandotheque b = em.find(Bandotheque.class, id);
+		em.remove(b);		
 	}
 
 	@Override
@@ -1090,7 +1107,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteBande(Long id) {
-		em.remove(id);		
+		Bande b = em.find(Bande.class, id);
+		em.remove(b);		
 	}
 
 	@Override
@@ -1117,7 +1135,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteServeur(Long id) {
-		em.remove(id);		
+		Serveur s = em.find(Serveur.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1144,7 +1163,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSystemeDeStockage(Long id) {
-		em.remove(id);		
+		SystemeDeStockage s = em.find(SystemeDeStockage.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1171,7 +1191,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSwitchSan(Long id) {
-		em.remove(id);		
+		SwitchSan s = em.find(SwitchSan.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1198,7 +1219,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteNas(Long id) {
-		em.remove(id);		
+		Nas n = em.find(Nas.class, id);
+		em.remove(n);		
 	}
 
 	@Override
@@ -1225,7 +1247,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteSystemeDeFicherNas(Long id) {
-		em.remove(id);		
+		SystemeDeFicherNas s = em.find(SystemeDeFicherNas.class, id);
+		em.remove(s);		
 	}
 
 	@Override
@@ -1252,7 +1275,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void deleteEquipementReseau(Long id) {
-		em.remove(id);		
+		EquipementReseau e = em.find(EquipementReseau.class, id);
+		em.remove(e);		
 	}
 	
 	//Contact
@@ -1280,12 +1304,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(c);
 		
 		return c.getId();
-	}
-
-	@Override
-	public void modifierContact(Contact c) {
-		em.merge(c);
-		
 	}
 
 	@Override
@@ -1346,13 +1364,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return c.getId();
 	}
 	
-
-	@Override
-	public void modifierContrat(Contrat c) {
-		em.merge(c);
-		
-	}
-
 	@Override
 	public void supprimerContrat(Long id) {
 		Contrat contrat = getContrat(id);
@@ -1432,9 +1443,73 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierApplicationWeb(ApplicationWeb aw) {
+	public void modifierApplicationWeb(ApplicationWeb aw, Long sw, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
+		if(sw !=null){
+			
+	    	ServeurWeb serveurWeb = getServeurWeb(sw);
+			aw.setServeurWeb(serveurWeb);
+		
+		}else{
+			aw.setServeurWeb(null);
+		}
+	    
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			aw.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			aw.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			aw.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			aw.setContrats(contrat);
+					
+		}
+		
 		em.merge(aw);
 		
+	}
+
+	@Override
+	public List<ApplicationWeb> SearchApplicationWeb(String aw) {
+		Query req = em.createQuery("select aw from ApplicationWeb aw where aw.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+aw+"%");
+		return req.getResultList();
 	}
 
 	@Override
@@ -1462,9 +1537,73 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierInstanceMiddleware(InstanceMiddleware im) {
-		em.merge(im);
+	public void modifierInstanceMiddleware(InstanceMiddleware im, Long m, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> contrats) {
 		
+		   if(m !=null){
+			
+			   Middleware middleware = getMiddleware(m);
+				im.setMiddleware(middleware);
+			
+			}else{
+				im.setMiddleware(null);
+			}
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				im.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				im.setDocuments(document);
+				
+			}
+			
+			if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				im.setSolutionApplicative(solutionsAppl);
+				
+			}
+			if(contrats != null){
+						
+				Collection<Contrat> contrat = new ArrayList<Contrat>();
+				for (Long cc : contrats) {
+					Contrat con = getContrat(cc);
+					contrat.add(con);
+				}
+				
+				im.setContrats(contrat);
+						
+			}
+			
+			em.merge(im);
+		
+	}
+
+	@Override
+	public List<InstanceMiddleware> SearchInstanceMiddleware(String im) {
+		Query req = em.createQuery("select im from InstanceMiddleware im where im.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+im+"%");
+		return req.getResultList();
 	}
 
 	@Override
@@ -1489,11 +1628,75 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(ibd);
 		return ibd.getId();
 	}
+	@Override
+	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd, Long sbd, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		   if(sbd !=null){
+			
+			  ServeurDeBasseDeDonnees serveurDeBasseDeDonnees = getServeurDeBasseDeDonnees(sbd);
+				ibd.setServeurDeBasseDeDonnees(serveurDeBasseDeDonnees);
+			
+			}else{
+				ibd.setServeurDeBasseDeDonnees(null);
+			}
+			
+			if(contacts != null){
+				
+				Collection<Contact> contact = new ArrayList<Contact>();
+				for (Long cc : contacts) {
+					Contact con = getContact(cc);
+					contact.add(con);
+				}
+				
+				ibd.setContacts(contact);
+						
+			}
+			
+			if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				ibd.setDocuments(document);
+				
+			}
+			
+			if(solutionsApplicatives != null){
+				
+				Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+				for (Long sa : solutionsApplicatives) {
+					SolutionApplicative sol = getSolutionApplicative(sa);
+					solutionsAppl.add(sol);
+				}
+				
+				ibd.setSolutionApplicative(solutionsAppl);
+				
+			}
+			if(contrats != null){
+						
+				Collection<Contrat> contrat = new ArrayList<Contrat>();
+				for (Long cc : contrats) {
+					Contrat con = getContrat(cc);
+					contrat.add(con);
+				}
+				
+				ibd.setContrats(contrat);
+						
+			}
+			
+			em.merge(ibd);
+		
+	}
 
 	@Override
-	public void modifierInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes ibd) {
-		em.merge(ibd);
-		
+	public List<InstanceDeBasseDeDonnes> SearchInstanceDeBasseDeDonnes(String ibd) {
+		Query req = em.createQuery("select ibd from InstanceDeBasseDeDonnes ibd where ibd.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+ibd+"%");
+		return req.getResultList();
 	}
 
 	@Override
@@ -1522,12 +1725,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierLicenseLogiciel(LicenseLogiciel ll) {
-		em.merge(ll);
-		
-	}
-
-	@Override
 	public void supprimerLicenseLogiciel(Long id) {
 		LicenseLogiciel licenseLogiciel = getLicenseLogiciel(id);
 		em.remove(licenseLogiciel);
@@ -1549,12 +1746,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long ajouterLicenseOs(LicenseOs lo) {
 		em.persist(lo);
 		return lo.getId();
-	}
-
-	@Override
-	public void modifierLicenseOs(LicenseOs lo) {
-		em.merge(lo);
-		
 	}
 
 	@Override
@@ -1623,12 +1814,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierAutreLogiciel(AutreLogiciel al) {
-		em.merge(al);
-		
-	}
-
-	@Override
 	public void supprimerAutreLogiciel(Long id) {
 		AutreLogiciel autreLogiciel = getAutreLogiciel(id);
 		em.remove(autreLogiciel);
@@ -1650,12 +1835,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long ajouterLogicielPc(LogicielPc lp) {
 		em.persist(lp);
 		return lp.getId();
-	}
-
-	@Override
-	public void modifierLogicielPc(LogicielPc lp) {
-		em.merge(lp);
-		
 	}
 
 	@Override
@@ -1683,12 +1862,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierServeurWeb(ServeurWeb sw) {
-		em.merge(sw);
-		
-	}
-
-	@Override
 	public void supprimerServeurWeb(Long id) {
 		ServeurWeb serveurWeb = getServeurWeb(id);
 		em.remove(serveurWeb);
@@ -1712,11 +1885,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return m.getId();
 	}
 
-	@Override
-	public void modifierMiddleware(Middleware m) {
-		em.merge(m);
-		
-	}
 
 	@Override
 	public void supprimerMiddleware(Long id) {
@@ -1743,12 +1911,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd) {
-		em.merge(sbd);
-		
-	}
-
-	@Override
 	public void supprimerServeurDeBasseDeDonnees(Long id) {
 		ServeurDeBasseDeDonnees serveurBD = getServeurDeBasseDeDonnees(id);
 		em.remove(serveurBD);
@@ -1770,12 +1932,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long ajouterMachineVirtuelle(MachineVirtuelle mv) {
 		em.persist(mv);
 		return mv.getId();
-	}
-
-	@Override
-	public void modifierMachineVirtuelle(MachineVirtuelle mv) {
-		em.merge(mv);
-		
 	}
 
 	@Override
@@ -1814,12 +1970,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	}
 
 	@Override
-	public void modifierVcluster(Vcluster v) {
-		em.merge(v);
-		
-	}
-
-	@Override
 	public void supprimerVcluster(Long id) {
 		Vcluster vcluster = getVcluster(id);
 		em.remove(vcluster);
@@ -1841,12 +1991,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public Long ajouterHyperviseur(Hyperviseur h) {
 		em.persist(h);
 		return h.getId();
-	}
-
-	@Override
-	public void modifierHyperviseur(Hyperviseur h) {
-		em.merge(h);
-		
 	}
 
 	@Override
@@ -3774,11 +3918,9 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	
 	@Override
 	public Long editServeurAll(Serveur Serveur, Long lieu, Long rack, Long chassis, Long licenseos,
-			List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau,
-			List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
-			List<Long> contact, List<Long> contrat) {
-
-		
+		List<Long> sourceelec, List<Long> Logiciel, List<Long> SolutionApplicative, List<Long> interfacereseau,
+		List<Long> equipementreseaux, List<Long> San, List<Long> volumesLogique, List<Long> document,
+		List<Long> contact, List<Long> contrat) {
 		if(lieu != null){
 			Lieu lie = getLieu(lieu);
 			Serveur.setLieu(lie);
@@ -4112,10 +4254,11 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return pm.getId();
 	}
 	
+	
 	@Override
-	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
-			List<Long> cis, List<Long> processusMetiers, List<Long> contrats) {
-		
+	public Long addSolutionApplicativeAll(SolutionApplicative sa, List<Long> contacts, List<Long> documents
+			, List<Long> processusMetiers, List<Long> contrats) {
+	
 		if(contacts != null){
 			
 			Collection<Contact> contact = new ArrayList<Contact>();
@@ -4139,10 +4282,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			sa.setDocuments(document);
 			
 		}
-        if(cis != null){
-			
-			
-		}
+       
        if(processusMetiers!=null){
 			
 			Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
@@ -5204,6 +5344,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Imprimante> SearchImpUser(String s,Long user) {
+		Query req = em.createQuery("select imp from Imprimante imp join imp.user u where imp.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
 
 	@Override
 	public List<TelephneMobile> SearchTeleMobile(String s) {
@@ -5211,11 +5359,27 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
-
+	
+	@Override
+	public List<TelephneMobile> SearchTeleMobileUser(String s,Long user) {
+		Query req = em.createQuery("select t from TelephneMobile t join t.user u where t.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
+	
 	@Override
 	public List<Sim> SearchSIM(String s) {
 		Query req = em.createQuery("select sim from Sim sim where sim.numero LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<Sim> SearchSIMUser(String s,Long user) {
+		Query req = em.createQuery("select sim from Sim sim join sim.user u where sim.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
 		return req.getResultList();
 	}
 
@@ -5225,11 +5389,27 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		req.setParameter("searchKeyword", "%"+s+"%");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<Tablette> SearchTabletteUser(String s,Long user) {
+		Query req = em.createQuery("select t from Tablette t join t.user u where t.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
+		return req.getResultList();
+	}
 
 	@Override
 	public List<TelephoneFixe> SearchTeleFixe(String s) {
 		Query req = em.createQuery("select t from TelephoneFixe t where t.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+s+"%");
+		return req.getResultList();
+	}
+	
+	@Override
+	public List<TelephoneFixe> SearchTeleFixeUser(String s,Long user) {
+		Query req = em.createQuery("select t from TelephoneFixe t join t.user u where t.nom LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+s+"%");
+		req.setParameter("userid", user);
 		return req.getResultList();
 	}
 
@@ -5714,5 +5894,1257 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.merge(Bandotheque);
 		return Bandotheque.getId();
 	}
+
+
+	@Override
+	public void modifierAutreLogiciel(AutreLogiciel al, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			al.setServeur(serveur);
+				
+		}else{
+			al.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			al.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			al.setMachineVirtuelle(null);
+		}
+		
+		if(l !=null){
+					
+			        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+					al.setLicenseLogiciel(licenseLogiciel);
+				
+		}else{
+					al.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			al.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			al.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			al.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			al.setContrats(contrat);
+					
+		}
+		
+		em.merge(al);		
+	}
+
+	@Override
+	public List<AutreLogiciel> SearchAutreLogiciel(String al) {
+		Query req = em.createQuery("select al from AutreLogiciel al where al.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+al+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierLogicielPc(LogicielPc lp, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			lp.setServeur(serveur);
+				
+		}else{
+			lp.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			lp.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			lp.setMachineVirtuelle(null);
+		}
+		
+		if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			lp.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+					lp.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			lp.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			lp.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			lp.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			lp.setContrats(contrat);
+					
+		}
+		
+		em.merge(lp);
+		
+	}
+
+	@Override
+	public List<LogicielPc> SearchLogicielPc(String lp) {
+		Query req = em.createQuery("select lp from LogicielPc lp where lp.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+lp+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierServeurWeb(ServeurWeb sw, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> applicationWeb, List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			sw.setServeur(serveur);
+				
+		}else{
+			sw.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			sw.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			sw.setMachineVirtuelle(null);
+		}
+		if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			sw.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+			sw.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sw.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sw.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			sw.setSolutionApplicative(solutionsAppl);
+			
+		}
+		
+		if(applicationWeb != null){
+					
+			Collection<ApplicationWeb> applicationWe = new ArrayList<ApplicationWeb>();
+			for (Long aw : applicationWeb) {
+				ApplicationWeb appl = getApplicationWeb(aw);
+				applicationWe.add(appl);
+				appl.setServeurWeb(sw); 
+			}
+			
+			sw.setApplicationWeb(applicationWe);
+					
+		}
+		if(contrats != null){
+			
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sw.setContrats(contrat);
+					
+		}
+		
+		em.merge(sw);
+		
+	}
+
+	@Override
+	public List<ServeurWeb> SearchServeurWeb(String sw) {
+		Query req = em.createQuery("select sw from ServeurWeb sw where sw.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+sw+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierMiddleware(Middleware m, Long serv, Long mach, Long l, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesMiddleware,
+			List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			m.setServeur(serveur);
+				
+		}else{
+			m.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			m.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			m.setMachineVirtuelle(null);
+		}
+        if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			m.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+					m.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			m.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			m.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			m.setSolutionApplicative(solutionsAppl);
+			
+		}
+        if(instancesMiddleware != null){
+			
+			Collection<InstanceMiddleware> instanceMiddleware = new ArrayList<InstanceMiddleware>();
+			for (Long im : instancesMiddleware) {
+				InstanceMiddleware inst = getInstanceMiddleware(im);
+				instanceMiddleware.add(inst);
+				inst.setMiddleware(m); 
+			}
+			
+			m.setInstanceMiddleware(instanceMiddleware);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			m.setContrats(contrat);
+					
+		}
+		
+		em.merge(m);
+		
+	}
+
+	@Override
+	public List<Middleware> SearchMiddleware(String mi) {
+		Query req = em.createQuery("select m from Middleware m where m.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+mi+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierServeurDeBasseDeDonnees(ServeurDeBasseDeDonnees sbd, Long serv, Long mach, Long l,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> instancesBD,
+			List<Long> contrats) {
+		
+		if(serv !=null){
+			
+	        Serveur serveur = getServeur(serv);
+			sbd.setServeur(serveur);
+				
+		}else{
+			sbd.setServeur(null);
+		}
+		
+        if(mach !=null){
+			
+	        MachineVirtuelle machineVirtuelle = getMachineVirtuelle(mach);
+			sbd.setMachineVirtuelle(machineVirtuelle);
+				
+		}else{
+			sbd.setMachineVirtuelle(null);
+		}
+        if(l !=null){
+			
+	        LicenseLogiciel licenseLogiciel = getLicenseLogiciel(l);
+			sbd.setLicenseLogiciel(licenseLogiciel);
+		
+		}else{
+			sbd.setLicenseLogiciel(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sbd.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sbd.setDocuments(document);
+			
+		}
+		
+		if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			sbd.setSolutionApplicative(solutionsAppl);
+			
+		}
+		if(instancesBD != null){
+			
+			Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes = new ArrayList<InstanceDeBasseDeDonnes>();
+			for (Long ibd : instancesBD) {
+				InstanceDeBasseDeDonnes inst = getInstanceDeBasseDeDonnes(ibd);
+				instanceDeBasseDeDonnes.add(inst);
+				inst.setServeurDeBasseDeDonnees(sbd);
+			}
+			
+			sbd.setInstanceDeBasseDeDonnes(instanceDeBasseDeDonnes);
+			
+		}
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sbd.setContrats(contrat);
+					
+		}
+		
+		em.merge(sbd);
+		
+	}
+
+	@Override
+	public List<ServeurDeBasseDeDonnees> SearchServeurDeBasseDeDonnees(String sbd) {
+		Query req = em.createQuery("select sbd from ServeurDeBasseDeDonnees sbd where sbd.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+sbd+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierContact(Contact c, Long idlieu) {
+		
+		if(idlieu !=null){
+			
+			Lieu lieu = getLieu(idlieu);
+			c.setLieu(lieu);
+		
+		}else{
+			c.setLieu(null);
+		}
+		
+		
+		em.merge(c);
+		
+	}
+
+	@Override
+	public List<Contact> SearchContact(String c) {
+		Query req = em.createQuery("select c from Contact c where c.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+c+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierContrat(Contrat c, List<Long> contacts, List<Long> documents) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			c.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			c.setDocuments(document);
+			
+		}
+		em.merge(c);
+		
+	}
+
+	@Override
+	public List<Contrat> SearchContrat(String c) {
+		Query req = em.createQuery("select c from Contrat c where c.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+c+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void editProcessusMetier(ProcessusMetier pm, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			pm.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			pm.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			pm.setSolutionApplicative(solutionsAppl);
+			
+		}
+	    em.merge(pm);
+		
+	}
+
+	@Override
+	public List<ProcessusMetier> SearchProcessusMetier(String pm) {
+		Query req = em.createQuery("select pm from ProcessusMetier pm where pm.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+pm+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void editArriveeElectrique(ArriveeElectrique ae, Long lieu, List<Long> pdus, List<Long> contacts,
+			List<Long> documents, List<Long> contrats) {
+		
+		if(lieu !=null){
+			
+	        Lieu l = getLieu(lieu);
+			ae.setLieu(l);
+		
+		}else{
+			ae.setLieu(null);
+		}
+	    if(pdus != null){
+			
+			Collection<PduElectrique> pduElectrique = new ArrayList<PduElectrique>();
+			for (Long pdu : pdus) {
+				PduElectrique pe = getPduElectrique(pdu);
+				pduElectrique.add(pe);
+				pe.setArriveeElectrique(ae);
+			}
+			
+			ae.setPduElectrique(pduElectrique);
+					
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			ae.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			ae.setDocuments(document);
+			
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			ae.setContrats(contrat);
+					
+		}
+		
+		em.merge(ae);
+		
+		
+	}
+
+	@Override
+	public List<ArriveeElectrique> SearchArriveeElectrique(String ae) {
+		Query req = em.createQuery("select ae from ArriveeElectrique ae where ae.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+ae+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void editPduElectrique(PduElectrique pdue, Long lieu, Long rack, Long arrivee, List<Long> contacts,
+			List<Long> documents, List<Long> contrats) {
+		
+		if(lieu !=null){
+			
+		    Lieu l = getLieu(lieu);
+			pdue.setLieu(l);
+		
+		}else{
+			pdue.setLieu(null);
+		}
+		
+		if(rack !=null){
+			
+		    Rack r = getRack(rack);
+			pdue.setRack(r);
+		
+		}else{
+			pdue.setRack(null);
+		}
+		
+		if(arrivee !=null){
+			
+			ArriveeElectrique arriveeElectrique = getArriveeElectrique(arrivee);
+			pdue.setArriveeElectrique(arriveeElectrique);
+		
+		}else{
+			pdue.setArriveeElectrique(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			pdue.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			pdue.setDocuments(document);
+			
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			pdue.setContrats(contrat);
+					
+		}
+		
+		em.merge(pdue);
+			
+	}
+
+	@Override
+	public List<PduElectrique> SearchPduElectrique(String pdue) {
+		Query req = em.createQuery("select pdu from PduElectrique pdu where pdu.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+pdue+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierLicenseLogiciel(LicenseLogiciel ll, Long logiciel, List<Long> documents) {
+		
+		if(logiciel !=null){
+			
+			LogicielEtApplication logicielEtApplications = getLogicielEtApplication(logiciel);
+			ll.setLogicielEtApplications(logicielEtApplications);
+		
+		}else{
+			ll.setLogicielEtApplications(null);
+		}
+		
+       if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			ll.setDocuments(document);
+			
+		}
+        em.merge(ll);
+		
+	}
+
+	@Override
+	public List<LicenseLogiciel> SearchLicenseLogiciel(String ll) {
+		Query req = em.createQuery("select ll from LicenseLogiciel ll where ll.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+ll+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierLicenseOs(LicenseOs lo, Long versionOs, List<Long> documents, List<Long> serveurs,
+			List<Long> machineVirtuelle) {
+		
+			if(versionOs !=null){
+			
+	    	   VersionOs vo = getVersionOs(versionOs);
+				lo.setVersionOs(vo);
+			
+			}else{
+				lo.setVersionOs(null);
+			}
+			
+	       if(documents != null){
+				
+				Collection<Document> document = new ArrayList<Document>();
+				for (Long d : documents) {
+					Document doc = getDocument(d);
+					document.add(doc);
+				}
+				
+				lo.setDocuments(document);
+				
+			}
+	       if(serveurs != null){
+				
+				Collection<Serveur> serveur = new ArrayList<Serveur>();
+				for (Long s : serveurs) {
+					Serveur serv = getServeur(s);
+					serveur.add(serv);
+					serv.setLicenseOs(lo);
+				}
+				
+				lo.setServeur(serveur);;
+				
+			}
+	       if(machineVirtuelle != null){
+				
+				Collection<MachineVirtuelle> mach = new ArrayList<MachineVirtuelle>();
+				for (Long mv : machineVirtuelle) {
+					MachineVirtuelle machV = getMachineVirtuelle(mv);
+					mach.add(machV);
+					machV.setLicenseOs(lo); 
+				}
+				
+				lo.setMachineVirtuelle(mach);;
+				
+			}
+	        em.merge(lo); 
+		
+	}
+
+	@Override
+	public List<LicenseOs> SearchLicenseOs(String lo) {
+		Query req = em.createQuery("select lo from LicenseOs lo where lo.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+lo+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<VersionOs> SearchVersionOs(String vo) {
+		Query req = em.createQuery("select vo from VersionOs vo where vo.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+vo+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierMachineVirtuelle(MachineVirtuelle mv, Long virtualisation, Long license, List<Long> logiciels,
+			List<Long> contacts, List<Long> documents, List<Long> solutionsApplicatives, List<Long> interfacesReseaux,
+			List<Long> volumesLogiques, List<Long> contrats) {
+		
+		if(virtualisation !=null){
+			
+			Virtualisation virt = getVirtualisation(virtualisation);
+			mv.setVirtualisation(virt);
+		
+		}else{
+			mv.setVirtualisation(null);
+		}
+        if(license !=null){
+			
+        	LicenseOs licenseOs = getLicenseOs(license);
+			mv.setLicenseOs(licenseOs);
+		
+		}else{
+			mv.setLicenseOs(null);
+		}
+        if(logiciels != null){
+			
+			Collection<LogicielEtApplication> logiciel = new ArrayList<LogicielEtApplication>();
+			for (Long l : logiciels) {
+				LogicielEtApplication logicielEtApplication = getLogicielEtApplication(l);
+				logiciel.add(logicielEtApplication);
+				logicielEtApplication.setMachineVirtuelle(mv);
+			}
+			
+			mv.setLogicielEtApplication(logiciel);
+					
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			mv.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			mv.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			mv.setSolutionApplicative(solutionsAppl);
+			
+		}
+       if(interfacesReseaux!=null){
+			
+			Collection<IntefaceReseau> logique = new ArrayList<IntefaceReseau>();
+			for (Long ir : interfacesReseaux) {
+				IntefaceReseau log = getInterfaceReseau(ir);
+				logique.add(log);
+				log.setMachineVirtuelle(mv);
+			}
+			
+			    mv.setIntefaceReseau(logique);
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			mv.setVolumelogique(volumeslogique);
+		}
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			mv.setContrats(contrat);
+					
+		}
+		
+		em.merge(mv);
+		
+	}
+
+	@Override
+	public List<MachineVirtuelle> SearchMachineVirtuelle(String mv) {
+		Query req = em.createQuery("select mv from MachineVirtuelle mv where mv.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+mv+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierVcluster(Vcluster v, List<Long> contacts, List<Long> documents,
+			List<Long> solutionsApplicatives, List<Long> volumesLogiques, List<Long> machinesVirtuelles,
+			List<Long> hyperviseurs, List<Long> contrats) {
+		
+        if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			v.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			v.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			v.setSolutionApplicative(solutionsAppl);
+			
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			v.setVolumelogique(volumeslogique);
+		}
+       
+       if(machinesVirtuelles!=null){
+			
+			Collection<MachineVirtuelle> machineVirtuelle = new ArrayList<MachineVirtuelle>();
+			for (Long mv : machinesVirtuelles) {
+				MachineVirtuelle mach = getMachineVirtuelle(mv);
+				machineVirtuelle.add(mach);
+				mach.setVirtualisation(v);
+			}
+			
+			v.setMachineVirtuelle(machineVirtuelle);
+		}
+       
+       if(hyperviseurs != null){
+			
+			Collection<Hyperviseur> hyperviseur = new ArrayList<Hyperviseur>();
+			for (Long h : hyperviseurs) {
+				Hyperviseur hyp = getHyperviseur(h);
+				hyperviseur.add(hyp);
+				hyp.setVcluster(v);
+			}
+			
+			v.setHyperviseur(hyperviseur);
+					
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			v.setContrats(contrat);
+					
+		}
+		
+		em.merge(v);
+		
+	}
+
+	@Override
+	public List<Vcluster> SearchVcluster(String v) {
+		Query req = em.createQuery("select v from Vcluster v where v.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+v+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void modifierHyperviseur(Hyperviseur h, Long vCluster, Long Serveur, List<Long> contacts,
+			List<Long> documents, List<Long> solutionsApplicatives, List<Long> volumesLogiques,
+			List<Long> machinesVirtuelles, List<Long> contrats) {
+		
+		if(vCluster !=null){
+			
+	    	Vcluster vcluster = getVcluster(vCluster );
+			h.setVcluster(vcluster);
+		
+		}else{
+			h.setVcluster(null);
+		}
+        if(Serveur !=null){
+			
+        	Serveur serveur = getServeur(Serveur );
+			h.setServeur(serveur);
+		
+		}else{
+			h.setServeur(null);
+		}
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			h.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			h.setDocuments(document);
+			
+		}
+        if(solutionsApplicatives != null){
+			
+			Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+			for (Long sa : solutionsApplicatives) {
+				SolutionApplicative sol = getSolutionApplicative(sa);
+				solutionsAppl.add(sol);
+			}
+			
+			h.setSolutionApplicative(solutionsAppl);
+			
+		}
+        
+       if(volumesLogiques!=null){
+			
+			Collection<VolumeLogique> volumeslogique = new ArrayList<VolumeLogique>();
+			for (Long vl : volumesLogiques) {
+				VolumeLogique vol = getVolumeLogique(vl);
+				volumeslogique.add(vol);
+			}
+			
+			h.setVolumelogique(volumeslogique);
+		}
+       
+       if(machinesVirtuelles!=null){
+			
+			Collection<MachineVirtuelle> machineVirtuelle = new ArrayList<MachineVirtuelle>();
+			for (Long mv : machinesVirtuelles) {
+				MachineVirtuelle mach = getMachineVirtuelle(mv);
+				machineVirtuelle.add(mach);
+				mach.setVirtualisation(h);
+			}
+			
+			h.setMachineVirtuelle(machineVirtuelle);
+		}
+		
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			h.setContrats(contrat);
+					
+		}
+		
+		em.merge(h);
+		
+	}
+
+	@Override
+	public List<Hyperviseur> SearchHyperviseur(String h) {
+		Query req = em.createQuery("select h from Hyperviseur h where h.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+h+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<DocumentFichier> SearchDocumentFichier(String df) {
+		Query req = em.createQuery("select df from DocumentFichier df where df.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+df+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<DocumentWeb> SearchDocumentWeb(String dw) {
+		Query req = em.createQuery("select dw from DocumentWeb dw where dw.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+dw+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<DocumentNote> SearchDocumentNote(String dn) {
+		Query req = em.createQuery("select dn from DocumentFichier dn where dn.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+dn+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public void editSolutionApplicative(SolutionApplicative sa, List<Long> contacts, List<Long> documents,
+			List<Long> processusMetiers, List<Long> contrats) {
+		
+		if(contacts != null){
+			
+			Collection<Contact> contact = new ArrayList<Contact>();
+			for (Long cc : contacts) {
+				Contact con = getContact(cc);
+				contact.add(con);
+			}
+			
+			sa.setContacts(contact);
+					
+		}
+		
+		if(documents != null){
+			
+			Collection<Document> document = new ArrayList<Document>();
+			for (Long d : documents) {
+				Document doc = getDocument(d);
+				document.add(doc);
+			}
+			
+			sa.setDocuments(document);
+			
+		}
+       
+       if(processusMetiers!=null){
+			
+			Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
+			for (Long pm : processusMetiers) {
+				ProcessusMetier pro = getProcessusMetier(pm);
+				processusMetier.add(pro);
+				
+			}
+			
+			    sa.setProcessusMetier(processusMetier);
+		}
+      
+       
+		if(contrats != null){
+					
+			Collection<Contrat> contrat = new ArrayList<Contrat>();
+			for (Long cc : contrats) {
+				Contrat con = getContrat(cc);
+				contrat.add(con);
+			}
+			
+			sa.setContrats(contrat);
+					
+		}
+		em.merge(sa); 
+		
+	}
+
+	@Override
+	public List<SolutionApplicative> SearchSolutionApplicative(String sa) {
+		Query req = em.createQuery("select sa from SolutionApplicative sa where sa.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+sa+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Document> SearchDocument(String d) {
+		Query req = em.createQuery("select d from Document d where d.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+d+"%");
+		return req.getResultList();
+	}
+
+	
 }
 

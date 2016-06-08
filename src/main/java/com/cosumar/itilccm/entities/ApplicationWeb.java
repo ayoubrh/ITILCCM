@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,26 +34,31 @@ public class ApplicationWeb implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private java.util.Collection<SolutionApplicative> solutionApplicative;
+	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany
+	   @ManyToMany(cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
-	   @ManyToOne
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="applicationWeb",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
+	   
+	   @ManyToOne(cascade = CascadeType.ALL)
 	   @JoinColumn(name="id_serveurWeb")
 	   private ServeurWeb serveurWeb;
 		   
@@ -133,6 +139,12 @@ public class ApplicationWeb implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 		   
 		      

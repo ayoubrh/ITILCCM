@@ -3,12 +3,19 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 @Entity
 @DiscriminatorValue("AutreLogiciel")
 public class AutreLogiciel extends LogicielEtApplication implements Serializable {
 
+	@Column(nullable=true)
+	@ManyToMany(mappedBy="autreLogiciel",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
+	
 	public AutreLogiciel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -18,6 +25,14 @@ public class AutreLogiciel extends LogicielEtApplication implements Serializable
 			Date dateDeMiseEnProduction, String description) {
 		super(nom, statut, criticite, cheminD_installation, dateDeMiseEnProduction, description);
 		// TODO Auto-generated constructor stub
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 	

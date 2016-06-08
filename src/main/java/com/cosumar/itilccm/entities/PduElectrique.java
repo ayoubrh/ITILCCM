@@ -3,10 +3,12 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -21,6 +23,9 @@ public class PduElectrique extends ConnexionElectrique implements Serializable{
   	 @JoinColumn(name="rack_id")
 	private Rack rack;
 	 
+	 @Column(nullable=true)
+	 @ManyToMany(mappedBy="pduElectrique",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
 	 
 
 	public PduElectrique() {
@@ -55,6 +60,14 @@ public class PduElectrique extends ConnexionElectrique implements Serializable{
 
 	public void setRack(Rack rack) {
 		this.rack = rack;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	 
 	 

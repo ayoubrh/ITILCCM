@@ -19,7 +19,7 @@ public class VersionOs implements Serializable {
 			
 			@NotEmpty
 		    private String nom;
-		  
+			@NotEmpty
 		    private String familleOs;
 		   
 		    @OneToOne(mappedBy="versionOs")
