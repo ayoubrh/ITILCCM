@@ -28,14 +28,13 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Détail Interface Physique - ITIL-CCM</title>
+	<title>Recherche Arrivée électrique - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -72,7 +71,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated page-search"> 
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -496,179 +495,109 @@ Use search to find needed section.
 
 
 	<div id="content-wrapper">
-<!-- 5. $CONTENT ===================================================================================
 
-		Content
+<!-- 5. $SEARCH_RESULTS_PAGE =======================================================================
+	
+		Search results page
 -->
 
+			<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('#jq-datatables-example').dataTable();
+					});
+				</script>
+				<!-- / Javascript -->
 
 
-				<c:if test="${save == true }">
-					<div class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						L'élément de configuration est bien modifier.
-					</div>
-				</c:if>
+		<div class="page-header">
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher Arrivée électrique</h1>
+			<a href="<c:url value="/config/admin/add/arriveeElectrique"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Arrivée électrique</a>
+		</div> <!-- / .page-header -->
+
+		<!-- / .search-text -->
+
+		<!-- Tabs -->
 		
+		<!-- / Tabs -->
 
+		<!-- Panel -->
+		<div class="panel search-panel">
 
+			<!-- Search form -->
+			<form action="arriveeElectrique" class="search-form bg-primary">
+				<div class="input-group input-group-lg">
+					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
+					<input type="text" name="ae" class="form-control" value="${arriveeElectrique }" placeholder="Entrez le nom à rechercher...">
+					<span class="input-group-btn">
+						<button class="btn" type="submit">Search</button>
+					</span>
+				</div> <!-- / .input-group -->
+			</form>
+			<!-- / Search form -->
 
+			<!-- Search results -->
+			<div class="panel-body">
 
+				<!-- Classic search -->
+				
+				<!-- / Classic search -->
 
-		<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail Interface Physique</span>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
-						<a href="<c:url value="/config/admin/edit/physique?id=${physique.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
-						<a href="<c:url value="/config/admin/delete/physique?id=${physique.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						</s:authorize>
-						<br>
-					</div>
-					<div class="panel-body">
+				<!-- Users search -->
 					
-					
-		
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-								<li >
-									<a href="#profile-tabs-vlans" data-toggle="tab">VLANs</a>
-								</li>
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
-								</li>						
-							</ul>
-		                 </div>
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
+
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Nom</th>
+										<th>Statut</th>
+										<th>Criticité</th>
+										<th>Site</th>
+										<th>Marque</th>
+										<th>Modèle</th>
+										<th>Numéro de série</th>
+										<th>Numéro Asset</th>
+										<th>Date de mise en production</th>
+										<th>Date d'achat</th>
+										<th>Date de fin de garantie</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${cis}" var="ci">
+										<tr class="gradeA">
+											<td><a href="<c:url value="/config/view/arriveeElectrique?id=${ci.id }" />">${ci.nom }</a></td>
+											<td>${ci.statut }</td>
+											<td>${ci.criticite }</td>
+											<td><a href="<c:url value="/config/view/lieu?id=${ci.lieu.id }" />">${ci.lieu.nom }</a></td>
+											<td>${ci.marque }</td>
+											<td>${ci.modele }</td>
+											<td>${ci.numeroDeSerie }</td>
+											<td>${ci.numeroAsset}</td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction }" /></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateD_achat }" /></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeFinDeGarantie }" /></td>
+											<td>${ci.description}</td>
+										</tr>
 									
-		
-									<div class="panel-body">
-						
-						
-							
-									<div class="form-group">
-										<label for="jq-validation-email" class="col-sm-3 control-label">Nom : </label>
-										${physique.nom }
-									</div>
-									<div class="form-group">
-										<label for="jq-validation-email" class="col-sm-3 control-label">Matériel : </label>
-												<c:if test="${physique.equipementReseau != null }">
-													<a href="<c:url value="/config/view/equipementreseau?id=${physique.equipementReseau.id }" />">${physique.equipementReseau.nom }</a>		
-												</c:if>
-												<c:if test="${physique.infrastructure != null }">
-													<a href="<c:url value="/config/view/serveur?id=${physique.infrastructure.id }" />">${physique.infrastructure.nom }</a>		
-												</c:if>
-											
-											
-									</div>
-								<div class="form-group">
-									<label for="jq-validation-email" class="col-sm-3 control-label">Adresse IP : </label>
-									${physique.adresseIp }
-								</div>
-								<div class="form-group">
-									<label for="jq-validation-email" class="col-sm-3 control-label">Adresse MAC : </label>
-									${physique.adresseMac }
-								</div>
-								<div class="form-group">
-									<label for="jq-validation-email" class="col-sm-3 control-label">Passerelle : </label>
-									${physique.passerelle }
-								</div> 
-								<div class="form-group">
-									<label for="jq-validation-email" class="col-sm-3 control-label">Masque de sous réseau : </label>
-									${physique.masqueDeSousReseau }
-								</div>
-								<div class="form-group">
-									<label for="jq-validation-email" class="col-sm-3 control-label">Vitesse : </label>
-									${physique.vitesse }
-								</div>
-								<div class="form-group">
-									<label for="jq-validation-text" class="col-sm-3 control-label">Commentaire : </label>
-									${physique.commentaire }
-								</div>
-							</div>
-		
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-vlans" id="profile-tabs-vlans">
-								<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-										<tr>
-												<th>VLAN</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tableVlans">
-												<c:forEach items="${physique.vlan}" var="v">
-													<tr class="gradeA" id="tr_vlans_${v.id }">
-														<td><a href="<c:url value="/config/view/vlan?id=${v.id }" />">${v.vlantag }</a></td>
-														<td>${v.description }</td>
-														
-													</tr>
-												</c:forEach>
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
+									</c:forEach>
 									
 									
-								
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
-								
-										<div class="table-primary">
-											<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example-tickets">
-												<thead>
-													<tr>
-														<th>Titre</th>
-														<th>Date d'ouverture</th>
-														<th>Demandeur</th>
-														<th>Status</th>
-														<th>Impact</th>
-														<th>Etat</th>
-													</tr>
-												</thead>
-												<tbody>
-														<tr class="gradeA">
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															
-															
-														</tr>
-													
-												</tbody>
-											</table>
-										</div>
-								
-								</div>
-							</div> <!-- / .tab-content -->
-						
-							
-					</div>
-					
-					
-		</div>
+								</tbody>
+							</table>
+				<!-- / Users search -->
 
-		
+				<!-- Messages search -->
+				
+				<!-- / Messages search -->
+			</div>
+			<!-- / Search results -->
 
-		<!-- Content here -->
-		
-		
-		
+			<!-- Panel Footer -->
+			<!-- / .panel-footer -->
+
+		</div> 
+		<!-- / Panel -->
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -689,26 +618,15 @@ Use search to find needed section.
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
-init.push(function () {
-	$('#profile-tabs').tabdrop();
-
-	$("#leave-comment-form").expandingInput({
-		target: 'textarea',
-		hidden_content: '> div',
-		placeholder: 'Write message',
-		onAfterExpand: function () {
-			$('#leave-comment-form textarea').attr('rows', '3').autosize();
-		}
+	init.push(function () {
+		// Javascript code here
+		var s = "${arriveeElectrique }";
+		$('.add-tooltip').tooltip();
+		document.getElementsByName("jq-datatables-example_length").value="25";
+		
+		$(".table-header").hide();
 	});
-	
-		$('.jq-datatables-example').dataTable();
-		$('.jq-datatables-example_wrapper .table-caption').text('');
-		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-		
-		
-	
-});
-window.PixelAdmin.start(init);
+	window.PixelAdmin.start(init);
 </script>
 
 </body>

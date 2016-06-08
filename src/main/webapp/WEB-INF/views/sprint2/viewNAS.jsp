@@ -405,33 +405,38 @@ Use search to find needed section.
 					</ul>
 				</li>
 				</s:authorize>
-				<li class="mm-dropdown">
+				                <li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau CI</span></a>
+							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -445,10 +450,30 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-retweet"></i><span class="mm-text">Gestion des changements</span></a>
+					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+						</li>
+						</s:authorize>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -945,7 +970,33 @@ Use search to find needed section.
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
 								
-										Tickets
+										<div class="table-primary">
+											<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example-tickets">
+												<thead>
+													<tr>
+														<th>Titre</th>
+														<th>Date d'ouverture</th>
+														<th>Demandeur</th>
+														<th>Status</th>
+														<th>Impact</th>
+														<th>Etat</th>
+													</tr>
+												</thead>
+												<tbody>
+														<tr class="gradeA">
+															<td> </td>
+															<td> </td>
+															<td> </td>
+															<td> </td>
+															<td> </td>
+															<td> </td>
+															
+															
+														</tr>
+													
+												</tbody>
+											</table>
+										</div>
 								
 								</div>
 							</div> <!-- / .tab-content -->
@@ -1035,6 +1086,12 @@ Use search to find needed section.
 			$('.jq-datatables-example').dataTable();
 			$('.jq-datatables-example_wrapper .table-caption').text('');
 			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			
+			
+			$('#jq-datatables-example-tickets').dataTable();
+			$('#jq-datatables-example-tickets_wrapper .table-caption').replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='addTicket'>Nouveau Ticket</button></div>");
+			$('#jq-datatables-example-tickets_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 			
 			
 		    

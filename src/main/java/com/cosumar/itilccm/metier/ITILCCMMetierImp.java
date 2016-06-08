@@ -2287,6 +2287,36 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	}
 
 	@Override
+	public List<Ordinateur> SearchPCUser(String s, Long user) {
+		return dao.SearchPCUser(s, user);
+	}
+
+	@Override
+	public List<Imprimante> SearchImpUser(String s, Long user) {
+		return dao.SearchImpUser(s, user);
+	}
+
+	@Override
+	public List<TelephneMobile> SearchTeleMobileUser(String s, Long user) {
+		return dao.SearchTeleMobileUser(s, user);
+	}
+
+	@Override
+	public List<Sim> SearchSIMUser(String s, Long user) {
+		return dao.SearchSIMUser(s, user);
+	}
+
+	@Override
+	public List<Tablette> SearchTabletteUser(String s, Long user) {
+		return dao.SearchTabletteUser(s, user);
+	}
+
+	@Override
+	public List<TelephoneFixe> SearchTeleFixeUser(String s, Long user) {
+		return dao.SearchTeleFixeUser(s, user);
+	}
+
+	@Override
 	public List<Groupe> SearchGroupe(String g) {
 		return dao.SearchGroupe(g); 
 	}

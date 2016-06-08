@@ -95,7 +95,7 @@
 				rules : {
 					'signup_name': {
 						required: true,
-						minlength: 6,
+						minlength: 4,
 						maxlength: 20
 					},
 					'signup_email': {
@@ -104,7 +104,7 @@
 					}
 				},
 				messages: {
-					'signup_name': 'Le matricule doit tre entre 6 et 20 caractres ',
+					'signup_name': 'Le matricule doit être entre 4 et 20 caractres ',
 					'signup_email': 'Entrez un E-mail valide'
 				}
 			});
