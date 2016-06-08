@@ -33,34 +33,35 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private java.util.Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
 	   //@NotEmpty
-	   @ManyToOne(cascade = CascadeType.ALL)
+	   @ManyToOne
 	   @JoinColumn(name="id_serBD")
 	   private ServeurDeBasseDeDonnees serveurDeBasseDeDonnees;
 	   
 	   @Column(nullable=true)
-		@ManyToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.ALL)
-		private Collection<Groupe> groupe;
-		   
+	   @ManyToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
+	   
+	   
 		public InstanceDeBasseDeDonnes() {
 			super();
 			// TODO Auto-generated constructor stub
@@ -139,9 +140,7 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 		public void setGroupe(Collection<Groupe> groupe) {
 			this.groupe = groupe;
 		}
-		   
-   
-   
+		
    
 
 }

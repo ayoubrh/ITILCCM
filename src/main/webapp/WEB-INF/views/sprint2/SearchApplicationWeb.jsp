@@ -31,7 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Recherche Application Web - ITIL-CCM</title>
@@ -493,8 +493,10 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche Application Web</h1>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Applications Web</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
 			<a href="<c:url value="/config/admin/add/applicationWeb"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Application Web</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->

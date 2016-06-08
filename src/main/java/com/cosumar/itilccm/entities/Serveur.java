@@ -31,7 +31,7 @@ public class Serveur extends Infrastructure implements Serializable{
    private Collection<VolumeLogique> volumelogique;
    	
    	 @Column(nullable=true)
-	 @OneToMany(mappedBy="serveur")
+	 @OneToMany(mappedBy="serveur",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Hyperviseur> hyperviseur;
 	   
@@ -40,13 +40,10 @@ public class Serveur extends Infrastructure implements Serializable{
 	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @OneToMany(mappedBy="serveur")
+	 @OneToMany(mappedBy="serveur",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 	 
-	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="serveur",cascade = CascadeType.ALL)
-	 private Collection<Groupe> groupe;
 	
 	public String getCpu() {
 		return cpu;
@@ -98,12 +95,7 @@ public class Serveur extends Infrastructure implements Serializable{
 	public Serveur(String nom) {
 		super(nom);
 	}
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
+	
 	
 	
 	

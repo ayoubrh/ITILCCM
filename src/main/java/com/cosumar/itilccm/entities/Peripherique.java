@@ -41,25 +41,25 @@ public class Peripherique implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="ordinateur_id")
    private Ordinateur ordinateur;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Document> document;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contrat> contrat;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;

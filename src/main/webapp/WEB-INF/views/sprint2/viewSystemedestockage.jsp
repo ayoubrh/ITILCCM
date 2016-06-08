@@ -31,8 +31,8 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Systéme de Stockage - ITIL-CCM</title>
@@ -476,15 +476,7 @@ Use search to find needed section.
 		Content
 -->
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+			
 				<c:if test="${save == true }">
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
@@ -497,10 +489,12 @@ Use search to find needed section.
 				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail Systéme de Stockage</span>
+						<span class="panel-title col-md-9">Détail du Systéme de Stockage</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/systemedestockage?id=${systemeDeStockage.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/systemedestockage?id=${systemeDeStockage.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -681,7 +675,7 @@ Use search to find needed section.
 														<td><a href="<c:url value="/config/view/solutionapplicative?id=${sa.id }" />">${sa.nom }</a></td>
 														<td>${sa.statut }</td>
 														<td>${sa.criticite}</td>
-														<td>${sa.dateDeMiseEnProduction }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 													</tr>
 												</c:forEach>
 												
@@ -717,7 +711,7 @@ Use search to find needed section.
 											<tbody id="tableinterfacereseau">
 												<c:forEach items="${systemeDeStockage.intefaceReseau}" var="ir">
 													<tr class="gradeA" id="tr_ir_${ir.id }">
-														<td><a href="<c:url value="/config/view/interfacereseau?id=${ir.id }" />">${ir.nom }</a></td>
+														<td><a href="<c:url value="/config/view/physique?id=${ir.id }" />">${ir.nom }</a></td>
 														<td>${ir.adresseIp }</td>
 														<td>${ir.adresseMac }</td>
 														<td>${ir.commentaire }</td>
@@ -765,7 +759,7 @@ Use search to find needed section.
 													<td><a href="<c:url value="/config/view/equipementreseau?id=${er.id }" />">${er.nom }</a></td>
 													<td>${er.statut }</td>
 													<td>${er.criticite }</td>
-													<td>${er.lieu.nom }</td>
+													<td><a href="<c:url value="/config/view/lieu?id=${er.lieu.id }" />">${er.lieu.nom }</a></td>
 													<td>${er.marque }</td>
 													<td>${er.modele }</td>
 													<td>${er.numeroDeSerie }</td>
@@ -809,7 +803,7 @@ Use search to find needed section.
 														<td>${san.criticite }</td>
 														<td>${san.numeroDeSerie }</td>
 														<td>${san.numeroAsset }</td>
-														<td>${san.dateDeMiseEnProduction }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${san.dateDeMiseEnProduction}" /></td>
 													</tr>
 												</c:forEach>
 											

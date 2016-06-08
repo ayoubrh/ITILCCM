@@ -31,7 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Recherche Serveur Web - ITIL-CCM</title>
@@ -493,8 +493,10 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche Serveur Web</h1>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Serveurs Web</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
 			<a href="<c:url value="/config/admin/add/serveurWeb"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Serveur Web</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
@@ -534,11 +536,8 @@ Use search to find needed section.
 										<th>Nom</th>
 										<th>Statut</th>
 										<th>Criticité</th>
-										<th>Système</th>
-										<th>Licence logiciel</th>
 										<th>Chemin d'installation</th>
 										<th>Date de mise en production</th>
-										<th>Description</th>
 										
 									</tr>
 								</thead>
@@ -548,18 +547,9 @@ Use search to find needed section.
 											<td><a href="<c:url value="/config/view/serveurWeb?id=${ci.id }" />">${ci.nom }</a></td>
 											<td>${ci.statut }</td>
 											<td>${ci.criticite }</td>
-											<td>
-											<c:if test="${ci.serveur.id != null }">
-										      <a href="<c:url value="/config/view/serveur?id=${ci.serveur.id }" />"> ${ci.serveur.nom }</a>
-										    </c:if>
-										    <c:if test="${ci.machineVirtuelle.id != null }">
-											<a href="<c:url value="/config/view/machineVirtuelle?id=${ci.machineVirtuelle.id }" />">${ci.machineVirtuelle.nom }</a>
-											</c:if>
-											</td>
-											<td>${ci.licenseLogiciel.nom }</td>
 											<td>${ci.cheminD_installation }</td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction}" /></td>
-											<td>${ci.description }</td>
+											
 										</tr>
 									
 									</c:forEach>

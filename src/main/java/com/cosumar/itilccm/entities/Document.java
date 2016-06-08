@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorValue;
@@ -34,101 +35,101 @@ public class Document implements Serializable {
 	  
 	  
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<Contrat> contrats;
 	   
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Ordinateur> ordinateur;
 	   	
-		@ManyToMany(mappedBy="document")
+		@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<EquipementReseau> equipementreseaux;
 	   	
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Infrastructure> infrastructure;
 	   	
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Rack> rack;
 	   	
-		@ManyToMany(mappedBy="document")
+		@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Chassis> chassis;
 	   	
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Imprimante> imprimante;
 	   	
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<TelephneMobile> telephonemobile;
 	   	
 	   	
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Peripherique> peripherique;
 	   	
 	   	
-	   	@ManyToMany(mappedBy="document")
+	   	@ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<TelephoneFixe> telephonefixe;
 	    
-	    @ManyToMany(mappedBy="document")
+	    @ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Tablette> tablette;
 	    
-	    @ManyToMany(mappedBy="document")
+	    @ManyToMany(mappedBy="document",cascade = CascadeType.ALL)
 	   	@Column(nullable = true)
 	   private Collection<Sim> sim;
 	    
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<ConnexionElectrique> connexionElectrique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<LicenseLogiciel> licenseLogiciel;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<ApplicationWeb> applicationWeb;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<InstanceMiddleware> instanceMiddleware;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<LicenseOs> licenseOs;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<Virtualisation> virtualisation;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<Camera> camera;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<ProcessusMetier> processusMetier;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(mappedBy="documents")
+	   @ManyToMany(mappedBy="documents",cascade = CascadeType.ALL)
 	   private Collection<SolutionApplicative> solutionApplicative;
 
 		public Document() {

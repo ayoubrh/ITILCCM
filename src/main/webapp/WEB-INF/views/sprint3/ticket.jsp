@@ -35,7 +35,7 @@ Use search to find needed section.
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Nouveau Groupe - ITIL-CCM</title>
+	<title>Ajouter Ticket d'Incident - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -72,7 +72,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -412,25 +412,22 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Rechercher CIs</span></a>
+							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contacts</span></a>
+							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Lieux</span></a>
+							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Documents</span></a>
+							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Contrats</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Groupe CIs</span></a>
+							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
 					</ul>
 				</li>
@@ -475,19 +472,92 @@ Use search to find needed section.
 
 		Content
 -->
-			<!-- Modal CIs -->
-				<div id="myModalCIs" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout CIs</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
+
+<!-- 11. $WIZARDS ==================================================================================
+
+				Wizards
+-->
+				<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('.ui-wizard-example').pixelWizard({
+							onChange: function () {
+								console.log('Current step: ' + this.currentStep());
+							},
+							onFinish: function () {
+								// Disable changing step. To enable changing step just call this.unfreeze()
+								this.freeze();
+								console.log('Wizard is freezed');
+								console.log('Finished!');
+							}
+						});
+
+						$('.wizard-next-step-btn').click(function () {
+							$(this).parents('.ui-wizard-example').pixelWizard('nextStep');
+						});
+
+						$('.wizard-prev-step-btn').click(function () {
+							$(this).parents('.ui-wizard-example').pixelWizard('prevStep');
+						});
+
+						$('.wizard-go-to-step-btn').click(function () {
+							$(this).parents('.ui-wizard-example').pixelWizard('setCurrentStep', 1);
+						});
+
+						$('#ui-wizard-modal').on('show.bs.modal', function (e) {
+							var $modal = $(this),
+							    $wizard = $modal.find('.ui-wizard-example'),
+							    timer = null,
+							    callback = function() {
+							    	if (timer) clearTimeout(timer);
+							    	if ($modal.hasClass('in')) {
+							    		$wizard.pixelWizard('resizeSteps');
+							    	} else {
+							    		timer = setTimeout(callback, 10);
+							    	}
+							    };
+							callback();
+						});
+					});
+				</script>
+				<!-- / Javascript -->
+
+				<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Créer Nouvelle Ticket d'Incident</span>
+					</div>
+					<div class="panel-body">
+						<div class="wizard ui-wizard-example">
+							<div class="wizard-wrapper">
+								<ul class="wizard-steps">
+									<li data-target="#wizard-example-step1" >
+										<span class="wizard-step-number">1</span>
+										<span class="wizard-step-caption">
+											Step 1
+											<span class="wizard-step-description">Choisi CI</span>
+										</span>
+									</li>
+									<li data-target="#wizard-example-step2"> <!-- ! Remove space between elements by dropping close angle -->
+										<span class="wizard-step-number">2</span>
+										<span class="wizard-step-caption">
+											Step 2
+											<span class="wizard-step-description">Second step description</span>
+										</span>
+									</li>
+									<li data-target="#wizard-example-step4"> <!-- ! Remove space between elements by dropping close angle -->
+										<span class="wizard-step-number">4</span>
+										<span class="wizard-step-caption">
+											Finish
+										</span>
+									</li>
+								</ul> <!-- / .wizard-steps -->
+							</div> <!-- / .wizard-wrapper -->
+							<div class="wizard-content panel">
+								<div class="wizard-pane" id="wizard-example-step1">
+									<div class="table-primary">
 									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 										<thead>
-											<tr>
+										<tr>
 												<th id="supchek"> </th>
 												<th>CI fonctionnel</th>
 												<th>type de CI</th>
@@ -495,10 +565,10 @@ Use search to find needed section.
 												<th>Date de mise en production</th>	
 											</tr>
 										</thead>
-										<tbody id="tableCIspopup">
+										<tbody>
 											<c:forEach items="${ApplicationWeb}" var="aw" >
 												<tr class="gradeA" id="cis_App_${aw.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="App_${aw.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="App_${aw.id }"></td>
 													<td>${aw.nom }</td>
 													<td>Application Web</td>
 													<td>${aw.criticite }</td>
@@ -510,7 +580,7 @@ Use search to find needed section.
 												<c:set var="string1" value="${ce['class'].name }"/>
 												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
 												<tr class="gradeA" id="cis_Con_${ce.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Con_${ce.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Con_${ce.id }"></td>
 													<td>${ce.nom }</td>
 													<td>
 													<c:if test="${string2 == 'ArriveeElectrique'}">
@@ -528,7 +598,7 @@ Use search to find needed section.
 												<c:set var="string1" value="${l['class'].name }"/>
 												<c:set var="string2" value="${fn:substring(string1, 29,60)}" />
 												<tr class="gradeA" id="cis_Log_${l.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Log_${l.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Log_${l.id }"></td>
 													<td>${l.nom }</td>
 													<td>
 													<c:if test="${string2 == 'AutreLogiciel'}">
@@ -555,7 +625,7 @@ Use search to find needed section.
 												<c:set var="string1" value="${in['class'].name }"/>
 												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
 												<tr class="gradeA" id="cis_Inf_${in.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Inf_${in.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Inf_${in.id }"></td>
 													<td>${in.nom }</td>
 													<td>
 													<c:if test="${string2 == 'Bandotheque'}">
@@ -583,7 +653,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Camera}" var="ca" >
 												<tr class="gradeA" id="cis_Cam_${ca.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Cam_${ca.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Cam_${ca.id }"></td>
 													<td>${ca.nom }</td>
 													<td>Camera</td>
 													<td>${ca.criticite }</td>
@@ -592,7 +662,7 @@ Use search to find needed section.
 											</c:forEach>
                                             <c:forEach items="${Chassis}" var="ch" >
 												<tr class="gradeA" id="cis_Cha_${ch.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Cha_${ch.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Cha_${ch.id }"></td>
 													<td>${ch.nom }</td>
 													<td>Chassis</td>
 													<td>${ch.criticite }</td>
@@ -601,7 +671,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Equipementreseau}" var="er" >
 												<tr class="gradeA" id="cis_Equ_${er.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Equ_${er.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Equ_${er.id }"></td>
 													<td>${er.nom }</td>
 													<td>Equipement réseau</td>
 													<td>${er.criticite }</td>
@@ -612,7 +682,7 @@ Use search to find needed section.
 												<c:set var="string1" value="${v['class'].name }"/>
 												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
 												<tr class="gradeA" id="cis_Vir_${v.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Vir_${v.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Vir_${v.id }"></td>
 													<td>${v.nom }</td>
 													<td>
 													<c:if test="${string2 == 'Hyperviseur'}">
@@ -628,7 +698,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Imprimante}" var="i" >
 												<tr class="gradeA" id="cis_Imp_${i.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Imp_${i.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Imp_${i.id }"></td>
 													<td>${i.nom }</td>
 													<td>Imprimante</td>
 													<td>${i.criticite }</td>
@@ -637,7 +707,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${InstanceMiddleware}" var="im" >
 												<tr class="gradeA" id="cis_InM_${im.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="InM_${im.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="InM_${im.id }"></td>
 													<td>${im.nom }</td>
 													<td>Instance Middleware</td>
 													<td>${im.criticite }</td>
@@ -646,7 +716,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Instancedebasededonnees}" var="ibd" >
 												<tr class="gradeA" id="cis_Ibd_${ibd.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Ibd_${ibd.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Ibd_${ibd.id }"></td>
 													<td>${ibd.nom }</td>
 													<td>Instance de base de données</td>
 													<td>${ibd.criticite }</td>
@@ -655,7 +725,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Machinevirtuelle}" var="mv" >
 												<tr class="gradeA" id="cis_Mac_${mv.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Mac_${mv.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Mac_${mv.id }"></td>
 													<td>${mv.nom }</td>
 													<td>Machine virtuelle</td>
 													<td>${mv.criticite }</td>
@@ -664,7 +734,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Ordinateur}" var="pc" >
 												<tr class="gradeA" id="cis_Ord_${pc.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Ord_${pc.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Ord_${pc.id }"></td>
 													<td>${pc.nom }</td>
 													<td>Ordinateur</td>
 													<td>${pc.criticite }</td>
@@ -673,7 +743,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Processusmetier}" var="pm" >
 												<tr class="gradeA" id="cis_Pro_${pm.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Pro_${pm.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Pro_${pm.id }"></td>
 													<td>${pm.nom }</td>
 													<td>Processus métier</td>
 													<td>${pm.criticite }</td>
@@ -682,7 +752,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Peripherique}" var="p" >
 												<tr class="gradeA" id="cis_Per_${p.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Per_${p.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Per_${p.id }"></td>
 													<td>${p.nom }</td>
 													<td>Périphérique</td>
 													<td>${p.criticite }</td>
@@ -691,7 +761,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Rack}" var="r" >
 												<tr class="gradeA" id="cis_Rac_${r.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Rac_${r.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Rac_${r.id }"></td>
 													<td>${r.nom }</td>
 													<td>Rack</td>
 													<td>${r.criticite }</td>
@@ -700,7 +770,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Solutionapplicative}" var="sa" >
 												<tr class="gradeA" id="cis_Sol_${sa.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Sol_${sa.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Sol_${sa.id }"></td>
 													<td>${sa.nom }</td>
 													<td>Solution applicative</td>
 													<td>${sa.criticite }</td>
@@ -709,7 +779,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Tablette}" var="t" >
 												<tr class="gradeA" id="cis_Tab_${t.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Tab_${t.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Tab_${t.id }"></td>
 													<td>${t.nom }</td>
 													<td>Tablette</td>
 													<td>${t.criticite }</td>
@@ -718,7 +788,7 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Telephonefixe}" var="tf" >
 												<tr class="gradeA" id="cis_Tef_${tf.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Tef_${tf.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Tef_${tf.id }"></td>
 													<td>${tf.nom }</td>
 													<td>Téléphone fixe</td>
 													<td>${tf.criticite }</td>
@@ -727,174 +797,202 @@ Use search to find needed section.
 											</c:forEach>
 											<c:forEach items="${Telephonemobile}" var="tm" >
 												<tr class="gradeA" id="cis_Tem_${tm.id }" >
-													<td class="supchekbox"><input type="checkbox" class="ckcis" name="ckCIs" value="Tem_${tm.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Tem_${tm.id }"></td>
 													<td>${tm.nom }</td>
 													<td>Téléphone mobile</td>
 													<td>${tm.criticite }</td>
 													<td><fmt:formatDate type="date" dateStyle="long" value="${tm.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
+											
 										</tbody>
 									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary" id="addcis">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal -->
-		<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title">Nouveau Groupe</span>
-					</div>
-					<div class="panel-body">
-						<f:form modelAttribute="groupe" action="saveGroupe" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
-					
-		
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-								
-								
-								<li>
-									<a href="#profile-tabs-cis" data-toggle="tab">CIs Liés</a>
-								</li>
-								
-							</ul>
-		
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
+									</div>
 									
-		
-									<div class="panel-body">
-						
-						
-							
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
+									<button class="btn btn-primary wizard-next-step-btn">Next</button>
+								</div> <!-- / .wizard-pane -->
+								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
+						<f:form modelAttribute="ticket" action="save" methode="post" enctype="multipart/form-data"  id="jq-validation-form">
+						    <div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Ouvert le :</label>
 								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
+									
+									<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Fermé le :</label>
+								<div class="col-sm-9">
+									
+									<f:errors path="dateDeFermeture" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-demandeur" class="col-sm-3 control-label">Demandeur :</label>
+								<div class="col-sm-9">
+								<f:label path="demandeur" class="form-control" id="jq-validation-dema" name="jq-validation-demandeur">${logged.prenom } ${logged.nom }</f:label>
+								<f:errors path="demandeur" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut</label>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+									<f:input path="titre" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
+									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
+								</div>
+							</div>
+						<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
+								<div class="col-sm-9">
+									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
 							             <f:option value=""></f:option>
-										 <f:option value="implémentation">implémentation</f:option>
+										 <f:option value="Nouveau">Nouveau</f:option>
 										 <f:option value="obsolète"> obsolète</f:option>
 										 <f:option value="production"> production</f:option>
 									</f:select>
 									<f:errors path="statut" cssClass="help-block"></f:errors>
+								</div>
 							</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Type</label>
+								<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
 								<div class="col-sm-9">
-									<f:input path="type" type="text" class="form-control" id="inputError-4" name="jq-validation-type" />
-									<f:errors path="type" cssClass="help-block"></f:errors>
+									<f:select  path="urgence" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+							             <f:option value=""></f:option>
+										 <f:option value="Très Haute">Très Haute</f:option>
+										 <f:option value="Haut"> Haut</f:option>
+										 <f:option value="Moyenne"> Moyenne</f:option>
+										 <f:option value="Basse">Basse</f:option>
+										 <f:option value="Très Basse">Très Basse</f:option>
+									</f:select>
+									<f:errors path="urgence" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Impact :</label>
+								<div class="col-sm-9">
+									<f:select  path="impact" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+							             <f:option value=""></f:option>
+										 <f:option value="Très Haute" >Très Haut</f:option>
+										 <f:option value="Haut"> Haut</f:option>
+										 <f:option value="Moyenne"> Moyenne</f:option>
+										 <f:option value="Basse">Basse</f:option>
+										 <f:option value="Très Basse">Très Basse</f:option>
+									</f:select>
+									<f:errors path="impact" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
+								<div class="col-sm-9">
+									<f:select  path="priorite" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
+							             <f:option value=""></f:option>
+							             <f:option value="Majour">Majour</f:option>
+										 <f:option value="Très Haute">Très Haut</f:option>
+										 <f:option value="Haut"> Haut</f:option>
+										 <f:option value="Moyenne"> Moyenne</f:option>
+										 <f:option value="Basse">Basse</f:option>
+										 <f:option value="Très Basse">Très Basse</f:option>
+									</f:select>
+									<f:errors path="priorite" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
+								<label class="col-sm-3 control-label">Validation :</label>
 								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<div class="radio">
+										<label>
+											<f:radiobutton path="validation" name="jq-validation-radios" value="True" class="px"/>
+											<span class="lbl">oui</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<f:radiobutton path="validation" name="jq-validation-radios" value="False" class="px"/>
+											<span class="lbl">non</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							
+							 <div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Date de validation :</label>
+								<div class="col-sm-9">
+									
+									<f:errors path="dateDeValidation" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
+								<div class="col-sm-9">
+									<f:select  path="" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+										<f:option value="" label=""/>
+										<f:options items="${d }" itemValue="id" itemLabel="nom" />	
+									</f:select>
+									<f:errors path="" cssClass="help-block"></f:errors>
+								</div>
+								
+							</div>
+							 <div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'affectation :</label>
+								<div class="col-sm-9">
+									
+									<f:errors path="dateD_affectation" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Résolution :</label>
+								<div class="col-sm-9">
+									<div class="radio">
+										<label>
+											<f:radiobutton path="resolution" name="jq-validation-radios" value="True" class="px"/>
+											<span class="lbl">oui</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<f:radiobutton path="resolution" name="jq-validation-radios" value="False" class="px"/>
+											<span class="lbl">non</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Date de la résolution :</label>
+								<div class="col-sm-9">
+									
+									<f:errors path="dateDeResolution" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Solution :</label>
+								<div class="col-sm-9">
+									<f:textarea path="description" class="form-control" name="jq-validation-text" id="jq-validation-text" />
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Groupe parent</label>
-								<div class="col-sm-9">
-									<f:select  path="groupe_parent.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value=""> </f:option>
-										<f:options items="${g }" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="groupe_parent.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-					
-							</div>
-		
-								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-cis" id="profile-tabs-cis">
-									<div class="table-primary">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-										<tr>
-												<th id="supchek"> </th>
-												<th>CI fonctionnel</th>
-												<th>type de CI</th>
-												<th>Criticité</th>
-												<th>Date de mise en production</th>	
-											</tr>
-										</thead>
-										<tbody id="tableCIs">
-											
-											
-										</tbody>
-									</table>
-									</div>
-									<br>
-									<br>
-
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppcis">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModalCIs">Ajouter des CIs</button>
-										</div>
-										
-									</div>
-								</div> <!-- / .tab-pane -->
-								
-								
-							</div> <!-- / .tab-content -->
-						</div>
-				
-					
-					
-					
-					
-					
-							<hr class="panel-wide">
 							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
+							
+							
+							
 						</f:form>
+					
+									<button class="btn wizard-prev-step-btn">Prev</button>
+									<button class="btn btn-primary wizard-next-step-btn">Next</button>
+								</div> <!-- / .wizard-pane -->
+								<div class="wizard-pane" id="wizard-example-step4" style="display: none;">
+									Finish<br><br>
+									<button class="btn wizard-prev-step-btn">Prev</button>
+									<button class="btn btn-success wizard-go-to-step-btn">Go to Step 1</button>
+									<button class="btn btn-primary wizard-next-step-btn">Finish</button>
+								</div> <!-- / .wizard-pane -->
+							</div> <!-- / .wizard-content -->
+						</div> <!-- / .wizard -->
 					</div>
-					
-					
-		</div>
+				</div>
+<!-- /11. $WIZARDS -->
 
-		
-
-
-		<!-- Content here -->
-		
-		
-		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -930,30 +1028,6 @@ Use search to find needed section.
 		$('.jq-datatables-example').dataTable();
 		$('.jq-datatables-example_wrapper .table-caption').text('');
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-		
-		//<!-- Modal Materiels -->
-			document.getElementById("addcis").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckcis:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("cis_".concat($(this).val()));
-		    	$( "#tableCIs" ).append(tr);
-	    	});
-	    	
-	    };
-	    
-	    document.getElementById("suppcis").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckcis:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		//alert($(this).val());
-	    		var tr = document.getElementById("cis_".concat($(this).val()));
-		    	$( "#tableCIspopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
 	});
 	window.PixelAdmin.start(init);
 </script>

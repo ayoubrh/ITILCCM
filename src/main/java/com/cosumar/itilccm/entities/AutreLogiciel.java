@@ -12,9 +12,7 @@ import javax.persistence.ManyToMany;
 @DiscriminatorValue("AutreLogiciel")
 public class AutreLogiciel extends LogicielEtApplication implements Serializable {
 
-	@Column(nullable=true)
-	@ManyToMany(mappedBy="autreLogiciel",cascade = CascadeType.ALL)
-	private Collection<Groupe> groupe;
+	
 	
 	public AutreLogiciel() {
 		super();
@@ -27,14 +25,5 @@ public class AutreLogiciel extends LogicielEtApplication implements Serializable
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-	
-	
 	
 }

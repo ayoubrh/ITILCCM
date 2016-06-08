@@ -45,38 +45,42 @@ public class LogicielEtApplication implements Serializable {
 	   private Collection<Ordinateur> ordinateur;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
 	  
-	   @ManyToOne(cascade = CascadeType.ALL)
+	   @ManyToOne
 	   @JoinColumn(name="id_serveur")
 	   private Serveur serveur;
 	   
 	  
-	   @ManyToOne(cascade = CascadeType.ALL)
+	   @ManyToOne
 	   @JoinColumn(name="id_machineVirtuelle")
 	   private MachineVirtuelle machineVirtuelle;
 	  
-	   @ManyToOne(cascade = CascadeType.ALL)
+	   @ManyToOne
 	   @JoinColumn(name="id_licenseLogiciel")
 	   private LicenseLogiciel licenseLogiciel;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="logicielEtApplication",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
 		   
 		public LogicielEtApplication() {
 			super();
@@ -212,6 +216,14 @@ public class LogicielEtApplication implements Serializable {
 
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 	
 

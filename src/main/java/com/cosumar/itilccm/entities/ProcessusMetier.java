@@ -33,17 +33,17 @@ public class ProcessusMetier implements Serializable{
    private String description;
    
    	@Column(nullable=true)
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<SolutionApplicative> solutionApplicative;
    	
    	@Column(nullable=true)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Contact> contacts;
 	
 	@Column(nullable=true)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Document> documents;
 	

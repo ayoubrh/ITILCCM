@@ -32,7 +32,7 @@ Use search to find needed section.
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Licence OS - ITIL-CCM</title>
@@ -486,17 +486,14 @@ Use search to find needed section.
 				</c:if>
 				
 				
-				
-				
-				
-				
-				
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title col-md-9">Détail de Licence OS</span>
+						<span class="panel-title col-md-9">Détail de la Licence OS</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/licenseOs?id=${licenseOs.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/licenseOs?id=${licenseOs.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -528,14 +525,14 @@ Use search to find needed section.
 							<div class="tab-content tab-content-bordered panel-padding">
 								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
 		
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-nom" class="col-sm-3 control-label">Nom : </label>
 										${licenseOs.nom }
 									</div>
 									
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-select2" class="col-sm-3 control-label">Version OS : </label>
-										${licenseOs.versionOs.nom }
+										<a href="<c:url value="/config/view/versionOs?id=${licenseOs.versionOs.id }" />">${licenseOs.versionOs.nom }</a>
 									</div>
 									
 									<div class="form-group">
@@ -543,7 +540,7 @@ Use search to find needed section.
 										${licenseOs.limiteD_utilisation}
 									</div>
 									
-									<div class="form-group required">
+									<div class="form-group">
 										<label for="jq-validation-marque" class="col-sm-3 control-label">Perpetuelle: </label>
 										${licenseOs.perpetuelle }	
 									</div>
@@ -621,7 +618,7 @@ Use search to find needed section.
 											<tbody id="tableServeurs">
 												<c:forEach items="${licenseOs.serveur}" var="s">
 												<tr class="gradeA" id="tr_Serveurs_${s.id }">
-													<td>${s.nom }</td>
+													<td><a href="<c:url value="/config/view/serveur?id=${s.id }" />">${s.nom }</a></td>
 													<td>${s.statut }</td>
 													<td>${s.criticite}</td>
 													<td>${s.marque}</td>
@@ -655,7 +652,7 @@ Use search to find needed section.
 											<tbody id="tableMachinesVirtuelles">
 												<c:forEach items="${licenseOs.machineVirtuelle}" var="mv">
 												<tr class="gradeA" id="tr_MachineVirtuelle_${mv.id }">
-													<td>${mv.nom }</td>
+													<td><a href="<c:url value="/config/view/machineVirtuelle?id=${mv.id }" />">${mv.nom }</a></td>
 													<td>${mv.statut }</td>
 													<td>${mv.criticite}</td>
 													<td>${mv.ip}</td>

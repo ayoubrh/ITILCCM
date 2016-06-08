@@ -31,10 +31,10 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Recherche Document Fichier - ITIL-CCM</title>
+	<title>Recherche Groupe - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -475,6 +475,7 @@ Use search to find needed section.
 	
 		Search results page
 -->
+
 			<!-- Javascript -->
 				<script>
 					init.push(function () {
@@ -492,8 +493,10 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher Document Fichier</h1>
-			<a href="<c:url value="/config/admin/add/fichier"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Document Fichier</a>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Groupes</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
+			<a href="<c:url value="/config/admin/add/groupe"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Groupe</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
@@ -506,10 +509,10 @@ Use search to find needed section.
 		<div class="panel search-panel">
 
 			<!-- Search form -->
-			<form action="fichier" class="search-form bg-primary">
+			<form action="groupe" class="search-form bg-primary">
 				<div class="input-group input-group-lg">
 					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
-					<input type="text" name="df" class="form-control" value="${documentFichier }" placeholder="Entrez le nom à rechercher...">
+					<input type="text" name="g" class="form-control" value="${groupe }" placeholder="Entrez le nom à rechercher...">
 					<span class="input-group-btn">
 						<button class="btn" type="submit">Search</button>
 					</span>
@@ -532,19 +535,18 @@ Use search to find needed section.
 									<tr>
 										<th>Nom</th>
 										<th>Statut</th>
-										<th>Version</th>
+										<th>Type</th>
 										<th>Description</th>
-										<th>Fichier</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${cis}" var="ci">
 										<tr class="gradeA">
-											<td><a href="<c:url value="/config/view/fichier?id=${ci.id }" />">${ci.nom }</a></td>
+										    <td><a href="<c:url value="/config/view/groupe?id=${ci.id }" />">${ci.nom }</a></td>	
 											<td>${ci.statut }</td>
-											<td>${ci.version }</td>
+											<td>${ci.type }</td>
 											<td>${ci.description }</td>
-											<td>${ci.fichier }</td>
+											
 										</tr>
 									
 									</c:forEach>
@@ -587,7 +589,7 @@ Use search to find needed section.
 <script type="text/javascript">
 	init.push(function () {
 		// Javascript code here
-		var s = "${documentFichier }";
+		var s = "${groupe }";
 		$('.add-tooltip').tooltip();
 		document.getElementsByName("jq-datatables-example_length").value="25";
 		

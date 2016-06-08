@@ -67,7 +67,7 @@ public class Infrastructure implements Serializable{
     @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    	
-   	@OneToMany(mappedBy="infrastructure")
+   	@OneToMany(mappedBy="infrastructure",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<IntefaceReseau> intefaceReseau;
@@ -77,24 +77,28 @@ public class Infrastructure implements Serializable{
    	@Column(nullable = true)
    private Collection<SolutionApplicative> solutionApplicative;
    	
-   	@ManyToOne(cascade = CascadeType.ALL)
+   	@ManyToOne
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Document> document;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Contrat> contrat;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Contact> contact;
+   	
+   	@Column(nullable=true)
+	@ManyToMany(mappedBy="infrastructure",cascade = CascadeType.ALL)
+	private Collection<Groupe> groupe;
    
 	public Long getId() {
 		return id;
@@ -246,6 +250,12 @@ public class Infrastructure implements Serializable{
 	}
 	public void setContact(Collection<Contact> contact) {
 		this.contact = contact;
+	}
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
 	
 		

@@ -31,8 +31,8 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Détail Bandothèque - ITIL-CCM</title>
@@ -523,9 +523,11 @@ Use search to find needed section.
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title col-md-9">Détail Bandothèque</span>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/edit/bandotheque?id=${bandotheque.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
 						<a href="<c:url value="/config/admin/delete/bandotheque?id=${bandotheque.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
-						
+						</s:authorize>
+						<br>
 					</div>
 					<div class="panel-body">
 					
@@ -666,11 +668,6 @@ Use search to find needed section.
 										${bandotheque.connexionElectrique[1].nom }
 								
 									</div>
-										
-										
-									
-									
-									
 									
 									<div class="form-group">
 										<label for="jq-validation-description" class="col-sm-3 control-label">Description : </label>
@@ -703,7 +700,7 @@ Use search to find needed section.
 														<td><a href="<c:url value="/config/view/solutionapplicative?id=${sa.id }" />">${sa.nom }</a></td>
 														<td>${sa.statut }</td>
 														<td>${sa.criticite}</td>
-														<td>${sa.dateDeMiseEnProduction }</td>
+														<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
 													</tr>
 												</c:forEach>
 												

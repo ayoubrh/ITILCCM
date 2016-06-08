@@ -31,7 +31,7 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>Recherche Hyperviseur - ITIL-CCM</title>
@@ -494,7 +494,9 @@ Use search to find needed section.
 
 		<div class="page-header">
 			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche d'Hyperviseur</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
 			<a href="<c:url value="/config/admin/add/hyperviseur"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Hyperviseur</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
@@ -534,8 +536,6 @@ Use search to find needed section.
 										<th>Nom</th>
 										<th>Statut</th>
 										<th>Criticité</th>
-										<th>vCluster</th>
-										<th>Serveur</th>
 										<th>Date de mise en production</th>
 										<th>Description</th>
 										
@@ -547,8 +547,6 @@ Use search to find needed section.
 											<td><a href="<c:url value="/config/view/hyperviseur?id=${ci.id }" />">${ci.nom }</a></td>
 											<td>${ci.statut }</td>
 											<td>${ci.criticite }</td>
-											<td><a href="<c:url value="/config/view/vcluster?id=${ci.vcluster.id }" />"> ${ci.vcluster.nom }</a></td>
-											<td><a href="<c:url value="/config/view/serveur?id=${ci.serveur.id }" />"> ${ci.serveur.nom }</a></td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction}" /></td>
 											<td>${ci.description }</td>
 										</tr>

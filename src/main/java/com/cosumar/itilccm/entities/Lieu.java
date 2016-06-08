@@ -43,46 +43,46 @@ public class Lieu implements Serializable {
 	   private String pays;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="lieu",cascade = CascadeType.ALL)
+	   @OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
-	   	@OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Ordinateur> ordinateur;
 		
-		@OneToMany(mappedBy="lieu")
+		@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<EquipementReseau> equipementreseaux;
 	   	
-	   	@OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Infrastructure> infrastructure;
 	   	
-	   	@OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Rack> rack;
 	   	
-	   	@OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Chassis> chassis;
 	   
-	   	@OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Imprimante> imprimante;
 	   	
-	   	@OneToMany(mappedBy="lieu")
+	   	@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<TelephneMobile> telephonemobile;
 	   	
-		@OneToMany(mappedBy="lieu")
+		@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Peripherique> peripherique;
 		
-		@OneToMany(mappedBy="lieu")
+		@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<TelephoneFixe> telephonefixe;
 		
-		@OneToMany(mappedBy="lieu")
+		@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Tablette> tablette;
 		
-		@OneToMany(mappedBy="lieu")
+		@OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 		private Collection<Camera> camera;
 		
 		
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="lieu")
+	   @OneToMany(mappedBy="lieu",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   private Collection<ConnexionElectrique> connexionElectrique;
 	
 		public Lieu() {

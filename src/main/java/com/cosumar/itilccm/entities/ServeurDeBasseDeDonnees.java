@@ -18,13 +18,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class ServeurDeBasseDeDonnees extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
-			@OneToMany(mappedBy="serveurDeBasseDeDonnees",cascade = CascadeType.ALL)
+			@OneToMany(mappedBy="serveurDeBasseDeDonnees",cascade = CascadeType.REMOVE, orphanRemoval = true)
 			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
-			
-			@Column(nullable=true)
-			@ManyToMany(mappedBy="serveurDeBasseDeDonnees",cascade = CascadeType.ALL)
-			private Collection<Groupe> groupe;
 			
 		
 			public ServeurDeBasseDeDonnees() {
@@ -46,14 +42,6 @@ public class ServeurDeBasseDeDonnees extends LogicielEtApplication implements Se
 				this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
 			}
 
-			public Collection<Groupe> getGroupe() {
-				return groupe;
-			}
-
-			public void setGroupe(Collection<Groupe> groupe) {
-				this.groupe = groupe;
-			}
-			
 	
 
 }

@@ -26,6 +26,7 @@ public class ApplicationWeb implements Serializable {
 	   private Long id;
        
        @NotEmpty
+       @Column(unique = true)
 	   private String nom;
        
 	   private String url;
@@ -34,23 +35,22 @@ public class ApplicationWeb implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   
@@ -58,7 +58,7 @@ public class ApplicationWeb implements Serializable {
 	   @ManyToMany(mappedBy="applicationWeb",cascade = CascadeType.ALL)
 	   private Collection<Groupe> groupe;
 	   
-	   @ManyToOne(cascade = CascadeType.ALL)
+	   @ManyToOne
 	   @JoinColumn(name="id_serveurWeb")
 	   private ServeurWeb serveurWeb;
 		   

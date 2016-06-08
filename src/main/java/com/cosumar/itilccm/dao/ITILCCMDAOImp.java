@@ -1363,24 +1363,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		em.persist(g);
 		return g.getId();
 	}
-	
-	@Override
-	public Long ajouterGroupe(Groupe g, Long id_groupe) {
-		if(id_groupe!=null){
-		Groupe groupe = getGroupe(id_groupe);
-		g.setGroupe_parent(groupe);
-		}else{
-			g.setGroupe_parent(null);
-		}
-		em.persist(g);
-		return g.getId();
-	}
-
-	@Override
-	public void modifierGroupe(Groupe d) {
-		em.merge(d);
-		
-	}
 
 	@Override
 	public void supprimerGroupe(Long id) {
@@ -1480,7 +1462,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	public void supprimerApplicationWeb(Long id) {
 		ApplicationWeb applicationWeb = getApplicationWeb(id);
 		em.remove(applicationWeb);
-		
 	}
 
 	@Override
@@ -7067,6 +7048,441 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select d from Document d where d.nom LIKE :searchKeyword");
 		req.setParameter("searchKeyword", "%"+d+"%");
 		return req.getResultList();
+	}
+
+	
+	@Override
+	public List<ConnexionElectrique> SearchConnexionElectrique(String ce) {
+		Query req = em.createQuery("select ce from ConnexionElectrique ce where ce.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+ce+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Groupe> SearchGroupe(String g) {
+		Query req = em.createQuery("select g from Groupe g where g.nom LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+g+"%");
+		return req.getResultList();
+	}
+
+	@Override
+	public Long ajouterGroupe(Groupe g, Long id_groupe, List<Long> applicationWeb, List<Long> connexionElectrique,
+			List<Long> logiciel, List<Long> infrastructure, List<Long> camera, List<Long> chassis,
+			List<Long> equipementreseau, List<Long> virtualisation, List<Long> imprimante,
+			List<Long> instanceMiddleware, List<Long> instancedebasededonnees, List<Long> machinevirtuelle,
+			List<Long> ordinateur, List<Long> processusmetier, List<Long> peripherique, List<Long> rack,
+			List<Long> solutionapplicative, List<Long> tablette, List<Long> telephonefixe, List<Long> telephonemobile) {
+		
+			if(id_groupe!=null){
+			Groupe groupe = getGroupe(id_groupe);
+			g.setGroupe_parent(groupe);
+			}else{
+				g.setGroupe_parent(null);
+			}
+			if(applicationWeb != null){
+				
+				Collection<ApplicationWeb> applicationWe = new ArrayList<ApplicationWeb>();
+				for (Long aw : applicationWeb) {
+					ApplicationWeb appl = getApplicationWeb(aw);
+					applicationWe.add(appl); 
+				}
+				
+				g.setApplicationWeb(applicationWe);
+						
+			}
+			if(connexionElectrique != null){
+				
+				Collection<ConnexionElectrique> conn = new ArrayList<ConnexionElectrique>();
+				for (Long c : connexionElectrique ) {
+					ConnexionElectrique con = getConnexionElectrique(c);
+					conn.add(con); 
+				}
+				
+				g.setConnexionElectrique(conn); 
+						
+			}
+			if(logiciel != null){
+				
+				Collection<LogicielEtApplication> log = new ArrayList<LogicielEtApplication>();
+				for (Long l : logiciel ) {
+					LogicielEtApplication la = getLogicielEtApplication(l);
+					log.add(la); 
+				}
+				
+				g.setLogicielEtApplication(log);  
+						
+			}
+			if(infrastructure != null){
+				
+				Collection<Infrastructure> inf = new ArrayList<Infrastructure>();
+				for (Long i : infrastructure ) {
+					Infrastructure in = getInfrastructure(i);
+					inf.add(in); 
+				}
+				
+				g.setInfrastructure(inf);  
+						
+			}
+			if(camera != null){
+				Collection<Camera> cam = new ArrayList<Camera>();
+				for (Long c : camera) {
+					Camera ca = getCamera(c);
+					cam.add(ca);
+				}
+				g.setCamera(cam); 
+			}
+			if(chassis != null){
+				Collection<Chassis> chass = new ArrayList<Chassis>();
+				for (Long chas : chassis) {
+					Chassis cha = getChassis(chas);
+					chass.add(cha);
+				}
+				g.setChassis(chass);
+			}
+			if(equipementreseau != null){
+				Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+				for (Long e : equipementreseau) {
+					er.add(getEquipementReseau(e));
+				}
+				g.setEquipementReseau(er);
+			}
+			if(virtualisation != null){
+					
+					Collection<Virtualisation> virt = new ArrayList<Virtualisation>();
+					for (Long v : virtualisation) {
+						Virtualisation vir = getVirtualisation(v);
+						virt.add(vir);
+					}
+					
+					g.setVirtualisation(virt);
+							
+			}
+			if(imprimante != null){
+				
+				Collection<Imprimante> impri = new ArrayList<Imprimante>();
+				for (Long i : imprimante) {
+					Imprimante im = getImp(i);
+					impri.add(im);
+				}
+				
+				g.setImprimante(impri); 
+						
+			}
+			if(instancedebasededonnees != null){
+				
+				Collection<InstanceDeBasseDeDonnes> instanceBD = new ArrayList<InstanceDeBasseDeDonnes>();
+				for (Long ibd : instancedebasededonnees) {
+					InstanceDeBasseDeDonnes inst = getInstanceDeBasseDeDonnes(ibd);
+					instanceBD.add(inst);
+				}
+				
+				g.setInstanceDeBasseDeDonnes(instanceBD);
+				
+			}
+			 if(instanceMiddleware != null){
+					
+					Collection<InstanceMiddleware> instanceMidd = new ArrayList<InstanceMiddleware>();
+					for (Long im : instanceMiddleware) {
+						InstanceMiddleware inst = getInstanceMiddleware(im);
+						instanceMidd.add(inst); 
+					}
+					
+					g.setInstanceMiddleware(instanceMidd);
+					
+				}
+			 if(machinevirtuelle !=null){
+					
+					Collection<MachineVirtuelle> machineVirtuelle = new ArrayList<MachineVirtuelle>();
+					for (Long mv : machinevirtuelle) {
+						MachineVirtuelle mach = getMachineVirtuelle(mv);
+						machineVirtuelle.add(mach);
+					}
+					
+					g.setMachineVirtuelle(machineVirtuelle);
+				}
+			 if(ordinateur != null){
+					Collection<Ordinateur> ord = new ArrayList<Ordinateur>();
+					for (Long o : ordinateur) {
+						Ordinateur pc = getPC(o);
+						ord.add(pc);
+					}
+					g.setOrdinateur(ord); 
+				}
+			 if(processusmetier!=null){
+					
+					Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
+					for (Long pm : processusmetier) {
+						ProcessusMetier pro = getProcessusMetier(pm);
+						processusMetier.add(pro);
+						
+					}
+					
+					    g.setProcessusMetier(processusMetier);
+				}
+			 if(peripherique != null){
+					Collection<Peripherique> per = new ArrayList<Peripherique>();
+					for (Long p : peripherique) {
+						Peripherique periph = getPeriph(p);
+						per.add(periph);
+					}
+					g.setPeripherique(per);
+				}
+			 if(rack != null){
+					Collection<Rack> ra = new ArrayList<Rack>();
+					for (Long r : rack) {
+						Rack periph = getRack(r);
+						ra.add(periph);
+					}
+					g.setRack(ra);
+				}
+			 if(solutionapplicative != null){
+					
+					Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+					for (Long sa : solutionapplicative) {
+						SolutionApplicative sol = getSolutionApplicative(sa);
+						solutionsAppl.add(sol);
+					}
+					
+					g.setSolutionApplicative(solutionsAppl);
+					
+				}
+			 if(tablette != null){
+					Collection<Tablette> tab = new ArrayList<Tablette>();
+					for (Long t : tablette) {
+						Tablette tabl = getTablette(t);
+						tab.add(tabl);
+					}
+					g.setTablette(tab);
+				}
+			 if(telephonefixe != null){
+					Collection<TelephoneFixe> telfix = new ArrayList<TelephoneFixe>();
+					for (Long tf : telephonefixe) {
+						TelephoneFixe tel = getTeleFixe(tf);
+						telfix.add(tel);
+					}
+					g.setTelephoneFixe(telfix);
+				}
+			 if(telephonemobile != null){
+					Collection<TelephneMobile> telmobile = new ArrayList<TelephneMobile>();
+					for (Long tm : telephonemobile) {
+						TelephneMobile tel = getTeleMobile(tm);
+						telmobile.add(tel);
+					}
+					g.setTelephneMobile(telmobile); 
+				}
+			 
+			em.persist(g);
+			return g.getId();
+	}
+
+	@Override
+	public void modifierGroupe(Groupe g, Long id_groupe, List<Long> applicationWeb, List<Long> connexionElectrique,
+			List<Long> logiciel, List<Long> infrastructure, List<Long> camera, List<Long> chassis,
+			List<Long> equipementreseau, List<Long> virtualisation, List<Long> imprimante,
+			List<Long> instanceMiddleware, List<Long> instancedebasededonnees, List<Long> machinevirtuelle,
+			List<Long> ordinateur, List<Long> processusmetier, List<Long> peripherique, List<Long> rack,
+			List<Long> solutionapplicative, List<Long> tablette, List<Long> telephonefixe, List<Long> telephonemobile) {
+		
+			if(id_groupe!=null){
+			Groupe groupe = getGroupe(id_groupe);
+			g.setGroupe_parent(groupe);
+			}else{
+				g.setGroupe_parent(null);
+			}
+			if(applicationWeb != null){
+				
+				Collection<ApplicationWeb> applicationWe = new ArrayList<ApplicationWeb>();
+				for (Long aw : applicationWeb) {
+					ApplicationWeb appl = getApplicationWeb(aw);
+					applicationWe.add(appl); 
+				}
+				
+				g.setApplicationWeb(applicationWe);
+						
+			}
+			if(connexionElectrique != null){
+				
+				Collection<ConnexionElectrique> conn = new ArrayList<ConnexionElectrique>();
+				for (Long c : connexionElectrique ) {
+					ConnexionElectrique con = getConnexionElectrique(c);
+					conn.add(con); 
+				}
+				
+				g.setConnexionElectrique(conn); 
+						
+			}
+			if(logiciel != null){
+				
+				Collection<LogicielEtApplication> log = new ArrayList<LogicielEtApplication>();
+				for (Long l : logiciel ) {
+					LogicielEtApplication la = getLogicielEtApplication(l);
+					log.add(la); 
+				}
+				
+				g.setLogicielEtApplication(log);  
+						
+			}
+			if(infrastructure != null){
+				
+				Collection<Infrastructure> inf = new ArrayList<Infrastructure>();
+				for (Long i : infrastructure ) {
+					Infrastructure in = getInfrastructure(i);
+					inf.add(in); 
+				}
+				
+				g.setInfrastructure(inf);  
+						
+			}
+			if(camera != null){
+				Collection<Camera> cam = new ArrayList<Camera>();
+				for (Long c : camera) {
+					Camera ca = getCamera(c);
+					cam.add(ca);
+				}
+				g.setCamera(cam); 
+			}
+			if(chassis != null){
+				Collection<Chassis> chass = new ArrayList<Chassis>();
+				for (Long chas : chassis) {
+					Chassis cha = getChassis(chas);
+					chass.add(cha);
+				}
+				g.setChassis(chass);
+			}
+			if(equipementreseau != null){
+				Collection<EquipementReseau> er = new ArrayList<EquipementReseau>();
+				for (Long e : equipementreseau) {
+					er.add(getEquipementReseau(e));
+				}
+				g.setEquipementReseau(er);
+			}
+			if(virtualisation != null){
+					
+					Collection<Virtualisation> virt = new ArrayList<Virtualisation>();
+					for (Long v : virtualisation) {
+						Virtualisation vir = getVirtualisation(v);
+						virt.add(vir);
+					}
+					
+					g.setVirtualisation(virt);
+							
+			}
+			if(imprimante != null){
+				
+				Collection<Imprimante> impri = new ArrayList<Imprimante>();
+				for (Long i : imprimante) {
+					Imprimante im = getImp(i);
+					impri.add(im);
+				}
+				
+				g.setImprimante(impri); 
+						
+			}
+			if(instancedebasededonnees != null){
+				
+				Collection<InstanceDeBasseDeDonnes> instanceBD = new ArrayList<InstanceDeBasseDeDonnes>();
+				for (Long ibd : instancedebasededonnees) {
+					InstanceDeBasseDeDonnes inst = getInstanceDeBasseDeDonnes(ibd);
+					instanceBD.add(inst);
+				}
+				
+				g.setInstanceDeBasseDeDonnes(instanceBD);
+				
+			}
+			 if(instanceMiddleware != null){
+					
+					Collection<InstanceMiddleware> instanceMidd = new ArrayList<InstanceMiddleware>();
+					for (Long im : instanceMiddleware) {
+						InstanceMiddleware inst = getInstanceMiddleware(im);
+						instanceMidd.add(inst); 
+					}
+					
+					g.setInstanceMiddleware(instanceMidd);
+					
+				}
+			 if(machinevirtuelle !=null){
+					
+					Collection<MachineVirtuelle> machineVirtuelle = new ArrayList<MachineVirtuelle>();
+					for (Long mv : machinevirtuelle) {
+						MachineVirtuelle mach = getMachineVirtuelle(mv);
+						machineVirtuelle.add(mach);
+					}
+					
+					g.setMachineVirtuelle(machineVirtuelle);
+				}
+			 if(ordinateur != null){
+					Collection<Ordinateur> ord = new ArrayList<Ordinateur>();
+					for (Long o : ordinateur) {
+						Ordinateur pc = getPC(o);
+						ord.add(pc);
+					}
+					g.setOrdinateur(ord); 
+				}
+			 if(processusmetier!=null){
+					
+					Collection<ProcessusMetier> processusMetier = new ArrayList<ProcessusMetier>();
+					for (Long pm : processusmetier) {
+						ProcessusMetier pro = getProcessusMetier(pm);
+						processusMetier.add(pro);
+						
+					}
+					
+					    g.setProcessusMetier(processusMetier);
+				}
+			 if(peripherique != null){
+					Collection<Peripherique> per = new ArrayList<Peripherique>();
+					for (Long p : peripherique) {
+						Peripherique periph = getPeriph(p);
+						per.add(periph);
+					}
+					g.setPeripherique(per);
+				}
+			 if(rack != null){
+					Collection<Rack> ra = new ArrayList<Rack>();
+					for (Long r : rack) {
+						Rack periph = getRack(r);
+						ra.add(periph);
+					}
+					g.setRack(ra);
+				}
+			 if(solutionapplicative != null){
+					
+					Collection<SolutionApplicative> solutionsAppl = new ArrayList<SolutionApplicative>();
+					for (Long sa : solutionapplicative) {
+						SolutionApplicative sol = getSolutionApplicative(sa);
+						solutionsAppl.add(sol);
+					}
+					
+					g.setSolutionApplicative(solutionsAppl);
+					
+				}
+			 if(tablette != null){
+					Collection<Tablette> tab = new ArrayList<Tablette>();
+					for (Long t : tablette) {
+						Tablette tabl = getTablette(t);
+						tab.add(tabl);
+					}
+					g.setTablette(tab);
+				}
+			 if(telephonefixe != null){
+					Collection<TelephoneFixe> telfix = new ArrayList<TelephoneFixe>();
+					for (Long tf : telephonefixe) {
+						TelephoneFixe tel = getTeleFixe(tf);
+						telfix.add(tel);
+					}
+					g.setTelephoneFixe(telfix);
+				}
+			 if(telephonemobile != null){
+					Collection<TelephneMobile> telmobile = new ArrayList<TelephneMobile>();
+					for (Long tm : telephonemobile) {
+						TelephneMobile tel = getTeleMobile(tm);
+						telmobile.add(tel);
+					}
+					g.setTelephneMobile(telmobile); 
+				}
+			 
+			em.merge(g);
+		
 	}
 
 	

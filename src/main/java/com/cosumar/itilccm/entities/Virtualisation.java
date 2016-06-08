@@ -39,34 +39,38 @@ public class Virtualisation implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="virtualisation",cascade = CascadeType.ALL)
+	   @OneToMany(mappedBy="virtualisation",cascade = CascadeType.ALL, orphanRemoval = true)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<VolumeLogique> volumelogique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
+	   
+	   @Column(nullable=true)
+	   @ManyToMany(mappedBy="virtualisation",cascade = CascadeType.ALL)
+	   private Collection<Groupe> groupe;
 		   
 		public Virtualisation() {
 			super();
@@ -152,6 +156,12 @@ public class Virtualisation implements Serializable {
 		}
 		public void setDocuments(Collection<Document> documents) {
 			this.documents = documents;
+		}
+		public Collection<Groupe> getGroupe() {
+			return groupe;
+		}
+		public void setGroupe(Collection<Groupe> groupe) {
+			this.groupe = groupe;
 		}
 		
 

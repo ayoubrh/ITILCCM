@@ -19,16 +19,11 @@ public class Nas extends Infrastructure implements Serializable{
 	
 
 	 
-	    @OneToMany(mappedBy="nas")
+	    @OneToMany(mappedBy="nas",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   	@LazyCollection(LazyCollectionOption.FALSE)
 		@Column(nullable = true)
 	   private Collection<SystemeDeFicherNas> systemeDeFicherNas;
 	 
-	
-	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="nas",cascade = CascadeType.ALL)
-	  private Collection<Groupe> groupe;
-
 
 	public Collection<SystemeDeFicherNas> getSystemeDeFicherNas() {
 		return systemeDeFicherNas;
@@ -39,21 +34,9 @@ public class Nas extends Infrastructure implements Serializable{
 		this.systemeDeFicherNas = systemeDeFicherNas;
 	}
 
-
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-
 	public Nas() {
 		super();
 	}
-
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-
 
 	public Nas(String nom) {
 		super(nom);

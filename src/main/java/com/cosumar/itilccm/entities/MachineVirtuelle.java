@@ -38,17 +38,17 @@ public class MachineVirtuelle implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<VolumeLogique> volumelogique;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="machineVirtuelle")
+	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<IntefaceReseau> intefaceReseau;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
@@ -61,22 +61,22 @@ public class MachineVirtuelle implements Serializable {
 	   private LicenseOs licenseOs;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
+	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contact> contacts;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Contrat> contrats;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Document> documents;
 	   

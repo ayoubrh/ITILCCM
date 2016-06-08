@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Vlan implements Serializable{
    private String vlantag;
    private String description;
    
-   	@ManyToMany(mappedBy="vlan")
+   	@ManyToMany(mappedBy="vlan",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Physique> physique;

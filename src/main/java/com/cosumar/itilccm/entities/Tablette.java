@@ -44,21 +44,21 @@ public class Tablette implements Serializable{
    	@OneToOne(cascade = CascadeType.ALL)
    private User user;
    	
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
  	@JoinColumn(name="lieu_id")
    private Lieu lieu;
  	
- 	@ManyToMany(cascade = CascadeType.ALL)
+ 	@ManyToMany
  	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Document> document;
  	
- 	@ManyToMany(cascade = CascadeType.ALL)
+ 	@ManyToMany
  	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Contrat> contrat;
  	
- 	@ManyToMany(cascade = CascadeType.ALL)
+ 	@ManyToMany
  	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
    private Collection<Contact> contact;

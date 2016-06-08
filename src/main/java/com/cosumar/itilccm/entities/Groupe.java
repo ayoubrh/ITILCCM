@@ -38,164 +38,106 @@ public class Groupe implements Serializable {
 	   private Groupe groupe_parent;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<ApplicationWeb> applicationWeb;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<ArriveeElectrique> arriveeElectrique;
+	   private Collection<ConnexionElectrique> connexionElectrique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<AutreLogiciel> autreLogiciel;
+	   private Collection<LogicielEtApplication> logicielEtApplication;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Bandotheque> bandotheque;
+	   private Collection<Infrastructure> infrastructure;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Camera> camera;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Chassis> chassis;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Dvr> dvr;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<EquipementReseau> equipementReseau;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Hyperviseur> hyperviseur;
+	   private Collection<Virtualisation> virtualisation;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Imprimante> imprimante;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<InstanceMiddleware> instanceMiddleware;
 	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<LogicielPc> logicielPc;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Middleware> middleware;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Nas> nas;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Ordinateur> ordinateur;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<PduElectrique> pduElectrique;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Peripherique> peripherique;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<ProcessusMetier> processusMetier;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Rack> rack;
-	   
+	 
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Serveur> serveur;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<ServeurDeBasseDeDonnees> serveurDeBasseDeDonnees;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<ServeurWeb> serveurWeb;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Sim> sim;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<SwitchSan> switchSan;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<SystemeDeStockage> systemeDeStockage;
-	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<Tablette> tablette;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TelephneMobile> telephneMobile;
 	   
 	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
+	   @ManyToMany
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TelephoneFixe> telephoneFixe;
 	   
-	   @Column(nullable=true)
-	   @ManyToMany(cascade = CascadeType.ALL)
-	   @LazyCollection(LazyCollectionOption.FALSE)
-	   private Collection<Vcluster> vcluster;
 		   
 		public Groupe() {
 			super();
@@ -266,30 +208,6 @@ public class Groupe implements Serializable {
 			this.applicationWeb = applicationWeb;
 		}
 
-		public Collection<ArriveeElectrique> getArriveeElectrique() {
-			return arriveeElectrique;
-		}
-
-		public void setArriveeElectrique(Collection<ArriveeElectrique> arriveeElectrique) {
-			this.arriveeElectrique = arriveeElectrique;
-		}
-
-		public Collection<AutreLogiciel> getAutreLogiciel() {
-			return autreLogiciel;
-		}
-
-		public void setAutreLogiciel(Collection<AutreLogiciel> autreLogiciel) {
-			this.autreLogiciel = autreLogiciel;
-		}
-
-		public Collection<Bandotheque> getBandotheque() {
-			return bandotheque;
-		}
-
-		public void setBandotheque(Collection<Bandotheque> bandotheque) {
-			this.bandotheque = bandotheque;
-		}
-
 		public Collection<Camera> getCamera() {
 			return camera;
 		}
@@ -306,28 +224,12 @@ public class Groupe implements Serializable {
 			this.chassis = chassis;
 		}
 
-		public Collection<Dvr> getDvr() {
-			return dvr;
-		}
-
-		public void setDvr(Collection<Dvr> dvr) {
-			this.dvr = dvr;
-		}
-
 		public Collection<EquipementReseau> getEquipementReseau() {
 			return equipementReseau;
 		}
 
 		public void setEquipementReseau(Collection<EquipementReseau> equipementReseau) {
 			this.equipementReseau = equipementReseau;
-		}
-
-		public Collection<Hyperviseur> getHyperviseur() {
-			return hyperviseur;
-		}
-
-		public void setHyperviseur(Collection<Hyperviseur> hyperviseur) {
-			this.hyperviseur = hyperviseur;
 		}
 
 		public Collection<Imprimante> getImprimante() {
@@ -354,14 +256,6 @@ public class Groupe implements Serializable {
 			this.instanceMiddleware = instanceMiddleware;
 		}
 
-		public Collection<LogicielPc> getLogicielPc() {
-			return logicielPc;
-		}
-
-		public void setLogicielPc(Collection<LogicielPc> logicielPc) {
-			this.logicielPc = logicielPc;
-		}
-
 		public Collection<MachineVirtuelle> getMachineVirtuelle() {
 			return machineVirtuelle;
 		}
@@ -370,36 +264,12 @@ public class Groupe implements Serializable {
 			this.machineVirtuelle = machineVirtuelle;
 		}
 
-		public Collection<Middleware> getMiddleware() {
-			return middleware;
-		}
-
-		public void setMiddleware(Collection<Middleware> middleware) {
-			this.middleware = middleware;
-		}
-
-		public Collection<Nas> getNas() {
-			return nas;
-		}
-
-		public void setNas(Collection<Nas> nas) {
-			this.nas = nas;
-		}
-
 		public Collection<Ordinateur> getOrdinateur() {
 			return ordinateur;
 		}
 
 		public void setOrdinateur(Collection<Ordinateur> ordinateur) {
 			this.ordinateur = ordinateur;
-		}
-
-		public Collection<PduElectrique> getPduElectrique() {
-			return pduElectrique;
-		}
-
-		public void setPduElectrique(Collection<PduElectrique> pduElectrique) {
-			this.pduElectrique = pduElectrique;
 		}
 
 		public Collection<Peripherique> getPeripherique() {
@@ -426,60 +296,12 @@ public class Groupe implements Serializable {
 			this.rack = rack;
 		}
 
-		public Collection<Serveur> getServeur() {
-			return serveur;
-		}
-
-		public void setServeur(Collection<Serveur> serveur) {
-			this.serveur = serveur;
-		}
-
-		public Collection<ServeurDeBasseDeDonnees> getServeurDeBasseDeDonnees() {
-			return serveurDeBasseDeDonnees;
-		}
-
-		public void setServeurDeBasseDeDonnees(Collection<ServeurDeBasseDeDonnees> serveurDeBasseDeDonnees) {
-			this.serveurDeBasseDeDonnees = serveurDeBasseDeDonnees;
-		}
-
-		public Collection<ServeurWeb> getServeurWeb() {
-			return serveurWeb;
-		}
-
-		public void setServeurWeb(Collection<ServeurWeb> serveurWeb) {
-			this.serveurWeb = serveurWeb;
-		}
-
-		public Collection<Sim> getSim() {
-			return sim;
-		}
-
-		public void setSim(Collection<Sim> sim) {
-			this.sim = sim;
-		}
-
 		public Collection<SolutionApplicative> getSolutionApplicative() {
 			return solutionApplicative;
 		}
 
 		public void setSolutionApplicative(Collection<SolutionApplicative> solutionApplicative) {
 			this.solutionApplicative = solutionApplicative;
-		}
-
-		public Collection<SwitchSan> getSwitchSan() {
-			return switchSan;
-		}
-
-		public void setSwitchSan(Collection<SwitchSan> switchSan) {
-			this.switchSan = switchSan;
-		}
-
-		public Collection<SystemeDeStockage> getSystemeDeStockage() {
-			return systemeDeStockage;
-		}
-
-		public void setSystemeDeStockage(Collection<SystemeDeStockage> systemeDeStockage) {
-			this.systemeDeStockage = systemeDeStockage;
 		}
 
 		public Collection<Tablette> getTablette() {
@@ -506,18 +328,36 @@ public class Groupe implements Serializable {
 			this.telephoneFixe = telephoneFixe;
 		}
 
-		public Collection<Vcluster> getVcluster() {
-			return vcluster;
+		public Collection<ConnexionElectrique> getConnexionElectrique() {
+			return connexionElectrique;
 		}
 
-		public void setVcluster(Collection<Vcluster> vcluster) {
-			this.vcluster = vcluster;
+		public void setConnexionElectrique(Collection<ConnexionElectrique> connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
 		}
-		
-		
-		   
-       
-   
-   
 
+		public Collection<LogicielEtApplication> getLogicielEtApplication() {
+			return logicielEtApplication;
+		}
+
+		public void setLogicielEtApplication(Collection<LogicielEtApplication> logicielEtApplication) {
+			this.logicielEtApplication = logicielEtApplication;
+		}
+
+		public Collection<Infrastructure> getInfrastructure() {
+			return infrastructure;
+		}
+
+		public void setInfrastructure(Collection<Infrastructure> infrastructure) {
+			this.infrastructure = infrastructure;
+		}
+
+		public Collection<Virtualisation> getVirtualisation() {
+			return virtualisation;
+		}
+
+		public void setVirtualisation(Collection<Virtualisation> virtualisation) {
+			this.virtualisation = virtualisation;
+		}
+         
 }

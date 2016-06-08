@@ -17,18 +17,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 @DiscriminatorValue("ArriveeElectrique")
 public class ArriveeElectrique extends ConnexionElectrique implements Serializable{
 	
-
-	 @OneToMany(mappedBy="arriveeElectrique",cascade = CascadeType.ALL)
+	 @Column(nullable = true)
+	 @OneToMany(mappedBy="arriveeElectrique",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	 @LazyCollection(LazyCollectionOption.FALSE)
-  	 @Column(nullable = true)
 	 private Collection<PduElectrique> pduElectrique;
 	 
-	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="arriveeElectrique",cascade = CascadeType.ALL)
-	 private Collection<Groupe> groupe;
-	 
-
-
+	
 	public ArriveeElectrique() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -54,15 +48,7 @@ public class ArriveeElectrique extends ConnexionElectrique implements Serializab
 	public void setPduElectrique(Collection<PduElectrique> pduElectrique) {
 		this.pduElectrique = pduElectrique;
 	}
-
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-	 
+ 
 	 
 
 }

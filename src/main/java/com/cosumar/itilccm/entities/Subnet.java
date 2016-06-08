@@ -3,6 +3,7 @@ package com.cosumar.itilccm.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class Subnet implements Serializable{
    private String nomDeSubnnet;
    private String description;
    
-   	@ManyToMany(mappedBy="subnet")
+   	@ManyToMany(mappedBy="subnet",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Vlan> vlan;

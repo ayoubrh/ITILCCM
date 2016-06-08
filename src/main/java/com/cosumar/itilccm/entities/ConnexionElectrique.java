@@ -51,31 +51,34 @@ public class ConnexionElectrique implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@ManyToMany(mappedBy="connexionElectrique")
+   	@ManyToMany(mappedBy="connexionElectrique",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    
-   	@ManyToMany(mappedBy="connexionElectrique")
+   	@ManyToMany(mappedBy="connexionElectrique",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    	
    @Column(nullable=true)
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Contact> contacts;
    
    @Column(nullable=true)
-
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Contrat> contrats;
    
    @Column(nullable=true)
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Document> documents;
+   
+     @Column(nullable=true)
+	 @ManyToMany(mappedBy="connexionElectrique",cascade = CascadeType.ALL)
+	 private Collection<Groupe> groupe;
    	
    	@ManyToOne
    	@JoinColumn(name="id_lieu")
@@ -260,6 +263,14 @@ public class ConnexionElectrique implements Serializable{
 
 	public void setDocuments(Collection<Document> documents) {
 		this.documents = documents;
+	}
+
+	public Collection<Groupe> getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Collection<Groupe> groupe) {
+		this.groupe = groupe;
 	}
    	
    	

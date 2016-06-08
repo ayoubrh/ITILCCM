@@ -54,53 +54,53 @@ public class Ordinateur implements Serializable{
    private String description;
    
    
-   	@ManyToOne(cascade = CascadeType.ALL)
+   	@ManyToOne
    	@JoinColumn(name="user_id")
    private User user;
    	
-   	@ManyToOne(cascade = CascadeType.ALL)
+   	@ManyToOne
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
    	
     @Column(nullable = true)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Document> document;
    	
    	
     @Column(nullable = true)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Contrat> contrat;
    	
    	
     @Column(nullable = true)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Contact> contact;
    	
    
    @Column(nullable = true)
-   @ManyToMany(cascade = CascadeType.ALL)
+   @ManyToMany
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
-   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Peripherique> peripherique;
    	
-	 @ManyToOne(cascade = CascadeType.ALL)
+	 @ManyToOne
 	 @JoinColumn(name="id_licenseOs")
    	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @ManyToMany(cascade = CascadeType.ALL)
+	 @ManyToMany
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 	 

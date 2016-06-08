@@ -14,19 +14,16 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 public class SwitchSan extends Infrastructure implements Serializable{
 	
-	 @ManyToMany(mappedBy="switchSan")
+	 @ManyToMany(mappedBy="switchSan",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	 @Column(nullable = true)
 	private Collection<Serveur> serveur;
 	
-	 @ManyToMany(mappedBy="switchSan")
+	 @ManyToMany(mappedBy="switchSan",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	 @Column(nullable = true)
 	private Collection<SystemeDeStockage> systemeDeStockage;
-	 
-	 @Column(nullable=true)
-	 @ManyToMany(mappedBy="switchSan",cascade = CascadeType.ALL)
-	 private Collection<Groupe> groupe;
+	
 
 	public Collection<Serveur> getServeur() {
 		return serveur;
@@ -54,14 +51,6 @@ public class SwitchSan extends Infrastructure implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection<Groupe> getGroupe() {
-		return groupe;
-	}
-
-	public void setGroupe(Collection<Groupe> groupe) {
-		this.groupe = groupe;
-	}
-	 
 	 
 
 }

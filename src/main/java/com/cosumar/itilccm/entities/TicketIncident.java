@@ -18,8 +18,8 @@ public class TicketIncident {
 	   private String priorite;
 	   private String statut;
 	   private String urgence;
-	   private String categorie;
 	   private Boolean validation;
+	   private Boolean resolution;
 	   private String titre;
 	   private String description;
 	   private Date dateDeDebut;
@@ -35,7 +35,7 @@ public class TicketIncident {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public TicketIncident(String demandeur, String impact, String priorite, String statut, String urgence, String categorie,
+		public TicketIncident(String demandeur, String impact, String priorite, String statut, String urgence, Boolean resolution,
 				Boolean validation, String titre, String description, Date dateDeDebut, Date dateDeFermeture,
 				Date dateDeResolution, Date dateD_affectation, Date dateDeValidation, boolean notificationAdmininstration,
 				boolean notificationUtilisateur, boolean notificationEquipeIt) {
@@ -45,7 +45,7 @@ public class TicketIncident {
 			this.priorite = priorite;
 			this.statut = statut;
 			this.urgence = urgence;
-			this.categorie = categorie;
+			this.resolution = resolution;
 			this.validation = validation;
 			this.titre = titre;
 			this.description = description;
@@ -94,17 +94,19 @@ public class TicketIncident {
 		public void setUrgence(String urgence) {
 			this.urgence = urgence;
 		}
-		public String getCategorie() {
-			return categorie;
-		}
-		public void setCategorie(String categorie) {
-			this.categorie = categorie;
-		}
+		
 		public Boolean getValidation() {
 			return validation;
 		}
 		public void setValidation(Boolean validation) {
 			this.validation = validation;
+		}
+		
+		public Boolean getResolution() {
+			return resolution;
+		}
+		public void setResolution(Boolean resolution) {
+			this.resolution = resolution;
 		}
 		public String getTitre() {
 			return titre;

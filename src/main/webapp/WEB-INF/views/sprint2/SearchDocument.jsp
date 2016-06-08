@@ -31,7 +31,6 @@ Use search to find needed section.
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -484,11 +483,20 @@ Use search to find needed section.
 					});
 				</script>
 				<!-- / Javascript -->
+				
+				<c:if test="${delete == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien supprimer.
+					</div>
+				</c:if>
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Rechercher Document</h1>
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Documents</h1>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
 			<a href="<c:url value="/config/admin/add/typeDocument"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Document</a>
+			</s:authorize>
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
@@ -530,9 +538,6 @@ Use search to find needed section.
 										<th>Statut</th>
 										<th>Version</th>
 										<th>Description</th>
-										<th>Fichier</th>
-										<th>URL</th>
-										<th>Texte</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -551,22 +556,21 @@ Use search to find needed section.
 													<a href="<c:url value="/config/view/note?id=${ci.id }" />">${ci.nom }</a>
 												</c:if>
 												</td>
-											<td>${string2 }</td>
+											<td>
+												<c:if test="${string2 == 'DocumentFichier'}">
+													Document Fichier
+												</c:if>
+												<c:if test="${string2 == 'DocumentWeb'}">
+													Document Web
+												</c:if>
+												<c:if test="${string2 == 'DocumentNote'}">
+													Document Note
+												</c:if>
+											</td>
 											<td>${ci.statut }</td>
 											<td>${ci.version }</td>
 											<td>${ci.description }</td>
-											<td>
-											<c:if test="${string2 == 'DocumentFichier'}">
-											${ci.fichier }
-											</c:if></td>
-											<td>
-											<c:if test="${string2 == 'DocumentWeb'}">
-											${ci.url }
-											</c:if></td>
-											<td>
-											<c:if test="${string2 == 'DocumentNote'}">
-											${ci.texte }
-											</c:if></td>
+											
 										</tr>
 									
 									</c:forEach>

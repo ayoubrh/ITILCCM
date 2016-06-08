@@ -65,12 +65,12 @@ public class EquipementReseau implements Serializable{
    	@LazyCollection(LazyCollectionOption.FALSE)
    private java.util.Collection<ConnexionElectrique> connexionElectrique;
    
-   	@ManyToMany(mappedBy="equipementReseau")
+   	@ManyToMany(mappedBy="equipementReseau",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
-   	@OneToMany(mappedBy="equipementReseau")
+   	@OneToMany(mappedBy="equipementReseau",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<IntefaceReseau> intefaceReseau;
@@ -80,26 +80,26 @@ public class EquipementReseau implements Serializable{
   	@Column(nullable = true)
    private Collection<SolutionApplicative> solutionApplicative;
 
-   	@ManyToMany(mappedBy="equipementReseau")
+   	@ManyToMany(mappedBy="equipementReseau",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Ordinateur> ordinateur;
    	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
    	@JoinColumn(name="lieu_id")
    private Lieu lieu;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Document> document;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contrat> contrat;
    	
-   	@ManyToMany(cascade = CascadeType.ALL)
+   	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
     private Collection<Contact> contact;
