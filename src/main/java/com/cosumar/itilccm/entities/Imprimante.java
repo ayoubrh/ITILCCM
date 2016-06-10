@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.LazyCollection;
@@ -66,6 +67,10 @@ public class Imprimante implements Serializable{
    	@Column(nullable=true)
 	@ManyToMany(mappedBy="imprimante",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
+   	
+   	@Column(nullable=true)
+    @OneToMany(mappedBy="imprimante",cascade = CascadeType.ALL)
+    private Collection<TicketIncident> ticketsIncident;
 
 	public Long getId() {
 		return id;
@@ -225,6 +230,14 @@ public class Imprimante implements Serializable{
 
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
+	}
+
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
 	}
 	
 	

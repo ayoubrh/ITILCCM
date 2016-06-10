@@ -546,6 +546,7 @@ Use search to find needed section.
 					<div class="panel-heading">
 						<span class="panel-title">Nouveau Ticket d'Incident</span>
 					</div>
+					<f:form modelAttribute="ticketIncident" action="saveTicket" methode="post" id="jq-validation-form">
 					<div class="panel-body">
 						<div class="wizard ui-wizard-example">
 							<div class="wizard-wrapper">
@@ -832,11 +833,7 @@ Use search to find needed section.
 									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
-						<f:form modelAttribute="ticketIncident" action="save" methode="post" enctype="multipart/form-data"  id="jq-validation-form">
-						   
-							
-							
-							
+
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
@@ -844,18 +841,7 @@ Use search to find needed section.
 									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
 								</div>
 							</div>
-						<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
-								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
-							             <f:option value=""></f:option>
-										 <f:option value="Nouveau">Nouveau</f:option>
-										 <f:option value="obsolète"> obsolète</f:option>
-										 <f:option value="production"> production</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-								</div>
-							</div>
+
 								<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
 								<div class="col-sm-9">
@@ -912,7 +898,7 @@ Use search to find needed section.
 							
 							
 							
-						</f:form>
+
 					
 									<button class="btn wizard-prev-step-btn">Précédent</button>
 									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
@@ -921,12 +907,15 @@ Use search to find needed section.
 									Si vous avez bien remplis le formulaire, enregistrer votre Ticket<br><br>
 									<button class="btn wizard-prev-step-btn">Précédent</button>
 									<button class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
-									<button class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
+
+									<button type="submit" class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
 								</div> <!-- / .wizard-pane -->
 							</div> <!-- / .wizard-content -->
 						</div> <!-- / .wizard -->
 					</div>
+					</f:form>
 				</div>
+				
 <!-- /11. $WIZARDS -->
 
 

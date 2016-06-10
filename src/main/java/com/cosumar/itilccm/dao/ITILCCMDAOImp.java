@@ -1192,7 +1192,6 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 	@Override
 	public void deleteSwitchSan(Long id) {
 		SwitchSan s = em.find(SwitchSan.class, id);
-		
 		em.remove(s);		
 	}
 
@@ -7563,6 +7562,51 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			 
 			em.merge(g);
 		
+	}
+
+	@Override
+	public Long addTicketIncident(TicketIncident t,Long demandeur) {
+		
+		  if(demandeur!=null){
+			User dema = getUser(demandeur);
+			t.setDemandeur(dema); 
+		  }else{
+			t.setDemandeur(null);
+		  }
+		 
+		em.persist(t); 
+		return t.getId();
+	}
+
+	@Override
+	public void editTicketIncident(TicketIncident t) {
+		em.merge(t);
+		
+	}
+
+	@Override
+	public void deleteTicketIncident(Long id) {
+		TicketIncident t = getTicketIncident(id);
+		em.remove(t); 
+		
+	}
+
+	@Override
+	public List<TicketIncident> SearchTicketIncident(String ti) {
+		Query req = em.createQuery("select ti from TicketIncident ti where ti.titre LIKE :searchKeyword");
+		req.setParameter("searchKeyword", "%"+ti+"%"); 
+		return req.getResultList();
+	}
+
+	@Override
+	public List<TicketIncident> listTicketIncident() {
+		Query req = em.createQuery("select t from TicketIncident t");
+		return req.getResultList();
+	}
+
+	@Override
+	public TicketIncident getTicketIncident(Long id) {
+		return em.find(TicketIncident.class, id); 
 	}
 
 	

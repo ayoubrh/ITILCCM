@@ -71,6 +71,10 @@ public class Virtualisation implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="virtualisation",cascade = CascadeType.ALL)
 	   private Collection<Groupe> groupe;
+	   
+	   @Column(nullable=true)
+	    @OneToMany(mappedBy="virtualisation",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	    private Collection<TicketIncident> ticketsIncident;
 		   
 		public Virtualisation() {
 			super();
@@ -162,6 +166,12 @@ public class Virtualisation implements Serializable {
 		}
 		public void setGroupe(Collection<Groupe> groupe) {
 			this.groupe = groupe;
+		}
+		public Collection<TicketIncident> getTicketsIncident() {
+			return ticketsIncident;
+		}
+		public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+			this.ticketsIncident = ticketsIncident;
 		}
 		
 

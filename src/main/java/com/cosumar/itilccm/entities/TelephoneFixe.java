@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -72,6 +73,10 @@ public class TelephoneFixe implements Serializable{
    	@Column(nullable=true)
 	@ManyToMany(mappedBy="telephoneFixe",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
+   	
+   	@Column(nullable=true)
+    @OneToMany(mappedBy="telephoneFixe",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Collection<TicketIncident> ticketsIncident;
 
 	public Long getId() {
 		return id;
@@ -239,6 +244,14 @@ public class TelephoneFixe implements Serializable{
 
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
+	}
+
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
 	}
 	
 	

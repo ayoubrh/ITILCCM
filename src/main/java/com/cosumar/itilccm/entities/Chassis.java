@@ -78,6 +78,10 @@ public class Chassis implements Serializable{
    	@Column(nullable=true)
 	@ManyToMany(mappedBy="chassis",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
+   	
+    @Column(nullable=true)
+    @OneToMany(mappedBy="chassis",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Collection<TicketIncident> ticketsIncident;
 
 
 	public Long getId() {
@@ -254,6 +258,14 @@ public class Chassis implements Serializable{
 
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
+	}
+
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
 	}
    	
    	

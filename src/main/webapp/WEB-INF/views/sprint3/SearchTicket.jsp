@@ -28,14 +28,13 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Modification Licence Logiciel - ITIL-CCM</title>
+	<title>Recherche Ticket d'incident - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -50,7 +49,6 @@ Use search to find needed section.
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/pages.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=request.getContextPath()%>/resources/assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
-	
 
 	<!--[if lt IE 9]>
 		<script src="<%=request.getContextPath()%>/resources/assets/javascripts/ie.min.js"></script>
@@ -73,7 +71,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-profile">
+<body class="theme-default main-menu-animated page-search"> 
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -445,27 +443,7 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
-						</li>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
-						</li>
-						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
 						</li>
 					</ul>
 				</li>
@@ -517,271 +495,107 @@ Use search to find needed section.
 
 
 	<div id="content-wrapper">
-<!-- 5. $CONTENT ===================================================================================
 
-		Content
+<!-- 5. $SEARCH_RESULTS_PAGE =======================================================================
+	
+		Search results page
 -->
-<!-- Modal Document -->
-				<div id="myModaldocument" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Ajout Documents</h4>
-							</div>
-							<div class="modal-body">
-								<div class="table-warning">
-									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-										<thead>
-											<tr>
-												<th id="supchek"> </th>
-												<th>Nom</th>
-												<th>Statut</th>
-												<th>Type de document</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody id="tabledocpopup">
-											<c:forEach items="${documents}" var="doc">
-												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
-													<td>${doc.nom }</td>
-													<td>${doc.statut }</td>
-													<td>
-														<c:set var="string1" value="${doc['class'].name }"/>
-														<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
-														${string2 }
-													</td>
-													<td>${doc.description }</td>
-												</tr>
-											</c:forEach>
-											
-										</tbody>
-									</table>
-								</div>
-							</div> <!-- / .modal-body -->
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-								<button type="button" class="btn btn-primary"  id="addDoc">Ajouter</button>
-							</div>
-						</div> <!-- / .modal-content -->
-					</div> <!-- / .modal-dialog -->
-				</div> <!-- /.modal -->
-				<!-- / Modal Document -->
-		<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title">Modification de Licence Logiciel</span>
-					</div>
-					<div class="panel-body">
-						<f:form modelAttribute="licenseLogiciel" action="/config/admin/add/saveLicenseLogiciel" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-					
-					
-		
-						<hr class="profile-content-hr no-grid-gutter-h">
-						
-						<div class="profile-content">
-		
-							<ul id="profile-tabs" class="nav nav-tabs">
-								<li class="active">
-									<a href="#profile-tabs-proprietes" data-toggle="tab">Propriétés</a>
-								</li>
-								
-								<li>
-									<a href="#profile-tabs-documents" data-toggle="tab">Documents</a>
-								</li>
-							
-							</ul>
-		
-							<div class="tab-content tab-content-bordered panel-padding">
-								<div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-proprietes">
-		
-									
-		
-						<div class="panel-body">
-						
-						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Nom</label>
-								<div class="col-sm-9">
-									<f:input path="nom" type="text" class="form-control" id="inputError-4" name="jq-validation-nom" />
-									<f:errors path="nom" cssClass="help-block"></f:errors>
-							    </div>
-							
-							</div>
-							
-							<div class="form-group required">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Logiciel</label>
-								<div class="col-sm-9">
-									<f:select  path="logicielEtApplications.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value=""></f:option>
-										<f:options items="${la }" itemValue="id" itemLabel="nom" />
-									</f:select>
-									<f:errors path="logicielEtApplications.id" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Limite d'utilisation</label>
-								<div class="col-sm-9">
-									<f:input path="limiteD_utilisation" type="text" class="form-control" id="inputError-4" name="jq-validation-limiteD_utilisation" />
-									<f:errors path="limiteD_utilisation" cssClass="help-block"></f:errors>
-							    </div>
-							
-							</div>
-						
-							<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Perpetuelle</label>
-								<div class="col-sm-9">
-									<f:select  path="perpetuelle" class="form-control" name="jq-validation-perpetuelle" id="jq-validation-perpetuelle">
-									            <f:option value=""></f:option>
-									            <f:option value="non">non</f:option>
-												<f:option value="oui"> oui</f:option>
-									</f:select>
-									<f:errors path="perpetuelle" cssClass="help-block"></f:errors>
-							     </div>
-				             </div> 
-							<script>
-					init.push(function () {
-						
-						var options = {
-								
-								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-							}
-							$('#bs-datepicker-component').datepicker({ 
-									format: 'dd/mm/yyyy'
-								 });
-						
-						    $('#bs-datepicker-component2').datepicker({ 
-						    	    format: 'dd/mm/yyyy'
-							    });
 
+			<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('#jq-datatables-example').dataTable();
 					});
 				</script>
+				<!-- / Javascript -->
 				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de début de validité</label>
+				<c:if test="${delete == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						L'élément de configuration est bien supprimer.
+					</div>
+				</c:if>
+
+
+		<div class="page-header">
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Tickets d'Incident</h1>
+			<a href="<c:url value="/incid/add/ticket"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Tickets d'Incident</a>
+			
+		</div> <!-- / .page-header -->
+
+		<!-- / .search-text -->
+
+		<!-- Tabs -->
+		
+		<!-- / Tabs -->
+
+		<!-- Panel -->
+		<div class="panel search-panel">
+
+			<!-- Search form -->
+			<form action="ticket" class="search-form bg-primary">
+				<div class="input-group input-group-lg">
+					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
+					<input type="text" name="ti" class="form-control" value="${ticket }" placeholder="Entrez le titre à chercher...">
+					<span class="input-group-btn">
+						<button class="btn" type="submit">Search</button>
+					</span>
+				</div> <!-- / .input-group -->
+			</form>
+			<!-- / Search form -->
+
+			<!-- Search results -->
+			<div class="panel-body">
+
+				<!-- Classic search -->
+				
+				<!-- / Classic search -->
+
+				<!-- Users search -->
 					
-						<div class=" col-sm-9" >
-							<div class=" input-group date" id="bs-datepicker-component">
-								<f:input path="dateDeDebutDeValidite" type="text" class="form-control" name="start"  />
-								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
-								
-							</div>
-							<f:errors path="dateDeDebutDeValidite" cssClass="help-block"></f:errors>				
-						</div>
-				</div>
-				
-				<div class="form-group ">
-					<label for="jq-validation-email" class="col-sm-3 control-label">Date de fin de validité</label>
-				     		<div class=" col-sm-9" >
-								<div class="input-group date" id="bs-datepicker-component2">
-									<f:input path="dateDeFinDeValiite" type="text" class="form-control" name="end"  />
-									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Date d'ouverture</th>
+										<th>Demandeur</th>
+										<th>Statut</th>
+										<th>Impact</th>
+										<th>Urgence</th>
+										<th>Priorité</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${cis}" var="ci">
+										<tr class="gradeA">
+											<td>${ci.titre}</td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeDebut}" /></td>
+											<td><a href="<c:url value="/users/profil?id=${ci.demandeur.id }" />">${ci.demandeur.nom }</a></td>
+											<td>${ci.statut }</td>
+											<td>${ci.impact}</td>
+											<td>${ci.urgence }</td>
+											<td>${ci.priorite }</td>
+										</tr>
 									
-								</div>
-								<f:errors path="dateDeFinDeValiite" cssClass="help-block"></f:errors>
-							</div>
-				
-				</div>	
-				
-				<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Clé</label>
-								<div class="col-sm-9">
-									<f:input path="cle" type="text" class="form-control" id="jq-validation-cle" name="jq-validation-cle" />
-									<f:errors path="cle" cssClass="help-block"></f:errors>
-								</div>
-				</div>
-					
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Description</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
-									<f:errors path="description" cssClass="help-block"></f:errors>
-							    </div>
-							
-							</div>
-				
-				
-					
-						
-					</div>
-					
-					
-		
-								</div> <!-- / .tab-pane -->
-								
-								<div class="tab-pane fade widget-documents" id="profile-tabs-documents">
-									<div class="table-primary">
-										<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
-											<thead>
-												<tr>
-													<th id="supchek"> </th>
-													<th>Nom</th>
-												    <th>Statut</th>
-												    <th>Type de document</th>
-												    <th>Description</th>
-													
-												 </tr>
-											</thead>
-											<tbody id="tabledocument">
-												<c:forEach items="${licenseLogiciel.documents}" var="doc">
-												<tr class="gradeA" id="tr_doc_${doc.id }">
-													<td class="supchekbox"><input type="checkbox" checked="checked" class="ckdoc" name="ckDocuments" value="${doc.id }"></td>
-													<td><a href="<c:url value="/config/view/document?id=${doc.id }" />">${doc.nom }</a></td>
-													<td>${doc.statut }</td>
-													<td>
-														<c:set var="string1" value="${doc['class'].name }"/>
-														<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
-														${string2 }
-													</td>
-													<td>${doc.description }</td>
-												</tr>
-											</c:forEach>
-												
-											</tbody>
-										</table>
-									</div>
-									<br>
-									<br>
+									</c:forEach>
+									
+									
+								</tbody>
+							</table>
+				<!-- / Users search -->
 
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-1">
-											<button type="button" class="btn btn-warning btn-flat" id="suppDoc">Retirer !</button>
-										</div>
-										
-										<div class="col-sm-offset-1 col-sm-7">
-											<button type="button" class="btn btn-success btn-flat" data-toggle="modal" data-target="#myModaldocument">Ajouter des Documents</button>
-										</div>
-										
-									</div>
-								</div> <!-- / .tab-pane -->
-								
-								
-							</div> <!-- / .tab-content -->
-						</div>
+				<!-- Messages search -->
 				
-					
-							<hr class="panel-wide">
-							
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-lg btn-danger btn-flat" onclick="location.href='<c:url value="/config/view/licenceLogiciel?id=${licenseLogiciel.id }" />'">Annuler</button>
-								</div>
-								
-								<div class="col-sm-offset-1 col-sm-7">
-									<button type="submit" class="btn btn-lg btn-primary btn-flat">Enregistrer</button>
-								</div>
-								
-							</div>
-						</f:form>
-					</div>
-					
-					
-		</div>
+				<!-- / Messages search -->
+			</div>
+			<!-- / Search results -->
 
-		<!-- Content here -->
-		
-		
-		
+			<!-- Panel Footer -->
+			<!-- / .panel-footer -->
+
+		</div> 
+		<!-- / Panel -->
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -803,43 +617,12 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		$('#profile-tabs').tabdrop();
-
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
+		// Javascript code here
+		var s = "${ticket }";
+		$('.add-tooltip').tooltip();
+		document.getElementsByName("jq-datatables-example_length").value="25";
 		
-		$('.jq-datatables-example').dataTable();
-		$('.jq-datatables-example_wrapper .table-caption').text('');
-		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-		
-		document.getElementById("addDoc").onclick = function () {
-	    	var chkArray = [];
-	    	
-	    	$(".ckdoc:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
-		    	$( "#tabledocument" ).append(tr);
-		    	//this.checked = false;
-	    	});
-	    	
-	    };
-	    
-	    document.getElementById("suppDoc").onclick = function () {
-			var chkArray = [];
-	    	
-	    	$(".ckdoc:checked").each(function() {
-	    		chkArray.push($(this).val());
-	    		var tr = document.getElementById("tr_doc_".concat($(this).val()));
-		    	$( "#tabledocpopup" ).append(tr);
-                this.checked = false;
-	    	});
-	    };
+		$(".table-header").hide();
 	});
 	window.PixelAdmin.start(init);
 </script>

@@ -43,6 +43,7 @@ public class TestMetier {
 			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d2, r2);
 			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d2, r3);
 
+
 			User um = m.getUser(id);
 			um.setAge("30");
 			m.modifierUser(um);

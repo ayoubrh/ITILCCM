@@ -469,10 +469,30 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-retweet"></i><span class="mm-text">Gestion des changements</span></a>
+					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+						</li>
+						</s:authorize>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -552,7 +572,7 @@ Use search to find needed section.
 												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/processusMetier" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
 												</s:authorize>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
+													<a href="<c:url value="/config/search/processusMetier"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
 												</div>
 											</div>
 										</div>
@@ -569,7 +589,7 @@ Use search to find needed section.
 												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/solutionApplicative" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
 												</s:authorize>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
+													<a href="<c:url value="/config/search/solutionApplicative"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
 												</div>
 											</div>
 										</div>
@@ -585,7 +605,7 @@ Use search to find needed section.
 												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/contact" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
 												</s:authorize>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
+													<a href="<c:url value="/config/search/contact"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
 												</div>
 											</div>
 										</div>
@@ -602,7 +622,7 @@ Use search to find needed section.
 												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/lieu" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
 												</s:authorize>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
+													<a href="<c:url value="/config/search/lieu"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
 												</div>
 											</div>
 										</div>
@@ -617,7 +637,7 @@ Use search to find needed section.
 												</div>
 												<div class="col-md-12">
 													<a tabindex="-1" href="<c:url value="/config/admin/add/contrat" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contrat</span></a>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contrat</span></a>
+													<a href="<c:url value="/config/search/contrat"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contrat</span></a>
 												</div>
 											</div>
 										</div>
@@ -635,7 +655,7 @@ Use search to find needed section.
 												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a href="<c:url value="/config/admin/add/serveur" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
 												</s:authorize>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
+													<a href="<c:url value="/config/search/serveur"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
 												</div>
 											</div>
 										</div>
@@ -652,7 +672,7 @@ Use search to find needed section.
 												<s:authorize ifAnyGranted="ROLE_ADMIN">
 													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
 												</s:authorize>
-													<a href="#"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
+													<a href="<c:url value="/config/search/equipementreseau"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
 												</div>
 											</div>
 										</div>
