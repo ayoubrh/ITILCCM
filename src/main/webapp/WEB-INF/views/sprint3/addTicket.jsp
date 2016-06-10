@@ -436,7 +436,27 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+						</li>
+						</s:authorize>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -524,8 +544,9 @@ Use search to find needed section.
 
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Créer Nouvelle Ticket d'Incident</span>
+						<span class="panel-title">Nouveau Ticket d'Incident</span>
 					</div>
+					<f:form modelAttribute="ticketIncident" action="saveTicket" methode="post" id="jq-validation-form">
 					<div class="panel-body">
 						<div class="wizard ui-wizard-example">
 							<div class="wizard-wrapper">
@@ -533,21 +554,21 @@ Use search to find needed section.
 									<li data-target="#wizard-example-step1" >
 										<span class="wizard-step-number">1</span>
 										<span class="wizard-step-caption">
-											Step 1
-											<span class="wizard-step-description">Choisi CI</span>
+											Etape 1
+											<span class="wizard-step-description">Choix CI</span>
 										</span>
 									</li>
 									<li data-target="#wizard-example-step2"> <!-- ! Remove space between elements by dropping close angle -->
 										<span class="wizard-step-number">2</span>
 										<span class="wizard-step-caption">
-											Step 2
-											<span class="wizard-step-description">Second step description</span>
+											Etape 2
+											<span class="wizard-step-description">Détail de l'incident</span>
 										</span>
 									</li>
 									<li data-target="#wizard-example-step4"> <!-- ! Remove space between elements by dropping close angle -->
 										<span class="wizard-step-number">4</span>
 										<span class="wizard-step-caption">
-											Finish
+											Fin
 										</span>
 									</li>
 								</ul> <!-- / .wizard-steps -->
@@ -809,52 +830,19 @@ Use search to find needed section.
 									</table>
 									</div>
 									
-									<button class="btn btn-primary wizard-next-step-btn">Next</button>
+									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
-						<f:form modelAttribute="ticket" action="save" methode="post" enctype="multipart/form-data"  id="jq-validation-form">
-						    <div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Ouvert le :</label>
-								<div class="col-sm-9">
-									
-									<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Fermé le :</label>
-								<div class="col-sm-9">
-									
-									<f:errors path="dateDeFermeture" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-demandeur" class="col-sm-3 control-label">Demandeur :</label>
-								<div class="col-sm-9">
-								<f:label path="demandeur" class="form-control" id="jq-validation-dema" name="jq-validation-demandeur">${logged.prenom } ${logged.nom }</f:label>
-								<f:errors path="demandeur" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							
-							<div class="form-group">
+						
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
 									<f:input path="titre" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
 									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
 								</div>
 							</div>
-						<div class="form-group required">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
-								<div class="col-sm-9">
-									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
-							             <f:option value=""></f:option>
-										 <f:option value="Nouveau">Nouveau</f:option>
-										 <f:option value="obsolète"> obsolète</f:option>
-										 <f:option value="production"> production</f:option>
-									</f:select>
-									<f:errors path="statut" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-								<div class="form-group required">
+						
+								<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
 								<div class="col-sm-9">
 									<f:select  path="urgence" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
@@ -868,7 +856,7 @@ Use search to find needed section.
 									<f:errors path="urgence" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group required">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Impact :</label>
 								<div class="col-sm-9">
 									<f:select  path="impact" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
@@ -882,7 +870,7 @@ Use search to find needed section.
 									<f:errors path="impact" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group required">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
 								<div class="col-sm-9">
 									<f:select  path="priorite" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
@@ -897,78 +885,11 @@ Use search to find needed section.
 									<f:errors path="priorite" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Validation :</label>
-								<div class="col-sm-9">
-									<div class="radio">
-										<label>
-											<f:radiobutton path="validation" name="jq-validation-radios" value="True" class="px"/>
-											<span class="lbl">oui</span>
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<f:radiobutton path="validation" name="jq-validation-radios" value="False" class="px"/>
-											<span class="lbl">non</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							
-							 <div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Date de validation :</label>
-								<div class="col-sm-9">
-									
-									<f:errors path="dateDeValidation" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
-								<div class="col-sm-9">
-									<f:select  path="" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="" label=""/>
-										<f:options items="${d }" itemValue="id" itemLabel="nom" />	
-									</f:select>
-									<f:errors path="" cssClass="help-block"></f:errors>
-								</div>
-								
-							</div>
-							 <div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'affectation :</label>
-								<div class="col-sm-9">
-									
-									<f:errors path="dateD_affectation" cssClass="help-block"></f:errors>
-								</div>
-							</div>
 							
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Résolution :</label>
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description :</label>
 								<div class="col-sm-9">
-									<div class="radio">
-										<label>
-											<f:radiobutton path="resolution" name="jq-validation-radios" value="True" class="px"/>
-											<span class="lbl">oui</span>
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<f:radiobutton path="resolution" name="jq-validation-radios" value="False" class="px"/>
-											<span class="lbl">non</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Date de la résolution :</label>
-								<div class="col-sm-9">
-									
-									<f:errors path="dateDeResolution" cssClass="help-block"></f:errors>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-text" class="col-sm-3 control-label">Solution :</label>
-								<div class="col-sm-9">
-									<f:textarea path="description" class="form-control" name="jq-validation-text" id="jq-validation-text" />
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
@@ -976,21 +897,24 @@ Use search to find needed section.
 							
 							
 							
-						</f:form>
+							
+						
 					
-									<button class="btn wizard-prev-step-btn">Prev</button>
-									<button class="btn btn-primary wizard-next-step-btn">Next</button>
+									<button class="btn wizard-prev-step-btn">Précédent</button>
+									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step4" style="display: none;">
-									Finish<br><br>
-									<button class="btn wizard-prev-step-btn">Prev</button>
-									<button class="btn btn-success wizard-go-to-step-btn">Go to Step 1</button>
-									<button class="btn btn-primary wizard-next-step-btn">Finish</button>
+									Si vous avez bien remplis le formulaire, enregistrer votre Ticket<br><br>
+									<button class="btn wizard-prev-step-btn">Précédent</button>
+									<button class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
+									<button type="submit" class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
 								</div> <!-- / .wizard-pane -->
 							</div> <!-- / .wizard-content -->
 						</div> <!-- / .wizard -->
 					</div>
+					</f:form>
 				</div>
+				
 <!-- /11. $WIZARDS -->
 
 

@@ -111,22 +111,34 @@ public class User implements Serializable {
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Ordinateur> ordinateur;
    	
-   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	 @OneToOne(mappedBy="user")
 	private TelephneMobile telephneMobile;
    	
-   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	 @OneToOne(mappedBy="user")
 	private Sim sim;
    	
-   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	 @OneToOne(mappedBy="user")
 	private Tablette tablette;
    	
-   	 @OneToOne(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	 @OneToOne(mappedBy="user")
 	private TelephoneFixe telephoneFixe;
    	
-   	 @OneToMany(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Imprimante> imprimante;
+   	
+   	@Column(nullable=true)
+	@OneToMany(mappedBy="demandeur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	private Collection<TicketIncident> demandeurs;
    	 
+   	@Column(nullable=true)
+	@OneToMany(mappedBy="admin",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	private Collection<TicketIncident> Validation;
+   	
+   	@Column(nullable=true)
+	@OneToMany(mappedBy="equipeIt",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	private Collection<TicketIncident> Affectation;
+   	
 	public Long getId() {
 		return id;
 	}
@@ -346,5 +358,26 @@ public class User implements Serializable {
 	public void setImprimante(Collection<Imprimante> imprimante) {
 		this.imprimante = imprimante;
 	}
+	public Collection<TicketIncident> getDemandeurs() {
+		return demandeurs;
+	}
+	public void setDemandeurs(Collection<TicketIncident> demandeurs) {
+		this.demandeurs = demandeurs;
+	}
+	public Collection<TicketIncident> getValidation() {
+		return Validation;
+	}
+	public void setValidation(Collection<TicketIncident> validation) {
+		Validation = validation;
+	}
+	public Collection<TicketIncident> getAffectation() {
+		return Affectation;
+	}
+	public void setAffectation(Collection<TicketIncident> affectation) {
+		Affectation = affectation;
+	}
+	
+	
+	
 	   
 }

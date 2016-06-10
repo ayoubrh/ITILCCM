@@ -107,6 +107,11 @@ public class Ordinateur implements Serializable{
 	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
 	 private Collection<Groupe> groupe;
+	 
+	 @Column(nullable=true)
+    @OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<TicketIncident> ticketsIncident;
 
    
 	public Long getId() {
@@ -288,15 +293,12 @@ public class Ordinateur implements Serializable{
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
 	}
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
+	}
 	
-	
-	
-	
-	
-	
-	
-	   
-   
-   
 
 }

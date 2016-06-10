@@ -67,6 +67,11 @@ public class Peripherique implements Serializable{
    	@Column(nullable=true)
 	@ManyToMany(mappedBy="peripherique",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
+   	
+   	@Column(nullable=true)
+    @OneToMany(mappedBy="peripherique",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<TicketIncident> ticketsIncident;
 
 	public Long getId() {
 		return id;
@@ -223,10 +228,13 @@ public class Peripherique implements Serializable{
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
 	}
-	
-	
-	   
-	   	
-	   
 
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
+	}
+	
 }

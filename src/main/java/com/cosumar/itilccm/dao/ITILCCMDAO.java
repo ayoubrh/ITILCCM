@@ -582,4 +582,13 @@ public interface ITILCCMDAO {
 	public List<Hyperviseur> SearchHyperviseur(String h);
 	public List<Hyperviseur> listHyperviseur();
 	public Hyperviseur getHyperviseur(Long id);
+	
+	// Ticket d'incident
+	
+	public Long addTicketIncident(TicketIncident t,Long demandeur);
+	public void editTicketIncident(TicketIncident t);
+	public void deleteTicketIncident(Long id);
+	public List<TicketIncident> SearchTicketIncident(String ti);
+	public List<TicketIncident> listTicketIncident();
+	public TicketIncident getTicketIncident(Long id);
 }

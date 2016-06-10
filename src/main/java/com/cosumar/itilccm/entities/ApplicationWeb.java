@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -61,6 +62,10 @@ public class ApplicationWeb implements Serializable {
 	   @ManyToOne
 	   @JoinColumn(name="id_serveurWeb")
 	   private ServeurWeb serveurWeb;
+	   
+	   @Column(nullable=true)
+	   @OneToMany(mappedBy="applicationWeb",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   private Collection<TicketIncident> ticketsIncident;
 		   
 		public ApplicationWeb() {
 			super();
@@ -145,6 +150,12 @@ public class ApplicationWeb implements Serializable {
 		}
 		public void setGroupe(Collection<Groupe> groupe) {
 			this.groupe = groupe;
+		}
+		public Collection<TicketIncident> getTicketsIncident() {
+			return ticketsIncident;
+		}
+		public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+			this.ticketsIncident = ticketsIncident;
 		}
 		   
 		      

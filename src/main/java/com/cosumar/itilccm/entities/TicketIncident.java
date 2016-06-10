@@ -2,10 +2,15 @@ package com.cosumar.itilccm.entities;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class TicketIncident {
@@ -13,14 +18,16 @@ public class TicketIncident {
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
 	   private Long id;
 	   
-	   private String demandeur;
+	   
 	   private String impact;
 	   private String priorite;
 	   private String statut;
 	   private String urgence;
-	   private Boolean validation;
-	   private Boolean resolution;
+	   private boolean valider;
+	   private boolean resolver;
+	   @NotEmpty
 	   private String titre;
+	   
 	   private String description;
 	   private Date dateDeDebut;
 	   private Date dateDeFermeture;
@@ -30,33 +37,66 @@ public class TicketIncident {
 	   private boolean notificationAdmininstration;
 	   private boolean notificationUtilisateur;
 	   private boolean notificationEquipeIt;
-		   
+	  
+	   @ManyToOne
+	   private User demandeur;
+	   @ManyToOne
+	   private User admin;
+	   @ManyToOne
+	   private User equipeIt;
+	   @ManyToOne  
+	   private ApplicationWeb applicationWeb;
+	   @ManyToOne
+	   private ConnexionElectrique connexionElectrique;
+	   @ManyToOne
+	   private LogicielEtApplication logicielEtApplication;
+	   @ManyToOne
+	   private Infrastructure infrastructure;
+	   @ManyToOne
+	   private Camera camera;
+	   @ManyToOne
+	   private Chassis chassis;
+	   @ManyToOne
+	   private EquipementReseau equipementReseau;
+	   @ManyToOne
+	   private Virtualisation virtualisation;
+	   @ManyToOne
+	   private Imprimante imprimante;
+	   @ManyToOne
+	   private InstanceDeBasseDeDonnes instanceDeBasseDeDonnes;
+	   @ManyToOne
+	   private InstanceMiddleware instanceMiddleware;
+	   @ManyToOne
+	   private MachineVirtuelle machineVirtuelle;
+	   @ManyToOne
+	   private Ordinateur ordinateur;
+	   @ManyToOne
+	   private Peripherique peripherique;
+	   @ManyToOne
+	   private ProcessusMetier processusMetier;
+	   @ManyToOne
+	   private Rack rack;
+	   @ManyToOne
+	   private SolutionApplicative solutionApplicative;
+	   @ManyToOne
+	   private Tablette tablette;
+	   @ManyToOne
+	   private TelephneMobile telephneMobile;
+	   @ManyToOne
+	   private TelephoneFixe telephoneFixe;
+	 
 		public TicketIncident() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public TicketIncident(String demandeur, String impact, String priorite, String statut, String urgence, Boolean resolution,
-				Boolean validation, String titre, String description, Date dateDeDebut, Date dateDeFermeture,
-				Date dateDeResolution, Date dateD_affectation, Date dateDeValidation, boolean notificationAdmininstration,
-				boolean notificationUtilisateur, boolean notificationEquipeIt) {
+		public TicketIncident(String impact, String priorite, String statut, String urgence,String titre, String description) {
 			super();
-			this.demandeur = demandeur;
 			this.impact = impact;
 			this.priorite = priorite;
 			this.statut = statut;
 			this.urgence = urgence;
-			this.resolution = resolution;
-			this.validation = validation;
 			this.titre = titre;
 			this.description = description;
-			this.dateDeDebut = dateDeDebut;
-			this.dateDeFermeture = dateDeFermeture;
-			this.dateDeResolution = dateDeResolution;
-			this.dateD_affectation = dateD_affectation;
-			this.dateDeValidation = dateDeValidation;
-			this.notificationAdmininstration = notificationAdmininstration;
-			this.notificationUtilisateur = notificationUtilisateur;
-			this.notificationEquipeIt = notificationEquipeIt;
 		}
 		public Long getId() {
 			return id;
@@ -64,12 +104,7 @@ public class TicketIncident {
 		public void setId(Long id) {
 			this.id = id;
 		}
-		public String getDemandeur() {
-			return demandeur;
-		}
-		public void setDemandeur(String demandeur) {
-			this.demandeur = demandeur;
-		}
+	
 		public String getImpact() {
 			return impact;
 		}
@@ -95,18 +130,18 @@ public class TicketIncident {
 			this.urgence = urgence;
 		}
 		
-		public Boolean getValidation() {
-			return validation;
+		public boolean getValider() {
+			return valider;
 		}
-		public void setValidation(Boolean validation) {
-			this.validation = validation;
+		public void setValider(boolean valider) {
+			this.valider = valider;
 		}
 		
-		public Boolean getResolution() {
-			return resolution;
+		public boolean getResolver() {
+			return resolver;
 		}
-		public void setResolution(Boolean resolution) {
-			this.resolution = resolution;
+		public void setResolver(boolean resolver) {
+			this.resolver = resolver;
 		}
 		public String getTitre() {
 			return titre;
@@ -168,8 +203,145 @@ public class TicketIncident {
 		public void setNotificationEquipeIt(boolean notificationEquipeIt) {
 			this.notificationEquipeIt = notificationEquipeIt;
 		}
+		
+		public User getDemandeur() {
+			return demandeur;
+		}
+		public void setDemandeur(User demandeur) {
+			this.demandeur = demandeur;
+		}
+		public User getAdmin() {
+			return admin;
+		}
+		public void setAdmin(User admin) {
+			this.admin = admin;
+		}
+		public User getEquipeIt() {
+			return equipeIt;
+		}
+		public void setEquipeIt(User equipeIt) {
+			this.equipeIt = equipeIt;
+		}
+		public ApplicationWeb getApplicationWeb() {
+			return applicationWeb;
+		}
+		public void setApplicationWeb(ApplicationWeb applicationWeb) {
+			this.applicationWeb = applicationWeb;
+		}
+		public ConnexionElectrique getConnexionElectrique() {
+			return connexionElectrique;
+		}
+		public void setConnexionElectrique(ConnexionElectrique connexionElectrique) {
+			this.connexionElectrique = connexionElectrique;
+		}
+		public LogicielEtApplication getLogicielEtApplication() {
+			return logicielEtApplication;
+		}
+		public void setLogicielEtApplication(LogicielEtApplication logicielEtApplication) {
+			this.logicielEtApplication = logicielEtApplication;
+		}
+		public Infrastructure getInfrastructure() {
+			return infrastructure;
+		}
+		public void setInfrastructure(Infrastructure infrastructure) {
+			this.infrastructure = infrastructure;
+		}
+		public Camera getCamera() {
+			return camera;
+		}
+		public void setCamera(Camera camera) {
+			this.camera = camera;
+		}
+		public Chassis getChassis() {
+			return chassis;
+		}
+		public void setChassis(Chassis chassis) {
+			this.chassis = chassis;
+		}
+		public EquipementReseau getEquipementReseau() {
+			return equipementReseau;
+		}
+		public void setEquipementReseau(EquipementReseau equipementReseau) {
+			this.equipementReseau = equipementReseau;
+		}
+		public Virtualisation getVirtualisation() {
+			return virtualisation;
+		}
+		public void setVirtualisation(Virtualisation virtualisation) {
+			this.virtualisation = virtualisation;
+		}
+		public Imprimante getImprimante() {
+			return imprimante;
+		}
+		public void setImprimante(Imprimante imprimante) {
+			this.imprimante = imprimante;
+		}
+		public InstanceDeBasseDeDonnes getInstanceDeBasseDeDonnes() {
+			return instanceDeBasseDeDonnes;
+		}
+		public void setInstanceDeBasseDeDonnes(InstanceDeBasseDeDonnes instanceDeBasseDeDonnes) {
+			this.instanceDeBasseDeDonnes = instanceDeBasseDeDonnes;
+		}
+		public InstanceMiddleware getInstanceMiddleware() {
+			return instanceMiddleware;
+		}
+		public void setInstanceMiddleware(InstanceMiddleware instanceMiddleware) {
+			this.instanceMiddleware = instanceMiddleware;
+		}
+		public MachineVirtuelle getMachineVirtuelle() {
+			return machineVirtuelle;
+		}
+		public void setMachineVirtuelle(MachineVirtuelle machineVirtuelle) {
+			this.machineVirtuelle = machineVirtuelle;
+		}
+		public Ordinateur getOrdinateur() {
+			return ordinateur;
+		}
+		public void setOrdinateur(Ordinateur ordinateur) {
+			this.ordinateur = ordinateur;
+		}
+		public Peripherique getPeripherique() {
+			return peripherique;
+		}
+		public void setPeripherique(Peripherique peripherique) {
+			this.peripherique = peripherique;
+		}
+		public ProcessusMetier getProcessusMetier() {
+			return processusMetier;
+		}
+		public void setProcessusMetier(ProcessusMetier processusMetier) {
+			this.processusMetier = processusMetier;
+		}
+		public Rack getRack() {
+			return rack;
+		}
+		public void setRack(Rack rack) {
+			this.rack = rack;
+		}
+		public SolutionApplicative getSolutionApplicative() {
+			return solutionApplicative;
+		}
+		public void setSolutionApplicative(SolutionApplicative solutionApplicative) {
+			this.solutionApplicative = solutionApplicative;
+		}
+		public Tablette getTablette() {
+			return tablette;
+		}
+		public void setTablette(Tablette tablette) {
+			this.tablette = tablette;
+		}
+		public TelephneMobile getTelephneMobile() {
+			return telephneMobile;
+		}
+		public void setTelephneMobile(TelephneMobile telephneMobile) {
+			this.telephneMobile = telephneMobile;
+		}
+		public TelephoneFixe getTelephoneFixe() {
+			return telephoneFixe;
+		}
+		public void setTelephoneFixe(TelephoneFixe telephoneFixe) {
+			this.telephoneFixe = telephoneFixe;
+		}
    
    
-   
-
 }

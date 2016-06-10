@@ -30,11 +30,11 @@ Use search to find needed section.
 <head>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Acceuil - ITIL-CCM</title>
+	<title>Recherche Ticket d'incident - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -71,7 +71,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-default main-menu-animated page-search"> 
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -319,7 +319,7 @@ Use search to find needed section.
 										<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 									</c:if>
 									<c:if test="${logged.bphoto != null }">
-										<img src="photo?id=${logged.id }" alt="" class=""/>
+										<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 									</c:if>
 									<span>${logged.prenom } ${logged.nom }</span>
 								</a>
@@ -375,7 +375,7 @@ Use search to find needed section.
 						<img src="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo_profil.png" alt="" class="">
 					</c:if>
 					<c:if test="${logged.bphoto != null }">
-						<img src="photo?id=${logged.id }" alt="" class=""/>
+						<img src="<c:url value="/users/photo?id=${logged.id }"/>" alt="" class=""/>
 					</c:if>
 					<div class="btn-group">
 						<a href="<c:url value="/users/profil?id=${logged.id }" />" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
@@ -404,7 +404,7 @@ Use search to find needed section.
 					</ul>
 				</li>
 				</s:authorize>
-				                <li class="mm-dropdown">
+				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
@@ -443,27 +443,7 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
-						</li>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
-						</li>
-						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
-						</li>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
 						</li>
 					</ul>
 				</li>
@@ -515,173 +495,107 @@ Use search to find needed section.
 
 
 	<div id="content-wrapper">
-<!-- 5. $CONTENT ===================================================================================
 
-		Content
+<!-- 5. $SEARCH_RESULTS_PAGE =======================================================================
+	
+		Search results page
 -->
-<!-- Javascript -->
+
+			<!-- Javascript -->
 				<script>
 					init.push(function () {
-						$( "#ui-accordion" ).accordion({
-							heightStyle: "content",
-							header: "> div > h3"
-						}).sortable({
-							axis: "y",
-							handle: "h3",
-							stop: function( event, ui ) {
-								// IE doesn't register the blur when sorting
-								// so trigger focusout handlers to remove .ui-state-focus
-								ui.item.children( "h3" ).triggerHandler( "focusout" );
-							}
-						});
+						$('#jq-datatables-example').dataTable();
 					});
 				</script>
 				<!-- / Javascript -->
 				
-				
-				<c:if test="${save == true }">
+				<c:if test="${delete == true }">
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						L'élément de configuration est bien enregistrer.
+						L'élément de configuration est bien supprimer.
 					</div>
 				</c:if>
 
-		<!-- Content here -->
-		<c:if test="${v != null }">
-			<div class="alert alert-success">
-				<button type="button" class="close" data-dismiss="alert"></button>
-				Votre compte est bien valide.
-			</div>
-		</c:if>
-	<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
-		<div class="panel">
-		
-					<div class="panel-heading">
-						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/database.png" alt="" class="">&nbsp; <strong> CIs</strong></span>
-					</div>
-					<div class="panel-body">
-					
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/business-process.png" alt="" class="">&nbsp; Processus métier : ${Processusmetier }
-													</a>
-												</div>
-												<div class="col-md-12">
-												<s:authorize ifAnyGranted="ROLE_ADMIN">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/processusMetier" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Processus métier</span></a>
-												</s:authorize>
-													<a href="<c:url value="/config/search/processusMetier"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Processus métier</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/solution.png" alt="" class="">&nbsp; Solution applicative : ${Solutionapplicative }
-													</a>
-												</div>
-												<div class="col-md-12">
-												<s:authorize ifAnyGranted="ROLE_ADMIN">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/solutionApplicative" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Solution applicative</span></a>
-												</s:authorize>
-													<a href="<c:url value="/config/search/solutionApplicative"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Solution applicative</span></a>
-												</div>
-											</div>
-										</div>
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/team.png" alt="" class="">&nbsp; Contact : ${Contact }
-													</a>
-												</div>
-												<div class="col-md-12">
-												<s:authorize ifAnyGranted="ROLE_ADMIN">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/contact" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contact</span></a>
-												</s:authorize>
-													<a href="<c:url value="/config/search/contact"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contact</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/location.png" alt="" class="">&nbsp; Lieu : ${Lieu }
-													</a>
-												</div>
-												<div class="col-md-12">
-												<s:authorize ifAnyGranted="ROLE_ADMIN">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/lieu" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Lieu</span></a>
-												</s:authorize>
-													<a href="<c:url value="/config/search/lieu"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Lieu</span></a>
-												</div>
-											</div>
-										</div>
-										
-										<s:authorize ifAnyGranted="ROLE_ADMIN">
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/contract.png" alt="" class="">&nbsp; Contrat : ${Contrat }
-													</a>
-												</div>
-												<div class="col-md-12">
-													<a tabindex="-1" href="<c:url value="/config/admin/add/contrat" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Contrat</span></a>
-													<a href="<c:url value="/config/search/contrat"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Contrat</span></a>
-												</div>
-											</div>
-										</div>
-										</s:authorize>
-													
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/server.png" alt="" class="">&nbsp; Serveur : ${Serveur }
-													</a>
-												</div>
-												<div class="col-md-12">
-												<s:authorize ifAnyGranted="ROLE_ADMIN">
-													<a href="<c:url value="/config/admin/add/serveur" />"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Serveur</span></a>
-												</s:authorize>
-													<a href="<c:url value="/config/search/serveur"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Serveur</span></a>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-sm-4 col-md-4">
-											<div class="stat-panel">
-												<div class="col-md-12">
-													<a href="#" style="color:black;">
-														<img src="<%=request.getContextPath()%>/resources/assets/images/png/switch.png" alt="" class="">&nbsp; Equipement réseau : ${Equipementreseau }
-													</a>
-												</div>
-												<div class="col-md-12">
-												<s:authorize ifAnyGranted="ROLE_ADMIN">
-													<a href="#"><span class="fa fa-angle-double-right"> Créer un nouvel objet de type Equipement réseau</span></a>
-												</s:authorize>
-													<a href="<c:url value="/config/search/equipementreseau"/>"><span class="fa fa-angle-double-right"> Rechercher des objets de type Equipement réseau</span></a>
-												</div>
-											</div>
-										</div>
-					
-					
-					</div>
+
+		<div class="page-header">
+			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Tickets d'Incident</h1>
+			<a href="<c:url value="/incid/add/ticket"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Tickets d'Incident</a>
 			
-		</div>
-		</s:authorize>		
+		</div> <!-- / .page-header -->
+
+		<!-- / .search-text -->
+
+		<!-- Tabs -->
+		
+		<!-- / Tabs -->
+
+		<!-- Panel -->
+		<div class="panel search-panel">
+
+			<!-- Search form -->
+			<form action="ticket" class="search-form bg-primary">
+				<div class="input-group input-group-lg">
+					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
+					<input type="text" name="ti" class="form-control" value="${ticket }" placeholder="Entrez le titre à chercher...">
+					<span class="input-group-btn">
+						<button class="btn" type="submit">Search</button>
+					</span>
+				</div> <!-- / .input-group -->
+			</form>
+			<!-- / Search form -->
+
+			<!-- Search results -->
+			<div class="panel-body">
+
+				<!-- Classic search -->
+				
+				<!-- / Classic search -->
+
+				<!-- Users search -->
+					
+
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Date d'ouverture</th>
+										<th>Demandeur</th>
+										<th>Statut</th>
+										<th>Impact</th>
+										<th>Urgence</th>
+										<th>Priorité</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${cis}" var="ci">
+										<tr class="gradeA">
+											<td>${ci.titre}</td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeDebut}" /></td>
+											<td><a href="<c:url value="/users/profil?id=${ci.demandeur.id }" />">${ci.demandeur.nom }</a></td>
+											<td>${ci.statut }</td>
+											<td>${ci.impact}</td>
+											<td>${ci.urgence }</td>
+											<td>${ci.priorite }</td>
+										</tr>
+									
+									</c:forEach>
+									
+									
+								</tbody>
+							</table>
+				<!-- / Users search -->
+
+				<!-- Messages search -->
+				
+				<!-- / Messages search -->
+			</div>
+			<!-- / Search results -->
+
+			<!-- Panel Footer -->
+			<!-- / .panel-footer -->
+
+		</div> 
+		<!-- / Panel -->
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -704,6 +618,11 @@ Use search to find needed section.
 <script type="text/javascript">
 	init.push(function () {
 		// Javascript code here
+		var s = "${ticket }";
+		$('.add-tooltip').tooltip();
+		document.getElementsByName("jq-datatables-example_length").value="25";
+		
+		$(".table-header").hide();
 	});
 	window.PixelAdmin.start(init);
 </script>

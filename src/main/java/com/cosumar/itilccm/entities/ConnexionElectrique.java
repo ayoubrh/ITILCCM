@@ -15,6 +15,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -83,6 +84,11 @@ public class ConnexionElectrique implements Serializable{
    	@ManyToOne
    	@JoinColumn(name="id_lieu")
    private Lieu lieu;
+   	
+   @Column(nullable=true)
+   @OneToMany(mappedBy="connexionElectrique",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
+   private Collection<TicketIncident> ticketsIncident;
    	
 
 	public ConnexionElectrique() {
@@ -271,6 +277,14 @@ public class ConnexionElectrique implements Serializable{
 
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
+	}
+
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
 	}
    	
    	

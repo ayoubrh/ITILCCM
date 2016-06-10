@@ -49,5 +49,19 @@ public class Test {
 			assertTrue(e.getMessage(), false);
 		}
 	}
+	
+	@org.junit.Test
+	public void ArriveeElectrique() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			m.addArriveeElectrique(new ArriveeElectrique("Arrivee1"));
+			m.addArriveeElectrique(new ArriveeElectrique("Arrivee2"));
+			m.addArriveeElectrique(new ArriveeElectrique("Arrivee3"));
+			assertTrue(true);
+		
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	}
 
 }
