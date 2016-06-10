@@ -1,13 +1,22 @@
 package com.cosumar.itilccm.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cosumar.itilccm.entities.Groupe;
+import com.cosumar.itilccm.entities.Peripherique;
 import com.cosumar.itilccm.entities.TicketIncident;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
@@ -29,7 +38,7 @@ public class Sprint3 {
 	    System.out.println(logged_m);
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
-		model.addAttribute("ticket", new TicketIncident());
+		model.addAttribute("ticketIncident", new TicketIncident());
 		model.addAttribute("ApplicationWeb", m.listApplicationWeb());
 	    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
 	    model.addAttribute("Logiciel", m.listLogicielEtApplication());
@@ -52,4 +61,7 @@ public class Sprint3 {
 		model.addAttribute("Telephonemobile", m.ListTeleMobile()); 
 		return "sprint3/ticket";
 	}
+	
+
+	
 }

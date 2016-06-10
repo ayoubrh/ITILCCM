@@ -112,6 +112,7 @@ public class Sprint1 {
 	    					+"<br>Pour valid votre compte et pouvoir accder librement "
 	    					+"<a href="+url+">Clickez ici</a>."
 	    		);
+	    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+user.getRole().getId());
 		if(user.getRole().getId() == null){
 			m.ajouterUser(user, user.getDepartement().getId());
 			
@@ -119,7 +120,8 @@ public class Sprint1 {
 		else {
 			m.ajouterUserRole(user, user.getDepartement().getId(), user.getRole().getId());
 		}
-		return "redirect:/users/index";
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		return "redirect:/indexv?save="+true;
 	}
 
 	@RequestMapping(value="/admin/all")

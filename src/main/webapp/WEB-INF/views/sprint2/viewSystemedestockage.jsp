@@ -444,19 +444,10 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
-						</li>
-					</ul>
-				</li>
-
-				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
-					<ul>
-						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
@@ -474,6 +465,15 @@ Use search to find needed section.
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="mm-dropdown">
+					<a href="#"><i class="menu-icon fa fa-retweet"></i><span class="mm-text">Gestion des changements</span></a>
+					<ul>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
 						</li>
 					</ul>
 				</li>
@@ -821,7 +821,7 @@ Use search to find needed section.
 											</tr>
 										</thead>
 										<tbody id="tableSan">
-												<c:forEach items="${systemeDeStockage.switchSan}" var="san">
+												<c:forEach items="${systemeDeStockage.switchSann}" var="san">
 													<tr class="gradeA" id="tr_san_${san.id }">
 														<td><a href="<c:url value="/config/view/switchsan?id=${san.id }" />">${san.nom }</a></td>
 														<td>${san.statut }</td>

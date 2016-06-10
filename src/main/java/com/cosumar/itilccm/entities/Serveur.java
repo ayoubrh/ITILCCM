@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,6 +23,7 @@ public class Serveur extends Infrastructure implements Serializable{
    
    	@ManyToMany
    	@LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(name = "Serveur_Switchsan", joinColumns = @JoinColumn(name = "serveur_id"), inverseJoinColumns = @JoinColumn(name = "switchsan_id"))
  	@Column(nullable=true)
    private Collection<SwitchSan> switchSan;
    

@@ -443,19 +443,10 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
-						</li>
-					</ul>
-				</li>
-
-				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
-					<ul>
-						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
@@ -473,6 +464,15 @@ Use search to find needed section.
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="mm-dropdown">
+					<a href="#"><i class="menu-icon fa fa-retweet"></i><span class="mm-text">Gestion des changements</span></a>
+					<ul>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
 						</li>
 					</ul>
 				</li>
@@ -508,7 +508,7 @@ Use search to find needed section.
 					<div class="panel-body">
 						
 						<f:form modelAttribute="user" action="save" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Matricule</label>
 								<div class="col-sm-9">
 									<f:input path="matricule" type="text" class="form-control" id="inputError-4" name="jq-validation-matricule" />
@@ -529,7 +529,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">CIN</label>
 								<div class="col-sm-9">
 									<f:input path="cin" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
@@ -555,7 +555,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Age</label>
 								<div class="col-sm-9">
 									<f:input path="age" type="text" class="form-control" id="jq-validation-age" name="jq-validation-age" />
@@ -563,7 +563,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">E-mail</label>
 								<div class="col-sm-9">
 									<f:input path="email" type="text" class="form-control" id="jq-validation-email" name="jq-validation-email" />
@@ -619,7 +619,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Fonction</label>
 								<div class="col-sm-9">
 									<f:input path="fonction" type="text" class="form-control" id="jq-validation-fonction" name="jq-validation-fonction" />
@@ -627,7 +627,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Departement</label>
 								<div class="col-sm-9">
 									<f:select  path="departement.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
@@ -639,7 +639,7 @@ Use search to find needed section.
 								
 							</div>
 							
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Role dans le systeme</label>
 								<div class="col-sm-9">
 									<f:select  path="role.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">

@@ -26,7 +26,11 @@ public class TestMetier {
 	public void test() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
-			Long d1 = m.ajouterDepartement(new Departement("Informatique"));
+			Long d1 = m.ajouterDepartement(new Departement("Service Qualité"));
+			Long d2 = m.ajouterDepartement(new Departement("Service Helpdesk"));
+			Long d3 = m.ajouterDepartement(new Departement("Service Réseau"));
+			Long d4 = m.ajouterDepartement(new Departement("Service Exploitation"));
+			Long d5 = m.ajouterDepartement(new Departement("Service Développement"));
 			System.out.println(d1);
 			
 			Long r2 = m.ajouterRole(new Role("ROLE_USER", "Employe"));
@@ -35,15 +39,15 @@ public class TestMetier {
 			List<User> u1 = m.listUser();
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			//m.ajouterUser(new User("EEEEEEEE", s.hashmd5password("0000000000"), "RHNABRI", "Ayoub", "ayoub0@gmail.com","Technicien"), d1);
-			m.ajouterUserRole(new User("admin", m.hashmd5password("adminpass"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d1, r1);
-			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d1, r2);
-			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d1, r3);
+			m.ajouterUserRole(new User("admin", m.hashmd5password("adminpass"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d2, r1);
+			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d2, r2);
+			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d2, r3);
 
 			User um = m.getUser(id);
 			um.setAge("30");
 			m.modifierUser(um);
 			List<User> u2 = m.listUser();
-			assertTrue(u1.size()+4 == u2.size());
+			assertTrue(u1.size()+3 == u2.size());
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
 		}

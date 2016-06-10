@@ -22,6 +22,7 @@ public class TicketIncident {
 	   private Boolean resolution;
 	   private String titre;
 	   private String description;
+	   private String solution;
 	   private Date dateDeDebut;
 	   private Date dateDeFermeture;
 	   private Date dateDeResolution;
@@ -167,6 +168,12 @@ public class TicketIncident {
 		}
 		public void setNotificationEquipeIt(boolean notificationEquipeIt) {
 			this.notificationEquipeIt = notificationEquipeIt;
+		}
+		public String getSolution() {
+			return solution;
+		}
+		public void setSolution(String solution) {
+			this.solution = solution;
 		}
    
    

@@ -22,7 +22,7 @@ public class Departement implements Serializable {
    private Long id;
 	
 	@NotEmpty
-	@Size(min=4,max=20)
+	@Size(min=4,max=50)
 	@Column(unique = true)
    private String libelle;
 	

@@ -19,7 +19,7 @@ public class SwitchSan extends Infrastructure implements Serializable{
 	 @Column(nullable = true)
 	private Collection<Serveur> serveur;
 	
-	 @ManyToMany(mappedBy="switchSan",cascade = CascadeType.ALL)
+	 @ManyToMany(mappedBy="switchSann",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	 @Column(nullable = true)
 	private Collection<SystemeDeStockage> systemeDeStockage;
