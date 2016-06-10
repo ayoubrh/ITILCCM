@@ -444,7 +444,27 @@ Use search to find needed section.
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+						</li>
+						</s:authorize>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+						</li>
+						<li>
+							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -778,7 +798,7 @@ Use search to find needed section.
 									<a href="#profile-tabs-solutions_applicatives" data-toggle="tab">Solutions Applicatives</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Intarfaces réseaux</a>
+									<a href="#profile-tabs-intarfaces_reseaux" data-toggle="tab">Interfaces réseaux</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-contacts" data-toggle="tab">Contacts</a>
@@ -1107,7 +1127,7 @@ Use search to find needed section.
 
 		
 									
-		
+								</div> <!-- / .tab-content -->
 									
 		
 								
@@ -1233,7 +1253,7 @@ Use search to find needed section.
 									
 								</div> <!-- / .tab-pane -->
 								
-							</div> <!-- / .tab-content -->
+							
 						</div>
 				
 					

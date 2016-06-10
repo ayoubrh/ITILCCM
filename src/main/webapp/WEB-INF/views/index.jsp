@@ -446,7 +446,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Nouveau Ticket</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
@@ -542,7 +542,7 @@ Use search to find needed section.
 				<c:if test="${save == true }">
 					<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">×</button>
-						L'élément de configuration est bien enregistrer.
+						Bien enregistrer.
 					</div>
 				</c:if>
 

@@ -29,6 +29,7 @@ public class TicketIncident {
 	   private String titre;
 	   
 	   private String description;
+	   private String solution;
 	   private Date dateDeDebut;
 	   private Date dateDeFermeture;
 	   private Date dateDeResolution;
@@ -104,7 +105,6 @@ public class TicketIncident {
 		public void setId(Long id) {
 			this.id = id;
 		}
-	
 		public String getImpact() {
 			return impact;
 		}
@@ -129,15 +129,13 @@ public class TicketIncident {
 		public void setUrgence(String urgence) {
 			this.urgence = urgence;
 		}
-		
-		public boolean getValider() {
+		public boolean isValider() {
 			return valider;
 		}
 		public void setValider(boolean valider) {
 			this.valider = valider;
 		}
-		
-		public boolean getResolver() {
+		public boolean isResolver() {
 			return resolver;
 		}
 		public void setResolver(boolean resolver) {
@@ -154,6 +152,12 @@ public class TicketIncident {
 		}
 		public void setDescription(String description) {
 			this.description = description;
+		}
+		public String getSolution() {
+			return solution;
+		}
+		public void setSolution(String solution) {
+			this.solution = solution;
 		}
 		public Date getDateDeDebut() {
 			return dateDeDebut;
@@ -203,7 +207,6 @@ public class TicketIncident {
 		public void setNotificationEquipeIt(boolean notificationEquipeIt) {
 			this.notificationEquipeIt = notificationEquipeIt;
 		}
-		
 		public User getDemandeur() {
 			return demandeur;
 		}
@@ -342,6 +345,7 @@ public class TicketIncident {
 		public void setTelephoneFixe(TelephoneFixe telephoneFixe) {
 			this.telephoneFixe = telephoneFixe;
 		}
-   
+		
+		
    
 }

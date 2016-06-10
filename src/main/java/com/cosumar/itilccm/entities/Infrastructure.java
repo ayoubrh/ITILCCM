@@ -67,7 +67,7 @@ public class Infrastructure implements Serializable{
     @Column(nullable = true)
    private Collection<EquipementReseau> equipementReseau;
    	
-   	@OneToMany(mappedBy="infrastructure",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="infrastructure",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<IntefaceReseau> intefaceReseau;

@@ -833,7 +833,7 @@ Use search to find needed section.
 									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
-						
+
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
@@ -841,7 +841,7 @@ Use search to find needed section.
 									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
 								</div>
 							</div>
-						
+
 								<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
 								<div class="col-sm-9">
@@ -898,7 +898,7 @@ Use search to find needed section.
 							
 							
 							
-						
+
 					
 									<button class="btn wizard-prev-step-btn">Précédent</button>
 									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
@@ -907,6 +907,7 @@ Use search to find needed section.
 									Si vous avez bien remplis le formulaire, enregistrer votre Ticket<br><br>
 									<button class="btn wizard-prev-step-btn">Précédent</button>
 									<button class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
+
 									<button type="submit" class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
 								</div> <!-- / .wizard-pane -->
 							</div> <!-- / .wizard-content -->

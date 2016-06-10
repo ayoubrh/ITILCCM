@@ -55,6 +55,11 @@ public class HomeController implements HandlerExceptionResolver {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value = "/indexm", method = RequestMethod.GET)
+	public String home12( Model model) {
+		return "indexm";
+	}
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home( Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -68,11 +73,12 @@ public class HomeController implements HandlerExceptionResolver {
 		model.addAttribute("Contrat", mu.listContrat().size());
 		model.addAttribute("Serveur", mu.ListServeur().size());
 		model.addAttribute("Equipementreseau", mu.ListEquipementReseau().size());
+		model.addAttribute("save", false);
 	    return "index";
 	}
 	
 	@RequestMapping(value = "/indexv")
-	public String indexv( Model model, String v) {
+	public String indexv( Model model, String v, String save) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
@@ -85,6 +91,7 @@ public class HomeController implements HandlerExceptionResolver {
 		model.addAttribute("Serveur", mu.ListServeur().size());
 		model.addAttribute("Equipementreseau", mu.ListEquipementReseau().size());
 		model.addAttribute("v", v);
+		model.addAttribute("save", save);
 	    return "index";
 	}
 	

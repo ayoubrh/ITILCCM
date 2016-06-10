@@ -3881,6 +3881,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			Collection<SwitchSan> switchsan = new ArrayList<SwitchSan>();
 			for (Long s : San) {
 				switchsan.add(getSwitchSan(s));
+				
 			}
 			Serveur.setSwitchSan(switchsan);
 		}
@@ -3892,6 +3893,8 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			}
 			Serveur.setVolumelogique(volumelog);
 		}
+		
+		
 
 		em.persist(Serveur);
 		return Serveur.getId();
@@ -4536,7 +4539,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			for (Long s : San) {
 				switchsan.add(getSwitchSan(s));
 			}
-			sds.setSwitchSan(switchsan);
+			sds.setSwitchSann(switchsan);
 		}
 		
 		if(volumesLogique != null){
@@ -4636,7 +4639,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			for (Long s : San) {
 				switchsan.add(getSwitchSan(s));
 			}
-			sds.setSwitchSan(switchsan);
+			sds.setSwitchSann(switchsan);
 		}
 		
 		if(volumesLogique != null){

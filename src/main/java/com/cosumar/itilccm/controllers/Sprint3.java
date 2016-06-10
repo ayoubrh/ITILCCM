@@ -1,6 +1,7 @@
 package com.cosumar.itilccm.controllers;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cosumar.itilccm.entities.*;
 import com.cosumar.itilccm.entities.Groupe;
+import com.cosumar.itilccm.entities.Peripherique;
 import com.cosumar.itilccm.entities.TicketIncident;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
@@ -214,4 +216,7 @@ public class Sprint3 {
 		
 		return "redirect:/config/admin/dashboards?save="+true;
 	}
+	
+
+	
 }
