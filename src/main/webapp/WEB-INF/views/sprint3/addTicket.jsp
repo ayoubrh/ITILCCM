@@ -817,7 +817,7 @@ Use search to find needed section.
 									</table>
 									</div>
 									
-									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
+									<button type="button" class="btn btn-primary wizard-next-step-btn">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
 
@@ -887,13 +887,13 @@ Use search to find needed section.
 							
 
 					
-									<button class="btn wizard-prev-step-btn">Précédent</button>
-									<button class="btn btn-primary wizard-next-step-btn">Suivant</button>
+									<button type="button" class="btn wizard-prev-step-btn">Précédent</button>
+									<button type="button" class="btn btn-primary wizard-next-step-btn">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step4" style="display: none;">
 									Si vous avez bien remplis le formulaire, enregistrer votre Ticket<br><br>
-									<button class="btn wizard-prev-step-btn">Précédent</button>
-									<button class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
+									<button type="button" class="btn wizard-prev-step-btn">Précédent</button>
+									<button type="button" class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
 
 									<button type="submit" class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
 								</div> <!-- / .wizard-pane -->
