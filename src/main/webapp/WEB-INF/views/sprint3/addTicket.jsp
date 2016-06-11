@@ -524,20 +524,7 @@ Use search to find needed section.
 							$(this).parents('.ui-wizard-example').pixelWizard('setCurrentStep', 1);
 						});
 
-						$('#ui-wizard-modal').on('show.bs.modal', function (e) {
-							var $modal = $(this),
-							    $wizard = $modal.find('.ui-wizard-example'),
-							    timer = null,
-							    callback = function() {
-							    	if (timer) clearTimeout(timer);
-							    	if ($modal.hasClass('in')) {
-							    		$wizard.pixelWizard('resizeSteps');
-							    	} else {
-							    		timer = setTimeout(callback, 10);
-							    	}
-							    };
-							callback();
-						});
+						
 					});
 				</script>
 				<!-- / Javascript -->

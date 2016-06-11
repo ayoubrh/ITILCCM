@@ -110,7 +110,6 @@ public class Ordinateur implements Serializable{
 	 
 	 @Column(nullable=true)
     @OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 
    

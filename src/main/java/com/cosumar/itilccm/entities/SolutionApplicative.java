@@ -100,7 +100,6 @@ public class SolutionApplicative implements Serializable{
 	
 	@Column(nullable=true)
     @OneToMany(mappedBy="solutionApplicative",cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 	
 	public SolutionApplicative() {

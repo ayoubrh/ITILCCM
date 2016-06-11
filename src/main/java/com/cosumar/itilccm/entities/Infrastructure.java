@@ -102,7 +102,6 @@ public class Infrastructure implements Serializable{
    	
    	@Column(nullable=true)
    	@OneToMany(mappedBy="infrastructure",cascade = CascadeType.REMOVE, orphanRemoval = true)
-   	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<TicketIncident> ticketsIncident;
    
 	public Long getId() {

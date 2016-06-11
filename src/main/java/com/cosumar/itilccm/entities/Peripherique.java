@@ -70,7 +70,6 @@ public class Peripherique implements Serializable{
    	
    	@Column(nullable=true)
     @OneToMany(mappedBy="peripherique",cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 
 	public Long getId() {
