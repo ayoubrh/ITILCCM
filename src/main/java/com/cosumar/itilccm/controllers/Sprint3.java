@@ -214,7 +214,7 @@ public class Sprint3 {
 		
 			m.addTicketIncident(t, logged.getId());
 		
-		return "redirect:/config/admin/dashboards?save="+true;
+		return "redirect:/indexv?save="+true;
 	}
 	
 
