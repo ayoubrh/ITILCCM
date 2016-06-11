@@ -410,12 +410,9 @@ Use search to find needed section.
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
@@ -425,21 +422,14 @@ Use search to find needed section.
 						<li>
 							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						</s:authorize>
 					</ul>
 				</li>
-
-				
 
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
@@ -480,7 +470,6 @@ Use search to find needed section.
 				</li>
 
 				<li class="mm-dropdown">
-
 					<a href="#"><i class="menu-icon fa fa-upload"></i><span class="mm-text">Gestion des données</span></a>
 					<ul>
 						<li>
