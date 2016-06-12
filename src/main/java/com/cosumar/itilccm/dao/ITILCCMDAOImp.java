@@ -7603,6 +7603,24 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select t from TicketIncident t");
 		return req.getResultList();
 	}
+	
+	@Override
+	public List<TicketIncident> SearchTicketIncidentUser(Long u, String ti) {
+		Query req = em.createQuery("select ti from TicketIncident ti join ti.demandeur u where ti.titre LIKE :searchKeyword and u.id = :userid");
+		req.setParameter("searchKeyword", "%"+ti+"%"); 
+		req.setParameter("userid", u);
+		return req.getResultList();
+	}
+	
+	
+	 
+
+	@Override
+	public List<TicketIncident> listTicketIncidentUser(Long u) {
+		Query req = em.createQuery("select t from TicketIncident t join t.demandeur u where u.id = :userid");
+		req.setParameter("userid", u);
+		return req.getResultList();
+	}
 
 	@Override
 	public TicketIncident getTicketIncident(Long id) {

@@ -2383,6 +2383,16 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 	public Long addTicketIncident(TicketIncident t, Long demandeur) {
 		return dao.addTicketIncident(t, demandeur); 
 	}
+	
+	@Override
+	public List<TicketIncident> listTicketIncidentUser(Long u) {
+		return dao.listTicketIncidentUser(u);
+	}
+	
+	@Override
+	public List<TicketIncident> SearchTicketIncidentUser(Long u, String ti) {
+		return dao.SearchTicketIncidentUser(u, ti);
+	}
 
 
 }
