@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Error 500 - ITIL-CCM</title>
+	<title>Error 403 - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
 
@@ -52,7 +52,7 @@
 		<span class="oops">OUCH!</span><br>
 		<span class="hr"></span>
 		<br>
-		ACCES REFUSE .... VOUS N'AVEZ PAS LE DROIT D'ENTRER DANS CE ESPACE
+		ACCES REFUSE .... VOUS N'AVEZ PAS LE DROIT D'ENTRER DANS CETTE ESPACE
 		<br>
 		<br>
 		<span class="solve">Nous esprons rsoudre prochainement</span>

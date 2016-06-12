@@ -63,6 +63,7 @@
 		<s:intercept-url pattern="/index" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
 		<s:intercept-url pattern="/indexm" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
 		<s:intercept-url pattern="/config/**" access="ROLE_USER,ROLE_ADMIN,ROLE_IT_TEAM"/>
+		<s:intercept-url pattern="/config/admin/add/**" access="ROLE_ADMIN,ROLE_IT_TEAM"/>
 		<s:intercept-url pattern="/incid/**" access="ROLE_USER,ROLE_ADMIN,ROLE_IT_TEAM"/>
 		<s:intercept-url pattern="/users/admin/**" access="ROLE_ADMIN,ROLE_IT_TEAM"/>
 		<s:intercept-url pattern="/users/**" access="ROLE_USER,ROLE_IT_TEAM,ROLE_ADMIN"/>
