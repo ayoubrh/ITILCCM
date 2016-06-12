@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -60,6 +61,10 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.ALL)
 	   private Collection<Groupe> groupe;
+	   
+	   @Column(nullable=true)
+	    @OneToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	    private Collection<TicketIncident> ticketsIncident;
 	   
 	   
 		public InstanceDeBasseDeDonnes() {
@@ -139,6 +144,12 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 		}
 		public void setGroupe(Collection<Groupe> groupe) {
 			this.groupe = groupe;
+		}
+		public Collection<TicketIncident> getTicketsIncident() {
+			return ticketsIncident;
+		}
+		public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+			this.ticketsIncident = ticketsIncident;
 		}
 		
    

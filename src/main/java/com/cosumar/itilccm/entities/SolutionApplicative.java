@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.LazyCollection;
@@ -96,6 +97,10 @@ public class SolutionApplicative implements Serializable{
 	@Column(nullable=true)
 	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
+	
+	@Column(nullable=true)
+    @OneToMany(mappedBy="solutionApplicative",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Collection<TicketIncident> ticketsIncident;
 	
 	public SolutionApplicative() {
 		super();
@@ -262,11 +267,13 @@ public class SolutionApplicative implements Serializable{
 	public void setGroupe(Collection<Groupe> groupe) {
 		this.groupe = groupe;
 	}
-	
 
-	
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
 
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
+	}
 	
-	
-
 }

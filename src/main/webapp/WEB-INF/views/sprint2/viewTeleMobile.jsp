@@ -411,12 +411,9 @@ Use search to find needed section.
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
@@ -426,17 +423,12 @@ Use search to find needed section.
 						<li>
 							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
-						</s:authorize>
-						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						</s:authorize>
 					</ul>
 				</li>
 
@@ -450,7 +442,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
@@ -520,8 +512,10 @@ Use search to find needed section.
 		<div class="panel">
 					<div class="panel-heading">
 						<span class="panel-title col-md-9">Détail du Téléphone Mobile</span>
-						<s:authorize ifAnyGranted="ROLE_ADMIN">
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<a href="<c:url value="/config/admin/edit/telemobile?id=${telephneMobile.id }"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Modifier</a>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<a href="<c:url value="/config/admin/delete/telemobile?id=${telephneMobile.id }"/>" class="btn btn-danger"><i class="fa"></i>&nbsp;Supprimer</a>
 						</s:authorize>
 						<br>

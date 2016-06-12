@@ -83,6 +83,10 @@ public class MachineVirtuelle implements Serializable {
 	   @Column(nullable=true)
 	   @ManyToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
 	   private Collection<Groupe> groupe;
+	   
+	    @Column(nullable=true)
+	    @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	    private Collection<TicketIncident> ticketsIncident;
 		   
 		public MachineVirtuelle() {
 			super();
@@ -213,6 +217,12 @@ public class MachineVirtuelle implements Serializable {
 		}
 		public void setGroupe(Collection<Groupe> groupe) {
 			this.groupe = groupe;
+		}
+		public Collection<TicketIncident> getTicketsIncident() {
+			return ticketsIncident;
+		}
+		public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+			this.ticketsIncident = ticketsIncident;
 		}
 	     
 }

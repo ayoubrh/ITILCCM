@@ -28,13 +28,14 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Recherche Contrat - ITIL-CCM</title>
+	<title>Ajouter Ticket d'Incident - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -71,7 +72,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated page-search"> 
+<body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -487,117 +488,423 @@ Use search to find needed section.
 
 
 	<div id="content-wrapper">
+<!-- 5. $CONTENT ===================================================================================
 
-<!-- 5. $SEARCH_RESULTS_PAGE =======================================================================
-	
-		Search results page
+		Content
 -->
-			<!-- Javascript -->
+
+<!-- 11. $WIZARDS ==================================================================================
+
+				Wizards
+-->
+				<!-- Javascript -->
 				<script>
 					init.push(function () {
-						$('#jq-datatables-example').dataTable();
+						$('.ui-wizard-example').pixelWizard({
+							onChange: function () {
+								console.log('Current step: ' + this.currentStep());
+							},
+							onFinish: function () {
+								// Disable changing step. To enable changing step just call this.unfreeze()
+								this.freeze();
+								console.log('Wizard is freezed');
+								console.log('Finished!');
+							}
+						});
+
+						$('.wizard-next-step-btn').click(function () {
+							$(this).parents('.ui-wizard-example').pixelWizard('nextStep');
+						});
+
+						$('.wizard-prev-step-btn').click(function () {
+							$(this).parents('.ui-wizard-example').pixelWizard('prevStep');
+						});
+
+						$('.wizard-go-to-step-btn').click(function () {
+							$(this).parents('.ui-wizard-example').pixelWizard('setCurrentStep', 1);
+						});
+
+						
 					});
 				</script>
 				<!-- / Javascript -->
-				
-				<c:if test="${delete == true }">
-					<div class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						L'élément de configuration est bien supprimer.
+
+				<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title">Nouveau Ticket d'Incident</span>
 					</div>
-				</c:if>
+					<f:form modelAttribute="ticketIncident" action="saveTicket" methode="post" id="jq-validation-form">
+					<div class="panel-body">
+						<div class="wizard ui-wizard-example">
+							<div class="wizard-wrapper">
+								<ul class="wizard-steps">
+									<li data-target="#wizard-example-step1" >
+										<span class="wizard-step-number">1</span>
+										<span class="wizard-step-caption">
+											Etape 1
+											<span class="wizard-step-description">Choix CI</span>
+										</span>
+									</li>
+									<li data-target="#wizard-example-step2"> <!-- ! Remove space between elements by dropping close angle -->
+										<span class="wizard-step-number">2</span>
+										<span class="wizard-step-caption">
+											Etape 2
+											<span class="wizard-step-description">Détail de l'incident</span>
+										</span>
+									</li>
+									<li data-target="#wizard-example-step4"> <!-- ! Remove space between elements by dropping close angle -->
+										<span class="wizard-step-number">4</span>
+										<span class="wizard-step-caption">
+											Fin
+										</span>
+									</li>
+								</ul> <!-- / .wizard-steps -->
+							</div> <!-- / .wizard-wrapper -->
+							<div class="wizard-content panel">
+								<div class="wizard-pane" id="wizard-example-step1">
+									<div class="table-primary">
+									<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+										<thead>
+										<tr>
+												<th id="supchek"> </th>
+												<th>CI fonctionnel</th>
+												<th>type de CI</th>
+												<th>Criticité</th>
+												<th>Date de mise en production</th>	
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${ApplicationWeb}" var="aw" >
+												<tr class="gradeA" id="cis_App_${aw.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="App_${aw.id }"></td>
+													<td>${aw.nom }</td>
+													<td>Application Web</td>
+													<td>${aw.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${aw.dateDeMiseEnProduction}" /></td>
+													
+												</tr>
+											</c:forEach>
+											<c:forEach items="${ConnexionElectrique}" var="ce" >
+												<c:set var="string1" value="${ce['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+												<tr class="gradeA" id="cis_Con_${ce.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Con_${ce.id }"></td>
+													<td>${ce.nom }</td>
+													<td>
+													<c:if test="${string2 == 'ArriveeElectrique'}">
+														Arrivée électrique
+													</c:if>
+													<c:if test="${string2 == 'PduElectrique'}">
+														PDU 
+													</c:if>
+													</td>
+													<td>${ce.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ce.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Logiciel}" var="l" >
+												<c:set var="string1" value="${l['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,60)}" />
+												<tr class="gradeA" id="cis_Log_${l.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Log_${l.id }"></td>
+													<td>${l.nom }</td>
+													<td>
+													<c:if test="${string2 == 'AutreLogiciel'}">
+														Autre Logiciel
+													</c:if>
+													<c:if test="${string2 == 'LogicielPc'}">
+														Logiciel PC
+													</c:if>
+													<c:if test="${string2 == 'ServeurWeb'}">
+														Serveur Web
+													</c:if>
+													<c:if test="${string2 == 'Middleware'}">
+														Middleware
+													</c:if>
+													<c:if test="${string2 == 'ServeurDeBasseDeDonnees'}">
+														Serveur De Basse De Données
+													</c:if>
+													</td>
+													<td>${l.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${l.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Infrastructure}" var="in" >
+												<c:set var="string1" value="${in['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+												<tr class="gradeA" id="cis_Inf_${in.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Inf_${in.id }"></td>
+													<td>${in.nom }</td>
+													<td>
+													<c:if test="${string2 == 'Bandotheque'}">
+														Bandothèque
+													</c:if>
+													<c:if test="${string2 == 'Dvr'}">
+														DVR
+													</c:if>
+													<c:if test="${string2 == 'Nas'}">
+														NAS
+													</c:if>
+													<c:if test="${string2 == 'Serveur'}">
+														Serveur
+													</c:if>
+													<c:if test="${string2 == 'SwitchSan'}">
+														Switch SAN
+													</c:if>
+													<c:if test="${string2 == 'SystemeDeStockage'}">
+														Système De Stockage
+													</c:if>
+													</td>
+													<td>${in.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${in.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Camera}" var="ca" >
+												<tr class="gradeA" id="cis_Cam_${ca.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Cam_${ca.id }"></td>
+													<td>${ca.nom }</td>
+													<td>Camera</td>
+													<td>${ca.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ca.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+                                            <c:forEach items="${Chassis}" var="ch" >
+												<tr class="gradeA" id="cis_Cha_${ch.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Cha_${ch.id }"></td>
+													<td>${ch.nom }</td>
+													<td>Chassis</td>
+													<td>${ch.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ch.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Equipementreseau}" var="er" >
+												<tr class="gradeA" id="cis_Equ_${er.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Equ_${er.id }"></td>
+													<td>${er.nom }</td>
+													<td>Equipement réseau</td>
+													<td>${er.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${er.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Virtualisation}" var="v" >
+												<c:set var="string1" value="${v['class'].name }"/>
+												<c:set var="string2" value="${fn:substring(string1, 29,50)}" />
+												<tr class="gradeA" id="cis_Vir_${v.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Vir_${v.id }"></td>
+													<td>${v.nom }</td>
+													<td>
+													<c:if test="${string2 == 'Hyperviseur'}">
+														Hyperviseur
+													</c:if>
+													<c:if test="${string2 == 'Vcluster'}">
+														vCluster
+													</c:if>
+													</td>
+													<td>${v.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${v.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Imprimante}" var="i" >
+												<tr class="gradeA" id="cis_Imp_${i.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Imp_${i.id }"></td>
+													<td>${i.nom }</td>
+													<td>Imprimante</td>
+													<td>${i.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${i.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${InstanceMiddleware}" var="im" >
+												<tr class="gradeA" id="cis_InM_${im.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="InM_${im.id }"></td>
+													<td>${im.nom }</td>
+													<td>Instance Middleware</td>
+													<td>${im.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${im.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Instancedebasededonnees}" var="ibd" >
+												<tr class="gradeA" id="cis_Ibd_${ibd.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Ibd_${ibd.id }"></td>
+													<td>${ibd.nom }</td>
+													<td>Instance de base de données</td>
+													<td>${ibd.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ibd.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Machinevirtuelle}" var="mv" >
+												<tr class="gradeA" id="cis_Mac_${mv.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Mac_${mv.id }"></td>
+													<td>${mv.nom }</td>
+													<td>Machine virtuelle</td>
+													<td>${mv.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${mv.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Ordinateur}" var="pc" >
+												<tr class="gradeA" id="cis_Ord_${pc.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Ord_${pc.id }"></td>
+													<td>${pc.nom }</td>
+													<td>Ordinateur</td>
+													<td>${pc.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pc.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Processusmetier}" var="pm" >
+												<tr class="gradeA" id="cis_Pro_${pm.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Pro_${pm.id }"></td>
+													<td>${pm.nom }</td>
+													<td>Processus métier</td>
+													<td>${pm.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${pm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Peripherique}" var="p" >
+												<tr class="gradeA" id="cis_Per_${p.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Per_${p.id }"></td>
+													<td>${p.nom }</td>
+													<td>Périphérique</td>
+													<td>${p.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${p.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Rack}" var="r" >
+												<tr class="gradeA" id="cis_Rac_${r.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Rac_${r.id }"></td>
+													<td>${r.nom }</td>
+													<td>Rack</td>
+													<td>${r.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${r.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Solutionapplicative}" var="sa" >
+												<tr class="gradeA" id="cis_Sol_${sa.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Sol_${sa.id }"></td>
+													<td>${sa.nom }</td>
+													<td>Solution applicative</td>
+													<td>${sa.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sa.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Tablette}" var="t" >
+												<tr class="gradeA" id="cis_Tab_${t.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Tab_${t.id }"></td>
+													<td>${t.nom }</td>
+													<td>Tablette</td>
+													<td>${t.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Telephonefixe}" var="tf" >
+												<tr class="gradeA" id="cis_Tef_${tf.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Tef_${tf.id }"></td>
+													<td>${tf.nom }</td>
+													<td>Téléphone fixe</td>
+													<td>${tf.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${tf.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Telephonemobile}" var="tm" >
+												<tr class="gradeA" id="cis_Tem_${tm.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Tem_${tm.id }"></td>
+													<td>${tm.nom }</td>
+													<td>Téléphone mobile</td>
+													<td>${tm.criticite }</td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${tm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											
+										</tbody>
+									</table>
+									</div>
+									
+									<button type="button" class="btn btn-primary wizard-next-step-btn">Suivant</button>
+								</div> <!-- / .wizard-pane -->
+								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
 
+							<div class="form-group required">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
+								<div class="col-sm-9">
+									<f:input path="titre" type="text" class="form-control" id="jq-validation-cin" name="jq-validation-cin" />
+									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
+								</div>
+							</div>
 
-		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Contrats</h1>
-			<s:authorize ifAnyGranted="ROLE_ADMIN">
-			<a href="<c:url value="/config/admin/add/contrat"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Contrat</a>
-			</s:authorize>
-		</div> <!-- / .page-header -->
+								<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
+								<div class="col-sm-9">
+									<f:select  path="urgence" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+							             <f:option value=""></f:option>
+										 <f:option value="Très Haute">Très Haute</f:option>
+										 <f:option value="Haut"> Haut</f:option>
+										 <f:option value="Moyenne"> Moyenne</f:option>
+										 <f:option value="Basse">Basse</f:option>
+										 <f:option value="Très Basse">Très Basse</f:option>
+									</f:select>
+									<f:errors path="urgence" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Impact :</label>
+								<div class="col-sm-9">
+									<f:select  path="impact" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+							             <f:option value=""></f:option>
+										 <f:option value="Très Haute" >Très Haut</f:option>
+										 <f:option value="Haut"> Haut</f:option>
+										 <f:option value="Moyenne"> Moyenne</f:option>
+										 <f:option value="Basse">Basse</f:option>
+										 <f:option value="Très Basse">Très Basse</f:option>
+									</f:select>
+									<f:errors path="impact" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
+								<div class="col-sm-9">
+									<f:select  path="priorite" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
+							             <f:option value=""></f:option>
+							             <f:option value="Majour">Majour</f:option>
+										 <f:option value="Très Haute">Très Haut</f:option>
+										 <f:option value="Haut"> Haut</f:option>
+										 <f:option value="Moyenne"> Moyenne</f:option>
+										 <f:option value="Basse">Basse</f:option>
+										 <f:option value="Très Basse">Très Basse</f:option>
+									</f:select>
+									<f:errors path="priorite" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description :</label>
+								<div class="col-sm-9">
+									<f:textarea path="description" class="form-control" name="jq-validation-description" id="jq-validation-description" />
+									<f:errors path="description" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							
+							
+							
+							
+							
 
-		<!-- / .search-text -->
-
-		<!-- Tabs -->
-		
-		<!-- / Tabs -->
-
-		<!-- Panel -->
-		<div class="panel search-panel">
-
-			<!-- Search form -->
-			<form action="contrat" class="search-form bg-primary">
-				<div class="input-group input-group-lg">
-					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
-					<input type="text" name="c" class="form-control" value="${contrat }" placeholder="Entrez le nom à rechercher...">
-					<span class="input-group-btn">
-						<button class="btn" type="submit">Search</button>
-					</span>
-				</div> <!-- / .input-group -->
-			</form>
-			<!-- / Search form -->
-
-			<!-- Search results -->
-			<div class="panel-body">
-
-				<!-- Classic search -->
-				
-				<!-- / Classic search -->
-
-				<!-- Users search -->
 					
+									<button type="button" class="btn wizard-prev-step-btn">Précédent</button>
+									<button type="button" class="btn btn-primary wizard-next-step-btn">Suivant</button>
+								</div> <!-- / .wizard-pane -->
+								<div class="wizard-pane" id="wizard-example-step4" style="display: none;">
+									Si vous avez bien remplis le formulaire, enregistrer votre Ticket<br><br>
+									<button type="button" class="btn wizard-prev-step-btn">Précédent</button>
+									<button type="button" class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
 
-					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
-								<thead>
-									<tr>
-										<th>Nom</th>
-										<th>Client</th>
-										<th>Statut</th>
-										<th>Type de contrat</th>
-										<th>Date de début</th>
-										<th>Date de fin</th>
-										<th>Coût</th>
-										<th>Monnaie</th>
-										<th>Périodicité de facturation</th>
-										<th>Unité de coût</th>
-										<th>Fournisseur</th>
-										<th>Description</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${cis}" var="ci">
-										<tr class="gradeA">
-											<td><a href="<c:url value="/config/view/contrat?id=${ci.id }" />">${ci.nom }</a></td>
-											<td>${ci.client }</td>
-											<td>${ci.statut }</td>
-											<td>${ci.typeDeContrat }</td>
-											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeDebut }" /></td>
-											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeFin }" /></td>
-											<td>${ci.cout }</td>
-											<td>${ci.monnaie }</td>
-											<td>${ci.periodiciteDeFacturation }</td>
-											<td>${ci.uniteDeCout }</td>
-											<td>${ci.fournisseur}</td>
-											<td>${ci.description}</td>
-										</tr>
-									
-									</c:forEach>
-									
-									
-								</tbody>
-							</table>
-				<!-- / Users search -->
-
-				<!-- Messages search -->
+									<button type="submit" class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
+								</div> <!-- / .wizard-pane -->
+							</div> <!-- / .wizard-content -->
+						</div> <!-- / .wizard -->
+					</div>
+					</f:form>
+				</div>
 				
-				<!-- / Messages search -->
-			</div>
-			<!-- / Search results -->
+<!-- /11. $WIZARDS -->
 
-			<!-- Panel Footer -->
-			<!-- / .panel-footer -->
-
-		</div> 
-		<!-- / Panel -->
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -619,12 +926,20 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		// Javascript code here
-		var s = "${contrat }";
-		$('.add-tooltip').tooltip();
-		document.getElementsByName("jq-datatables-example_length").value="25";
+		$('#profile-tabs').tabdrop();
+
+		$("#leave-comment-form").expandingInput({
+			target: 'textarea',
+			hidden_content: '> div',
+			placeholder: 'Write message',
+			onAfterExpand: function () {
+				$('#leave-comment-form textarea').attr('rows', '3').autosize();
+			}
+		});
 		
-		$(".table-header").hide();
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 	});
 	window.PixelAdmin.start(init);
 </script>

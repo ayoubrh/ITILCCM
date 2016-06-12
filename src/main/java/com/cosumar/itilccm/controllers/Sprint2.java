@@ -4772,16 +4772,7 @@ public class Sprint2 {
 		List<Long> telmobile = new ArrayList<Long>();
 		String[] cis = req.getParameterValues("ckCIs");
 		if(cis != null){
-			for(int j = 0; j < cis.length; j++){
-			System.out.println("cis----------------------"+cis[j].substring(0,3));
-			System.out.println("cis----------------------"+cis[j].substring(4));
-			try {
-			      Thread.currentThread().sleep(20 * 1000);
-			      }
-			    catch (InterruptedException e) {
-			      e.printStackTrace();
-			      }
-		    }
+			
 			
 			for (int i = 0; i < cis.length; i++) {
 				
