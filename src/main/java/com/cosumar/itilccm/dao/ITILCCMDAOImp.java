@@ -7627,6 +7627,20 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return em.find(TicketIncident.class, id); 
 	}
 
+	@Override
+	public List<TicketIncident> listMesIncident(Long id) {
+		Query req = em.createQuery("select ticket from TicketIncident ticket join ticket.equipeIt it where it.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
+
+	@Override
+	public List<TicketIncident> listIncidentOuverts() {
+		Query req = em.createQuery("select t from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "Nouveau"); 
+		return req.getResultList();
+	}
+
 	
 }
 

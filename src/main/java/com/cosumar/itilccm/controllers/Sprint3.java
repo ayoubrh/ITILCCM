@@ -60,6 +60,7 @@ public class Sprint3 {
 			model.addAttribute("Peripherique", m.ListPeriph());
 			model.addAttribute("Rack", m.ListRack());
 			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+			model.addAttribute("Sim", m.ListSIM()); 
 			model.addAttribute("Tablette", m.ListTablette());
 			model.addAttribute("Telephonefixe", m.ListTeleFixe());
 			model.addAttribute("Telephonemobile", m.ListTeleMobile()); 
@@ -81,10 +82,12 @@ public class Sprint3 {
 			model.addAttribute("Peripherique", null);
 			model.addAttribute("Rack", null);
 			model.addAttribute("Solutionapplicative", null);
+			model.addAttribute("Sim", m.ListSIMUser(logged.getId())); 
 			model.addAttribute("Tablette", m.ListTabletteUser(logged.getId()));
 			model.addAttribute("Telephonefixe", m.ListTeleFixeUser(logged.getId()));
 			model.addAttribute("Telephonemobile", m.ListTeleMobileUser(logged.getId())); 
 		}
+
 		return "sprint3/addTicket";
 	}
 	@RequestMapping(value="/search/ticket")
@@ -124,27 +127,51 @@ public class Sprint3 {
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
-		    model.addAttribute("g", m.listGroupe());
-		    model.addAttribute("ApplicationWeb", m.listApplicationWeb());
-		    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
-		    model.addAttribute("Logiciel", m.listLogicielEtApplication());
-		    model.addAttribute("Infrastructure", m.ListInfrastructure());
-		    model.addAttribute("Camera", m.ListCamera());
-			model.addAttribute("Chassis", m.ListChassis());
-			model.addAttribute("Equipementreseau", m.ListEquipementReseau());
-			model.addAttribute("Virtualisation", m.listVirtualisation());
-			model.addAttribute("Imprimante", m.ListImp());
-			model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
-			model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
-			model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
-			model.addAttribute("Ordinateur", m.ListPC());
-			model.addAttribute("Processusmetier", m.ListProcessusMetier());
-			model.addAttribute("Peripherique", m.ListPeriph());
-			model.addAttribute("Rack", m.ListRack());
-			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
-			model.addAttribute("Tablette", m.ListTablette());
-			model.addAttribute("Telephonefixe", m.ListTeleFixe());
-			model.addAttribute("Telephonemobile", m.ListTeleMobile());
+		    if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
+				model.addAttribute("ApplicationWeb", m.listApplicationWeb());
+			    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
+			    model.addAttribute("Logiciel", m.listLogicielEtApplication());
+			    model.addAttribute("Infrastructure", m.ListInfrastructure());
+			    model.addAttribute("Camera", m.ListCamera());
+				model.addAttribute("Chassis", m.ListChassis());
+				model.addAttribute("Equipementreseau", m.ListEquipementReseau());
+				model.addAttribute("Virtualisation", m.listVirtualisation());
+				model.addAttribute("Imprimante", m.ListImp());
+				model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
+				model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
+				model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
+				model.addAttribute("Ordinateur", m.ListPC());
+				model.addAttribute("Processusmetier", m.ListProcessusMetier());
+				model.addAttribute("Peripherique", m.ListPeriph());
+				model.addAttribute("Rack", m.ListRack());
+				model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+				model.addAttribute("Sim", m.ListSIM()); 
+				model.addAttribute("Tablette", m.ListTablette());
+				model.addAttribute("Telephonefixe", m.ListTeleFixe());
+				model.addAttribute("Telephonemobile", m.ListTeleMobile()); 
+			} else {
+				model.addAttribute("ApplicationWeb", null);
+			    model.addAttribute("ConnexionElectrique", null);
+			    model.addAttribute("Logiciel", null);
+			    model.addAttribute("Infrastructure", null);
+			    model.addAttribute("Camera", null);
+				model.addAttribute("Chassis", null);
+				model.addAttribute("Equipementreseau", null);
+				model.addAttribute("Virtualisation", null);
+				model.addAttribute("Imprimante", m.ListImpUser(logged.getId()));
+				model.addAttribute("InstanceMiddleware", null);
+				model.addAttribute("Instancedebasededonnees", null);
+				model.addAttribute("Machinevirtuelle", null);
+				model.addAttribute("Ordinateur", m.ListPCUser(logged.getId()));
+				model.addAttribute("Processusmetier", null);
+				model.addAttribute("Peripherique", null);
+				model.addAttribute("Rack", null);
+				model.addAttribute("Solutionapplicative", null);
+				model.addAttribute("Sim", m.ListSIMUser(logged.getId())); 
+				model.addAttribute("Tablette", m.ListTabletteUser(logged.getId()));
+				model.addAttribute("Telephonefixe", m.ListTeleFixeUser(logged.getId()));
+				model.addAttribute("Telephonemobile", m.ListTeleMobileUser(logged.getId())); 
+			}
 			if(t.getId()==null)
 			return "sprint3/addTicket";
 			else return "sprint3/editTicket";
@@ -228,6 +255,10 @@ public class Sprint3 {
 					SolutionApplicative sa = m.getSolutionApplicative(Long.parseLong(cis[i].substring(4)));
 					t.setSolutionApplicative(sa); 
 				}
+				if(cis[i].substring(0,3).equals("Sim")){
+					Sim sim = m.getSIM(Long.parseLong(cis[i].substring(4)));
+					t.setSim(sim);  
+				}
 				if(cis[i].substring(0,3).equals("Tab")){
 					Tablette tab = m.getTablette(Long.parseLong(cis[i].substring(4)));
 					t.setTablette(tab); 
@@ -248,7 +279,16 @@ public class Sprint3 {
 		
 		return "redirect:/indexv?save="+true;
 	}
-	
+	@RequestMapping(value="/view/mesticket")
+	public String viewMesTicket(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("ticket", m.listMesIncident(logged.getId())); 
+		
+		return "sprint3/MesIncidents"; 
+	}
 
 	
 }

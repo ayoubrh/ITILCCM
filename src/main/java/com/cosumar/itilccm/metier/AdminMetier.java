@@ -584,6 +584,8 @@ public interface AdminMetier extends UtilisateurMetier {
 	public void editTicketIncident(TicketIncident t);
 	public void deleteTicketIncident(Long id);
 	public List<TicketIncident> SearchTicketIncident(String ti);
+	public List<TicketIncident> listIncidentOuverts();
+	public List<TicketIncident> listMesIncident(Long id);
 	public List<TicketIncident> listTicketIncident();
 	public List<TicketIncident> SearchTicketIncidentUser(Long u,String ti);
 	public List<TicketIncident> listTicketIncidentUser(Long u);

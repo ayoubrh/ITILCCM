@@ -80,6 +80,8 @@ public class TicketIncident {
 	   @ManyToOne
 	   private SolutionApplicative solutionApplicative;
 	   @ManyToOne
+	   private Sim sim;
+	   @ManyToOne
 	   private Tablette tablette;
 	   @ManyToOne
 	   private TelephneMobile telephneMobile;
@@ -344,6 +346,12 @@ public class TicketIncident {
 		}
 		public void setTelephoneFixe(TelephoneFixe telephoneFixe) {
 			this.telephoneFixe = telephoneFixe;
+		}
+		public Sim getSim() {
+			return sim;
+		}
+		public void setSim(Sim sim) {
+			this.sim = sim;
 		}
 		
 		
