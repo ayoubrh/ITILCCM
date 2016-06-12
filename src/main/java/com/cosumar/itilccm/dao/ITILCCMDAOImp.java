@@ -7629,7 +7629,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<TicketIncident> listMesIncident(Long id) {
-		Query req = em.createQuery("select ticket from TicketIncident ticket join ticket.equipeIt it where it.id = :userid");
+		Query req = em.createQuery("select ticket from TicketIncident ticket join ticket.demandeur it where it.id = :userid");
 		req.setParameter("userid", id);
 		return req.getResultList();
 	}
