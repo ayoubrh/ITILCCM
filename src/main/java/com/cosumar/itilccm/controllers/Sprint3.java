@@ -59,6 +59,7 @@ public class Sprint3 {
 		model.addAttribute("Peripherique", m.ListPeriph());
 		model.addAttribute("Rack", m.ListRack());
 		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+		model.addAttribute("Sim", m.ListSIM()); 
 		model.addAttribute("Tablette", m.ListTablette());
 		model.addAttribute("Telephonefixe", m.ListTeleFixe());
 		model.addAttribute("Telephonemobile", m.ListTeleMobile()); 
@@ -110,6 +111,7 @@ public class Sprint3 {
 			model.addAttribute("Peripherique", m.ListPeriph());
 			model.addAttribute("Rack", m.ListRack());
 			model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
+			model.addAttribute("Sim", m.ListSIM());
 			model.addAttribute("Tablette", m.ListTablette());
 			model.addAttribute("Telephonefixe", m.ListTeleFixe());
 			model.addAttribute("Telephonemobile", m.ListTeleMobile());
@@ -196,6 +198,10 @@ public class Sprint3 {
 					SolutionApplicative sa = m.getSolutionApplicative(Long.parseLong(cis[i].substring(4)));
 					t.setSolutionApplicative(sa); 
 				}
+				if(cis[i].substring(0,3).equals("Sim")){
+					Sim sim = m.getSIM(Long.parseLong(cis[i].substring(4)));
+					t.setSim(sim);  
+				}
 				if(cis[i].substring(0,3).equals("Tab")){
 					Tablette tab = m.getTablette(Long.parseLong(cis[i].substring(4)));
 					t.setTablette(tab); 
@@ -216,7 +222,16 @@ public class Sprint3 {
 		
 		return "redirect:/indexv?save="+true;
 	}
-	
+	@RequestMapping(value="/view/mesticket")
+	public String viewMesTicket(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("ticket", m.listMesIncident(logged.getId())); 
+		
+		return "sprint3/MesIncidents"; 
+	}
 
 	
 }
