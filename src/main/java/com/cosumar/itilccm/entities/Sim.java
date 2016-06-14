@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -70,6 +71,10 @@ public class Sim implements Serializable{
 	@LazyCollection(LazyCollectionOption.FALSE)
     @Column(nullable = true)
   private Collection<Contact> contact;
+	
+	@Column(nullable=true)
+	@OneToMany(mappedBy="sim",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private Collection<TicketIncident> ticketsIncident;
 	
 
 	public Long getId() {
@@ -186,6 +191,14 @@ public class Sim implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Collection<TicketIncident> getTicketsIncident() {
+		return ticketsIncident;
+	}
+
+	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
+		this.ticketsIncident = ticketsIncident;
 	}
   
 

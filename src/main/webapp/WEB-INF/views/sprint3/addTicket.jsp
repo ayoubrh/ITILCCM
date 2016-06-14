@@ -446,7 +446,7 @@ Use search to find needed section.
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
 						<li>
@@ -810,6 +810,15 @@ Use search to find needed section.
 													<td>Téléphone mobile</td>
 													<td>${tm.criticite }</td>
 													<td><fmt:formatDate type="date" dateStyle="long" value="${tm.dateDeMiseEnProduction}" /></td>
+												</tr>
+											</c:forEach>
+											<c:forEach items="${Sim}" var="sim" >
+												<tr class="gradeA" id="cis_Sim_${sim.id }" >
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="Sim_${sim.id }"></td>
+													<td>${sim.numero }</td>
+													<td>SIM</td>
+													<td></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${sim.dateDeMiseEnProduction}" /></td>
 												</tr>
 											</c:forEach>
 											

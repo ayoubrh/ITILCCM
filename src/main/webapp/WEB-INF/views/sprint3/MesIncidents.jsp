@@ -34,7 +34,7 @@ Use search to find needed section.
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Recherche Téléphone Fixe - ITIL-CCM</title>
+	<title>Mes incidents - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -441,7 +441,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
+							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
@@ -510,10 +510,8 @@ Use search to find needed section.
 
 
 		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa fa-search page-header-icon"></i>&nbsp;&nbsp;Recherche des Téléphones Fixe</h1>
-			<s:authorize ifAnyGranted="ROLE_ADMIN">
-			<a href="<c:url value="/config/admin/add/telefixe"/>" class="btn btn-success"><i class="fa"></i>&nbsp;Créer nouveau Téléphone Fixe</a>
-			</s:authorize>
+			<h1 class="col-md-9"><i class="fa page-header-icon"></i>&nbsp;&nbsp;Mes incidents</h1>
+			
 		</div> <!-- / .page-header -->
 
 		<!-- / .search-text -->
@@ -522,53 +520,97 @@ Use search to find needed section.
 		
 		<!-- / Tabs -->
 
-		<!-- Panel -->
-		<div class="panel search-panel">
+			<div class="table-primary">
 
-			<!-- Search form -->
-			<form action="telefixe" class="search-form bg-primary">
-				<div class="input-group input-group-lg">
-					<span class="input-group-addon no-background"><i class="fa fa-search"></i></span>
-					<input type="text" name="s" class="form-control" value="${s }" placeholder="Entrez le nom à chercher...">
-					<span class="input-group-btn">
-						<button class="btn" type="submit">Search</button>
-					</span>
-				</div> <!-- / .input-group -->
-			</form>
-			<!-- / Search form -->
-
-			<!-- Search results -->
-			<div class="panel-body">
-
-				<!-- Classic search -->
-				
-				<!-- / Classic search -->
-
-				<!-- Users search -->
-					
-
-					<table cellpadding="0" cellspacing="0" border="0" class="table table-primary table-striped table-bordered" id="jq-datatables-example">
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 								<thead>
 									<tr>
-										<th>Nom</th>
-										<th>Utilisateur</th>
+										<th>Titre</th>
+										<th>Date d'ouverture</th>
+										<th>Date d'affectaion </th>
+										<th>Date de fermeture</th>
+										<th>Demandeur</th>
 										<th>Statut</th>
-										<th>Marque</th>
-										<th>Modéle</th>
-										<th>Lieu</th>
-										<th>Date de mise en Production</th>
+										<th>Priorité</th>
+										<th>CI à Traiter</th>
+										
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${cis}" var="ci">
+									<c:forEach items="${ticket}" var="t">
 										<tr class="gradeA">
-											<td><a href="<c:url value="/config/view/telefixe?id=${ci.id }" />">${ci.nom }</a></td>
-											<td><a href="<c:url value="/users/profil?id=${ci.user.id }" />">${ci.user.prenom } ${ci.user.nom }</a></td>
-											<td>${ci.statut }</td>
-											<td>${ci.marque }</td>
-											<td>${ci.modele }</td>
-											<td><a href="<c:url value="/config/view/lieu?id=${ci.lieu.id }" />">${ci.lieu.nom }</a></td>
-											<td><fmt:formatDate type="date" dateStyle="long" value="${ci.dateDeMiseEnProduction}" /></td>
+											<td>${t.titre}</td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeDebut}" /></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateD_affectation}" /></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeFermeture}" /></td>
+											<td><a href="<c:url value="/users/profil?id=${t.demandeur.id }" />">${t.demandeur.nom }</a></td>
+											<td>${t.statut }</td>
+											<td>${t.priorite }</td>
+											<td>
+											<c:if test="${t.applicationWeb.id != null}">
+														${t.applicationWeb.nom}
+											</c:if>
+											<c:if test="${t.connexionElectrique.id != null}">
+														${t.connexionElectrique.nom}
+											</c:if>
+											<c:if test="${t.logicielEtApplication.id != null}">
+														${t.logicielEtApplication.nom}
+											</c:if>
+											<c:if test="${t.infrastructure.id != null}">
+														${t.infrastructure.nom}
+											</c:if>
+											<c:if test="${t.camera.id != null}">
+														${t.camera.nom}
+											</c:if>
+											<c:if test="${t.chassis.id != null}">
+														${t.chassis.nom}
+											</c:if>
+											<c:if test="${t.equipementReseau.id != null}">
+														${t.equipementReseau.nom}
+											</c:if>
+											<c:if test="${t.virtualisation.id != null}">
+														${t.virtualisation.nom}
+											</c:if>
+											<c:if test="${t.imprimante.id != null}">
+														${t.imprimante.nom}
+											</c:if>
+											<c:if test="${t.instanceDeBasseDeDonnes.id != null}">
+														${t.instanceDeBasseDeDonnes.nom}
+											</c:if>
+											<c:if test="${t.instanceMiddleware.id != null}">
+														${t.instanceMiddleware.nom}
+											</c:if>
+											<c:if test="${t.machineVirtuelle.id != null}">
+														${t.machineVirtuelle.nom}
+											</c:if>
+											<c:if test="${t.ordinateur.id != null}">
+														${t.ordinateur.nom}
+											</c:if>
+											<c:if test="${t.peripherique.id != null}">
+														${t.peripherique.nom}
+											</c:if>
+											<c:if test="${t.processusMetier.id != null}">
+														${t.processusMetier.nom}
+											</c:if>
+											<c:if test="${t.rack.id != null}">
+														${t.rack.nom}
+											</c:if>
+											<c:if test="${t.solutionApplicative.id != null}">
+														${t.solutionApplicative.nom}
+											</c:if>
+											<c:if test="${t.sim.id != null}">
+														${t.sim.numero}
+											</c:if>
+											<c:if test="${t.tablette.id != null}">
+														${t.tablette.nom}
+											</c:if>
+											<c:if test="${t.telephneMobile.id != null}">
+														${t.telephneMobile.nom}
+											</c:if>
+											<c:if test="${t.telephoneFixe.id != null}">
+														${t.telephoneFixe.nom}
+											</c:if>
+											</td>
 										</tr>
 									
 									</c:forEach>
@@ -576,19 +618,13 @@ Use search to find needed section.
 									
 								</tbody>
 							</table>
-				<!-- / Users search -->
-
-				<!-- Messages search -->
 				
-				<!-- / Messages search -->
 			</div>
 			<!-- / Search results -->
 
 			<!-- Panel Footer -->
 			<!-- / .panel-footer -->
 
-		</div> 
-		<!-- / Panel -->
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -611,11 +647,15 @@ Use search to find needed section.
 <script type="text/javascript">
 	init.push(function () {
 		// Javascript code here
-		var s = "${s }";
+		var s = "${ticket }";
 		$('.add-tooltip').tooltip();
 		document.getElementsByName("jq-datatables-example_length").value="25";
 		
 		$(".table-header").hide();
+
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 	});
 	window.PixelAdmin.start(init);
 </script>

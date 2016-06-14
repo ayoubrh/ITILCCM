@@ -39,9 +39,9 @@ public class TestMetier {
 			List<User> u1 = m.listUser();
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			//m.ajouterUser(new User("EEEEEEEE", s.hashmd5password("0000000000"), "RHNABRI", "Ayoub", "ayoub0@gmail.com","Technicien"), d1);
-			m.ajouterUserRole(new User("admin", m.hashmd5password("adminpass"), "RHNABRI", "Ayoub", "ayoub@gmail.com","Chef de Département","M"), d2, r1);
-			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "RHNABRI", "Ayoub", "ayoub2@gmail.com","Ingénieur","M"), d2, r2);
-			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "RHNABRI", "Ayoub", "ayoub3@gmail.com","Technicien","M"), d2, r3);
+			m.ajouterUserRole(new User("admin", m.hashmd5password("adminpass"), "Admin", "Admin", "ayoub@gmail.com","Chef de Département","M"), d2, r1);
+			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "Employee", "Employee", "ayoub2@gmail.com","Ingénieur","M"), d2, r2);
+			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "Equipe IT", "Equipe IT", "ayoub3@gmail.com","Technicien","M"), d2, r3);
 
 
 			User um = m.getUser(id);
