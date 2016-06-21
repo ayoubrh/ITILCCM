@@ -7618,8 +7618,14 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public List<TicketIncident> listIncidentOuverts() {
-		Query req = em.createQuery("select t from TicketIncident t where t.statut =:stat");
-		req.setParameter("stat", "Nouveau"); 
+		Query req = em.createQuery("select t from TicketIncident t where t.statut !=:stat");
+		req.setParameter("stat", "Fermee"); 
+		return req.getResultList();
+	}
+
+	@Override
+	public List<User> listEquipeIT() {
+		Query req = em.createQuery("select u from User u join u.role r where r.id = 2"); 
 		return req.getResultList();
 	}
 

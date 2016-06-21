@@ -2394,6 +2394,11 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.listIncidentOuverts(); 
 	}
 
+	@Override
+	public List<User> listEquipeIT() {
+		return dao.listEquipeIT();
+	}
+
 
 }
 

@@ -442,18 +442,18 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
@@ -500,7 +500,7 @@ Use search to find needed section.
 				<!-- Javascript -->
 				<script>
 					init.push(function () {
-						$('.ui-wizard-example').pixelWizard({
+						$('#wizard-forms').pixelWizard({
 							onChange: function () {
 								console.log('Current step: ' + this.currentStep());
 							},
@@ -512,17 +512,37 @@ Use search to find needed section.
 							}
 						});
 
-						$('.wizard-next-step-btn').click(function () {
-							$(this).parents('.ui-wizard-example').pixelWizard('nextStep');
-						});
+						
 
 						$('.wizard-prev-step-btn').click(function () {
-							$(this).parents('.ui-wizard-example').pixelWizard('prevStep');
+							$(this).parents('#wizard-forms').pixelWizard('prevStep');
 						});
+						
 
 						$('.wizard-go-to-step-btn').click(function () {
-							$(this).parents('.ui-wizard-example').pixelWizard('setCurrentStep', 1);
+							$(this).parents('#wizard-forms').pixelWizard('setCurrentStep', 1);
 						});
+						
+						document.getElementById("id").onclick = function () {
+							var n=[];
+							$(".ckcis:checked").each(function() {
+					    		n.push($(this).val());
+					    		
+							});
+						
+							        if(n==""){
+							        	alert("hhhhhh!");
+							          
+							        }
+							       
+							        else{
+											$(this).parents('#wizard-forms').pixelWizard('nextStep');
+										
+							        }
+							  
+						};
+						
+						
 
 						
 					});
@@ -531,11 +551,13 @@ Use search to find needed section.
 
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Nouveau Ticket d'Incident</span>
+					<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong>Nouveau Ticket d'Incident</strong></span>
+						
 					</div>
 					<f:form modelAttribute="ticketIncident" action="saveTicket" methode="post" id="jq-validation-form">
+					
 					<div class="panel-body">
-						<div class="wizard ui-wizard-example">
+						<div class="wizard ui-wizard-example" id="wizard-forms">
 							<div class="wizard-wrapper">
 								<ul class="wizard-steps">
 									<li data-target="#wizard-example-step1" >
@@ -552,12 +574,7 @@ Use search to find needed section.
 											<span class="wizard-step-description">Détail de l'incident</span>
 										</span>
 									</li>
-									<li data-target="#wizard-example-step4"> <!-- ! Remove space between elements by dropping close angle -->
-										<span class="wizard-step-number">4</span>
-										<span class="wizard-step-caption">
-											Fin
-										</span>
-									</li>
+									
 								</ul> <!-- / .wizard-steps -->
 							</div> <!-- / .wizard-wrapper -->
 							<div class="wizard-content panel">
@@ -573,10 +590,10 @@ Use search to find needed section.
 												<th>Date de mise en production</th>	
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="">
 											<c:forEach items="${ApplicationWeb}" var="aw" >
 												<tr class="gradeA" id="cis_App_${aw.id }" >
-													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="App_${aw.id }"></td>
+													<td class="supchekbox"><input type="radio" class="ckcis" name="ckCIs" value="App_${aw.id }" onblur="verif_pseudo(this)"></td>
 													<td>${aw.nom }</td>
 													<td>Application Web</td>
 													<td>${aw.criticite }</td>
@@ -825,8 +842,10 @@ Use search to find needed section.
 										</tbody>
 									</table>
 									</div>
+									<div >
 									
-									<button type="button" class="btn btn-primary wizard-next-step-btn">Suivant</button>
+									</div>
+									<button type="button" class="btn btn-primary wizard-next-step-btn" id="id">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
 
@@ -866,21 +885,6 @@ Use search to find needed section.
 									<f:errors path="impact" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
-								<div class="col-sm-9">
-									<f:select  path="priorite" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
-							             <f:option value=""></f:option>
-							             <f:option value="Majour">Majour</f:option>
-										 <f:option value="Très Haute">Très Haut</f:option>
-										 <f:option value="Haut"> Haut</f:option>
-										 <f:option value="Moyenne"> Moyenne</f:option>
-										 <f:option value="Basse">Basse</f:option>
-										 <f:option value="Très Basse">Très Basse</f:option>
-									</f:select>
-									<f:errors path="priorite" cssClass="help-block"></f:errors>
-								</div>
-							</div>
 							
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Description :</label>
@@ -889,23 +893,11 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							
-							
-							
-							
-							
-
 					
 									<button type="button" class="btn wizard-prev-step-btn">Précédent</button>
-									<button type="button" class="btn btn-primary wizard-next-step-btn">Suivant</button>
-								</div> <!-- / .wizard-pane -->
-								<div class="wizard-pane" id="wizard-example-step4" style="display: none;">
-									Si vous avez bien remplis le formulaire, enregistrer votre Ticket<br><br>
-									<button type="button" class="btn wizard-prev-step-btn">Précédent</button>
-									<button type="button" class="btn btn-success wizard-go-to-step-btn">Retour à l'étape 1</button>
-
 									<button type="submit" class="btn btn-primary wizard-next-step-btn">Enregistrer</button>
 								</div> <!-- / .wizard-pane -->
+								
 							</div> <!-- / .wizard-content -->
 						</div> <!-- / .wizard -->
 					</div>

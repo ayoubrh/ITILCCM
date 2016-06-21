@@ -86,14 +86,13 @@ public class Sprint3 {
 	}
 	
 	@RequestMapping(value="/add/saveTicket", method = RequestMethod.POST)
-	public String saveGroupe(@Valid TicketIncident t,BindingResult bind,Model model,HttpServletRequest req) {
+	public String saveTicket(@Valid TicketIncident t,BindingResult bind,Model model,HttpServletRequest req) {
 		
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		    String logged_m = auth.getName();
 		    User logged = mu.getUserByMatricule(logged_m);
 		    model.addAttribute("logged", logged);
-		    model.addAttribute("g", m.listGroupe());
 		    model.addAttribute("ApplicationWeb", m.listApplicationWeb());
 		    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
 		    model.addAttribute("Logiciel", m.listLogicielEtApplication());
@@ -125,6 +124,7 @@ public class Sprint3 {
 		Date date = new Date();
 		t.setDateDeDebut(date); 
 		t.setStatut("Nouveau");
+		t.setPriorite(t.getUrgence()); 
 		String[] cis = req.getParameterValues("ckCIs");
 		if(cis != null){
 			
@@ -150,7 +150,7 @@ public class Sprint3 {
 					Camera cam = m.getCamera(Long.parseLong(cis[i].substring(4)));
 					t.setCamera(cam); 
 				}
-				if(cis[i].substring(0,3).equals("Cha")){
+				/*if(cis[i].substring(0,3).equals("Cha")){
 					Chassis ch = m.getChassis(Long.parseLong(cis[i].substring(4)));
 					t.setChassis(ch); 
 				}
@@ -213,14 +213,41 @@ public class Sprint3 {
 				if(cis[i].substring(0,3).equals("Tem")){
 					TelephneMobile tm = m.getTeleMobile(Long.parseLong(cis[i].substring(4)));
 					t.setTelephneMobile(tm); 
-				}
+				}*/
 		  }
-			
-		}
-		
+		} 
 			m.addTicketIncident(t, logged.getId());
 		
 		return "redirect:/indexv?save="+true;
+	}
+	
+	@RequestMapping(value="/edit/saveTicket")
+	public String saveEditTickets(@Valid TicketIncident t,Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		Date date = new Date();
+		System.out.println("--------------------------- AAAAAAAAAAAAAAAAAAAAA");
+		if(t.isValider()){
+			System.out.println("--------------------------- BBBBBBBBBBBBBBBBB");
+			t.setDateDeValidation(date);
+			t.setStatut("En attente");
+			
+		}
+		System.out.println("--------------------------- CCCCCCCCCCCCCCCCCCCCCC");
+		m.editTicketIncident(t);
+		return "redirect:/incid/view/ticket/ouverts";
+	}
+	@RequestMapping(value="/edit/ticket")
+	public String editTickets(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("ticketIncident", m.getTicketIncident(id));  
+		model.addAttribute("equipe", m.listEquipeIT());
+		return "sprint3/editTicket";
 	}
 	@RequestMapping(value="/view/mesticket")
 	public String viewMesTicket(Model model){
@@ -231,6 +258,26 @@ public class Sprint3 {
 		model.addAttribute("ticket", m.listMesIncident(logged.getId())); 
 		
 		return "sprint3/MesIncidents"; 
+	}
+	@RequestMapping(value="/view/ticket")
+	public String viewTickets(Model model,Long id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("ticket", m.getTicketIncident(id));  
+		
+		return "sprint3/viewTicket"; 
+	}
+	@RequestMapping(value="/view/ticket/ouverts")
+	public String viewTicketOuverts(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("ticket", m.listIncidentOuverts()); 
+		
+		return "sprint3/ticketOuverts"; 
 	}
 
 	

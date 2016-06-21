@@ -20,6 +20,9 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -85,8 +88,10 @@ public class ConnexionElectrique implements Serializable{
    	@JoinColumn(name="id_lieu")
    private Lieu lieu;
    	
+   @JsonIgnore
    @Column(nullable=true)
    @OneToMany(mappedBy="connexionElectrique",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<TicketIncident> ticketsIncident;
    	
 

@@ -26,6 +26,7 @@ public class TestMetierT2 {
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			//m.addTicketIncident(new TicketIncident("Ferhaoui Tawfiq", "haute", "haute", "Nouveau", "haute", "Incident 1", null));
 			//m.addTicketIncident(new TicketIncident("Ferhaoui Tawfiq", "haute", "haute", "Nouveau", "haute", "Incident 2", null));
+			m.editTicketIncident(new TicketIncident(1L, "Haut", "Haut", "en attente", "Haut", true, false, "incident11", null, null));
 			assertTrue(true);
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);

@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -72,9 +73,11 @@ public class Sim implements Serializable{
     @Column(nullable = true)
   private Collection<Contact> contact;
 	
-	@Column(nullable=true)
+	/*@Column(nullable=true)
+	@JsonIgnore
 	@OneToMany(mappedBy="sim",cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private Collection<TicketIncident> ticketsIncident;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<TicketIncident> ticketsIncident;*/
 	
 
 	public Long getId() {
@@ -193,13 +196,13 @@ public class Sim implements Serializable{
 		this.description = description;
 	}
 
-	public Collection<TicketIncident> getTicketsIncident() {
+	/*public Collection<TicketIncident> getTicketsIncident() {
 		return ticketsIncident;
 	}
 
 	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
 		this.ticketsIncident = ticketsIncident;
-	}
+	}*/
   
 
 }

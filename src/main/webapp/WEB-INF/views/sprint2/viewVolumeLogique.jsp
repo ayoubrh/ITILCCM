@@ -443,18 +443,18 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
@@ -533,9 +533,7 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-machines" data-toggle="tab">Machines Virtuelles</a>
 								</li>
-								<li>
-									<a href="#profile-tabs-tickets" data-toggle="tab">Tickets</a>
-								</li>	
+									
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -657,37 +655,6 @@ Use search to find needed section.
 									
 								</div> <!-- / .tab-pane -->
 								
-								<div class="tab-pane fade widget-tickets" id="profile-tabs-tickets">
-								
-										<div class="table-primary">
-											<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example-tickets">
-												<thead>
-													<tr>
-														<th>Titre</th>
-														<th>Date d'ouverture</th>
-														<th>Demandeur</th>
-														<th>Status</th>
-														<th>Impact</th>
-														<th>Etat</th>
-													</tr>
-												</thead>
-												<tbody>
-														<tr class="gradeA">
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															
-															
-														</tr>
-													
-												</tbody>
-											</table>
-										</div>
-								
-								</div>
 							</div> <!-- / .tab-content -->
 						</div>
 				
@@ -737,7 +704,9 @@ Use search to find needed section.
 		$('.jq-datatables-example_wrapper .table-caption').text('');
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 		
-		
+		$('#jq-datatables-example-tickets').dataTable();
+		$('#jq-datatables-example-tickets_wrapper .table-caption').replaceWith("<div class='table-caption'><button class='btn btn-success btn-flat' id='addTicket'>Nouveau Ticket</button></div>");
+		$('#jq-datatables-example-tickets_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 	    
 	   
 	});

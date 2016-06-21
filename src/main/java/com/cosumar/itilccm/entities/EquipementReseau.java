@@ -16,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -108,8 +111,10 @@ public class EquipementReseau implements Serializable{
 	@ManyToMany(mappedBy="equipementReseau",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
    	
-   	@Column(nullable=true)
+   	@JsonIgnore
+    @Column(nullable=true)
     @OneToMany(mappedBy="equipementReseau",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 
 	public Long getId() {

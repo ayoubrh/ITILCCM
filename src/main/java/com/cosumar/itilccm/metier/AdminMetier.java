@@ -14,6 +14,7 @@ public interface AdminMetier extends UtilisateurMetier {
 	public List<User> listUser();
 	public User getUser(Long id);
 	public User getUserByMatricule(String matricule);
+	public List<User> listEquipeIT();
 	public List<User> listUserSim();
 	public List<User> listUserTeleMobile();
 	public List<User> listUserTeleFixe();

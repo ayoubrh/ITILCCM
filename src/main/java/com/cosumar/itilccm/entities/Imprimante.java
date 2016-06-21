@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -68,7 +69,9 @@ public class Imprimante implements Serializable{
 	@ManyToMany(mappedBy="imprimante",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
    	
+   	@JsonIgnore
    	@Column(nullable=true)
+   	@LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy="imprimante",cascade = CascadeType.ALL)
     private Collection<TicketIncident> ticketsIncident;
 

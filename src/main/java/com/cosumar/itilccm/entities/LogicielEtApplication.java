@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -84,7 +85,9 @@ public class LogicielEtApplication implements Serializable {
 	   private Collection<Groupe> groupe;
 	   
 	   @Column(nullable=true)
+	   @JsonIgnore
 	   @OneToMany(mappedBy="logicielEtApplication",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TicketIncident> ticketsIncident;
 		   
 		public LogicielEtApplication() {

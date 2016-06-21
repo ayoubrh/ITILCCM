@@ -441,18 +441,18 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
@@ -507,18 +507,14 @@ Use search to find needed section.
 						L'élément de configuration est bien supprimer.
 					</div>
 				</c:if>
+		
 
-
-		<div class="page-header">
-			<h1 class="col-md-9"><i class="fa page-header-icon"></i>&nbsp;&nbsp;Mes incidents</h1>
+		<div class="panel-heading">
+		<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong>Mes incidents</strong></span>
+			
 			
 		</div> <!-- / .page-header -->
 
-		<!-- / .search-text -->
-
-		<!-- Tabs -->
-		
-		<!-- / Tabs -->
 
 			<div class="table-primary">
 
@@ -562,54 +558,7 @@ Use search to find needed section.
 											<c:if test="${t.camera.id != null}">
 														${t.camera.nom}
 											</c:if>
-											<c:if test="${t.chassis.id != null}">
-														${t.chassis.nom}
-											</c:if>
-											<c:if test="${t.equipementReseau.id != null}">
-														${t.equipementReseau.nom}
-											</c:if>
-											<c:if test="${t.virtualisation.id != null}">
-														${t.virtualisation.nom}
-											</c:if>
-											<c:if test="${t.imprimante.id != null}">
-														${t.imprimante.nom}
-											</c:if>
-											<c:if test="${t.instanceDeBasseDeDonnes.id != null}">
-														${t.instanceDeBasseDeDonnes.nom}
-											</c:if>
-											<c:if test="${t.instanceMiddleware.id != null}">
-														${t.instanceMiddleware.nom}
-											</c:if>
-											<c:if test="${t.machineVirtuelle.id != null}">
-														${t.machineVirtuelle.nom}
-											</c:if>
-											<c:if test="${t.ordinateur.id != null}">
-														${t.ordinateur.nom}
-											</c:if>
-											<c:if test="${t.peripherique.id != null}">
-														${t.peripherique.nom}
-											</c:if>
-											<c:if test="${t.processusMetier.id != null}">
-														${t.processusMetier.nom}
-											</c:if>
-											<c:if test="${t.rack.id != null}">
-														${t.rack.nom}
-											</c:if>
-											<c:if test="${t.solutionApplicative.id != null}">
-														${t.solutionApplicative.nom}
-											</c:if>
-											<c:if test="${t.sim.id != null}">
-														${t.sim.numero}
-											</c:if>
-											<c:if test="${t.tablette.id != null}">
-														${t.tablette.nom}
-											</c:if>
-											<c:if test="${t.telephneMobile.id != null}">
-														${t.telephneMobile.nom}
-											</c:if>
-											<c:if test="${t.telephoneFixe.id != null}">
-														${t.telephoneFixe.nom}
-											</c:if>
+											
 											</td>
 										</tr>
 									
@@ -620,12 +569,7 @@ Use search to find needed section.
 							</table>
 				
 			</div>
-			<!-- / Search results -->
-
-			<!-- Panel Footer -->
-			<!-- / .panel-footer -->
-
-
+			
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->

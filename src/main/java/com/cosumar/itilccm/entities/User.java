@@ -107,7 +107,7 @@ public class User implements Serializable {
 	 @JoinColumn(name="departement_id")
    	private Departement departement;
    	
-   	 @OneToMany(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	 @OneToMany(mappedBy="user",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Ordinateur> ordinateur;
    	
@@ -123,20 +123,20 @@ public class User implements Serializable {
    	 @OneToOne(mappedBy="user")
 	private TelephoneFixe telephoneFixe;
    	
-   	@OneToMany(mappedBy="user",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Imprimante> imprimante;
    	
    	@Column(nullable=true)
-	@OneToMany(mappedBy="demandeur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="demandeur",cascade = CascadeType.ALL)
    	private Collection<TicketIncident> demandeurs;
    	 
    	@Column(nullable=true)
-	@OneToMany(mappedBy="admin",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="admin",cascade = CascadeType.ALL)
    	private Collection<TicketIncident> Validation;
    	
    	@Column(nullable=true)
-	@OneToMany(mappedBy="equipeIt",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="equipeIt",cascade = CascadeType.ALL)
    	private Collection<TicketIncident> Affectation;
    	
 	public Long getId() {

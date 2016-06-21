@@ -15,6 +15,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -63,8 +66,10 @@ public class ApplicationWeb implements Serializable {
 	   @JoinColumn(name="id_serveurWeb")
 	   private ServeurWeb serveurWeb;
 	   
+	   @JsonIgnore
 	   @Column(nullable=true)
 	   @OneToMany(mappedBy="applicationWeb",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TicketIncident> ticketsIncident;
 		   
 		public ApplicationWeb() {

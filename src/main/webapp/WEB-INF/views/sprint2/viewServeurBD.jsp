@@ -442,18 +442,18 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Recherche des incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Mes Incidents</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents ouverts</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
@@ -774,20 +774,24 @@ Use search to find needed section.
 														<th>Demandeur</th>
 														<th>Status</th>
 														<th>Impact</th>
-														<th>Etat</th>
+														<th>Urgence</th>
+														<th>Priorité</th>
+														<th>Attribué à</th>
 													</tr>
 												</thead>
 												<tbody>
-														<tr class="gradeA">
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															<td> </td>
-															
-															
-														</tr>
+												<c:forEach items="${serveurBD.ticketsIncident}" var="ticket">
+													<tr class="gradeA" id="tr_ticket_${ticket.id }">
+													<td><a href="<c:url value="/incid/view/ticket?id=${ticket.id }" />">${ticket.titre }</a></td>
+													<td><fmt:formatDate type="date" dateStyle="long" value="${ticket.dateDeDebut}" /></td>
+													<td><a href="<c:url value="/users/profil?id=${ticket.demandeur.id }" />">${ticket.demandeur.nom }</a></td>
+													<td>${ticket.statut }</td>
+													<td>${ticket.impact}</td>
+													<td>${ticket.urgence }</td>
+													<td>${ticket.priorite }</td>
+													<td>${ticket.equipeIt.nom }</td>
+												</tr>
+											</c:forEach>
 													
 												</tbody>
 											</table>

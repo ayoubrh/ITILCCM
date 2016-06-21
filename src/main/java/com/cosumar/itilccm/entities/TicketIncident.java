@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -45,48 +46,71 @@ public class TicketIncident {
 	   private User admin;
 	   @ManyToOne
 	   private User equipeIt;
+	   @JsonIgnore
 	   @ManyToOne  
 	   private ApplicationWeb applicationWeb;
+	   @JsonIgnore
 	   @ManyToOne
 	   private ConnexionElectrique connexionElectrique;
+	   @JsonIgnore
 	   @ManyToOne
 	   private LogicielEtApplication logicielEtApplication;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Infrastructure infrastructure;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Camera camera;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Chassis chassis;
+	   @JsonIgnore
 	   @ManyToOne
 	   private EquipementReseau equipementReseau;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Virtualisation virtualisation;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Imprimante imprimante;
+	   @JsonIgnore
 	   @ManyToOne
 	   private InstanceDeBasseDeDonnes instanceDeBasseDeDonnes;
+	   @JsonIgnore
 	   @ManyToOne
 	   private InstanceMiddleware instanceMiddleware;
+	   @JsonIgnore
 	   @ManyToOne
 	   private MachineVirtuelle machineVirtuelle;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Ordinateur ordinateur;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Peripherique peripherique;
+	   @JsonIgnore
 	   @ManyToOne
 	   private ProcessusMetier processusMetier;
+	   @JsonIgnore
 	   @ManyToOne
 	   private Rack rack;
+	   @JsonIgnore
 	   @ManyToOne
 	   private SolutionApplicative solutionApplicative;
-	   @ManyToOne
-	   private Sim sim;
+	   /*
+	   @JsonIgnore
 	   @ManyToOne
 	   private Tablette tablette;
+	   @JsonIgnore
 	   @ManyToOne
 	   private TelephneMobile telephneMobile;
+	   @JsonIgnore
 	   @ManyToOne
-	   private TelephoneFixe telephoneFixe;
+	   private TelephoneFixe telephoneFixe; 
+	   
+	   @JsonIgnore
+	   @ManyToOne
+	   private Sim sim;*/
 	 
 		public TicketIncident() {
 			super();
@@ -100,6 +124,22 @@ public class TicketIncident {
 			this.urgence = urgence;
 			this.titre = titre;
 			this.description = description;
+		}
+		
+		public TicketIncident(Long id, String impact, String priorite, String statut, String urgence, boolean valider,
+				boolean resolver, String titre, String description, String solution) {
+			super();
+			this.id = id;
+			this.impact = impact;
+			this.priorite = priorite;
+			this.statut = statut;
+			this.urgence = urgence;
+			this.valider = valider;
+			this.resolver = resolver;
+			this.titre = titre;
+			this.description = description;
+			this.solution = solution;
+			
 		}
 		public Long getId() {
 			return id;
@@ -329,6 +369,12 @@ public class TicketIncident {
 		public void setSolutionApplicative(SolutionApplicative solutionApplicative) {
 			this.solutionApplicative = solutionApplicative;
 		}
+		/*public Sim getSim() {
+			return sim;
+		}
+		public void setSim(Sim sim) {
+			this.sim = sim;
+		}
 		public Tablette getTablette() {
 			return tablette;
 		}
@@ -346,13 +392,7 @@ public class TicketIncident {
 		}
 		public void setTelephoneFixe(TelephoneFixe telephoneFixe) {
 			this.telephoneFixe = telephoneFixe;
-		}
-		public Sim getSim() {
-			return sim;
-		}
-		public void setSim(Sim sim) {
-			this.sim = sim;
-		}
+		}*/
 		
 		
    

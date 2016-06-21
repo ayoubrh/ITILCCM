@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -62,8 +63,10 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   @ManyToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.ALL)
 	   private Collection<Groupe> groupe;
 	   
+	   @JsonIgnore
 	   @Column(nullable=true)
-	    @OneToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @LazyCollection(LazyCollectionOption.FALSE)
+	   @OneToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	    private Collection<TicketIncident> ticketsIncident;
 	   
 	   

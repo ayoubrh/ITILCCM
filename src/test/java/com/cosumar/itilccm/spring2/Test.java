@@ -51,17 +51,33 @@ public class Test {
 	}
 	
 	@org.junit.Test
-	public void ArriveeElectrique() {
+	public void Contrat() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
-			m.addArriveeElectrique(new ArriveeElectrique("Arrivee1"));
-			m.addArriveeElectrique(new ArriveeElectrique("Arrivee2"));
-			m.addArriveeElectrique(new ArriveeElectrique("Arrivee3"));
+			
+			m.ajouterContrat(new Contrat("Contrat", "FERHAOUI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
+			m.ajouterContrat(new Contrat("Contrat2", "RHNABRI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
+			assertTrue(true);
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	
+		
+	}
+	@org.junit.Test
+	public void Groupe() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			m.ajouterGroupe(new Groupe("Groupe1", "Production", null, null));
+			m.ajouterGroupe(new Groupe("Groupe2", "Production", null, null));
+			m.ajouterGroupe(new Groupe("Groupe3", "Production", null, null));
 			assertTrue(true);
 		
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
 		}
+	
+		
 	}
 
 }
