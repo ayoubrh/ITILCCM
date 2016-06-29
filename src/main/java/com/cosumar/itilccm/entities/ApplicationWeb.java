@@ -68,7 +68,7 @@ public class ApplicationWeb implements Serializable {
 	   
 	   @JsonIgnore
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="applicationWeb",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @OneToMany(mappedBy="applicationWeb",cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TicketIncident> ticketsIncident;
 		   

@@ -7629,6 +7629,61 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		return req.getResultList();
 	}
 
+	@Override
+	public List<TicketIncident> listIncidentFermees() {
+		Query req = em.createQuery("select t from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "Fermee"); 
+		return req.getResultList();
+	}
+
+	@Override
+	public Long nombreTicketNouveau() {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "Nouveau"); 
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketEnCours() {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "En cours"); 
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketEnAttente() {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "En attente"); 
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketResolue() {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "Résolue"); 
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketFermee() {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t where t.statut =:stat");
+		req.setParameter("stat", "Fermée"); 
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public List<TicketIncident> listNombre() {
+		Query req = em.createQuery("select equi,COUNT(t) as numbre from TicketIncident t join t.equipeIt equi GROUP BY equi.id");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<TicketIncident> listMesTicket(Long id) {
+		Query req = em.createQuery("select ticket from TicketIncident ticket join ticket.demandeur d where d.id = :userid");
+		req.setParameter("userid", id);
+		return req.getResultList();
+	}
+
 	
 }
 

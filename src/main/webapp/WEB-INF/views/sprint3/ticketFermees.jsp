@@ -28,14 +28,14 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Ticket d'Incident - ITIL-CCM</title>
+	<title>Tickets Fermées - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -72,7 +72,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-default main-menu-animated page-profile">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -498,53 +498,77 @@ Use search to find needed section.
 
 		Content
 -->
-		<div class="panel">
-		<f:form modelAttribute="ticket" action="saveTicket" methode="post" id="jq-validation-form">
-					<div class="panel-heading">
-					<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong> Incident : ${ticket.id }</strong></span>
-					
+				
+				
+				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						Le Ticket d'incident à été valider.
 					</div>
-					<div class="panel-body">
-							
-						    <div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'Ouverture :</label>
-								<fmt:formatDate type="date" dateStyle="long" value="${ticket.dateDeDebut }" />
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-demandeur" class="col-sm-3 control-label">Demandeur :</label>
-								
-								${ticket.demandeur.nom } ${ticket.demandeur.prenom }
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
-								<f:input path="titre" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
-								${ticket.titre }
-							</div>
-						<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
-								${ticket.statut }
-							</div>
-								<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
-								${ticket.urgence }
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Impact :</label>
-								${ticket.impact }
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
-								
-							
-							</div>
-							
-							
-						</div>
-						</f:form>
-					</div>	
+				</c:if>
+				
+				
+					<div class="panel-heading">
+						
+					<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident-closed.png" alt="" class="">&nbsp; <strong>Tickets Fermées</strong></span>
+						
+						
+					</div>
+					<div class="table-primary">
+					<br>
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Date d'ouverture</th>
+										<th>Date de fermeture</th>
+										<th>Demandeur</th>
+										<th>Statut</th>
+										<th>Priorité</th>
+										<th>CI à Traiter</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${ticket}" var="t">
+										<tr class="gradeA">
+											<td><a href="<c:url value="/incid/view/ticket?id=${t.id }" />">${t.titre}</a></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeDebut}" /></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeFermeture}" /></td>
+											<td><a href="<c:url value="/users/profil?id=${t.demandeur.id }" />">${t.demandeur.nom }</a></td>
+											<td>${t.statut }</td>
+											<td>${t.priorite }</td>
+											<td>
+											<c:if test="${t.applicationWeb.id != null}">
+														${t.applicationWeb.nom}
+											</c:if>
+											<c:if test="${t.connexionElectrique.id != null}">
+														${t.connexionElectrique.nom}
+											</c:if>
+											<c:if test="${t.logicielEtApplication.id != null}">
+														${t.logicielEtApplication.nom}
+											</c:if>
+											<c:if test="${t.infrastructure.id != null}">
+														${t.infrastructure.nom}
+											</c:if>
+											<c:if test="${t.camera.id != null}">
+														${t.camera.nom}
+											</c:if>
+											
+											</td>
+										</tr>
+									
+									</c:forEach>
+									
+									
+								</tbody>
+							</table>
 					
+								
+					</div>
+		
+		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -577,9 +601,34 @@ Use search to find needed section.
 			}
 		});
 		
-		$('.jq-datatables-example').dataTable();
-		$('.jq-datatables-example_wrapper .table-caption').text('');
-		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		var options = {
+				todayBtn: "linked",
+				orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+			}
+		
+			$('#bs-datepicker-dateDeMiseEnProduction').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			$('#bs-datepicker-dateD_achat').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			$('#bs-datepicker-dateDeFinDeGarantie').datepicker({
+			    format: 'dd/mm/yyyy'
+			  });
+			
+			$('.jq-datatables-example').dataTable();
+			$('.jq-datatables-example_wrapper .table-caption').text('');
+			$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			
+			
+			$('#jq-datatables-example-tickets').dataTable();
+			$('#jq-datatables-example-tickets_wrapper .table-caption');
+			$('#jq-datatables-example-tickets_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+			
+			
+		    
+
 	});
 	window.PixelAdmin.start(init);
 </script>

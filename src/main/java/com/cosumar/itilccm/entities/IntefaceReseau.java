@@ -31,9 +31,9 @@ public class IntefaceReseau implements Serializable{
   	@JoinColumn(name="equipementReseau_id")
    private EquipementReseau equipementReseau;
 
-	@ManyToOne
+	@ManyToOne(optional=true)
     @JoinColumn(name="id_machineVirtuelle")
-   private MachineVirtuelle machineVirtuelle;
+   private MachineVirtuelle machineVirtuelle; 
    
    	@ManyToOne
   	@JoinColumn(name="ordinateur_id")

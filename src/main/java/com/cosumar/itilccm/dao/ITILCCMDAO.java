@@ -591,7 +591,15 @@ public interface ITILCCMDAO {
 	public void deleteTicketIncident(Long id);
 	public List<TicketIncident> SearchTicketIncident(String ti);
 	public List<TicketIncident> listIncidentOuverts();
+	public List<TicketIncident> listIncidentFermees();
 	public List<TicketIncident> listMesIncident(Long id);
 	public List<TicketIncident> listTicketIncident();
 	public TicketIncident getTicketIncident(Long id);
+	public Long nombreTicketNouveau();
+	public Long nombreTicketEnCours();
+	public Long nombreTicketEnAttente();
+	public Long nombreTicketResolue();
+	public Long nombreTicketFermee();
+	public List<TicketIncident> listNombre();
+	public List<TicketIncident> listMesTicket(Long id); 
 }

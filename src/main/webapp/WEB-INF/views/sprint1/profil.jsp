@@ -404,38 +404,44 @@ Use search to find needed section.
 					</ul>
 				</li>
 				</s:authorize>
+				<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						<li>
-							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						</s:authorize>
 					</ul>
 				</li>
+                </s:authorize>
 
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
@@ -455,7 +461,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -572,7 +578,7 @@ Use search to find needed section.
 									<a href="#profile-tabs-incidents" data-toggle="tab">Tickets Incidents</a>
 								</li>
 								<li>
-									<a href="#profile-tabs-changements" data-toggle="tab">Tickets Chanegements</a>
+									<a href="#profile-tabs-changements" data-toggle="tab">Tickets Changements</a>
 								</li>
 								<li>
 									<a href="#profile-tabs-following" data-toggle="tab">Following</a>
@@ -694,7 +700,7 @@ Use search to find needed section.
 								<!-- / Success table -->
 								
 								<!-- Light table -->
-								<div class="table-danger">
+								<div class="table-light">
 									<div class="table-header">
 										<div class="table-caption">
 											<img src="<%=request.getContextPath()%>/resources/assets/images/png/mobile-phone.png" alt="" class="">&nbsp; Téléphone Mobile
@@ -733,7 +739,7 @@ Use search to find needed section.
 		
 		
 								<!-- Danger table -->
-								<div class="table-light">
+								<div class="table-info">
 									<div class="table-header">
 										<div class="table-caption">
 											<img src="<%=request.getContextPath()%>/resources/assets/images/png/sim.png" alt="" class="">&nbsp; Carte SIM
@@ -768,7 +774,7 @@ Use search to find needed section.
 								</div>
 								<!-- / Danger table -->
 								<!-- Info table -->
-								<div class="table-info">
+								<div class="table-primary">
 									<div class="table-header">
 										<div class="table-caption">
 											<img src="<%=request.getContextPath()%>/resources/assets/images/png/tablet.png" alt="" class="">&nbsp; Tablette
@@ -804,8 +810,57 @@ Use search to find needed section.
 								<!-- / Info table -->
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade" id="profile-tabs-incidents">
+									<div class="table-primary">
+					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Date d'ouverture</th>
+										<th>Date de fermeture</th>
+										<th>Agent </th>
+										<th>Statut</th>
+										<th>Priorité</th>
+										<th>CI à Traiter</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${ticket}" var="t">
+										<tr class="gradeA">
+											<td><a href="<c:url value="/incid/view/ticket?id=${t.id }" />">${t.titre}</a></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeDebut}" /></td>
+											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeFermeture}" /></td>
+											<td><a href="<c:url value="/users/profil?id=${t.equipeIt.id }" />">${t.equipeIt.nom } ${t.equipeIt.prenom }</a></td>
+											<td>${t.statut }</td>
+											<td>${t.priorite }</td>
+											<td>
+											<c:if test="${t.applicationWeb.id != null}">
+														${t.applicationWeb.nom}
+											</c:if>
+											<c:if test="${t.connexionElectrique.id != null}">
+														${t.connexionElectrique.nom}
+											</c:if>
+											<c:if test="${t.logicielEtApplication.id != null}">
+														${t.logicielEtApplication.nom}
+											</c:if>
+											<c:if test="${t.infrastructure.id != null}">
+														${t.infrastructure.nom}
+											</c:if>
+											<c:if test="${t.camera.id != null}">
+														${t.camera.nom}
+											</c:if>
+											
+											</td>
+										</tr>
 									
-											Incidents
+									</c:forEach>
+									
+									
+								</tbody>
+							</table>
+					
+								
+					</div>
 									
 								</div> <!-- / .tab-pane -->
 								<div class="tab-pane fade widget-followers" id="profile-tabs-changements">
@@ -1052,6 +1107,10 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
+
+		$('.jq-datatables-example').dataTable();
+		$('.jq-datatables-example_wrapper .table-caption').text('');
+		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 	});
 	window.PixelAdmin.start(init);
 </script>

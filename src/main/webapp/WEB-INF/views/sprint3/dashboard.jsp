@@ -28,14 +28,13 @@ Use search to find needed section.
 
 <!-- Mirrored from infinite-woodland-5276.herokuapp.com/pages-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2016 01:48:29 GMT -->
 <head>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="f" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Ticket d'Incident - ITIL-CCM</title>
+	<title>Tableau de bord de la Gestion des Incidents - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -498,53 +497,249 @@ Use search to find needed section.
 
 		Content
 -->
+<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$( "#ui-accordion" ).accordion({
+							heightStyle: "content",
+							header: "> div > h3"
+						}).sortable({
+							axis: "y",
+							handle: "h3",
+							stop: function( event, ui ) {
+								// IE doesn't register the blur when sorting
+								// so trigger focusout handlers to remove .ui-state-focus
+								ui.item.children( "h3" ).triggerHandler( "focusout" );
+							}
+						});
+					});
+				</script>
+				<!-- / Javascript -->
+				
+				
+				<c:if test="${save == true }">
+					<div class="alert alert-success">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						Bien enregistrer.
+					</div>
+				</c:if>
+
+		<!-- Content here -->
+		<c:if test="${v != null }">
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert"></button>
+				Votre compte est bien valide.
+			</div>
+		</c:if>
+		
+		<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">'+"<"+"/script>"); </script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+	</script>
+	<!-- Javascript -->
+				<script>
+					init.push(function () {
+						var n = ${n }
+						var c = ${c }
+						var a = ${a }
+						var r = ${r }
+						var f = ${f }
+						var total = n+c+a+r+f
+						Morris.Donut({
+							element: 'hero-donut',
+							data: [
+								{ label: 'Nouveau', value: n  },
+								{ label: 'En cours', value: c  },
+								{ label: 'En attente', value: a },
+								{ label: 'Résolue', value: r },
+								{ label: 'Fermée', value: f }
+							],
+							colors: PixelAdmin.settings.consts.COLORS,
+							resize: true,
+							labelColor: '#888',
+							formatter: function (y) { return Math.round(y*100/total)+ "%"  }
+						});
+					});
+				</script>
+				<!-- / Javascript -->
+				
+	<s:authorize ifAnyGranted="ROLE_ADMIN">
 		<div class="panel">
-		<f:form modelAttribute="ticket" action="saveTicket" methode="post" id="jq-validation-form">
+		
 					<div class="panel-heading">
-					<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong> Incident : ${ticket.id }</strong></span>
-					
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong> Tableau de bord de la Gestion des Incidents</strong></span>
 					</div>
 					<div class="panel-body">
-							
-						    <div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'Ouverture :</label>
-								<fmt:formatDate type="date" dateStyle="long" value="${ticket.dateDeDebut }" />
-							</div>
-							
-							<div class="form-group">
-								<label for="jq-validation-demandeur" class="col-sm-3 control-label">Demandeur :</label>
+					<div class="row">
+							<div class="col-sm-6">
+								<br>
+								<br>
+								<br>
+								<!-- Light table -->
+								<div class="table-light">
+									<div class="table-header">
+										<div class="table-caption">
+											Incidents ouverts par statut
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Statut</th>
+												<th>Nombre</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Nouveau</td>
+												<td style="text-align: center;">${n }</td>
+											</tr>
+											<tr>
+												<td>En cours</td>
+												<td style="text-align: center;">${c }</td>
+											</tr>
+											<tr>
+												<td>En attente</td>
+												<td style="text-align: center;">${a }</td>
+										  </tr>
+										  <tr>
+												<td>Résolue</td>
+												<td style="text-align: center;">${r }</td>
+										  </tr>
+										  <tr>
+												<td>Fermée</td>
+												<td style="text-align: center;">${f }</td>
+										  </tr>
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Light table -->
+								<br>
+								<br>
 								
-								${ticket.demandeur.nom } ${ticket.demandeur.prenom }
+								<!-- Light table -->
+								<div class="table-light">
+									<div class="table-header">
+										<div class="table-caption">
+											Incidents ouverts par agent
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Agent</th>
+												<th>Nombre</th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach items="${agent}" var="a" >
+											<tr>
+												<td>${a[0].nom} ${a[0].prenom}</td>
+												<td style="text-align: center;">${a[1].intValue()}</td>
+											</tr>
+										</c:forEach>
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Light table -->
+
 							</div>
 							
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
-								<f:input path="titre" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
-								${ticket.titre }
+							<div class="col-sm-6">
+								<div class="graph-container">
+							<div id="hero-donut" class="graph"></div>
+						   </div>
+						
+
 							</div>
-						<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
-								${ticket.statut }
-							</div>
-								<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
-								${ticket.urgence }
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Impact :</label>
-								${ticket.impact }
-							</div>
-							<div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
 								
-							
-							</div>
-							
+					</div>
+					<!-- Javascript -->
+				<script>
+					init.push(function () {
+						Morris.Bar({
+							element: 'hero-bar',
+							data: [
+								{ device: 'Janvier ', geekbench: 2 },
+								{ device: 'Février', geekbench: 0 },
+								{ device: 'Mars', geekbench: 0 },
+								{ device: 'Avril ', geekbench: 0 },
+								{ device: 'Mai', geekbench: 0 },
+								{ device: 'Juin', geekbench: 0 },
+								{ device: 'Juillet', geekbench: 0 },
+								{ device: 'Août', geekbench: 0 },
+								{ device: 'Septembre', geekbench: 0 },
+								{ device: 'Octobre', geekbench: 0 },
+								{ device: 'Novembre', geekbench: 0 },
+								{ device: 'Décembre', geekbench: 0 }
+							],
+							xkey: 'device',
+							ykeys: ['geekbench'],
+							labels: ['Geekbench'],
+							labelColor: ['#000000'],
+					        lineColors: ['#0b62a4'],
+					        pointFillColors: ['#00ff00'],
+							barRatio: 0.2,
+							xLabelAngle: 35,
+							hideHover: 'auto',
+							barColors: PixelAdmin.MainNavbar.Constructor.COLORS,
+							gridLineColor: '#cfcfcf',
+							resize: true
+						});
+					});
+				</script>
+				<script>
+					init.push(function () {
+						Morris.Bar({
+							element: 'hero-bar2',
+							data: [
+								{ device: 'Lundi', geekbench: 1 },
+								{ device: 'Mardi', geekbench: 0 },
+								{ device: 'Mercredi', geekbench: 0 },
+								{ device: 'Jeudi ', geekbench: 0 },
+								{ device: 'Vendredi', geekbench: 0 },
+								{ device: 'Samedi', geekbench: 0 }
+							],
+							xkey: 'device',
+							ykeys: ['geekbench'],
+							labels: ['Geekbench'],
+							barRatio: 0.4,
+							xLabelAngle: 35,
+							hideHover: 'auto',
+							barColors: PixelAdmin.settings.consts.COLORS,
+							gridLineColor: '#cfcfcf',
+							labelColor: '#000000',
+							resize: true
+						});
+					});
+				</script>
+				<!-- / Javascript -->
+				<div class="row">
+					<div class="table-header">
+										<div class="table-caption">
+											Incidents ouverts par jour
+										</div>
+									</div>
+					<div class="graph-container">
+						<div id="hero-bar2" class="graph"></div>
 							
 						</div>
-						</f:form>
-					</div>	
-					
+					</div>
+					<div class="row">
+					<div class="table-header">
+										<div class="table-caption">
+											Incidents ouverts par  mois
+										</div>
+									</div>
+					<div class="graph-container">
+							<div id="hero-bar" class="graph"></div>
+						</div>
+					</div>
+					</div>
+			
+		</div>
+		</s:authorize>		
 
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
@@ -554,9 +749,9 @@ Use search to find needed section.
 <!--[if !IE]> -->
 	<script type="text/javascript"> window.jQuery || document.write('<script src="<%=request.getContextPath()%>/resources/assets/ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
 <!-- <![endif]-->
-<!--[if lte IE 9]>
-	<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
-<![endif]-->
+<!--[if lte IE 9]>-->
+	
+<!--  [endif]-->
 
 <script src="jquery.transit.js"></script>
 
@@ -566,20 +761,7 @@ Use search to find needed section.
 
 <script type="text/javascript">
 	init.push(function () {
-		$('#profile-tabs').tabdrop();
-
-		$("#leave-comment-form").expandingInput({
-			target: 'textarea',
-			hidden_content: '> div',
-			placeholder: 'Write message',
-			onAfterExpand: function () {
-				$('#leave-comment-form textarea').attr('rows', '3').autosize();
-			}
-		});
-		
-		$('.jq-datatables-example').dataTable();
-		$('.jq-datatables-example_wrapper .table-caption').text('');
-		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		// Javascript code here
 	});
 	window.PixelAdmin.start(init);
 </script>

@@ -52,7 +52,6 @@ public class SolutionApplicative implements Serializable{
    	
    	 @Column(nullable=true)
 	 @ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
-   	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<MachineVirtuelle> machineVirtuelle;
 	   
 	 @Column(nullable=true)

@@ -153,6 +153,7 @@ public class Sprint1 {
 		model.addAttribute("telefixe", m.ListTeleFixeUser(id));
 		model.addAttribute("tab", m.ListTabletteUser(id));
 		model.addAttribute("sim", m.ListSIMUser(id));
+		model.addAttribute("ticket", m.listMesTicket(logged.getId()));
 		return "sprint1/profil";
 	}
 	

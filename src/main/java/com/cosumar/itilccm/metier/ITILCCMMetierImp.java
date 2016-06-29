@@ -2399,6 +2399,46 @@ public class ITILCCMMetierImp implements UtilisateurMetier,AdminMetier,EquipeITM
 		return dao.listEquipeIT();
 	}
 
+	@Override
+	public List<TicketIncident> listIncidentFermees() {
+		return dao.listIncidentFermees();
+	}
+
+	@Override
+	public Long nombreTicketNouveau() {
+		return dao.nombreTicketNouveau();
+	}
+
+	@Override
+	public Long nombreTicketEnCours() {
+		return dao.nombreTicketEnCours();
+	}
+
+	@Override
+	public Long nombreTicketEnAttente() {
+		return dao.nombreTicketEnAttente();
+	}
+
+	@Override
+	public Long nombreTicketResolue() {
+		return dao.nombreTicketResolue();
+	}
+
+	@Override
+	public Long nombreTicketFermee() {
+		return dao.nombreTicketFermee();
+	}
+
+	@Override
+	public List<TicketIncident> listNombre() {
+		return dao.listNombre();
+	}
+
+	@Override
+	public List<TicketIncident> listMesTicket(Long id) {
+		return dao.listMesTicket(id); 
+	}
+
 
 }
 

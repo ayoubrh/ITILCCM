@@ -404,38 +404,44 @@ Use search to find needed section.
 					</ul>
 				</li>
 				</s:authorize>
+				<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						<li>
-							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						</s:authorize>
 					</ul>
 				</li>
+                </s:authorize>
 
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
@@ -455,7 +461,7 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
 					</ul>
 				</li>
@@ -517,7 +523,7 @@ Use search to find needed section.
 
 
 			<div class="table-primary">
-
+			<br>
 					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered jq-datatables-example">
 								<thead>
 									<tr>
@@ -535,7 +541,7 @@ Use search to find needed section.
 								<tbody>
 									<c:forEach items="${ticket}" var="t">
 										<tr class="gradeA">
-											<td>${t.titre}</td>
+											<td><a href="<c:url value="/incid/edit/ticket?id=${t.id }" />">${t.titre}</a></td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeDebut}" /></td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateD_affectation}" /></td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeFermeture}" /></td>

@@ -85,7 +85,6 @@ public class LogicielEtApplication implements Serializable {
 	   private Collection<Groupe> groupe;
 	   
 	   @Column(nullable=true)
-	   @JsonIgnore
 	   @OneToMany(mappedBy="logicielEtApplication",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TicketIncident> ticketsIncident;

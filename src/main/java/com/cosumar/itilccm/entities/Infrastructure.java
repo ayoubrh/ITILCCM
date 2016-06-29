@@ -103,7 +103,7 @@ public class Infrastructure implements Serializable{
    	
    	@Column(nullable=true)
    	@JsonIgnore
-   	@OneToMany(mappedBy="infrastructure",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="infrastructure",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	private Collection<TicketIncident> ticketsIncident;
    

@@ -1,5 +1,8 @@
 package com.cosumar.itilccm.controllers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -18,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cosumar.itilccm.entities.*;
-import com.cosumar.itilccm.entities.Groupe;
-import com.cosumar.itilccm.entities.Peripherique;
 import com.cosumar.itilccm.entities.TicketIncident;
 import com.cosumar.itilccm.entities.User;
 import com.cosumar.itilccm.metier.AdminMetier;
@@ -42,6 +43,7 @@ public class Sprint3 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		model.addAttribute("ticketIncident", new TicketIncident());
+		if(logged.getRole().getNom().equals("ROLE_ADMIN") || logged.getRole().getNom().equals("ROLE_IT_TEAM") ){
 		model.addAttribute("ApplicationWeb", m.listApplicationWeb());
 	    model.addAttribute("ConnexionElectrique", m.ListConnexionElectrique());
 	    model.addAttribute("Logiciel", m.listLogicielEtApplication());
@@ -50,19 +52,21 @@ public class Sprint3 {
 		model.addAttribute("Chassis", m.ListChassis());
 		model.addAttribute("Equipementreseau", m.ListEquipementReseau());
 		model.addAttribute("Virtualisation", m.listVirtualisation());
-		model.addAttribute("Imprimante", m.ListImp());
 		model.addAttribute("InstanceMiddleware", m.listInstanceMiddleware());
 		model.addAttribute("Instancedebasededonnees", m.listInstanceDeBasseDeDonnes());
 		model.addAttribute("Machinevirtuelle", m.listMachineVirtuelle());
-		model.addAttribute("Ordinateur", m.ListPC());
 		model.addAttribute("Processusmetier", m.ListProcessusMetier());
-		model.addAttribute("Peripherique", m.ListPeriph());
 		model.addAttribute("Rack", m.ListRack());
 		model.addAttribute("Solutionapplicative", m.ListSolutionApplicative());
-		model.addAttribute("Sim", m.ListSIM()); 
-		model.addAttribute("Tablette", m.ListTablette());
-		model.addAttribute("Telephonefixe", m.ListTeleFixe());
-		model.addAttribute("Telephonemobile", m.ListTeleMobile()); 
+		model.addAttribute("Peripherique", m.ListPeriph());
+		}else {
+		model.addAttribute("Imprimante", m.ListImpUser(logged.getId()));
+		model.addAttribute("Ordinateur", m.ListPCUser(logged.getId()));
+		model.addAttribute("Sim", m.ListSIMUser(logged.getId())); 
+		model.addAttribute("Tablette", m.ListTabletteUser(logged.getId()));
+		model.addAttribute("Telephonefixe", m.ListTeleFixeUser(logged.getId()));
+		model.addAttribute("Telephonemobile", m.ListTeleMobileUser(logged.getId())); 
+		}
 		return "sprint3/addTicket";
 	}
 	@RequestMapping(value="/search/ticket")
@@ -86,7 +90,7 @@ public class Sprint3 {
 	}
 	
 	@RequestMapping(value="/add/saveTicket", method = RequestMethod.POST)
-	public String saveTicket(@Valid TicketIncident t,BindingResult bind,Model model,HttpServletRequest req) {
+	public String saveTicket(@Valid TicketIncident t,BindingResult bind,Model model,HttpServletRequest req) throws ParseException {
 		
 		if(bind.hasErrors()){
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -122,7 +126,20 @@ public class Sprint3 {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		Date date = new Date();
-		t.setDateDeDebut(date); 
+		System.out.println("Date 0---------- : "+date);
+		// Definition du format utilise pour les dates
+		  SimpleDateFormat f1 = new SimpleDateFormat ("dd/mm/yyyy"); 
+		  String dat = f1.format(date);
+		  System.out.println("Date1---------- : "+dat);
+		  Date d = (Date)f1.parse(dat);
+		  System.out.println("Date---------- : "+d);
+		  try {
+		      Thread.currentThread().sleep(60 * 1000);
+		      }
+		    catch (InterruptedException e) {
+		      e.printStackTrace();
+		      }
+		  t.setDateDeDebut(d);  
 		t.setStatut("Nouveau");
 		t.setPriorite(t.getUrgence()); 
 		String[] cis = req.getParameterValues("ckCIs");
@@ -228,13 +245,33 @@ public class Sprint3 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		Date date = new Date();
-		System.out.println("--------------------------- AAAAAAAAAAAAAAAAAAAAA");
-		if(t.isValider()){
-			System.out.println("--------------------------- BBBBBBBBBBBBBBBBB");
-			t.setDateDeValidation(date);
+		 SimpleDateFormat f1 = new SimpleDateFormat ("dd/MM/yyyy"); 
+		  String dat = f1.format(date);
+		//DateFormat f1 = DateFormat.getDateInstance();
+		
+		if(t.isValider() ){
+			if(t.getEquipeIt().getId() == null){
+			//t.setDateDeValidation(dat);
 			t.setStatut("En attente");
+			}else{
+				//t.setDateD_affectation(dat);
+				t.setStatut("En cours");
+			}
 			
 		}
+		
+		if(!t.isValider()){
+			
+			//t.setDateD_affectation(dat);
+			t.setStatut("Rejet");
+			
+		}
+	    if(t.isResolver()){
+	    	//t.setDateDeResolution(dat);
+	    	t.setStatut("Résolue");
+	    }else{
+	    	t.setStatut("Abîmé");
+	    }
 		System.out.println("--------------------------- CCCCCCCCCCCCCCCCCCCCCC");
 		m.editTicketIncident(t);
 		return "redirect:/incid/view/ticket/ouverts";
@@ -248,6 +285,20 @@ public class Sprint3 {
 		model.addAttribute("ticketIncident", m.getTicketIncident(id));  
 		model.addAttribute("equipe", m.listEquipeIT());
 		return "sprint3/editTicket";
+	}
+	@RequestMapping(value="/view/all")
+	public String viewAll(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged); 
+		model.addAttribute("n", m.nombreTicketNouveau());
+		model.addAttribute("c", m.nombreTicketEnCours());
+		model.addAttribute("a", m.nombreTicketEnAttente());
+		model.addAttribute("r", m.nombreTicketResolue());
+		model.addAttribute("f", m.nombreTicketFermee());
+		model.addAttribute("agent", m.listNombre());
+		return "sprint3/dashboard"; 
 	}
 	@RequestMapping(value="/view/mesticket")
 	public String viewMesTicket(Model model){
@@ -265,8 +316,7 @@ public class Sprint3 {
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
-		model.addAttribute("ticket", m.getTicketIncident(id));  
-		
+		model.addAttribute("ticket", m.getTicketIncident(id));
 		return "sprint3/viewTicket"; 
 	}
 	@RequestMapping(value="/view/ticket/ouverts")
@@ -278,6 +328,16 @@ public class Sprint3 {
 		model.addAttribute("ticket", m.listIncidentOuverts()); 
 		
 		return "sprint3/ticketOuverts"; 
+	}
+	@RequestMapping(value="/view/ticket/fermees")
+	public String viewTicketFermees(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String logged_m = auth.getName();
+	    User logged = mu.getUserByMatricule(logged_m);
+		model.addAttribute("logged", logged);
+		model.addAttribute("ticket", m.listIncidentFermees()); 
+		
+		return "sprint3/ticketFermees"; 
 	}
 
 	

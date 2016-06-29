@@ -21,13 +21,33 @@ public class TestMetierT2 {
 	}
 	
 	@Test
-	public void Ticket() {
+	public void Rack() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
-			//m.addTicketIncident(new TicketIncident("Ferhaoui Tawfiq", "haute", "haute", "Nouveau", "haute", "Incident 1", null));
-			//m.addTicketIncident(new TicketIncident("Ferhaoui Tawfiq", "haute", "haute", "Nouveau", "haute", "Incident 2", null));
-			m.editTicketIncident(new TicketIncident(1L, "Haut", "Haut", "en attente", "Haut", true, false, "incident11", null, null));
-			assertTrue(true);
+			List<Rack> imp1 = m.ListRack();
+			m.addRack(new Rack("Rack 1"));
+			m.addRack(new Rack("Rack 2"));
+			m.addRack(new Rack("Rack 3"));
+			m.addRack(new Rack("Rack 4"));
+			List<Rack> imp2 = m.ListRack();
+			assertTrue(imp1.size()+4 == imp2.size());
+		}catch (Exception e){
+			assertTrue(e.getMessage(), false);
+		}
+	}
+	
+	
+	@Test
+	public void Chassis() {
+		try{
+			AdminMetier m = (AdminMetier) context.getBean("metier");
+			List<Chassis> imp1 = m.ListChassis();
+			m.addChassis(new Chassis("Chassis 1"));
+			m.addChassis(new Chassis("Chassis 2"));
+			m.addChassis(new Chassis("Chassis 3"));
+			m.addChassis(new Chassis("Chassis 4"));
+			List<Chassis> imp2 = m.ListChassis();
+			assertTrue(imp1.size()+4 == imp2.size());
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
 		}

@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -44,7 +45,7 @@ public class MachineVirtuelle implements Serializable {
 	   private Collection<VolumeLogique> volumelogique;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL) 
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<IntefaceReseau> intefaceReseau;
 	   
@@ -87,7 +88,7 @@ public class MachineVirtuelle implements Serializable {
 	   
 	    @Column(nullable=true)
 	    @JsonIgnore
-	    @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	    @OneToMany(mappedBy="machineVirtuelle",cascade = CascadeType.ALL)
 	    @LazyCollection(LazyCollectionOption.FALSE)
 	    private Collection<TicketIncident> ticketsIncident;
 		   

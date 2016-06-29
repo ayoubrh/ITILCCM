@@ -33,7 +33,7 @@ public class Serveur extends Infrastructure implements Serializable{
    private Collection<VolumeLogique> volumelogique;
    	
    	 @Column(nullable=true)
-	 @OneToMany(mappedBy="serveur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	 @OneToMany(mappedBy="serveur",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Hyperviseur> hyperviseur;
 	   
@@ -42,7 +42,7 @@ public class Serveur extends Infrastructure implements Serializable{
 	private LicenseOs licenseOs;
 	   
 	 @Column(nullable=true)
-	 @OneToMany(mappedBy="serveur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	 @OneToMany(mappedBy="serveur",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<LogicielEtApplication> logicielEtApplication;
 	 

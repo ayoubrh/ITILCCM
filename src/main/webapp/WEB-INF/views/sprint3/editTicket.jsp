@@ -405,50 +405,61 @@ Use search to find needed section.
 					</ul>
 				</li>
 				</s:authorize>
+				<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-cogs"></i><span class="mm-text">Gestion des configurations</span></a>
 					<ul>
 						<li>
 							<a tabindex="-1" href="<c:url value="/config/admin/dashboard" />"><span class="mm-text">Tableaux de bord</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+							<a tabindex="-1" href="<c:url value="/config/admin/add/neveauCI" />"><span class="mm-text">Nouveau CI</span></a>
+						</li>
+						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
+						<li>
+							<a tabindex="-1" href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/contact"/>"><span class="mm-text">Contacts</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/lieu"/>"><span class="mm-text">Lieux</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/document"/>"><span class="mm-text">Documents</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
 						</li>
 						<li>
-							<a href="<c:url value="/config/search/contrat"/>"><span class="mm-text">Contrats</span></a>
+							<a tabindex="-1" href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
 						</li>
-						<li>
-							<a href="<c:url value="/config/search/groupe"/>"><span class="mm-text">Groupe CIs</span></a>
-						</li>
+						</s:authorize>
 					</ul>
 				</li>
+                </s:authorize>
 
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Vue d'ensemble</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
+						</s:authorize>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
+						</s:authorize>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
 						</li>
@@ -456,8 +467,9 @@ Use search to find needed section.
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents fermées</span></a>
+							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -494,37 +506,51 @@ Use search to find needed section.
 -->
 
 
-							<script>
+					
+						
+						
+						<div class="panel">
+					<div class="panel-heading">
+					<c:if test="${ticketIncident.urgence != 'Très Haute'}">
+					<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong>Incident: ${ticketIncident.id }</strong></span>
+						</c:if>
+						<c:if test="${ticketIncident.urgence == 'Très Haute'}">
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident-escalated.png" alt="" class="">&nbsp; <strong>Incident: ${ticketIncident.id }</strong></span>
+						</c:if>
+					</div>
+					<div class="panel-body">
+					<f:form modelAttribute="ticketIncident" action="/incid/edit/saveTicket" methode="post" enctype="multipart/form-data" class="form-horizontal" id="jq-validation-form">
+					
+						
+							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+				
+				  			<script>
 					init.push(function () {
 						
 						var options = {
 								
 								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
 							}
-							$('#bs-datepicker-component')({
+							$('#bs-datepicker-component').datepicker({ 
 									format: 'dd/mm/yyyy'
-								});
+								 });
 						
 
 					});
 				</script>
+				<div class="form-group">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date d'Ouverture :</label>
+					
+						<div class="col-sm-9 ">
+						<f:input path="dateDeDebut" type="text" id="bs-datepicker-component"  class="form-control"  name="jq-validation-id"  />
 						
-						
-						<div class="panel">
-					<div class="panel-heading">
-					<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong>Incident: ${ticketIncident.id }</strong></span>
-						
-					</div>
-					<f:form modelAttribute="ticketIncident" action="/incid/edit/saveTicket" methode="post" >
-					<div class="panel-body">
-						
-							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
-							
+						</div>
+				</div>
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
-									<f:input path="titre" type="text" class="form-control" id="jq-validation-titre" name="jq-validation-titre" />
+									<f:input path="titre" type="text" readonly="true" class="form-control" id="jq-validation-titre" name="jq-validation-titre" />
 									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
 								</div>
 							</div>
@@ -536,8 +562,8 @@ Use search to find needed section.
 										 <f:option value="Nouveau">Nouveau</f:option>
 										 <f:option value="En cours"> En cours</f:option>
 										 <f:option value="En attente"> En attente</f:option>
-										  <f:option value="Resolue"> Résolue</f:option>
-										  <f:option value="Fermee"> Fermée</f:option>
+										 <f:option value="Résolue"> Résolue</f:option>
+										 <f:option value="Fermée"> Fermée</f:option>
 									</f:select>
 									<f:errors path="statut" cssClass="help-block"></f:errors>
 								</div>
@@ -593,6 +619,7 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
+							<c:if test="${ticketIncident.valider == false}">
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Validation :</label>
 								<div class="col-sm-9">
@@ -610,27 +637,64 @@ Use search to find needed section.
 									</div>
 								</div>
 							</div>
+							</c:if>
 							<c:if test="${ticketIncident.valider == true}">
-							 <div class="form-group">
-								<label for="jq-validation-email" class="col-sm-3 control-label">Date de validation :</label>
+							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Validation :</label>
 								<div class="col-sm-9">
-									
-									<f:errors path="dateDeValidation" cssClass="help-block"></f:errors>
+									<div class="radio">
+										<label >
+											<f:radiobutton path="valider" readonly="true" name="jq-validation-radios" value="true" class="px"   />
+											<span class="lbl">oui</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<f:radiobutton path="valider" readonly="true" name="jq-validation-radios" value="false" class="px"   />
+											<span class="lbl">non</span>
+										</label>
+									</div>
 								</div>
 							</div>
+							<div class="form-group">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de validation :</label>
+					
+						<div class="col-sm-9" >
+								<f:input path="dateDeValidation" type="text" class="form-control" name="dateDeDebut"  />
+								<f:errors path="dateDeValidation" cssClass="help-block"></f:errors>
+											
+						</div>
+				</div>
+							
+							<c:if test="${ticketIncident.equipeIt.id == null}">
 							<div class="form-group">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
 								<div class="col-sm-9">
 									<f:select  path="equipeIt.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										<f:option value="" label=""/>
+										
 									<c:forEach items="${equipe}" var="equi" >
-										<option value="equi.id" >${equi.nom } ${equi.prenom } </option>	
+									<f:option value="" label=""/>
+										<option value="${equi.id}" >${equi.nom } ${equi.prenom } </option>	
 									</c:forEach>
 									</f:select>
 									<f:errors path="" cssClass="help-block"></f:errors>
 								</div>
 								
 							</div>
+							</c:if>
+							<c:if test="${ticketIncident.equipeIt.id != null}">
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
+								<div class="col-sm-9">
+									<f:select  path="equipeIt.id" readonly="true"  class="form-control" name="jq-validation-select2" id="jq-validation-select2">
+									<option value="${ticketIncident.equipeIt.id }">${ticketIncident.equipeIt.nom } ${ticketIncident.equipeIt.prenom } </option>
+									</f:select>
+									<f:errors path="" cssClass="help-block"></f:errors>
+								</div>
+								
+							</div>
+							
 							 <div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'affectation :</label>
 								<div class="col-sm-9">
@@ -638,7 +702,7 @@ Use search to find needed section.
 									<f:errors path="dateD_affectation" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							
+							<c:if test="${ticketIncident.equipeIt.id == logged.id}">
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Résolution :</label>
 								<div class="col-sm-9">
@@ -656,6 +720,7 @@ Use search to find needed section.
 									</div>
 								</div>
 							</div>
+							<c:if test="${ticketIncident.resolver == true}">
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Date de la résolution :</label>
 								<div class="col-sm-9">
@@ -663,6 +728,7 @@ Use search to find needed section.
 									<f:errors path="dateDeResolution" cssClass="help-block"></f:errors>
 								</div>
 							</div>
+							</c:if>
 							<div class="form-group">
 								<label for="jq-validation-text" class="col-sm-3 control-label">Solution :</label>
 								<div class="col-sm-9">
@@ -670,7 +736,8 @@ Use search to find needed section.
 									<f:errors path="solution" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							
+							</c:if>
+							</c:if>
 							</c:if>
 							<hr class="panel-wide">
 							
@@ -684,10 +751,11 @@ Use search to find needed section.
 								</div>
 								
 							</div>
+							</f:form>
 					</div> <!-- /panel-body --> 
-				</f:form>
+				
 				</div><!-- /panel --> 
-
+			
 
 
 
