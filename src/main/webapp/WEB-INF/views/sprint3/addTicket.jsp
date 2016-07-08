@@ -35,7 +35,7 @@ Use search to find needed section.
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Ajouter Ticket d'Incident - ITIL-CCM</title>
+	<title>Modification  Application Web - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -72,7 +72,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-default main-menu-animated page-profile">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="<%=request.getContextPath()%>/resources/assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -207,7 +207,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -217,7 +217,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -227,7 +227,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -237,7 +237,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -247,7 +247,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -257,7 +257,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -267,7 +267,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Michelle Bortz</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -277,7 +277,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Timothy Owens</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -287,7 +287,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>
 											<div class="message-description">
 												from <a href="#">Denise Steiner</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -297,7 +297,7 @@ Use search to find needed section.
 											<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>
 											<div class="message-description">
 												from <a href="#">Robert Jang</a>
-												&nbsp;&nbsp;Â·&nbsp;&nbsp;
+												&nbsp;&nbsp;·&nbsp;&nbsp;
 												2h ago
 											</div>
 										</div> <!-- / .message -->
@@ -441,29 +441,32 @@ Use search to find needed section.
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
+						</s:authorize>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
+						</s:authorize>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -498,12 +501,7 @@ Use search to find needed section.
 
 		Content
 -->
-
-<!-- 11. $WIZARDS ==================================================================================
-
-				Wizards
--->
-				<!-- Javascript -->
+<!-- Javascript -->
 				<script>
 					init.push(function () {
 						$('#wizard-forms').pixelWizard({
@@ -854,7 +852,7 @@ Use search to find needed section.
 									<button type="button" class="btn btn-primary wizard-next-step-btn" id="id">Suivant</button>
 								</div> <!-- / .wizard-pane -->
 								<div class="wizard-pane" id="wizard-example-step2" style="display: none;">
-
+					
 							<div class="form-group required">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
@@ -911,8 +909,10 @@ Use search to find needed section.
 				</div>
 				
 <!-- /11. $WIZARDS -->
+  
 
-
+		<!-- Content here -->
+		
 	</div> <!-- / #content-wrapper -->
 	<div id="main-menu-bg"></div>
 </div> <!-- / #main-wrapper -->
@@ -943,10 +943,14 @@ Use search to find needed section.
 				$('#leave-comment-form textarea').attr('rows', '3').autosize();
 			}
 		});
-		
+
 		$('.jq-datatables-example').dataTable();
 		$('.jq-datatables-example_wrapper .table-caption').text('');
 		$('.jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+		
+		$('#bs-datepicker-component').datepicker({
+			format: 'dd/mm/yyyy'
+		});
 	});
 	window.PixelAdmin.start(init);
 </script>

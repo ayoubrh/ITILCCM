@@ -461,9 +461,6 @@ Use search to find needed section.
 						</s:authorize>
 						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
-						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
@@ -523,30 +520,26 @@ Use search to find needed section.
 					
 						
 							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											<c:if test="${ticketIncident.imprimante.id != null}">
+												<f:input path="imprimante.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.ordinateur.id != null}">
+												<f:input path="ordinateur.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
 				
-				  			<script>
-					init.push(function () {
-						
-						var options = {
-								
-								orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-							}
-							$('#bs-datepicker-component').datepicker({ 
-									format: 'dd/mm/yyyy'
-								 });
-						
-
-					});
-				</script>
-				<div class="form-group">
+				<div class="form-group ">
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date d'Ouverture :</label>
 					
-						<div class="col-sm-9 ">
-						<f:input path="dateDeDebut" type="text" id="bs-datepicker-component"  class="form-control"  name="jq-validation-id"  />
-						
+						<div class=" col-sm-9" >
+							<div class=" input-group date" id="bs-datepicker-component">
+								<f:input path="dateDeDebut" type="text" readonly="true" class="form-control" name="dateDeDebut"  />
+								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
+								
+							</div>
+							<f:errors path="dateDeDebut" cssClass="help-block"></f:errors>				
 						</div>
 				</div>
-							
+							<f:input path="demandeur.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Titre :</label>
 								<div class="col-sm-9">
@@ -554,12 +547,12 @@ Use search to find needed section.
 									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
 								</div>
 							</div>
-						<div class="form-group">
+							<c:if test="${ticketIncident.statut == 'Résolue'}">
+							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
 								<div class="col-sm-9">
-									<f:select  path="statut" readonly="true" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
+									<f:select  path="statut" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
 							             <f:option value=""></f:option>
-										 <f:option value="Nouveau">Nouveau</f:option>
 										 <f:option value="En cours"> En cours</f:option>
 										 <f:option value="En attente"> En attente</f:option>
 										 <f:option value="Résolue"> Résolue</f:option>
@@ -568,48 +561,36 @@ Use search to find needed section.
 									<f:errors path="statut" cssClass="help-block"></f:errors>
 								</div>
 							</div>
+							</c:if>
+							<c:if test="${ticketIncident.statut != 'Résolue'}">
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
+								<div class="col-sm-9">
+								<f:input path="statut" type="text" readonly="true" class="form-control" id="jq-validation-titre" name="jq-validation-titre" />
+								<f:errors path="statut" cssClass="help-block"></f:errors>
+								</div>
+							</div>
+							</c:if>
 								<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Urgence :</label>
 								<div class="col-sm-9">
-									<f:select  path="urgence" readonly="true" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value=""></f:option>
-										 <f:option value="Très Haute">Très Haute</f:option>
-										 <f:option value="Haut"> Haut</f:option>
-										 <f:option value="Moyenne"> Moyenne</f:option>
-										 <f:option value="Basse">Basse</f:option>
-										 <f:option value="Très Basse">Très Basse</f:option>
-									</f:select>
-									<f:errors path="urgence" cssClass="help-block"></f:errors>
+								<f:input path="urgence" type="text" readonly="true" class="form-control" id="jq-validation-titre" name="jq-validation-titre" />
+								<f:errors path="urgence" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Impact :</label>
 								<div class="col-sm-9">
-									<f:select  path="impact" readonly="true" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-							             <f:option value=""></f:option>
-										 <f:option value="Très Haute" >Très Haut</f:option>
-										 <f:option value="Haut"> Haut</f:option>
-										 <f:option value="Moyenne"> Moyenne</f:option>
-										 <f:option value="Basse">Basse</f:option>
-										 <f:option value="Très Basse">Très Basse</f:option>
-									</f:select>
-									<f:errors path="impact" cssClass="help-block"></f:errors>
+								<f:input path="impact" type="text" readonly="true" class="form-control" id="jq-validation-titre" name="jq-validation-titre" />
+								<f:errors path="impact" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
 								<div class="col-sm-9">
-									<f:select  path="priorite" class="form-control" name="jq-validation-select2" id="jq-validation-select2" disabled="">
-							             <f:option value=""></f:option>
-							             <f:option value="Majour">Majour</f:option>
-										 <f:option value="Très Haute">Très Haut</f:option>
-										 <f:option value="Haut"> Haut</f:option>
-										 <f:option value="Moyenne"> Moyenne</f:option>
-										 <f:option value="Basse">Basse</f:option>
-										 <f:option value="Très Basse">Très Basse</f:option>
-									</f:select>
-									<f:errors path="priorite" cssClass="help-block"></f:errors>
+								<f:input path="priorite" type="text" readonly="true" class="form-control" id="jq-validation-titre" name="jq-validation-titre" />
+								<f:errors path="priorite" cssClass="help-block"></f:errors>
 								</div>
 							</div>
 							<div class="form-group">
@@ -619,7 +600,7 @@ Use search to find needed section.
 									<f:errors path="description" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<c:if test="${ticketIncident.valider == false}">
+							<c:if test="${ticketIncident.statut == 'Nouveau'}">
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Validation :</label>
 								<div class="col-sm-9">
@@ -638,37 +619,24 @@ Use search to find needed section.
 								</div>
 							</div>
 							</c:if>
+							
+							
 							<c:if test="${ticketIncident.valider == true}">
 							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Validation :</label>
-								<div class="col-sm-9">
-									<div class="radio">
-										<label >
-											<f:radiobutton path="valider" readonly="true" name="jq-validation-radios" value="true" class="px"   />
-											<span class="lbl">oui</span>
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<f:radiobutton path="valider" readonly="true" name="jq-validation-radios" value="false" class="px"   />
-											<span class="lbl">non</span>
-										</label>
-									</div>
-								</div>
-							</div>
 							<div class="form-group">
 					<label for="jq-validation-email" class="col-sm-3 control-label">Date de validation :</label>
 					
 						<div class="col-sm-9" >
-								<f:input path="dateDeValidation" type="text" class="form-control" name="dateDeDebut"  />
+						<div class=" input-group date" id="bs-datepicker-component">
+								<f:input path="dateDeValidation" type="text" readonly="true" class="form-control" name="dateDeDebut"  />
+								<span class="input-group-addon"><i class="fa fa-calendar" ></i></span>
 								<f:errors path="dateDeValidation" cssClass="help-block"></f:errors>
-											
+								</div>			
 						</div>
 				</div>
 							
 							<c:if test="${ticketIncident.equipeIt.id == null}">
-							<div class="form-group">
+							<div class="form-group required">
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
 								<div class="col-sm-9">
 									<f:select  path="equipeIt.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
@@ -698,11 +666,12 @@ Use search to find needed section.
 							 <div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'affectation :</label>
 								<div class="col-sm-9">
-									
+									<f:input path="dateD_affectation" type="text" readonly="true" class="form-control" name="dateDeDebut"  />
 									<f:errors path="dateD_affectation" cssClass="help-block"></f:errors>
 								</div>
 							</div>
-							<c:if test="${ticketIncident.equipeIt.id == logged.id}">
+							<c:if test="${ticketIncident.equipeIt.id == logged.id || ticketIncident.statut == 'Résolue'}">
+							<c:if test="${ticketIncident.statut == 'En cours'}">
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Résolution :</label>
 								<div class="col-sm-9">
@@ -720,11 +689,12 @@ Use search to find needed section.
 									</div>
 								</div>
 							</div>
+							</c:if>
 							<c:if test="${ticketIncident.resolver == true}">
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Date de la résolution :</label>
 								<div class="col-sm-9">
-									
+									<f:input path="dateDeResolution" type="text" readonly="true" class="form-control" name="dateDeDebut"  />
 									<f:errors path="dateDeResolution" cssClass="help-block"></f:errors>
 								</div>
 							</div>
@@ -739,6 +709,12 @@ Use search to find needed section.
 							</c:if>
 							</c:if>
 							</c:if>
+							<f:input path="valider" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+							<f:input path="notificationUtilisateur" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+							<f:input path="notificationEquipeIt" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+							<f:input path="notificationAdmininstration" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+							<f:input path="resolver" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
+							<c:if test="${ticketIncident.notificationAdmininstration == true && ticketIncident.equipeIt.id != logged.id && ticketIncident.statut != 'Rejet' ||  ticketIncident.equipeIt.id == logged.id && ticketIncident.statut == 'En cours'}">
 							<hr class="panel-wide">
 							
 							<div class="form-group">
@@ -750,7 +726,9 @@ Use search to find needed section.
 									<button type="submit" class="btn btn-primary">Enregistrer</button>
 								</div>
 								
+								
 							</div>
+							</c:if>
 							</f:form>
 					</div> <!-- /panel-body --> 
 				

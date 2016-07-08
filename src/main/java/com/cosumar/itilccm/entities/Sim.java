@@ -73,11 +73,11 @@ public class Sim implements Serializable{
     @Column(nullable = true)
   private Collection<Contact> contact;
 	
-	/*@Column(nullable=true)
+	@Column(nullable=true)
 	@JsonIgnore
 	@OneToMany(mappedBy="sim",cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Collection<TicketIncident> ticketsIncident;*/
+	private Collection<TicketIncident> ticketsIncident;
 	
 
 	public Long getId() {
@@ -196,13 +196,13 @@ public class Sim implements Serializable{
 		this.description = description;
 	}
 
-	/*public Collection<TicketIncident> getTicketsIncident() {
+	public Collection<TicketIncident> getTicketsIncident() {
 		return ticketsIncident;
 	}
 
 	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
 		this.ticketsIncident = ticketsIncident;
-	}*/
+	}
   
 
 }

@@ -1,4 +1,4 @@
-package com.cosumar.itilccm.spring2;
+package com.cosumar.itilccm.sprint2;
 
 import static org.junit.Assert.*;
 
@@ -49,7 +49,7 @@ public class Test {
 			assertTrue(e.getMessage(), false);
 		}
 	}
-	
+	/*
 	@org.junit.Test
 	public void Contrat() {
 		try{
@@ -79,5 +79,5 @@ public class Test {
 	
 		
 	}
-
+*/
 }

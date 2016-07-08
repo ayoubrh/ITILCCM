@@ -37,9 +37,9 @@ public class TicketIncident {
 	   private Date dateDeResolution;
 	   private Date dateD_affectation;
 	   private Date dateDeValidation;
-	   private boolean notificationAdmininstration;
-	   private boolean notificationUtilisateur;
-	   private boolean notificationEquipeIt;
+	   private boolean notificationAdmininstration = true ;
+	   private boolean notificationUtilisateur ;
+	   private boolean notificationEquipeIt ;
 	  
 	   @ManyToOne
 	   private User demandeur;
@@ -98,7 +98,6 @@ public class TicketIncident {
 	   @JsonIgnore
 	   @ManyToOne
 	   private SolutionApplicative solutionApplicative;
-	   /*
 	   @JsonIgnore
 	   @ManyToOne
 	   private Tablette tablette;
@@ -108,10 +107,9 @@ public class TicketIncident {
 	   @JsonIgnore
 	   @ManyToOne
 	   private TelephoneFixe telephoneFixe; 
-	   
 	   @JsonIgnore
 	   @ManyToOne
-	   private Sim sim;*/
+	   private Sim sim;
 	 
 		public TicketIncident() {
 			super();
@@ -370,7 +368,7 @@ public class TicketIncident {
 		public void setSolutionApplicative(SolutionApplicative solutionApplicative) {
 			this.solutionApplicative = solutionApplicative;
 		}
-		/*public Sim getSim() {
+		public Sim getSim() {
 			return sim;
 		}
 		public void setSim(Sim sim) {
@@ -393,7 +391,7 @@ public class TicketIncident {
 		}
 		public void setTelephoneFixe(TelephoneFixe telephoneFixe) {
 			this.telephoneFixe = telephoneFixe;
-		}*/
+		}
 		
 		
    

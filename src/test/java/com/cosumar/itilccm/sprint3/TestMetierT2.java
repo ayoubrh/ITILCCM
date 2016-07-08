@@ -1,4 +1,4 @@
-package com.cosumar.itilccm.toufik;
+package com.cosumar.itilccm.sprint3;
 
 import static org.junit.Assert.*;
 

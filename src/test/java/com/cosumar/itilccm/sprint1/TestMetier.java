@@ -1,4 +1,4 @@
-package com.cosumar.itilccm.spring1;
+package com.cosumar.itilccm.sprint1;
 
 import static org.junit.Assert.*;
 
@@ -40,10 +40,9 @@ public class TestMetier {
 			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			//m.ajouterUser(new User("EEEEEEEE", s.hashmd5password("0000000000"), "RHNABRI", "Ayoub", "ayoub0@gmail.com","Technicien"), d1);
 			m.ajouterUserRole(new User("admin", m.hashmd5password("adminpass"), "FERHAOUI", "Tawfiq", "Tawfiq@gmail.com","Chef de Département","M"), d2, r1);
-			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "FERHAOUI", "Tawfiq", "Tawfiq2@gmail.com","Ingénieur","M"), d2, r2);
-			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "FERHAOUI", "Tawfiq", "Tawfiq3@gmail.com","Technicien","M"), d2, r3);
-
-
+			Long id = m.ajouterUserRole(new User("equipeit", m.hashmd5password("equipeitpass"), "NOM1", "Prenom1", "tawfiq.ferhaoui@gmail.com","Technicien","M"), d2, r3);
+			m.ajouterUserRole(new User("employee", m.hashmd5password("employeepass"), "NOM2", "Prenom2", "Tawfiq2@gmail.com","Ingénieur","M"), d2, r2);
+			
 			User um = m.getUser(id);
 			um.setAge("30");
 			m.modifierUser(um);

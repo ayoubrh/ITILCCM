@@ -12,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,6 +37,13 @@ public class Sprint3 {
 	
 	@Autowired
 	private UtilisateurMetier mu;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	    dateFormat.setLenient(false);
+	    binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
 	
 	@RequestMapping(value="/add/ticket")
 	public String addTicketIncident(Model model){
@@ -125,24 +135,19 @@ public class Sprint3 {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String logged_m = auth.getName();
 	    User logged = mu.getUserByMatricule(logged_m);
-		Date date = new Date();
-		System.out.println("Date 0---------- : "+date);
-		// Definition du format utilise pour les dates
-		  SimpleDateFormat f1 = new SimpleDateFormat ("dd/mm/yyyy"); 
-		  String dat = f1.format(date);
-		  System.out.println("Date1---------- : "+dat);
-		  Date d = (Date)f1.parse(dat);
-		  System.out.println("Date---------- : "+d);
-		  try {
-		      Thread.currentThread().sleep(60 * 1000);
+		
+	    Date date = new Date();
+		 t.setDateDeDebut(date);  
+		t.setStatut("Nouveau");
+		t.setPriorite(t.getUrgence()); 
+		String[] cis = req.getParameterValues("ckCIs");
+		System.out.println("cis----------------------"+cis);
+		try {
+		      Thread.currentThread().sleep(20 * 1000);
 		      }
 		    catch (InterruptedException e) {
 		      e.printStackTrace();
 		      }
-		  t.setDateDeDebut(d);  
-		t.setStatut("Nouveau");
-		t.setPriorite(t.getUrgence()); 
-		String[] cis = req.getParameterValues("ckCIs");
 		if(cis != null){
 			
 			for (int i = 0; i < cis.length; i++) {
@@ -167,7 +172,7 @@ public class Sprint3 {
 					Camera cam = m.getCamera(Long.parseLong(cis[i].substring(4)));
 					t.setCamera(cam); 
 				}
-				/*if(cis[i].substring(0,3).equals("Cha")){
+				if(cis[i].substring(0,3).equals("Cha")){
 					Chassis ch = m.getChassis(Long.parseLong(cis[i].substring(4)));
 					t.setChassis(ch); 
 				}
@@ -180,6 +185,13 @@ public class Sprint3 {
 					t.setVirtualisation(v); 
 				}
 				if(cis[i].substring(0,3).equals("Imp")){
+					System.out.println("cis----------------------"+cis[i].substring(0,3));
+					try {
+					      Thread.currentThread().sleep(20 * 1000);
+					      }
+					    catch (InterruptedException e) {
+					      e.printStackTrace();
+					      }
 					Imprimante imp = m.getImp(Long.parseLong(cis[i].substring(4)));
 					t.setImprimante(imp); 
 				}
@@ -230,7 +242,7 @@ public class Sprint3 {
 				if(cis[i].substring(0,3).equals("Tem")){
 					TelephneMobile tm = m.getTeleMobile(Long.parseLong(cis[i].substring(4)));
 					t.setTelephneMobile(tm); 
-				}*/
+				}
 		  }
 		} 
 			m.addTicketIncident(t, logged.getId());
@@ -245,34 +257,81 @@ public class Sprint3 {
 	    User logged = mu.getUserByMatricule(logged_m);
 		model.addAttribute("logged", logged);
 		Date date = new Date();
-		 SimpleDateFormat f1 = new SimpleDateFormat ("dd/MM/yyyy"); 
-		  String dat = f1.format(date);
 		//DateFormat f1 = DateFormat.getDateInstance();
 		
-		if(t.isValider() ){
-			if(t.getEquipeIt().getId() == null){
-			//t.setDateDeValidation(dat);
-			t.setStatut("En attente");
-			}else{
-				//t.setDateD_affectation(dat);
-				t.setStatut("En cours");
-			}
+		if(t.isNotificationAdmininstration() && t.getStatut().equals("Résolue")){
+			System.out.println("-----------------------------------D");
+			try {
+			      Thread.currentThread().sleep(10 * 1000);
+			      }
+			    catch (InterruptedException e) {
+			      e.printStackTrace();
+			      }
+			t.setStatut("Fermée");
+			t.setNotificationAdmininstration(false);
+			t.setDateDeFermeture(date); 
+		}
+		if(t.isNotificationEquipeIt() && t.getStatut().equals("En cours")){
+			System.out.println("-----------------------------------C");
+			try {
+			      Thread.currentThread().sleep(10 * 1000);
+			      }
+			    catch (InterruptedException e) {
+			      e.printStackTrace();
+			      }
+				if(t.isResolver()){
+			    	t.setDateDeResolution(date);
+			    	t.setStatut("Résolue");
+			    	t.setNotificationAdmininstration(true); 
+			    	t.setNotificationUtilisateur(false); 
+			    }else{
+			    	t.setStatut("Abîmé");
+			    }
+		}
+		if(t.isNotificationUtilisateur() && t.getEquipeIt().getId() != null){
+			System.out.println("-----------------------------------B");
+			try {
+			      Thread.currentThread().sleep(10 * 1000);
+			      }
+			    catch (InterruptedException e) {
+			      e.printStackTrace();
+			      }
 			
+				t.setDateD_affectation(date); 
+				t.setNotificationEquipeIt(true); 
+				t.setNotificationAdmininstration(false);
+				
+			
+		}
+		if(t.isValider() && t.getStatut().equals("Nouveau")){
+			
+		    
+				t.setDateDeValidation(date);
+				t.setStatut("En cours");
+				t.setNotificationUtilisateur(true); 
+				System.out.println("-----------------------------------A");
+				try {
+				      Thread.currentThread().sleep(10 * 1000);
+				      }
+				    catch (InterruptedException e) {
+				      e.printStackTrace();
+				      }
+			
+		}
+		if(!t.isValider()){
+			t.setStatut("Rejet");
 		}
 		
-		if(!t.isValider()){
-			
-			//t.setDateD_affectation(dat);
-			t.setStatut("Rejet");
-			
-		}
-	    if(t.isResolver()){
-	    	//t.setDateDeResolution(dat);
-	    	t.setStatut("Résolue");
-	    }else{
-	    	t.setStatut("Abîmé");
-	    }
-		System.out.println("--------------------------- CCCCCCCCCCCCCCCCCCCCCC");
+		
+		
+		
+		System.out.println("-----------------------------------hhhhhhhhhhh");
+		try {
+		      Thread.currentThread().sleep(10 * 1000);
+		      }
+		    catch (InterruptedException e) {
+		      e.printStackTrace();
+		      }
 		m.editTicketIncident(t);
 		return "redirect:/incid/view/ticket/ouverts";
 	}

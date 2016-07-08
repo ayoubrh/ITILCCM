@@ -441,29 +441,32 @@ Use search to find needed section.
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
+						</s:authorize>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
+						</s:authorize>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -525,7 +528,9 @@ Use search to find needed section.
 										<th>Demandeur</th>
 										<th>Statut</th>
 										<th>Priorité</th>
+										<th>Agent</th>
 										<th>CI à Traiter</th>
+										<th>Type CI </th>
 										
 									</tr>
 								</thead>
@@ -534,9 +539,10 @@ Use search to find needed section.
 										<tr class="gradeA">
 											<td><a href="<c:url value="/incid/edit/ticket?id=${t.id }" />">${t.titre}</a></td>
 											<td><fmt:formatDate type="date" dateStyle="long" value="${t.dateDeDebut}" /></td>
-											<td><a href="<c:url value="/users/profil?id=${t.demandeur.id }" />">${t.demandeur.nom }</a></td>
+											<td><a href="<c:url value="/users/profil?id=${t.demandeur.id }" />">${t.demandeur.nom } ${t.demandeur.prenom }</a></td>
 											<td>${t.statut }</td>
 											<td>${t.priorite }</td>
+											<td><a href="<c:url value="/users/profil?id=${t.equipeIt.id }" />">${t.equipeIt.nom } ${t.equipeIt.prenom }</a></td>
 											<td>
 											<c:if test="${t.applicationWeb.id != null}">
 														${t.applicationWeb.nom}
@@ -553,7 +559,37 @@ Use search to find needed section.
 											<c:if test="${t.camera.id != null}">
 														${t.camera.nom}
 											</c:if>
+											<c:if test="${t.imprimante.id != null}">
+														${t.imprimante.nom}
+											</c:if>
+											<c:if test="${t.ordinateur.id != null}">
+														${t.ordinateur.nom}
+											</c:if>
+											</td>
+											<td>
 											
+											<c:if test="${t.applicationWeb.id != null}">
+														Application Web
+											</c:if>
+											<c:if test="${t.connexionElectrique.id != null}">
+														connexionElectrique
+											</c:if>
+											<c:if test="${t.logicielEtApplication.id != null}">
+														${t.logicielEtApplication.nom}
+											</c:if>
+											<c:if test="${t.infrastructure.id != null}">
+														${t.infrastructure.nom}
+											</c:if>
+											<c:if test="${t.camera.id != null}">
+														${t.camera.nom}
+											</c:if>
+											
+											<c:if test="${t.imprimante.id != null}">
+														Imprimante
+											</c:if>
+											<c:if test="${t.ordinateur.id != null}">
+														Ordinateur
+											</c:if>
 											</td>
 										</tr>
 									

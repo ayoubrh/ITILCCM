@@ -54,7 +54,7 @@ public class MachineVirtuelle implements Serializable {
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<SolutionApplicative> solutionApplicative;
 	   
-	   @ManyToOne
+	   @ManyToOne(cascade = CascadeType.REFRESH)
 	   @JoinColumn(name="id_virtualisation")
 	   private Virtualisation virtualisation;
 	   

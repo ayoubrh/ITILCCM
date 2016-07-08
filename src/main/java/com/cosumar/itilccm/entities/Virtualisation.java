@@ -40,7 +40,7 @@ public class Virtualisation implements Serializable {
 	   private String description;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="virtualisation",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @OneToMany(mappedBy="virtualisation",cascade = CascadeType.REMOVE, orphanRemoval = false)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<MachineVirtuelle> machineVirtuelle;
 	   

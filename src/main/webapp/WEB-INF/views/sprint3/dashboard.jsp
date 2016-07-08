@@ -440,29 +440,32 @@ Use search to find needed section.
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
+						</s:authorize>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
+						</s:authorize>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -647,96 +650,18 @@ Use search to find needed section.
 							</div>
 							
 							<div class="col-sm-6">
-								<div class="graph-container">
-							<div id="hero-donut" class="graph"></div>
+								<div class="graph-container text-center">
+								<label class="label label-success"> Apparentage des Incidents ouverts par statut</label>
+							<div id="hero-donut" class="graph">
+						</div>
 						   </div>
 						
 
 							</div>
 								
 					</div>
-					<!-- Javascript -->
-				<script>
-					init.push(function () {
-						Morris.Bar({
-							element: 'hero-bar',
-							data: [
-								{ device: 'Janvier ', geekbench: 2 },
-								{ device: 'Février', geekbench: 0 },
-								{ device: 'Mars', geekbench: 0 },
-								{ device: 'Avril ', geekbench: 0 },
-								{ device: 'Mai', geekbench: 0 },
-								{ device: 'Juin', geekbench: 0 },
-								{ device: 'Juillet', geekbench: 0 },
-								{ device: 'Août', geekbench: 0 },
-								{ device: 'Septembre', geekbench: 0 },
-								{ device: 'Octobre', geekbench: 0 },
-								{ device: 'Novembre', geekbench: 0 },
-								{ device: 'Décembre', geekbench: 0 }
-							],
-							xkey: 'device',
-							ykeys: ['geekbench'],
-							labels: ['Geekbench'],
-							labelColor: ['#000000'],
-					        lineColors: ['#0b62a4'],
-					        pointFillColors: ['#00ff00'],
-							barRatio: 0.2,
-							xLabelAngle: 35,
-							hideHover: 'auto',
-							barColors: PixelAdmin.MainNavbar.Constructor.COLORS,
-							gridLineColor: '#cfcfcf',
-							resize: true
-						});
-					});
-				</script>
-				<script>
-					init.push(function () {
-						Morris.Bar({
-							element: 'hero-bar2',
-							data: [
-								{ device: 'Lundi', geekbench: 1 },
-								{ device: 'Mardi', geekbench: 0 },
-								{ device: 'Mercredi', geekbench: 0 },
-								{ device: 'Jeudi ', geekbench: 0 },
-								{ device: 'Vendredi', geekbench: 0 },
-								{ device: 'Samedi', geekbench: 0 }
-							],
-							xkey: 'device',
-							ykeys: ['geekbench'],
-							labels: ['Geekbench'],
-							barRatio: 0.4,
-							xLabelAngle: 35,
-							hideHover: 'auto',
-							barColors: PixelAdmin.settings.consts.COLORS,
-							gridLineColor: '#cfcfcf',
-							labelColor: '#000000',
-							resize: true
-						});
-					});
-				</script>
-				<!-- / Javascript -->
-				<div class="row">
-					<div class="table-header">
-										<div class="table-caption">
-											Incidents ouverts par jour
-										</div>
-									</div>
-					<div class="graph-container">
-						<div id="hero-bar2" class="graph"></div>
-							
-						</div>
-					</div>
-					<div class="row">
-					<div class="table-header">
-										<div class="table-caption">
-											Incidents ouverts par  mois
-										</div>
-									</div>
-					<div class="graph-container">
-							<div id="hero-bar" class="graph"></div>
-						</div>
-					</div>
-					</div>
+			
+					</div> <!-- / panel body -->
 			
 		</div>
 		</s:authorize>		
@@ -758,6 +683,8 @@ Use search to find needed section.
 <!-- Pixel Admin's javascripts -->
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/javascripts/pixel-admin.min.js"></script>
+
+<script src="<%=request.getContextPath()%>/resources/assets/javascripts/chart.js"></script>
 
 <script type="text/javascript">
 	init.push(function () {

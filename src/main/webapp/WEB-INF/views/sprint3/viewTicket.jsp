@@ -441,29 +441,32 @@ Use search to find needed section.
 				<li class="mm-dropdown">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Gestion des incidents</span></a>
 					<ul>
+						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/all"/>"><span class="mm-text">Vue d'ensemble</span></a>
 						</li>
+						</s:authorize>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/add/ticket"/>"><span class="mm-text">Nouveau Ticket</span></a>
 						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/search/ticket"/>"><span class="mm-text">Recherche des incidents</span></a>
 						</li>
+						</s:authorize>
 						<s:authorize ifAnyGranted="ROLE_ADMIN,ROLE_IT_TEAM">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/mesticket"/>"><span class="mm-text">Mes Incidents</span></a>
 						</li>
 						</s:authorize>
-						<li>
-							<a tabindex="-1" href="#"><span class="mm-text">Incidents en cours</span></a>
-						</li>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/ouverts"/>"><span class="mm-text">Incidents ouverts</span></a>
 						</li>
 						<li>
 							<a tabindex="-1" href="<c:url value="/incid/view/ticket/fermees"/>"><span class="mm-text">Incidents fermées</span></a>
 						</li>
+						</s:authorize>
 					</ul>
 				</li>
 
@@ -536,9 +539,57 @@ Use search to find needed section.
 							</div>
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Priorité :</label>
-								
+								${ticket.priorite }
 							
 							</div>
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Description :</label>
+								${ticket.description }
+								
+							</div>
+							
+							<c:if test="${ticket.valider == true}">
+						
+							<div class="form-group">
+					<label for="jq-validation-email" class="col-sm-3 control-label">Date de validation :</label>
+				          <fmt:formatDate type="date" dateStyle="long" value="${ticket.dateDeValidation}" />
+				           
+				</div>
+							
+							<c:if test="${ticket.equipeIt.id != null}">
+							<div class="form-group">
+								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
+								${ticket.equipeIt.nom } ${ticket.equipeIt.prenom } 
+								
+							</div>
+							
+							 <div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Date d'affectation :</label>
+								<fmt:formatDate type="date" dateStyle="long" value="${ticket.dateD_affectation }" />
+								
+							</div>
+							<c:if test="${ticket.resolver == true}">
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Date de la résolution :</label>
+								<fmt:formatDate type="date" dateStyle="long" value="${ticket.dateDeResolution }" />
+								
+							</div>
+							</c:if>
+							<c:if test="${ticket.statut == 'Fermée'}">
+							<div class="form-group">
+								<label for="jq-validation-email" class="col-sm-3 control-label">Date de la fermeture :</label>
+								<fmt:formatDate type="date" dateStyle="long" value="${ticket.dateDeFermeture }" />
+								
+							</div>
+							</c:if>
+							<div class="form-group">
+								<label for="jq-validation-text" class="col-sm-3 control-label">Solution :</label>
+								    ${ticket.solution }
+									
+								</div>
+							
+							</c:if>
+							</c:if>
 							
 							
 						</div>

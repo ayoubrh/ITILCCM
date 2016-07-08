@@ -1,4 +1,4 @@
-package com.cosumar.itilccm.spring2;
+package com.cosumar.itilccm.sprint2;
 
 import static org.junit.Assert.*;
 

@@ -75,11 +75,11 @@ public class TelephoneFixe implements Serializable{
 	@ManyToMany(mappedBy="telephoneFixe",cascade = CascadeType.ALL)
 	private Collection<Groupe> groupe;
    	
-   	/*@Column(nullable=true)
+   	@Column(nullable=true)
    	@JsonIgnore
     @OneToMany(mappedBy="telephoneFixe",cascade = CascadeType.REMOVE, orphanRemoval = true)
    	@LazyCollection(LazyCollectionOption.FALSE)
-    private Collection<TicketIncident> ticketsIncident;*/
+    private Collection<TicketIncident> ticketsIncident;
 
 	public Long getId() {
 		return id;
@@ -249,13 +249,13 @@ public class TelephoneFixe implements Serializable{
 		this.groupe = groupe;
 	}
 
-	/*public Collection<TicketIncident> getTicketsIncident() {
+	public Collection<TicketIncident> getTicketsIncident() {
 		return ticketsIncident;
 	}
 
 	public void setTicketsIncident(Collection<TicketIncident> ticketsIncident) {
 		this.ticketsIncident = ticketsIncident;
-	}*/
+	}
 	
 	
    	
