@@ -520,11 +520,69 @@ Use search to find needed section.
 					
 						
 							<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											<c:if test="${ticketIncident.applicationWeb.id != null}">
+												<f:input path="applicationWeb.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.connexionElectrique.id != null}">
+												<f:input path="connexionElectrique.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.logicielEtApplication.id != null}">
+												<f:input path="logicielEtApplication.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.infrastructure.id != null}">
+												<f:input path="infrastructure.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.camera.id != null}">
+												<f:input path="camera.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											
+											<c:if test="${ticketIncident.chassis.id != null}">
+												<f:input path="chassis.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.equipementReseau.id != null}">
+												<f:input path="equipementReseau.id " type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.virtualisation.id != null}">
+												<f:input path="virtualisation.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
 											<c:if test="${ticketIncident.imprimante.id != null}">
 												<f:input path="imprimante.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
 											</c:if>
+											<c:if test="${t.instanceDeBasseDeDonnes.id != null}">
+												<f:input path="instanceDeBasseDeDonnes.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${t.instanceMiddleware.id != null}">
+												<f:input path="instanceMiddleware.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${t.machineVirtuelle.id != null}">
+												<f:input path="machineVirtuelle.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
 											<c:if test="${ticketIncident.ordinateur.id != null}">
 												<f:input path="ordinateur.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.peripherique.id != null}">
+												<f:input path="peripherique.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.processusMetier.id != null}">
+												<f:input path="processusMetier.id " type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.rack.id != null}">
+												<f:input path="rack.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.solutionApplicative.id != null}">
+												<f:input path="solutionApplicative.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.tablette.id != null}">
+												<f:input path="tablette.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.telephneMobile.id != null}">
+												<f:input path="telephneMobile.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.telephoneFixe.id != null}">
+												<f:input path="telephoneFixe.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
+											</c:if>
+											<c:if test="${ticketIncident.sim.id != null}">
+												<f:input path="sim.id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-id"  />
 											</c:if>
 				
 				<div class="form-group ">
@@ -547,7 +605,7 @@ Use search to find needed section.
 									<f:errors path="titre" cssClass="has-error help-block"></f:errors>
 								</div>
 							</div>
-							<c:if test="${ticketIncident.statut == 'Résolue'}">
+							<c:if test="${ticketIncident.statut == 'Résolue' || ticketIncident.equipeIt.id == logged.id}">
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
 								<div class="col-sm-9">
@@ -562,7 +620,7 @@ Use search to find needed section.
 								</div>
 							</div>
 							</c:if>
-							<c:if test="${ticketIncident.statut != 'Résolue'}">
+							<c:if test="${ticketIncident.statut != 'Résolue' && ticketIncident.equipeIt.id != logged.id}">
 							<div class="form-group">
 								<label for="jq-validation-email" class="col-sm-3 control-label">Statut :</label>
 								<div class="col-sm-9">
@@ -640,9 +698,8 @@ Use search to find needed section.
 								<label for="jq-validation-select2" class="col-sm-3 control-label">Attribué à :</label>
 								<div class="col-sm-9">
 									<f:select  path="equipeIt.id" class="form-control" name="jq-validation-select2" id="jq-validation-select2">
-										
+										<f:option value="" label=""/>
 									<c:forEach items="${equipe}" var="equi" >
-									<f:option value="" label=""/>
 										<option value="${equi.id}" >${equi.nom } ${equi.prenom } </option>	
 									</c:forEach>
 									</f:select>
@@ -714,12 +771,12 @@ Use search to find needed section.
 							<f:input path="notificationEquipeIt" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 							<f:input path="notificationAdmininstration" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 							<f:input path="resolver" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
-							<c:if test="${ticketIncident.notificationAdmininstration == true && ticketIncident.equipeIt.id != logged.id && ticketIncident.statut != 'Rejet' ||  ticketIncident.equipeIt.id == logged.id && ticketIncident.statut == 'En cours'}">
+							<c:if test="${ticketIncident.notificationAdmininstration == true && ticketIncident.equipeIt.id != logged.id && ticketIncident.statut != 'Rejet' ||  ticketIncident.equipeIt.id == logged.id && ticketIncident.statut == 'En cours' || ticketIncident.statut == 'En attente'}">
 							<hr class="panel-wide">
 							
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-1">
-									<button type="reset" class="btn btn-danger" onclick="location.href='<c:url value="/config/admin/dashboard" />'">Annuler</button>
+									<button type="reset" class="btn btn-danger" onclick="location.href='<c:url value="/index" />'">Annuler</button>
 								</div>
 								
 								<div class="col-sm-offset-1 col-sm-7">

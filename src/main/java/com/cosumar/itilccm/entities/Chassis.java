@@ -44,16 +44,16 @@ public class Chassis implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@ManyToOne(cascade = CascadeType.ALL)
- 	@JoinColumn(name="chassis_id")
+   	@ManyToOne
+ 	@JoinColumn(name="rack_id")
    private Rack rack;
    
-   	@OneToMany(mappedBy="chassis",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="chassis",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
-	@OneToMany(mappedBy="chassis",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="chassis",cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<EquipementReseau> equipementreseau;
@@ -83,7 +83,7 @@ public class Chassis implements Serializable{
 	private Collection<Groupe> groupe;
    	
     @Column(nullable=true)
-    @OneToMany(mappedBy="chassis",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="chassis",cascade = CascadeType.ALL)
 	@JsonIgnore
 	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;

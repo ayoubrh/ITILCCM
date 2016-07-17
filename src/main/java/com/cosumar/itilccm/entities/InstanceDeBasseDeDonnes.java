@@ -66,7 +66,7 @@ public class InstanceDeBasseDeDonnes implements Serializable {
 	   @JsonIgnore
 	   @Column(nullable=true)
 	   @LazyCollection(LazyCollectionOption.FALSE)
-	   @OneToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @OneToMany(mappedBy="instanceDeBasseDeDonnes",cascade = CascadeType.ALL)
 	    private Collection<TicketIncident> ticketsIncident;
 	   
 	   

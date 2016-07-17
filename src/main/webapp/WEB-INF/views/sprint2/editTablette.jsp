@@ -665,7 +665,7 @@ Use search to find needed section.
 						<span class="panel-title">Modification d'une Tablette</span>
 					</div>
 					<div class="panel-body">
-						<f:form modelAttribute="tablette" action="saveTablette" methode="post" class="form-horizontal" id="jq-validation-form">
+						<f:form modelAttribute="tablette" action="/config/admin/add/saveTablette" methode="post" class="form-horizontal" id="jq-validation-form">
 						<f:input path="id" type="hidden" readonly="true" class="form-control" id="inputError-4" name="jq-validation-matricule"  />
 					
 		

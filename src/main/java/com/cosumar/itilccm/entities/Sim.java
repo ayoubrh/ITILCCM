@@ -75,7 +75,7 @@ public class Sim implements Serializable{
 	
 	@Column(nullable=true)
 	@JsonIgnore
-	@OneToMany(mappedBy="sim",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="sim",cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<TicketIncident> ticketsIncident;
 	

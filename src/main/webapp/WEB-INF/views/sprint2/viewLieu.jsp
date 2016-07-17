@@ -570,7 +570,7 @@ Use search to find needed section.
 										${lieu.codePostale }
 									</div>
 									
-									<div class="form-group required">
+									<div class="form-group">
 										<label class="col-sm-3 control-label">Ville: </label>
 										${lieu.ville}
 									</div>

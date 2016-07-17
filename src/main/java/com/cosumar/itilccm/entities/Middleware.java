@@ -19,7 +19,7 @@ public class Middleware extends LogicielEtApplication implements Serializable {
 	
 
 			@Column(nullable=true)
-			@OneToMany(mappedBy="middleware",cascade = CascadeType.REMOVE, orphanRemoval = true)
+			@OneToMany(mappedBy="middleware",cascade = CascadeType.ALL)
 			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<InstanceMiddleware> instanceMiddleware;
 			

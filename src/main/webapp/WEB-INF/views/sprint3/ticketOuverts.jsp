@@ -559,36 +559,119 @@ Use search to find needed section.
 											<c:if test="${t.camera.id != null}">
 														${t.camera.nom}
 											</c:if>
+											
+											<c:if test="${t.chassis.id != null}">
+														${t.chassis.nom}
+											</c:if>
+											<c:if test="${t.equipementReseau.id != null}">
+														${t.equipementReseau.nom}
+											</c:if>
+											<c:if test="${t.virtualisation.id != null}">
+														${t.virtualisation.nom}
+											</c:if>
 											<c:if test="${t.imprimante.id != null}">
 														${t.imprimante.nom}
+											</c:if>
+											<c:if test="${t.instanceDeBasseDeDonnes.id != null}">
+														${t.instanceDeBasseDeDonnes.nom}
+											</c:if>
+											<c:if test="${t.instanceMiddleware.id != null}">
+														${t.instanceMiddleware.nom}
+											</c:if>
+											<c:if test="${t.machineVirtuelle.id != null}">
+														${t.machineVirtuelle.nom}
 											</c:if>
 											<c:if test="${t.ordinateur.id != null}">
 														${t.ordinateur.nom}
 											</c:if>
+											<c:if test="${t.peripherique.id != null}">
+														${t.peripherique.nom}
+											</c:if>
+											<c:if test="${t.processusMetier.id != null}">
+														${t.processusMetier.nom}
+											</c:if>
+											<c:if test="${t.rack.id != null}">
+														${t.rack.nom}
+											</c:if>
+											<c:if test="${t.solutionApplicative.id != null}">
+														${t.solutionApplicative.nom}
+											</c:if>
+											<c:if test="${t.tablette.id != null}">
+														${t.tablette.nom}
+											</c:if>
+											<c:if test="${t.telephneMobile.id != null}">
+														${t.telephneMobile.nom}
+											</c:if>
+											<c:if test="${t.telephoneFixe.id != null}">
+														${t.telephoneFixe.nom}
+											</c:if>
+											<c:if test="${t.sim.id != null}">
+														${t.sim.nom}
+											</c:if>
 											</td>
 											<td>
-											
 											<c:if test="${t.applicationWeb.id != null}">
 														Application Web
 											</c:if>
 											<c:if test="${t.connexionElectrique.id != null}">
-														connexionElectrique
+														Connexion Electrique
 											</c:if>
 											<c:if test="${t.logicielEtApplication.id != null}">
-														${t.logicielEtApplication.nom}
+														Logiciel et Application
 											</c:if>
 											<c:if test="${t.infrastructure.id != null}">
-														${t.infrastructure.nom}
+														Infrastructure
 											</c:if>
 											<c:if test="${t.camera.id != null}">
-														${t.camera.nom}
+														Camera
 											</c:if>
-											
+											<c:if test="${t.chassis.id != null}">
+														Chassis
+											</c:if>
+											<c:if test="${t.equipementReseau.id != null}">
+														Equipement Reseau
+											</c:if>
+											<c:if test="${t.virtualisation.id != null}">
+														Virtualisation
+											</c:if>
 											<c:if test="${t.imprimante.id != null}">
 														Imprimante
 											</c:if>
+											<c:if test="${t.instanceDeBasseDeDonnes.id != null}">
+														Instance de basse de données
+											</c:if>
+											<c:if test="${t.instanceMiddleware.id != null}">
+														Instance Middleware
+											</c:if>
+											<c:if test="${t.machineVirtuelle.id != null}">
+														Machine Virtuelle
+											</c:if>
 											<c:if test="${t.ordinateur.id != null}">
 														Ordinateur
+											</c:if>
+											<c:if test="${t.peripherique.id != null}">
+														Péripherique
+											</c:if>
+											<c:if test="${t.processusMetier.id != null}">
+														Processus Metier
+											</c:if>
+											<c:if test="${t.rack.id != null}">
+														Rack
+											</c:if>
+											<c:if test="${t.solutionApplicative.id != null}">
+														Solution Applicative
+											</c:if>
+											<c:if test="${t.tablette.id != null}">
+														Tablette
+											</c:if>
+											<c:if test="${t.telephneMobile.id != null}">
+														Téléphone Mobile
+											</c:if>
+											<c:if test="${t.telephoneFixe.id != null}">
+														Téléphone Fixe
+											</c:if>
+											<c:if test="${t.sim.id != null}">
+														SIM
 											</c:if>
 											</td>
 										</tr>

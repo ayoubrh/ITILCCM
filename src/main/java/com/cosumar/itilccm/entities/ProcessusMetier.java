@@ -55,7 +55,7 @@ public class ProcessusMetier implements Serializable{
 	
 	@Column(nullable=true)
 	@JsonIgnore
-    @OneToMany(mappedBy="processusMetier",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="processusMetier",cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
    	

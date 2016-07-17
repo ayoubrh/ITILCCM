@@ -322,6 +322,10 @@ public class User implements Serializable {
 	}
 	
 	
+	public User(Long id) {
+		super();
+		this.id = id;
+	}
 	public Collection<Ordinateur> getOrdinateur() {
 		return ordinateur;
 	}

@@ -19,7 +19,7 @@ public class Bandotheque extends Infrastructure implements Serializable{
 	
 	
 	 
-	    @OneToMany(mappedBy="bandotheque",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	    @OneToMany(mappedBy="bandotheque",cascade = CascadeType.ALL)
 	   	@LazyCollection(LazyCollectionOption.FALSE)
 	 	@Column(nullable = true)
 	   private Collection<Bande> bande;

@@ -562,6 +562,7 @@ Use search to find needed section.
 							formatter: function (y) { return Math.round(y*100/total)+ "%"  }
 						});
 					});
+			
 				</script>
 				<!-- / Javascript -->
 				
@@ -651,13 +652,75 @@ Use search to find needed section.
 							
 							<div class="col-sm-6">
 								<div class="graph-container text-center">
-								<label class="label label-success"> Apparentage des Incidents ouverts par statut</label>
+								<label class="label label-success"> Pourcentages des Incidents ouverts par statut</label>
 							<div id="hero-donut" class="graph">
 						</div>
 						   </div>
 						
 
 							</div>
+								
+					</div>
+			
+					</div> <!-- / panel body -->
+			
+		</div>
+		</s:authorize>		
+		
+		<s:authorize ifAnyGranted="ROLE_IT_TEAM">
+		<div class="panel">
+		
+					<div class="panel-heading">
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/incident.png" alt="" class="">&nbsp; <strong> Tableau de bord de la Gestion des Incidents</strong></span>
+					</div>
+					<div class="panel-body">
+					<div class="row">
+							<div class="col-sm-6">
+								
+								<!-- Light table -->
+								<div class="table-light">
+									<div class="table-header">
+										<div class="table-caption">
+											Incidents ouverts par statut
+										</div>
+									</div>
+									<table class="table table-bordered">
+										<thead>
+											<tr>
+												<th>Statut</th>
+												<th>Nombre</th>
+											</tr>
+										</thead>
+										<tbody>
+											
+											<tr>
+												<td>En cours</td>
+												<td style="text-align: center;">${cc }</td>
+											</tr>
+											<tr>
+												<td>En attente</td>
+												<td style="text-align: center;">${aa }</td>
+										  </tr>
+										  <tr>
+												<td>Résolue</td>
+												<td style="text-align: center;">${rr }</td>
+										  </tr>
+										  <tr>
+												<td>Fermée</td>
+												<td style="text-align: center;">${ff }</td>
+										  </tr>
+										</tbody>
+									</table>
+									
+								</div>
+								<!-- / Light table -->
+								<br>
+								<br>
+								
+								
+
+							</div>
+							
 								
 					</div>
 			

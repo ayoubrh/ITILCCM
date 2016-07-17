@@ -72,7 +72,7 @@ public class LogicielEtApplication implements Serializable {
 	   private Serveur serveur;
 	   
 	  
-	   @ManyToOne
+	   @ManyToOne(optional=true)
 	   @JoinColumn(name="id_machineVirtuelle")
 	   private MachineVirtuelle machineVirtuelle;
 	  
@@ -85,7 +85,7 @@ public class LogicielEtApplication implements Serializable {
 	   private Collection<Groupe> groupe;
 	   
 	   @Column(nullable=true)
-	   @OneToMany(mappedBy="logicielEtApplication",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	   @OneToMany(mappedBy="logicielEtApplication",cascade = CascadeType.ALL)
 	   @LazyCollection(LazyCollectionOption.FALSE)
 	   private Collection<TicketIncident> ticketsIncident;
 		   

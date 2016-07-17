@@ -72,7 +72,7 @@ public class TelephneMobile implements Serializable{
   	
   	@Column(nullable=true)
   	@JsonIgnore
-    @OneToMany(mappedBy="telephneMobile",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="telephneMobile",cascade = CascadeType.ALL)
   	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
   	

@@ -19,7 +19,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class ServeurWeb extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
-			@OneToMany(mappedBy="serveurWeb",cascade = CascadeType.REMOVE, orphanRemoval = true)
+			@OneToMany(mappedBy="serveurWeb",cascade = CascadeType.ALL)
 			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<ApplicationWeb> applicationWeb;
 			

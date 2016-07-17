@@ -853,6 +853,55 @@ Use search to find needed section.
 														${t.camera.nom}
 											</c:if>
 											
+											<c:if test="${t.chassis.id != null}">
+														${t.chassis.nom}
+											</c:if>
+											<c:if test="${t.equipementReseau.id != null}">
+														${t.equipementReseau.nom}
+											</c:if>
+											<c:if test="${t.virtualisation.id != null}">
+														${t.virtualisation.nom}
+											</c:if>
+											<c:if test="${t.imprimante.id != null}">
+														${t.imprimante.nom}
+											</c:if>
+											<c:if test="${t.instanceDeBasseDeDonnes.id != null}">
+														${t.instanceDeBasseDeDonnes.nom}
+											</c:if>
+											<c:if test="${t.instanceMiddleware.id != null}">
+														${t.instanceMiddleware.nom}
+											</c:if>
+											<c:if test="${t.machineVirtuelle.id != null}">
+														${t.machineVirtuelle.nom}
+											</c:if>
+											<c:if test="${t.ordinateur.id != null}">
+														${t.ordinateur.nom}
+											</c:if>
+											<c:if test="${t.peripherique.id != null}">
+														${t.peripherique.nom}
+											</c:if>
+											<c:if test="${t.processusMetier.id != null}">
+														${t.processusMetier.nom}
+											</c:if>
+											<c:if test="${t.rack.id != null}">
+														${t.rack.nom}
+											</c:if>
+											<c:if test="${t.solutionApplicative.id != null}">
+														${t.solutionApplicative.nom}
+											</c:if>
+											<c:if test="${t.tablette.id != null}">
+														${t.tablette.nom}
+											</c:if>
+											<c:if test="${t.telephneMobile.id != null}">
+														${t.telephneMobile.nom}
+											</c:if>
+											<c:if test="${t.telephoneFixe.id != null}">
+														${t.telephoneFixe.nom}
+											</c:if>
+											<c:if test="${t.sim.id != null}">
+														${t.sim.nom}
+											</c:if>
+											
 											</td>
 										</tr>
 									

@@ -18,7 +18,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class ArriveeElectrique extends ConnexionElectrique implements Serializable{
 	
 	 @Column(nullable = true)
-	 @OneToMany(mappedBy="arriveeElectrique",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	 @OneToMany(mappedBy="arriveeElectrique",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	 private Collection<PduElectrique> pduElectrique;
 	 

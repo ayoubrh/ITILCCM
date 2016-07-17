@@ -18,7 +18,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class ServeurDeBasseDeDonnees extends LogicielEtApplication implements Serializable {
 	
 			@Column(nullable=true)
-			@OneToMany(mappedBy="serveurDeBasseDeDonnees",cascade = CascadeType.REMOVE, orphanRemoval = true)
+			@OneToMany(mappedBy="serveurDeBasseDeDonnees",cascade = CascadeType.ALL)
 			@LazyCollection(LazyCollectionOption.FALSE)
 			private Collection<InstanceDeBasseDeDonnes> instanceDeBasseDeDonnes;
 			

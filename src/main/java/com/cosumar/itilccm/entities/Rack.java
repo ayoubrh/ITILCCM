@@ -42,23 +42,23 @@ public class Rack implements Serializable{
    private Date dateDeFinDeGarantie;
    private String description;
    
-   	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="rack",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Chassis> chassis;
    
-   	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="rack",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<PduElectrique> pduElectrique;
  
 
-   	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="rack",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
-	@OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="rack",cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable = true)
    private Collection<EquipementReseau> equipementreseau;
@@ -90,7 +90,7 @@ public class Rack implements Serializable{
    	
    	@Column(nullable=true)
    	@JsonIgnore
-    @OneToMany(mappedBy="rack",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="rack",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 

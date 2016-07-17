@@ -35,7 +35,6 @@ public class SolutionApplicative implements Serializable{
    private String description;
    
    	@ManyToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
-   	@LazyCollection(LazyCollectionOption.FALSE)
   	@Column(nullable = true)
    private Collection<Infrastructure> infrastructure;
    	
@@ -100,7 +99,7 @@ public class SolutionApplicative implements Serializable{
 	
 	@Column(nullable=true)
 	@JsonIgnore
-    @OneToMany(mappedBy="solutionApplicative",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="solutionApplicative",cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 	

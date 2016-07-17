@@ -139,15 +139,10 @@ public class Sprint3 {
 	    Date date = new Date();
 		 t.setDateDeDebut(date);  
 		t.setStatut("Nouveau");
+		 
 		t.setPriorite(t.getUrgence()); 
 		String[] cis = req.getParameterValues("ckCIs");
-		System.out.println("cis----------------------"+cis);
-		try {
-		      Thread.currentThread().sleep(20 * 1000);
-		      }
-		    catch (InterruptedException e) {
-		      e.printStackTrace();
-		      }
+		
 		if(cis != null){
 			
 			for (int i = 0; i < cis.length; i++) {
@@ -185,13 +180,6 @@ public class Sprint3 {
 					t.setVirtualisation(v); 
 				}
 				if(cis[i].substring(0,3).equals("Imp")){
-					System.out.println("cis----------------------"+cis[i].substring(0,3));
-					try {
-					      Thread.currentThread().sleep(20 * 1000);
-					      }
-					    catch (InterruptedException e) {
-					      e.printStackTrace();
-					      }
 					Imprimante imp = m.getImp(Long.parseLong(cis[i].substring(4)));
 					t.setImprimante(imp); 
 				}
@@ -245,6 +233,7 @@ public class Sprint3 {
 				}
 		  }
 		} 
+		
 			m.addTicketIncident(t, logged.getId());
 		
 		return "redirect:/indexv?save="+true;
@@ -259,43 +248,21 @@ public class Sprint3 {
 		Date date = new Date();
 		//DateFormat f1 = DateFormat.getDateInstance();
 		
-		if(t.isNotificationAdmininstration() && t.getStatut().equals("Résolue")){
-			System.out.println("-----------------------------------D");
-			try {
-			      Thread.currentThread().sleep(10 * 1000);
-			      }
-			    catch (InterruptedException e) {
-			      e.printStackTrace();
-			      }
-			t.setStatut("Fermée");
-			t.setNotificationAdmininstration(false);
-			t.setDateDeFermeture(date); 
-		}
+		
 		if(t.isNotificationEquipeIt() && t.getStatut().equals("En cours")){
-			System.out.println("-----------------------------------C");
-			try {
-			      Thread.currentThread().sleep(10 * 1000);
-			      }
-			    catch (InterruptedException e) {
-			      e.printStackTrace();
-			      }
+			
 				if(t.isResolver()){
 			    	t.setDateDeResolution(date);
 			    	t.setStatut("Résolue");
 			    	t.setNotificationAdmininstration(true); 
 			    	t.setNotificationUtilisateur(false); 
+			    	m.editTicketIncident(t);
+					return "redirect:/incid/view/mesticket";
 			    }else{
 			    	t.setStatut("Abîmé");
 			    }
 		}
 		if(t.isNotificationUtilisateur() && t.getEquipeIt().getId() != null){
-			System.out.println("-----------------------------------B");
-			try {
-			      Thread.currentThread().sleep(10 * 1000);
-			      }
-			    catch (InterruptedException e) {
-			      e.printStackTrace();
-			      }
 			
 				t.setDateD_affectation(date); 
 				t.setNotificationEquipeIt(true); 
@@ -309,29 +276,28 @@ public class Sprint3 {
 				t.setDateDeValidation(date);
 				t.setStatut("En cours");
 				t.setNotificationUtilisateur(true); 
-				System.out.println("-----------------------------------A");
-				try {
-				      Thread.currentThread().sleep(10 * 1000);
-				      }
-				    catch (InterruptedException e) {
-				      e.printStackTrace();
-				      }
+				
 			
-		}
+		} 
 		if(!t.isValider()){
 			t.setStatut("Rejet");
 		}
+		if(t.isNotificationAdmininstration() && t.getStatut().equals("Fermée")){
+			
+			t.setDateDeFermeture(date);
+			t.setNotificationAdmininstration(false);
+		}
+		if(t.isNotificationEquipeIt() && t.getStatut().equals("Résolue")){
+			t.setDateDeResolution(date);
+	    	t.setStatut("Résolue");
+	    	t.setResolver(true); 
+	    	t.setNotificationAdmininstration(true); 
+	    	t.setNotificationUtilisateur(false); 
+	    	m.editTicketIncident(t);
+			return "redirect:/incid/view/mesticket";
+			
+		}
 		
-		
-		
-		
-		System.out.println("-----------------------------------hhhhhhhhhhh");
-		try {
-		      Thread.currentThread().sleep(10 * 1000);
-		      }
-		    catch (InterruptedException e) {
-		      e.printStackTrace();
-		      }
 		m.editTicketIncident(t);
 		return "redirect:/incid/view/ticket/ouverts";
 	}
@@ -357,6 +323,10 @@ public class Sprint3 {
 		model.addAttribute("r", m.nombreTicketResolue());
 		model.addAttribute("f", m.nombreTicketFermee());
 		model.addAttribute("agent", m.listNombre());
+		model.addAttribute("cc", m.nombreTicketEnCoursIT(logged.getId()));
+		model.addAttribute("aa", m.nombreTicketEnAttenteIT(logged.getId()));
+		model.addAttribute("rr", m.nombreTicketResolueIT(logged.getId()));
+		model.addAttribute("ff", m.nombreTicketFermeeIT(logged.getId()));
 		return "sprint3/dashboard"; 
 	}
 	@RequestMapping(value="/view/mesticket")

@@ -87,12 +87,12 @@ public class Ordinateur implements Serializable{
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<EquipementReseau> equipementReseau;
    
-   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    	@Column(nullable=true)
    private Collection<IntefaceReseau> intefaceReseau;
    	
-   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   	@OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
    private Collection<Peripherique> peripherique;
    	
@@ -111,7 +111,7 @@ public class Ordinateur implements Serializable{
 	 
 	 @Column(nullable=true)
 	 @JsonIgnore
-     @OneToMany(mappedBy="ordinateur",cascade = CascadeType.REMOVE, orphanRemoval = true)
+     @OneToMany(mappedBy="ordinateur",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
      private Collection<TicketIncident> ticketsIncident;
 

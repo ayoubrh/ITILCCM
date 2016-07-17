@@ -1796,7 +1796,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 
 	@Override
 	public void supprimerAutreLogiciel(Long id) {
-		AutreLogiciel autreLogiciel = getAutreLogiciel(id);
+		AutreLogiciel autreLogiciel = em.find(AutreLogiciel.class, id); 
 		em.remove(autreLogiciel);
 		
 	}
@@ -3840,6 +3840,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			for (Long l : Logiciel) {
 				LogicielEtApplication log = getLogicielEtApplication(l);
 				la.add(log);
+				log.setServeur(Serveur); 
 			}
 			Serveur.setLogicielEtApplication(la);
 		}
@@ -3955,6 +3956,7 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 			for (Long l : Logiciel) {
 				LogicielEtApplication log = getLogicielEtApplication(l);
 				la.add(log);
+				log.setServeur(Serveur);
 			}
 			Serveur.setLogicielEtApplication(la);
 		}
@@ -7682,6 +7684,38 @@ public class ITILCCMDAOImp implements ITILCCMDAO {
 		Query req = em.createQuery("select ticket from TicketIncident ticket join ticket.demandeur d where d.id = :userid");
 		req.setParameter("userid", id);
 		return req.getResultList();
+	}
+
+	@Override
+	public Long nombreTicketEnCoursIT(Long id) {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t join t.equipeIt it where t.statut =:stat AND it.id = :userid");
+		req.setParameter("stat", "En cours");
+		req.setParameter("userid", id);
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketEnAttenteIT(Long id) {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t join t.equipeIt it where t.statut =:stat AND it.id = :userid");
+		req.setParameter("stat", "En attente");
+		req.setParameter("userid", id);
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketResolueIT(Long id) {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t join t.equipeIt it where t.statut =:stat AND it.id = :userid");
+		req.setParameter("stat", "Résolue");
+		req.setParameter("userid", id);
+		return (Long) req.getSingleResult();
+	}
+
+	@Override
+	public Long nombreTicketFermeeIT(Long id) {
+		Query req = em.createQuery("select COUNT(t) from TicketIncident t join t.equipeIt it where t.statut =:stat AND it.id = :userid");
+		req.setParameter("stat", "Fermée");
+		req.setParameter("userid", id);
+		return (Long) req.getSingleResult();
 	}
 
 	

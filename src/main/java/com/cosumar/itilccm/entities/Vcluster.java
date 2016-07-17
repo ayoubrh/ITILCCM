@@ -18,7 +18,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class Vcluster extends Virtualisation implements Serializable {
 	
 		@Column(nullable=true)
-		@OneToMany(mappedBy="vcluster",cascade = CascadeType.REMOVE, orphanRemoval = true)
+		@OneToMany(mappedBy="vcluster",cascade = CascadeType.ALL)
 		@LazyCollection(LazyCollectionOption.FALSE)
 		private Collection<Hyperviseur> hyperviseur;
 		

@@ -73,7 +73,7 @@ public class Camera implements Serializable{
 	private Collection<Groupe> groupe;
     
    @Column(nullable=true)
-   @OneToMany(mappedBy="camera",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   @OneToMany(mappedBy="camera",cascade = CascadeType.ALL)
    @JsonIgnore
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<TicketIncident> ticketsIncident;

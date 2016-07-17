@@ -77,7 +77,7 @@ public class TelephoneFixe implements Serializable{
    	
    	@Column(nullable=true)
    	@JsonIgnore
-    @OneToMany(mappedBy="telephoneFixe",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="telephoneFixe",cascade = CascadeType.ALL)
    	@LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 

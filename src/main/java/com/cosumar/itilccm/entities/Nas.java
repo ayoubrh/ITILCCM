@@ -19,7 +19,7 @@ public class Nas extends Infrastructure implements Serializable{
 	
 
 	 
-	    @OneToMany(mappedBy="nas",cascade = CascadeType.REMOVE, orphanRemoval = true)
+	    @OneToMany(mappedBy="nas",cascade = CascadeType.ALL)
 	   	@LazyCollection(LazyCollectionOption.FALSE)
 		@Column(nullable = true)
 	   private Collection<SystemeDeFicherNas> systemeDeFicherNas;

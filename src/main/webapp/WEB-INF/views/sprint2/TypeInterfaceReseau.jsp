@@ -34,7 +34,7 @@ Use search to find needed section.
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Type Connexion Electrique - ITIL-CCM</title>
+	<title>Type Interface Réseau - ITIL-CCM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<link rel="icon" type="image/png" href="<%=request.getContextPath()%>/resources/assets/images/pixel-admin/logo3.png" />
@@ -506,13 +506,13 @@ Use search to find needed section.
 	
 		<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/interface.png" alt="" class="">&nbsp; <strong>Type Connection Electrique</strong></span>
+						<span class="panel-title"><img src="<%=request.getContextPath()%>/resources/assets/images/png/interface.png" alt="" class="">&nbsp; <strong>Type d'Interface Réseau</strong></span>
 					</div>
 					<div class="panel-body">
 					<form action="typeinterfacereseau">
 						<div class="form-group">
 					
-								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type de Iterface Réseau à créer :</label>
+								<label for="jq-validation-email" class="col-sm-4 control-label">Sélectionnez le type d'interface réseau à créer :</label>
 								<div class="col-sm-3">
 									<select   class="form-control" name="type">
 							             <option value="/config/admin/add/fibre">Interface Fibre</option>

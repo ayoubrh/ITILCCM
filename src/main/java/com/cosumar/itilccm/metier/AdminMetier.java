@@ -597,6 +597,11 @@ public interface AdminMetier extends UtilisateurMetier {
 	public Long nombreTicketFermee();
 	public List<TicketIncident> listNombre();
 	public List<TicketIncident> listMesTicket(Long id);
+	
+	public Long nombreTicketEnCoursIT(Long id);
+	public Long nombreTicketEnAttenteIT(Long id);
+	public Long nombreTicketResolueIT(Long id);
+	public Long nombreTicketFermeeIT(Long id);
 
 
 

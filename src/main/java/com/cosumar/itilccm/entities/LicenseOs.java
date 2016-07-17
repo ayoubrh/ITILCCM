@@ -51,7 +51,7 @@ public class LicenseOs implements Serializable {
 		   private Collection<Serveur> serveur;
 		   
 		   @Column(nullable=true)
-		   @OneToMany(mappedBy="licenseOs",cascade = CascadeType.ALL)
+		   @OneToMany(mappedBy="licenseOs",cascade = CascadeType.REMOVE, orphanRemoval = false)
 		   @LazyCollection(LazyCollectionOption.FALSE)
 		   private Collection<MachineVirtuelle> machineVirtuelle;
 		   

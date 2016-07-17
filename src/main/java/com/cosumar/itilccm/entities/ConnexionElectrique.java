@@ -90,7 +90,7 @@ public class ConnexionElectrique implements Serializable{
    	
    @JsonIgnore
    @Column(nullable=true)
-   @OneToMany(mappedBy="connexionElectrique",cascade = CascadeType.REMOVE, orphanRemoval = true)
+   @OneToMany(mappedBy="connexionElectrique",cascade = CascadeType.ALL)
    @LazyCollection(LazyCollectionOption.FALSE)
    private Collection<TicketIncident> ticketsIncident;
    	

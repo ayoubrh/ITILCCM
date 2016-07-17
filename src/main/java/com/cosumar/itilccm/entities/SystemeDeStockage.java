@@ -23,7 +23,7 @@ public class SystemeDeStockage extends Infrastructure implements Serializable{
   	 @Column(nullable=true)
 	private Collection<SwitchSan> switchSann;
 	
-	 @OneToMany(mappedBy="systemedestockage",cascade = CascadeType.ALL, orphanRemoval = true)
+	 @OneToMany(mappedBy="systemedestockage",cascade = CascadeType.ALL)
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<VolumeLogique> volumelogique;
 	

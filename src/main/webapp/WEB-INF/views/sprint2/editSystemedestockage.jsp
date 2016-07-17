@@ -1335,7 +1335,7 @@ Use search to find needed section.
 											</tr>
 										</thead>
 										<tbody id="tableSan">
-											<c:forEach items="${systemeDeStockage.switchSan}" var="san">
+											<c:forEach items="${systemeDeStockage.switchSann}" var="san">
 												<tr class="gradeA" id="tr_san_${san.id }">
 													<td class="supchekbox"><input type="checkbox" class="ckSan" checked="checked" name="chSan" value="${san.id }"></td>
 													<td>${san.nom }</td>

@@ -535,7 +535,7 @@ Use search to find needed section.
 							});
 						
 							        if(n==""){
-							        	alert("hhhhhh!");
+							        	alert("S'il vous plaît remplir au moins un de ces champs.!");
 							          
 							        }
 							       

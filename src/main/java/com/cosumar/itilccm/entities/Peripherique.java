@@ -71,7 +71,7 @@ public class Peripherique implements Serializable{
    	
     @Column(nullable=true)
    	@JsonIgnore
-    @OneToMany(mappedBy="peripherique",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy="peripherique",cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<TicketIncident> ticketsIncident;
 
