@@ -574,9 +574,9 @@ Use search to find needed section.
 								<li>
 									<a href="#profile-tabs-changements" data-toggle="tab">Tickets Chanegements</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="#profile-tabs-following" data-toggle="tab">Following</a>
-								</li>
+								</li> -->
 							</ul>
 		
 							<div class="tab-content tab-content-bordered panel-padding">
@@ -813,7 +813,7 @@ Use search to find needed section.
 											Changements
 		
 								</div> <!-- / .tab-pane -->
-								<div class="tab-pane fade widget-followers" id="profile-tabs-following">
+								<!--<div class="tab-pane fade widget-followers" id="profile-tabs-following">
 									<div class="follower">
 										<img src="<%=request.getContextPath()%>/resources/assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
 										<div class="body">
@@ -989,7 +989,7 @@ Use search to find needed section.
 											<a href="#" class="follower-username">@dsteiner</a>
 										</div>
 									</div>
-								</div> <!-- / .tab-pane -->
+								</div>  / .tab-pane -->
 							</div> <!-- / .tab-content -->
 						</div>
 					</div>
