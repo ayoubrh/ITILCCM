@@ -25,11 +25,11 @@ public class TestMetierT {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			
-			m.ajouterLieu(new Lieu("DIRECTION AUDIT, RISK MANAGEMENT ET QSE >AUDIT INTERNE", "Actif", "RAFFINERIE", null, null, "casa", "Maroc"));
-			m.ajouterLieu(new Lieu("DIRECTION COMMERCIALE>AGENCE CASA", "Actif", "RAFFINERIE", null, null, "casa", "Maroc"));
-			m.ajouterLieu(new Lieu("DOUKKALA>ADMINISTRATION", "Actif", "DOUKKALA", null, null, "DOUKKALA", "Maroc"));
-			m.ajouterLieu(new Lieu("SUNABEL MBK>ADMINISTRATION", "Actif", "SUNABEL MBK", null, null, "MBK", "Maroc"));
-			m.ajouterLieu(new Lieu("SUNABEL MBK>BUREAU DE VENTE", "Actif", "SUNABEL MBK", null, null, "MBK", "Maroc"));
+			m.ajouterLieu(new Lieu("DIRECTION AUDIT, RISK MANAGEMENT ET QSE >AUDIT INTERNE", "Actif", "RRRRRRRRRRRR", null, null, "casa", "Maroc"));
+			m.ajouterLieu(new Lieu("DIRECTION COMMERCIALE>AGENCE CASA", "Actif", "DDDDDDDD", null, null, "casa", "Maroc"));
+			m.ajouterLieu(new Lieu("DOUKKALA>ADMINISTRATION", "Actif", "CCCCCCCCCC", null, null, "DOUKKALA", "Maroc"));
+			m.ajouterLieu(new Lieu("SUNABEL MBK>ADMINISTRATION", "Actif", "AAAAAAAAAA", null, null, "MBK", "Maroc"));
+			m.ajouterLieu(new Lieu("SUNABEL MBK>BUREAU DE VENTE", "Actif", "BBBBBBBBBBB", null, null, "MBK", "Maroc"));
 			Lieu li = m.getLieu(1L);
 			System.out.println(li.getNom());
 			assertTrue(true);
@@ -43,9 +43,9 @@ public class TestMetierT {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			
-			m.ajouterContact(new Contact("ferhaoui", "toufik", "GROUPE COSUMAR", "Actif", "chef de projet", "1", "toufik.ferhaoui@gmail.com", null, "0637799182"));
-			m.ajouterContact(new Contact("RHNABRI", "Ayoub", "GROUPE COSUMAR", "Actif", "chef de projet", "2", null, null, null));
-			m.ajouterContact(new Contact("test", "AAAA", "GROUPE COSUMAR", "Actif", "chef de projet", "3", null, null, null));
+			m.ajouterContact(new Contact("MOUKHLIS", "Soumaya", "AAAAAAAAAAA", "Actif", "chef de projet", "1", null, null, null));
+			m.ajouterContact(new Contact("MOUKHLIS1", "Soumaya2", "BBBBBBBBBBBBB", "Actif", "chef de projet", "2", null, null, null));
+			m.ajouterContact(new Contact("test", "AAAAA", "CCCCCCCCCC", "Actif", "chef de projet", "3", null, null, null));
 			assertTrue(true);
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
@@ -58,8 +58,8 @@ public class TestMetierT {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
 			
-			m.ajouterContrat(new Contrat("Contrat", "FERHAOUI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
-			m.ajouterContrat(new Contrat("Contrat2", "RHNABRI", "responsable de service informatique", null, null, 8000, "Derham", null, null, "IT departement", null, "production", "Fournisseur"));
+			m.ajouterContrat(new Contrat("Contrat", "MOUKHLIS", "responsable de service informatique", null, null, 8000, "Dirham", null, null, "IT departement", null, "production", "Fournisseur"));
+			m.ajouterContrat(new Contrat("Contrat2", "MOUKHLIS1", "responsable de service informatique", null, null, 8000, "Dirham", null, null, "IT departement", null, "production", "Fournisseur"));
 			assertTrue(true);
 		}catch (Exception e){
 			assertTrue(e.getMessage(), false);
@@ -307,9 +307,9 @@ public class TestMetierT {
 	public void ArriveeElectrique() {
 		try{
 			AdminMetier m = (AdminMetier) context.getBean("metier");
-			m.addArriveeElectrique(new ArriveeElectrique("Arrivee1"));
-			m.addArriveeElectrique(new ArriveeElectrique("Arrivee2"));
-			m.addArriveeElectrique(new ArriveeElectrique("Arrivee3"));
+			m.addArriveeElectrique(new ArriveeElectrique("Arrivee12"));
+			m.addArriveeElectrique(new ArriveeElectrique("Arrivee22"));
+			m.addArriveeElectrique(new ArriveeElectrique("Arrivee32"));
 			assertTrue(true);
 		
 		}catch (Exception e){
